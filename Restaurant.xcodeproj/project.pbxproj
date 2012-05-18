@@ -15,7 +15,20 @@
 		781B8F181546DB870074EDBD /* RestaurantAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B8F171546DB870074EDBD /* RestaurantAppDelegate.m */; };
 		781B8F1B1546DB870074EDBD /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 781B8F191546DB870074EDBD /* MainStoryboard_iPhone.storyboard */; };
 		781B8F1E1546DB870074EDBD /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 781B8F1C1546DB870074EDBD /* MainStoryboard_iPad.storyboard */; };
-		781B8F211546DB870074EDBD /* RestaurantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B8F201546DB870074EDBD /* RestaurantViewController.m */; };
+		781B8F291546DBDD0074EDBD /* LoadAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B8F281546DBDD0074EDBD /* LoadAppViewController.m */; };
+		781B8F2C1546DD590074EDBD /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B8F2B1546DD590074EDBD /* MainMenuViewController.m */; };
+		78354F7A15590E07001890F1 /* Offers.m in Sources */ = {isa = PBXBuildFile; fileRef = 78354F7915590E07001890F1 /* Offers.m */; };
+		78354F7D155944F1001890F1 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78354F7C155944F1001890F1 /* SettingsTableViewController.m */; };
+		786B29861546E64C00486848 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 786B29851546E64C00486848 /* QuartzCore.framework */; };
+		786B29991546E85900486848 /* MenuListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786B29981546E85900486848 /* MenuListTableViewController.m */; };
+		786B299C1546EA7400486848 /* XMLParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 786B299B1546EA7400486848 /* XMLParse.m */; };
+		786B29A51546EC3F00486848 /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786B29A41546EC3F00486848 /* ProductDetailViewController.m */; };
+		78864DDC154957EE00D339B7 /* files.iphone.shop.category7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 78864DDB154957EE00D339B7 /* files.iphone.shop.category7.jpg */; };
+		78864DDF15495E0A00D339B7 /* files.iphone.shop.good1582.png in Resources */ = {isa = PBXBuildFile; fileRef = 78864DDE15495E0A00D339B7 /* files.iphone.shop.good1582.png */; };
+		78864DE215497E7700D339B7 /* ProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78864DE115497E7700D339B7 /* ProductCell.m */; };
+		78864DE41549804400D339B7 /* productCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78864DE31549804400D339B7 /* productCell.xib */; };
+		78FB4D03154BF1CE0035236F /* CartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FB4D02154BF1CE0035236F /* CartCell.m */; };
+		78FB4D06154BF20D0035236F /* CartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78FB4D05154BF20D0035236F /* CartCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,16 +36,37 @@
 		781B8F071546DB870074EDBD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		781B8F091546DB870074EDBD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		781B8F0B1546DB870074EDBD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		781B8F0F1546DB870074EDBD /* Restaurant-Info.plist */ = {isa = PBXFileReference; path = "Restaurant-Info.plist"; sourceTree = "<group>"; };
+		781B8F0F1546DB870074EDBD /* Restaurant-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Restaurant-Info.plist"; sourceTree = "<group>"; };
 		781B8F111546DB870074EDBD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		781B8F131546DB870074EDBD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		781B8F151546DB870074EDBD /* Restaurant-Prefix.pch */ = {isa = PBXFileReference; path = "Restaurant-Prefix.pch"; sourceTree = "<group>"; };
-		781B8F161546DB870074EDBD /* RestaurantAppDelegate.h */ = {isa = PBXFileReference; path = RestaurantAppDelegate.h; sourceTree = "<group>"; };
+		781B8F151546DB870074EDBD /* Restaurant-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Restaurant-Prefix.pch"; sourceTree = "<group>"; };
+		781B8F161546DB870074EDBD /* RestaurantAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RestaurantAppDelegate.h; sourceTree = "<group>"; };
 		781B8F171546DB870074EDBD /* RestaurantAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RestaurantAppDelegate.m; sourceTree = "<group>"; };
 		781B8F1A1546DB870074EDBD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		781B8F1D1546DB870074EDBD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		781B8F1F1546DB870074EDBD /* RestaurantViewController.h */ = {isa = PBXFileReference; path = RestaurantViewController.h; sourceTree = "<group>"; };
-		781B8F201546DB870074EDBD /* RestaurantViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RestaurantViewController.m; sourceTree = "<group>"; };
+		781B8F271546DBDD0074EDBD /* LoadAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadAppViewController.h; sourceTree = "<group>"; };
+		781B8F281546DBDD0074EDBD /* LoadAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadAppViewController.m; sourceTree = "<group>"; };
+		781B8F2A1546DD590074EDBD /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
+		781B8F2B1546DD590074EDBD /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
+		78354F7815590E07001890F1 /* Offers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Offers.h; sourceTree = "<group>"; };
+		78354F7915590E07001890F1 /* Offers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Offers.m; sourceTree = "<group>"; };
+		78354F7B155944F1001890F1 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
+		78354F7C155944F1001890F1 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
+		786B29851546E64C00486848 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		786B29971546E85900486848 /* MenuListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuListTableViewController.h; sourceTree = "<group>"; };
+		786B29981546E85900486848 /* MenuListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuListTableViewController.m; sourceTree = "<group>"; };
+		786B299A1546EA7400486848 /* XMLParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParse.h; sourceTree = "<group>"; };
+		786B299B1546EA7400486848 /* XMLParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParse.m; sourceTree = "<group>"; };
+		786B29A31546EC3F00486848 /* ProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewController.h; sourceTree = "<group>"; };
+		786B29A41546EC3F00486848 /* ProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
+		78864DDB154957EE00D339B7 /* files.iphone.shop.category7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = files.iphone.shop.category7.jpg; sourceTree = "<group>"; };
+		78864DDE15495E0A00D339B7 /* files.iphone.shop.good1582.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = files.iphone.shop.good1582.png; sourceTree = "<group>"; };
+		78864DE015497E7700D339B7 /* ProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductCell.h; sourceTree = "<group>"; };
+		78864DE115497E7700D339B7 /* ProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductCell.m; sourceTree = "<group>"; };
+		78864DE31549804400D339B7 /* productCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = productCell.xib; sourceTree = "<group>"; };
+		78FB4D01154BF1CD0035236F /* CartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartCell.h; sourceTree = "<group>"; };
+		78FB4D02154BF1CE0035236F /* CartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartCell.m; sourceTree = "<group>"; };
+		78FB4D05154BF20D0035236F /* CartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CartCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				786B29861546E64C00486848 /* QuartzCore.framework in Frameworks */,
 				781B8F081546DB870074EDBD /* UIKit.framework in Frameworks */,
 				781B8F0A1546DB870074EDBD /* Foundation.framework in Frameworks */,
 				781B8F0C1546DB870074EDBD /* CoreGraphics.framework in Frameworks */,
@@ -52,6 +87,7 @@
 		781B8EF81546DB870074EDBD = {
 			isa = PBXGroup;
 			children = (
+				786B29851546E64C00486848 /* QuartzCore.framework */,
 				781B8F0D1546DB870074EDBD /* Restaurant */,
 				781B8F061546DB870074EDBD /* Frameworks */,
 				781B8F041546DB870074EDBD /* Products */,
@@ -79,12 +115,32 @@
 		781B8F0D1546DB870074EDBD /* Restaurant */ = {
 			isa = PBXGroup;
 			children = (
+				78354F7815590E07001890F1 /* Offers.h */,
+				78354F7915590E07001890F1 /* Offers.m */,
+				78FB4D01154BF1CD0035236F /* CartCell.h */,
+				78FB4D02154BF1CE0035236F /* CartCell.m */,
+				78FB4D05154BF20D0035236F /* CartCell.xib */,
+				78864DE015497E7700D339B7 /* ProductCell.h */,
+				78864DE115497E7700D339B7 /* ProductCell.m */,
+				78864DE31549804400D339B7 /* productCell.xib */,
+				786B29A31546EC3F00486848 /* ProductDetailViewController.h */,
+				786B29A41546EC3F00486848 /* ProductDetailViewController.m */,
 				781B8F161546DB870074EDBD /* RestaurantAppDelegate.h */,
 				781B8F171546DB870074EDBD /* RestaurantAppDelegate.m */,
 				781B8F191546DB870074EDBD /* MainStoryboard_iPhone.storyboard */,
+				78354F7B155944F1001890F1 /* SettingsTableViewController.h */,
+				78354F7C155944F1001890F1 /* SettingsTableViewController.m */,
+				786B29971546E85900486848 /* MenuListTableViewController.h */,
+				786B29981546E85900486848 /* MenuListTableViewController.m */,
+				786B299A1546EA7400486848 /* XMLParse.h */,
+				786B299B1546EA7400486848 /* XMLParse.m */,
+				781B8F2A1546DD590074EDBD /* MainMenuViewController.h */,
+				781B8F2B1546DD590074EDBD /* MainMenuViewController.m */,
 				781B8F1C1546DB870074EDBD /* MainStoryboard_iPad.storyboard */,
-				781B8F1F1546DB870074EDBD /* RestaurantViewController.h */,
-				781B8F201546DB870074EDBD /* RestaurantViewController.m */,
+				781B8F271546DBDD0074EDBD /* LoadAppViewController.h */,
+				781B8F281546DBDD0074EDBD /* LoadAppViewController.m */,
+				78864DDB154957EE00D339B7 /* files.iphone.shop.category7.jpg */,
+				78864DDE15495E0A00D339B7 /* files.iphone.shop.good1582.png */,
 				781B8F0E1546DB870074EDBD /* Supporting Files */,
 			);
 			path = Restaurant;
@@ -155,6 +211,10 @@
 				781B8F121546DB870074EDBD /* InfoPlist.strings in Resources */,
 				781B8F1B1546DB870074EDBD /* MainStoryboard_iPhone.storyboard in Resources */,
 				781B8F1E1546DB870074EDBD /* MainStoryboard_iPad.storyboard in Resources */,
+				78864DDC154957EE00D339B7 /* files.iphone.shop.category7.jpg in Resources */,
+				78864DDF15495E0A00D339B7 /* files.iphone.shop.good1582.png in Resources */,
+				78864DE41549804400D339B7 /* productCell.xib in Resources */,
+				78FB4D06154BF20D0035236F /* CartCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,7 +227,15 @@
 			files = (
 				781B8F141546DB870074EDBD /* main.m in Sources */,
 				781B8F181546DB870074EDBD /* RestaurantAppDelegate.m in Sources */,
-				781B8F211546DB870074EDBD /* RestaurantViewController.m in Sources */,
+				781B8F291546DBDD0074EDBD /* LoadAppViewController.m in Sources */,
+				781B8F2C1546DD590074EDBD /* MainMenuViewController.m in Sources */,
+				786B29991546E85900486848 /* MenuListTableViewController.m in Sources */,
+				786B299C1546EA7400486848 /* XMLParse.m in Sources */,
+				786B29A51546EC3F00486848 /* ProductDetailViewController.m in Sources */,
+				78864DE215497E7700D339B7 /* ProductCell.m in Sources */,
+				78FB4D03154BF1CE0035236F /* CartCell.m in Sources */,
+				78354F7A15590E07001890F1 /* Offers.m in Sources */,
+				78354F7D155944F1001890F1 /* SettingsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,10 +273,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLY_RULES_IN_COPY_FILES = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
+				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -231,6 +300,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLY_RULES_IN_COPY_FILES = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -251,10 +321,14 @@
 		781B8F251546DB870074EDBD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Oguz Demir (5C3QGJ6V4B)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Oguz Demir (5C3QGJ6V4B)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Restaurant/Restaurant-Prefix.pch";
 				INFOPLIST_FILE = "Restaurant/Restaurant-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "B2DDA4DF-2BB5-4209-ABB1-24A45A4729BF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B2DDA4DF-2BB5-4209-ABB1-24A45A4729BF";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -262,10 +336,14 @@
 		781B8F261546DB870074EDBD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Oguz Demir (5C3QGJ6V4B)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Oguz Demir (5C3QGJ6V4B)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Restaurant/Restaurant-Prefix.pch";
 				INFOPLIST_FILE = "Restaurant/Restaurant-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "B2DDA4DF-2BB5-4209-ABB1-24A45A4729BF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B2DDA4DF-2BB5-4209-ABB1-24A45A4729BF";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -289,6 +367,7 @@
 				781B8F261546DB870074EDBD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
