@@ -20,5 +20,6 @@
 - (void) setCoreDataForEntityWithName:(NSString *)entityName 
                 dictionaryOfAtributes:(NSDictionary *)attributeDictionary;
 - (void) deleteAllObjectsFromEntity: (NSString *) entityDescription;
+- (NSArray *)fetchAllRestaurantsFromEntityWithDefaultLanguageandAndCity;
 
 @end

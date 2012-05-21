@@ -123,4 +123,24 @@
     
 }
 
+- (NSArray *)fetchAllRestaurantsFromEntityWithDefaultLanguageandAndCity
+{
+    NSManagedObjectContext * context = [(RestaurantAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Restaurants"];
+    request.predicate = [NSPredicate predicateWithFormat:@"any idCity == %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"]];
+    // && idLanguage == %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"], [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"]];
+    NSManagedObjectContext *moc = context;
+    NSError *error;
+    NSMutableArray *citiesIDs = [[moc executeFetchRequest:request error:&error] mutableCopy];
+    NSMutableArray *resultOfARequest = [[NSMutableArray alloc] init];
+    request = [NSFetchRequest fetchRequestWithEntityName:@"Restaurants_translation"];
+    for(int i=0;i<citiesIDs.count;i++)
+    {
+        request.predicate = [NSPredicate predicateWithFormat:@"any idLanguage == %@ && underbarid == %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"], [[citiesIDs objectAtIndex:i] valueForKey:@"underbarid"]];
+        [resultOfARequest addObjectsFromArray:[moc executeFetchRequest:request error:&error]];
+    }
+    NSLog(@"smth")	;
+    return [resultOfARequest copy];
+}
+
 @end

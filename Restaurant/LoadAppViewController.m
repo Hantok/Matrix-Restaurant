@@ -65,6 +65,9 @@
         [self DropCoreData];
         [self XMLToCoreData];
     }
+    
+    GettingCoreContent *content = [[GettingCoreContent alloc] init];
+    [content fetchAllRestaurantsFromEntityWithDefaultLanguageandAndCity];
     NSLog(@"I'm in viewDidLoad");
 }
 
