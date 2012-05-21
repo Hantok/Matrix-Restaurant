@@ -22,6 +22,27 @@
 @synthesize db = _db;
 
 
+
+- (void)DropCoreData
+{
+    NSArray *allKeys = [self.db.tables allKeys];
+    GettingCoreContent *content = [[GettingCoreContent alloc] init];
+    for(int i = 0; i < self.db.tables.count;i++)
+    {
+        [content deleteAllObjectsFromEntity:[allKeys objectAtIndex:i]];
+    }
+}
+
+- (void)XMLToCoreData
+{
+    for(int i = 0; i< [self.db.tables count]; i++)
+    {
+        NSArray *allKeys = [self.db.tables allKeys];
+        GettingCoreContent *content = [[GettingCoreContent alloc] init];
+        [content setCoreDataForEntityWithName:[allKeys objectAtIndex:i] dictionaryOfAtributes:[self.db.tables objectForKey:[allKeys objectAtIndex:i]]];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -41,23 +62,11 @@
     NSArray *allKeys = [self.db.tables allKeys];
 
     GettingCoreContent *content = [[GettingCoreContent alloc] init];
-    for(int i = 0; i < self.db.tables.count;i++)
+    if(/*интерент есть то делаем этo*/true)
     {
-        [content deleteAllObjectsFromEntity:[allKeys objectAtIndex:i]];
+        [self DropCoreData];
+        [self XMLToCoreData];
     }
-    
-    for(int i = 0; i< [self.db.tables count]; i++)
-    {
-        [content setCoreDataForEntityWithName:[allKeys objectAtIndex:i] dictionaryOfAtributes:[self.db.tables objectForKey:[allKeys objectAtIndex:i]]];
-    }
-    NSArray *result;
-    for(int i = 0; i< [self.db.tables count]; i++)
-        result = [content getArrayFromCoreDatainEntetyName:[[self.db.tables allKeys] objectAtIndex:i] withSortDescriptor:@"underbarid"];
-    
-    
-    
-    
-    
     NSLog(@"I'm in viewDidLoad");
 }
 
