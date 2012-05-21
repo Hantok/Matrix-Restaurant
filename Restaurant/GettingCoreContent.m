@@ -8,7 +8,7 @@
 
 #import "GettingCoreContent.h"
 #import "RestaurantAppDelegate.h"
-//хуй
+//хуй2
 
 @implementation GettingCoreContent
 
