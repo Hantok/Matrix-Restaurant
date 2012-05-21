@@ -59,9 +59,7 @@
     [parser parse];
     
     self.db = parser;
-    NSArray *allKeys = [self.db.tables allKeys];
-
-    GettingCoreContent *content = [[GettingCoreContent alloc] init];
+    
     if(/*интерент есть то делаем этo*/true)
     {
         [self DropCoreData];
