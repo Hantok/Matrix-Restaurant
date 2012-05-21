@@ -15,9 +15,12 @@
 @property BOOL error;
 
 #pragma Bogdan Geleta
+
 -(NSArray *)GetAllLanguages;
 -(NSArray *)GetAllCitiesOnLanguage:(NSNumber *)languageId;
--(NSArray *)GetALLRestaurantsNamesOnLanguage:(NSNumber *)languageId;
+-(NSArray *)GetAllRestaurantsNamesOnLanguage:(NSNumber *)languageId forCity:(NSNumber *)cityId;
+-(NSArray *)GetAllIDsOfRestorantsForCity:(NSNumber *)cityId;
+-(void)manual;
 
 #pragma Roman Slysh
 

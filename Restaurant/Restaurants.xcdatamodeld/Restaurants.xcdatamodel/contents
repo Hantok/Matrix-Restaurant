@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1171" systemVersion="11E53" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Cities" syncable="YES">
+        <attribute name="underbarid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Cities_translation" syncable="YES">
+        <attribute name="idCity" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idLanguage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="underbarid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Currencies" syncable="YES">
+        <attribute name="coef" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="currency" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="underbarid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Deliveries" syncable="YES">
+        <attribute name="underbarid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Deliveries_translation" syncable="YES">
+        <attribute name="descriptionAbout" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idDelivery" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idLanguage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="underbarid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Descriptions_translation" syncable="YES">
+        <attribute name="descriptionText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idLanguage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idProduct" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nameText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="underbarid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Discounts" syncable="YES">
+        <attribute name="underbarid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Event">
+        <attribute name="cost" optional="YES" attributeType="String"/>
+        <attribute name="descriptionAbout" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Languages" syncable="YES">
+        <attribute name="language" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="underbarid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Menus" syncable="YES">
+        <attribute name="idParentMenu" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idPicture" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idRestaurant" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="underbarid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Menus_translation" syncable="YES">
+        <attribute name="idLanguage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idMenu" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="menuText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="underbarid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Pictures" syncable="YES">
+        <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="underbarid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Products" syncable="YES">
+        <attribute name="idDiscount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idMenu" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idPicture" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="underbarid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Restaurants" syncable="YES">
+        <attribute name="coordinates" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idCity" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idPicture" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phones" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="underbarid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Restaurants_translation" syncable="YES">
+        <attribute name="additionalAddressInfo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="additionalContactInfo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="house" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idLanguage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idRestaurant" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="metro" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="underbarid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="workingTime" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Statuses" syncable="YES">
+        <attribute name="underbarid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Statuses_translation" syncable="YES">
+        <attribute name="idLanguage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idStatus" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="underbarid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Cities_translation" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="Event" positionX="261" positionY="189" width="128" height="105"/>
+        <element name="Products" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Currencies" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="Languages" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="Restaurants" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Cities" positionX="160" positionY="192" width="128" height="60"/>
+        <element name="Discounts" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="Pictures" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="Restaurants_translation" positionX="160" positionY="192" width="128" height="195"/>
+        <element name="Menus" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="Menus_translation" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="Descriptions_translation" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Statuses_translation" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="Statuses" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="Deliveries_translation" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Deliveries" positionX="160" positionY="192" width="128" height="60"/>
+    </elements>
+</model>

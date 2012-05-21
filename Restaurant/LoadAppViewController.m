@@ -7,6 +7,7 @@
 //
 
 #import "LoadAppViewController.h"
+#import "GettingCoreContent.h"
 #import "XMLParse.h"
 
 @interface LoadAppViewController ()
@@ -37,6 +38,24 @@
     [parser parse];
     
     self.db = parser;
+    NSArray *allKeys = [self.db.tables allKeys];
+    
+    GettingCoreContent *content = [[GettingCoreContent alloc] init];
+    for(int i = 0; i < self.db.tables.count;i++)
+    {
+        [content deleteAllObjectsFromEntity:[allKeys objectAtIndex:i]];
+    }
+    
+    for(int i = 0; i< [self.db.tables count]; i++)
+    {
+        [content setCoreDataForEntityWithName:[allKeys objectAtIndex:i] dictionaryOfAtributes:[self.db.tables objectForKey:[allKeys objectAtIndex:i]]];
+    }
+    NSArray *result;
+    for(int i = 0; i< [self.db.tables count]; i++)
+        result = [content getArrayFromCoreDatainEntetyName:[[self.db.tables allKeys] objectAtIndex:i] withSortDescriptor:@"underbarid"];
+    
+    
+    
     
     
     NSLog(@"I'm in viewDidLoad");
@@ -104,5 +123,7 @@
     // Release any retained subviews of the main view.
     NSLog(@"I'm in viewDidUnload");
 }
+
+
 
 @end

@@ -35,7 +35,7 @@
 // парсинг окончен
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
     self.done = YES;
-    [self GetAllRestaurantsNamesOnLanguage:[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
+    [self GetAllRestaurantsNamesOnLanguage:[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"] forCity:[[NSNumber alloc] initWithInt:3]];
     NSLog(@"PARSE IS END");
 }
 // если произошла ошибка парсинга
@@ -151,16 +151,20 @@
     
 }
 
--(NSArray *)GetAllRestaurantsNamesOnLanguage:(NSNumber *)languageId
+-(NSArray *)GetAllRestaurantsNamesOnLanguage:(NSNumber *)languageId forCity:(NSNumber *)cityId
 {
     NSMutableArray *restaurantsNames = [[NSMutableArray alloc] init];
+    
+    
+    
     NSMutableDictionary *allRestaurantsByAllLanguages = [self.tables objectForKey:@"Restaurants_translation"];
     NSArray *allIdLanguagesForRestaurants = [allRestaurantsByAllLanguages objectForKey:@"idLanguage"];
+    NSArray *allIdCitiesForRestaurants = [allRestaurantsByAllLanguages objectForKey:@"idCity"];
     NSArray *allRestaurantsNames = [allRestaurantsByAllLanguages objectForKey:@"name"];
     
-    for(int i=0; i<allIdLanguagesForRestaurants.count;i++)
+    for(int i=0;i<allIdLanguagesForRestaurants.count;i++)
     {
-        if([[[allIdLanguagesForRestaurants objectAtIndex:i] description] isEqualToString:languageId.description])
+        if([[[allIdLanguagesForRestaurants objectAtIndex:i] description] isEqualToString:languageId.description] && [[[allIdCitiesForRestaurants objectAtIndex:i] description] isEqualToString:cityId.description])
         {
             
             [restaurantsNames addObject:[allRestaurantsNames objectAtIndex:i]];
@@ -169,6 +173,47 @@
     
     
     return [restaurantsNames copy];
+}
+
+-(NSArray *)GetAllIDsOfRestorantsForCity:(NSNumber *)cityId
+{
+    NSMutableArray *ids = [[NSMutableArray alloc] init];
+    
+    NSMutableDictionary *allRestaurants = [self.tables objectForKey:@"Restaurants"];
+    NSArray *idOfRestoraunts = [allRestaurants objectForKey:@"_id"];
+    NSArray *idCity = [allRestaurants objectForKey:@"idCity"];
+    
+    for(int i=0;i<idCity.count;i++)
+    {
+        if([[[idCity objectAtIndex:i] description] isEqualToString:cityId.description])
+        {
+            [ids addObject:[idOfRestoraunts objectAtIndex:i]];
+        }
+    }
+    
+    
+    return ids;
+}
+
+-(void)manual
+{
+    NSArray *allKeysForEntity= [self.tables allKeys]; //Names of all entities
+    NSArray *allKeysForAttributes = [[NSArray alloc] init];
+    NSArray *allValuesOfSomeAttributes = [[NSArray alloc] init];
+    NSDictionary *someEntity =[[NSDictionary alloc] init];
+    for(int i=0;i<allKeysForEntity.count;i++) //цикл получающий каждое энтети поочередно
+    {
+        someEntity = [self.tables objectForKey:[allKeysForEntity objectAtIndex:i]];
+        allKeysForAttributes = [someEntity allKeys];
+        for(int j=0;j<allKeysForAttributes.count;j++)
+        {
+            allValuesOfSomeAttributes = [someEntity objectForKey:[allKeysForAttributes objectAtIndex:j]];
+            for(int k=0;k<allValuesOfSomeAttributes.count;k++)
+                NSLog(@"%@",[[allValuesOfSomeAttributes objectAtIndex:k] description]);
+        }
+        
+        
+    }
 }
 
 #pragma Roman Slysh
