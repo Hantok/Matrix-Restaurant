@@ -39,7 +39,7 @@
     
     self.db = parser;
     NSArray *allKeys = [self.db.tables allKeys];
-    
+    //stupidcoment
     GettingCoreContent *content = [[GettingCoreContent alloc] init];
     for(int i = 0; i < self.db.tables.count;i++)
     {
