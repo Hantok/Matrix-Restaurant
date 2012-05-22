@@ -23,7 +23,10 @@
 - (void) deleteAllObjectsFromEntity: (NSString *) entityDescription;
 - (NSArray *)fetchAllRestaurantsWithDefaultLanguageAndCity;
 - (NSArray *)fetchRootMenuWithDefaultLanguageForRestaurant:(NSString *)restaurnatId;
-- (NSArray *)fetchChildMenuWithDefaultLanguageForRootMeny:(NSString *)rootMenuId;
+- (NSArray *)fetchChildMenuWithDefaultLanguageForParentMenu:(NSString *)ParentMenuId;
+- (NSArray *)fetchAllLanguages;
+- (NSArray *)fetchAllCitiesByLanguage:(NSString *)languageId;
+
 
 
 

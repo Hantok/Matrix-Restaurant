@@ -181,9 +181,41 @@
     return [resultOfARequest copy]; 
 }
 
--(NSArray *)fetchChildMenuWithDefaultLanguageForRootMeny:(NSString *)rootMenuId
+-(NSArray *)fetchChildMenuWithDefaultLanguageForParentMenu:(NSString *)ParentMenuId
 {
     return nil;
+}
+
+-(NSArray *)fetchAllLanguages
+{
+    NSManagedObjectContext * context = self.managedObjectContext;
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Languages" inManagedObjectContext:context];
+    
+    [request setEntity:entity];
+    
+    request.predicate = [NSPredicate predicateWithFormat:@"underbarid > 0"];
+    NSManagedObjectContext *moc = context;
+    NSError *error;
+    NSMutableArray *resultOfARequest = [[moc executeFetchRequest:request error:&error] mutableCopy];
+    return [resultOfARequest copy]; 
+}
+
+-(NSArray *)fetchAllCitiesByLanguage:(NSString *)languageId
+{
+    NSManagedObjectContext * context = self.managedObjectContext;
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Cities_translation" inManagedObjectContext:context];
+    
+    [request setEntity:entity];
+    
+    request.predicate = [NSPredicate predicateWithFormat:@"idLanguage == %@", languageId];
+    NSManagedObjectContext *moc = context;
+    NSError *error;
+    NSMutableArray *resultOfARequest = [[moc executeFetchRequest:request error:&error] mutableCopy];
+    return [resultOfARequest copy];
 }
 
 @end
