@@ -32,11 +32,15 @@
 @synthesize dataSourcepV = _dataSourcepV;
 @synthesize db = _db;
 
-- (void)setDb:(XMLParse *)db
-{
-    _db = db;
-}
 
+- (GettingCoreContent *)db
+{
+    if(!_db)
+    {
+        _db = [[GettingCoreContent alloc] init];
+    }
+    return  _db;
+}
 
 - (IBAction)menuButton:(id)sender {
     self.isMenuMode = YES;
@@ -122,7 +126,9 @@
 {
     if(self.isMenuMode)
     {
-        return self.arrayData.count;
+        NSArray *data = [self.db fetchRootMenuWithDefaultLanguageForRestaurant:@"1"];
+        data = [self.db fetchChildMenuWithDefaultLanguageForParentMenu:[[data objectAtIndex:0] valueForKey:@"idMenu"]];
+        return data.count/2;
     }
     else 
     {
@@ -143,13 +149,16 @@
         
     }
     else {
+        NSArray *data = [self.db fetchRootMenuWithDefaultLanguageForRestaurant:@"1"];
+        data = [self.db fetchChildMenuWithDefaultLanguageForParentMenu:[[data objectAtIndex:0] valueForKey:@"idMenu"]];
         UIView *viewForRow = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.pickerView.frame.size.width-30, self.pickerView.frame.size.height/5)];
         //NSLog(@"%f", viewForRow.frame.size.width);
         //NSLog(@"%f", viewForRow.frame.size.height);
-        UIImage *imageForUIImageView  = [UIImage imageNamed:@"files.iphone.shop.category7.jpg"];
+        NSURL *url = [self.db fetchImageURLbyPictureID:[[data objectAtIndex:row*2] valueForKey:@"idPicture"]];
+        UIImage *imageForUIImageView  = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
         UIImageView *imageViewForViewForRow = [[UIImageView alloc] initWithImage:imageForUIImageView];
         UILabel *labelForRow = [[UILabel alloc] initWithFrame:CGRectMake(imageViewForViewForRow.frame.size.width, 5, self.pickerView.frame.size.width-30, pickerView.frame.size.height/5)];
-        labelForRow.text = [self.arrayData objectAtIndex:row];
+        labelForRow.text = [[data objectAtIndex:row*2+1] valueForKey:@"menuText"];
         [viewForRow addSubview:imageViewForViewForRow];
         [viewForRow addSubview:labelForRow];
         

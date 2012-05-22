@@ -181,9 +181,30 @@
     return [resultOfARequest copy]; 
 }
 
--(NSArray *)fetchChildMenuWithDefaultLanguageForParentMenu:(NSString *)ParentMenuId
+-(NSArray *)fetchChildMenuWithDefaultLanguageForParentMenu:(NSString *)parentMenuId
 {
-    return nil;
+    NSManagedObjectContext * context = self.managedObjectContext;
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Menus" inManagedObjectContext:context];
+    
+    [request setEntity:entity];
+    
+    request.predicate = [NSPredicate predicateWithFormat:@"idParentMenu == %@",parentMenuId];
+    NSManagedObjectContext *moc = context;
+    NSError *error;
+    NSMutableArray *menuIDs = [[moc executeFetchRequest:request error:&error] mutableCopy];
+    NSMutableArray *resultOfARequest = [[NSMutableArray alloc] init];
+    request = [NSFetchRequest fetchRequestWithEntityName:@"Menus_translation"];
+    for(int i = 0;i<menuIDs.count;i++)
+    {
+        id currentMenu = [menuIDs objectAtIndex:i];
+        request.predicate = [NSPredicate predicateWithFormat:@"idLanguage == %@ && idMenu == %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"], [currentMenu valueForKey:@"underbarid"]];
+        [resultOfARequest addObject:currentMenu];
+        [resultOfARequest addObjectsFromArray:[moc executeFetchRequest:request error:&error]];
+    }
+    NSLog(@"smth")	;
+    return [resultOfARequest copy]; 
 }
 
 -(NSArray *)fetchAllLanguages
@@ -216,6 +237,26 @@
     NSError *error;
     NSMutableArray *resultOfARequest = [[moc executeFetchRequest:request error:&error] mutableCopy];
     return [resultOfARequest copy];
+}
+
+- (NSURL *)fetchImageURLbyPictureID:(NSString *)pictureId
+{
+    NSManagedObjectContext * context = self.managedObjectContext;
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Pictures" inManagedObjectContext:context];
+    
+    [request setEntity:entity];
+    
+    request.predicate = [NSPredicate predicateWithFormat:@"underbarid == %@", pictureId];
+    NSManagedObjectContext *moc = context;
+    NSError *error;
+    
+    NSArray *resultOfARequest = [moc executeFetchRequest:request error:&error];
+    NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test3/%@",[[resultOfARequest objectAtIndex:0] valueForKey:@"link"]];
+    urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *url = [[NSURL alloc] initWithString:urlForImage];
+    return url;
 }
 
 @end
