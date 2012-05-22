@@ -58,7 +58,6 @@
 {
     // Return the number of rows in the section.
     return 0;
-    //commit
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
