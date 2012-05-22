@@ -202,4 +202,20 @@
     return [resultOfARequest copy]; 
 }
 
+-(NSArray *)fetchAllCitiesByLanguage:(NSString *)languageId
+{
+    NSManagedObjectContext * context = self.managedObjectContext;
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Cities_translation" inManagedObjectContext:context];
+    
+    [request setEntity:entity];
+    
+    request.predicate = [NSPredicate predicateWithFormat:@"idLanguage == %@", languageId];
+    NSManagedObjectContext *moc = context;
+    NSError *error;
+    NSMutableArray *resultOfARequest = [[moc executeFetchRequest:request error:&error] mutableCopy];
+    return [resultOfARequest copy];
+}
+
 @end
