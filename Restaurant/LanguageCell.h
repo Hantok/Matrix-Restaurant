@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GettingCoreContent.h"
 
 @interface LanguageCell : UITableViewCell
 

@@ -35,6 +35,7 @@
 		F507215A156BA2C200D7ACC6 /* checkConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = F5072159156BA2C200D7ACC6 /* checkConnection.m */; };
 		F507215D156BA37C00D7ACC6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F507215C156BA37C00D7ACC6 /* SystemConfiguration.framework */; };
 		F5072169156BD46900D7ACC6 /* LanguageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5072168156BD46900D7ACC6 /* LanguageCell.m */; };
+		F507216C156BE0D200D7ACC6 /* LanguageAndCityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F507216B156BE0D200D7ACC6 /* LanguageAndCityTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,8 @@
 		F507215C156BA37C00D7ACC6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F5072167156BD46900D7ACC6 /* LanguageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageCell.h; sourceTree = "<group>"; };
 		F5072168156BD46900D7ACC6 /* LanguageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageCell.m; sourceTree = "<group>"; };
+		F507216A156BE0D200D7ACC6 /* LanguageAndCityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageAndCityTableViewController.h; sourceTree = "<group>"; };
+		F507216B156BE0D200D7ACC6 /* LanguageAndCityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageAndCityTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +142,8 @@
 				78D3CF1A156A9241003202BD /* GettingCoreContent.m */,
 				F5072167156BD46900D7ACC6 /* LanguageCell.h */,
 				F5072168156BD46900D7ACC6 /* LanguageCell.m */,
+				F507216A156BE0D200D7ACC6 /* LanguageAndCityTableViewController.h */,
+				F507216B156BE0D200D7ACC6 /* LanguageAndCityTableViewController.m */,
 				78354F7815590E07001890F1 /* Offers.h */,
 				78354F7915590E07001890F1 /* Offers.m */,
 				78FB4D01154BF1CD0035236F /* CartCell.h */,
@@ -149,8 +154,8 @@
 				78864DE31549804400D339B7 /* productCell.xib */,
 				786B29A31546EC3F00486848 /* ProductDetailViewController.h */,
 				786B29A41546EC3F00486848 /* ProductDetailViewController.m */,
-				781B8F161546DB870074EDBD /* RestaurantAppDelegate.h */,
 				781B8F171546DB870074EDBD /* RestaurantAppDelegate.m */,
+				781B8F161546DB870074EDBD /* RestaurantAppDelegate.h */,
 				781B8F191546DB870074EDBD /* MainStoryboard_iPhone.storyboard */,
 				78354F7B155944F1001890F1 /* SettingsTableViewController.h */,
 				78354F7C155944F1001890F1 /* SettingsTableViewController.m */,
@@ -266,6 +271,7 @@
 				78D3CF1E156A9248003202BD /* Restaurants.xcdatamodeld in Sources */,
 				F507215A156BA2C200D7ACC6 /* checkConnection.m in Sources */,
 				F5072169156BD46900D7ACC6 /* LanguageCell.m in Sources */,
+				F507216C156BE0D200D7ACC6 /* LanguageAndCityTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

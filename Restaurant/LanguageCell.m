@@ -21,9 +21,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
-    [super setSelected:selected animated:animated];
-    self.detailTextLabel.text = @"lol";
-    // Configure the view for the selected state
+    //треба передати значення з юзердефолт для мови у self.detailTextLabel.text
 }
 
 @end
