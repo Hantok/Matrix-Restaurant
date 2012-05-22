@@ -181,7 +181,7 @@
     return [resultOfARequest copy]; 
 }
 
--(NSArray *)fetchChildMenuWithDefaultLanguageForRootMenu:(NSString *)rootMenuId
+-(NSArray *)fetchChildMenuWithDefaultLanguageForParentMenu:(NSString *)ParentMenuId
 {
     return nil;
 }
