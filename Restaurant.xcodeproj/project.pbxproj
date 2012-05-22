@@ -32,6 +32,8 @@
 		78D3CF20156A9986003202BD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78D3CF1F156A9986003202BD /* CoreData.framework */; };
 		78FB4D03154BF1CE0035236F /* CartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FB4D02154BF1CE0035236F /* CartCell.m */; };
 		78FB4D06154BF20D0035236F /* CartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78FB4D05154BF20D0035236F /* CartCell.xib */; };
+		F507215A156BA2C200D7ACC6 /* checkConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = F5072159156BA2C200D7ACC6 /* checkConnection.m */; };
+		F507215D156BA37C00D7ACC6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F507215C156BA37C00D7ACC6 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +76,9 @@
 		78FB4D01154BF1CD0035236F /* CartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartCell.h; sourceTree = "<group>"; };
 		78FB4D02154BF1CE0035236F /* CartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartCell.m; sourceTree = "<group>"; };
 		78FB4D05154BF20D0035236F /* CartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CartCell.xib; sourceTree = "<group>"; };
+		F5072158156BA2C200D7ACC6 /* checkConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = checkConnection.h; sourceTree = "<group>"; };
+		F5072159156BA2C200D7ACC6 /* checkConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = checkConnection.m; sourceTree = "<group>"; };
+		F507215C156BA37C00D7ACC6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F507215D156BA37C00D7ACC6 /* SystemConfiguration.framework in Frameworks */,
 				78D3CF20156A9986003202BD /* CoreData.framework in Frameworks */,
 				786B29861546E64C00486848 /* QuartzCore.framework in Frameworks */,
 				781B8F081546DB870074EDBD /* UIKit.framework in Frameworks */,
@@ -112,6 +118,7 @@
 		781B8F061546DB870074EDBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F507215C156BA37C00D7ACC6 /* SystemConfiguration.framework */,
 				78D3CF1F156A9986003202BD /* CoreData.framework */,
 				786B29851546E64C00486848 /* QuartzCore.framework */,
 				781B8F071546DB870074EDBD /* UIKit.framework */,
@@ -153,6 +160,8 @@
 				781B8F281546DBDD0074EDBD /* LoadAppViewController.m */,
 				78864DDB154957EE00D339B7 /* files.iphone.shop.category7.jpg */,
 				78864DDE15495E0A00D339B7 /* files.iphone.shop.good1582.png */,
+				F5072158156BA2C200D7ACC6 /* checkConnection.h */,
+				F5072159156BA2C200D7ACC6 /* checkConnection.m */,
 				781B8F0E1546DB870074EDBD /* Supporting Files */,
 			);
 			path = Restaurant;
@@ -250,6 +259,7 @@
 				78354F7D155944F1001890F1 /* SettingsTableViewController.m in Sources */,
 				78D3CF1B156A9241003202BD /* GettingCoreContent.m in Sources */,
 				78D3CF1E156A9248003202BD /* Restaurants.xcdatamodeld in Sources */,
+				F507215A156BA2C200D7ACC6 /* checkConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
