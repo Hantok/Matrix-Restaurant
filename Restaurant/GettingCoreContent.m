@@ -125,7 +125,7 @@
     
 }
 
-- (NSArray *)fetchAllRestaurantsFromEntityWithDefaultLanguageAndCity
+- (NSArray *)fetchAllRestaurantsWithDefaultLanguageAndCity
 {
     NSManagedObjectContext * context = [(RestaurantAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];

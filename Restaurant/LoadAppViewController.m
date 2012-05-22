@@ -121,7 +121,7 @@
         [self XMLToCoreData];
     }
     GettingCoreContent *content = [[GettingCoreContent alloc] init];
-    NSArray *result = [content fetchAllRestaurantsFromEntityWithDefaultLanguageAndCity];
+    NSArray *result = [content fetchAllRestaurantsWithDefaultLanguageAndCity];
     result = [content getArrayFromCoreDatainEntetyName:@"Restaurants" withSortDescriptor:@"underbarid"];
     //[segue.destinationViewController setDb:self.db];
 }
