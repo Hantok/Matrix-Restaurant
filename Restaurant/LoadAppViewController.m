@@ -125,6 +125,7 @@
     result = [content fetchRootMenuWithDefaultLanguageForRestaurant:@"1"];
     result = [content fetchAllLanguages];
     result = [content fetchAllCitiesByLanguage:@"1"];
+    result = [content fetchChildMenuWithDefaultLanguageForParentMenu:@"1"];
     //[segue.destinationViewController setDb:self.db];
 }
      

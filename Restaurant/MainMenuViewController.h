@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "XMLParse.h"
+#include "GettingCoreContent.h"
 
 @interface MainMenuViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
@@ -22,7 +23,7 @@
 @property (strong, nonatomic) NSNumber *selectedRow;
 @property BOOL isCartMode;
 @property BOOL isMenuMode;
-@property (strong, nonatomic) XMLParse * db;
+@property (strong, nonatomic) GettingCoreContent * db;
 
 @property(nonatomic, assign) id<UIPickerViewDelegate> delegatepV;
 @property(nonatomic, assign) id<UIPickerViewDataSource> dataSourcepV;
