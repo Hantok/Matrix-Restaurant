@@ -123,6 +123,7 @@
     GettingCoreContent *content = [[GettingCoreContent alloc] init];
     NSArray *result = [content fetchAllRestaurantsWithDefaultLanguageAndCity];
     result = [content fetchRootMenuWithDefaultLanguageForRestaurant:@"1"];
+    result = [content fetchAllLanguages];
     //[segue.destinationViewController setDb:self.db];
 }
      

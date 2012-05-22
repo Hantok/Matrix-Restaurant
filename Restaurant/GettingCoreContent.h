@@ -24,6 +24,8 @@
 - (NSArray *)fetchAllRestaurantsWithDefaultLanguageAndCity;
 - (NSArray *)fetchRootMenuWithDefaultLanguageForRestaurant:(NSString *)restaurnatId;
 - (NSArray *)fetchChildMenuWithDefaultLanguageForParentMenu:(NSString *)ParentMenuId;
+- (NSArray *)fetchAllLanguages;
+
 
 
 
