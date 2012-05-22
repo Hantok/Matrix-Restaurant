@@ -9,6 +9,7 @@
 #import "LoadAppViewController.h"
 #import "GettingCoreContent.h"
 #import "XMLParse.h"
+#import "checkConnection.h"
 
 @interface LoadAppViewController ()
 
@@ -60,7 +61,7 @@
     
     self.db = parser;
     
-    if(/*интерент есть то делаем этo*/true)
+    if(checkConnection.hasConnectivity)
     {
         [self DropCoreData];
         [self XMLToCoreData];
