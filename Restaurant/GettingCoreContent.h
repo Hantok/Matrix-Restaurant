@@ -13,6 +13,7 @@
 @interface GettingCoreContent : NSObject <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSArray *arrayOfCoreData;
+@property (nonatomic, strong) NSManagedObjectContext* managedObjectContext;
 - (NSArray *)getArrayFromCoreDatainEntetyName:(NSString *)entityName withSortDescriptor:(NSString *)attributeString;
 //- (void) setArrauCoreatEntity:(NSString *)entityName;
 
