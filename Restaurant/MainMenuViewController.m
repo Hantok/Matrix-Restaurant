@@ -70,15 +70,6 @@
     return self;
 }
 
--(void)awakeFromNib
-{
-    [super awakeFromNib];
-    GettingCoreContent *content = [[GettingCoreContent alloc] init];
-    NSArray *restaurants = [content fetchAllRestaurantsFromEntityWithDefaultLanguageAndCity];
-    sleep(2);
-    
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];

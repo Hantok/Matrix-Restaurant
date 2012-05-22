@@ -61,12 +61,6 @@
     
     self.db = parser;
     
-    if(checkConnection.hasConnectivity)
-    {
-        [self DropCoreData];
-        [self XMLToCoreData];
-    }
-    
     NSLog(@"I'm in viewDidLoad");
 }
 
@@ -74,8 +68,6 @@
 {
     [self.activityIndicator stopAnimating];
     [super viewDidAppear:YES];
-    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"defaultLanguageId"];
-    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"defaultCityId"];
     
     if(![[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"])
     {
@@ -123,6 +115,14 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    if(checkConnection.hasConnectivity)
+    {
+        [self DropCoreData];
+        [self XMLToCoreData];
+    }
+    GettingCoreContent *content = [[GettingCoreContent alloc] init];
+    NSArray *result = [content fetchAllRestaurantsFromEntityWithDefaultLanguageAndCity];
+    result = [content getArrayFromCoreDatainEntetyName:@"Restaurants" withSortDescriptor:@"underbarid"];
     //[segue.destinationViewController setDb:self.db];
 }
      

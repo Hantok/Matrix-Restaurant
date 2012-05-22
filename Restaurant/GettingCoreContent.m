@@ -128,7 +128,12 @@
 - (NSArray *)fetchAllRestaurantsFromEntityWithDefaultLanguageAndCity
 {
     NSManagedObjectContext * context = [(RestaurantAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Restaurants"];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Restaurants" inManagedObjectContext:context];
+    
+    [request setEntity:entity];
+
     request.predicate = [NSPredicate predicateWithFormat:@"idCity == %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"]];
     // && idLanguage == %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"], [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"]];
     NSManagedObjectContext *moc = context;
