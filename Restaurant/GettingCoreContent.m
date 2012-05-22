@@ -135,7 +135,6 @@
     [request setEntity:entity];
 
     request.predicate = [NSPredicate predicateWithFormat:@"idCity == %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"]];
-    // && idLanguage == %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"], [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"]];
     NSManagedObjectContext *moc = context;
     NSError *error;
     NSMutableArray *citiesIDs = [[moc executeFetchRequest:request error:&error] mutableCopy];
@@ -148,6 +147,28 @@
     }
     NSLog(@"smth")	;
     return [resultOfARequest copy];
+}
+
+-(NSArray *)fetchRootMenuWithDefaultLanguageForRestaurant:(NSString *)restaurnatId
+{
+    NSManagedObjectContext * context = [(RestaurantAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Menus" inManagedObjectContext:context];
+    
+    [request setEntity:entity];
+    
+    request.predicate = [NSPredicate predicateWithFormat:@"idParentMenu == 0 && idRestaurant == %@",restaurnatId];
+    NSManagedObjectContext *moc = context;
+    NSError *error;
+    NSMutableArray *menuIDs = [[moc executeFetchRequest:request error:&error] mutableCopy];
+    NSMutableArray *resultOfARequest = [[NSMutableArray alloc] init];
+    request = [NSFetchRequest fetchRequestWithEntityName:@"Menus_translation"];
+    request.predicate = [NSPredicate predicateWithFormat:@"idLanguage == %@ && idMenu == %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"], [[menuIDs objectAtIndex:0] valueForKey:@"underbarid"]];
+        [resultOfARequest addObjectsFromArray:[moc executeFetchRequest:request error:&error]];
+    [resultOfARequest addObjectsFromArray:menuIDs];
+    NSLog(@"smth")	;
+    return [resultOfARequest copy]; 
 }
 
 @end
