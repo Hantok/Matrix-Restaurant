@@ -34,6 +34,7 @@
 		78FB4D06154BF20D0035236F /* CartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78FB4D05154BF20D0035236F /* CartCell.xib */; };
 		F507215A156BA2C200D7ACC6 /* checkConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = F5072159156BA2C200D7ACC6 /* checkConnection.m */; };
 		F507215D156BA37C00D7ACC6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F507215C156BA37C00D7ACC6 /* SystemConfiguration.framework */; };
+		F5072169156BD46900D7ACC6 /* LanguageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5072168156BD46900D7ACC6 /* LanguageCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,8 @@
 		F5072158156BA2C200D7ACC6 /* checkConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = checkConnection.h; sourceTree = "<group>"; };
 		F5072159156BA2C200D7ACC6 /* checkConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = checkConnection.m; sourceTree = "<group>"; };
 		F507215C156BA37C00D7ACC6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		F5072167156BD46900D7ACC6 /* LanguageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageCell.h; sourceTree = "<group>"; };
+		F5072168156BD46900D7ACC6 /* LanguageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +137,8 @@
 				78D3CF1C156A9248003202BD /* Restaurants.xcdatamodeld */,
 				78D3CF19156A9241003202BD /* GettingCoreContent.h */,
 				78D3CF1A156A9241003202BD /* GettingCoreContent.m */,
+				F5072167156BD46900D7ACC6 /* LanguageCell.h */,
+				F5072168156BD46900D7ACC6 /* LanguageCell.m */,
 				78354F7815590E07001890F1 /* Offers.h */,
 				78354F7915590E07001890F1 /* Offers.m */,
 				78FB4D01154BF1CD0035236F /* CartCell.h */,
@@ -260,6 +265,7 @@
 				78D3CF1B156A9241003202BD /* GettingCoreContent.m in Sources */,
 				78D3CF1E156A9248003202BD /* Restaurants.xcdatamodeld in Sources */,
 				F507215A156BA2C200D7ACC6 /* checkConnection.m in Sources */,
+				F5072169156BD46900D7ACC6 /* LanguageCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
