@@ -14,11 +14,21 @@
 @implementation GettingCoreContent
 
 @synthesize arrayOfCoreData = _arrayOfCoreData;
+@synthesize managedObjectContext = _managedObjectContext;
+
+-(NSManagedObjectContext *)managedObjectContext
+{
+    if(!_managedObjectContext)
+    {
+        _managedObjectContext = [(RestaurantAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    }
+    return _managedObjectContext;
+}
 
 - (NSArray *)getArrayFromCoreDatainEntetyName:(NSString *)entityName withSortDescriptor:(NSString *)attributeString
 {
 
-    NSManagedObjectContext * context = [(RestaurantAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSManagedObjectContext * context = self.managedObjectContext;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
@@ -59,7 +69,7 @@
     dictionaryOfAtributes:(NSDictionary *)attributeDictionary;
 {
     
-    NSManagedObjectContext * context = [(RestaurantAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSManagedObjectContext * context = self.managedObjectContext;
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
     NSArray *keys = [attributeDictionary allKeys];
     int counter = 0;
@@ -127,7 +137,7 @@
 
 - (NSArray *)fetchAllRestaurantsWithDefaultLanguageAndCity
 {
-    NSManagedObjectContext * context = [(RestaurantAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSManagedObjectContext * context = self.managedObjectContext;
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Restaurants" inManagedObjectContext:context];
@@ -151,7 +161,7 @@
 
 -(NSArray *)fetchRootMenuWithDefaultLanguageForRestaurant:(NSString *)restaurnatId
 {
-    NSManagedObjectContext * context = [(RestaurantAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSManagedObjectContext * context = self.managedObjectContext;
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Menus" inManagedObjectContext:context];
@@ -169,6 +179,11 @@
     [resultOfARequest addObjectsFromArray:menuIDs];
     NSLog(@"smth")	;
     return [resultOfARequest copy]; 
+}
+
+-(NSArray *)fetchChildMenuWithDefaultLanguageForRootMeny:(NSString *)rootMenuId
+{
+    return nil;
 }
 
 @end
