@@ -1,3 +1,4 @@
+
 //
 //  GettingCoreContent.m
 //  Restaurants
@@ -95,7 +96,8 @@
     }
     // Save the context.
     NSError *error = nil;
-    if (![context save:&error]) {
+    if (![context save:&error])
+    {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
@@ -123,11 +125,11 @@
     
 }
 
-- (NSArray *)fetchAllRestaurantsFromEntityWithDefaultLanguageandAndCity
+- (NSArray *)fetchAllRestaurantsFromEntityWithDefaultLanguageAndCity
 {
     NSManagedObjectContext * context = [(RestaurantAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Restaurants"];
-    request.predicate = [NSPredicate predicateWithFormat:@"any idCity == %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"]];
+    request.predicate = [NSPredicate predicateWithFormat:@"idCity == %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"]];
     // && idLanguage == %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"], [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"]];
     NSManagedObjectContext *moc = context;
     NSError *error;
@@ -136,7 +138,7 @@
     request = [NSFetchRequest fetchRequestWithEntityName:@"Restaurants_translation"];
     for(int i=0;i<citiesIDs.count;i++)
     {
-        request.predicate = [NSPredicate predicateWithFormat:@"any idLanguage == %@ && underbarid == %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"], [[citiesIDs objectAtIndex:i] valueForKey:@"underbarid"]];
+        request.predicate = [NSPredicate predicateWithFormat:@"idLanguage == %@ && underbarid == %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"], [[citiesIDs objectAtIndex:i] valueForKey:@"underbarid"]];
         [resultOfARequest addObjectsFromArray:[moc executeFetchRequest:request error:&error]];
     }
     NSLog(@"smth")	;

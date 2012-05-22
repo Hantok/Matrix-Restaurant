@@ -10,6 +10,7 @@
 #import "MenuListTableViewController.h"
 #import "CartCell.h"
 #import "Offers.h"
+#import "GettingCoreContent.h"
 
 @interface MainMenuViewController ()
 
@@ -72,6 +73,10 @@
 -(void)awakeFromNib
 {
     [super awakeFromNib];
+    GettingCoreContent *content = [[GettingCoreContent alloc] init];
+    NSArray *restaurants = [content fetchAllRestaurantsFromEntityWithDefaultLanguageAndCity];
+    sleep(2);
+    
 }
 
 - (void)viewDidLoad

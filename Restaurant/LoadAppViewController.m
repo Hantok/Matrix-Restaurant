@@ -35,9 +35,9 @@
 
 - (void)XMLToCoreData
 {
+    NSArray *allKeys = [self.db.tables allKeys];
     for(int i = 0; i< [self.db.tables count]; i++)
     {
-        NSArray *allKeys = [self.db.tables allKeys];
         GettingCoreContent *content = [[GettingCoreContent alloc] init];
         [content setCoreDataForEntityWithName:[allKeys objectAtIndex:i] dictionaryOfAtributes:[self.db.tables objectForKey:[allKeys objectAtIndex:i]]];
     }
@@ -66,8 +66,6 @@
         [self XMLToCoreData];
     }
     
-    GettingCoreContent *content = [[GettingCoreContent alloc] init];
-    [content fetchAllRestaurantsFromEntityWithDefaultLanguageandAndCity];
     NSLog(@"I'm in viewDidLoad");
 }
 
@@ -75,6 +73,8 @@
 {
     [self.activityIndicator stopAnimating];
     [super viewDidAppear:YES];
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"defaultLanguageId"];
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"defaultCityId"];
     
     if(![[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"])
     {
