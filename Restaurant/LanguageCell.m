@@ -24,10 +24,11 @@
     //передадаємо значення із юзердефолт для мови у self.detailTextLabel.text
     GettingCoreContent *content = [[GettingCoreContent alloc] init];
     NSArray *languages =  content.fetchAllLanguages;
-    NSString *userLangId = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"];
+    NSString *userLangId = [[NSUserDefaults standardUserDefaults] valueForKey:@"defaultLanguageId"];
+
     for (int i = 0; i < languages.count; i++)
     {
-        if ([[[languages objectAtIndex:i] valueForKey:@"underbarid"] isEqual:userLangId])
+        if ([[[[languages objectAtIndex:i] valueForKey:@"underbarid"] description] isEqualToString:userLangId.description])
             self.detailTextLabel.text = [[languages objectAtIndex:i] valueForKey:@"language"];
     }
 }

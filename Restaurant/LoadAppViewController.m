@@ -93,6 +93,7 @@
      if(![[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"])
      {
          [[NSUserDefaults standardUserDefaults] setObject:[[NSNumber alloc] initWithInteger:buttonIndex+1] forKey:@"defaultLanguageId"];
+         [[NSUserDefaults standardUserDefaults] synchronize];
          UIActionSheet* actionSheet = [[UIActionSheet alloc] init];
          [actionSheet setTitle:@"Select city:"];
          [actionSheet setDelegate:(id)self];
@@ -107,6 +108,7 @@
     if(![[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"])
     {
          [[NSUserDefaults standardUserDefaults] setObject:[[NSNumber alloc] initWithInteger:buttonIndex+1] forKey:@"defaultCityId"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         [self performSegueWithIdentifier:@"toMain" sender:self];
         
     }

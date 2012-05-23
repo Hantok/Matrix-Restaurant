@@ -24,11 +24,15 @@
     //[super setSelected:selected animated:animated];
     //передадаємо значення із юзердефолт для міста у self.detailTextLabel.text
     GettingCoreContent *content = [[GettingCoreContent alloc] init];
-    NSArray *cities =  [content fetchAllCitiesByLanguage:[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
-    NSString *userCityId = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"];
+    NSArray *cities =  [content fetchAllCitiesByLanguage:[[[NSUserDefaults standardUserDefaults] valueForKey:@"defaultLanguageId"] description]];
+    NSString *userCityId = [[[NSUserDefaults standardUserDefaults] valueForKey:@"defaultCityId"] description];
+    
+    //NSLog(@"langID %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"defaultLanguageId"]);
+    //NSLog(@"userCityId %@", userCityId);
+    
     for (int i = 0; i < cities.count; i++)
     {
-        if ([[[cities objectAtIndex:i] valueForKey:@"underbarid"] isEqual:userCityId])
+        if ([[[cities objectAtIndex:i] valueForKey:@"underbarid"] isEqualToString:[userCityId description]])
             self.detailTextLabel.text = [[cities objectAtIndex:i] valueForKey:@"name"];
     }
      
