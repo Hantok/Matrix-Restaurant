@@ -50,6 +50,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if (self.isCity)
+        self.navigationItem.title = @"City";
+    else 
+        self.navigationItem.title = @"Language";
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
