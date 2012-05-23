@@ -86,6 +86,7 @@
         [actionSheet setDelegate:(id)self];
         [actionSheet addButtonWithTitle:@"Twitter"];
         [actionSheet addButtonWithTitle:@"Facebook"];
+        [actionSheet addButtonWithTitle:@"Cancel"];
         [actionSheet showInView:self.view];
     }
 }
