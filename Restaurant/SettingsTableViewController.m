@@ -47,13 +47,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"to Languages"]) {
-        GettingCoreContent *getContent = [[GettingCoreContent alloc] init];
-        [[segue destinationViewController] setDestinationArray:[getContent fetchAllLanguages]];
+        [[segue destinationViewController] setArrayFromSegue:NO];
         NSLog(@"LANGUAGES");
     }
     
     if ([[segue identifier] isEqualToString:@"to Cities"]) {
-        [[segue destinationViewController] setDestinationArray:nil];
+        [[segue destinationViewController] setArrayFromSegue:YES];
         NSLog(@"CITIES");
     }
 }

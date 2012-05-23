@@ -10,5 +10,5 @@
 
 @interface LanguageAndCityTableViewController : UITableViewController
 
-@property (strong, nonatomic) NSArray *destinationArray;
+- (void)setArrayFromSegue:(BOOL)isCityEnter;
 @end

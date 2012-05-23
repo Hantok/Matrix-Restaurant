@@ -13,7 +13,8 @@
 
 @property BOOL isCity;
 @property NSUInteger selectedIndex;
-@property (strong, nonatomic) NSUserDefaults *userDefaults;
+@property (strong,nonatomic) NSArray *destinationArray;
+//@property (strong, nonatomic) NSUserDefaults *userDefaults;
 
 @end
 
@@ -22,13 +23,18 @@
 @synthesize isCity = _isCity;
 @synthesize selectedIndex = _selectedIndex;
 @synthesize destinationArray = _destinationArray;
-@synthesize userDefaults = _userDefaults;
 
-- (void)setDestinationArray:(NSArray *)newArray
+- (void)setArrayFromSegue:(BOOL)isCityEnter;
 {
-    if (_destinationArray != newArray) 
+    GettingCoreContent *getCon = [[GettingCoreContent alloc] init];
+    if (!isCityEnter) 
     {
-        _destinationArray = newArray;
+        _destinationArray = [getCon fetchAllLanguages];
+    }
+    else 
+    {
+        _destinationArray = [getCon fetchAllCitiesByLanguage:[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
+        self.isCity = YES;
     }
 }
 
@@ -44,15 +50,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //self.userDefaults = [[NSUserDefaults alloc] init];
-    self.userDefaults = [NSUserDefaults standardUserDefaults];
-    
-    if (self.destinationArray == nil)
-    {
-        GettingCoreContent *getCon = [[GettingCoreContent alloc] init];
-        self.destinationArray = [getCon fetchAllCitiesByLanguage:[[self userDefaults] objectForKey:@"defaultLanguageId"]];
-        self.isCity = YES;
-    }
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -102,7 +99,7 @@
     {
         cell.textLabel.text = [[[self destinationArray] objectAtIndex:indexPath.row] valueForKey:@"name"];
         
-        NSString *userCityId = [[self userDefaults] objectForKey:@"defaultCityId"];
+        NSString *userCityId = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"];
         NSString *currCityId = [[[self destinationArray] objectAtIndex:indexPath.row] valueForKey:@"underbarid"]; 
         if ([userCityId isEqual:currCityId])
         {
@@ -114,7 +111,7 @@
     {
         cell.textLabel.text = [[[self.destinationArray objectAtIndex:indexPath.row] valueForKey:@"language"] description];
         
-        NSString *userLangId = [[self userDefaults] objectForKey:@"defaultLanguageId"];
+        NSString *userLangId = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"];
         NSString *currLangId = [[[self destinationArray] objectAtIndex:indexPath.row] valueForKey:@"underbarid"];
         if ([userLangId isEqual:currLangId])
         {
@@ -146,8 +143,8 @@
     }
     self.selectedIndex = indexPath.row;
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    [self.userDefaults setObject:[[[self destinationArray] objectAtIndex:indexPath.row] valueForKey:@"underbarid"] forKey:changeStringForUserDefaults];
-    [self.userDefaults synchronize];
+    [[NSUserDefaults standardUserDefaults] setObject:[[self.destinationArray objectAtIndex:indexPath.row] valueForKey:@"underbarid"] forKey:changeStringForUserDefaults];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end
