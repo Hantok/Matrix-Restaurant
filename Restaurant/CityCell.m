@@ -22,7 +22,7 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     //[super setSelected:selected animated:animated];
-    
+    //передадаємо значення із юзердефолт для міста у self.detailTextLabel.text
     GettingCoreContent *content = [[GettingCoreContent alloc] init];
     NSArray *cities =  [content fetchAllCitiesByLanguage:[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
     NSString *userCityId = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"];
