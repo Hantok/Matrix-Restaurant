@@ -201,6 +201,28 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="" id="Obt-fA-8eu">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Social" textLabel="re4-s5-4hf" style="IBUITableViewCellStyleDefault" id="98u-7t-n0k" customClass="CityCell">
+                                        <rect key="frame" x="0.0" y="168" width="320" height="46"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="280" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Социальные сети" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="re4-s5-4hf">
+                                                    <rect key="frame" x="10" y="0.0" width="260" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="0tY-Pd-o4M" id="emF-cR-cMz"/>
@@ -208,9 +230,37 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="VCW-0f-lN6"/>
+                    <connections>
+                        <segue destination="iQX-FW-E8S" kind="push" identifier="Social" id="gce-JJ-BEI"/>
+                    </connections>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1536" y="437"/>
+        </scene>
+        <!--Social View Controller-->
+        <scene sceneID="Oxd-MK-R9n">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hYa-ZI-cOn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="iQX-FW-E8S" customClass="SocialViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Eve-19-t2c">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" id="kPS-ik-hzI">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="pqF-I6-3r1"/>
+                    <connections>
+                        <outlet property="SocialWebView" destination="kPS-ik-hzI" id="4vL-r0-kSf"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="2028" y="738"/>
         </scene>
         <!--Language And City Table View Controller-->
         <scene sceneID="rR9-qw-D6P">
@@ -249,7 +299,7 @@
                     <navigationItem key="navigationItem" id="6nO-83-hm2"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="2004" y="437"/>
+            <point key="canvasLocation" x="2228" y="81"/>
         </scene>
         <!--Menu List Table View Controller-->
         <scene sceneID="Ue0-Ok-cFg">
