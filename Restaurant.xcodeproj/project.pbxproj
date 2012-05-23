@@ -36,6 +36,7 @@
 		F507215D156BA37C00D7ACC6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F507215C156BA37C00D7ACC6 /* SystemConfiguration.framework */; };
 		F5072169156BD46900D7ACC6 /* LanguageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5072168156BD46900D7ACC6 /* LanguageCell.m */; };
 		F507216C156BE0D200D7ACC6 /* LanguageAndCityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F507216B156BE0D200D7ACC6 /* LanguageAndCityTableViewController.m */; };
+		F5E93A4B156CFC6B005ED3ED /* CityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E93A4A156CFC6B005ED3ED /* CityCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +86,8 @@
 		F5072168156BD46900D7ACC6 /* LanguageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageCell.m; sourceTree = "<group>"; };
 		F507216A156BE0D200D7ACC6 /* LanguageAndCityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageAndCityTableViewController.h; sourceTree = "<group>"; };
 		F507216B156BE0D200D7ACC6 /* LanguageAndCityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageAndCityTableViewController.m; sourceTree = "<group>"; };
+		F5E93A49156CFC6B005ED3ED /* CityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityCell.h; sourceTree = "<group>"; };
+		F5E93A4A156CFC6B005ED3ED /* CityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,8 +143,6 @@
 				78D3CF1C156A9248003202BD /* Restaurants.xcdatamodeld */,
 				78D3CF19156A9241003202BD /* GettingCoreContent.h */,
 				78D3CF1A156A9241003202BD /* GettingCoreContent.m */,
-				F5072167156BD46900D7ACC6 /* LanguageCell.h */,
-				F5072168156BD46900D7ACC6 /* LanguageCell.m */,
 				F507216A156BE0D200D7ACC6 /* LanguageAndCityTableViewController.h */,
 				F507216B156BE0D200D7ACC6 /* LanguageAndCityTableViewController.m */,
 				78354F7815590E07001890F1 /* Offers.h */,
@@ -172,6 +173,7 @@
 				78864DDE15495E0A00D339B7 /* files.iphone.shop.good1582.png */,
 				F5072158156BA2C200D7ACC6 /* checkConnection.h */,
 				F5072159156BA2C200D7ACC6 /* checkConnection.m */,
+				F5E93A4D156CFFB3005ED3ED /* Cells for Settings */,
 				781B8F0E1546DB870074EDBD /* Supporting Files */,
 			);
 			path = Restaurant;
@@ -186,6 +188,17 @@
 				781B8F151546DB870074EDBD /* Restaurant-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F5E93A4D156CFFB3005ED3ED /* Cells for Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F5072167156BD46900D7ACC6 /* LanguageCell.h */,
+				F5072168156BD46900D7ACC6 /* LanguageCell.m */,
+				F5E93A49156CFC6B005ED3ED /* CityCell.h */,
+				F5E93A4A156CFC6B005ED3ED /* CityCell.m */,
+			);
+			name = "Cells for Settings";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,6 +285,7 @@
 				F507215A156BA2C200D7ACC6 /* checkConnection.m in Sources */,
 				F5072169156BD46900D7ACC6 /* LanguageCell.m in Sources */,
 				F507216C156BE0D200D7ACC6 /* LanguageAndCityTableViewController.m in Sources */,
+				F5E93A4B156CFC6B005ED3ED /* CityCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
