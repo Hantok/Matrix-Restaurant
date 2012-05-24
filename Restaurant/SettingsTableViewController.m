@@ -89,6 +89,37 @@
         [actionSheet addButtonWithTitle:@"Cancel"];
         [actionSheet showInView:self.view];
     }
+    if ([cell.reuseIdentifier isEqualToString:@"Reset"])
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
+                                                        message:@"Are you sure?" 
+                                                       delegate:self 
+                                              cancelButtonTitle:@"YES" 
+                                              otherButtonTitles:@"NO", nil]; 
+        [alert show]; 
+    }
+    
+    if([cell.reuseIdentifier isEqualToString:@"Friend"])
+    {
+        UIActionSheet* actionSheet = [[UIActionSheet alloc] init];
+        [actionSheet setTitle:@"Telt a friend:"];
+        [actionSheet setDelegate:nil];
+        [actionSheet addButtonWithTitle:@"via SMS"];
+        [actionSheet addButtonWithTitle:@"via e-mail"];
+        [actionSheet addButtonWithTitle:@"Cancel"];
+        [actionSheet showInView:self.view];
+    }
+}
+
+- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex 
+{
+    if (buttonIndex == 0)
+    {
+        [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:@"defaultLanguageId"];
+        [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:@"defaultCityId"];
+        [self.tableView reloadData];
+    }
+    
 }
 
 @end
