@@ -119,7 +119,6 @@
 		781B8EF81546DB870074EDBD = {
 			isa = PBXGroup;
 			children = (
-				F58BD5AC156E7B8A00D31A09 /* MessageUI.framework */,
 				781B8F0D1546DB870074EDBD /* Restaurant */,
 				781B8F061546DB870074EDBD /* Frameworks */,
 				781B8F041546DB870074EDBD /* Products */,
@@ -137,6 +136,7 @@
 		781B8F061546DB870074EDBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F58BD5AC156E7B8A00D31A09 /* MessageUI.framework */,
 				F507215C156BA37C00D7ACC6 /* SystemConfiguration.framework */,
 				78D3CF1F156A9986003202BD /* CoreData.framework */,
 				786B29851546E64C00486848 /* QuartzCore.framework */,
