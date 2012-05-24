@@ -11,6 +11,8 @@
 #import "CartCell.h"
 #import "Offers.h"
 #import "GettingCoreContent.h"
+#import "MenuDataStruct.h"
+#import "LanguageAndCityTableViewController.h"
 
 @interface MainMenuViewController ()
 
@@ -32,6 +34,34 @@
 @synthesize dataSourcepV = _dataSourcepV;
 @synthesize db = _db;
 
+- (NSMutableArray *)arrayData
+{
+    if(!_arrayData)
+    {
+        NSMutableArray *array = [[NSMutableArray alloc] init];
+        MenuDataStruct *dataStruct;
+        NSArray *data = [self.db fetchRootMenuWithDefaultLanguageForRestaurant:@"1"];
+        data = [self.db fetchChildMenuWithDefaultLanguageForParentMenu:[[data objectAtIndex:0] valueForKey:@"idMenu"]];
+        for(int i=0;i<data.count;i++)
+        {
+            if(i%2==0) 
+            {
+                dataStruct = [[MenuDataStruct alloc] init];
+                dataStruct.menuId = [[data objectAtIndex:i] valueForKey:@"underbarid"];
+                NSURL *url = [self.db fetchImageURLbyPictureID:[[data objectAtIndex:i] valueForKey:@"idPicture"]];
+                dataStruct.image  = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+            }
+            else
+            {
+                dataStruct.title = [[data objectAtIndex:i] valueForKey:@"menuText"];
+                [array addObject:dataStruct];
+            }
+        }
+        _arrayData = array;
+        return _arrayData;
+    }
+    return _arrayData;
+}
 
 - (GettingCoreContent *)db
 {
@@ -80,22 +110,13 @@
 
     [self menuButton:self];
     
-    
-    NSMutableArray *arrayData = [[NSMutableArray alloc] init];
-    [arrayData addObject:@"Some stuff"];
-    [arrayData addObject:@"Some stuff"];
-    [arrayData addObject:@"Pizza"];
-    [arrayData addObject:@"Some stuff"];
-    [arrayData addObject:@"Some stuff"];
-    [arrayData addObject:@"Some stuff"];
-    [arrayData addObject:@"Some stuff"];
-    self.arrayData = arrayData;
     self.isMenuMode = YES;
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
+    [self.pickerView reloadAllComponents];
     [self.pickerView selectRow:1 inComponent:0 animated:YES];
 }
 
@@ -126,9 +147,7 @@
 {
     if(self.isMenuMode)
     {
-        NSArray *data = [self.db fetchRootMenuWithDefaultLanguageForRestaurant:@"1"];
-        data = [self.db fetchChildMenuWithDefaultLanguageForParentMenu:[[data objectAtIndex:0] valueForKey:@"idMenu"]];
-        return data.count/2;
+        return self.arrayData.count;
     }
     else 
     {
@@ -149,16 +168,15 @@
         
     }
     else {
-        NSArray *data = [self.db fetchRootMenuWithDefaultLanguageForRestaurant:@"1"];
-        data = [self.db fetchChildMenuWithDefaultLanguageForParentMenu:[[data objectAtIndex:0] valueForKey:@"idMenu"]];
+        MenuDataStruct *dataStruct = [self.arrayData objectAtIndex:row];
+        
         UIView *viewForRow = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.pickerView.frame.size.width-30, self.pickerView.frame.size.height/5)];
         //NSLog(@"%f", viewForRow.frame.size.width);
         //NSLog(@"%f", viewForRow.frame.size.height);
-        NSURL *url = [self.db fetchImageURLbyPictureID:[[data objectAtIndex:row*2] valueForKey:@"idPicture"]];
-        UIImage *imageForUIImageView  = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+        UIImage *imageForUIImageView  = dataStruct.image;
         UIImageView *imageViewForViewForRow = [[UIImageView alloc] initWithImage:imageForUIImageView];
         UILabel *labelForRow = [[UILabel alloc] initWithFrame:CGRectMake(imageViewForViewForRow.frame.size.width, 5, self.pickerView.frame.size.width-30, pickerView.frame.size.height/5)];
-        labelForRow.text = [[data objectAtIndex:row*2+1] valueForKey:@"menuText"];
+        labelForRow.text = dataStruct.title;
         [viewForRow addSubview:imageViewForViewForRow];
         [viewForRow addSubview:labelForRow];
         
@@ -271,7 +289,9 @@
     if ([segue.identifier isEqualToString:@"menuList"])
     {
         [segue.destinationViewController setKindOfMenu:[self.arrayData objectAtIndex:self.selectedRow.integerValue]];
+        
     }
+    self.arrayData = nil;
     
 }
 
