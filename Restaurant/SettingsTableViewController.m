@@ -130,7 +130,7 @@
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
                                                         message:@"Are you sure?" 
-                                                       delegate:nil
+                                                       delegate:self
                                               cancelButtonTitle:@"YES" 
                                               otherButtonTitles:@"NO", nil]; 
         [alert show]; 
