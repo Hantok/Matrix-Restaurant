@@ -51,15 +51,16 @@
     [self.activityIndicator startAnimating];
     
     
-    NSURL* rssURL = [NSURL URLWithString:@"http://matrix-soft.org/addon_domains_folder/test3/System_files/XML/matrixso_test3/DBStructure.xml"];
+    if(checkConnection.hasConnectivity)
+    {
+        NSURL* rssURL = [NSURL URLWithString:@"http://matrix-soft.org/addon_domains_folder/test3/System_files/XML/matrixso_test3/DBStructure.xml"];
     // создаем парсер при помощи URL, назначаем делегат и запускаем
-    NSLog(@"Download is begin");
-    XMLParse* parser
-    = [[XMLParse alloc] initWithContentsOfURL:rssURL];
-    [parser setDelegate:parser];
-    [parser parse];
-    
-    self.db = parser;
+        NSLog(@"Download is begin");
+        XMLParse* parser = [[XMLParse alloc] initWithContentsOfURL:rssURL];
+        [parser setDelegate:parser];
+        [parser parse];
+        self.db = parser;
+    }
     
     NSLog(@"I'm in viewDidLoad");
 }

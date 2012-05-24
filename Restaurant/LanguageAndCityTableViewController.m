@@ -148,7 +148,8 @@
     }
     self.selectedIndex = indexPath.row;
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    [[NSUserDefaults standardUserDefaults] setObject:[[self.destinationArray objectAtIndex:indexPath.row] valueForKey:@"underbarid"] forKey:changeStringForUserDefaults];
+    id data = [[self.destinationArray objectAtIndex:indexPath.row] valueForKey:@"underbarid"];
+    [[NSUserDefaults standardUserDefaults] setObject:data forKey:changeStringForUserDefaults];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
