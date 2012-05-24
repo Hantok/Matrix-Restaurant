@@ -288,7 +288,8 @@
     //NSLog(@"%@",[self.arrayData objectAtIndex:self.selectedRow.integerValue]);
     if ([segue.identifier isEqualToString:@"menuList"])
     {
-        [segue.destinationViewController setKindOfMenu:[self.arrayData objectAtIndex:self.selectedRow.integerValue]];
+        MenuDataStruct *dataStruct = [self.arrayData objectAtIndex:self.selectedRow.integerValue];
+        [segue.destinationViewController setKindOfMenu:dataStruct.menuId];
         
     }
     self.arrayData = nil;
