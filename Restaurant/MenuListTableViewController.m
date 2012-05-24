@@ -10,6 +10,7 @@
 #import "XMLParse.h"
 #import "ProductDetailViewController.h"
 #import "ProductCell.h"
+#import "ProductDataStruct.h"
 
 @interface MenuListTableViewController ()
 
@@ -19,12 +20,52 @@
 
 @implementation MenuListTableViewController
 @synthesize tableView = _tableView;
-@synthesize Products = _Products;
 @synthesize navigationBar = _navigationBar;
 @synthesize kindOfMenu = _kindOfMenu;
 @synthesize selectedRow = _selectedRow;
+@synthesize arrayData = _arrayData;
+@synthesize db = _db;
 
 
+
+- (NSMutableArray *)arrayData
+{
+    if(!_arrayData)
+    {
+        NSMutableArray *array = [[NSMutableArray alloc] init];
+        ProductDataStruct *dataStruct;
+        NSArray *data = [self.db fetchAllProductsFromMenu:self.kindOfMenu];
+        for(int i=0;i<data.count;i++)
+        {
+            if(i%2==0) 
+            {
+                dataStruct = [[ProductDataStruct alloc] init];
+                dataStruct.productId = [[data objectAtIndex:i] valueForKey:@"underbarid"];
+                dataStruct.price = [[data objectAtIndex:i] valueForKey:@"price"];
+                NSURL *url = [self.db fetchImageURLbyPictureID:[[data objectAtIndex:i] valueForKey:@"idPicture"]];
+                dataStruct.image  = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+            }
+            else
+            {
+                dataStruct.title = [[data objectAtIndex:i] valueForKey:@"nameText"];
+                dataStruct.descriptionText = [[data objectAtIndex:i] valueForKey:@"descriptionText"];
+                [array addObject:dataStruct];
+            }
+        }
+        _arrayData = array;
+        return _arrayData;
+    }
+    return _arrayData;
+}
+
+- (GettingCoreContent *)db
+{
+    if(!_db)
+    {
+        _db = [[GettingCoreContent alloc] init];
+    }
+    return  _db;
+}
 
 - (void)setKindOfMenu:(NSString *)kindOfMenu
 {
@@ -35,7 +76,7 @@
 {
     [super viewDidLoad];
     
-    self.navigationItem.title = self.kindOfMenu;
+    self.navigationItem.title = self.arrayData.description;
     
     
 }
@@ -69,14 +110,14 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSLog(@"Hello from User Defaults! %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"city"]);
-    return self.Products.count;
+    return self.arrayData.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *CellIdentifier = @"CellWithViewForProduct";
     ProductCell *cell = (ProductCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+    ProductDataStruct *dataStruct = [self.arrayData objectAtIndex:indexPath.row];
     if(!cell)
     {
         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"productCell" owner:nil options:nil];
@@ -90,9 +131,10 @@
         }
     }
     
-    cell.productPrice.text = [NSString stringWithFormat:@"%@ uah", [[self.Products objectAtIndex:indexPath.row] objectForKey:@"cost"]];
-    cell.productDescription.text = [NSString stringWithFormat:@"%@", [[self.Products objectAtIndex:indexPath.row] objectForKey:@"description"]];
-    cell.productTitle.text = [NSString stringWithFormat:@"%@", [[self.Products objectAtIndex:indexPath.row] objectForKey:@"name"]];
+    cell.productPrice.text = [NSString stringWithFormat:@"%@ uah", dataStruct.price];
+    cell.productDescription.text = [NSString stringWithFormat:@"%@", dataStruct.descriptionText];
+    cell.productTitle.text = [NSString stringWithFormat:@"%@", dataStruct.title];
+    cell.productImage.image = dataStruct.image;
     
     return cell;
 }
@@ -105,8 +147,8 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSLog(@"%@",[self.Products objectAtIndex:self.selectedRow.integerValue]);
-    [segue.destinationViewController setProduct:[self.Products objectAtIndex:self.selectedRow.integerValue]];
+    //NSLog(@"%@",[self.Products objectAtIndex:self.selectedRow.integerValue]);
+    //[segue.destinationViewController setProduct:[self.Products objectAtIndex:self.selectedRow.integerValue]];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

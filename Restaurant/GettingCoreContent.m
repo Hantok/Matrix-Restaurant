@@ -259,4 +259,30 @@
     return url;
 }
 
+-(NSArray *)fetchAllProductsFromMenu:(NSString *)menuId
+{
+    NSManagedObjectContext * context = self.managedObjectContext;
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Products" inManagedObjectContext:context];
+    
+    [request setEntity:entity];
+    
+    request.predicate = [NSPredicate predicateWithFormat:@"idMenu == %@",menuId];
+    NSManagedObjectContext *moc = context;
+    NSError *error;
+    NSMutableArray *menuIDs = [[moc executeFetchRequest:request error:&error] mutableCopy];
+    NSMutableArray *resultOfARequest = [[NSMutableArray alloc] init];
+    request = [NSFetchRequest fetchRequestWithEntityName:@"Descriptions_translation"];
+    for(int i = 0;i<menuIDs.count;i++)
+    {
+        id currentMenu = [menuIDs objectAtIndex:i];
+        request.predicate = [NSPredicate predicateWithFormat:@"idLanguage == %@ && idProduct == %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"], [currentMenu valueForKey:@"underbarid"]];
+        [resultOfARequest addObject:currentMenu];
+        [resultOfARequest addObjectsFromArray:[moc executeFetchRequest:request error:&error]];
+    }
+    NSLog(@"smth")	;
+    return [resultOfARequest copy]; 
+}
+
 @end
