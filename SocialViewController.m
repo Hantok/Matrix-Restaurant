@@ -28,8 +28,10 @@
 {
     [super viewWillAppear:animated];
     //NSLog(@"URL is %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"social"]);
+    NSString *what = [[NSUserDefaults standardUserDefaults] valueForKey:@"social"];
+    self.navigationItem.title = what;
     self.SocialWebView.scalesPageToFit = YES;
-    [self.SocialWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:@"social"]]]];
+    [self.SocialWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:what]]];
 }
 - (void)viewDidLoad
 {
