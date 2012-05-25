@@ -69,6 +69,14 @@
         {
             NSLog(@"SMS");
             self.isFriend = 0;
+            MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
+            if([MFMessageComposeViewController canSendText])
+            {
+                controller.body = @"AppStore link and something else :)";
+                controller.recipients = [NSArray arrayWithObjects:/*phone numbers*/nil];
+                controller.messageComposeDelegate = self;
+                [self presentModalViewController:controller animated:YES];
+            }
         }
         if (buttonIndex == 1)
         {
@@ -161,6 +169,40 @@
 }
 
 
+
+
+
+
+
+#pragma mark -
+#pragma mark SMS Mail
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+	switch (result) 
+    {
+		case MessageComposeResultCancelled:
+			NSLog(@"Cancelled");
+			break;
+		case MessageComposeResultFailed:
+        {
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                            message:@"Unknown Error"
+														   delegate:self
+                                                  cancelButtonTitle:@"OK" 
+                                                  otherButtonTitles: nil];
+			[alert show];
+			break;
+        }
+		case MessageComposeResultSent:
+            NSLog(@"Sent");
+			break;
+		default:
+			break;
+	}
+    
+	[self dismissModalViewControllerAnimated:YES];
+}
 
 
 #pragma mark -

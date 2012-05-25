@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
 
-@interface SettingsTableViewController : UITableViewController <MFMailComposeViewControllerDelegate> 
+@interface SettingsTableViewController : UITableViewController <MFMailComposeViewControllerDelegate,MFMessageComposeViewControllerDelegate>
 
 -(void)displayComposerSheet;
 -(void)launchMailAppOnDevice;

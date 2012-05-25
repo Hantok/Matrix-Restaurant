@@ -38,6 +38,7 @@
 		F507215D156BA37C00D7ACC6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F507215C156BA37C00D7ACC6 /* SystemConfiguration.framework */; };
 		F5072169156BD46900D7ACC6 /* LanguageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5072168156BD46900D7ACC6 /* LanguageCell.m */; };
 		F507216C156BE0D200D7ACC6 /* LanguageAndCityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F507216B156BE0D200D7ACC6 /* LanguageAndCityTableViewController.m */; };
+		F53472F7156F902F002D8E34 /* 1175675287_4185527geb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F53472F6156F902F002D8E34 /* 1175675287_4185527geb.jpg */; };
 		F58BD5AD156E7B8A00D31A09 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58BD5AC156E7B8A00D31A09 /* MessageUI.framework */; };
 		F58BD5B4156E90CB00D31A09 /* images.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F58BD5B3156E90CB00D31A09 /* images.jpeg */; };
 		F5E93A4B156CFC6B005ED3ED /* CityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E93A4A156CFC6B005ED3ED /* CityCell.m */; };
@@ -95,6 +96,7 @@
 		F5072168156BD46900D7ACC6 /* LanguageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageCell.m; sourceTree = "<group>"; };
 		F507216A156BE0D200D7ACC6 /* LanguageAndCityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageAndCityTableViewController.h; sourceTree = "<group>"; };
 		F507216B156BE0D200D7ACC6 /* LanguageAndCityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageAndCityTableViewController.m; sourceTree = "<group>"; };
+		F53472F6156F902F002D8E34 /* 1175675287_4185527geb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 1175675287_4185527geb.jpg; path = ../../../Downloads/1175675287_4185527geb.jpg; sourceTree = "<group>"; };
 		F58BD5AC156E7B8A00D31A09 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		F58BD5B3156E90CB00D31A09 /* images.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = images.jpeg; path = ../../../Downloads/images.jpeg; sourceTree = "<group>"; };
 		F5E93A49156CFC6B005ED3ED /* CityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityCell.h; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				78864DDB154957EE00D339B7 /* files.iphone.shop.category7.jpg */,
 				78864DDE15495E0A00D339B7 /* files.iphone.shop.good1582.png */,
 				F58BD5B3156E90CB00D31A09 /* images.jpeg */,
+				F53472F6156F902F002D8E34 /* 1175675287_4185527geb.jpg */,
 				F5072158156BA2C200D7ACC6 /* checkConnection.h */,
 				F5072159156BA2C200D7ACC6 /* checkConnection.m */,
 				F5E93A55156D1CDB005ED3ED /* SocialViewController.h */,
@@ -290,6 +293,7 @@
 				78864DE41549804400D339B7 /* productCell.xib in Resources */,
 				78FB4D06154BF20D0035236F /* CartCell.xib in Resources */,
 				F58BD5B4156E90CB00D31A09 /* images.jpeg in Resources */,
+				F53472F7156F902F002D8E34 /* 1175675287_4185527geb.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
