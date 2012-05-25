@@ -30,6 +30,7 @@
 {
     [super viewDidLoad];
     self.restaurants = [[[GettingCoreContent alloc] init] fetchAllRestaurantsWithDefaultLanguageAndCity];
+    self.navigationItem.title = @"Restaurants";
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -76,13 +77,9 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0)
-        cell.textLabel.text = @"hi";
-    else
-    {
-        cell.textLabel.text = [[self.restaurants objectAtIndex:indexPath.row] valueForKey:@"name"];
-    }
+    cell.textLabel.text = [[self.restaurants objectAtIndex:indexPath.row] valueForKey:@"name"];
 }
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
