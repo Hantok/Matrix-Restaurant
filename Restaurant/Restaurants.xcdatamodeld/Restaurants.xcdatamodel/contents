@@ -58,6 +58,7 @@
         <attribute name="underbarid" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Pictures" syncable="YES">
+        <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="underbarid" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
@@ -98,22 +99,22 @@
         <attribute name="underbarid" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Cities_translation" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="Event" positionX="261" positionY="189" width="128" height="105"/>
-        <element name="Products" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="Currencies" positionX="160" positionY="192" width="128" height="90"/>
-        <element name="Languages" positionX="160" positionY="192" width="128" height="75"/>
-        <element name="Restaurants" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Cities" positionX="160" positionY="192" width="128" height="60"/>
+        <element name="Cities_translation" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="Currencies" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="Deliveries" positionX="160" positionY="192" width="128" height="60"/>
+        <element name="Deliveries_translation" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Descriptions_translation" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Discounts" positionX="160" positionY="192" width="128" height="75"/>
-        <element name="Pictures" positionX="160" positionY="192" width="128" height="75"/>
-        <element name="Restaurants_translation" positionX="160" positionY="192" width="128" height="195"/>
+        <element name="Event" positionX="261" positionY="189" width="128" height="105"/>
+        <element name="Languages" positionX="160" positionY="192" width="128" height="75"/>
         <element name="Menus" positionX="160" positionY="192" width="128" height="105"/>
         <element name="Menus_translation" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="Descriptions_translation" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="Statuses_translation" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="Pictures" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="Products" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Restaurants" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Restaurants_translation" positionX="160" positionY="192" width="128" height="195"/>
         <element name="Statuses" positionX="160" positionY="192" width="128" height="75"/>
-        <element name="Deliveries_translation" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="Deliveries" positionX="160" positionY="192" width="128" height="60"/>
+        <element name="Statuses_translation" positionX="160" positionY="192" width="128" height="105"/>
     </elements>
 </model>

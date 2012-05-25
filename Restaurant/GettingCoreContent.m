@@ -9,7 +9,6 @@
 
 #import "GettingCoreContent.h"
 #import "RestaurantAppDelegate.h"
-//хуй2
 
 @implementation GettingCoreContent
 
@@ -283,6 +282,19 @@
     }
     NSLog(@"smth")	;
     return [resultOfARequest copy]; 
+}
+
+- (void)SavePictureToCoreData:(NSString *)idPicture toData:(NSData *)data
+{
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:@"Picture" inManagedObjectContext:self.managedObjectContext]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"data=%@",data]];
+    
+    NSError *error;
+    [self.managedObjectContext executeFetchRequest:request error:&error];
+    if (![self.managedObjectContext save:&error]) {
+        //Handle any error with the saving of the context
+    }
 }
 
 @end

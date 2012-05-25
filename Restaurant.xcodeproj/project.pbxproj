@@ -95,6 +95,8 @@
 		F507216A156BE0D200D7ACC6 /* LanguageAndCityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageAndCityTableViewController.h; sourceTree = "<group>"; };
 		F507216B156BE0D200D7ACC6 /* LanguageAndCityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageAndCityTableViewController.m; sourceTree = "<group>"; };
 		F53472F6156F902F002D8E34 /* 1175675287_4185527geb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 1175675287_4185527geb.jpg; path = ../../../Downloads/1175675287_4185527geb.jpg; sourceTree = "<group>"; };
+		F53472FE156FB5D7002D8E34 /* RestaurantListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListTableViewController.h; sourceTree = "<group>"; };
+		F53472FF156FB5D8002D8E34 /* RestaurantListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantListTableViewController.m; sourceTree = "<group>"; };
 		F58BD5AC156E7B8A00D31A09 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		F58BD5B3156E90CB00D31A09 /* images.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = images.jpeg; path = ../../../Downloads/images.jpeg; sourceTree = "<group>"; };
 		F5E93A49156CFC6B005ED3ED /* CityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityCell.h; sourceTree = "<group>"; };
@@ -172,6 +174,10 @@
 				78354F7C155944F1001890F1 /* SettingsTableViewController.m */,
 				786B299A1546EA7400486848 /* XMLParse.h */,
 				786B299B1546EA7400486848 /* XMLParse.m */,
+				781B8F2A1546DD590074EDBD /* MainMenuViewController.h */,
+				781B8F2B1546DD590074EDBD /* MainMenuViewController.m */,
+				F53472FE156FB5D7002D8E34 /* RestaurantListTableViewController.h */,
+				F53472FF156FB5D8002D8E34 /* RestaurantListTableViewController.m */,
 				781B8F1C1546DB870074EDBD /* MainStoryboard_iPad.storyboard */,
 				781B8F271546DBDD0074EDBD /* LoadAppViewController.h */,
 				781B8F281546DBDD0074EDBD /* LoadAppViewController.m */,
@@ -328,6 +334,7 @@
 				F5E93A57156D1CDB005ED3ED /* SocialViewController.m in Sources */,
 				78BA0E1E156E6A5E005C08D7 /* MenuDataStruct.m in Sources */,
 				78BA0E25156E934B005C08D7 /* ProductDataStruct.m in Sources */,
+				F5347300156FB5D8002D8E34 /* RestaurantListTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
