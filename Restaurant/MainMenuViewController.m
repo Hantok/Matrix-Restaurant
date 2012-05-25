@@ -121,6 +121,7 @@
     [super viewDidLoad];
 
     [self menuButton:self];
+    [self.pickerView reloadAllComponents];
     
     self.isMenuMode = YES;
 }
@@ -128,8 +129,8 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
-    [self.pickerView reloadAllComponents];
-    [self.pickerView selectRow:1 inComponent:0 animated:YES];
+    
+    //[self.pickerView selectRow:1 inComponent:0 animated:YES];
 }
 
 - (void)viewDidUnload
@@ -273,7 +274,7 @@
 {
     if (userTapped) 
     {
-        NSNumber *selectedRow = [[NSNumber alloc] initWithInt:row];
+        NSNumber *selectedRow = [[NSNumber alloc] initWithInt:row%2];
         //NSLog(@"tapped in %i", row);
         self.selectedRow = selectedRow;
         if(self.isMenuMode)
