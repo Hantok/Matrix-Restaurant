@@ -39,7 +39,6 @@
 		F5072169156BD46900D7ACC6 /* LanguageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5072168156BD46900D7ACC6 /* LanguageCell.m */; };
 		F507216C156BE0D200D7ACC6 /* LanguageAndCityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F507216B156BE0D200D7ACC6 /* LanguageAndCityTableViewController.m */; };
 		F58BD5AD156E7B8A00D31A09 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58BD5AC156E7B8A00D31A09 /* MessageUI.framework */; };
-		F58BD5B4156E90CB00D31A09 /* images.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F58BD5B3156E90CB00D31A09 /* images.jpeg */; };
 		F5E93A4B156CFC6B005ED3ED /* CityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E93A4A156CFC6B005ED3ED /* CityCell.m */; };
 		F5E93A57156D1CDB005ED3ED /* SocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E93A56156D1CDB005ED3ED /* SocialViewController.m */; };
 /* End PBXBuildFile section */
@@ -289,7 +288,6 @@
 				78864DDF15495E0A00D339B7 /* files.iphone.shop.good1582.png in Resources */,
 				78864DE41549804400D339B7 /* productCell.xib in Resources */,
 				78FB4D06154BF20D0035236F /* CartCell.xib in Resources */,
-				F58BD5B4156E90CB00D31A09 /* images.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
