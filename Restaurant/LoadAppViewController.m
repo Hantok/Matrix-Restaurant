@@ -26,6 +26,7 @@
 
 - (void)DropCoreData
 {
+    //stupid one!!!!! for checking repozetory=)
     NSArray *allKeys = [self.db.tables allKeys];
     GettingCoreContent *content = [[GettingCoreContent alloc] init];
     for(int i = 0; i < self.db.tables.count;i++)
