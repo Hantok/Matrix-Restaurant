@@ -287,11 +287,11 @@
 - (void)SavePictureToCoreData:(NSString *)idPicture toData:(NSData *)data
 {
     NSFetchRequest * request = [[NSFetchRequest alloc] init];
-    [request setEntity:[NSEntityDescription entityForName:@"Picture" inManagedObjectContext:self.managedObjectContext]];
-    [request setPredicate:[NSPredicate predicateWithFormat:@"data=%@",data]];
+    [request setEntity:[NSEntityDescription entityForName:@"Pictures" inManagedObjectContext:self.managedObjectContext]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"underbarid==%@", idPicture]];
     
     NSError *error;
-    [self.managedObjectContext executeFetchRequest:request error:&error];
+    NSArray *debug= [self.managedObjectContext executeFetchRequest:request error:&error];
     if (![self.managedObjectContext save:&error]) {
         //Handle any error with the saving of the context
     }

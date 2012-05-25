@@ -157,6 +157,7 @@
 		781B8F0D1546DB870074EDBD /* Restaurant */ = {
 			isa = PBXGroup;
 			children = (
+				783EB971156FD057001E5BF1 /* CoreDataEntities */,
 				783EB967156FAF3A001E5BF1 /* ViewControllers */,
 				78BA0E1A156E6A0C005C08D7 /* structs */,
 				F5E93A4D156CFFB3005ED3ED /* Cells */,
@@ -216,6 +217,13 @@
 				781B8F2B1546DD590074EDBD /* MainMenuViewController.m */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		783EB971156FD057001E5BF1 /* CoreDataEntities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = CoreDataEntities;
 			sourceTree = "<group>";
 		};
 		78BA0E1A156E6A0C005C08D7 /* structs */ = {
@@ -334,7 +342,6 @@
 				F5E93A57156D1CDB005ED3ED /* SocialViewController.m in Sources */,
 				78BA0E1E156E6A5E005C08D7 /* MenuDataStruct.m in Sources */,
 				78BA0E25156E934B005C08D7 /* ProductDataStruct.m in Sources */,
-				F5347300156FB5D8002D8E34 /* RestaurantListTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -57,7 +57,7 @@
         <attribute name="menuText" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="underbarid" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Pictures" syncable="YES">
+    <entity name="Pictures" representedClassName="Pictures" syncable="YES">
         <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="underbarid" optional="YES" attributeType="String" syncable="YES"/>
