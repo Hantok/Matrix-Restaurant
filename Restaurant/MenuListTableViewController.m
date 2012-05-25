@@ -34,7 +34,7 @@
     {
         NSMutableArray *array = [[NSMutableArray alloc] init];
         ProductDataStruct *dataStruct;
-        NSArray *data = [self.db fetchAllProductsFromMenu:self.kindOfMenu];
+        NSArray *data = [self.db fetchAllProductsFromMenu:self.kindOfMenu.menuId];
         for(int i=0;i<data.count;i++)
         {
             if(i%2==0) 
@@ -67,7 +67,7 @@
     return  _db;
 }
 
-- (void)setKindOfMenu:(NSString *)kindOfMenu
+- (void)setKindOfMenu:(MenuDataStruct *)kindOfMenu
 {
     _kindOfMenu = kindOfMenu;
 }
@@ -76,7 +76,7 @@
 {
     [super viewDidLoad];
     
-    self.navigationItem.title = self.arrayData.description;
+    self.navigationItem.title = self.kindOfMenu.title;
     
     
 }
@@ -148,7 +148,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     //NSLog(@"%@",[self.Products objectAtIndex:self.selectedRow.integerValue]);
-    //[segue.destinationViewController setProduct:[self.Products objectAtIndex:self.selectedRow.integerValue]];
+    [segue.destinationViewController setProduct:[self.arrayData objectAtIndex:self.selectedRow.integerValue]];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

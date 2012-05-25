@@ -289,7 +289,7 @@
     if ([segue.identifier isEqualToString:@"menuList"])
     {
         MenuDataStruct *dataStruct = [self.arrayData objectAtIndex:self.selectedRow.integerValue];
-        [segue.destinationViewController setKindOfMenu:dataStruct.menuId];
+        [segue.destinationViewController setKindOfMenu:dataStruct];
         
     }
     self.arrayData = nil;
