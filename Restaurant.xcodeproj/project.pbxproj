@@ -38,7 +38,6 @@
 		F507215D156BA37C00D7ACC6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F507215C156BA37C00D7ACC6 /* SystemConfiguration.framework */; };
 		F5072169156BD46900D7ACC6 /* LanguageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5072168156BD46900D7ACC6 /* LanguageCell.m */; };
 		F507216C156BE0D200D7ACC6 /* LanguageAndCityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F507216B156BE0D200D7ACC6 /* LanguageAndCityTableViewController.m */; };
-		F53472F7156F902F002D8E34 /* 1175675287_4185527geb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F53472F6156F902F002D8E34 /* 1175675287_4185527geb.jpg */; };
 		F58BD5AD156E7B8A00D31A09 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58BD5AC156E7B8A00D31A09 /* MessageUI.framework */; };
 		F5E93A4B156CFC6B005ED3ED /* CityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E93A4A156CFC6B005ED3ED /* CityCell.m */; };
 		F5E93A57156D1CDB005ED3ED /* SocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E93A56156D1CDB005ED3ED /* SocialViewController.m */; };
@@ -158,6 +157,7 @@
 			children = (
 				783EB967156FAF3A001E5BF1 /* ViewControllers */,
 				78BA0E1A156E6A0C005C08D7 /* structs */,
+				F5E93A4D156CFFB3005ED3ED /* Cells */,
 				78D3CF1C156A9248003202BD /* Restaurants.xcdatamodeld */,
 				78D3CF19156A9241003202BD /* GettingCoreContent.h */,
 				78D3CF1A156A9241003202BD /* GettingCoreContent.m */,
@@ -165,12 +165,6 @@
 				F507216B156BE0D200D7ACC6 /* LanguageAndCityTableViewController.m */,
 				78354F7815590E07001890F1 /* Offers.h */,
 				78354F7915590E07001890F1 /* Offers.m */,
-				78FB4D01154BF1CD0035236F /* CartCell.h */,
-				78FB4D02154BF1CE0035236F /* CartCell.m */,
-				78FB4D05154BF20D0035236F /* CartCell.xib */,
-				78864DE015497E7700D339B7 /* ProductCell.h */,
-				78864DE115497E7700D339B7 /* ProductCell.m */,
-				78864DE31549804400D339B7 /* productCell.xib */,
 				781B8F171546DB870074EDBD /* RestaurantAppDelegate.m */,
 				781B8F161546DB870074EDBD /* RestaurantAppDelegate.h */,
 				781B8F191546DB870074EDBD /* MainStoryboard_iPhone.storyboard */,
@@ -189,7 +183,6 @@
 				F5072159156BA2C200D7ACC6 /* checkConnection.m */,
 				F5E93A55156D1CDB005ED3ED /* SocialViewController.h */,
 				F5E93A56156D1CDB005ED3ED /* SocialViewController.m */,
-				F5E93A4D156CFFB3005ED3ED /* Cells for Settings */,
 				781B8F0E1546DB870074EDBD /* Supporting Files */,
 			);
 			path = Restaurant;
@@ -230,15 +223,21 @@
 			name = structs;
 			sourceTree = "<group>";
 		};
-		F5E93A4D156CFFB3005ED3ED /* Cells for Settings */ = {
+		F5E93A4D156CFFB3005ED3ED /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				78FB4D01154BF1CD0035236F /* CartCell.h */,
+				78FB4D02154BF1CE0035236F /* CartCell.m */,
+				78FB4D05154BF20D0035236F /* CartCell.xib */,
+				78864DE015497E7700D339B7 /* ProductCell.h */,
+				78864DE115497E7700D339B7 /* ProductCell.m */,
+				78864DE31549804400D339B7 /* productCell.xib */,
 				F5072167156BD46900D7ACC6 /* LanguageCell.h */,
 				F5072168156BD46900D7ACC6 /* LanguageCell.m */,
 				F5E93A49156CFC6B005ED3ED /* CityCell.h */,
 				F5E93A4A156CFC6B005ED3ED /* CityCell.m */,
 			);
-			name = "Cells for Settings";
+			name = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

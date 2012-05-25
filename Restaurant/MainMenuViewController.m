@@ -13,7 +13,7 @@
 #import "GettingCoreContent.h"
 #import "MenuDataStruct.h"
 #import "LanguageAndCityTableViewController.h"
-
+#import "ProductDataStruct.h"
 @interface MainMenuViewController ()
 
 @end
@@ -346,12 +346,14 @@
     }
     
     Offers* offers = [[Offers alloc] init];
+    ProductDataStruct *dataStruct = [[ProductDataStruct alloc] initWithDictionary:[offers.offers objectAtIndex:indexPath.row]];
     
-    cell.productTitle.text = [NSString stringWithFormat:@"%@", [[offers.offers objectAtIndex:indexPath.row] objectForKey:@"name"]];
-    NSNumber *count = [[NSNumber alloc] initWithInteger:[[[offers.offers objectAtIndex:indexPath.row] objectForKey:@"count"] intValue]];
+    
+    cell.productTitle.text = dataStruct.title;
+    NSNumber *count = dataStruct.count;
 
     cell.productCount.text = [NSString stringWithFormat:@"%i шт.", [count intValue]];
-    NSNumber *cost = [[NSNumber alloc] initWithInteger:[[[offers.offers objectAtIndex:indexPath.row] objectForKey:@"cost"] intValue]];
+    NSNumber *cost = [NSNumber numberWithDouble:dataStruct.price.doubleValue];
     cell.productPrice.text = [NSString stringWithFormat:@"%i грн.", [cost intValue]*[count intValue]];
     
     return cell;

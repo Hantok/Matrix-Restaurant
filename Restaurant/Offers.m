@@ -21,7 +21,7 @@
 
 - (void)removeOffer:(NSMutableDictionary *)offer
 {
-    id keyForDeletion = [offer objectForKey:@"id"];
+    id keyForDeletion = [offer objectForKey:@"productId"];
     NSMutableDictionary *offers = [Offers getOffersFromUserDefaults];
     [offers removeObjectForKey:keyForDeletion];
     [Offers setOffersToUserDefaults:offers];
