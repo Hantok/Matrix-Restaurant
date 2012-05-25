@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "GettingCoreContent.h"
+#import "MenuDataStruct.h"
 
 @interface MenuListTableViewController : UITableViewController
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *arrayData;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navigationBar;
-@property (nonatomic, strong) NSString *kindOfMenu;
+@property (nonatomic, strong) MenuDataStruct *kindOfMenu;
 @property (strong, nonatomic) NSNumber *selectedRow;
 @property (strong, nonatomic) GettingCoreContent *db;
 

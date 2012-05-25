@@ -476,6 +476,7 @@
                         <outlet property="cartButton" destination="g2b-uE-RxB" id="bak-cm-ky9"/>
                         <outlet property="countPickerView" destination="a6f-O0-N1g" id="axN-A8-4dQ"/>
                         <outlet property="priceLabel" destination="Ctn-gX-hrR" id="TM6-dY-RRR"/>
+                        <outlet property="productImage" destination="rII-pB-ahk" id="wIv-j8-pwF"/>
                     </connections>
                 </viewController>
             </objects>

@@ -19,20 +19,10 @@
 @synthesize priceLabel = _priceLabel;
 @synthesize cartButton = _cartButton;
 @synthesize count = _count;
+@synthesize productImage = _productImage;
 
 
-- (NSNumber *)count
-{
-    if(!_count)
-    {
-        _count = [[NSNumber alloc] initWithInteger:1];
-        return _count;
-    }
-    else return _count;
-    
-}
-
-- (void)setProduct:(NSMutableDictionary *)product
+- (void)setProduct:(ProductDataStruct *)product
 {
     _product = product;
 }
@@ -41,19 +31,20 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.navigationItem.title = [self.product objectForKey:@"name"];
-    NSLog(@"%@", [self.product objectForKey:@"cost"]);
+    self.navigationItem.title = self.product.title;
     //self.countPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0.0, 0.0, 63.0, 90.0)];
     self.countPickerView.frame = CGRectMake(237, 236, 63, 108);
-    NSString *cost = [self.product objectForKey:@"cost"];
+    NSString *cost = self.product.price;
     
     self.priceLabel.text = [NSString stringWithFormat:@"Цена: %@ %@", cost, @"грн."];
+    self.productImage.image = self.product.image;
+    
     
     
     
 }
 - (IBAction)addToCart:(id)sender {
-    NSMutableDictionary *offer = [[NSMutableDictionary alloc] init];
+    ProductDataStruct *offer;
     NSMutableDictionary *offers;
     if(![[NSUserDefaults standardUserDefaults] objectForKey:@"offers"])
     {
@@ -62,27 +53,27 @@
     else {
         offers = [[NSMutableDictionary alloc] initWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"offers"]];
     }
-    if(![offers objectForKey:[self.product objectForKey:@"id"]])
+    if(![offers objectForKey:self.product.productId])
     {
-        [offer setObject:[self.product objectForKey:@"id"] forKey:@"id"];
-        [offer setObject:[self.product objectForKey:@"cost"] forKey:@"cost"];
-        [offer setObject:[self.product objectForKey:@"name"] forKey:@"name"];
-        [offer setObject:self.count forKey:@"count"];
+        //[offer setObject:[self.product objectForKey:@"id"] forKey:@"id"];
+        //[offer setObject:[self.product objectForKey:@"cost"] forKey:@"cost"];
+        //[offer setObject:[self.product objectForKey:@"name"] forKey:@"name"];
+        offer = self.product;
     }
     else
     {
-        offer = [offers objectForKey:[self.product objectForKey:@"id"]];
-        offer = offer.mutableCopy;
-        int sum = [[offer objectForKey:@"count"] integerValue] + self.count.integerValue;
-        NSNumber *count = [[NSNumber alloc] initWithInt:sum];
-        [offer removeObjectForKey:@"count"];
-        [offer setObject:count forKey:@"count"];
+        offer = [[ProductDataStruct alloc] initWithDictionary:[offers objectForKey:self.product.productId]];
+        int sum = offer.count.integerValue + self.product.count.integerValue;
+        offer.count = [NSNumber numberWithInt:sum];
     }
-    [offers setObject:offer forKey:[self.product objectForKey:@"id"]];
+    [offers setObject:offer.getDictionaryDependOnDataStruct forKey:self.product.productId];
     [[NSUserDefaults standardUserDefaults] setObject:offers forKey:@"offers"];
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Количества товара \"%@\" в корзине %@ шт.", [offer objectForKey:@"name"], [offer objectForKey:@"count"]] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    [alert show];
-    [[self navigationController] popViewControllerAnimated:YES];
+    if([[NSUserDefaults standardUserDefaults] synchronize])
+    {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Количества товара \"%@\" в корзине %@ шт.", offer.title, offer.count] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        [[self navigationController] popViewControllerAnimated:YES];
+    }
     
 }
 
@@ -91,6 +82,7 @@
     [self setCountPickerView:nil];
     [self setPriceLabel:nil];
     [self setCartButton:nil];
+    [self setProductImage:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -118,6 +110,6 @@
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    self.count = [[NSNumber alloc] initWithInteger:row+1];
+    self.product.count = [NSNumber numberWithInt:row+1];
 }
 @end

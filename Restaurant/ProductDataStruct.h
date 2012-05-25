@@ -15,6 +15,10 @@
 @property (strong, nonatomic) UIImage *image;
 @property (strong, nonatomic) NSString *descriptionText;
 @property (strong, nonatomic) NSString *title;
+@property (strong, nonatomic) NSNumber *count;
+
+- (NSDictionary *)getDictionaryDependOnDataStruct;
+- (id)initWithDictionary:(NSMutableDictionary *)aDictionary;
 
 
 @end
