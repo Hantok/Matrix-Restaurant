@@ -48,10 +48,20 @@
             {
                 dataStruct = [[MenuDataStruct alloc] init];
                 dataStruct.menuId = [[data objectAtIndex:i] valueForKey:@"underbarid"];
-                NSURL *url = [self.db fetchImageURLbyPictureID:[[data objectAtIndex:i] valueForKey:@"idPicture"]];
-                NSData *dataOfPicture = [NSData dataWithContentsOfURL:url];
-                dataStruct.image  = [UIImage imageWithData:dataOfPicture];
-                [self.db SavePictureToCoreData:[[data objectAtIndex:i] valueForKey:@"idPicture"] toData:dataOfPicture];
+                dataStruct.idPicture = [[data objectAtIndex:i] valueForKey:@"idPicture"];
+                NSData *dataOfPicture = [self.db fetchPictureDataByPictureId:dataStruct.idPicture];
+                NSURL *url = [self.db fetchImageURLbyPictureID:dataStruct.idPicture];
+                if(dataOfPicture)
+                {
+                   dataStruct.image  = [UIImage imageWithData:dataOfPicture]; 
+                }
+                else 
+                {
+                    dataOfPicture = [NSData dataWithContentsOfURL:url];
+                    [self.db SavePictureToCoreData:[[data objectAtIndex:i] valueForKey:@"idPicture"] toData:dataOfPicture];
+                    dataStruct.image  = [UIImage imageWithData:dataOfPicture];
+                }
+                
             }
             else
             {

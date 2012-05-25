@@ -42,8 +42,19 @@
                 dataStruct = [[ProductDataStruct alloc] init];
                 dataStruct.productId = [[data objectAtIndex:i] valueForKey:@"underbarid"];
                 dataStruct.price = [[data objectAtIndex:i] valueForKey:@"price"];
-                NSURL *url = [self.db fetchImageURLbyPictureID:[[data objectAtIndex:i] valueForKey:@"idPicture"]];
-                dataStruct.image  = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+                dataStruct.idPicture = [[data objectAtIndex:i] valueForKey:@"idPicture"];
+                NSData *dataOfPicture = [self.db fetchPictureDataByPictureId:dataStruct.idPicture];
+                NSURL *url = [self.db fetchImageURLbyPictureID:dataStruct.idPicture];
+                if(dataOfPicture)
+                {
+                    dataStruct.image  = [UIImage imageWithData:dataOfPicture]; 
+                }
+                else 
+                {
+                    dataOfPicture = [NSData dataWithContentsOfURL:url];
+                    [self.db SavePictureToCoreData:[[data objectAtIndex:i] valueForKey:@"idPicture"] toData:dataOfPicture];
+                    dataStruct.image  = [UIImage imageWithData:dataOfPicture];
+                }
             }
             else
             {

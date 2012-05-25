@@ -13,5 +13,6 @@
 @synthesize menuId = _menuId;
 @synthesize image = _image;
 @synthesize title = _title;
+@synthesize idPicture = _idPicture;
 
 @end

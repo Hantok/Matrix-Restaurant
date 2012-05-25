@@ -292,9 +292,24 @@
     
     NSError *error;
     NSArray *debug= [self.managedObjectContext executeFetchRequest:request error:&error];
+    NSManagedObject *objectToUpdate = [debug objectAtIndex:0];
+    [objectToUpdate setValue:data forKey:@"data"];
     if (![self.managedObjectContext save:&error]) {
         //Handle any error with the saving of the context
     }
+}
+
+- (NSData *)fetchPictureDataByPictureId:(NSString *)pictureId
+{
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:@"Pictures" inManagedObjectContext:self.managedObjectContext]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"underbarid==%@", pictureId]];
+    
+    NSError *error;
+    NSArray *debug= [self.managedObjectContext executeFetchRequest:request error:&error];
+    NSManagedObject *objectToGet = [debug objectAtIndex:0];
+    return [objectToGet valueForKey:@"data"];
+    
 }
 
 @end
