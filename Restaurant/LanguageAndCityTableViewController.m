@@ -151,6 +151,7 @@
     id data = [[self.destinationArray objectAtIndex:indexPath.row] valueForKey:@"underbarid"];
     [[NSUserDefaults standardUserDefaults] setObject:data forKey:changeStringForUserDefaults];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
