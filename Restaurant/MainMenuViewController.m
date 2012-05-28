@@ -33,6 +33,24 @@
 @synthesize delegatepV = _delegatepV;
 @synthesize dataSourcepV = _dataSourcepV;
 @synthesize db = _db;
+@synthesize restarauntId = _restarauntId;
+@synthesize menuId = _menuId;
+
+
+
+-(void)setRestarauntId:(NSString *)restarauntId
+{
+    _restarauntId = restarauntId;
+    self.arrayData = nil;
+    [self.pickerView reloadAllComponents];
+}
+
+-(void)setMenuId:(NSString *)menuId
+{
+    _menuId = menuId;
+    self.arrayData = nil;
+    [self.pickerView reloadAllComponents];
+}
 
 - (NSMutableArray *)arrayData
 {
@@ -40,8 +58,20 @@
     {
         NSMutableArray *array = [[NSMutableArray alloc] init];
         MenuDataStruct *dataStruct;
-        NSArray *data = [self.db fetchRootMenuWithDefaultLanguageForRestaurant:@"1"];
-        data = [self.db fetchChildMenuWithDefaultLanguageForParentMenu:[[data objectAtIndex:0] valueForKey:@"idMenu"]];
+        NSArray *data = nil;
+        if(!self.restarauntId) data = [self.db fetchAllRestaurantsWithDefaultLanguageAndCity];
+        else 
+        {
+            if(self.menuId)
+            {
+                data = [self.db fetchChildMenuWithDefaultLanguageForParentMenu:self.menuId];
+            }
+            else
+            {
+                data = [self.db fetchRootMenuWithDefaultLanguageForRestaurant:self.restarauntId];
+            }
+        }
+        
         for(int i=0;i<data.count;i++)
         {
             if(i%2==0) 
@@ -65,7 +95,10 @@
             }
             else
             {
-                dataStruct.title = [[data objectAtIndex:i] valueForKey:@"menuText"];
+                if (!self.restarauntId) {
+                    dataStruct.title = [[data objectAtIndex:i] valueForKey:@"name"];
+                }
+                else dataStruct.title = [[data objectAtIndex:i] valueForKey:@"menuText"];
                 [array addObject:dataStruct];
             }
         }
@@ -121,7 +154,6 @@
     [super viewDidLoad];
 
     [self menuButton:self];
-    [self.pickerView reloadAllComponents];
     
     self.isMenuMode = YES;
 }
@@ -130,7 +162,7 @@
 {
     [super viewDidAppear:YES];
     
-    //[self.pickerView selectRow:1 inComponent:0 animated:YES];
+    if(self.restarauntId) [self.pickerView reloadAllComponents];
 }
 
 - (void)viewDidUnload
@@ -146,7 +178,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return YES;
+    return NO;
 }
 
 
@@ -183,15 +215,28 @@
     else {
         MenuDataStruct *dataStruct = [self.arrayData objectAtIndex:row];
         
-        UIView *viewForRow = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.pickerView.frame.size.width-30, self.pickerView.frame.size.height/5)];
+        //UIView *viewForRow = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.pickerView.frame.size.width-30, self.pickerView.frame.size.height/5)];
         //NSLog(@"%f", viewForRow.frame.size.width);
         //NSLog(@"%f", viewForRow.frame.size.height);
-        UIImage *imageForUIImageView  = dataStruct.image;
-        UIImageView *imageViewForViewForRow = [[UIImageView alloc] initWithImage:imageForUIImageView];
-        UILabel *labelForRow = [[UILabel alloc] initWithFrame:CGRectMake(imageViewForViewForRow.frame.size.width, 5, self.pickerView.frame.size.width-30, pickerView.frame.size.height/5)];
-        labelForRow.text = dataStruct.title;
-        [viewForRow addSubview:imageViewForViewForRow];
-        [viewForRow addSubview:labelForRow];
+        //UIImage *imageForUIImageView  = dataStruct.image;
+        //UIImageView *imageViewForViewForRow = [[UIImageView alloc] initWithImage:imageForUIImageView];
+        //UILabel *labelForRow = [[UILabel alloc] initWithFrame:CGRectMake(imageViewForViewForRow.frame.size.width, 5, self.pickerView.frame.size.width-30, pickerView.frame.size.height/5)];
+       //labelForRow.text = dataStruct.title;
+        //[viewForRow addSubview:imageViewForViewForRow];
+        //[viewForRow addSubview:labelForRow];
+        PickerViewCell *viewForRow;
+        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PickerViewCell" owner:nil options:nil];
+        for(id currentObject in topLevelObjects)
+        {
+            if([currentObject isKindOfClass:[PickerViewCell class]])
+            {
+                viewForRow = (PickerViewCell *)currentObject;
+                break;
+            }
+        }
+        
+        viewForRow.menuImage.image = dataStruct.image;
+        viewForRow.menuTitle.text = dataStruct.title;
         
         return viewForRow;
     }
@@ -272,14 +317,32 @@
              inComponent:(NSInteger)component 
            asResultOfTap:(bool)userTapped
 {
-    if (userTapped) 
+    if (userTapped)
     {
-        NSNumber *selectedRow = [[NSNumber alloc] initWithInt:row%2];
+        NSNumber *selectedRow = [[NSNumber alloc] initWithInt:row];
         //NSLog(@"tapped in %i", row);
-        self.selectedRow = selectedRow;
-        if(self.isMenuMode)
-            [self performSegueWithIdentifier:@"menuList" sender:self];
-        //[self performSegueWithIdentifier:@"somewhere" sender:self];
+        
+        if(!self.restarauntId)
+        {
+            self.restarauntId = [[self.arrayData objectAtIndex:selectedRow.integerValue] menuId];
+        }
+        else 
+        {
+            id menuId = [[self.arrayData objectAtIndex:selectedRow.integerValue] menuId];
+            NSArray *hz = [self.db fetchChildMenuWithDefaultLanguageForParentMenu:menuId];
+            if (hz.count)
+            {
+                self.menuId = menuId;
+            }
+            else {
+                if(self.isMenuMode)
+                {
+                    self.selectedRow = selectedRow;
+                    [self performSegueWithIdentifier:@"menuList" sender:self];
+                }
+            }
+        }
+            NSLog(@"ups");
     }
     else 
     {
@@ -314,34 +377,12 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //return 20;
     Offers* offers = [[Offers alloc] init];
-    //NSLog(@"%i", count);
     return offers.offers.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
-    NSString *CellIdentifier = @"CellData";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellAccessoryDisclosureIndicator reuseIdentifier:CellIdentifier];
-    }
-    //NSString *row = [[NSString alloc] initWithFormat:@"%i", indexPath.row];
-    //cell.textLabel.text = row;
-    NSArray *offers = [[[NSUserDefaults standardUserDefaults] objectForKey:@"offers"] allValues];
-    NSString *productId = [[offers objectAtIndex:indexPath.row] objectForKey:@"id"];
-    NSString *productCount = [[offers objectAtIndex:indexPath.row] objectForKey:@"count"];
-    
-    
-    
-    
-    return cell;
-    
-  */  
-    
-    
     NSString *CellIdentifier = @"CartCell";
     CartCell *cell = (CartCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
@@ -388,7 +429,6 @@
         Offers* offers = [[Offers alloc] init];
         [offers removeOffer:[offers.offers objectAtIndex:indexPath.row]];
         [self.tableView reloadData];
-        ////NSLog(@"Hello from delete!");
         }  
 }
 

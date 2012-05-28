@@ -32,6 +32,10 @@
 		78D3CF1B156A9241003202BD /* GettingCoreContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D3CF1A156A9241003202BD /* GettingCoreContent.m */; };
 		78D3CF1E156A9248003202BD /* Restaurants.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78D3CF1C156A9248003202BD /* Restaurants.xcdatamodeld */; };
 		78D3CF20156A9986003202BD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78D3CF1F156A9986003202BD /* CoreData.framework */; };
+		78D7DB7A1573B74300D4F6A2 /* PickerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D7DB791573B74300D4F6A2 /* PickerViewCell.m */; };
+		78EF80AF157381DD00478EEB /* IconDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EF80AE157381DD00478EEB /* IconDownloader.m */; };
+		78EF80B31573A50100478EEB /* Placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 78EF80B21573A50100478EEB /* Placeholder.png */; };
+		78EF80B61573B3EA00478EEB /* PickerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78EF80B51573B3EA00478EEB /* PickerViewCell.xib */; };
 		78FB4D03154BF1CE0035236F /* CartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FB4D02154BF1CE0035236F /* CartCell.m */; };
 		78FB4D06154BF20D0035236F /* CartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78FB4D05154BF20D0035236F /* CartCell.xib */; };
 		F507215A156BA2C200D7ACC6 /* checkConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = F5072159156BA2C200D7ACC6 /* checkConnection.m */; };
@@ -84,6 +88,12 @@
 		78D3CF1A156A9241003202BD /* GettingCoreContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GettingCoreContent.m; sourceTree = "<group>"; };
 		78D3CF1D156A9248003202BD /* Restaurants.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Restaurants.xcdatamodel; sourceTree = "<group>"; };
 		78D3CF1F156A9986003202BD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		78D7DB781573B74300D4F6A2 /* PickerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerViewCell.h; sourceTree = "<group>"; };
+		78D7DB791573B74300D4F6A2 /* PickerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerViewCell.m; sourceTree = "<group>"; };
+		78EF80AD157381DD00478EEB /* IconDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconDownloader.h; sourceTree = "<group>"; };
+		78EF80AE157381DD00478EEB /* IconDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconDownloader.m; sourceTree = "<group>"; };
+		78EF80B21573A50100478EEB /* Placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Placeholder.png; sourceTree = "<group>"; };
+		78EF80B51573B3EA00478EEB /* PickerViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickerViewCell.xib; sourceTree = "<group>"; };
 		78FB4D01154BF1CD0035236F /* CartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartCell.h; sourceTree = "<group>"; };
 		78FB4D02154BF1CE0035236F /* CartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartCell.m; sourceTree = "<group>"; };
 		78FB4D05154BF20D0035236F /* CartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CartCell.xib; sourceTree = "<group>"; };
@@ -157,6 +167,7 @@
 		781B8F0D1546DB870074EDBD /* Restaurant */ = {
 			isa = PBXGroup;
 			children = (
+				78EF80B1157381FC00478EEB /* Downloaders */,
 				783EB971156FD057001E5BF1 /* CoreDataEntities */,
 				783EB967156FAF3A001E5BF1 /* ViewControllers */,
 				78BA0E1A156E6A0C005C08D7 /* structs */,
@@ -190,6 +201,7 @@
 				F5072159156BA2C200D7ACC6 /* checkConnection.m */,
 				F5E93A55156D1CDB005ED3ED /* SocialViewController.h */,
 				F5E93A56156D1CDB005ED3ED /* SocialViewController.m */,
+				78EF80B41573A51300478EEB /* images */,
 				781B8F0E1546DB870074EDBD /* Supporting Files */,
 			);
 			path = Restaurant;
@@ -237,6 +249,23 @@
 			name = structs;
 			sourceTree = "<group>";
 		};
+		78EF80B1157381FC00478EEB /* Downloaders */ = {
+			isa = PBXGroup;
+			children = (
+				78EF80AD157381DD00478EEB /* IconDownloader.h */,
+				78EF80AE157381DD00478EEB /* IconDownloader.m */,
+			);
+			name = Downloaders;
+			sourceTree = "<group>";
+		};
+		78EF80B41573A51300478EEB /* images */ = {
+			isa = PBXGroup;
+			children = (
+				78EF80B21573A50100478EEB /* Placeholder.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
 		F5E93A4D156CFFB3005ED3ED /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,6 +279,9 @@
 				F5072168156BD46900D7ACC6 /* LanguageCell.m */,
 				F5E93A49156CFC6B005ED3ED /* CityCell.h */,
 				F5E93A4A156CFC6B005ED3ED /* CityCell.m */,
+				78EF80B51573B3EA00478EEB /* PickerViewCell.xib */,
+				78D7DB781573B74300D4F6A2 /* PickerViewCell.h */,
+				78D7DB791573B74300D4F6A2 /* PickerViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -312,6 +344,8 @@
 				78864DDF15495E0A00D339B7 /* files.iphone.shop.good1582.png in Resources */,
 				78864DE41549804400D339B7 /* productCell.xib in Resources */,
 				78FB4D06154BF20D0035236F /* CartCell.xib in Resources */,
+				78EF80B31573A50100478EEB /* Placeholder.png in Resources */,
+				78EF80B61573B3EA00478EEB /* PickerViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +376,8 @@
 				F5E93A57156D1CDB005ED3ED /* SocialViewController.m in Sources */,
 				78BA0E1E156E6A5E005C08D7 /* MenuDataStruct.m in Sources */,
 				78BA0E25156E934B005C08D7 /* ProductDataStruct.m in Sources */,
+				78EF80AF157381DD00478EEB /* IconDownloader.m in Sources */,
+				78D7DB7A1573B74300D4F6A2 /* PickerViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

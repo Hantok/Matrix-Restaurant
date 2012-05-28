@@ -73,35 +73,37 @@
     NSArray *keys = [attributeDictionary allKeys];
     int counter = 0;
     NSString *editAttrinbuteWithUnderBar = [[NSString alloc] init];
-    NSArray *values = [attributeDictionary objectForKey:[keys objectAtIndex:0]];
-    while(counter <  values.count)
+    if(attributeDictionary.count)
     {
-        NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
-        for(int i=0;i<keys.count;i++)
+        NSArray *values = [attributeDictionary objectForKey:[keys objectAtIndex:0]];
+        while(counter <  values.count)
         {
-            id objectAtIndexI = [keys objectAtIndex:i];
-            values = [attributeDictionary objectForKey:objectAtIndexI];
-            editAttrinbuteWithUnderBar = objectAtIndexI;
-            
-            NSString *subString = [editAttrinbuteWithUnderBar substringToIndex:1];
-            //[editAttrinbuteWithUnderBar characterAtIndex:0];
-            if([editAttrinbuteWithUnderBar characterAtIndex:0] == '_')
+            NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+            for(int i=0;i<keys.count;i++)
             {
-                editAttrinbuteWithUnderBar = [NSString stringWithFormat:@"%@%@", @"underbar", [editAttrinbuteWithUnderBar substringFromIndex:1]];
-            }
+                id objectAtIndexI = [keys objectAtIndex:i];
+                values = [attributeDictionary objectForKey:objectAtIndexI];
+                editAttrinbuteWithUnderBar = objectAtIndexI;
             
-            else if ([subString uppercaseString])
-            {
-                editAttrinbuteWithUnderBar = [NSString stringWithFormat:@"%@%@", [subString lowercaseString], [editAttrinbuteWithUnderBar substringFromIndex:1]];
-                if ([editAttrinbuteWithUnderBar isEqualToString:@"description"])
+                NSString *subString = [editAttrinbuteWithUnderBar substringToIndex:1];
+                //[editAttrinbuteWithUnderBar characterAtIndex:0];
+                if([editAttrinbuteWithUnderBar characterAtIndex:0] == '_')
                 {
-                    editAttrinbuteWithUnderBar = @"descriptionAbout";
+                    editAttrinbuteWithUnderBar = [NSString stringWithFormat:@"%@%@", @"underbar", [editAttrinbuteWithUnderBar substringFromIndex:1]];
                 }
-            }
             
-            [newManagedObject setValue:[values objectAtIndex:counter] forKey:editAttrinbuteWithUnderBar];
-        }
-        counter++;
+                else if ([subString uppercaseString])
+                {
+                    editAttrinbuteWithUnderBar = [NSString stringWithFormat:@"%@%@", [subString lowercaseString], [editAttrinbuteWithUnderBar substringFromIndex:1]];
+                    if ([editAttrinbuteWithUnderBar isEqualToString:@"description"])
+                    {
+                    editAttrinbuteWithUnderBar = @"descriptionAbout";
+                    }
+                }
+            
+                [newManagedObject setValue:[values objectAtIndex:counter] forKey:editAttrinbuteWithUnderBar];
+            }
+            counter++;
     }
     // Save the context.
     NSError *error = nil;
@@ -109,6 +111,7 @@
     {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
+    }
     }
 
 }
@@ -126,7 +129,7 @@
     
     for (NSManagedObject *managedObject in items) {
         [context deleteObject:managedObject];
-        NSLog(@"%@ object deleted",entityDescription);
+        //NSLog(@"%@ object deleted",entityDescription);
     }
     if (![context save:&error]) {
         NSLog(@"Error deleting %@ - error:%@",entityDescription,error);
@@ -151,7 +154,9 @@
     request = [NSFetchRequest fetchRequestWithEntityName:@"Restaurants_translation"];
     for(int i=0;i<citiesIDs.count;i++)
     {
-        request.predicate = [NSPredicate predicateWithFormat:@"idLanguage == %@ && underbarid == %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"], [[citiesIDs objectAtIndex:i] valueForKey:@"underbarid"]];
+        id currentCity = [citiesIDs objectAtIndex:i];
+        request.predicate = [NSPredicate predicateWithFormat:@"idLanguage == %@ && underbarid == %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"], [currentCity valueForKey:@"underbarid"]];
+        [resultOfARequest addObject:currentCity];
         [resultOfARequest addObjectsFromArray:[moc executeFetchRequest:request error:&error]];
     }
     NSLog(@"smth")	;
@@ -171,11 +176,15 @@
     NSManagedObjectContext *moc = context;
     NSError *error;
     NSMutableArray *menuIDs = [[moc executeFetchRequest:request error:&error] mutableCopy];
-    NSMutableArray *resultOfARequest = [[NSMutableArray alloc] init];
-    request = [NSFetchRequest fetchRequestWithEntityName:@"Menus_translation"];
-    request.predicate = [NSPredicate predicateWithFormat:@"idLanguage == %@ && idMenu == %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"], [[menuIDs objectAtIndex:0] valueForKey:@"underbarid"]];
+    NSMutableArray *resultOfARequest;
+    if(menuIDs.count)
+    {
+        resultOfARequest = [[NSMutableArray alloc] init];
+        request = [NSFetchRequest fetchRequestWithEntityName:@"Menus_translation"];
+        request.predicate = [NSPredicate predicateWithFormat:@"idLanguage == %@ && idMenu == %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"], [[menuIDs objectAtIndex:0] valueForKey:@"underbarid"]];
+        [resultOfARequest addObjectsFromArray:menuIDs];
         [resultOfARequest addObjectsFromArray:[moc executeFetchRequest:request error:&error]];
-    [resultOfARequest addObjectsFromArray:menuIDs];
+    }
     NSLog(@"smth")	;
     return [resultOfARequest copy]; 
 }
@@ -252,7 +261,7 @@
     NSError *error;
     
     NSArray *resultOfARequest = [moc executeFetchRequest:request error:&error];
-    NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test3/%@",[[resultOfARequest objectAtIndex:0] valueForKey:@"link"]];
+    NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test4/root/%@",[[resultOfARequest objectAtIndex:0] valueForKey:@"link"]];
     urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL *url = [[NSURL alloc] initWithString:urlForImage];
     return url;

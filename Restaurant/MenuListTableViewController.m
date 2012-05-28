@@ -14,7 +14,7 @@
 
 @interface MenuListTableViewController ()
 
-
+- (void)startIconDownload:(ProductDataStruct *)appRecord forIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
@@ -25,13 +25,16 @@
 @synthesize selectedRow = _selectedRow;
 @synthesize arrayData = _arrayData;
 @synthesize db = _db;
+@synthesize imageDownloadsInProgress = _imageDownloadsInProgress;
 
 
 
 - (NSMutableArray *)arrayData
 {
+    NSLog(@"getter arrayData is activated");
     if(!_arrayData)
     {
+        NSLog(@"initiation");
         NSMutableArray *array = [[NSMutableArray alloc] init];
         ProductDataStruct *dataStruct;
         NSArray *data = [self.db fetchAllProductsFromMenu:self.kindOfMenu.menuId];
@@ -45,16 +48,19 @@
                 dataStruct.idPicture = [[data objectAtIndex:i] valueForKey:@"idPicture"];
                 NSData *dataOfPicture = [self.db fetchPictureDataByPictureId:dataStruct.idPicture];
                 NSURL *url = [self.db fetchImageURLbyPictureID:dataStruct.idPicture];
+                dataStruct.link = url.description;
                 if(dataOfPicture)
                 {
                     dataStruct.image  = [UIImage imageWithData:dataOfPicture]; 
                 }
-                else 
-                {
-                    dataOfPicture = [NSData dataWithContentsOfURL:url];
-                    [self.db SavePictureToCoreData:[[data objectAtIndex:i] valueForKey:@"idPicture"] toData:dataOfPicture];
-                    dataStruct.image  = [UIImage imageWithData:dataOfPicture];
-                }
+               // else 
+                //{
+                  //  NSLog(@"%@ download begin", url.description);
+                    //dataOfPicture = [NSData dataWithContentsOfURL:url];
+                    //[self.db SavePictureToCoreData:[[data objectAtIndex:i] valueForKey:@"idPicture"] toData:dataOfPicture];
+                    //dataStruct.image  = [UIImage imageWithData:dataOfPicture];
+                    //NSLog(@"end");
+                //}
             }
             else
             {
@@ -64,8 +70,10 @@
             }
         }
         _arrayData = array;
+        NSLog(@"getter arrayData is deactivated");
         return _arrayData;
     }
+    NSLog(@"getter arrayData is deactivated");
     return _arrayData;
 }
 
@@ -86,7 +94,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.imageDownloadsInProgress = [[NSMutableDictionary alloc] init];
     self.navigationItem.title = self.kindOfMenu.title;
     
     
@@ -110,7 +118,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    return NO;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -145,7 +153,21 @@
     cell.productPrice.text = [NSString stringWithFormat:@"%@ uah", dataStruct.price];
     cell.productDescription.text = [NSString stringWithFormat:@"%@", dataStruct.descriptionText];
     cell.productTitle.text = [NSString stringWithFormat:@"%@", dataStruct.title];
-    cell.productImage.image = dataStruct.image;
+    
+    if (!dataStruct.image)
+    {
+        if (self.tableView.dragging == NO && self.tableView.decelerating == NO)
+        {
+            [self startIconDownload:dataStruct forIndexPath:indexPath];
+        }
+        // if a download is deferred or in progress, return a placeholder image  
+        cell.productImage.image = [UIImage imageNamed:@"Placeholder.png"];
+        
+    }
+    else
+    {
+        cell.productImage.image = dataStruct.image;
+    }
     
     return cell;
 }
@@ -168,5 +190,72 @@
 }
 
 
+
+#pragma mark -
+#pragma mark Table cell image support
+
+- (void)startIconDownload:(ProductDataStruct *)appRecord forIndexPath:(NSIndexPath *)indexPath
+{
+    IconDownloader *iconDownloader = [self.imageDownloadsInProgress objectForKey:indexPath];
+    if (iconDownloader == nil) 
+    {
+        iconDownloader = [[IconDownloader alloc] init];
+        iconDownloader.appRecord = appRecord;
+        iconDownloader.indexPathInTableView = indexPath;
+        iconDownloader.delegate = self;
+        [self.imageDownloadsInProgress setObject:iconDownloader forKey:indexPath];
+        [iconDownloader startDownload]; 
+    }
+}
+
+// this method is used in case the user scrolled into a set of cells that don't have their app icons yet
+- (void)loadImagesForOnscreenRows
+{
+    if ([self.arrayData count] > 0)
+    {
+        NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
+        for (NSIndexPath *indexPath in visiblePaths)
+        {
+            ProductDataStruct *appRecord = [self.arrayData objectAtIndex:indexPath.row];
+            
+            if (!appRecord.image) // avoid the app icon download if the app already has an icon
+            {
+                [self startIconDownload:appRecord forIndexPath:indexPath];
+            }
+        }
+    }
+}
+
+// called by our ImageDownloader when an icon is ready to be displayed
+- (void)appImageDidLoad:(NSIndexPath *)indexPath
+{
+    IconDownloader *iconDownloader = [self.imageDownloadsInProgress objectForKey:indexPath];
+    if (iconDownloader != nil)
+    {
+        ProductCell *cell = (ProductCell *)[self.tableView cellForRowAtIndexPath:iconDownloader.indexPathInTableView];
+        
+        // Display the newly loaded image
+        cell.productImage.image = iconDownloader.appRecord.image;
+        [self.db SavePictureToCoreData:iconDownloader.appRecord.idPicture toData:UIImagePNGRepresentation(cell.productImage.image)];
+        
+    }
+}
+
+#pragma mark -
+#pragma mark Deferred image loading (UIScrollViewDelegate)
+
+// Load images for all onscreen rows when scrolling is finished
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (!decelerate)
+	{
+        [self loadImagesForOnscreenRows];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self loadImagesForOnscreenRows];
+}
 
 @end

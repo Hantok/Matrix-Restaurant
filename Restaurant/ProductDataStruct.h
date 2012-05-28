@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSNumber *count;
 @property (strong, nonatomic) NSString *idPicture;
+@property (strong, nonatomic) NSString *link;
 
 - (NSDictionary *)getDictionaryDependOnDataStruct;
 - (id)initWithDictionary:(NSMutableDictionary *)aDictionary;

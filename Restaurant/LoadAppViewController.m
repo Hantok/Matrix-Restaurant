@@ -38,10 +38,12 @@
 - (void)XMLToCoreData
 {
     NSArray *allKeys = [self.db.tables allKeys];
-    for(int i = 0; i< [self.db.tables count]; i++)
+    GettingCoreContent *content = [[GettingCoreContent alloc] init];
+    for(int i = 0; i< allKeys.count; i++)
     {
-        GettingCoreContent *content = [[GettingCoreContent alloc] init];
-        [content setCoreDataForEntityWithName:[allKeys objectAtIndex:i] dictionaryOfAtributes:[self.db.tables objectForKey:[allKeys objectAtIndex:i]]];
+        id key = [allKeys objectAtIndex:i];
+        id object = [self.db.tables objectForKey:key];
+        if(object)[content setCoreDataForEntityWithName:key dictionaryOfAtributes:object];
     }
 }
 
@@ -54,7 +56,7 @@
     
     if(checkConnection.hasConnectivity)
     {
-        NSURL* rssURL = [NSURL URLWithString:@"http://matrix-soft.org/addon_domains_folder/test3/System_files/XML/matrixso_test3/DBStructure.xml"];
+        NSURL* rssURL = [NSURL URLWithString:@"http://matrix-soft.org/addon_domains_folder/test4/root/System_files/XML/matrixso_test4/DBStructure.xml"];//@"http://matrix-soft.org/addon_domains_folder/test3/System_files/XML/matrixso_test3/DBStructure.xml"];
     // создаем парсер при помощи URL, назначаем делегат и запускаем
         NSLog(@"Download is begin");
         XMLParse* parser = [[XMLParse alloc] initWithContentsOfURL:rssURL];

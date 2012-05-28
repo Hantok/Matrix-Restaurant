@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "GettingCoreContent.h"
 #import "MenuDataStruct.h"
+#import "IconDownloader.h"
 
-@interface MenuListTableViewController : UITableViewController
+@interface MenuListTableViewController : UITableViewController <IconDownloaderDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *arrayData;
@@ -18,5 +19,6 @@
 @property (nonatomic, strong) MenuDataStruct *kindOfMenu;
 @property (strong, nonatomic) NSNumber *selectedRow;
 @property (strong, nonatomic) GettingCoreContent *db;
+@property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 
 @end

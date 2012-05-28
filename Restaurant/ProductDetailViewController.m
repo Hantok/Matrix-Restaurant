@@ -89,7 +89,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return NO;
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView

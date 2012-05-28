@@ -17,6 +17,7 @@
 @synthesize title = _title;
 @synthesize count = _count;
 @synthesize idPicture = _idPicture;
+@synthesize link = _link;
 
 
 - (NSNumber *)count
