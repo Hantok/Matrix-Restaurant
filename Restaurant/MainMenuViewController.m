@@ -109,7 +109,6 @@
             }
         }
         _arrayData = array;
-        //[[self pickerView] reloadInputViews];
         return _arrayData;
     }
     return _arrayData;
@@ -438,7 +437,7 @@
         }
     }
     NSArray *array = self.db.fetchAllProductsIdAndTheirCount;
-    cell.productTitle.text = [[array objectAtIndex:indexPath.row] valueForKey:@"underbarid"];
+    cell.productTitle.text = [NSString stringWithFormat:@"%@",[[array objectAtIndex:indexPath.row] valueForKey:@"underbarid"]];
     cell.productCount.text = [NSString stringWithFormat:@"%@", [[array objectAtIndex:indexPath.row] valueForKey:@"count"]];
     
     return cell;

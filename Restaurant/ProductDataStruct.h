@@ -10,7 +10,7 @@
 
 @interface ProductDataStruct : NSObject
 
-@property (nonatomic) NSString *productId;
+@property (nonatomic) NSNumber *productId;
 @property (strong, nonatomic) NSString *price;
 @property (strong, nonatomic) UIImage *image;
 @property (strong, nonatomic) NSString *descriptionText;

@@ -20,7 +20,7 @@
 
 - (void) setCoreDataForEntityWithName:(NSString *)entityName 
                 dictionaryOfAtributes:(NSDictionary *)attributeDictionary;
-- (void) deleteAllObjectsFromEntity: (NSString *) entityDescription;
+- (void) deleteAllObjectsFromEntity:(NSString *)entityDescription;
 - (NSArray *)fetchAllRestaurantsWithDefaultLanguageAndCity;
 - (NSArray *)fetchRootMenuWithDefaultLanguageForRestaurant:(NSString *)restaurnatId;
 - (NSArray *)fetchChildMenuWithDefaultLanguageForParentMenu:(NSString *)parentMenuId;
@@ -30,8 +30,9 @@
 - (NSArray *)fetchAllProductsFromMenu:(NSString *)menuId;
 - (void)SavePictureToCoreData:(NSString *)idPicture toData:(NSData *)data;
 - (NSData *)fetchPictureDataByPictureId:(NSString *)pictureId;
-- (void)SaveProductToCartWithId:(NSString *)underbarid withCount:(int)countOfProducts;
+- (void)SaveProductToCartWithId:(NSNumber *)underbarid withCount:(int)countOfProducts;
 - (NSArray *)fetchAllProductsIdAndTheirCount;
+//- (NSDictionary *)fetchImageURLAndDatabyMenuID:(NSString *)menuId;
 
 
 

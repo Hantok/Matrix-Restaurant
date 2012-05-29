@@ -328,33 +328,33 @@
     return url;
 }
 
-- (NSDictionary *)fetchImageURLAndDatabyMenuID:(NSString *)menuId
-{
-    NSManagedObjectContext * context = self.managedObjectContext;
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Products" inManagedObjectContext:context];
-    
-    [request setEntity:entity];
-    
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"idPicture" ascending:YES];
-    
-    [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-    
-    request.predicate = [NSPredicate predicateWithFormat:@"idMenu == %@", menuId];
-    NSManagedObjectContext *moc = context;
-    NSError *error;
-    
-    NSArray *resultOfARequest = [moc executeFetchRequest:request error:&error];
-    NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test4/root/%@",[[resultOfARequest objectAtIndex:0] valueForKey:@"link"]];
-    urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    
-    //NSURL *url = [[NSURL alloc] initWithString:urlForImage];
-    
-    
-    return nil;
-}
+//- (NSDictionary *)fetchImageURLAndDatabyMenuID:(NSString *)menuId
+//{
+//    NSManagedObjectContext * context = self.managedObjectContext;
+//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+//    // Edit the entity name as appropriate.
+//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Products" inManagedObjectContext:context];
+//    
+//    [request setEntity:entity];
+//    
+//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"idPicture" ascending:YES];
+//    
+//    [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+//    
+//    request.predicate = [NSPredicate predicateWithFormat:@"idMenu == %@", menuId];
+//    NSManagedObjectContext *moc = context;
+//    NSError *error;
+//    
+//    NSArray *resultOfARequest = [moc executeFetchRequest:request error:&error];
+//    NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test4/root/%@",[[resultOfARequest objectAtIndex:0] valueForKey:@"link"]];
+//    urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    
+//    
+//    //NSURL *url = [[NSURL alloc] initWithString:urlForImage];
+//    
+//    
+//    return nil;
+//}
 
 -(NSInteger)binarySearchIn:(NSArray *)anArray byKey:(NSNumber *)aKey between:(NSInteger)imin and:(NSInteger)imax
 {
@@ -379,20 +379,19 @@
 }
 
 
-- (void)SaveProductToCartWithId:(NSString *)underbarid withCount:(int)countOfProducts
+- (void)SaveProductToCartWithId:(NSNumber *)underbarid withCount:(int)countOfProducts
 {
     NSFetchRequest * request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:@"Cart" inManagedObjectContext:self.managedObjectContext]];
 
-    NSManagedObject *objectToUpdate = [NSEntityDescription insertNewObjectForEntityForName:@"Cart" inManagedObjectContext:self.managedObjectContext];
-    
     NSError *error;
     NSArray *debug= [self.managedObjectContext executeFetchRequest:request error:&error];
     BOOL allreadyInCart = NO;
     for (int i = 0; i < debug.count; i++)
     {
-        if ([[[debug objectAtIndex:i] valueForKey:@"underbarid"] isEqualToString:[underbarid description]])
+        if ([[[debug objectAtIndex:i] valueForKey:@"underbarid"] isEqual:underbarid])
         {
+            NSManagedObject *objectToUpdate = [debug objectAtIndex:i];
             int curInt = [[objectToUpdate valueForKey:@"count"] intValue] + countOfProducts;
             [objectToUpdate setValue:[NSNumber numberWithInt:curInt] forKey:@"count"];
             allreadyInCart = YES;
@@ -401,8 +400,9 @@
     }
     if (!allreadyInCart)
     {
-        [objectToUpdate setValue:underbarid forKey:@"underbarid"];
-        [objectToUpdate setValue:[NSNumber numberWithInt:countOfProducts] forKey:@"count"];
+            NSManagedObject *objectToInsert = [NSEntityDescription insertNewObjectForEntityForName:@"Cart" inManagedObjectContext:self.managedObjectContext];
+        [objectToInsert setValue:underbarid forKey:@"underbarid"];
+        [objectToInsert setValue:[NSNumber numberWithInt:countOfProducts] forKey:@"count"];
     }
     
     // Save the context.
@@ -431,7 +431,9 @@
     return  arrayOfDictionaries;
 }
 
-- (NSArray *) fetchObjectsFromCoreDataForEntety:(NSString *)entityName withId:(NSString *)underbarid withDefaultLanguageId:(NSString *)languageId
+
+//need to finish by me =)
+- (NSArray *) fetchObjectsFromCoreDataForEntity:(NSString *)entityName withArrayOfIDs:(NSArray *)underbaridsArray withDefaultLanguageId:(NSString *)languageId
 {
     NSManagedObjectContext *context = self.managedObjectContext;
     NSFetchRequest * request = [[NSFetchRequest alloc] init];
