@@ -7,6 +7,7 @@
 //
 
 #import "ProductDetailViewController.h"
+#import "GettingCoreContent.h"
 
 @interface ProductDetailViewController ()
 
@@ -47,37 +48,43 @@
 }
 
 - (IBAction)addToCart:(id)sender {
-    ProductDataStruct *offer;
-    NSMutableDictionary *offers;
-    if(![[NSUserDefaults standardUserDefaults] objectForKey:@"offers"])
-    {
-        offers = [[NSMutableDictionary alloc] init];
-    }
-    else {
-        offers = [[NSMutableDictionary alloc] initWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"offers"]];
-    }
-    if(![offers objectForKey:self.product.productId])
-    {
-        //[offer setObject:[self.product objectForKey:@"id"] forKey:@"id"];
-        //[offer setObject:[self.product objectForKey:@"cost"] forKey:@"cost"];
-        //[offer setObject:[self.product objectForKey:@"name"] forKey:@"name"];
-        offer = self.product;
-    }
-    else
-    {
-        offer = [[ProductDataStruct alloc] initWithDictionary:[offers objectForKey:self.product.productId]];
-        int sum = offer.count.integerValue + self.product.count.integerValue;
-        offer.count = [NSNumber numberWithInt:sum];
-    }
-    [offers setObject:offer.getDictionaryDependOnDataStruct forKey:self.product.productId];
-    [[NSUserDefaults standardUserDefaults] setObject:offers forKey:@"offers"];
-    if([[NSUserDefaults standardUserDefaults] synchronize])
-    {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Количества товара \"%@\" в корзине %@ шт.", offer.title, offer.count] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
-        [[self navigationController] popViewControllerAnimated:YES];
-    }
+//    ProductDataStruct *offer;
+//    NSMutableDictionary *offers;
+//    if(![[NSUserDefaults standardUserDefaults] objectForKey:@"offers"])
+//    {
+//        offers = [[NSMutableDictionary alloc] init];
+//    }
+//    else {
+//        offers = [[NSMutableDictionary alloc] initWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"offers"]];
+//    }
+//    if(![offers objectForKey:self.product.productId])
+//    {
+//        //[offer setObject:[self.product objectForKey:@"id"] forKey:@"id"];
+//        //[offer setObject:[self.product objectForKey:@"cost"] forKey:@"cost"];
+//        //[offer setObject:[self.product objectForKey:@"name"] forKey:@"name"];
+//        offer = self.product;
+//    }
+//    else
+//    {
+//        offer = [[ProductDataStruct alloc] initWithDictionary:[offers objectForKey:self.product.productId]];
+//        int sum = offer.count.integerValue + self.product.count.integerValue;
+//        offer.count = [NSNumber numberWithInt:sum];
+//    }
+//    [offers setObject:offer.getDictionaryDependOnDataStruct forKey:self.product.productId];
+//    [[NSUserDefaults standardUserDefaults] setObject:offers forKey:@"offers"];
+//    if([[NSUserDefaults standardUserDefaults] synchronize])
+//    {
+//        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Количества товара \"%@\" в корзине %@ шт.", offer.title, offer.count] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+//        [alert show];
+//        [[self navigationController] popViewControllerAnimated:YES];
+//    }
     
+    GettingCoreContent *db = [[GettingCoreContent alloc] init];
+    [db SaveProductToCartWithId:self.product.productId withCount:self.product.count.integerValue];
+    
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Добавлено товара \"%@\" в корзину.", self.product.title] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alert show];
+    [[self navigationController] popViewControllerAnimated:YES];
 }
 
 - (void)viewDidUnload

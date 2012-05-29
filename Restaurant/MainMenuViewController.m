@@ -64,7 +64,8 @@
         NSMutableArray *array = [[NSMutableArray alloc] init];
         MenuDataStruct *dataStruct;
         NSArray *data = nil;
-        if(!self.restarauntId) data = [self.db fetchAllRestaurantsWithDefaultLanguageAndCity];
+        if(!self.restarauntId) 
+            data = [self.db fetchAllRestaurantsWithDefaultLanguageAndCity];
         else 
         {
             if(self.menuId)
@@ -108,6 +109,7 @@
             }
         }
         _arrayData = array;
+        //[[self pickerView] reloadInputViews];
         return _arrayData;
     }
     return _arrayData;
@@ -167,7 +169,8 @@
 {
     [super viewDidAppear:YES];
     
-    if(self.restarauntId) [self.pickerView reloadAllComponents];
+    //if(self.restarauntId) 
+        [self.pickerView reloadAllComponents];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -383,12 +386,40 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    Offers* offers = [[Offers alloc] init];
-    return offers.offers.count;
+    //Offers* offers = [[Offers alloc] init];
+    //return offers.offers.count;
+    return self.db.fetchAllProductsIdAndTheirCount.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+//    NSString *CellIdentifier = @"CartCell";
+//    CartCell *cell = (CartCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    
+//    if(!cell)
+//    {
+//        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"CartCell" owner:nil options:nil];
+//        for(id currentObject in topLevelObjects)
+//        {
+//            if([currentObject isKindOfClass:[CartCell class]])
+//            {
+//                cell = (CartCell *)currentObject;
+//                break;
+//            }
+//        }
+//    }
+//    
+//    Offers* offers = [[Offers alloc] init];
+//    ProductDataStruct *dataStruct = [[ProductDataStruct alloc] initWithDictionary:[offers.offers objectAtIndex:indexPath.row]];
+//    
+//    
+//    cell.productTitle.text = dataStruct.title;
+//    NSNumber *count = dataStruct.count;
+//
+//    cell.productCount.text = [NSString stringWithFormat:@"%i шт.", [count intValue]];
+//    NSNumber *cost = [NSNumber numberWithDouble:dataStruct.price.doubleValue];
+//    cell.productPrice.text = [NSString stringWithFormat:@"%i грн.", [cost intValue]*[count intValue]];
+    
     NSString *CellIdentifier = @"CartCell";
     CartCell *cell = (CartCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
@@ -404,17 +435,9 @@
             }
         }
     }
-    
-    Offers* offers = [[Offers alloc] init];
-    ProductDataStruct *dataStruct = [[ProductDataStruct alloc] initWithDictionary:[offers.offers objectAtIndex:indexPath.row]];
-    
-    
-    cell.productTitle.text = dataStruct.title;
-    NSNumber *count = dataStruct.count;
-
-    cell.productCount.text = [NSString stringWithFormat:@"%i шт.", [count intValue]];
-    NSNumber *cost = [NSNumber numberWithDouble:dataStruct.price.doubleValue];
-    cell.productPrice.text = [NSString stringWithFormat:@"%i грн.", [cost intValue]*[count intValue]];
+    NSArray *array = self.db.fetchAllProductsIdAndTheirCount;
+    cell.productTitle.text = [[array objectAtIndex:indexPath.row] valueForKey:@"underbarid"];
+    cell.productCount.text = [NSString stringWithFormat:@"%@", [[array objectAtIndex:indexPath.row] valueForKey:@"count"]];
     
     return cell;
 }
@@ -431,11 +454,12 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
+    if (editingStyle == UITableViewCellEditingStyleDelete) 
+    {
         Offers* offers = [[Offers alloc] init];
         [offers removeOffer:[offers.offers objectAtIndex:indexPath.row]];
         [self.tableView reloadData];
-        }  
+    }  
 }
 
 @end

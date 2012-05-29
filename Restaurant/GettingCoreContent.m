@@ -104,14 +104,14 @@
                 [newManagedObject setValue:[values objectAtIndex:counter] forKey:editAttrinbuteWithUnderBar];
             }
             counter++;
-    }
-    // Save the context.
-    NSError *error = nil;
-    if (![context save:&error])
-    {
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
+        }
+        // Save the context.
+        NSError *error = nil;
+        if (![context save:&error])
+        {
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
     }
 
 }
@@ -319,6 +319,82 @@
     NSManagedObject *objectToGet = [debug objectAtIndex:0];
     return [objectToGet valueForKey:@"data"];
     
+}
+
+
+- (void)SaveProductToCartWithId:(NSString *)underbarid withCount:(int)countOfProducts
+{
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:@"Cart" inManagedObjectContext:self.managedObjectContext]];
+
+    NSManagedObject *objectToUpdate = [NSEntityDescription insertNewObjectForEntityForName:@"Cart" inManagedObjectContext:self.managedObjectContext];
+    
+    NSError *error;
+    NSArray *debug= [self.managedObjectContext executeFetchRequest:request error:&error];
+    BOOL allreadyInCart = NO;
+    for (int i = 0; i < debug.count; i++)
+    {
+        if ([[[debug objectAtIndex:i] valueForKey:@"underbarid"] isEqualToString:[underbarid description]])
+        {
+            int curInt = [[objectToUpdate valueForKey:@"count"] intValue] + countOfProducts;
+            [objectToUpdate setValue:[NSNumber numberWithInt:curInt] forKey:@"count"];
+            allreadyInCart = YES;
+            break;
+        }
+    }
+    if (!allreadyInCart)
+    {
+        [objectToUpdate setValue:underbarid forKey:@"underbarid"];
+        [objectToUpdate setValue:[NSNumber numberWithInt:countOfProducts] forKey:@"count"];
+    }
+    
+    // Save the context.
+    if (![self.managedObjectContext save:&error])
+    {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+}
+
+- (NSArray *)fetchAllProductsIdAndTheirCount
+{
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:@"Cart" inManagedObjectContext:self.managedObjectContext]];
+    
+    NSError *error;
+    NSArray *arrayOfDictionaries= [self.managedObjectContext executeFetchRequest:request error:&error];
+    
+    // Save the context.
+    if (![self.managedObjectContext save:&error])
+    {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+
+    return  arrayOfDictionaries;
+}
+
+- (NSArray *) fetchObjectsFromCoreDataForEntety:(NSString *)entityName withId:(NSString *)underbarid withDefaultLanguageId:(NSString *)languageId
+{
+    NSManagedObjectContext *context = self.managedObjectContext;
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:context]];
+    
+    NSError *error;
+    NSArray *arrayOfDictionaries= [context executeFetchRequest:request error:&error];
+    for (int i = 0; i <arrayOfDictionaries.count; i++)
+    {
+        //need to create array!!!
+    }
+    
+    // Save the context.
+    if (![context save:&error])
+    {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    
+    return  nil;
 }
 
 @end

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1171" systemVersion="11E53" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Cart" syncable="YES">
+        <attribute name="count" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="underbarid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Cities" syncable="YES">
         <attribute name="underbarid" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
@@ -116,5 +120,6 @@
         <element name="Restaurants_translation" positionX="160" positionY="192" width="128" height="195"/>
         <element name="Statuses" positionX="160" positionY="192" width="128" height="75"/>
         <element name="Statuses_translation" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="Cart" positionX="160" positionY="192" width="128" height="75"/>
     </elements>
 </model>
