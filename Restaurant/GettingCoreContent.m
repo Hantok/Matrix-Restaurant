@@ -329,33 +329,66 @@
     return url;
 }
 
-//- (NSDictionary *)fetchImageURLAndDatabyMenuID:(NSString *)menuId
-//{
-//    NSManagedObjectContext * context = self.managedObjectContext;
-//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-//    // Edit the entity name as appropriate.
-//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Products" inManagedObjectContext:context];
-//    
-//    [request setEntity:entity];
-//    
-//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"idPicture" ascending:YES];
-//    
-//    [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-//    
-//    request.predicate = [NSPredicate predicateWithFormat:@"idMenu == %@", menuId];
-//    NSManagedObjectContext *moc = context;
-//    NSError *error;
-//    
-//    NSArray *resultOfARequest = [moc executeFetchRequest:request error:&error];
-//    NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test4/root/%@",[[resultOfARequest objectAtIndex:0] valueForKey:@"link"]];
-//    urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//    
-//    
-//    //NSURL *url = [[NSURL alloc] initWithString:urlForImage];
-//    
-//    
-//    return nil;
-//}
+- (NSDictionary *)fetchImageURLAndDatabyMenuID:(NSString *)menuId
+{
+    NSMutableDictionary *dontTouchThisOne = [[NSMutableDictionary alloc] init];
+    NSManagedObjectContext * context = self.managedObjectContext;
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Products" inManagedObjectContext:context];
+    
+    [request setEntity:entity];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"idPicture" ascending:YES];
+    
+    [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    
+    request.predicate = [NSPredicate predicateWithFormat:@"idMenu == %@", menuId];
+    NSManagedObjectContext *moc = context;
+    NSError *error;
+    
+    NSArray *resultOfARequest = [moc executeFetchRequest:request error:&error];
+    
+    request = [NSFetchRequest fetchRequestWithEntityName:@"Pictures"];
+    sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"underbarid" ascending:YES];
+    [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    request.predicate = [NSPredicate predicateWithFormat:@"underbarid > %@", [NSString stringWithFormat:@"%i",0]];
+    
+    NSArray *resultOfSecondRequest = [moc executeFetchRequest:request error:&error];  
+    int count = resultOfARequest.count;
+    id product;
+    id picture;
+    int secondCount = resultOfSecondRequest.count;
+    int index;
+    NSLog(@"search begin");
+    for(int i = 0; i < count; i++)
+    {
+        product = [resultOfARequest objectAtIndex:i];
+        index = [self binarySearchIn:resultOfSecondRequest byKey:[product valueForKey:@"idPicture"] between:0 and:secondCount];
+        if(index != -1)
+        {
+            picture = [resultOfSecondRequest objectAtIndex:index];
+            [dontTouchThisOne setObject:picture forKey:[picture valueForKey:@"underbarid"]];
+        }
+        
+        
+    }
+    NSLog(@"search end");
+    
+    
+    
+    
+    
+    
+    //NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test4/root/%@",[[resultOfARequest objectAtIndex:0] valueForKey:@"link"]];
+    //urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    
+    //NSURL *url = [[NSURL alloc] initWithString:urlForImage];
+    
+    
+    return dontTouchThisOne.copy;
+}
 
 -(NSInteger)binarySearchIn:(NSArray *)anArray byKey:(NSNumber *)aKey between:(NSInteger)imin and:(NSInteger)imax
 {
