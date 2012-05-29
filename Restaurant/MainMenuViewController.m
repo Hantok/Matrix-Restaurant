@@ -165,6 +165,11 @@
     if(self.restarauntId) [self.pickerView reloadAllComponents];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
 - (void)viewDidUnload
 {
     [self setPickerView:nil];
@@ -174,11 +179,6 @@
     [self setRestorantsButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return NO;
 }
 
 

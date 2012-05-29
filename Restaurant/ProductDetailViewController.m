@@ -39,10 +39,13 @@
     self.priceLabel.text = [NSString stringWithFormat:@"Цена: %@ %@", cost, @"грн."];
     self.productImage.image = self.product.image;
     
-    
-    
-    
 }
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
 - (IBAction)addToCart:(id)sender {
     ProductDataStruct *offer;
     NSMutableDictionary *offers;
@@ -85,11 +88,6 @@
     [self setProductImage:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return NO;
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView

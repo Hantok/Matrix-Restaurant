@@ -108,17 +108,17 @@
     
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
 - (void)viewDidUnload
 {
     [self setTableView:nil];
     [self setNavigationBar:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return NO;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
