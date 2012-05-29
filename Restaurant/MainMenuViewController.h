@@ -31,5 +31,6 @@
 @property(nonatomic, assign) id<UIPickerViewDelegate> delegatepV;
 @property(nonatomic, assign) id<UIPickerViewDataSource> dataSourcepV;
 
+@property (weak, nonatomic) IBOutlet UIButton *drop;
 
 @end
