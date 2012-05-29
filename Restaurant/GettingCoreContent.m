@@ -55,7 +55,6 @@
 	if (![	aFetchedResultsController performFetch:&error]) {
         // Replace this implementation with code to handle the error appropriately.
         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 	    abort();
 	}
     
@@ -168,7 +167,6 @@
         [resultOfARequest addObject:currentCity];
         [resultOfARequest addObjectsFromArray:[moc executeFetchRequest:request error:&error]];
     }
-    NSLog(@"smth")	;
     return [resultOfARequest copy];
 }
 
@@ -194,7 +192,6 @@
         [resultOfARequest addObjectsFromArray:menuIDs];
         [resultOfARequest addObjectsFromArray:[moc executeFetchRequest:request error:&error]];
     }
-    NSLog(@"smth")	;
     return [resultOfARequest copy]; 
 }
 
@@ -220,7 +217,6 @@
         [resultOfARequest addObject:currentMenu];
         [resultOfARequest addObjectsFromArray:[moc executeFetchRequest:request error:&error]];
     }
-    NSLog(@"smth")	;
     return [resultOfARequest copy]; 
 }
 
@@ -278,7 +274,6 @@
         [resultOfARequest addObject:currentMenu];
         [resultOfARequest addObjectsFromArray:[moc executeFetchRequest:request error:&error]];
     }
-    NSLog(@"smth")	;
     return [resultOfARequest copy]; 
 }
 
@@ -331,6 +326,7 @@
 
 - (NSDictionary *)fetchImageURLAndDatabyMenuID:(NSString *)menuId
 {
+    
     NSMutableDictionary *dontTouchThisOne = [[NSMutableDictionary alloc] init];
     NSManagedObjectContext * context = self.managedObjectContext;
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -353,14 +349,12 @@
     sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"underbarid" ascending:YES];
     [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     request.predicate = [NSPredicate predicateWithFormat:@"underbarid > %@", [NSString stringWithFormat:@"%i",0]];
-    
-    NSArray *resultOfSecondRequest = [moc executeFetchRequest:request error:&error];  
+    NSArray *resultOfSecondRequest = [moc executeFetchRequest:request error:&error];
     int count = resultOfARequest.count;
     id product;
     id picture;
     int secondCount = resultOfSecondRequest.count;
     int index;
-    NSLog(@"search begin");
     for(int i = 0; i < count; i++)
     {
         product = [resultOfARequest objectAtIndex:i];
@@ -373,13 +367,6 @@
         
         
     }
-    NSLog(@"search end");
-    
-    
-    
-    
-    
-    
     //NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test4/root/%@",[[resultOfARequest objectAtIndex:0] valueForKey:@"link"]];
     //urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     

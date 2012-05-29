@@ -31,7 +31,6 @@
 
 - (NSMutableArray *)arrayData
 {
-    NSLog(@"getter arrayData is activated");
     if(!_arrayData)
     {
 //        NSLog(@"<----------initiation");
@@ -65,13 +64,12 @@
 //        NSLog(@"<----------initiation is deactivated");
         
         
-        NSLog(@"<----------new initiation");
         NSMutableArray *array = [[NSMutableArray alloc] init];
         ProductDataStruct *dataStruct;
         NSArray *data = [self.db fetchAllProductsFromMenu:self.kindOfMenu.menuId];
         NSLog(@"first query");
         NSDictionary *pictures = [self.db fetchImageURLAndDatabyMenuID:self.kindOfMenu.menuId];
-        for(int i=0;i<data.count;i++)
+        for(int i=0;i<10;i++)
         {
             if(i%2==0) 
             {
@@ -97,12 +95,10 @@
             }
         }
         _arrayData = array;
-        NSLog(@"<----------new initiation is deactivated");
         
         
         return _arrayData;
     }
-    NSLog(@"getter arrayData is deactivated");
     return _arrayData;
 }
 
@@ -157,7 +153,6 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"Hello from User Defaults! %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"city"]);
     return self.arrayData.count;
 }
 
