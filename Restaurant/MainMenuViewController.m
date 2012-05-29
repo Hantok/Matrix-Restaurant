@@ -32,11 +32,16 @@
 @synthesize tableViewController = _tableViewController;
 @synthesize delegatepV = _delegatepV;
 @synthesize dataSourcepV = _dataSourcepV;
+@synthesize drop = _drop;
 @synthesize db = _db;
 @synthesize restarauntId = _restarauntId;
 @synthesize menuId = _menuId;
 
 
+- (IBAction)drop:(id)sender {
+    self.menuId = nil;
+    self.restarauntId = nil;
+}
 
 -(void)setRestarauntId:(NSString *)restarauntId
 {
@@ -172,6 +177,7 @@
     [self setCartButton:nil];
     [self setSettingsButton:nil];
     [self setRestorantsButton:nil];
+    [self setDrop:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

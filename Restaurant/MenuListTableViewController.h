@@ -10,6 +10,7 @@
 #import "GettingCoreContent.h"
 #import "MenuDataStruct.h"
 #import "IconDownloader.h"
+#import "ProductCell.h"
 
 @interface MenuListTableViewController : UITableViewController <IconDownloaderDelegate>
 
@@ -20,5 +21,6 @@
 @property (strong, nonatomic) NSNumber *selectedRow;
 @property (strong, nonatomic) GettingCoreContent *db;
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
+
 
 @end
