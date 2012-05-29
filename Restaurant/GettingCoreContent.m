@@ -100,8 +100,16 @@
                     editAttrinbuteWithUnderBar = @"descriptionAbout";
                     }
                 }
-            
-                [newManagedObject setValue:[values objectAtIndex:counter] forKey:editAttrinbuteWithUnderBar];
+                if ([editAttrinbuteWithUnderBar isEqualToString:@"idPicture"] || [editAttrinbuteWithUnderBar isEqualToString:@"underbarid"]) {
+                    NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+                    [f setNumberStyle:NSNumberFormatterDecimalStyle];
+                    NSNumber * idPicture = [f numberFromString:[values objectAtIndex:counter]];
+                    [newManagedObject setValue:idPicture forKey:editAttrinbuteWithUnderBar];
+                }
+                else {
+                    [newManagedObject setValue:[values objectAtIndex:counter] forKey:editAttrinbuteWithUnderBar];
+                }
+                
             }
             counter++;
         }
@@ -247,26 +255,6 @@
     return [resultOfARequest copy];
 }
 
-- (NSURL *)fetchImageURLbyPictureID:(NSString *)pictureId
-{
-    NSManagedObjectContext * context = self.managedObjectContext;
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Pictures" inManagedObjectContext:context];
-    
-    [request setEntity:entity];
-    
-    request.predicate = [NSPredicate predicateWithFormat:@"underbarid == %@", pictureId];
-    NSManagedObjectContext *moc = context;
-    NSError *error;
-    
-    NSArray *resultOfARequest = [moc executeFetchRequest:request error:&error];
-    NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test4/root/%@",[[resultOfARequest objectAtIndex:0] valueForKey:@"link"]];
-    urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSURL *url = [[NSURL alloc] initWithString:urlForImage];
-    return url;
-}
-
 -(NSArray *)fetchAllProductsFromMenu:(NSString *)menuId
 {
     NSManagedObjectContext * context = self.managedObjectContext;
@@ -318,7 +306,76 @@
     NSArray *debug= [self.managedObjectContext executeFetchRequest:request error:&error];
     NSManagedObject *objectToGet = [debug objectAtIndex:0];
     return [objectToGet valueForKey:@"data"];
+}
+
+- (NSURL *)fetchImageURLbyPictureID:(NSString *)pictureId
+{
+    NSManagedObjectContext * context = self.managedObjectContext;
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Pictures" inManagedObjectContext:context];
     
+    [request setEntity:entity];
+    
+    request.predicate = [NSPredicate predicateWithFormat:@"underbarid == %@", pictureId];
+    NSManagedObjectContext *moc = context;
+    NSError *error;
+    
+    NSArray *resultOfARequest = [moc executeFetchRequest:request error:&error];
+    NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test4/root/%@",[[resultOfARequest objectAtIndex:0] valueForKey:@"link"]];
+    urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *url = [[NSURL alloc] initWithString:urlForImage];
+    return url;
+}
+
+- (NSDictionary *)fetchImageURLAndDatabyMenuID:(NSString *)menuId
+{
+    NSManagedObjectContext * context = self.managedObjectContext;
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Products" inManagedObjectContext:context];
+    
+    [request setEntity:entity];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"idPicture" ascending:YES];
+    
+    [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    
+    request.predicate = [NSPredicate predicateWithFormat:@"idMenu == %@", menuId];
+    NSManagedObjectContext *moc = context;
+    NSError *error;
+    
+    NSArray *resultOfARequest = [moc executeFetchRequest:request error:&error];
+    NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test4/root/%@",[[resultOfARequest objectAtIndex:0] valueForKey:@"link"]];
+    urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    
+    //NSURL *url = [[NSURL alloc] initWithString:urlForImage];
+    
+    
+    return nil;
+}
+
+-(NSInteger)binarySearchIn:(NSArray *)anArray byKey:(NSNumber *)aKey between:(NSInteger)imin and:(NSInteger)imax
+{
+    // test if array is empty
+    if (imax < imin)
+        // set is empty, so return value showing not found
+        return -1;
+    else
+    {
+        // calculate midpoint to cut set in half
+        int imid = (imin + imax) / 2;
+        
+        // three-way comparison
+        if ([[[anArray objectAtIndex:imid] valueForKey:@"underbarid"] integerValue] > [aKey integerValue])
+            // key is in lower subset
+            return [self binarySearchIn:anArray byKey:aKey between:imin and:imid-1];
+        else if ([[[anArray objectAtIndex:imid] valueForKey:@"underbarid"] integerValue] < [aKey integerValue])
+            // key is in upper subset
+            return [self binarySearchIn:anArray byKey:aKey between:imid+1 and:imax];
+        else return imid;
+    }
 }
 
 

@@ -32,7 +32,10 @@
     
     for (int i = 0; i < cities.count; i++)
     {
-        if ([[[cities objectAtIndex:i] valueForKey:@"underbarid"] isEqualToString:[userCityId description]])
+        NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+        [f setNumberStyle:NSNumberFormatterDecimalStyle];
+        NSNumber * someId = [f numberFromString:userCityId];
+        if ([[cities objectAtIndex:i] valueForKey:@"underbarid"] == someId)
             self.detailTextLabel.text = [[cities objectAtIndex:i] valueForKey:@"name"];
     }
      

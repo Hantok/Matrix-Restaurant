@@ -38,6 +38,8 @@
         NSMutableArray *array = [[NSMutableArray alloc] init];
         ProductDataStruct *dataStruct;
         NSArray *data = [self.db fetchAllProductsFromMenu:self.kindOfMenu.menuId];
+        NSLog(@"first query");
+        NSDictionary *pictures = [self.db fetchImageURLAndDatabyMenuID:self.kindOfMenu.menuId];
         for(int i=0;i<data.count;i++)
         {
             if(i%2==0) 
@@ -47,20 +49,14 @@
                 dataStruct.price = [[data objectAtIndex:i] valueForKey:@"price"];
                 dataStruct.idPicture = [[data objectAtIndex:i] valueForKey:@"idPicture"];
                 NSData *dataOfPicture = [self.db fetchPictureDataByPictureId:dataStruct.idPicture];
+                NSLog(@"second query");
                 NSURL *url = [self.db fetchImageURLbyPictureID:dataStruct.idPicture];
+                NSLog(@"third query");
                 dataStruct.link = url.description;
                 if(dataOfPicture)
                 {
                     dataStruct.image  = [UIImage imageWithData:dataOfPicture]; 
                 }
-               // else 
-                //{
-                  //  NSLog(@"%@ download begin", url.description);
-                    //dataOfPicture = [NSData dataWithContentsOfURL:url];
-                    //[self.db SavePictureToCoreData:[[data objectAtIndex:i] valueForKey:@"idPicture"] toData:dataOfPicture];
-                    //dataStruct.image  = [UIImage imageWithData:dataOfPicture];
-                    //NSLog(@"end");
-                //}
             }
             else
             {
