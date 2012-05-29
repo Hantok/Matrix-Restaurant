@@ -375,6 +375,8 @@
         
     }
     self.arrayData = nil;
+    self.restarauntId = nil;
+    self.menuId = nil;
     
 }
 

@@ -30,6 +30,7 @@
 - (NSArray *)fetchAllProductsFromMenu:(NSString *)menuId;
 - (void)SavePictureToCoreData:(NSString *)idPicture toData:(NSData *)data;
 - (NSData *)fetchPictureDataByPictureId:(NSString *)pictureId;
+- (NSDictionary *)fetchImageURLAndDatabyMenuID:(NSString *)menuId;
 
 
 
