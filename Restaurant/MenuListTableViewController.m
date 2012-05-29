@@ -34,7 +34,38 @@
     NSLog(@"getter arrayData is activated");
     if(!_arrayData)
     {
-        NSLog(@"initiation");
+//        NSLog(@"<----------initiation");
+//        NSMutableArray *array = [[NSMutableArray alloc] init];
+//        ProductDataStruct *dataStruct;
+//        NSArray *data = [self.db fetchAllProductsFromMenu:self.kindOfMenu.menuId];
+//        for(int i=0;i<data.count;i++)
+//        {
+//            if(i%2==0) 
+//            {
+//                dataStruct = [[ProductDataStruct alloc] init];
+//                dataStruct.productId = [[data objectAtIndex:i] valueForKey:@"underbarid"];
+//                dataStruct.price = [[data objectAtIndex:i] valueForKey:@"price"];
+//                dataStruct.idPicture = [[data objectAtIndex:i] valueForKey:@"idPicture"];
+//                NSData *dataOfPicture = [self.db fetchPictureDataByPictureId:dataStruct.idPicture];
+//                NSURL *url = [self.db fetchImageURLbyPictureID:dataStruct.idPicture];
+//                dataStruct.link = url.description;
+//                if(dataOfPicture)
+//                {
+//                    dataStruct.image  = [UIImage imageWithData:dataOfPicture]; 
+//                }
+//            }
+//            else
+//            {
+//                dataStruct.title = [[data objectAtIndex:i] valueForKey:@"nameText"];
+//                dataStruct.descriptionText = [[data objectAtIndex:i] valueForKey:@"descriptionText"];
+//                [array addObject:dataStruct];
+//            }
+//        }
+//        _arrayData = array;
+//        NSLog(@"<----------initiation is deactivated");
+        
+        
+        NSLog(@"<----------new initiation");
         NSMutableArray *array = [[NSMutableArray alloc] init];
         ProductDataStruct *dataStruct;
         NSArray *data = [self.db fetchAllProductsFromMenu:self.kindOfMenu.menuId];
@@ -48,10 +79,10 @@
                 dataStruct.productId = [[data objectAtIndex:i] valueForKey:@"underbarid"];
                 dataStruct.price = [[data objectAtIndex:i] valueForKey:@"price"];
                 dataStruct.idPicture = [[data objectAtIndex:i] valueForKey:@"idPicture"];
-                NSData *dataOfPicture = [self.db fetchPictureDataByPictureId:dataStruct.idPicture];
-                NSLog(@"second query");
-                NSURL *url = [self.db fetchImageURLbyPictureID:dataStruct.idPicture];
-                NSLog(@"third query");
+                NSData *dataOfPicture = [[pictures objectForKey:dataStruct.idPicture] valueForKey:@"data"];
+                NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test4/root/%@",[[pictures objectForKey:dataStruct.idPicture] valueForKey:@"link"]];
+                urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                NSURL *url = [[NSURL alloc] initWithString:urlForImage];
                 dataStruct.link = url.description;
                 if(dataOfPicture)
                 {
@@ -66,7 +97,9 @@
             }
         }
         _arrayData = array;
-        NSLog(@"getter arrayData is deactivated");
+        NSLog(@"<----------new initiation is deactivated");
+        
+        
         return _arrayData;
     }
     NSLog(@"getter arrayData is deactivated");

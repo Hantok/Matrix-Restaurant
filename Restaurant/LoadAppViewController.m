@@ -131,12 +131,6 @@
         [self DropCoreData];
         [self XMLToCoreData];
     }
-    GettingCoreContent *content = [[GettingCoreContent alloc] init];
-    NSArray *result = [content fetchAllRestaurantsWithDefaultLanguageAndCity];
-    result = [content fetchRootMenuWithDefaultLanguageForRestaurant:@"1"];
-    result = [content fetchAllLanguages];
-    result = [content fetchAllCitiesByLanguage:@"1"];
-    result = [content fetchChildMenuWithDefaultLanguageForParentMenu:@"1"];
     //[segue.destinationViewController setDb:self.db];
 }
      

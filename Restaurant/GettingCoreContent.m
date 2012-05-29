@@ -9,6 +9,7 @@
 
 #import "GettingCoreContent.h"
 #import "RestaurantAppDelegate.h"
+#import "ProductDataStruct.h"
 
 @implementation GettingCoreContent
 
