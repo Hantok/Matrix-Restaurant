@@ -11,10 +11,17 @@
 #import "RestaurantAppDelegate.h"
 #import "ProductDataStruct.h"
 
+@interface GettingCoreContent()
+
+@property(nonatomic,strong) NSFetchedResultsController *fetchedResultsController;
+
+@end
+
 @implementation GettingCoreContent
 
 @synthesize arrayOfCoreData = _arrayOfCoreData;
 @synthesize managedObjectContext = _managedObjectContext;
+@synthesize fetchedResultsController = _fetchedResultsController;
 
 -(NSManagedObjectContext *)managedObjectContext
 {
@@ -49,6 +56,7 @@
     // nil for section name key path means "no sections".
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:nil cacheName:@"Master"];
     aFetchedResultsController.delegate = self;
+    //self.fetchedResultsController = aFetchedResultsController;
     
     
 	NSError *error = nil;
@@ -453,18 +461,26 @@
 }
 
 
-//need to finish by me =)
-- (NSArray *) fetchObjectsFromCoreDataForEntity:(NSString *)entityName withArrayOfIDs:(NSArray *)underbaridsArray withDefaultLanguageId:(NSString *)languageId
+//working
+- (NSArray *) fetchObjectsFromCoreDataForEntity:(NSString *)entityName withArrayObjects:(NSArray *)underbaridsArray withDefaultLanguageId:(NSString *)languageId
 {
     NSManagedObjectContext *context = self.managedObjectContext;
     NSFetchRequest * request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:context]];
     
     NSError *error;
-    NSArray *arrayOfDictionaries= [context executeFetchRequest:request error:&error];
-    for (int i = 0; i <arrayOfDictionaries.count; i++)
+    NSArray *items= [context executeFetchRequest:request error:&error];
+    NSMutableArray *outputArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i <items.count; i++)
     {
-        //need to create array!!!
+        for (int j = 0; j < underbaridsArray.count; j++)
+        {
+            if ([[[[items objectAtIndex:i] valueForKey:@"idProduct"] description] isEqualToString:[[[underbaridsArray objectAtIndex:j] valueForKey:@"underbarid"]description]])
+            {
+                if ([languageId isEqualToString:[[items objectAtIndex:i] valueForKey:@"idLanguage"]])
+                     [outputArray addObject:[items objectAtIndex:i]]; 
+            }
+        }
     }
     
     // Save the context.
@@ -474,7 +490,28 @@
         abort();
     }
     
-    return  nil;
+    return  outputArray.copy;
 }
 
+
+- (void) deleteObjectFromEntity:(NSString *)entityName atIndexPath:(NSIndexPath *)indexPath
+{    
+    NSManagedObjectContext * context = self.managedObjectContext;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    NSError *error;
+    NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
+
+    for (int i = 0; i < items.count; i++)
+    {
+        if ([[items objectAtIndex:i] isEqual:[items objectAtIndex:indexPath.row]])
+            [context deleteObject:[items objectAtIndex:i]];
+    }
+    
+    if (![context save:&error]) {
+        NSLog(@"Error deleting %@ - error:%@", entityName, error);
+    }
+}
 @end

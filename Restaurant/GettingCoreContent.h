@@ -33,6 +33,9 @@
 - (void)SaveProductToCartWithId:(NSNumber *)underbarid withCount:(int)countOfProducts;
 - (NSArray *)fetchAllProductsIdAndTheirCount;
 - (NSDictionary *)fetchImageURLAndDatabyMenuID:(NSString *)menuId;
+- (void) deleteObjectFromEntity:(NSString *)entityName atIndexPath:(NSIndexPath *)indexPath;
+
+- (NSArray *) fetchObjectsFromCoreDataForEntity:(NSString *)entityName withArrayObjects:(NSArray *)underbaridsArray withDefaultLanguageId:(NSString *)languageId;
 
 
 

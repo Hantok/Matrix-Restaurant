@@ -437,8 +437,10 @@
         }
     }
     NSArray *array = self.db.fetchAllProductsIdAndTheirCount;
-    cell.productTitle.text = [NSString stringWithFormat:@"%@",[[array objectAtIndex:indexPath.row] valueForKey:@"underbarid"]];
+    NSArray *arrayOfElements = [self.db fetchObjectsFromCoreDataForEntity:@"Descriptions_translation" withArrayObjects:array withDefaultLanguageId:[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
+    cell.productTitle.text = [NSString stringWithFormat:@"%@",[[arrayOfElements objectAtIndex:indexPath.row] valueForKey:@"nameText"]];
     cell.productCount.text = [NSString stringWithFormat:@"%@", [[array objectAtIndex:indexPath.row] valueForKey:@"count"]];
+    //cell.productPrice.text = [NSString stringWithFormat:@"%i грн.", [cost intValue]*[count intValue]];
     
     return cell;
 }
@@ -457,8 +459,9 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) 
     {
-        Offers* offers = [[Offers alloc] init];
-        [offers removeOffer:[offers.offers objectAtIndex:indexPath.row]];
+        [self.db deleteObjectFromEntity:@"Cart" atIndexPath:indexPath];
+        //Offers* offers = [[Offers alloc] init];
+        //[offers removeOffer:[offers.offers objectAtIndex:indexPath.row]];
         [self.tableView reloadData];
     }  
 }
