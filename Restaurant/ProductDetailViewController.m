@@ -80,7 +80,9 @@
 //    }
     
     GettingCoreContent *db = [[GettingCoreContent alloc] init];
-    [db SaveProductToCartWithId:self.product.productId withCount:self.product.count.integerValue];
+    [db SaveProductToCartWithId:self.product.productId 
+                      withCount:self.product.count.integerValue
+                      withPrice:self.product.price.floatValue];
     
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Добавлено товара \"%@\" в корзину.", self.product.title] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];

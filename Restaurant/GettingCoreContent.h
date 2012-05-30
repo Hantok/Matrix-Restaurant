@@ -30,7 +30,8 @@
 - (NSArray *)fetchAllProductsFromMenu:(NSString *)menuId;
 - (void)SavePictureToCoreData:(NSString *)idPicture toData:(NSData *)data;
 - (NSData *)fetchPictureDataByPictureId:(NSString *)pictureId;
-- (void)SaveProductToCartWithId:(NSNumber *)underbarid withCount:(int)countOfProducts;
+
+- (void)SaveProductToCartWithId:(NSNumber *)underbarid withCount:(int)countOfProducts withPrice:(float)cost;
 - (NSArray *)fetchAllProductsIdAndTheirCount;
 - (NSDictionary *)fetchImageURLAndDatabyMenuID:(NSString *)menuId;
 - (void) deleteObjectFromEntity:(NSString *)entityName atIndexPath:(NSIndexPath *)indexPath;

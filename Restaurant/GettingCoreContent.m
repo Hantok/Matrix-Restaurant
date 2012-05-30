@@ -408,7 +408,7 @@
 }
 
 
-- (void)SaveProductToCartWithId:(NSNumber *)underbarid withCount:(int)countOfProducts
+- (void)SaveProductToCartWithId:(NSNumber *)underbarid withCount:(int)countOfProducts withPrice:(float)cost
 {
     NSFetchRequest * request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:@"Cart" inManagedObjectContext:self.managedObjectContext]];
@@ -432,6 +432,7 @@
             NSManagedObject *objectToInsert = [NSEntityDescription insertNewObjectForEntityForName:@"Cart" inManagedObjectContext:self.managedObjectContext];
         [objectToInsert setValue:underbarid forKey:@"underbarid"];
         [objectToInsert setValue:[NSNumber numberWithInt:countOfProducts] forKey:@"count"];
+        [objectToInsert setValue:[NSNumber numberWithFloat:cost] forKey:@"cost"];
     }
     
     // Save the context.
@@ -475,10 +476,12 @@
     {
         for (int j = 0; j < underbaridsArray.count; j++)
         {
-            if ([[[[items objectAtIndex:i] valueForKey:@"idProduct"] description] isEqualToString:[[[underbaridsArray objectAtIndex:j] valueForKey:@"underbarid"]description]])
+            if ([[[[items objectAtIndex:i] valueForKey:@"idProduct"] description] isEqual:[[[underbaridsArray objectAtIndex:j] valueForKey:@"underbarid"] description]])
             {
-                if ([languageId isEqualToString:[[items objectAtIndex:i] valueForKey:@"idLanguage"]])
+                if ([[[[items objectAtIndex:i] valueForKey:@"idLanguage"] description] isEqualToString:[languageId description]])
+                {
                      [outputArray addObject:[items objectAtIndex:i]]; 
+                }
             }
         }
     }
