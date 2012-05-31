@@ -161,7 +161,7 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Restaurants" inManagedObjectContext:context];
     
     [request setEntity:entity];
-
+    
     request.predicate = [NSPredicate predicateWithFormat:@"idCity == %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"]];
     NSManagedObjectContext *moc = context;
     NSError *error;
@@ -171,7 +171,7 @@
     for(int i=0;i<citiesIDs.count;i++)
     {
         id currentCity = [citiesIDs objectAtIndex:i];
-        request.predicate = [NSPredicate predicateWithFormat:@"idLanguage == %@ && underbarid == %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"], [currentCity valueForKey:@"underbarid"]];
+        request.predicate = [NSPredicate predicateWithFormat:@"idLanguage == %@ && idRestaurant == %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"], [currentCity valueForKey:@"underbarid"]];
         [resultOfARequest addObject:currentCity];
         [resultOfARequest addObjectsFromArray:[moc executeFetchRequest:request error:&error]];
     }
