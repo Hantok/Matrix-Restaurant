@@ -408,10 +408,10 @@
 }
 
 
-- (void)SaveProductToCartWithId:(NSNumber *)underbarid withCount:(int)countOfProducts withPrice:(float)cost
+- (void)SaveProductToEntityName:(NSString *)entityName WithId:(NSNumber *)underbarid withCount:(int)countOfProducts withPrice:(float)cost
 {
     NSFetchRequest * request = [[NSFetchRequest alloc] init];
-    [request setEntity:[NSEntityDescription entityForName:@"Cart" inManagedObjectContext:self.managedObjectContext]];
+    [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:self.managedObjectContext]];
 
     NSError *error;
     NSArray *debug= [self.managedObjectContext executeFetchRequest:request error:&error];
@@ -429,7 +429,7 @@
     }
     if (!allreadyInCart)
     {
-            NSManagedObject *objectToInsert = [NSEntityDescription insertNewObjectForEntityForName:@"Cart" inManagedObjectContext:self.managedObjectContext];
+            NSManagedObject *objectToInsert = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.managedObjectContext];
         [objectToInsert setValue:underbarid forKey:@"underbarid"];
         [objectToInsert setValue:[NSNumber numberWithInt:countOfProducts] forKey:@"count"];
         [objectToInsert setValue:[NSNumber numberWithFloat:cost] forKey:@"cost"];
@@ -443,10 +443,10 @@
     }
 }
 
-- (NSArray *)fetchAllProductsIdAndTheirCount
+- (NSArray *)fetchAllProductsIdAndTheirCountWithPriceForEntity:(NSString *)entityName
 {
     NSFetchRequest * request = [[NSFetchRequest alloc] init];
-    [request setEntity:[NSEntityDescription entityForName:@"Cart" inManagedObjectContext:self.managedObjectContext]];
+    [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:self.managedObjectContext]];
     
     NSError *error;
     NSArray *arrayOfDictionaries= [self.managedObjectContext executeFetchRequest:request error:&error];

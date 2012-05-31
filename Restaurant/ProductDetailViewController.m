@@ -80,13 +80,24 @@
 //    }
     
     GettingCoreContent *db = [[GettingCoreContent alloc] init];
-    [db SaveProductToCartWithId:self.product.productId 
+    [db SaveProductToEntityName:@"Cart" WithId:self.product.productId 
                       withCount:self.product.count.integerValue
                       withPrice:self.product.price.floatValue];
     
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Добавлено товара \"%@\" в корзину.", self.product.title] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
     [[self navigationController] popViewControllerAnimated:YES];
+}
+
+- (IBAction)addToFavorites:(id)sender 
+{
+    GettingCoreContent *db = [[GettingCoreContent alloc] init];
+    [db SaveProductToEntityName:@"Favorites" WithId:self.product.productId 
+                      withCount:self.product.count.integerValue
+                      withPrice:self.product.price.floatValue];
+    
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Добавлено товара \"%@\" в favorites.", self.product.title] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alert show];
 }
 
 - (void)viewDidUnload

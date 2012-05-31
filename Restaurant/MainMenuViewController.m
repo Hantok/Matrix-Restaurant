@@ -389,7 +389,7 @@
 {
     //Offers* offers = [[Offers alloc] init];
     //return offers.offers.count;
-    return self.db.fetchAllProductsIdAndTheirCount.count;
+    return [self.db fetchAllProductsIdAndTheirCountWithPriceForEntity:@"Cart"].count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -436,7 +436,7 @@
             }
         }
     }
-    NSArray *array = self.db.fetchAllProductsIdAndTheirCount;
+    NSArray *array = [self.db fetchAllProductsIdAndTheirCountWithPriceForEntity:@"Cart"];
     NSArray *arrayOfElements = [self.db fetchObjectsFromCoreDataForEntity:@"Descriptions_translation" withArrayObjects:array withDefaultLanguageId:[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
     cell.productTitle.text = [NSString stringWithFormat:@"%@",[[arrayOfElements objectAtIndex:indexPath.row] valueForKey:@"nameText"]];
     cell.productCount.text = [NSString stringWithFormat:@"%@", [[array objectAtIndex:indexPath.row] valueForKey:@"count"]];
