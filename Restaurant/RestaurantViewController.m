@@ -7,12 +7,72 @@
 //
 
 #import "RestaurantViewController.h"
+#import "RestaurantCell.h"
 
 @interface RestaurantViewController ()
 
 @end
 
 @implementation RestaurantViewController
+@synthesize arrayData = _arrayData;
+@synthesize db = _db;
+
+
+
+
+
+
+
+- (NSMutableArray *)arrayData
+{
+    if(!_arrayData)
+    {
+        NSMutableArray *array = [[NSMutableArray alloc] init];
+        RestaurantDataStruct *dataStruct;
+        NSArray *data = [self.db fetchAllRestaurantsWithDefaultLanguageAndCity];
+        for(int i=0;i<data.count;i++)
+        {
+            if(i%2==0) 
+            {
+                dataStruct = [[RestaurantDataStruct alloc] init];
+                dataStruct.restaurantId = [[data objectAtIndex:i] valueForKey:@"underbarid"];
+                dataStruct.phones = [[data objectAtIndex:i] valueForKey:@"phones"];
+//                dataStruct.idPicture = [[data objectAtIndex:i] valueForKey:@"idPicture"];
+//                NSData *dataOfPicture = [[pictures objectForKey:dataStruct.idPicture] valueForKey:@"data"];
+//                NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test4/root/%@",[[pictures objectForKey:dataStruct.idPicture] valueForKey:@"link"]];
+//                urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//                NSURL *url = [[NSURL alloc] initWithString:urlForImage];
+//                dataStruct.link = url.description;
+//                if(dataOfPicture)
+//                {
+//                    dataStruct.image  = [UIImage imageWithData:dataOfPicture]; 
+//                }
+            }
+            else
+            {
+                dataStruct.name = [[data objectAtIndex:i] valueForKey:@"name"];
+                dataStruct.subwayStation = [[data objectAtIndex:i] valueForKey:@"Metro"];
+                dataStruct.street = [[data objectAtIndex:i] valueForKey:@"Street"];
+                [array addObject:dataStruct];
+            }
+        }
+        _arrayData = array;
+        
+        
+        return _arrayData;
+    }
+    return _arrayData;
+}
+
+- (GettingCoreContent *)db
+{
+    if(!_db)
+    {
+        _db = [[GettingCoreContent alloc] init];
+    }
+    return  _db;
+}
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -52,22 +112,51 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return self.arrayData.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    NSString *CellIdentifier = @"RestaurantCell";
+    RestaurantCell *cell = (RestaurantCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    RestaurantDataStruct *dataStruct = [self.arrayData objectAtIndex:indexPath.row];
+    if(!cell)
+    {
+        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"RestaurantCell" owner:nil options:nil];
+        for(id currentObject in topLevelObjects)
+        {
+            if([currentObject isKindOfClass:[RestaurantCell class]])
+            {
+                cell = (RestaurantCell *)currentObject;
+                break;
+            }
+        }
+    }
     
-    // Configure the cell...
+    cell.restaurantAdress.text = dataStruct.street;
+    cell.restaurantSubway.text = dataStruct.subwayStation;
+    
+//    if (!dataStruct.image)
+//    {
+//        if (self.tableView.dragging == NO && self.tableView.decelerating == NO)
+//        {
+//            [self startIconDownload:dataStruct forIndexPath:indexPath];
+//        }
+//        // if a download is deferred or in progress, return a placeholder image  
+//        cell.productImage.image = [UIImage imageNamed:@"Placeholder.png"];
+//        
+//    }
+//    else
+//    {
+//        cell.productImage.image = dataStruct.image;
+//    }
     
     return cell;
 }

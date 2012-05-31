@@ -152,7 +152,7 @@
             </objects>
             <point key="canvasLocation" x="935" y="26"/>
         </scene>
-        <!--Restaurant View Controller-->
+        <!--Restaurant View Controller - Рестораны-->
         <scene sceneID="Cfb-bw-RTg">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vI4-tg-6w1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -166,7 +166,7 @@
                             <outlet property="delegate" destination="yJk-rP-XK4" id="88x-qy-Reo"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="UuR-mL-uHp"/>
+                    <navigationItem key="navigationItem" title="Рестораны" id="UuR-mL-uHp"/>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="935" y="669"/>
@@ -589,6 +589,73 @@
         <image name="images.jpeg" width="224" height="225"/>
         <image name="Снимок экрана 2012-04-17 в 18.14.31.png" width="16" height="16"/>
     </resources>
+    <classes>
+        <class className="CityCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CityCell.h"/>
+        </class>
+        <class className="FavoritesViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FavoritesViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="bachButton:"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+        <class className="LanguageAndCityTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LanguageAndCityTableViewController.h"/>
+        </class>
+        <class className="LanguageCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LanguageCell.h"/>
+        </class>
+        <class className="LoadAppViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoadAppViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="MainMenuViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cartButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="drop" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="menuButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
+                <relationship kind="outlet" name="restorantsButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="settingsButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="tableViewController" candidateClass="UITableViewController"/>
+            </relationships>
+        </class>
+        <class className="MenuListTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuListTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="navigationBar" candidateClass="UINavigationItem"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="ProductDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProductDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cartButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="countPickerView" candidateClass="UIPickerView"/>
+                <relationship kind="outlet" name="priceLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="productImage" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="RestaurantViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RestaurantViewController.h"/>
+        </class>
+        <class className="SettingsTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsTableViewController.h"/>
+        </class>
+        <class className="SocialViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SocialViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="SocialWebView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

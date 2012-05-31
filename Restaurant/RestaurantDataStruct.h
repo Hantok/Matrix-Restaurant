@@ -20,5 +20,9 @@
 @property (strong, nonatomic) NSString *build;
 @property (strong, nonatomic) NSString *additionalAddressInfo;
 @property (strong, nonatomic) NSString *additionalContactInfo;
+@property (strong, nonatomic) NSString *phones;
+@property (strong, nonatomic) NSString *link;
+@property double longitude;
+@property double latitude;
 
 @end

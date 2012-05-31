@@ -20,6 +20,9 @@
 @synthesize additionalContactInfo = _additionalContactInfo;
 @synthesize workingTime = _workingTime;
 @synthesize subwayStation = _subwayStation;
-
+@synthesize longitude = _longitude;
+@synthesize latitude = _latitude;
+@synthesize phones = _phones;
+@synthesize link = _link;
 
 @end
