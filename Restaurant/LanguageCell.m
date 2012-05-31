@@ -29,7 +29,9 @@
     for (int i = 0; i < languages.count; i++)
     {
         if ([[[[languages objectAtIndex:i] valueForKey:@"underbarid"] description] isEqualToString:userLangId.description])
+        {
             self.detailTextLabel.text = [[languages objectAtIndex:i] valueForKey:@"language"];
+        }
     }
 }
 

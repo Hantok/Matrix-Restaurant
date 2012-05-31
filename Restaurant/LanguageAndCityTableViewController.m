@@ -105,8 +105,8 @@
         cell.textLabel.text = [[[self destinationArray] objectAtIndex:indexPath.row] valueForKey:@"name"];
         
         NSString *userCityId = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"];
-        NSString *currCityId = [[[self destinationArray] objectAtIndex:indexPath.row] valueForKey:@"underbarid"]; 
-        if ([userCityId isEqual:currCityId])
+        NSString *currCityId = [[[self destinationArray] objectAtIndex:indexPath.row] valueForKey:@"idCity"]; 
+        if ([userCityId.description isEqual:currCityId.description])
         {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
             self.selectedIndex = indexPath.row;
@@ -118,7 +118,7 @@
         
         NSString *userLangId = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"];
         NSString *currLangId = [[[self destinationArray] objectAtIndex:indexPath.row] valueForKey:@"underbarid"];
-        if ([userLangId isEqual:currLangId])
+        if ([userLangId.description isEqual:currLangId.description])
         {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
             self.selectedIndex = indexPath.row;
@@ -130,13 +130,16 @@
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     NSString *changeStringForUserDefaults;
+    id data;
     if (self.isCity)
     {
         changeStringForUserDefaults = @"defaultCityId";
+        data = [[self.destinationArray objectAtIndex:indexPath.row] valueForKey:@"idCity"];
     }
     else 
     {
         changeStringForUserDefaults = @"defaultLanguageId";
+        data = [[self.destinationArray objectAtIndex:indexPath.row] valueForKey:@"underbarid"];
     }
     
     if (self.selectedIndex != NSNotFound)
@@ -148,7 +151,6 @@
     }
     self.selectedIndex = indexPath.row;
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    id data = [[self.destinationArray objectAtIndex:indexPath.row] valueForKey:@"underbarid"];
     [[NSUserDefaults standardUserDefaults] setObject:data forKey:changeStringForUserDefaults];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [self.navigationController popViewControllerAnimated:YES];
