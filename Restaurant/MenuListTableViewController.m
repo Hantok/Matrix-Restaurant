@@ -63,7 +63,7 @@
 //        _arrayData = array;
 //        NSLog(@"<----------initiation is deactivated");
         
-        
+        NSLog(@"request is began");
         NSMutableArray *array = [[NSMutableArray alloc] init];
         ProductDataStruct *dataStruct;
         NSArray *data = [self.db fetchAllProductsFromMenu:self.kindOfMenu.menuId];
@@ -93,10 +93,11 @@
                 dataStruct.descriptionText = [[data objectAtIndex:i] valueForKey:@"descriptionText"];
                 [array addObject:dataStruct];
             }
+            
         }
         _arrayData = array;
         
-        
+        NSLog(@"end;;;;;");
         return _arrayData;
     }
     return _arrayData;

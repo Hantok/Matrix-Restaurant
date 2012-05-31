@@ -270,18 +270,22 @@
     [request setEntity:entity];
     
     request.predicate = [NSPredicate predicateWithFormat:@"idMenu == %@",menuId];
-    NSManagedObjectContext *moc = context;
     NSError *error;
-    NSMutableArray *menuIDs = [[moc executeFetchRequest:request error:&error] mutableCopy];
+    NSLog(@"Dasdasd");
+    NSMutableArray *menuIDs = [[context executeFetchRequest:request error:&error] mutableCopy];
+    NSLog(@"DasdasdEND!!111");
     NSMutableArray *resultOfARequest = [[NSMutableArray alloc] init];
     request = [NSFetchRequest fetchRequestWithEntityName:@"Descriptions_translation"];
+    //NSArray *resultOfSecondRequest = 
+    NSLog(@"123Dasdasd");
     for(int i = 0;i<menuIDs.count;i++)
     {
         id currentMenu = [menuIDs objectAtIndex:i];
         request.predicate = [NSPredicate predicateWithFormat:@"idLanguage == %@ && idProduct == %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"], [currentMenu valueForKey:@"underbarid"]];
         [resultOfARequest addObject:currentMenu];
-        [resultOfARequest addObjectsFromArray:[moc executeFetchRequest:request error:&error]];
+        [resultOfARequest addObjectsFromArray:[context executeFetchRequest:request error:&error]];
     }
+    NSLog(@"123DasdasdEND!!111");
     return [resultOfARequest copy]; 
 }
 
