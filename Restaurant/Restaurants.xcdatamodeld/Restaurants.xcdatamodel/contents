@@ -32,7 +32,7 @@
     <entity name="Descriptions_translation" syncable="YES">
         <attribute name="descriptionText" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="idLanguage" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="idProduct" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idProduct" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="nameText" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
@@ -118,6 +118,7 @@
         <element name="Descriptions_translation" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Discounts" positionX="160" positionY="192" width="128" height="75"/>
         <element name="Event" positionX="261" positionY="189" width="128" height="105"/>
+        <element name="Favorites" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Languages" positionX="160" positionY="192" width="128" height="75"/>
         <element name="Menus" positionX="160" positionY="192" width="128" height="105"/>
         <element name="Menus_translation" positionX="160" positionY="192" width="128" height="105"/>
@@ -127,6 +128,5 @@
         <element name="Restaurants_translation" positionX="160" positionY="192" width="128" height="195"/>
         <element name="Statuses" positionX="160" positionY="192" width="128" height="75"/>
         <element name="Statuses_translation" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="Favorites" positionX="160" positionY="192" width="128" height="90"/>
     </elements>
 </model>

@@ -108,7 +108,7 @@
                     editAttrinbuteWithUnderBar = @"descriptionAbout";
                     }
                 }
-                if ([editAttrinbuteWithUnderBar isEqualToString:@"idPicture"] || [editAttrinbuteWithUnderBar isEqualToString:@"underbarid"]) {
+                if ([editAttrinbuteWithUnderBar isEqualToString:@"idPicture"] || [editAttrinbuteWithUnderBar isEqualToString:@"underbarid"] || [editAttrinbuteWithUnderBar isEqualToString:@"idProduct"]) {
                     NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
                     [f setNumberStyle:NSNumberFormatterDecimalStyle];
                     NSNumber * idPicture = [f numberFromString:[values objectAtIndex:counter]];
@@ -276,14 +276,20 @@
     NSLog(@"DasdasdEND!!111");
     NSMutableArray *resultOfARequest = [[NSMutableArray alloc] init];
     request = [NSFetchRequest fetchRequestWithEntityName:@"Descriptions_translation"];
-    //NSArray *resultOfSecondRequest = 
+    request.predicate = [NSPredicate predicateWithFormat:@"idLanguage == %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"idProduct" ascending:YES];
+    [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    NSArray *resultOfSecondRequest = [context executeFetchRequest:request error:&error];
     NSLog(@"123Dasdasd");
-    for(int i = 0;i<menuIDs.count;i++)
+    NSInteger index;
+    NSInteger count = resultOfSecondRequest.count;
+    for(int i = 0;i<40;i++)
     {
         id currentMenu = [menuIDs objectAtIndex:i];
-        request.predicate = [NSPredicate predicateWithFormat:@"idLanguage == %@ && idProduct == %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"], [currentMenu valueForKey:@"underbarid"]];
+        [currentMenu valueForKey:@"underbarid"];
+        index = [self binarySearchIn:resultOfSecondRequest byKey:[currentMenu valueForKey:@"underbarid"] between:0 and:count forAttribute:@"idProduct"];
         [resultOfARequest addObject:currentMenu];
-        [resultOfARequest addObjectsFromArray:[context executeFetchRequest:request error:&error]];
+        [resultOfARequest addObject:[resultOfSecondRequest objectAtIndex:index]];
     }
     NSLog(@"123DasdasdEND!!111");
     return [resultOfARequest copy]; 
@@ -370,7 +376,7 @@
     for(int i = 0; i < count; i++)
     {
         product = [resultOfARequest objectAtIndex:i];
-        index = [self binarySearchIn:resultOfSecondRequest byKey:[product valueForKey:@"idPicture"] between:0 and:secondCount];
+        index = [self binarySearchIn:resultOfSecondRequest byKey:[product valueForKey:@"idPicture"] between:0 and:secondCount forAttribute:@"underbarid"];
         if(index != -1)
         {
             picture = [resultOfSecondRequest objectAtIndex:index];
@@ -389,7 +395,7 @@
     return dontTouchThisOne.copy;
 }
 
--(NSInteger)binarySearchIn:(NSArray *)anArray byKey:(NSNumber *)aKey between:(NSInteger)imin and:(NSInteger)imax
+-(NSInteger)binarySearchIn:(NSArray *)anArray byKey:(NSNumber *)aKey between:(NSInteger)imin and:(NSInteger)imax forAttribute:(NSString *)anAttribute
 {
     // test if array is empty
     if (imax < imin)
@@ -401,12 +407,12 @@
         int imid = (imin + imax) / 2;
         
         // three-way comparison
-        if ([[[anArray objectAtIndex:imid] valueForKey:@"underbarid"] integerValue] > [aKey integerValue])
+        if ([[[anArray objectAtIndex:imid] valueForKey:anAttribute] integerValue] > [aKey integerValue])
             // key is in lower subset
-            return [self binarySearchIn:anArray byKey:aKey between:imin and:imid-1];
-        else if ([[[anArray objectAtIndex:imid] valueForKey:@"underbarid"] integerValue] < [aKey integerValue])
+            return [self binarySearchIn:anArray byKey:aKey between:imin and:imid-1 forAttribute:anAttribute];
+        else if ([[[anArray objectAtIndex:imid] valueForKey:anAttribute] integerValue] < [aKey integerValue])
             // key is in upper subset
-            return [self binarySearchIn:anArray byKey:aKey between:imid+1 and:imax];
+            return [self binarySearchIn:anArray byKey:aKey between:imid+1 and:imax forAttribute:anAttribute];
         else return imid;
     }
 }
