@@ -17,7 +17,7 @@
 - (NSArray *)getArrayFromCoreDatainEntetyName:(NSString *)entityName withSortDescriptor:(NSString *)attributeString;
 //- (void) setArrauCoreatEntity:(NSString *)entityName;
 
-
+//coommememmed
 - (void) setCoreDataForEntityWithName:(NSString *)entityName 
                 dictionaryOfAtributes:(NSDictionary *)attributeDictionary;
 - (void) deleteAllObjectsFromEntity:(NSString *)entityDescription;
