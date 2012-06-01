@@ -280,10 +280,10 @@
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"idProduct" ascending:YES];
     [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     NSArray *resultOfSecondRequest = [context executeFetchRequest:request error:&error];
-    NSLog(@"123Dasdasd");
+    NSLog(@"for begin");
     NSInteger index;
     NSInteger count = resultOfSecondRequest.count;
-    for(int i = 0;i<40;i++)
+    for(int i = 0;i<menuIDs.count;i++)
     {
         id currentMenu = [menuIDs objectAtIndex:i];
         [currentMenu valueForKey:@"underbarid"];
@@ -291,7 +291,7 @@
         [resultOfARequest addObject:currentMenu];
         [resultOfARequest addObject:[resultOfSecondRequest objectAtIndex:index]];
     }
-    NSLog(@"123DasdasdEND!!111");
+    NSLog(@"for end!!111");
     return [resultOfARequest copy]; 
 }
 

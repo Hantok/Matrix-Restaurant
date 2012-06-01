@@ -35,6 +35,7 @@
         <attribute name="idProduct" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="nameText" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Products" inverseName="translation" inverseEntity="Products" syncable="YES"/>
     </entity>
     <entity name="Discounts" syncable="YES">
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -78,6 +79,7 @@
         <attribute name="idPicture" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="translation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Descriptions_translation" inverseName="parent" inverseEntity="Descriptions_translation" syncable="YES"/>
     </entity>
     <entity name="Restaurants" syncable="YES">
         <attribute name="coordinates" optional="YES" attributeType="String" syncable="YES"/>
@@ -115,18 +117,18 @@
         <element name="Currencies" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Deliveries" positionX="160" positionY="192" width="128" height="60"/>
         <element name="Deliveries_translation" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="Descriptions_translation" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Descriptions_translation" positionX="-135" positionY="36" width="128" height="135"/>
         <element name="Discounts" positionX="160" positionY="192" width="128" height="75"/>
-        <element name="Event" positionX="261" positionY="189" width="128" height="105"/>
+        <element name="Event" positionX="576" positionY="138" width="128" height="105"/>
         <element name="Favorites" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Languages" positionX="160" positionY="192" width="128" height="75"/>
         <element name="Menus" positionX="160" positionY="192" width="128" height="105"/>
         <element name="Menus_translation" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="Pictures" positionX="160" positionY="192" width="128" height="90"/>
-        <element name="Products" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="Restaurants" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="Restaurants_translation" positionX="160" positionY="192" width="128" height="195"/>
-        <element name="Statuses" positionX="160" positionY="192" width="128" height="75"/>
-        <element name="Statuses_translation" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="Pictures" positionX="-135" positionY="-72" width="128" height="90"/>
+        <element name="Products" positionX="99" positionY="-27" width="171" height="135"/>
+        <element name="Restaurants" positionX="-333" positionY="-72" width="128" height="120"/>
+        <element name="Restaurants_translation" positionX="-135" positionY="210" width="128" height="195"/>
+        <element name="Statuses" positionX="-333" positionY="63" width="128" height="75"/>
+        <element name="Statuses_translation" positionX="-342" positionY="162" width="128" height="105"/>
     </elements>
 </model>

@@ -126,7 +126,10 @@
     self.imageConnection = nil;
         
     // call our delegate and tell it that our icon is ready for display
+    if(delegate && self.indexPathInTableView)
     [delegate appImageDidLoad:self.indexPathInTableView];
+    //(objc_object *) $1 = 0x001f24b0 [no Objective-C description available]
+    
 }
 
 @end
