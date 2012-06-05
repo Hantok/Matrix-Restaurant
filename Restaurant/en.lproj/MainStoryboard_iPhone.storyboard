@@ -172,7 +172,7 @@
                     </connections>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="283" y="967"/>
+            <point key="canvasLocation" x="103" y="731"/>
         </scene>
         <!--Restaurant Detail View Controller-->
         <scene sceneID="D02-AA-Q39">
@@ -502,7 +502,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1536" y="1104"/>
+            <point key="canvasLocation" x="2712" y="204"/>
         </scene>
         <!--Language And City Table View Controller-->
         <scene sceneID="R6C-WX-dbq">
@@ -582,7 +582,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1361" y="-968"/>
+            <point key="canvasLocation" x="2665" y="-928"/>
         </scene>
         <!--Menu List Table View Controller-->
         <scene sceneID="Ro4-Rp-Yqz">
@@ -606,7 +606,7 @@
                     </connections>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="1383" y="-288"/>
+            <point key="canvasLocation" x="559" y="-608"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2Ty-cS-1r2">
