@@ -167,9 +167,125 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Рестораны" id="UuR-mL-uHp"/>
+                    <connections>
+                        <segue destination="FAN-qH-iBO" kind="push" identifier="toRestaurantDetail" id="EL5-qw-uKT"/>
+                    </connections>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="935" y="669"/>
+            <point key="canvasLocation" x="283" y="967"/>
+        </scene>
+        <!--Restaurant Detail View Controller-->
+        <scene sceneID="D02-AA-Q39">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oUy-BW-PCf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="FAN-qH-iBO" customClass="RestaurantDetailViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6PK-tb-sSa">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="LTc-bJ-iOA">
+                                <rect key="frame" x="75" y="359" width="170" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Показать на карте">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showOnMap:" destination="FAN-qH-iBO" eventType="touchUpInside" id="klK-qF-1of"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6y5-Au-bP7">
+                                <rect key="frame" x="75" y="314" width="170" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Позвонить">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="callToRestaurant:" destination="FAN-qH-iBO" eventType="touchUpInside" id="gdL-ZY-01J"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="kUk-C2-BLO">
+                                <rect key="frame" x="20" y="55" width="140" height="202"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Часы работы:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="AW9-EB-cGG">
+                                <rect key="frame" x="168" y="55" width="132" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="Etr-7q-rfe">
+                                <rect key="frame" x="168" y="68" width="132" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Телефон:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="Vex-jT-Jnn">
+                                <rect key="frame" x="168" y="120" width="73" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="OhY-Ik-8ev">
+                                <rect key="frame" x="168" y="136" width="132" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="xJn-Uf-00i"/>
+                    <connections>
+                        <outlet property="callButton" destination="6y5-Au-bP7" id="Ifx-xM-eTU"/>
+                        <outlet property="restaurantImage" destination="kUk-C2-BLO" id="PKE-rD-FOS"/>
+                        <outlet property="showOnMapButton" destination="LTc-bJ-iOA" id="2Ve-b3-SEO"/>
+                        <outlet property="telephoneDetailLabel" destination="OhY-Ik-8ev" id="iJl-PS-AUc"/>
+                        <outlet property="telephoneLabel" destination="Vex-jT-Jnn" id="tXS-Lo-gaa"/>
+                        <outlet property="workTimeDetailLabel" destination="Etr-7q-rfe" id="OHB-VJ-qBY"/>
+                        <outlet property="workTimeLabel" destination="AW9-EB-cGG" id="Pvb-Cc-pby"/>
+                        <segue destination="YPw-UT-cMt" kind="push" identifier="toMap" id="y9i-JD-w4G"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="663" y="967"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="nNO-e2-uKP">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8w7-fF-kPf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="YPw-UT-cMt" customClass="MapViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wpn-Bf-ZVT">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="SWB-FH-Lse">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="aJp-z5-brn"/>
+                    <connections>
+                        <outlet property="mapView" destination="SWB-FH-Lse" id="0tI-Sv-6zV"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1072" y="967"/>
         </scene>
         <!--Settings Table View Controller - Settings-->
         <scene sceneID="tqI-nj-bri">
@@ -651,6 +767,12 @@
                 <relationship kind="outlet" name="tableViewController" candidateClass="UITableViewController"/>
             </relationships>
         </class>
+        <class className="MapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+            </relationships>
+        </class>
         <class className="MenuListTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuListTableViewController.h"/>
             <relationships>
@@ -670,6 +792,18 @@
                 <relationship kind="outlet" name="productImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="toolBar" candidateClass="UIToolbar"/>
                 <relationship kind="outlet" name="toolBarLabel" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="RestaurantDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RestaurantDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="callButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="restaurantImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="showOnMapButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="telephoneDetailLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="telephoneLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="workTimeDetailLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="workTimeLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="RestaurantViewController" superclassName="UITableViewController">

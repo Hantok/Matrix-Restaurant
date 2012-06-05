@@ -16,6 +16,7 @@
 @implementation RestaurantViewController
 @synthesize arrayData = _arrayData;
 @synthesize db = _db;
+@synthesize selectedRow = _selectedRow;
 
 
 
@@ -30,14 +31,25 @@
         NSMutableArray *array = [[NSMutableArray alloc] init];
         RestaurantDataStruct *dataStruct;
         NSArray *data = [self.db fetchAllRestaurantsWithDefaultLanguageAndCity];
+        id restaurant;
+        NSNumberFormatter *f;
+        NSNumber *number;
         for(int i=0;i<data.count;i++)
         {
             if(i%2==0) 
             {
+                restaurant = [data objectAtIndex:i];
                 dataStruct = [[RestaurantDataStruct alloc] init];
-                dataStruct.restaurantId = [[data objectAtIndex:i] valueForKey:@"underbarid"];
-                dataStruct.phones = [[data objectAtIndex:i] valueForKey:@"phones"];
-//                dataStruct.idPicture = [[data objectAtIndex:i] valueForKey:@"idPicture"];
+                dataStruct.restaurantId = [restaurant valueForKey:@"underbarid"];
+                dataStruct.phones = [restaurant valueForKey:@"phones"];
+                dataStruct.idPicture = [restaurant valueForKey:@"idPicture"];
+                NSArray *coordinates = [[restaurant valueForKey:@"coordinates"] componentsSeparatedByString:@";"];
+                f = [[NSNumberFormatter alloc] init];
+                [f setNumberStyle:NSNumberFormatterDecimalStyle];
+                number = [f numberFromString:[coordinates objectAtIndex:0]];
+                dataStruct.longitude = number.doubleValue;
+                number = [f numberFromString:[coordinates objectAtIndex:1]];
+                dataStruct.latitude = number.doubleValue;
 //                NSData *dataOfPicture = [[pictures objectForKey:dataStruct.idPicture] valueForKey:@"data"];
 //                NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test4/root/%@",[[pictures objectForKey:dataStruct.idPicture] valueForKey:@"link"]];
 //                urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -50,9 +62,14 @@
             }
             else
             {
-                dataStruct.name = [[data objectAtIndex:i] valueForKey:@"name"];
-                dataStruct.subwayStation = [[data objectAtIndex:i] valueForKey:@"Metro"];
-                dataStruct.street = [[data objectAtIndex:i] valueForKey:@"Street"];
+                restaurant = [data objectAtIndex:i];
+                dataStruct.name = [restaurant valueForKey:@"name"];
+                dataStruct.subwayStation = [restaurant valueForKey:@"Metro"];
+                dataStruct.street = [restaurant valueForKey:@"Street"];
+                dataStruct.workingTime = [restaurant valueForKey:@"workingTime"];
+                dataStruct.additionalContactInfo = [restaurant valueForKey:@"AdditionalContactInfo"];
+                dataStruct.build = [restaurant valueForKey:@"House"];
+                dataStruct.additionalAddressInfo = [restaurant valueForKey:@"AdditionalAddressInfo"];
                 [array addObject:dataStruct];
             }
         }
@@ -209,6 +226,13 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    self.selectedRow = indexPath.row;
+    [self performSegueWithIdentifier:@"toRestaurantDetail" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    [segue.destinationViewController setDataStruct:[self.arrayData objectAtIndex:self.selectedRow]];
 }
 
 @end

@@ -117,21 +117,28 @@
     _kindOfMenu = kindOfMenu;
 }
 
+- (IBAction)back
+{
+    NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
+    [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
+    [[self navigationController] popViewControllerAnimated:YES];
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.imageDownloadsInProgress = [[NSMutableDictionary alloc] init];
     self.navigationItem.title = self.kindOfMenu.title;
-    
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
     
-    
-    
+    SEL niceBack = @selector(back);
+    UIBarButtonItem *_backButton = [[UIBarButtonItem alloc] initWithTitle:@"bug" style:self.navigationItem.backBarButtonItem.style target:self action:niceBack];
+    self.navigationItem.leftBarButtonItem = _backButton;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
