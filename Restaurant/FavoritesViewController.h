@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface FavoritesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
-@property (strong, nonatomic) IBOutlet UIToolbar *toolbar;
+@property (strong, nonatomic) IBOutlet UINavigationBar *navigationbar;
+
 - (IBAction)bachButton:(id)sender;
 
 @end

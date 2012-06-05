@@ -37,6 +37,11 @@
 @synthesize restarauntId = _restarauntId;
 @synthesize menuId = _menuId;
 
+- (void)setIsCartModeMy:(BOOL)isCartMode
+{
+    _isCartMode = isCartMode;
+}
+
 
 - (IBAction)drop:(id)sender {
     self.menuId = nil;
@@ -155,13 +160,18 @@
     return self;
 }
 
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
     [self menuButton:self];
-    
-    self.isMenuMode = YES;
+
+    if(!self.isCartMode)
+    {
+        self.isMenuMode = YES;
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated

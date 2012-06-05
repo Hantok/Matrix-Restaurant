@@ -17,5 +17,13 @@
 @property (weak, nonatomic) IBOutlet UIButton *cartButton;
 @property (strong, nonatomic) NSNumber *count;
 @property (weak, nonatomic) IBOutlet UIImageView *productImage;
+@property (strong, nonatomic) IBOutlet UIButton *addToFavorites;
+@property (strong, nonatomic) IBOutlet UIToolbar *toolBar;
+
+- (void)setProduct:(ProductDataStruct *)product isFromFavorites:(BOOL)boolValue;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *toolBarLabel;
+
+- (IBAction)backButton:(id)sender;
+- (IBAction)cartButton:(id)sender;
 
 @end

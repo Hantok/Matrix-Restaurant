@@ -11,9 +11,12 @@
 
 @interface ProductDetailViewController ()
 
+@property BOOL isInFavorites;
+
 @end
 
 @implementation ProductDetailViewController
+@synthesize toolBarLabel = _toolBarLabel;
 
 @synthesize product = _product;
 @synthesize countPickerView = _countPickerView;
@@ -21,18 +24,45 @@
 @synthesize cartButton = _cartButton;
 @synthesize count = _count;
 @synthesize productImage = _productImage;
+@synthesize addToFavorites = _addToFavorites;
+@synthesize toolBar = _navBar;
+@synthesize isInFavorites = _isInFavorites;
 
 
-- (void)setProduct:(ProductDataStruct *)product
+- (void)setProduct:(ProductDataStruct *)product isFromFavorites:(BOOL)boolValue
 {
     _product = product;
+    self.isInFavorites = boolValue;
 }
+
+- (IBAction)backButton:(id)sender 
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (IBAction)cartButton:(id)sender 
+{
+    [self performSegueWithIdentifier:@"toMenuMode" sender:self];
+}
+//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    [[segue destinationViewController] setIsCartModeMy:YES];
+//}
 
 - (void)viewDidLoad
 {
+    if (self.isInFavorites)
+    {
+        self.addToFavorites.hidden = YES;
+        [[self toolBarLabel] setTitle:self.product.title];
+    }
+    else 
+    {
+        self.toolBar.hidden = YES;
+        self.navigationItem.title = self.product.title;
+    }
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.navigationItem.title = self.product.title;
     //self.countPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0.0, 0.0, 63.0, 90.0)];
     self.countPickerView.frame = CGRectMake(237, 236, 63, 108);
     NSString *cost = self.product.price;
@@ -108,6 +138,9 @@
     [self setPriceLabel:nil];
     [self setCartButton:nil];
     [self setProductImage:nil];
+    [self setAddToFavorites:nil];
+    [self setToolBar:nil];
+    [self setToolBarLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

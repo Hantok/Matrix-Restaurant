@@ -213,7 +213,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     //NSLog(@"%@",[self.Products objectAtIndex:self.selectedRow.integerValue]);
-    [segue.destinationViewController setProduct:[self.arrayData objectAtIndex:self.selectedRow.integerValue]];
+        [segue.destinationViewController setProduct:[self.arrayData objectAtIndex:self.selectedRow.integerValue] isFromFavorites:NO];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
