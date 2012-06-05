@@ -51,6 +51,7 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     if (self.isInFavorites)
     {
         self.addToFavorites.hidden = YES;
@@ -61,7 +62,6 @@
         self.toolBar.hidden = YES;
         self.navigationItem.title = self.product.title;
     }
-    [super viewDidLoad];
 	// Do any additional setup after loading the view.
     //self.countPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0.0, 0.0, 63.0, 90.0)];
     self.countPickerView.frame = CGRectMake(237, 236, 63, 108);

@@ -418,7 +418,7 @@
 }
 
 
-- (void)SaveProductToEntityName:(NSString *)entityName WithId:(NSNumber *)underbarid withCount:(int)countOfProducts withPrice:(float)cost withPicture:(NSObject *)picture
+- (void)SaveProductToEntityName:(NSString *)entityName WithId:(NSNumber *)underbarid withCount:(int)countOfProducts withPrice:(float)cost withPicture:(NSData *)picture
 {
     NSFetchRequest * request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:self.managedObjectContext]];
