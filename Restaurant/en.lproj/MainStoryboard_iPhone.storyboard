@@ -824,4 +824,8 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="jFA-c3-Tgi"/>
+        <segue reference="32d-88-GZP"/>
+    </inferredMetricsTieBreakers>
 </document>
