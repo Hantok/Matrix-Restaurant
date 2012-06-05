@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "RestaurantDataStruct.h"
 #import "GettingCoreContent.h"
+#import "RestaurantDetailViewController.h"
 
 @interface RestaurantViewController : UITableViewController
 
 @property (strong, nonatomic) NSMutableArray *arrayData;
 @property (strong, nonatomic) GettingCoreContent *db;
+@property NSInteger selectedRow;
 
 @end
