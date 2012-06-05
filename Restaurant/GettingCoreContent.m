@@ -418,14 +418,14 @@
 }
 
 
-- (void)SaveProductToEntityName:(NSString *)entityName WithId:(NSNumber *)underbarid withCount:(int)countOfProducts withPrice:(float)cost
+- (void)SaveProductToEntityName:(NSString *)entityName WithId:(NSNumber *)underbarid withCount:(int)countOfProducts withPrice:(float)cost withPicture:(NSObject *)picture
 {
     NSFetchRequest * request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:self.managedObjectContext]];
 
     NSError *error;
     NSArray *debug= [self.managedObjectContext executeFetchRequest:request error:&error];
-    BOOL allreadyInCart = NO;
+    BOOL allreadyInEntity = NO;
     for (int i = 0; i < debug.count; i++)
     {
         if ([[[debug objectAtIndex:i] valueForKey:@"underbarid"] isEqual:underbarid])
@@ -433,16 +433,20 @@
             NSManagedObject *objectToUpdate = [debug objectAtIndex:i];
             int curInt = [[objectToUpdate valueForKey:@"count"] intValue] + countOfProducts;
             [objectToUpdate setValue:[NSNumber numberWithInt:curInt] forKey:@"count"];
-            allreadyInCart = YES;
+            allreadyInEntity = YES;
             break;
         }
     }
-    if (!allreadyInCart)
+    if (!allreadyInEntity)
     {
             NSManagedObject *objectToInsert = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.managedObjectContext];
         [objectToInsert setValue:underbarid forKey:@"underbarid"];
         [objectToInsert setValue:[NSNumber numberWithInt:countOfProducts] forKey:@"count"];
         [objectToInsert setValue:[NSNumber numberWithFloat:cost] forKey:@"cost"];
+        if(picture !=nil)
+        {
+            [objectToInsert setValue:picture forKey:@"picture"];
+        }
     }
     
     // Save the context.
