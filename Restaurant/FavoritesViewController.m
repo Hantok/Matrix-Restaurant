@@ -15,21 +15,24 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) GettingCoreContent *db;
 @property (strong, nonatomic) NSNumber *selectedRow;
+@property (strong, nonatomic) NSMutableArray *arrayOfObjects;
+@property (strong, nonatomic) ProductDataStruct *product;
 
 @end
 
 @implementation FavoritesViewController
 @synthesize tableView;
-@synthesize toolbar;
+@synthesize navigationbar;
 @synthesize db = _db;
 @synthesize selectedRow = _selectedRow;
+@synthesize arrayOfObjects = _arrayOfObjects;
+@synthesize product = _product;
 
-//- (void)viewDidLoad
-//{
-//    [super viewDidLoad];
-//    
-//	// Do any additional setup after loading the view.
-//}
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.arrayOfObjects = [[NSMutableArray alloc] init];
+}
 
 - (GettingCoreContent *)db
 {
@@ -42,8 +45,8 @@
 
 - (void)viewDidUnload
 {
-    [self setToolbar:nil];
     [self setTableView:nil];
+    [self setNavigationbar:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -79,6 +82,7 @@
             if([currentObject isKindOfClass:[ProductCell class]])
             {
                 cell = (ProductCell *)currentObject;
+                [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
                 break;
             }
         }
@@ -87,28 +91,38 @@
     NSArray *array = [self.db fetchAllProductsIdAndTheirCountWithPriceForEntity:@"Favorites"];
     NSArray *arrayOfElements = [self.db fetchObjectsFromCoreDataForEntity:@"Descriptions_translation" withArrayObjects:array withDefaultLanguageId:[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
     
-    //треба дописати загрузку картинок=)
+    self.product = [[ProductDataStruct alloc] init];
+    
+    [self.product setProductId:[[arrayOfElements objectAtIndex:indexPath.row] valueForKey:@"idProduct"]];
     
     cell.productDescription.text = [[arrayOfElements objectAtIndex:indexPath.row] valueForKey:@"descriptionText"];
+    [self.product setDescriptionText:cell.productDescription.text];
+    
     cell.productTitle.text = [NSString stringWithFormat:@"%@",[[arrayOfElements objectAtIndex:indexPath.row] valueForKey:@"nameText"]];
+    [self.product setTitle:[[arrayOfElements objectAtIndex:indexPath.row] valueForKey:@"nameText"]];
+    
     cell.productPrice.text = [NSString stringWithFormat:@"%@ грн.", [[array objectAtIndex:indexPath.row] valueForKey:@"cost"]];
+    [self.product setPrice:[[array objectAtIndex:indexPath.row] valueForKey:@"cost"]];
+    
     cell.productImage.image = [UIImage imageWithData:[[array objectAtIndex:indexPath.row] valueForKey:@"picture"]];
-
+    [self.product setImage:cell.productImage.image];
+    
+    
+    [self.arrayOfObjects addObject:self.product];
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //треба дописати перехід на ProductDetailViewController або зробити на нього копію, бо дані відрізняються при пересиланні
-    
-    //self.selectedRow = [[NSNumber alloc] initWithInt:indexPath.row];
-    //[self performSegueWithIdentifier:@"toProductDetail" sender:self];
+    self.selectedRow = [[NSNumber alloc] initWithInt:indexPath.row];
+    [self performSegueWithIdentifier:@"toProductDetail" sender:self];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    //NSLog(@"%@",[self.Products objectAtIndex:self.selectedRow.integerValue]);
-    //[segue.destinationViewController setProduct:[self.arrayData objectAtIndex:self.selectedRow.integerValue]];
+    //NSLog(@"%@",[self.Products objectAtIndex:self.selectedRow.integerValue]); 
+    [[segue destinationViewController] setProduct:[self.arrayOfObjects objectAtIndex:self.selectedRow.integerValue] isFromFavorites:YES];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

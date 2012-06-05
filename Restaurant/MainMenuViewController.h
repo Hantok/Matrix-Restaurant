@@ -33,4 +33,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *drop;
 
+- (void)setIsCartModeMy:(BOOL)isCartMode;
+
 @end
