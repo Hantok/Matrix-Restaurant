@@ -47,9 +47,9 @@
                 f = [[NSNumberFormatter alloc] init];
                 [f setNumberStyle:NSNumberFormatterDecimalStyle];
                 number = [f numberFromString:[coordinates objectAtIndex:0]];
-                dataStruct.longitude = number.doubleValue;
-                number = [f numberFromString:[coordinates objectAtIndex:1]];
                 dataStruct.latitude = number.doubleValue;
+                number = [f numberFromString:[coordinates objectAtIndex:1]];
+                dataStruct.longitude = number.doubleValue;
 //                NSData *dataOfPicture = [[pictures objectForKey:dataStruct.idPicture] valueForKey:@"data"];
 //                NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test4/root/%@",[[pictures objectForKey:dataStruct.idPicture] valueForKey:@"link"]];
 //                urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
