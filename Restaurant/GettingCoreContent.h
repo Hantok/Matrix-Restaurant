@@ -32,7 +32,7 @@
 - (NSData *)fetchPictureDataByPictureId:(NSString *)pictureId;
 - (NSDictionary *)fetchImageURLAndDatabyMenuID:(NSString *)menuId;
 
-- (void)SaveProductToEntityName:(NSString *)entityName WithId:(NSNumber *)underbarid withCount:(int)countOfProducts withPrice:(float)cost;
+- (void)SaveProductToEntityName:(NSString *)entityName WithId:(NSNumber *)underbarid withCount:(int)countOfProducts withPrice:(float)cost withPicture:(NSObject *)picture;
 
 - (NSArray *)fetchAllProductsIdAndTheirCountWithPriceForEntity:(NSString *)entityName;
 

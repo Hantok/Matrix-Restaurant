@@ -82,9 +82,10 @@
     GettingCoreContent *db = [[GettingCoreContent alloc] init];
     [db SaveProductToEntityName:@"Cart" WithId:self.product.productId 
                       withCount:self.product.count.integerValue
-                      withPrice:self.product.price.floatValue];
+                      withPrice:self.product.price.floatValue
+                    withPicture:nil];
     
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Добавлено товара \"%@\" в корзину.", self.product.title] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Добавлено %i ед. товара \"%@\" в корзину.",self.product.count.integerValue, self.product.title] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
     [[self navigationController] popViewControllerAnimated:YES];
 }
@@ -94,9 +95,10 @@
     GettingCoreContent *db = [[GettingCoreContent alloc] init];
     [db SaveProductToEntityName:@"Favorites" WithId:self.product.productId 
                       withCount:self.product.count.integerValue
-                      withPrice:self.product.price.floatValue];
+                      withPrice:self.product.price.floatValue
+                    withPicture:UIImagePNGRepresentation(self.product.image)];
     
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Добавлено товара \"%@\" в favorites.", self.product.title] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Добавлено товар \"%@\" в favorites.", self.product.title] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
 }
 
