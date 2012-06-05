@@ -51,7 +51,7 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    [super viewDidLoad];    
     if (self.isInFavorites)
     {
         self.addToFavorites.hidden = YES;
