@@ -14,7 +14,20 @@
 #import "MenuDataStruct.h"
 #import "LanguageAndCityTableViewController.h"
 #import "ProductDataStruct.h"
+#import "ProductDetailViewController.h"
+
 @interface MainMenuViewController ()
+{
+    CFURLRef        soundFileURLRef;
+    SystemSoundID	soundFileObject;
+}
+
+@property (readwrite)	CFURLRef        soundFileURLRef;
+@property (readonly)	SystemSoundID	soundFileObject;
+
+@property (strong, nonatomic) ProductDataStruct *product;
+@property (strong, nonatomic) NSMutableArray *arrayOfObjects;
+@property (strong, nonatomic) NSIndexPath *selectedPath;
 
 @end
 
@@ -36,6 +49,11 @@
 @synthesize db = _db;
 @synthesize restarauntId = _restarauntId;
 @synthesize menuId = _menuId;
+@synthesize soundFileURLRef;// = _soundFileURLRef;
+@synthesize soundFileObject;// = _soundFileObject;
+@synthesize product = _product;
+@synthesize arrayOfObjects= _arrayOfObjects;
+@synthesize selectedPath = _selectedPath;
 
 - (void)setIsCartModeMy:(BOOL)isCartMode
 {
@@ -137,6 +155,8 @@
     self.pickerView.dataSource = self;
     UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pickerTapped:)];
     [self.pickerView addGestureRecognizer:tapgesture];
+    
+    AudioServicesPlayAlertSound(soundFileObject);
 }
 - (IBAction)cartButton:(id)sender {
     self.isCartMode = YES;
@@ -146,6 +166,8 @@
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
     [self.pickerView removeGestureRecognizer:[self.pickerView.gestureRecognizers lastObject]];
+
+    AudioServicesPlaySystemSound (self.soundFileObject);
 }
 - (IBAction)goToSettingsTableViewController:(id)sender {
     [self performSegueWithIdentifier:@"toSettings" sender:self];
@@ -160,8 +182,6 @@
     return self;
 }
 
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -172,6 +192,14 @@
     {
         self.isMenuMode = YES;
     }
+    
+    //не працює з ARC!!!!!
+    NSURL *tapSound   = [[NSBundle mainBundle] URLForResource: @"tap"
+                                                withExtension: @"aif"];
+
+    soundFileURLRef = (__bridge CFURLRef) tapSound;
+    
+    AudioServicesCreateSystemSoundID (soundFileURLRef, &soundFileObject);
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -390,6 +418,12 @@
     self.restarauntId = nil;
     self.menuId = nil;
     
+    if([segue.identifier isEqualToString:@"toProductDetail"])
+    {
+        [[segue destinationViewController] setProduct:[self.arrayOfObjects objectAtIndex:self.selectedRow.integerValue] isFromFavorites:NO];
+        [[segue destinationViewController] setLabelOfAddingButtonWithString:@"Изменить" withIndexPathInDB:self.selectedPath];
+    }
+    
 }
 
 
@@ -452,15 +486,31 @@
     cell.productCount.text = [NSString stringWithFormat:@"%@", [[array objectAtIndex:indexPath.row] valueForKey:@"count"]];
 
     NSNumber *numbers = [NSNumber numberWithFloat:([[[array objectAtIndex:indexPath.row] valueForKey:@"count"] intValue]*[[[array objectAtIndex:indexPath.row] valueForKey:@"cost"] floatValue])];
+    
+    if (!self.product)
+    {
+        self.product = [[ProductDataStruct alloc] init];
+        self.arrayOfObjects = [[NSMutableArray alloc] init];
+    }
 
     cell.productPrice.text = [NSString stringWithFormat:@"%@ грн.", numbers];
+    
+    [self.product setTitle:[[arrayOfElements objectAtIndex:indexPath.row] valueForKey:@"nameText"]];
+    [self.product setDescriptionText:[[arrayOfElements objectAtIndex:indexPath.row] valueForKey:@"descriptionText"]];
+    [self.product setPrice:[[array objectAtIndex:indexPath.row] valueForKey:@"cost"]];
+    [self.product setImage:[UIImage imageWithData:[[array objectAtIndex:indexPath.row] valueForKey:@"picture"]]];
+    [self.product setCount:[[array objectAtIndex:indexPath.row] valueForKey:@"count"]];
+    
+    [self.arrayOfObjects addObject:self.product];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //NSLog(@"%i", indexPath.row);
+    self.selectedRow = [[NSNumber alloc] initWithInt:indexPath.row];
+    [self performSegueWithIdentifier:@"toProductDetail" sender:self];
+    self.selectedPath = indexPath;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

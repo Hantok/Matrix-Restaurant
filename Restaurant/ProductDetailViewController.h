@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ProductDataStruct.h"
 
-@interface ProductDetailViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface ProductDetailViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UIAlertViewDelegate>
 
 @property (strong, nonatomic) ProductDataStruct *product;
 @property (weak, nonatomic) IBOutlet UIPickerView *countPickerView;
@@ -25,5 +25,7 @@
 
 - (IBAction)backButton:(id)sender;
 - (IBAction)cartButton:(id)sender;
+
+-(void)setLabelOfAddingButtonWithString:(NSString *)labelString withIndexPathInDB:(NSIndexPath *)indexPath;
 
 @end
