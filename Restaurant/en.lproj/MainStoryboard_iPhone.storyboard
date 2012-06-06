@@ -33,7 +33,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="-4" y="26"/>
+            <point key="canvasLocation" x="-508" y="58"/>
         </scene>
         <!--Main Menu View Controller-->
         <scene sceneID="IcO-Ge-Ftx">
@@ -41,7 +41,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hhD-SI-Yx4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Spv-H0-bQc" customClass="MainMenuViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XuW-0s-rPi">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <pickerView autoresizesSubviews="NO" contentMode="scaleToFill" showsSelectionIndicator="NO" id="xOG-l4-ES5">
@@ -150,7 +150,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="935" y="26"/>
+            <point key="canvasLocation" x="755" y="58"/>
         </scene>
         <!--Restaurant View Controller - Рестораны-->
         <scene sceneID="Cfb-bw-RTg">
@@ -158,7 +158,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vI4-tg-6w1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="yJk-rP-XK4" customClass="RestaurantViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="aEc-xD-I0N">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <connections>
@@ -180,7 +180,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oUy-BW-PCf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="FAN-qH-iBO" customClass="RestaurantDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6PK-tb-sSa">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="LTc-bJ-iOA">
@@ -269,7 +269,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8w7-fF-kPf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="YPw-UT-cMt" customClass="MapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wpn-Bf-ZVT">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="SWB-FH-Lse">
@@ -293,7 +293,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sia-X4-dZs" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="717-3C-qgb" customClass="SettingsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="vEM-8i-Tz9">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -464,7 +464,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y62-RE-tfx" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="nHm-Km-3IV" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KCN-eH-j7P">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="images.jpeg" id="q7i-rz-v8y">
@@ -485,7 +485,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Q8-1o-rvw" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="YcF-qT-ZVg" customClass="SocialViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1fc-rK-q7K">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" id="Oh3-rE-fjH">
@@ -510,7 +510,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Ta-V4-BFB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="17B-mz-dpq" customClass="LanguageAndCityTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="K5O-cM-LOt">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
@@ -593,7 +593,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SzX-Fa-3n8" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="WCQ-rd-I2m" customClass="MenuListTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="98" sectionHeaderHeight="22" sectionFooterHeight="22" id="n5j-L9-gnn">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <connections>
@@ -627,7 +627,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="477" y="26"/>
+            <point key="canvasLocation" x="137" y="58"/>
         </scene>
         <!--Product Detail View Controller-->
         <scene sceneID="QNQ-Zs-cu6">
@@ -721,7 +721,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="2354" y="-608"/>
+            <point key="canvasLocation" x="-402" y="-692"/>
         </scene>
     </scenes>
     <resources>
