@@ -495,6 +495,7 @@
 
     cell.productPrice.text = [NSString stringWithFormat:@"%@ грн.", numbers];
     
+    [self.product setProductId:[[arrayOfElements objectAtIndex:indexPath.row] valueForKey:@"idProduct"]];
     [self.product setTitle:[[arrayOfElements objectAtIndex:indexPath.row] valueForKey:@"nameText"]];
     [self.product setDescriptionText:[[arrayOfElements objectAtIndex:indexPath.row] valueForKey:@"descriptionText"]];
     [self.product setPrice:[[array objectAtIndex:indexPath.row] valueForKey:@"cost"]];

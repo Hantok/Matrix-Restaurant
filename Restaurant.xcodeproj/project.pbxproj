@@ -164,7 +164,6 @@
 		781B8EF81546DB870074EDBD = {
 			isa = PBXGroup;
 			children = (
-				F59344EA157F77DA0080EDE3 /* AudioToolbox.framework */,
 				781B8F0D1546DB870074EDBD /* Restaurant */,
 				781B8F061546DB870074EDBD /* Frameworks */,
 				781B8F041546DB870074EDBD /* Products */,
@@ -182,6 +181,7 @@
 		781B8F061546DB870074EDBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F59344EA157F77DA0080EDE3 /* AudioToolbox.framework */,
 				7851AC8D157E52440027BDDF /* MapKit.framework */,
 				F58BD5AC156E7B8A00D31A09 /* MessageUI.framework */,
 				F507215C156BA37C00D7ACC6 /* SystemConfiguration.framework */,

@@ -431,7 +431,7 @@
         if ([[[debug objectAtIndex:i] valueForKey:@"underbarid"] isEqual:underbarid])
         {
             NSManagedObject *objectToUpdate = [debug objectAtIndex:i];
-            //if(countOfProducts == 0)
+            if(countOfProducts != 0)
             {
                 int curInt = [[objectToUpdate valueForKey:@"count"] intValue] + countOfProducts;
                 [objectToUpdate setValue:[NSNumber numberWithInt:curInt] forKey:@"count"];
