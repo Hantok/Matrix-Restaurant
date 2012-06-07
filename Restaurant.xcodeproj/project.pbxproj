@@ -57,6 +57,7 @@
 		F5E93A4B156CFC6B005ED3ED /* CityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E93A4A156CFC6B005ED3ED /* CityCell.m */; };
 		F5E93A57156D1CDB005ED3ED /* SocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E93A56156D1CDB005ED3ED /* SocialViewController.m */; };
 		F5FA62481580D39700FBF70A /* FavoritesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5FA62471580D39700FBF70A /* FavoritesTableViewController.m */; };
+		F5FA624C1580EB6700FBF70A /* Cart.png in Resources */ = {isa = PBXBuildFile; fileRef = F5FA624B1580EB6700FBF70A /* Cart.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -139,6 +140,7 @@
 		F5E93A56156D1CDB005ED3ED /* SocialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SocialViewController.m; path = ../SocialViewController.m; sourceTree = "<group>"; };
 		F5FA62461580D39700FBF70A /* FavoritesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesTableViewController.h; sourceTree = "<group>"; };
 		F5FA62471580D39700FBF70A /* FavoritesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesTableViewController.m; sourceTree = "<group>"; };
+		F5FA624B1580EB6700FBF70A /* Cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cart.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +223,7 @@
 				781B8F1C1546DB870074EDBD /* MainStoryboard_iPad.storyboard */,
 				781B8F271546DBDD0074EDBD /* LoadAppViewController.h */,
 				781B8F281546DBDD0074EDBD /* LoadAppViewController.m */,
+				F5FA624B1580EB6700FBF70A /* Cart.png */,
 				78864DDB154957EE00D339B7 /* files.iphone.shop.category7.jpg */,
 				78864DDE15495E0A00D339B7 /* files.iphone.shop.good1582.png */,
 				78005A10157793050099F973 /* icon_Metro.gif */,
@@ -392,6 +395,7 @@
 				78005A11157793050099F973 /* icon_Metro.gif in Resources */,
 				F59344E6157F68690080EDE3 /* 1175675287_4185527geb.jpg in Resources */,
 				F59344F7157F8D730080EDE3 /* images.jpeg in Resources */,
+				F5FA624C1580EB6700FBF70A /* Cart.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

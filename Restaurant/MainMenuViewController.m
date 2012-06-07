@@ -28,6 +28,7 @@
 @property (strong, nonatomic) ProductDataStruct *product;
 @property (strong, nonatomic) NSMutableArray *arrayOfObjects;
 @property (strong, nonatomic) NSIndexPath *selectedPath;
+@property (nonatomic) NSInteger numberOfRows;
 
 @end
 
@@ -54,11 +55,7 @@
 @synthesize product = _product;
 @synthesize arrayOfObjects= _arrayOfObjects;
 @synthesize selectedPath = _selectedPath;
-
-- (void)setIsCartModeMy:(BOOL)isCartMode
-{
-    _isCartMode = isCartMode;
-}
+@synthesize numberOfRows = _numberOfRows;
 
 
 - (IBAction)drop:(id)sender {
@@ -251,12 +248,23 @@
 {
     if(self.isCartMode)
     {   
-        self.tableView = [[UITableView alloc] init];//WithFrame:CGRectMake(0, 0, 100, 216)];
-        self.tableView.delegate = self;
-        self.tableView.dataSource = self;
-        return self.tableView;
-        //[[[[NSUserDefaults standardUserDefaults] objectForKey:@"offers"] objectAtIndex:row] objectForKey:@"id"];
-        
+        self.numberOfRows = [self.db fetchAllProductsIdAndTheirCountWithPriceForEntity:@"Cart"].count;
+        if (self.numberOfRows == 0)
+        {
+            PickerViewCell *viewForRow;
+            UIImageView *one = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Cart.png"]];
+            //NSArray* ballsArray = [NSArray arrayWithObjects:one, nil];
+            viewForRow = (PickerViewCell *)one;
+            return viewForRow;
+        }
+        else
+        {
+            self.tableView = [[UITableView alloc] init];//WithFrame:CGRectMake(0, 0, 100, 216)];
+            self.tableView.delegate = self;
+            self.tableView.dataSource = self;
+            return self.tableView;
+            //[[[[NSUserDefaults standardUserDefaults] objectForKey:@"offers"] objectAtIndex:row] objectForKey:@"id"];
+        }
     }
     else {
         MenuDataStruct *dataStruct = [self.arrayData objectAtIndex:row];
@@ -433,7 +441,7 @@
 {
     //Offers* offers = [[Offers alloc] init];
     //return offers.offers.count;
-    return [self.db fetchAllProductsIdAndTheirCountWithPriceForEntity:@"Cart"].count;
+    return self.numberOfRows;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -533,7 +541,8 @@
         [self.db deleteObjectFromEntity:@"Cart" atIndexPath:indexPath];
         //Offers* offers = [[Offers alloc] init];
         //[offers removeOffer:[offers.offers objectAtIndex:indexPath.row]];
-        [self.tableView reloadData];
+        //[self.tableView reloadData];
+        [self.pickerView reloadAllComponents];
     }  
 }
 
