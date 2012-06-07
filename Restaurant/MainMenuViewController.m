@@ -476,6 +476,7 @@
             if([currentObject isKindOfClass:[CartCell class]])
             {
                 cell = (CartCell *)currentObject;
+                
                 break;
             }
         }
@@ -484,7 +485,8 @@
     NSArray *arrayOfElements = [self.db fetchObjectsFromCoreDataForEntity:@"Descriptions_translation" withArrayObjects:array withDefaultLanguageId:[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
     cell.productTitle.text = [NSString stringWithFormat:@"%@",[[arrayOfElements objectAtIndex:indexPath.row] valueForKey:@"nameText"]];
     cell.productCount.text = [NSString stringWithFormat:@"%@", [[array objectAtIndex:indexPath.row] valueForKey:@"count"]];
-
+    cell.imageView.image = [UIImage imageWithData:[[array objectAtIndex:indexPath.row] valueForKey:@"picture"]];
+    
     NSNumber *numbers = [NSNumber numberWithFloat:([[[array objectAtIndex:indexPath.row] valueForKey:@"count"] intValue]*[[[array objectAtIndex:indexPath.row] valueForKey:@"cost"] floatValue])];
     
     if (!self.product)
@@ -505,6 +507,11 @@
     [self.arrayOfObjects addObject:self.product];
     
     return cell;
+}
+
+//змінюємо висоту cell
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 61.0;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
