@@ -14,5 +14,6 @@
 @synthesize image = _image;
 @synthesize title = _title;
 @synthesize idPicture = _idPicture;
+@synthesize link = _link;
 
 @end

@@ -75,9 +75,10 @@
                     if([elementName isEqualToString:@"ROW"])
                     {
                         NSArray *keys = [attributeDict allKeys];
+                        id key = nil;
                         for(int i=0;i<keys.count;i++)
                         {
-                            id key = [keys objectAtIndex:i];
+                            key = [keys objectAtIndex:i];
                             if([self.rows objectForKey:key])
                             {
                                 [[self.rows objectForKey:key] addObject:[attributeDict objectForKey:key]];
@@ -121,7 +122,7 @@
 }
 
 
-#pragma Bogdan Geleta
+#pragma mark - Bogdan Geleta
 
 -(NSArray *)GetAllLanguages
 {
@@ -216,7 +217,7 @@
     }
 }
 
-#pragma Roman Slysh
+#pragma mark - Roman Slysh
 
 
 
