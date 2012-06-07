@@ -21,5 +21,4 @@
 @property (weak, nonatomic) RestaurantDataStruct *dataStruct;
 @property (strong, nonatomic) GettingCoreContent *db;
 
-
 @end

@@ -3,6 +3,7 @@
     <entity name="Cart" syncable="YES">
         <attribute name="cost" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="count" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="picture" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="Cities" syncable="YES">
@@ -49,7 +50,6 @@
     </entity>
     <entity name="Favorites" syncable="YES">
         <attribute name="cost" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="count" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="picture" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
@@ -121,7 +121,7 @@
         <element name="Descriptions_translation" positionX="-135" positionY="36" width="128" height="135"/>
         <element name="Discounts" positionX="160" positionY="192" width="128" height="75"/>
         <element name="Event" positionX="576" positionY="138" width="128" height="105"/>
-        <element name="Favorites" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="Favorites" positionX="313" positionY="165" width="128" height="90"/>
         <element name="Languages" positionX="160" positionY="192" width="128" height="75"/>
         <element name="Menus" positionX="160" positionY="192" width="128" height="105"/>
         <element name="Menus_translation" positionX="160" positionY="192" width="128" height="105"/>

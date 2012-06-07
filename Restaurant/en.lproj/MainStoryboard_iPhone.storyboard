@@ -134,7 +134,7 @@
                     <navigationItem key="navigationItem" id="KBv-HE-LPE">
                         <barButtonItem key="rightBarButtonItem" title="Favorites" id="VdJ-5R-XNt">
                             <connections>
-                                <segue destination="skl-MI-CeJ" kind="modal" id="dO0-Ov-bYv"/>
+                                <segue destination="vn2-XR-gzu" kind="push" identifier="toFavorites" id="K8a-bc-8oB"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -147,6 +147,7 @@
                         <outlet property="settingsButton" destination="P70-QF-ZWw" id="QKa-fq-FIb"/>
                         <segue destination="WCQ-rd-I2m" kind="push" identifier="menuList" id="0a5-kd-isw"/>
                         <segue destination="717-3C-qgb" kind="push" identifier="toSettings" id="WlE-eY-M7U"/>
+                        <segue destination="WSq-ly-76H" kind="push" identifier="toProductDetail" id="uuy-7P-Ssv"/>
                     </connections>
                 </viewController>
             </objects>
@@ -172,7 +173,7 @@
                     </connections>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="103" y="731"/>
+            <point key="canvasLocation" x="191" y="967"/>
         </scene>
         <!--Restaurant Detail View Controller-->
         <scene sceneID="D02-AA-Q39">
@@ -456,7 +457,7 @@
                     </connections>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="1536" y="437"/>
+            <point key="canvasLocation" x="1604" y="637"/>
         </scene>
         <!--View Controller - About-->
         <scene sceneID="uxX-a8-ecj">
@@ -477,7 +478,7 @@
                     <navigationItem key="navigationItem" title="About" id="kTF-yO-ITz"/>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="2084" y="661"/>
+            <point key="canvasLocation" x="2084" y="881"/>
         </scene>
         <!--Social View Controller-->
         <scene sceneID="gnY-cM-9Cz">
@@ -543,49 +544,27 @@
             </objects>
             <point key="canvasLocation" x="2264" y="89"/>
         </scene>
-        <!--Favorites View Controller-->
-        <scene sceneID="0mm-nK-DTX">
+        <!--Favorites Table View Controller - Favorites-->
+        <scene sceneID="rHC-0M-0s9">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="I18-6t-M0G" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="skl-MI-CeJ" customClass="FavoritesViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Luu-53-Kax">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="98" sectionHeaderHeight="10" sectionFooterHeight="10" id="xYC-FV-pGZ">
-                                <rect key="frame" x="0.0" y="44" width="320" height="416"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <sections/>
-                                <connections>
-                                    <outlet property="dataSource" destination="skl-MI-CeJ" id="lqr-rT-bkc"/>
-                                    <outlet property="delegate" destination="skl-MI-CeJ" id="tSR-t1-OyG"/>
-                                </connections>
-                            </tableView>
-                            <navigationBar contentMode="scaleToFill" barStyle="blackTranslucent" id="2a7-Zi-dN9">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Title" id="CoC-ep-RU1">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="bMj-Ds-g8Z">
-                                            <connections>
-                                                <action selector="bachButton:" destination="skl-MI-CeJ" id="l0d-gv-DFc"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a74-cH-HAt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="vn2-XR-gzu" customClass="FavoritesTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ar1-eX-CeJ">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="vn2-XR-gzu" id="4it-ja-t7N"/>
+                            <outlet property="delegate" destination="vn2-XR-gzu" id="8NU-ST-8N0"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Favorites" id="gGV-uc-ix3"/>
                     <connections>
-                        <outlet property="navigationbar" destination="2a7-Zi-dN9" id="uge-RB-2fm"/>
-                        <outlet property="tableView" destination="xYC-FV-pGZ" id="KWN-yz-eHM"/>
-                        <segue destination="WSq-ly-76H" kind="modal" identifier="toProductDetail" id="TcD-pY-Qmb"/>
+                        <segue destination="WSq-ly-76H" kind="push" identifier="toProductDetail" id="2cA-1w-ejy"/>
                     </connections>
-                </viewController>
+                </tableViewController>
             </objects>
-            <point key="canvasLocation" x="1331" y="-1076"/>
+            <point key="canvasLocation" x="1160" y="-625"/>
         </scene>
         <!--Menu List Table View Controller-->
         <scene sceneID="Ro4-Rp-Yqz">
@@ -609,7 +588,7 @@
                     </connections>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="559" y="-608"/>
+            <point key="canvasLocation" x="1543" y="40"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2Ty-cS-1r2">
@@ -635,11 +614,11 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JcG-4U-PJu" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="WSq-ly-76H" customClass="ProductDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rnJ-ee-zbP">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Снимок экрана 2012-04-17 в 18.14.31.png" id="03Y-MB-NfZ">
-                                <rect key="frame" x="45" y="0.0" width="230" height="272"/>
+                                <rect key="frame" x="45" y="0.0" width="230" height="228"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <pickerView contentMode="scaleToFill" id="Q3C-9E-HzQ">
@@ -685,26 +664,9 @@
                                 </state>
                                 <connections>
                                     <action selector="addToFavorites:" destination="WSq-ly-76H" eventType="touchUpInside" id="rQa-3i-OGd"/>
-                                    <segue destination="skl-MI-CeJ" kind="modal" identifier="toFavorites" modalTransitionStyle="flipHorizontal" id="jFA-c3-Tgi"/>
+                                    <segue destination="vn2-XR-gzu" kind="push" identifier="toFavorites" id="xxU-6s-cx9"/>
                                 </connections>
                             </button>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" tag="2" contentMode="center" id="05G-Ue-rRF">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem title="Back" style="done" id="Wrj-U5-p1D">
-                                        <connections>
-                                            <action selector="backButton:" destination="WSq-ly-76H" id="92s-qj-kPY"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem title="Title" width="194" style="plain" id="1Nj-9z-r2R"/>
-                                    <barButtonItem title="Menu" width="52" id="q5K-z9-VBu">
-                                        <connections>
-                                            <action selector="cartButton:" destination="WSq-ly-76H" id="ldE-rL-ghz"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -715,9 +677,6 @@
                         <outlet property="countPickerView" destination="Q3C-9E-HzQ" id="GqV-zv-PNI"/>
                         <outlet property="priceLabel" destination="R9E-Xi-VMX" id="HS3-9B-Luk"/>
                         <outlet property="productImage" destination="03Y-MB-NfZ" id="cL4-Ib-bWw"/>
-                        <outlet property="toolBar" destination="05G-Ue-rRF" id="yfm-48-5bJ"/>
-                        <outlet property="toolBarLabel" destination="1Nj-9z-r2R" id="4Gz-cf-rze"/>
-                        <segue destination="PEB-yp-9gI" kind="modal" identifier="toMenuMode" id="dyD-7R-6u3"/>
                     </connections>
                 </viewController>
             </objects>
@@ -733,13 +692,8 @@
         <class className="CityCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CityCell.h"/>
         </class>
-        <class className="FavoritesViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FavoritesViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="bachButton:"/>
-                <relationship kind="outlet" name="navigationbar" candidateClass="UINavigationBar"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
+        <class className="FavoritesTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FavoritesTableViewController.h"/>
         </class>
         <class className="LanguageAndCityTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LanguageAndCityTableViewController.h"/>
@@ -783,15 +737,11 @@
         <class className="ProductDetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ProductDetailViewController.h"/>
             <relationships>
-                <relationship kind="action" name="backButton:"/>
-                <relationship kind="action" name="cartButton:"/>
                 <relationship kind="outlet" name="addToFavorites" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="cartButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="countPickerView" candidateClass="UIPickerView"/>
                 <relationship kind="outlet" name="priceLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="productImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="toolBar" candidateClass="UIToolbar"/>
-                <relationship kind="outlet" name="toolBarLabel" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
         <class className="RestaurantDetailViewController" superclassName="UIViewController">
@@ -824,4 +774,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="p5O-gN-8X0"/>
+    </inferredMetricsTieBreakers>
 </document>

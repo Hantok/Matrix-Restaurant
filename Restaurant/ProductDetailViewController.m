@@ -12,11 +12,13 @@
 @interface ProductDetailViewController ()
 
 @property BOOL isInFavorites;
+@property (strong, nonatomic) NSString *labelString;
+@property (strong, nonatomic) NSIndexPath *selectedPath;
+@property BOOL countForDeleting;
 
 @end
 
 @implementation ProductDetailViewController
-@synthesize toolBarLabel = _toolBarLabel;
 
 @synthesize product = _product;
 @synthesize countPickerView = _countPickerView;
@@ -25,9 +27,10 @@
 @synthesize count = _count;
 @synthesize productImage = _productImage;
 @synthesize addToFavorites = _addToFavorites;
-@synthesize toolBar = _navBar;
 @synthesize isInFavorites = _isInFavorites;
-
+@synthesize labelString = _labelString;
+@synthesize selectedPath = _selectedPath;
+@synthesize countForDeleting = _countForDeleting;
 
 - (void)setProduct:(ProductDataStruct *)product isFromFavorites:(BOOL)boolValue
 {
@@ -35,33 +38,17 @@
     self.isInFavorites = boolValue;
 }
 
-- (IBAction)backButton:(id)sender 
+-(void)setLabelOfAddingButtonWithString:(NSString *)labelString withIndexPathInDB:(NSIndexPath *)indexPath
 {
-    [self dismissModalViewControllerAnimated:YES];
+    self.labelString = labelString;
+    self.selectedPath = indexPath;
 }
-
-- (IBAction)cartButton:(id)sender 
-{
-    [self performSegueWithIdentifier:@"toMenuMode" sender:self];
-}
-//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    [[segue destinationViewController] setIsCartModeMy:YES];
-//}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];    
-    if (self.isInFavorites)
-    {
-        self.addToFavorites.hidden = YES;
-        [[self toolBarLabel] setTitle:self.product.title];
-    }
-    else 
-    {
-        self.toolBar.hidden = YES;
-        self.navigationItem.title = self.product.title;
-    }
+    self.navigationItem.title = self.product.title;
+    
 	// Do any additional setup after loading the view.
     //self.countPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0.0, 0.0, 63.0, 90.0)];
     self.countPickerView.frame = CGRectMake(237, 236, 63, 108);
@@ -110,21 +97,41 @@
 //    }
     
     GettingCoreContent *db = [[GettingCoreContent alloc] init];
-    [db SaveProductToEntityName:@"Cart" WithId:self.product.productId 
-                      withCount:self.product.count.integerValue
-                      withPrice:self.product.price.floatValue
-                    withPicture:nil];
-    
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Добавлено %i ед. товара \"%@\" в корзину.",self.product.count.integerValue, self.product.title] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    [alert show];
-    [[self navigationController] popViewControllerAnimated:YES];
+    if (self.countForDeleting || self.product.count.intValue == 0)
+    {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Do you want to delete item %@", self.product.title] delegate:self cancelButtonTitle:@"YES" otherButtonTitles: @"NO", nil];
+        [alert show];
+    }
+    else 
+    {
+        [db SaveProductToEntityName:@"Cart" WithId:self.product.productId 
+                          withCount:self.product.count.integerValue
+                          withPrice:self.product.price.floatValue
+                        withPicture:UIImagePNGRepresentation(self.product.image)];
+        
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Добавлено %i ед. товара \"%@\" в корзину.",self.product.count.integerValue, self.product.title] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        [[self navigationController] popViewControllerAnimated:YES];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        GettingCoreContent *db = [[GettingCoreContent alloc] init];
+        [db deleteObjectFromEntity:@"Cart" atIndexPath:self.selectedPath];
+        NSLog(@"deleted");
+        [[self navigationController] popViewControllerAnimated:YES];
+    }
+    self.cartButton.titleLabel.text = self.labelString;
 }
 
 - (IBAction)addToFavorites:(id)sender 
 {
     GettingCoreContent *db = [[GettingCoreContent alloc] init];
     [db SaveProductToEntityName:@"Favorites" WithId:self.product.productId 
-                      withCount:self.product.count.integerValue
+                      withCount:0
                       withPrice:self.product.price.floatValue
                     withPicture:UIImagePNGRepresentation(self.product.image)];
     
@@ -139,8 +146,6 @@
     [self setCartButton:nil];
     [self setProductImage:nil];
     [self setAddToFavorites:nil];
-    [self setToolBar:nil];
-    [self setToolBarLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -152,17 +157,33 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return 20;
+    if (self.labelString)
+        return 21;
+    else
+        return 20;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    NSString *rowNumber = [[NSString alloc] initWithFormat:@"%i", row+1];
+    NSString *rowNumber;
+    if (self.labelString) 
+    {
+        rowNumber = [[NSString alloc] initWithFormat:@"%i", row];
+    }
+    else 
+    {
+        rowNumber = [[NSString alloc] initWithFormat:@"%i", row+1];
+    }
     return rowNumber;
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    self.product.count = [NSNumber numberWithInt:row+1];
+    self.countForDeleting = NO;
+    
+    if (self.labelString)
+        self.product.count = [NSNumber numberWithInt:row];
+    else 
+        self.product.count = [NSNumber numberWithInt:row+1];
 }
 @end

@@ -431,8 +431,11 @@
         if ([[[debug objectAtIndex:i] valueForKey:@"underbarid"] isEqual:underbarid])
         {
             NSManagedObject *objectToUpdate = [debug objectAtIndex:i];
-            int curInt = [[objectToUpdate valueForKey:@"count"] intValue] + countOfProducts;
-            [objectToUpdate setValue:[NSNumber numberWithInt:curInt] forKey:@"count"];
+            if(countOfProducts != 0)
+            {
+                int curInt = [[objectToUpdate valueForKey:@"count"] intValue] + countOfProducts;
+                [objectToUpdate setValue:[NSNumber numberWithInt:curInt] forKey:@"count"];
+            }
             allreadyInEntity = YES;
             break;
         }
@@ -441,11 +444,11 @@
     {
             NSManagedObject *objectToInsert = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.managedObjectContext];
         [objectToInsert setValue:underbarid forKey:@"underbarid"];
-        [objectToInsert setValue:[NSNumber numberWithInt:countOfProducts] forKey:@"count"];
         [objectToInsert setValue:[NSNumber numberWithFloat:cost] forKey:@"cost"];
-        if(picture !=nil)
+        [objectToInsert setValue:picture forKey:@"picture"];
+        if(countOfProducts != 0)
         {
-            [objectToInsert setValue:picture forKey:@"picture"];
+            [objectToInsert setValue:[NSNumber numberWithInt:countOfProducts] forKey:@"count"];
         }
     }
     

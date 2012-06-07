@@ -30,14 +30,16 @@
     return _db;
 }
 
-
 - (void)setDataStruct:(RestaurantDataStruct *)dataStruct
 {
     _dataStruct = dataStruct;
 }
 
-- (IBAction)callToRestaurant:(id)sender {
-    
+- (IBAction)callToRestaurant:(id)sender 
+{
+    NSURL *url = [NSURL URLWithString:@"telprompt://067-412-72-05"];
+    [[UIApplication sharedApplication] openURL:url];
+    NSLog(@"Calling");
 }
 - (IBAction)showOnMap:(id)sender {
     [self performSegueWithIdentifier:@"toMap" sender:self];
