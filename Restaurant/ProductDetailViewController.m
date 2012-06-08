@@ -122,7 +122,7 @@
         GettingCoreContent *db = [[GettingCoreContent alloc] init];
         [db deleteObjectFromEntity:@"Cart" atIndexPath:self.selectedPath];
         NSLog(@"deleted");
-        [[self navigationController] popViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:NO];
     }
     self.cartButton.titleLabel.text = self.labelString;
 }
