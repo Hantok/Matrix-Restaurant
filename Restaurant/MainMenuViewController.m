@@ -134,6 +134,55 @@
     return _arrayData;
 }
 
+-(NSMutableArray *)arrayOfObjects
+{
+    if (!_arrayOfObjects)
+    {
+        NSArray *array = [self.db fetchAllProductsIdAndTheirCountWithPriceForEntity:@"Cart"];
+        NSArray *arrayOfElements = [self.db fetchObjectsFromCoreDataForEntity:@"Descriptions_translation" withArrayObjects:array withDefaultLanguageId:[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
+        NSNumber *numbers;
+        _arrayOfObjects = [[NSMutableArray alloc] init];
+        for (int i = 0; i <array.count; i++)
+        {
+            ProductDataStruct *productStruct = [[ProductDataStruct alloc] init];
+            [productStruct setProductId:[[arrayOfElements objectAtIndex:i] valueForKey:@"idProduct"]];
+            [productStruct setTitle:[[arrayOfElements objectAtIndex:i] valueForKey:@"nameText"]];
+            [productStruct setDescriptionText:[[arrayOfElements objectAtIndex:i] valueForKey:@"descriptionText"]];
+            numbers = [NSNumber numberWithFloat:([[[array objectAtIndex:i] valueForKey:@"count"] intValue]*[[[array objectAtIndex:i] valueForKey:@"cost"] floatValue])];
+            [productStruct setPrice:[NSString stringWithFormat:@"%@",numbers]];
+            [productStruct setImage:[UIImage imageWithData:[[array objectAtIndex:i] valueForKey:@"picture"]]];
+            [productStruct setCount:[[array objectAtIndex:i] valueForKey:@"count"]];
+
+            
+            [_arrayOfObjects addObject:productStruct];     
+        }
+        return _arrayOfObjects;
+    }
+    else if (_arrayOfObjects.count != [self.db fetchAllProductsIdAndTheirCountWithPriceForEntity:@"Cart"].count)
+    {
+        NSArray *array = [self.db fetchAllProductsIdAndTheirCountWithPriceForEntity:@"Cart"];
+        NSArray *arrayOfElements = [self.db fetchObjectsFromCoreDataForEntity:@"Descriptions_translation" withArrayObjects:array withDefaultLanguageId:[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
+        NSNumber *numbers;
+        _arrayOfObjects = [[NSMutableArray alloc] init];
+        for (int i = 0; i <array.count; i++)
+        {
+            ProductDataStruct *productStruct = [[ProductDataStruct alloc] init];
+            [productStruct setProductId:[[arrayOfElements objectAtIndex:i] valueForKey:@"idProduct"]];
+            [productStruct setTitle:[[arrayOfElements objectAtIndex:i] valueForKey:@"nameText"]];
+            [productStruct setDescriptionText:[[arrayOfElements objectAtIndex:i] valueForKey:@"descriptionText"]];
+            numbers = [NSNumber numberWithFloat:([[[array objectAtIndex:i] valueForKey:@"count"] intValue]*[[[array objectAtIndex:i] valueForKey:@"cost"] floatValue])];
+            [productStruct setPrice:[NSString stringWithFormat:@"%@",numbers]];
+            [productStruct setImage:[UIImage imageWithData:[[array objectAtIndex:i] valueForKey:@"picture"]]];
+            [productStruct setCount:[[array objectAtIndex:i] valueForKey:@"count"]];
+            
+            
+            [_arrayOfObjects addObject:productStruct];     
+        }
+        return _arrayOfObjects;
+    }
+    return _arrayOfObjects;
+}
+
 - (GettingCoreContent *)db
 {
     if(!_db)
@@ -248,8 +297,7 @@
 {
     if(self.isCartMode)
     {   
-        self.numberOfRows = [self.db fetchAllProductsIdAndTheirCountWithPriceForEntity:@"Cart"].count;
-        if (self.numberOfRows == 0)
+        if (self.arrayOfObjects.count == 0)
         {
             PickerViewCell *viewForRow;
             UIImageView *one = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Cart.png"]];
@@ -431,6 +479,7 @@
         [[segue destinationViewController] setProduct:[self.arrayOfObjects objectAtIndex:self.selectedRow.integerValue] isFromFavorites:NO];
         [[segue destinationViewController] setLabelOfAddingButtonWithString:@"Изменить" withIndexPathInDB:self.selectedPath];
     }
+    self.arrayOfObjects = nil;
 }
 
 
@@ -440,7 +489,7 @@
 {
     //Offers* offers = [[Offers alloc] init];
     //return offers.offers.count;
-    return self.numberOfRows;
+    return self.arrayOfObjects.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -488,30 +537,36 @@
             }
         }
     }
-    NSArray *array = [self.db fetchAllProductsIdAndTheirCountWithPriceForEntity:@"Cart"];
-    NSArray *arrayOfElements = [self.db fetchObjectsFromCoreDataForEntity:@"Descriptions_translation" withArrayObjects:array withDefaultLanguageId:[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
-    cell.productTitle.text = [NSString stringWithFormat:@"%@",[[arrayOfElements objectAtIndex:indexPath.row] valueForKey:@"nameText"]];
-    cell.productCount.text = [NSString stringWithFormat:@"%@", [[array objectAtIndex:indexPath.row] valueForKey:@"count"]];
-    cell.imageView.image = [UIImage imageWithData:[[array objectAtIndex:indexPath.row] valueForKey:@"picture"]];
+//    NSArray *array = [self.db fetchAllProductsIdAndTheirCountWithPriceForEntity:@"Cart"];
+//    NSArray *arrayOfElements = [self.db fetchObjectsFromCoreDataForEntity:@"Descriptions_translation" withArrayObjects:array withDefaultLanguageId:[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
+//    cell.productTitle.text = [NSString stringWithFormat:@"%@",[[arrayOfElements objectAtIndex:indexPath.row] valueForKey:@"nameText"]];
+//    cell.productCount.text = [NSString stringWithFormat:@"%@", [[array objectAtIndex:indexPath.row] valueForKey:@"count"]];
+//    cell.imageView.image = [UIImage imageWithData:[[array objectAtIndex:indexPath.row] valueForKey:@"picture"]];
+//    
+//    NSNumber *numbers = [NSNumber numberWithFloat:([[[array objectAtIndex:indexPath.row] valueForKey:@"count"] intValue]*[[[array objectAtIndex:indexPath.row] valueForKey:@"cost"] floatValue])];
+//    
+//    if (!self.product)
+//    {
+//        self.product = [[ProductDataStruct alloc] init];
+//        self.arrayOfObjects = [[NSMutableArray alloc] init];
+//    }
+//
+//    cell.productPrice.text = [NSString stringWithFormat:@"%@ грн.", numbers];
+//    
+//    [self.product setProductId:[[arrayOfElements objectAtIndex:indexPath.row] valueForKey:@"idProduct"]];
+//    [self.product setTitle:[[arrayOfElements objectAtIndex:indexPath.row] valueForKey:@"nameText"]];
+//    [self.product setDescriptionText:[[arrayOfElements objectAtIndex:indexPath.row] valueForKey:@"descriptionText"]];
+//    [self.product setPrice:[[array objectAtIndex:indexPath.row] valueForKey:@"cost"]];
+//    [self.product setImage:[UIImage imageWithData:[[array objectAtIndex:indexPath.row] valueForKey:@"picture"]]];
+//    [self.product setCount:[[array objectAtIndex:indexPath.row] valueForKey:@"count"]];
+//    
+//    [self.arrayOfObjects addObject:self.product];
     
-    NSNumber *numbers = [NSNumber numberWithFloat:([[[array objectAtIndex:indexPath.row] valueForKey:@"count"] intValue]*[[[array objectAtIndex:indexPath.row] valueForKey:@"cost"] floatValue])];
-    
-    if (!self.product)
-    {
-        self.product = [[ProductDataStruct alloc] init];
-        self.arrayOfObjects = [[NSMutableArray alloc] init];
-    }
-
-    cell.productPrice.text = [NSString stringWithFormat:@"%@ грн.", numbers];
-    
-    [self.product setProductId:[[arrayOfElements objectAtIndex:indexPath.row] valueForKey:@"idProduct"]];
-    [self.product setTitle:[[arrayOfElements objectAtIndex:indexPath.row] valueForKey:@"nameText"]];
-    [self.product setDescriptionText:[[arrayOfElements objectAtIndex:indexPath.row] valueForKey:@"descriptionText"]];
-    [self.product setPrice:[[array objectAtIndex:indexPath.row] valueForKey:@"cost"]];
-    [self.product setImage:[UIImage imageWithData:[[array objectAtIndex:indexPath.row] valueForKey:@"picture"]]];
-    [self.product setCount:[[array objectAtIndex:indexPath.row] valueForKey:@"count"]];
-    
-    [self.arrayOfObjects addObject:self.product];
+    ProductDataStruct *productStruct = [self.arrayOfObjects objectAtIndex:indexPath.row];
+    cell.productTitle.text  = productStruct.title;
+    cell.productCount.text  = [NSString stringWithFormat:@"%@",productStruct.count];
+    cell.imageView.image    = productStruct.image;
+    cell.productPrice.text  = productStruct.price;
     
     return cell;
 }
@@ -526,6 +581,8 @@
     self.selectedRow = [[NSNumber alloc] initWithInt:indexPath.row];
     [self performSegueWithIdentifier:@"toProductDetail" sender:self];
     self.selectedPath = indexPath;
+    self.arrayOfObjects = nil;
+    [self.pickerView reloadAllComponents];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -538,9 +595,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) 
     {
         [self.db deleteObjectFromEntity:@"Cart" atIndexPath:indexPath];
-        //Offers* offers = [[Offers alloc] init];
-        //[offers removeOffer:[offers.offers objectAtIndex:indexPath.row]];
-        //[self.tableView reloadData];
+        [self.arrayOfObjects removeObjectAtIndex:indexPath.row];
         [self.pickerView reloadAllComponents];
     }  
 }
