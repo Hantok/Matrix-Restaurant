@@ -36,7 +36,8 @@
         for (int i = 0; i <array.count; i++)
         {
             ProductDataStruct *productStruct = [[ProductDataStruct alloc] init];
-            [productStruct setProductId:[[arrayOfElements objectAtIndex:i] valueForKey:@"idProduct"]];
+            //[productStruct setProductId:[[arrayOfElements objectAtIndex:i] valueForKey:@"idProduct"]];
+            [productStruct setProductId:[[array objectAtIndex:i] valueForKey:@"underbarid"]];
             [productStruct setDescriptionText:[[arrayOfElements objectAtIndex:i] valueForKey:@"descriptionText"]];
             [productStruct setTitle:[[arrayOfElements objectAtIndex:i] valueForKey:@"nameText"]];
             [productStruct setPrice:[[array objectAtIndex:i] valueForKey:@"cost"]];
@@ -162,7 +163,7 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) 
     {
-        [self.db deleteObjectFromEntity:@"Favorites" atIndexPath:indexPath];
+        [self.db deleteObjectFromEntity:@"Favorites" withProductId:[[self.arrayOfObjects objectAtIndex:indexPath.row] productId]];
         [self.arrayOfObjects removeObjectAtIndex:indexPath.row];
         [self.tableView reloadData];
     }  

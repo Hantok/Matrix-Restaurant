@@ -282,7 +282,6 @@
 			isa = PBXGroup;
 			children = (
 				78BA0E1C156E6A5E005C08D7 /* MenuDataStruct.h */,
-				78BA0E1D156E6A5E005C08D7 /* MenuDataStruct.m */,
 				78BA0E23156E934B005C08D7 /* ProductDataStruct.h */,
 				78BA0E24156E934B005C08D7 /* ProductDataStruct.m */,
 				78005A0815778CCC0099F973 /* RestaurantDataStruct.h */,
@@ -311,6 +310,7 @@
 		F5E93A4D156CFFB3005ED3ED /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				78BA0E1D156E6A5E005C08D7 /* MenuDataStruct.m */,
 				78FB4D01154BF1CD0035236F /* CartCell.h */,
 				78FB4D02154BF1CE0035236F /* CartCell.m */,
 				78FB4D05154BF20D0035236F /* CartCell.xib */,

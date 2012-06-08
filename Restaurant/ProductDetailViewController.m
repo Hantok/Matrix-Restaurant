@@ -97,6 +97,7 @@
 //    }
     
     GettingCoreContent *db = [[GettingCoreContent alloc] init];
+    
     if (self.countForDeleting || self.product.count.intValue == 0)
     {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Do you want to delete item %@", self.product.title] delegate:self cancelButtonTitle:@"YES" otherButtonTitles: @"NO", nil];
@@ -120,7 +121,7 @@
     if (buttonIndex == 0)
     {
         GettingCoreContent *db = [[GettingCoreContent alloc] init];
-        [db deleteObjectFromEntity:@"Cart" atIndexPath:self.selectedPath];
+        [db deleteObjectFromEntity:@"Cart" withProductId:self.product.productId];
         NSLog(@"deleted");
         [self.navigationController popViewControllerAnimated:NO];
     }

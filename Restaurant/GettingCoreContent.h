@@ -36,7 +36,8 @@
 
 - (NSArray *)fetchAllProductsIdAndTheirCountWithPriceForEntity:(NSString *)entityName;
 
-- (void) deleteObjectFromEntity:(NSString *)entityName atIndexPath:(NSIndexPath *)indexPath;
+//- (void) deleteObjectFromEntity:(NSString *)entityName atIndexPath:(NSIndexPath *)indexPath;
+- (void) deleteObjectFromEntity:(NSString *)entityName withProductId:(NSNumber *)underbarid;
 
 - (NSArray *) fetchObjectsFromCoreDataForEntity:(NSString *)entityName withArrayObjects:(NSArray *)underbaridsArray withDefaultLanguageId:(NSString *)languageId;
 

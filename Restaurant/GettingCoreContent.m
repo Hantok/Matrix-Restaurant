@@ -513,7 +513,7 @@
 }
 
 
-- (void) deleteObjectFromEntity:(NSString *)entityName atIndexPath:(NSIndexPath *)indexPath
+- (void) deleteObjectFromEntity:(NSString *)entityName withProductId:(NSNumber *)underbarid
 {    
     NSManagedObjectContext * context = self.managedObjectContext;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -525,8 +525,13 @@
 
     for (int i = 0; i < items.count; i++)
     {
-        if ([[items objectAtIndex:i] isEqual:[items objectAtIndex:indexPath.row]])
-            [context deleteObject:[items objectAtIndex:i]];
+        //if ([[items objectAtIndex:i] isEqual:[items objectAtIndex:indexPath.row]])
+        //    [context deleteObject:[items objectAtIndex:i]];
+        if ([[[items objectAtIndex:i] valueForKey:@"underbarid"] isEqual:underbarid])
+            {
+                [context deleteObject:[items objectAtIndex:i]];
+                break;
+            }
     }
     
     if (![context save:&error]) {
