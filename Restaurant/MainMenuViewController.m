@@ -84,8 +84,15 @@
         NSMutableArray *array = [[NSMutableArray alloc] init];
         MenuDataStruct *dataStruct;
         NSArray *data = nil;
-        if(!self.restarauntId) 
+        if(!self.restarauntId)
+        {
             data = [self.db fetchAllRestaurantsWithDefaultLanguageAndCity];
+            if(data.count == 2)
+            {
+                data = [self.db fetchRootMenuWithDefaultLanguageForRestaurant:self.restarauntId];
+                data = [self.db fetchChildMenuWithDefaultLanguageForParentMenu:[[data objectAtIndex:0] valueForKey:@"underbarid"]];
+            }
+        }
         else 
         {
             if(self.menuId)
@@ -95,6 +102,7 @@
             else
             {
                 data = [self.db fetchRootMenuWithDefaultLanguageForRestaurant:self.restarauntId];
+                data = [self.db fetchChildMenuWithDefaultLanguageForParentMenu:[[data objectAtIndex:0] valueForKey:@"underbarid"]];
             }
         }
         
@@ -219,13 +227,10 @@
     [self performSegueWithIdentifier:@"toSettings" sender:self];
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(void)awakeFromNib
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    [super awakeFromNib];
+    
 }
 
 - (void)viewDidLoad
@@ -277,6 +282,7 @@
 #pragma pickerView Delegate
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
+    self.arrayData = nil;
     return 1;
 }
 
@@ -439,6 +445,7 @@
             else {
                 if(self.isMenuMode)
                 {
+                    self.arrayData = nil;
                     self.selectedRow = selectedRow;
                     [self performSegueWithIdentifier:@"menuList" sender:self];
                 }
