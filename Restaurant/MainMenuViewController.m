@@ -145,7 +145,8 @@
         for (int i = 0; i <array.count; i++)
         {
             ProductDataStruct *productStruct = [[ProductDataStruct alloc] init];
-            [productStruct setProductId:[[arrayOfElements objectAtIndex:i] valueForKey:@"idProduct"]];
+            //[productStruct setProductId:[[arrayOfElements objectAtIndex:i] valueForKey:@"idProduct"]];
+            [productStruct setProductId:[[array objectAtIndex:i] valueForKey:@"underbarid"]];
             [productStruct setTitle:[[arrayOfElements objectAtIndex:i] valueForKey:@"nameText"]];
             [productStruct setDescriptionText:[[arrayOfElements objectAtIndex:i] valueForKey:@"descriptionText"]];
             numbers = [NSNumber numberWithFloat:([[[array objectAtIndex:i] valueForKey:@"count"] intValue]*[[[array objectAtIndex:i] valueForKey:@"cost"] floatValue])];
@@ -581,8 +582,8 @@
     self.selectedRow = [[NSNumber alloc] initWithInt:indexPath.row];
     [self performSegueWithIdentifier:@"toProductDetail" sender:self];
     self.selectedPath = indexPath;
-    self.arrayOfObjects = nil;
-    [self.pickerView reloadAllComponents];
+    //self.arrayOfObjects = nil;
+    //[self.pickerView reloadAllComponents];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -594,9 +595,15 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) 
     {
-        [self.db deleteObjectFromEntity:@"Cart" atIndexPath:indexPath];
-        [self.arrayOfObjects removeObjectAtIndex:indexPath.row];
-        [self.pickerView reloadAllComponents];
+        [self.db deleteObjectFromEntity:@"Cart" withProductId:[[self.arrayOfObjects objectAtIndex:indexPath.row] productId]];
+         self.arrayOfObjects = nil;
+        [self arrayOfObjects];
+        if (!self.arrayOfObjects)
+            [self.arrayOfObjects removeObjectAtIndex:indexPath.row];
+        else {
+            [self.pickerView reloadAllComponents];
+        }
+        [self.tableView reloadData];
     }  
 }
 
