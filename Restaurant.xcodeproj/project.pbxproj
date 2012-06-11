@@ -51,6 +51,9 @@
 		F5072169156BD46900D7ACC6 /* LanguageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5072168156BD46900D7ACC6 /* LanguageCell.m */; };
 		F507216C156BE0D200D7ACC6 /* LanguageAndCityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F507216B156BE0D200D7ACC6 /* LanguageAndCityTableViewController.m */; };
 		F509C65F15824C4F00FC4297 /* hernia.png in Resources */ = {isa = PBXBuildFile; fileRef = F509C65E15824C4F00FC4297 /* hernia.png */; };
+		F511B2FC1586228F00AF4D79 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = F511B2FA1586228F00AF4D79 /* 1.png */; };
+		F511B2FF1586235900AF4D79 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = F511B2FE1586235900AF4D79 /* 2.png */; };
+		F511B30115862E7800AF4D79 /* color1.png in Resources */ = {isa = PBXBuildFile; fileRef = F511B30015862E7800AF4D79 /* color1.png */; };
 		F58BD5AD156E7B8A00D31A09 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58BD5AC156E7B8A00D31A09 /* MessageUI.framework */; };
 		F59344E6157F68690080EDE3 /* 1175675287_4185527geb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F59344E5157F68690080EDE3 /* 1175675287_4185527geb.jpg */; };
 		F59344EB157F77DA0080EDE3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F59344EA157F77DA0080EDE3 /* AudioToolbox.framework */; };
@@ -132,6 +135,9 @@
 		F507216A156BE0D200D7ACC6 /* LanguageAndCityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageAndCityTableViewController.h; sourceTree = "<group>"; };
 		F507216B156BE0D200D7ACC6 /* LanguageAndCityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageAndCityTableViewController.m; sourceTree = "<group>"; };
 		F509C65E15824C4F00FC4297 /* hernia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hernia.png; sourceTree = "<group>"; };
+		F511B2FA1586228F00AF4D79 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		F511B2FE1586235900AF4D79 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		F511B30015862E7800AF4D79 /* color1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color1.png; sourceTree = "<group>"; };
 		F58BD5AC156E7B8A00D31A09 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		F59344E5157F68690080EDE3 /* 1175675287_4185527geb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1175675287_4185527geb.jpg; sourceTree = "<group>"; };
 		F59344EA157F77DA0080EDE3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -225,6 +231,9 @@
 				781B8F1C1546DB870074EDBD /* MainStoryboard_iPad.storyboard */,
 				781B8F271546DBDD0074EDBD /* LoadAppViewController.h */,
 				781B8F281546DBDD0074EDBD /* LoadAppViewController.m */,
+				F511B2FA1586228F00AF4D79 /* 1.png */,
+				F511B2FE1586235900AF4D79 /* 2.png */,
+				F511B30015862E7800AF4D79 /* color1.png */,
 				F509C65E15824C4F00FC4297 /* hernia.png */,
 				F5FA624B1580EB6700FBF70A /* Cart.png */,
 				78864DDB154957EE00D339B7 /* files.iphone.shop.category7.jpg */,
@@ -324,9 +333,9 @@
 				F5072168156BD46900D7ACC6 /* LanguageCell.m */,
 				F5E93A49156CFC6B005ED3ED /* CityCell.h */,
 				F5E93A4A156CFC6B005ED3ED /* CityCell.m */,
-				78EF80B51573B3EA00478EEB /* PickerViewCell.xib */,
 				78D7DB781573B74300D4F6A2 /* PickerViewCell.h */,
 				78D7DB791573B74300D4F6A2 /* PickerViewCell.m */,
+				78EF80B51573B3EA00478EEB /* PickerViewCell.xib */,
 				78005A0B15778F0E0099F973 /* RestaurantCell.h */,
 				78005A0C15778F0E0099F973 /* RestaurantCell.m */,
 				78005A0E15778F240099F973 /* RestaurantCell.xib */,
@@ -400,6 +409,9 @@
 				F59344F7157F8D730080EDE3 /* images.jpeg in Resources */,
 				F5FA624C1580EB6700FBF70A /* Cart.png in Resources */,
 				F509C65F15824C4F00FC4297 /* hernia.png in Resources */,
+				F511B2FC1586228F00AF4D79 /* 1.png in Resources */,
+				F511B2FF1586235900AF4D79 /* 2.png in Resources */,
+				F511B30115862E7800AF4D79 /* color1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

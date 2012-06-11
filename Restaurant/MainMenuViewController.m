@@ -29,6 +29,7 @@
 @property (strong, nonatomic) NSMutableArray *arrayOfObjects;
 @property (strong, nonatomic) NSIndexPath *selectedPath;
 @property (nonatomic) NSInteger numberOfRows;
+@property(nonatomic, copy) NSArray *animationImages;
 
 @end
 
@@ -38,6 +39,7 @@
 @synthesize cartButton = _cartButton;
 @synthesize settingsButton = _settingsButton;
 @synthesize restorantsButton = _restorantsButton;
+@synthesize imageView = _imageView;
 @synthesize arrayData = _arrayData;
 @synthesize selectedRow = _selectedRow;
 @synthesize isCartMode = _isCartMode;
@@ -56,6 +58,7 @@
 @synthesize arrayOfObjects= _arrayOfObjects;
 @synthesize selectedPath = _selectedPath;
 @synthesize numberOfRows = _numberOfRows;
+@synthesize animationImages = _animationImages;
 
 
 - (IBAction)drop:(id)sender {
@@ -184,6 +187,8 @@
     self.isCartMode = NO;
     self.menuButton.enabled = NO;
     self.cartButton.enabled = YES;
+    [self.menuButton setBackgroundColor:[UIColor yellowColor]];
+    [self.cartButton setBackgroundColor:nil];
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
     UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pickerTapped:)];
@@ -196,6 +201,8 @@
     self.isMenuMode = NO;
     self.menuButton.enabled = YES;
     self.cartButton.enabled = NO;
+    [self.cartButton setBackgroundColor:[UIColor yellowColor]];
+    [self.menuButton setBackgroundColor:nil];
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
     [self.pickerView removeGestureRecognizer:[self.pickerView.gestureRecognizers lastObject]];
@@ -215,7 +222,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    self.navigationItem.title = @"Main";
     [self menuButton:self];
 
     if(!self.isCartMode)
@@ -230,6 +238,14 @@
     soundFileURLRef = (__bridge CFURLRef) tapSound;
     
     AudioServicesCreateSystemSoundID (soundFileURLRef, &soundFileObject);
+    
+    NSArray * imageArray  = [[NSArray alloc] initWithObjects:
+                             [UIImage imageNamed:@"1.png"],
+                             [UIImage imageNamed:@"2.png"], nil];
+    self.imageView.animationImages = imageArray;
+    self.imageView.animationDuration = 2.5;
+    self.imageView.contentMode = UIViewContentModeBottomLeft;
+    [self.imageView startAnimating];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -260,6 +276,7 @@
     [self setSettingsButton:nil];
     [self setRestorantsButton:nil];
     [self setDrop:nil];
+    [self setImageView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -514,7 +531,7 @@
 //    NSNumber *cost = [NSNumber numberWithDouble:dataStruct.price.doubleValue];
 //    cell.productPrice.text = [NSString stringWithFormat:@"%i грн.", [cost intValue]*[count intValue]];
     
-    NSString *CellIdentifier = @"CartCell";
+    NSString *CellIdentifier = @"CartCell1";
     CartCell *cell = (CartCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if(!cell)
@@ -566,10 +583,7 @@
 
 //змінюємо висоту cell
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row ==0)
-        return 75.0;
-    else
-        return 61.0;
+    return 61.0;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
