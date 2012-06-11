@@ -165,6 +165,7 @@
             
             [_arrayOfObjects addObject:productStruct];     
         }
+        
         return _arrayOfObjects;
     }
     else if (_arrayOfObjects.count != [self.db fetchAllProductsIdAndTheirCountWithPriceForEntity:@"Cart"].count)
@@ -239,6 +240,8 @@
     [super viewDidLoad];
 
     [self menuButton:self];
+    
+    NSString *udid = [[UIDevice currentDevice] uniqueIdentifier];
 
     if(!self.isCartMode)
     {
