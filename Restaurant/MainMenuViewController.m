@@ -144,7 +144,7 @@
 
 -(NSMutableArray *)arrayOfObjects
 {
-    if (!_arrayOfObjects)
+    if (!_arrayOfObjects || _arrayOfObjects.count != [self.db fetchAllProductsIdAndTheirCountWithPriceForEntity:@"Cart"].count)
     {
         NSArray *array = [self.db fetchAllProductsIdAndTheirCountWithPriceForEntity:@"Cart"];
         NSArray *arrayOfElements = [self.db fetchObjectsFromCoreDataForEntity:@"Descriptions_translation" withArrayObjects:array withDefaultLanguageId:[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
@@ -162,28 +162,6 @@
             [productStruct setImage:[UIImage imageWithData:[[array objectAtIndex:i] valueForKey:@"picture"]]];
             [productStruct setCount:[[array objectAtIndex:i] valueForKey:@"count"]];
 
-            
-            [_arrayOfObjects addObject:productStruct];     
-        }
-        return _arrayOfObjects;
-    }
-    else if (_arrayOfObjects.count != [self.db fetchAllProductsIdAndTheirCountWithPriceForEntity:@"Cart"].count)
-    {
-        NSArray *array = [self.db fetchAllProductsIdAndTheirCountWithPriceForEntity:@"Cart"];
-        NSArray *arrayOfElements = [self.db fetchObjectsFromCoreDataForEntity:@"Descriptions_translation" withArrayObjects:array withDefaultLanguageId:[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
-        NSNumber *numbers;
-        _arrayOfObjects = [[NSMutableArray alloc] init];
-        for (int i = 0; i <array.count; i++)
-        {
-            ProductDataStruct *productStruct = [[ProductDataStruct alloc] init];
-            [productStruct setProductId:[[arrayOfElements objectAtIndex:i] valueForKey:@"idProduct"]];
-            [productStruct setTitle:[[arrayOfElements objectAtIndex:i] valueForKey:@"nameText"]];
-            [productStruct setDescriptionText:[[arrayOfElements objectAtIndex:i] valueForKey:@"descriptionText"]];
-            numbers = [NSNumber numberWithFloat:([[[array objectAtIndex:i] valueForKey:@"count"] intValue]*[[[array objectAtIndex:i] valueForKey:@"cost"] floatValue])];
-            [productStruct setPrice:[NSString stringWithFormat:@"%@",numbers]];
-            [productStruct setImage:[UIImage imageWithData:[[array objectAtIndex:i] valueForKey:@"picture"]]];
-            [productStruct setCount:[[array objectAtIndex:i] valueForKey:@"count"]];
-            
             
             [_arrayOfObjects addObject:productStruct];     
         }
@@ -224,14 +202,14 @@
 
     AudioServicesPlaySystemSound (self.soundFileObject);
 }
-- (IBAction)goToSettingsTableViewController:(id)sender {
+- (IBAction)goToSettingsTableViewController:(id)sender 
+{
     [self performSegueWithIdentifier:@"toSettings" sender:self];
 }
 
 -(void)awakeFromNib
 {
     [super awakeFromNib];
-    
 }
 
 - (void)viewDidLoad
@@ -257,9 +235,16 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
-    
-    //if(self.restarauntId) 
+
+    if(self.isMenuMode)
+    {
         [self.pickerView reloadAllComponents];
+    }
+    else 
+    {
+        self.arrayOfObjects = nil;
+        [[self tableView] reloadData];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
