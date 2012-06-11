@@ -139,6 +139,8 @@
     [fetchRequest setEntity:entity];
     
     NSError *error;
+    if (entityDescription == nil)
+        NSLog(@"NSLOG");
     NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
     
     
@@ -274,7 +276,7 @@
     NSMutableArray *menuIDs = [[context executeFetchRequest:request error:&error] mutableCopy];
     NSLog(@"DasdasdEND!!111");
     NSMutableArray *resultOfARequest = [[NSMutableArray alloc] init];
-    request = [NSFetchRequest fetchRequestWithEntityName:@"Descriptions_translation"];
+    request = [NSFetchRequest fetchRequestWithEntityName:@"Products_translation"];
     request.predicate = [NSPredicate predicateWithFormat:@"idLanguage == %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"idProduct" ascending:YES];
     [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
