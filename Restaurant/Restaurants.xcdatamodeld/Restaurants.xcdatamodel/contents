@@ -30,14 +30,6 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
-    <entity name="Descriptions_translation" syncable="YES">
-        <attribute name="descriptionText" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="idLanguage" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="idProduct" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="nameText" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Products" inverseName="translation" inverseEntity="Products" syncable="YES"/>
-    </entity>
     <entity name="Discounts" syncable="YES">
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
@@ -80,7 +72,15 @@
         <attribute name="idPicture" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <relationship name="translation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Descriptions_translation" inverseName="parent" inverseEntity="Descriptions_translation" syncable="YES"/>
+        <relationship name="translation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Products_translation" inverseName="parent" inverseEntity="Products_translation" syncable="YES"/>
+    </entity>
+    <entity name="Products_translation" syncable="YES">
+        <attribute name="descriptionText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idLanguage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idProduct" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="nameText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Products" inverseName="translation" inverseEntity="Products" syncable="YES"/>
     </entity>
     <entity name="Restaurants" syncable="YES">
         <attribute name="coordinates" optional="YES" attributeType="String" syncable="YES"/>
@@ -118,7 +118,7 @@
         <element name="Currencies" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Deliveries" positionX="160" positionY="192" width="128" height="60"/>
         <element name="Deliveries_translation" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="Descriptions_translation" positionX="-135" positionY="36" width="128" height="135"/>
+        <element name="Products_translation" positionX="-135" positionY="36" width="128" height="135"/>
         <element name="Discounts" positionX="160" positionY="192" width="128" height="75"/>
         <element name="Event" positionX="576" positionY="138" width="128" height="105"/>
         <element name="Favorites" positionX="313" positionY="165" width="128" height="90"/>
