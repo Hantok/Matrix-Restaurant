@@ -45,7 +45,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <pickerView autoresizesSubviews="NO" contentMode="scaleToFill" showsSelectionIndicator="NO" id="xOG-l4-ES5">
-                                <rect key="frame" x="0.0" y="137" width="320" height="216"/>
+                                <rect key="frame" x="0.0" y="176" width="320" height="216"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <connections>
@@ -54,7 +54,7 @@
                                 </connections>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AbR-Mz-AtW">
-                                <rect key="frame" x="105" y="362" width="115" height="40"/>
+                                <rect key="frame" x="105" y="401" width="115" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Restaurants">
@@ -69,7 +69,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="P70-QF-ZWw">
-                                <rect key="frame" x="259" y="361" width="41" height="40"/>
+                                <rect key="frame" x="259" y="400" width="41" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <color key="tintColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -85,7 +85,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="x4R-f4-uLk">
-                                <rect key="frame" x="45" y="89" width="115" height="40"/>
+                                <rect key="frame" x="45" y="128" width="115" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="tintColor" red="0.23964542359999999" green="0.68426277160000004" blue="0.91597316579999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -102,7 +102,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="Vfm-1i-dqn">
-                                <rect key="frame" x="160" y="89" width="115" height="40"/>
+                                <rect key="frame" x="160" y="128" width="115" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" size="button"/>
                                 <color key="tintColor" red="0.23964542359999999" green="0.68426277160000004" blue="0.91597316579999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -119,7 +119,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SgP-j4-BZ7">
-                                <rect key="frame" x="20" y="361" width="22" height="22"/>
+                                <rect key="frame" x="20" y="400" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="drop">
@@ -134,19 +134,13 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="gVF-vp-hsp">
-                                <rect key="frame" x="0.0" y="9" width="320" height="62"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.046455534739999998" green="0.16970383610000001" blue="0.32271144699999998" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="KBv-HE-LPE">
-                        <barButtonItem key="rightBarButtonItem" title="Favorites" id="VdJ-5R-XNt">
-                            <connections>
-                                <segue destination="vn2-XR-gzu" kind="push" identifier="toFavorites" id="K8a-bc-8oB"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="KBv-HE-LPE"/>
                     <connections>
                         <outlet property="cartButton" destination="Vfm-1i-dqn" id="zEo-jd-l37"/>
                         <outlet property="drop" destination="SgP-j4-BZ7" id="Olb-Ux-otE"/>
@@ -788,7 +782,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="K8a-bc-8oB"/>
         <segue reference="uuy-7P-Ssv"/>
         <segue reference="p5O-gN-8X0"/>
     </inferredMetricsTieBreakers>

@@ -274,6 +274,18 @@
     [self.imageView startAnimating];
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [super viewWillAppear:animated];
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [super viewWillDisappear:animated];
+}
+
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
@@ -319,7 +331,7 @@
 {
     if(self.isMenuMode)
     {
-        return self.arrayData.count;
+        return self.arrayData.count + 1;
     }
     else 
     {
@@ -349,33 +361,54 @@
             //[[[[NSUserDefaults standardUserDefaults] objectForKey:@"offers"] objectAtIndex:row] objectForKey:@"id"];
         }
     }
-    else {
-        MenuDataStruct *dataStruct = [self.arrayData objectAtIndex:row];
-        
-        //UIView *viewForRow = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.pickerView.frame.size.width-30, self.pickerView.frame.size.height/5)];
-        //NSLog(@"%f", viewForRow.frame.size.width);
-        //NSLog(@"%f", viewForRow.frame.size.height);
-        //UIImage *imageForUIImageView  = dataStruct.image;
-        //UIImageView *imageViewForViewForRow = [[UIImageView alloc] initWithImage:imageForUIImageView];
-        //UILabel *labelForRow = [[UILabel alloc] initWithFrame:CGRectMake(imageViewForViewForRow.frame.size.width, 5, self.pickerView.frame.size.width-30, pickerView.frame.size.height/5)];
-       //labelForRow.text = dataStruct.title;
-        //[viewForRow addSubview:imageViewForViewForRow];
-        //[viewForRow addSubview:labelForRow];
-        PickerViewCell *viewForRow;
-        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PickerViewCell" owner:nil options:nil];
-        for(id currentObject in topLevelObjects)
+    else 
+    {
+        if (row == 0)
         {
-            if([currentObject isKindOfClass:[PickerViewCell class]])
+            PickerViewCell *viewForRow;
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PickerViewCell" owner:nil options:nil];
+            for(id currentObject in topLevelObjects)
             {
-                viewForRow = (PickerViewCell *)currentObject;
-                break;
+                if([currentObject isKindOfClass:[PickerViewCell class]])
+                {
+                    viewForRow = (PickerViewCell *)currentObject;
+                    break;
+                }
             }
+            
+            viewForRow.menuTitle.text = @"Favorites";
+            viewForRow.menuImage.image = [UIImage imageNamed:@"Heart.png"];
+            
+            return viewForRow;
         }
-        
-        viewForRow.menuImage.image = dataStruct.image;
-        viewForRow.menuTitle.text = dataStruct.title;
-        
-        return viewForRow;
+        else
+        {
+            MenuDataStruct *dataStruct = [self.arrayData objectAtIndex:row-1];
+            
+            //UIView *viewForRow = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.pickerView.frame.size.width-30, self.pickerView.frame.size.height/5)];
+            //NSLog(@"%f", viewForRow.frame.size.width);
+            //NSLog(@"%f", viewForRow.frame.size.height);
+            //UIImage *imageForUIImageView  = dataStruct.image;
+            //UIImageView *imageViewForViewForRow = [[UIImageView alloc] initWithImage:imageForUIImageView];
+            //UILabel *labelForRow = [[UILabel alloc] initWithFrame:CGRectMake(imageViewForViewForRow.frame.size.width, 5, self.pickerView.frame.size.width-30, pickerView.frame.size.height/5)];
+            //labelForRow.text = dataStruct.title;
+            //[viewForRow addSubview:imageViewForViewForRow];
+            //[viewForRow addSubview:labelForRow];
+            PickerViewCell *viewForRow;
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PickerViewCell" owner:nil options:nil];
+            for(id currentObject in topLevelObjects)
+            {
+                if([currentObject isKindOfClass:[PickerViewCell class]])
+                {
+                    viewForRow = (PickerViewCell *)currentObject;
+                    break;
+                }
+            }
+            viewForRow.menuImage.image = dataStruct.image;
+            viewForRow.menuTitle.text = dataStruct.title;
+            
+            return viewForRow;
+        }
     }
 }
 
@@ -456,31 +489,38 @@
 {
     if (userTapped)
     {
-        NSNumber *selectedRow = [[NSNumber alloc] initWithInt:row];
-        //NSLog(@"tapped in %i", row);
-        
-        if(!self.restarauntId)
+        if (row == 0)
         {
-            self.restarauntId = [[self.arrayData objectAtIndex:selectedRow.integerValue] menuId];
+            [self performSegueWithIdentifier:@"toFavorites" sender:nil];
         }
         else 
         {
-            id menuId = [[self.arrayData objectAtIndex:selectedRow.integerValue] menuId];
-            NSArray *hz = [self.db fetchChildMenuWithDefaultLanguageForParentMenu:menuId];
-            if (hz.count)
+            NSNumber *selectedRow = [[NSNumber alloc] initWithInt:row - 1];
+            //NSLog(@"tapped in %i", row);
+            
+            if(!self.restarauntId)
             {
-                self.menuId = menuId;
+                self.restarauntId = [[self.arrayData objectAtIndex:selectedRow.integerValue] menuId];
             }
-            else {
-                if(self.isMenuMode)
+            else 
+            {
+                id menuId = [[self.arrayData objectAtIndex:selectedRow.integerValue] menuId];
+                NSArray *hz = [self.db fetchChildMenuWithDefaultLanguageForParentMenu:menuId];
+                if (hz.count)
                 {
-                    self.arrayData = nil;
-                    self.selectedRow = selectedRow;
-                    [self performSegueWithIdentifier:@"menuList" sender:self];
+                    self.menuId = menuId;
+                }
+                else {
+                    if(self.isMenuMode)
+                    {
+                        self.arrayData = nil;
+                        self.selectedRow = selectedRow;
+                        [self performSegueWithIdentifier:@"menuList" sender:self];
+                    }
                 }
             }
-        }
             NSLog(@"ups");
+        }
     }
     else 
     {
