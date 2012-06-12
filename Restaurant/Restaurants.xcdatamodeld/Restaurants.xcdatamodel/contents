@@ -7,7 +7,9 @@
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="Cities" syncable="YES">
+        <attribute name="action" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="Cities_translation" syncable="YES">
         <attribute name="idCity" optional="YES" attributeType="String" syncable="YES"/>
@@ -16,12 +18,16 @@
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="Currencies" syncable="YES">
+        <attribute name="action" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="coef" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="currency" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <entity name="Deliveries" syncable="YES">
+        <attribute name="action" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="Deliveries_translation" syncable="YES">
         <attribute name="descriptionAbout" optional="YES" attributeType="String" syncable="YES"/>
@@ -46,14 +52,18 @@
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="Languages" syncable="YES">
+        <attribute name="action" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="language" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="Menus" syncable="YES">
+        <attribute name="action" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="idParentMenu" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="idPicture" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="idRestaurant" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <entity name="Menus_translation" syncable="YES">
         <attribute name="idLanguage" optional="YES" attributeType="String" syncable="YES"/>
@@ -67,11 +77,13 @@
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="Products" syncable="YES">
+        <attribute name="action" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="idDiscount" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="idMenu" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="idPicture" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
         <relationship name="translation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Products_translation" inverseName="parent" inverseEntity="Products_translation" syncable="YES"/>
     </entity>
     <entity name="Products_translation" syncable="YES">
@@ -83,11 +95,13 @@
         <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Products" inverseName="translation" inverseEntity="Products" syncable="YES"/>
     </entity>
     <entity name="Restaurants" syncable="YES">
+        <attribute name="action" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="coordinates" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="idCity" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="idPicture" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="phones" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <entity name="Restaurants_translation" syncable="YES">
         <attribute name="additionalAddressInfo" optional="YES" attributeType="String" syncable="YES"/>
@@ -102,8 +116,10 @@
         <attribute name="workingTime" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Statuses" syncable="YES">
+        <attribute name="action" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="Statuses_translation" syncable="YES">
         <attribute name="idLanguage" optional="YES" attributeType="String" syncable="YES"/>
@@ -116,9 +132,8 @@
         <element name="Cities" positionX="160" positionY="192" width="128" height="60"/>
         <element name="Cities_translation" positionX="160" positionY="192" width="128" height="105"/>
         <element name="Currencies" positionX="160" positionY="192" width="128" height="90"/>
-        <element name="Deliveries" positionX="160" positionY="192" width="128" height="60"/>
+        <element name="Deliveries" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Deliveries_translation" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="Products_translation" positionX="-135" positionY="36" width="128" height="135"/>
         <element name="Discounts" positionX="160" positionY="192" width="128" height="75"/>
         <element name="Event" positionX="576" positionY="138" width="128" height="105"/>
         <element name="Favorites" positionX="313" positionY="165" width="128" height="90"/>
@@ -127,9 +142,10 @@
         <element name="Menus_translation" positionX="160" positionY="192" width="128" height="105"/>
         <element name="Pictures" positionX="-135" positionY="-72" width="128" height="90"/>
         <element name="Products" positionX="99" positionY="-27" width="171" height="135"/>
+        <element name="Products_translation" positionX="-135" positionY="36" width="128" height="135"/>
         <element name="Restaurants" positionX="-333" positionY="-72" width="128" height="120"/>
         <element name="Restaurants_translation" positionX="-135" positionY="210" width="128" height="195"/>
-        <element name="Statuses" positionX="-333" positionY="63" width="128" height="75"/>
+        <element name="Statuses" positionX="-333" positionY="63" width="128" height="105"/>
         <element name="Statuses_translation" positionX="-342" positionY="162" width="128" height="105"/>
     </elements>
 </model>

@@ -56,7 +56,7 @@
     
     if(checkConnection.hasConnectivity)
     {
-        NSURL* rssURL = [NSURL URLWithString:@"http://matrix-soft.org/addon_domains_folder/test4/root/System_files/XML/matrixso_test4/DBStructure.xml"];//@"http://matrix-soft.org/addon_domains_folder/test3/System_files/XML/matrixso_test3/DBStructure.xml"];
+        NSURL* rssURL = [NSURL URLWithString:@"http://matrix-soft.org/addon_domains_folder/test5/root/System_files/XML/matrixso_test5/DBStructure.xml"];
     // создаем парсер при помощи URL, назначаем делегат и запускаем
         NSLog(@"Download is begin");
         XMLParse* parser = [[XMLParse alloc] initWithContentsOfURL:rssURL];

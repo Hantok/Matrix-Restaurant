@@ -187,8 +187,6 @@
     self.isCartMode = NO;
     self.menuButton.enabled = NO;
     self.cartButton.enabled = YES;
-    //[self.menuButton setBackgroundColor:[UIColor yellowColor]];
-    //[self.cartButton setBackgroundColor:nil];
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
     UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pickerTapped:)];
@@ -201,8 +199,6 @@
     self.isMenuMode = NO;
     self.menuButton.enabled = YES;
     self.cartButton.enabled = NO;
-    //[self.cartButton setBackgroundColor:[UIColor yellowColor]];
-    //[self.menuButton setBackgroundColor:nil];
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
     [self.pickerView removeGestureRecognizer:[self.pickerView.gestureRecognizers lastObject]];
@@ -496,7 +492,8 @@
 {
     if(self.isCartMode)
         return self.pickerView.frame.size.height;
-    else return self.pickerView.frame.size.height/4;
+    else 
+        return self.pickerView.frame.size.height/4;
 }
 
 #pragma segue Delegate
