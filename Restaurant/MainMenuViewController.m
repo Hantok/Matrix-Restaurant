@@ -187,8 +187,8 @@
     self.isCartMode = NO;
     self.menuButton.enabled = NO;
     self.cartButton.enabled = YES;
-    [self.menuButton setBackgroundColor:[UIColor yellowColor]];
-    [self.cartButton setBackgroundColor:nil];
+    //[self.menuButton setBackgroundColor:[UIColor yellowColor]];
+    //[self.cartButton setBackgroundColor:nil];
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
     UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pickerTapped:)];
@@ -201,8 +201,8 @@
     self.isMenuMode = NO;
     self.menuButton.enabled = YES;
     self.cartButton.enabled = NO;
-    [self.cartButton setBackgroundColor:[UIColor yellowColor]];
-    [self.menuButton setBackgroundColor:nil];
+    //[self.cartButton setBackgroundColor:[UIColor yellowColor]];
+    //[self.menuButton setBackgroundColor:nil];
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
     [self.pickerView removeGestureRecognizer:[self.pickerView.gestureRecognizers lastObject]];
@@ -222,6 +222,36 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    [self.menuButton setBackgroundImage:[UIImage imageNamed:@"Button_1.png"] forState:UIControlStateNormal];
+    [self.cartButton setBackgroundImage:[UIImage imageNamed:@"Button_9.png"] forState:UIControlStateNormal];
+    [self.restorantsButton setBackgroundImage:[UIImage imageNamed:@"gray button.png"] forState:UIControlStateNormal];
+    [self.settingsButton setBackgroundImage:[UIImage imageNamed:@"blank-gray-button-md.png"] forState:UIControlStateNormal];
+    
+    CALayer *layerMenu = self.menuButton.layer;
+    [layerMenu setCornerRadius:8.0f];
+    //layerMenu.masksToBounds = YES;
+    [layerMenu setBorderWidth:1.0f];
+    
+     
+    CALayer *layerCart = self.cartButton.layer;
+    layerCart.cornerRadius = 8.0f;
+    //layerCart.masksToBounds = YES;
+    layerCart.borderWidth = 1.0f;
+    //layer.borderColor = [UIColor colorWithWhite:0.4f alpha:0.2f].CGColor;
+    
+    CALayer *layerRest = self.restorantsButton.layer;
+    layerRest.cornerRadius = 8.0f;
+    //layerRest.masksToBounds = YES;
+    layerRest.borderWidth = 5.0f;
+    [layerRest setBorderColor:[UIColor grayColor].CGColor];
+    
+    CALayer *layerSett = self.settingsButton.layer;
+    layerSett.cornerRadius = 9.0f;
+    //layerSett.masksToBounds = YES;
+    layerSett.borderWidth = 1.0f;
+    [layerSett setBorderColor:[UIColor grayColor].CGColor];
+    [layerSett setBackgroundColor:[UIColor grayColor].CGColor];
     
     self.navigationItem.title = @"Main";
     [self menuButton:self];
