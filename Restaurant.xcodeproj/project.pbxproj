@@ -59,11 +59,6 @@
 		F59344EB157F77DA0080EDE3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F59344EA157F77DA0080EDE3 /* AudioToolbox.framework */; };
 		F59344F7157F8D730080EDE3 /* images.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F59344F6157F8D730080EDE3 /* images.jpeg */; };
 		F599586F158754100000469F /* Button_9.png in Resources */ = {isa = PBXBuildFile; fileRef = F599586E158754100000469F /* Button_9.png */; };
-		F5995871158755830000469F /* Button_15.png in Resources */ = {isa = PBXBuildFile; fileRef = F5995870158755830000469F /* Button_15.png */; };
-		F5995874158757270000469F /* Button_1.png in Resources */ = {isa = PBXBuildFile; fileRef = F5995872158757270000469F /* Button_1.png */; };
-		F5995875158757270000469F /* Button_14.png in Resources */ = {isa = PBXBuildFile; fileRef = F5995873158757270000469F /* Button_14.png */; };
-		F5995877158759740000469F /* Button_13.png in Resources */ = {isa = PBXBuildFile; fileRef = F5995876158759740000469F /* Button_13.png */; };
-		F5995879158759E90000469F /* Button_7.png in Resources */ = {isa = PBXBuildFile; fileRef = F5995878158759E90000469F /* Button_7.png */; };
 		F599587B15875B6E0000469F /* Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = F599587A15875B6E0000469F /* Settings.png */; };
 		F599588115875CCF0000469F /* Settings1.png in Resources */ = {isa = PBXBuildFile; fileRef = F599588015875CCF0000469F /* Settings1.png */; };
 		F599588315875D400000469F /* gray button.png in Resources */ = {isa = PBXBuildFile; fileRef = F599588215875D400000469F /* gray button.png */; };
@@ -153,11 +148,6 @@
 		F59344EA157F77DA0080EDE3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		F59344F6157F8D730080EDE3 /* images.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = images.jpeg; sourceTree = "<group>"; };
 		F599586E158754100000469F /* Button_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_9.png; sourceTree = "<group>"; };
-		F5995870158755830000469F /* Button_15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_15.png; sourceTree = "<group>"; };
-		F5995872158757270000469F /* Button_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_1.png; sourceTree = "<group>"; };
-		F5995873158757270000469F /* Button_14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_14.png; sourceTree = "<group>"; };
-		F5995876158759740000469F /* Button_13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_13.png; sourceTree = "<group>"; };
-		F5995878158759E90000469F /* Button_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_7.png; sourceTree = "<group>"; };
 		F599587A15875B6E0000469F /* Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Settings.png; sourceTree = "<group>"; };
 		F599588015875CCF0000469F /* Settings1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Settings1.png; sourceTree = "<group>"; };
 		F599588215875D400000469F /* gray button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gray button.png"; sourceTree = "<group>"; };
@@ -255,12 +245,7 @@
 				F599588215875D400000469F /* gray button.png */,
 				F599588015875CCF0000469F /* Settings1.png */,
 				F599587A15875B6E0000469F /* Settings.png */,
-				F5995870158755830000469F /* Button_15.png */,
 				F599586E158754100000469F /* Button_9.png */,
-				F5995872158757270000469F /* Button_1.png */,
-				F5995873158757270000469F /* Button_14.png */,
-				F5995876158759740000469F /* Button_13.png */,
-				F5995878158759E90000469F /* Button_7.png */,
 				F511B2FA1586228F00AF4D79 /* 1.png */,
 				F511B2FE1586235900AF4D79 /* 2.png */,
 				F511B30015862E7800AF4D79 /* color1.png */,
@@ -443,11 +428,6 @@
 				F511B2FF1586235900AF4D79 /* 2.png in Resources */,
 				F511B30115862E7800AF4D79 /* color1.png in Resources */,
 				F599586F158754100000469F /* Button_9.png in Resources */,
-				F5995871158755830000469F /* Button_15.png in Resources */,
-				F5995874158757270000469F /* Button_1.png in Resources */,
-				F5995875158757270000469F /* Button_14.png in Resources */,
-				F5995877158759740000469F /* Button_13.png in Resources */,
-				F5995879158759E90000469F /* Button_7.png in Resources */,
 				F599587B15875B6E0000469F /* Settings.png in Resources */,
 				F599588115875CCF0000469F /* Settings1.png in Resources */,
 				F599588315875D400000469F /* gray button.png in Resources */,
