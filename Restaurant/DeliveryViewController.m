@@ -11,7 +11,7 @@
 @interface DeliveryViewController ()
 
 @property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer;
-
+@property (strong, nonatomic) UITextField *textFieldForFeils;
 @end
 
 @implementation DeliveryViewController
@@ -27,6 +27,7 @@
 @synthesize otherInformation;
 
 @synthesize tapRecognizer = _tapRecognizer;
+@synthesize textFieldForFeils = _textFieldForFeils;
 
 - (void)viewDidLoad
 {
@@ -54,6 +55,12 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    if (self.textFieldForFeils)
+    {
+        [self.textFieldForFeils becomeFirstResponder];
+        self.textFieldForFeils = nil;
+    }
+    
     if (textField == self.appartaments || textField == self.build || textField == self.street 
         || textField == self.otherInformation)
     {
@@ -71,9 +78,10 @@
         if (![[NSScanner scannerWithString:textField.text] scanInteger:nil])
         {
             [textField becomeFirstResponder];
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Enter please just numbers" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Enter please just numbers!" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alertView show];
             textField.text = nil;
+            self.textFieldForFeils = textField;
         }
     }
 }
