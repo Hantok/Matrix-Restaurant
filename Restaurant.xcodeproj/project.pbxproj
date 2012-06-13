@@ -65,6 +65,7 @@
 		F5995887158762B80000469F /* blank-gray-button-md.png in Resources */ = {isa = PBXBuildFile; fileRef = F5995886158762B80000469F /* blank-gray-button-md.png */; };
 		F5E93A4B156CFC6B005ED3ED /* CityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E93A4A156CFC6B005ED3ED /* CityCell.m */; };
 		F5E93A57156D1CDB005ED3ED /* SocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E93A56156D1CDB005ED3ED /* SocialViewController.m */; };
+		F5F0215A1588C017009EB482 /* DeliveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F021591588C017009EB482 /* DeliveryViewController.m */; };
 		F5F2DD8A15879B8E00E3C6A2 /* Heart.png in Resources */ = {isa = PBXBuildFile; fileRef = F5F2DD8915879B8E00E3C6A2 /* Heart.png */; };
 		F5FA62481580D39700FBF70A /* FavoritesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5FA62471580D39700FBF70A /* FavoritesTableViewController.m */; };
 		F5FA624C1580EB6700FBF70A /* Cart.png in Resources */ = {isa = PBXBuildFile; fileRef = F5FA624B1580EB6700FBF70A /* Cart.png */; };
@@ -157,6 +158,8 @@
 		F5E93A4A156CFC6B005ED3ED /* CityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityCell.m; sourceTree = "<group>"; };
 		F5E93A55156D1CDB005ED3ED /* SocialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SocialViewController.h; path = ../SocialViewController.h; sourceTree = "<group>"; };
 		F5E93A56156D1CDB005ED3ED /* SocialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SocialViewController.m; path = ../SocialViewController.m; sourceTree = "<group>"; };
+		F5F021581588C017009EB482 /* DeliveryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeliveryViewController.h; sourceTree = "<group>"; };
+		F5F021591588C017009EB482 /* DeliveryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeliveryViewController.m; sourceTree = "<group>"; };
 		F5F2DD8915879B8E00E3C6A2 /* Heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Heart.png; sourceTree = "<group>"; };
 		F5FA62461580D39700FBF70A /* FavoritesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesTableViewController.h; sourceTree = "<group>"; };
 		F5FA62471580D39700FBF70A /* FavoritesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesTableViewController.m; sourceTree = "<group>"; };
@@ -297,6 +300,8 @@
 				781B8F2B1546DD590074EDBD /* MainMenuViewController.m */,
 				F5FA62461580D39700FBF70A /* FavoritesTableViewController.h */,
 				F5FA62471580D39700FBF70A /* FavoritesTableViewController.m */,
+				F5F021581588C017009EB482 /* DeliveryViewController.h */,
+				F5F021591588C017009EB482 /* DeliveryViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -474,6 +479,7 @@
 				7851AC89157E45F10027BDDF /* RestaurantDetailViewController.m in Sources */,
 				7851AC8C157E52020027BDDF /* MapViewController.m in Sources */,
 				F5FA62481580D39700FBF70A /* FavoritesTableViewController.m in Sources */,
+				F5F0215A1588C017009EB482 /* DeliveryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

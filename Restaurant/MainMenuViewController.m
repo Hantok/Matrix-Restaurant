@@ -191,6 +191,9 @@
     self.pickerView.dataSource = self;
     UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pickerTapped:)];
     [self.pickerView addGestureRecognizer:tapgesture];
+    self.restorantsButton.titleLabel.text = @"Restaurants";
+    
+    [self.settingsButton setHidden:NO];
     
     AudioServicesPlayAlertSound(soundFileObject);
 }
@@ -204,6 +207,10 @@
     [self.pickerView removeGestureRecognizer:[self.pickerView.gestureRecognizers lastObject]];
 
     AudioServicesPlaySystemSound (self.soundFileObject);
+    
+    self.restorantsButton.titleLabel.text = @"Order";
+    
+    [self.settingsButton setHidden:YES];
 }
 - (IBAction)goToSettingsTableViewController:(id)sender 
 {
@@ -220,8 +227,12 @@
     [super viewDidLoad];
 
     [self.menuButton setBackgroundImage:[UIImage imageNamed:@"Button_1.png"] forState:UIControlStateNormal];
+    
     [self.cartButton setBackgroundImage:[UIImage imageNamed:@"Button_9.png"] forState:UIControlStateNormal];
+    
     [self.restorantsButton setBackgroundImage:[UIImage imageNamed:@"gray button.png"] forState:UIControlStateNormal];
+    self.restorantsButton.titleLabel.textAlignment = UITextAlignmentCenter;
+    
     [self.settingsButton setBackgroundImage:[UIImage imageNamed:@"blank-gray-button-md.png"] forState:UIControlStateNormal];
     
     CALayer *layerMenu = self.menuButton.layer;
@@ -293,11 +304,13 @@
     if(self.isMenuMode)
     {
         [self.pickerView reloadAllComponents];
+        self.restorantsButton.titleLabel.text = @"Restaurants";
     }
     else 
     {
         self.arrayOfObjects = nil;
         [[self tableView] reloadData];
+            self.restorantsButton.titleLabel.text = @"Order";
     }
 }
 
@@ -557,6 +570,7 @@
         [[segue destinationViewController] setLabelOfAddingButtonWithString:@"Изменить" withIndexPathInDB:self.selectedPath];
     }
     self.arrayOfObjects = nil;
+    
 }
 
 
@@ -682,5 +696,37 @@
         [self.tableView reloadData];
     }  
 }
+
+- (IBAction)OrderButton:(id)sender 
+{
+    if (self.isCartMode)
+    {
+        UIActionSheet* actionSheet = [[UIActionSheet alloc] init];
+        [actionSheet setTitle:@"Choose method to get order:"];
+        [actionSheet setDelegate:(id)self];
+        [actionSheet addButtonWithTitle:@"Delivery"];
+        [actionSheet addButtonWithTitle:@"Pick up"];
+        [actionSheet showInView:self.view];
+
+    }
+    else 
+    {
+        [self performSegueWithIdentifier:@"toRestaurantList" sender:nil];
+    }
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        [self performSegueWithIdentifier:@"toDelivery" sender:nil];
+    }
+    
+    else 
+    {
+    
+    }
+}
+
 
 @end
