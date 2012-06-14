@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DeliveryViewController : UIViewController <UITextFieldDelegate, UIScrollViewDelegate>
+@interface DeliveryViewController : UIViewController <UITextFieldDelegate, NSURLConnectionDelegate>
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UITextField *addressName;
 @property (strong, nonatomic) IBOutlet UITextField *customerName;

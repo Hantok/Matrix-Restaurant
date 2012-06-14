@@ -54,6 +54,7 @@
 		F511B2FC1586228F00AF4D79 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = F511B2FA1586228F00AF4D79 /* 1.png */; };
 		F511B2FF1586235900AF4D79 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = F511B2FE1586235900AF4D79 /* 2.png */; };
 		F511B30115862E7800AF4D79 /* color1.png in Resources */ = {isa = PBXBuildFile; fileRef = F511B30015862E7800AF4D79 /* color1.png */; };
+		F580BDB5158A0EDE00E68F67 /* logo.gif in Resources */ = {isa = PBXBuildFile; fileRef = F580BDB4158A0EDE00E68F67 /* logo.gif */; };
 		F58BD5AD156E7B8A00D31A09 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58BD5AC156E7B8A00D31A09 /* MessageUI.framework */; };
 		F59344E6157F68690080EDE3 /* 1175675287_4185527geb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F59344E5157F68690080EDE3 /* 1175675287_4185527geb.jpg */; };
 		F59344EB157F77DA0080EDE3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F59344EA157F77DA0080EDE3 /* AudioToolbox.framework */; };
@@ -145,6 +146,7 @@
 		F511B2FA1586228F00AF4D79 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		F511B2FE1586235900AF4D79 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		F511B30015862E7800AF4D79 /* color1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color1.png; sourceTree = "<group>"; };
+		F580BDB4158A0EDE00E68F67 /* logo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = logo.gif; sourceTree = "<group>"; };
 		F58BD5AC156E7B8A00D31A09 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		F59344E5157F68690080EDE3 /* 1175675287_4185527geb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1175675287_4185527geb.jpg; sourceTree = "<group>"; };
 		F59344EA157F77DA0080EDE3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -245,6 +247,7 @@
 				781B8F2B1546DD590074EDBD /* MainMenuViewController.m */,
 				781B8F1C1546DB870074EDBD /* MainStoryboard_iPad.storyboard */,
 				781B8F271546DBDD0074EDBD /* LoadAppViewController.h */,
+				F580BDB4158A0EDE00E68F67 /* logo.gif */,
 				781B8F281546DBDD0074EDBD /* LoadAppViewController.m */,
 				F5995886158762B80000469F /* blank-gray-button-md.png */,
 				F599588215875D400000469F /* gray button.png */,
@@ -441,6 +444,7 @@
 				F599588315875D400000469F /* gray button.png in Resources */,
 				F5995887158762B80000469F /* blank-gray-button-md.png in Resources */,
 				F5F2DD8A15879B8E00E3C6A2 /* Heart.png in Resources */,
+				F580BDB5158A0EDE00E68F67 /* logo.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

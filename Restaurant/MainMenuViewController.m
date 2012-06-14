@@ -277,10 +277,10 @@
     AudioServicesCreateSystemSoundID (soundFileURLRef, &soundFileObject);
     
     NSArray * imageArray  = [[NSArray alloc] initWithObjects:
-                             [UIImage imageNamed:@"1.png"],
-                             [UIImage imageNamed:@"2.png"], nil];
+                             [UIImage imageNamed:@"logo.gif"],
+                             [UIImage imageNamed:@"1.png"], nil];
     self.imageView.animationImages = imageArray;
-    self.imageView.animationDuration = 2.5;
+    self.imageView.animationDuration = 4.0;
     self.imageView.contentMode = UIViewContentModeBottomLeft;
     [self.imageView startAnimating];
 }

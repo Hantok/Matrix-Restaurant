@@ -7,11 +7,14 @@
 //
 
 #import "DeliveryViewController.h"
+#import "GettingCoreContent.h"
 
 @interface DeliveryViewController ()
 
 @property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer;
 @property (strong, nonatomic) UITextField *textFieldForFeils;
+@property (strong, nonatomic) NSMutableData *responseData;
+
 @end
 
 @implementation DeliveryViewController
@@ -28,6 +31,7 @@
 
 @synthesize tapRecognizer = _tapRecognizer;
 @synthesize textFieldForFeils = _textFieldForFeils;
+@synthesize responseData = _responseData;
 
 - (void)viewDidLoad
 {
@@ -77,10 +81,10 @@
     {
         if (![[NSScanner scannerWithString:textField.text] scanInteger:nil])
         {
-            [textField becomeFirstResponder];
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Enter please just numbers!" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alertView show];
             textField.text = nil;
+            [textField becomeFirstResponder];
             self.textFieldForFeils = textField;
         }
     }
@@ -129,9 +133,83 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (IBAction)toOrder:(id)sender {
+//send info to the server
+- (IBAction)toOrder:(id)sender 
+{
+//    NSString *orderStringUrl = [@"http://matrix-soft.org/addon_domains_folder/test5/root/Customer_Scripts/makeOrder.php?tag=" stringByAppendingString: @"order"];
+//    orderStringUrl = [orderStringUrl stringByAppendingString: @"&DBid=10&UUID=fdsampled-roma-roma-roma-69416d19df4e&ProdIDs=9;11&counts=30;5&city=Kyiv&street=qweqw&house=1&room_office=232&custName=eqweqwewqewe&phone=+380(099)9999999&idDelivery=1"];
+    
+    NSMutableString *order = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test5/root/Customer_Scripts/makeOrder.php?tag=order&DBid=10&UUID="];
+    [order appendString: @"oursample-roma-roma-roma-iPhone19df4e"];
+    
+    NSArray *cartArray = [[[GettingCoreContent alloc] init] fetchAllProductsIdAndTheirCountWithPriceForEntity:@"Cart"];
+    NSMutableString *ids = [[NSMutableString alloc] init];
+    NSMutableString *counts = [[NSMutableString alloc] init];
+    for (int i = 0; i < cartArray.count; i++)
+    {
+        [ids appendString:[NSString stringWithFormat:@"%@;",[[cartArray objectAtIndex:i] valueForKey:@"underbarid"]]];
+        [counts appendString:[NSString stringWithFormat:@"%@;",[[cartArray objectAtIndex:i] valueForKey:@"count"]]];
+    }
+    [ids setString:[ids substringToIndex:(ids.length - 1)]];
+    [counts setString:[counts substringToIndex:(counts.length - 1)]];
+    
+    [order appendFormat:@"&ProdIDs=%@&counts=%@&city=%@&street=%@&house=%@&room_office=%@&custName=%@&phone=%@&idDelivery=1",ids,counts,self.CityName.text,self.street.text,self.build.text,self.appartaments.text,self.customerName.text,self.phone.text];
+    
+    NSURL *url = [NSURL URLWithString:order.copy];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+    [request setHTTPMethod:@"GET"];
+    NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    if (theConnection) {
+        // Create the NSMutableData to hold the received data.
+        // receivedData is an instance variable declared elsewhere.
+        //NSData *receivedData = [NSMutableData data];
+        //NSLog(@"receive data - %@", self.responseData);
+    } else 
+    {
+        // Inform the user that the connection failed.
+        UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"NSURLConnection" 
+                                                                     message:@"Not success"  
+                                                                    delegate:self
+                                                           cancelButtonTitle:@"Ok"
+                                                           otherButtonTitles:nil];
+		[connectFailMessage show];
+    }
 }
 
-- (IBAction)saveAddress:(id)sender {
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    self.responseData = [[NSMutableData alloc] init];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    [self.responseData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    NSLog(@"Unable to fetch data");
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection 
+{
+    NSLog(@"Succeeded! Received %d bytes of data",[self.responseData
+                                                   length]);
+    NSString *txt = [[NSString alloc] initWithData:self.responseData encoding: NSASCIIStringEncoding];
+    NSLog(@"strinng is - %@",txt);
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Thank you for order!" 
+                                                                 message:@"Our operator will call you for a while."  
+                                                                delegate:self
+                                                       cancelButtonTitle:@"Ok"
+                                                       otherButtonTitles:nil];
+    [message show];
+    //[self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)saveAddress:(id)sender 
+{
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Sorry!" 
+                                                      message:@"Not working now."  
+                                                     delegate:self
+                                            cancelButtonTitle:@"Ok"
+                                            otherButtonTitles:nil];
+    [message show];
 }
 @end
