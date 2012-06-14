@@ -159,12 +159,7 @@
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
     [request setHTTPMethod:@"GET"];
     NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    if (theConnection) {
-        // Create the NSMutableData to hold the received data.
-        // receivedData is an instance variable declared elsewhere.
-        //NSData *receivedData = [NSMutableData data];
-        //NSLog(@"receive data - %@", self.responseData);
-    } else 
+    if (!theConnection)
     {
         // Inform the user that the connection failed.
         UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"NSURLConnection" 
