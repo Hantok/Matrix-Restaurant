@@ -551,4 +551,37 @@
         NSLog(@"Error deleting %@ - error:%@", entityName, error);
     }
 }
+
+- (NSArray *) fetchAllIdsInEntity:(NSString *)entityName
+{
+    NSManagedObjectContext *context = self.managedObjectContext;
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:context]];
+    
+    NSError *error;
+    NSArray *items= [context executeFetchRequest:request error:&error];
+    NSMutableArray *outputArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i<items.count; i++)
+    {
+        [outputArray addObject:[[items objectAtIndex:i] valueForKey:@"underbarid"]];
+    }
+    return outputArray.copy;
+}
+
+- (NSNumber *) fetchMaximumVersionOfEntity:(NSString *)entityName
+{
+    NSManagedObjectContext *context = self.managedObjectContext;
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:context]];
+    
+    NSError *error;
+    NSArray *items= [context executeFetchRequest:request error:&error];
+    NSNumber *maxVersion = [[items objectAtIndex:0] valueForKey:@"version"];
+    for (int i = 0; i<items.count; i++)
+    {
+        if ([[[items objectAtIndex:i] valueForKey:@"version"] intValue] > maxVersion.intValue)
+            maxVersion = [[items objectAtIndex:i] valueForKey:@"version"];
+    }
+    return maxVersion;
+}
 @end

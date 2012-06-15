@@ -200,7 +200,16 @@
 {
     [super viewDidAppear:YES];
     if (!self.isFirstTime)
+    {
+        //тут трeба дописати http request updatePHP with &tag=update
+        
+        //GettingCoreContent *content = [[GettingCoreContent alloc] init];
+        //NSArray *arrayOfCityIds = [content fetchAllIdsInEntity:@"Cities"];
+        //NSNumber *maxVersion = [content fetchMaximumVersionOfEntity:@"Cities"];
+        
+        
         [self performSegueWithIdentifier:@"toMain" sender:self];
+    }
 }
      
 - (void)viewDidUnload
