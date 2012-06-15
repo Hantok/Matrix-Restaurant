@@ -13,6 +13,10 @@
 
 @interface LoadAppViewController ()
 
+@property (strong, nonatomic) NSMutableData *responseData;
+@property BOOL isHappyEnd;
+@property BOOL isFirstTime;
+
 @end
 
 @implementation LoadAppViewController
@@ -21,8 +25,10 @@
 @synthesize activityIndicator = _activityIndicator;
 @synthesize city = _city;
 @synthesize db = _db;
+@synthesize isHappyEnd = _isHappyEnd;
+@synthesize isFirstTime = _isFirstTime;
 
-
+@synthesize responseData = _responseData;
 
 - (void)DropCoreData
 {
@@ -49,29 +55,74 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    [self.activityIndicator startAnimating];
-    
-    
-    if(checkConnection.hasConnectivity)
+//    [super viewDidLoad];
+//	// Do any additional setup after loading the view.
+//    [self.activityIndicator startAnimating];
+//    
+//    
+//    if(checkConnection.hasConnectivity)
+//    {
+//        NSURL* rssURL = [NSURL URLWithString:@"http://matrix-soft.org/addon_domains_folder/test5/root/System_files/XML/matrixso_test5/DBStructure.xml"];
+//    // создаем парсер при помощи URL, назначаем делегат и запускаем
+//        NSLog(@"Download is begin");
+//        XMLParse* parser = [[XMLParse alloc] initWithContentsOfURL:rssURL];
+//        [parser setDelegate:parser];
+//        [parser parse];
+//        self.db = parser;
+//    }
+//    
+    if(![[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"] && checkConnection.hasConnectivity)
     {
-        NSURL* rssURL = [NSURL URLWithString:@"http://matrix-soft.org/addon_domains_folder/test5/root/System_files/XML/matrixso_test5/DBStructure.xml"];
-    // создаем парсер при помощи URL, назначаем делегат и запускаем
-        NSLog(@"Download is begin");
-        XMLParse* parser = [[XMLParse alloc] initWithContentsOfURL:rssURL];
-        [parser setDelegate:parser];
-        [parser parse];
-        self.db = parser;
+        self.isFirstTime = YES;
+        NSString *order = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test5/root/Customer_Scripts/update.php?DBid=10&tag=init"];
+        NSURL *url = [NSURL URLWithString:order];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+        [request setHTTPMethod:@"GET"];
+        NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        if (!theConnection)
+        {
+            // Inform the user that the connection failed.
+            UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"NSURLConnection" 
+                                                                         message:@"Not success"  
+                                                                        delegate:self
+                                                               cancelButtonTitle:@"Ok"
+                                                               otherButtonTitles:nil];
+            [connectFailMessage show];
+        }
+
     }
     
     NSLog(@"I'm in viewDidLoad");
 }
 
-- (void)viewDidAppear:(BOOL)animated
+#pragma connection with server
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    self.responseData = [[NSMutableData alloc] init];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    [self.responseData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    NSLog(@"Unable to fetch data");
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection 
 {
-    [self.activityIndicator stopAnimating];
-    [super viewDidAppear:YES];
+    NSLog(@"Succeeded! Received %d bytes of data",[self.responseData
+                                                   length]);
+    NSString *txt = [[NSString alloc] initWithData:self.responseData encoding: NSASCIIStringEncoding];
+    NSLog(@"strinng is - %@",txt);
+    
+    // создаем парсер
+    XMLParse* parser = [[XMLParse alloc] initWithData:self.responseData];
+    [parser setDelegate:parser];
+    [parser parse];
+    self.db = parser;
+    
+    [self XMLToCoreData];
     
     if(![[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"])
     {
@@ -85,13 +136,13 @@
             [actionSheet addButtonWithTitle:[languages objectAtIndex:i]];
         
         [actionSheet showInView:self.view];
-    } else 
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"])
-    {
-        [self performSegueWithIdentifier:@"toMain" sender:self];
     }
     
+    if (self.isHappyEnd)
+        [self performSegueWithIdentifier:@"toMain" sender:self];
 }
+
+#pragma finish pragma connention with server
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -118,20 +169,38 @@
     {
          [[NSUserDefaults standardUserDefaults] setObject:[[NSNumber alloc] initWithInteger:buttonIndex+1] forKey:@"defaultCityId"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        [self performSegueWithIdentifier:@"toMain" sender:self];
         
+        
+        //створюємо http зарпос
+        if (checkConnection.hasConnectivity)
+        {
+            NSMutableString *order = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test5/root/Customer_Scripts/update.php?DBid=10&tag=rmp"];
+            [order appendFormat:@"&idLang=%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
+            [order appendFormat:@"&idCity=%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"]];
+            NSURL *url = [NSURL URLWithString:order.copy];
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+            [request setHTTPMethod:@"GET"];
+            NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+            if (!theConnection)
+            {
+                // Inform the user that the connection failed.
+                UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"NSURLConnection" 
+                                                                             message:@"Not success"  
+                                                                            delegate:self
+                                                                   cancelButtonTitle:@"Ok"
+                                                                   otherButtonTitles:nil];
+                [connectFailMessage show];
+            }
+            self.isHappyEnd = YES;
+        }
     }
 }
 
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+-(void)viewDidAppear:(BOOL)animated
 {
-    if(checkConnection.hasConnectivity)
-    {
-        [self DropCoreData];
-        [self XMLToCoreData];
-    }
-    //[segue.destinationViewController setDb:self.db];
+    [super viewDidAppear:YES];
+    if (!self.isFirstTime)
+        [self performSegueWithIdentifier:@"toMain" sender:self];
 }
      
 - (void)viewDidUnload
