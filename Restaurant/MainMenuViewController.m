@@ -29,6 +29,7 @@
 @property (strong, nonatomic) NSMutableArray *arrayOfObjects;
 @property (strong, nonatomic) NSIndexPath *selectedPath;
 @property (nonatomic) NSInteger numberOfRows;
+@property(nonatomic, copy) NSArray *animationImages;
 
 @end
 
@@ -38,6 +39,7 @@
 @synthesize cartButton = _cartButton;
 @synthesize settingsButton = _settingsButton;
 @synthesize restorantsButton = _restorantsButton;
+@synthesize imageView = _imageView;
 @synthesize arrayData = _arrayData;
 @synthesize selectedRow = _selectedRow;
 @synthesize isCartMode = _isCartMode;
@@ -56,6 +58,7 @@
 @synthesize arrayOfObjects= _arrayOfObjects;
 @synthesize selectedPath = _selectedPath;
 @synthesize numberOfRows = _numberOfRows;
+@synthesize animationImages = _animationImages;
 
 
 - (IBAction)drop:(id)sender {
@@ -189,6 +192,9 @@
     self.pickerView.dataSource = self;
     UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pickerTapped:)];
     [self.pickerView addGestureRecognizer:tapgesture];
+    self.restorantsButton.titleLabel.text = @"Restaurants";
+    
+    [self.settingsButton setHidden:NO];
     
     AudioServicesPlayAlertSound(soundFileObject);
 }
@@ -202,6 +208,10 @@
     [self.pickerView removeGestureRecognizer:[self.pickerView.gestureRecognizers lastObject]];
 
     AudioServicesPlaySystemSound (self.soundFileObject);
+    
+    self.restorantsButton.titleLabel.text = @"Order";
+    
+    [self.settingsButton setHidden:YES];
 }
 - (IBAction)goToSettingsTableViewController:(id)sender 
 {
@@ -217,6 +227,41 @@
 {
     [super viewDidLoad];
 
+    [self.menuButton setBackgroundImage:[UIImage imageNamed:@"Button_1.png"] forState:UIControlStateNormal];
+    
+    [self.cartButton setBackgroundImage:[UIImage imageNamed:@"Button_9.png"] forState:UIControlStateNormal];
+    
+    [self.restorantsButton setBackgroundImage:[UIImage imageNamed:@"gray button.png"] forState:UIControlStateNormal];
+    self.restorantsButton.titleLabel.textAlignment = UITextAlignmentCenter;
+    
+    [self.settingsButton setBackgroundImage:[UIImage imageNamed:@"blank-gray-button-md.png"] forState:UIControlStateNormal];
+    
+    CALayer *layerMenu = self.menuButton.layer;
+    [layerMenu setCornerRadius:8.0f];
+    //layerMenu.masksToBounds = YES;
+    [layerMenu setBorderWidth:1.0f];
+    
+     
+    CALayer *layerCart = self.cartButton.layer;
+    layerCart.cornerRadius = 8.0f;
+    //layerCart.masksToBounds = YES;
+    layerCart.borderWidth = 1.0f;
+    //layer.borderColor = [UIColor colorWithWhite:0.4f alpha:0.2f].CGColor;
+    
+    CALayer *layerRest = self.restorantsButton.layer;
+    layerRest.cornerRadius = 8.0f;
+    //layerRest.masksToBounds = YES;
+    layerRest.borderWidth = 5.0f;
+    [layerRest setBorderColor:[UIColor grayColor].CGColor];
+    
+    CALayer *layerSett = self.settingsButton.layer;
+    layerSett.cornerRadius = 9.0f;
+    //layerSett.masksToBounds = YES;
+    layerSett.borderWidth = 1.0f;
+    [layerSett setBorderColor:[UIColor grayColor].CGColor];
+    [layerSett setBackgroundColor:[UIColor grayColor].CGColor];
+    
+    self.navigationItem.title = @"Main";
     [self menuButton:self];
     
     NSString *udid = [[UIDevice currentDevice] uniqueIdentifier];
@@ -233,6 +278,26 @@
     soundFileURLRef = (__bridge CFURLRef) tapSound;
     
     AudioServicesCreateSystemSoundID (soundFileURLRef, &soundFileObject);
+    
+    NSArray * imageArray  = [[NSArray alloc] initWithObjects:
+                             [UIImage imageNamed:@"logo.gif"],
+                             [UIImage imageNamed:@"1.png"], nil];
+    self.imageView.animationImages = imageArray;
+    self.imageView.animationDuration = 4.0;
+    self.imageView.contentMode = UIViewContentModeBottomLeft;
+    [self.imageView startAnimating];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [super viewWillAppear:animated];
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [super viewWillDisappear:animated];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -242,11 +307,13 @@
     if(self.isMenuMode)
     {
         [self.pickerView reloadAllComponents];
+        self.restorantsButton.titleLabel.text = @"Restaurants";
     }
     else 
     {
         self.arrayOfObjects = nil;
         [[self tableView] reloadData];
+            self.restorantsButton.titleLabel.text = @"Order";
     }
 }
 
@@ -263,6 +330,7 @@
     [self setSettingsButton:nil];
     [self setRestorantsButton:nil];
     [self setDrop:nil];
+    [self setImageView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -279,7 +347,7 @@
 {
     if(self.isMenuMode)
     {
-        return self.arrayData.count;
+        return self.arrayData.count + 1;
     }
     else 
     {
@@ -309,33 +377,54 @@
             //[[[[NSUserDefaults standardUserDefaults] objectForKey:@"offers"] objectAtIndex:row] objectForKey:@"id"];
         }
     }
-    else {
-        MenuDataStruct *dataStruct = [self.arrayData objectAtIndex:row];
-        
-        //UIView *viewForRow = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.pickerView.frame.size.width-30, self.pickerView.frame.size.height/5)];
-        //NSLog(@"%f", viewForRow.frame.size.width);
-        //NSLog(@"%f", viewForRow.frame.size.height);
-        //UIImage *imageForUIImageView  = dataStruct.image;
-        //UIImageView *imageViewForViewForRow = [[UIImageView alloc] initWithImage:imageForUIImageView];
-        //UILabel *labelForRow = [[UILabel alloc] initWithFrame:CGRectMake(imageViewForViewForRow.frame.size.width, 5, self.pickerView.frame.size.width-30, pickerView.frame.size.height/5)];
-       //labelForRow.text = dataStruct.title;
-        //[viewForRow addSubview:imageViewForViewForRow];
-        //[viewForRow addSubview:labelForRow];
-        PickerViewCell *viewForRow;
-        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PickerViewCell" owner:nil options:nil];
-        for(id currentObject in topLevelObjects)
+    else 
+    {
+        if (row == 0)
         {
-            if([currentObject isKindOfClass:[PickerViewCell class]])
+            PickerViewCell *viewForRow;
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PickerViewCell" owner:nil options:nil];
+            for(id currentObject in topLevelObjects)
             {
-                viewForRow = (PickerViewCell *)currentObject;
-                break;
+                if([currentObject isKindOfClass:[PickerViewCell class]])
+                {
+                    viewForRow = (PickerViewCell *)currentObject;
+                    break;
+                }
             }
+            
+            viewForRow.menuTitle.text = @"Favorites";
+            viewForRow.menuImage.image = [UIImage imageNamed:@"Heart.png"];
+            
+            return viewForRow;
         }
-        
-        viewForRow.menuImage.image = dataStruct.image;
-        viewForRow.menuTitle.text = dataStruct.title;
-        
-        return viewForRow;
+        else
+        {
+            MenuDataStruct *dataStruct = [self.arrayData objectAtIndex:row-1];
+            
+            //UIView *viewForRow = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.pickerView.frame.size.width-30, self.pickerView.frame.size.height/5)];
+            //NSLog(@"%f", viewForRow.frame.size.width);
+            //NSLog(@"%f", viewForRow.frame.size.height);
+            //UIImage *imageForUIImageView  = dataStruct.image;
+            //UIImageView *imageViewForViewForRow = [[UIImageView alloc] initWithImage:imageForUIImageView];
+            //UILabel *labelForRow = [[UILabel alloc] initWithFrame:CGRectMake(imageViewForViewForRow.frame.size.width, 5, self.pickerView.frame.size.width-30, pickerView.frame.size.height/5)];
+            //labelForRow.text = dataStruct.title;
+            //[viewForRow addSubview:imageViewForViewForRow];
+            //[viewForRow addSubview:labelForRow];
+            PickerViewCell *viewForRow;
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PickerViewCell" owner:nil options:nil];
+            for(id currentObject in topLevelObjects)
+            {
+                if([currentObject isKindOfClass:[PickerViewCell class]])
+                {
+                    viewForRow = (PickerViewCell *)currentObject;
+                    break;
+                }
+            }
+            viewForRow.menuImage.image = dataStruct.image;
+            viewForRow.menuTitle.text = dataStruct.title;
+            
+            return viewForRow;
+        }
     }
 }
 
@@ -416,31 +505,38 @@
 {
     if (userTapped)
     {
-        NSNumber *selectedRow = [[NSNumber alloc] initWithInt:row];
-        //NSLog(@"tapped in %i", row);
-        
-        if(!self.restarauntId)
+        if (row == 0)
         {
-            self.restarauntId = [[self.arrayData objectAtIndex:selectedRow.integerValue] menuId];
+            [self performSegueWithIdentifier:@"toFavorites" sender:nil];
         }
         else 
         {
-            id menuId = [[self.arrayData objectAtIndex:selectedRow.integerValue] menuId];
-            NSArray *hz = [self.db fetchChildMenuWithDefaultLanguageForParentMenu:menuId];
-            if (hz.count)
+            NSNumber *selectedRow = [[NSNumber alloc] initWithInt:row - 1];
+            //NSLog(@"tapped in %i", row);
+            
+            if(!self.restarauntId)
             {
-                self.menuId = menuId;
+                self.restarauntId = [[self.arrayData objectAtIndex:selectedRow.integerValue] menuId];
             }
-            else {
-                if(self.isMenuMode)
+            else 
+            {
+                id menuId = [[self.arrayData objectAtIndex:selectedRow.integerValue] menuId];
+                NSArray *hz = [self.db fetchChildMenuWithDefaultLanguageForParentMenu:menuId];
+                if (hz.count)
                 {
-                    self.arrayData = nil;
-                    self.selectedRow = selectedRow;
-                    [self performSegueWithIdentifier:@"menuList" sender:self];
+                    self.menuId = menuId;
+                }
+                else {
+                    if(self.isMenuMode)
+                    {
+                        self.arrayData = nil;
+                        self.selectedRow = selectedRow;
+                        [self performSegueWithIdentifier:@"menuList" sender:self];
+                    }
                 }
             }
-        }
             NSLog(@"ups");
+        }
     }
     else 
     {
@@ -452,7 +548,8 @@
 {
     if(self.isCartMode)
         return self.pickerView.frame.size.height;
-    else return self.pickerView.frame.size.height/4;
+    else 
+        return self.pickerView.frame.size.height/4;
 }
 
 #pragma segue Delegate
@@ -476,6 +573,7 @@
         [[segue destinationViewController] setLabelOfAddingButtonWithString:@"Изменить" withIndexPathInDB:self.selectedPath];
     }
     self.arrayOfObjects = nil;
+    
 }
 
 
@@ -517,7 +615,7 @@
 //    NSNumber *cost = [NSNumber numberWithDouble:dataStruct.price.doubleValue];
 //    cell.productPrice.text = [NSString stringWithFormat:@"%i грн.", [cost intValue]*[count intValue]];
     
-    NSString *CellIdentifier = @"CartCell";
+    NSString *CellIdentifier = @"CartCell1";
     CartCell *cell = (CartCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if(!cell)
@@ -569,10 +667,7 @@
 
 //змінюємо висоту cell
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row ==0)
-        return 75.0;
-    else
-        return 61.0;
+    return 61.0;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -604,5 +699,37 @@
         [self.tableView reloadData];
     }  
 }
+
+- (IBAction)OrderButton:(id)sender 
+{
+    if (self.isCartMode)
+    {
+        UIActionSheet* actionSheet = [[UIActionSheet alloc] init];
+        [actionSheet setTitle:@"Choose method to get order:"];
+        [actionSheet setDelegate:(id)self];
+        [actionSheet addButtonWithTitle:@"Delivery"];
+        [actionSheet addButtonWithTitle:@"Pick up"];
+        [actionSheet showInView:self.view];
+
+    }
+    else 
+    {
+        [self performSegueWithIdentifier:@"toRestaurantList" sender:nil];
+    }
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        [self performSegueWithIdentifier:@"toDelivery" sender:nil];
+    }
+    
+    else 
+    {
+    
+    }
+}
+
 
 @end

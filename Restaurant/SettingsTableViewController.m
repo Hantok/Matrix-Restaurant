@@ -157,7 +157,7 @@
     if([cell.reuseIdentifier isEqualToString:@"Friend"])
     {
         UIActionSheet* actionSheet = [[UIActionSheet alloc] init];
-        [actionSheet setTitle:@"Telt a friend:"];
+        [actionSheet setTitle:@"Tell a friend:"];
         [actionSheet setDelegate:(id)self];
         self.isFriend = YES;
         [actionSheet addButtonWithTitle:@"via SMS"];

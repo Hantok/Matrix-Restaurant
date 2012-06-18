@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *cartButton;
 @property (weak, nonatomic) IBOutlet UIButton *settingsButton;
 @property (weak, nonatomic) IBOutlet UIButton *restorantsButton;
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) NSMutableArray *arrayData;
 @property (strong, nonatomic) NSNumber *selectedRow;
 @property BOOL isCartMode;
@@ -34,5 +35,6 @@
 @property(nonatomic, assign) id<UIPickerViewDataSource> dataSourcepV;
 
 @property (weak, nonatomic) IBOutlet UIButton *drop;
+- (IBAction)OrderButton:(id)sender;
 
 @end

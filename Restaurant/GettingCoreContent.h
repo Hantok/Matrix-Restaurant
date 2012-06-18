@@ -41,6 +41,8 @@
 
 - (NSArray *) fetchObjectsFromCoreDataForEntity:(NSString *)entityName withArrayObjects:(NSArray *)underbaridsArray withDefaultLanguageId:(NSString *)languageId;
 
-
+//для updatePHP, а саме параметра tag=update
+- (NSArray *) fetchAllIdsInEntity:(NSString *)entityName;
+- (NSNumber *) fetchMaximumVersionOfEntity:(NSString *)entityName;
 
 @end

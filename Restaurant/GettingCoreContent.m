@@ -113,8 +113,19 @@
                     NSNumber * idPicture = [f numberFromString:[values objectAtIndex:counter]];
                     [newManagedObject setValue:idPicture forKey:editAttrinbuteWithUnderBar];
                 }
-                else {
-                    [newManagedObject setValue:[values objectAtIndex:counter] forKey:editAttrinbuteWithUnderBar];
+                else 
+                {
+                    if ([editAttrinbuteWithUnderBar isEqualToString:@"version"]||[editAttrinbuteWithUnderBar isEqualToString:@"action"])
+                    {
+                        NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+                        [f setNumberStyle:NSNumberFormatterDecimalStyle];
+                        NSNumber * myNumber = [f numberFromString:[values objectAtIndex:counter]];
+                        [newManagedObject setValue:myNumber forKey:editAttrinbuteWithUnderBar];
+                    }
+                    else 
+                    {
+                        [newManagedObject setValue:[[values objectAtIndex:counter] description] forKey:editAttrinbuteWithUnderBar];
+                    }
                 }
                 
             }
@@ -340,7 +351,7 @@
     NSError *error;
     
     NSArray *resultOfARequest = [moc executeFetchRequest:request error:&error];
-    NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test4/root/%@",[[resultOfARequest objectAtIndex:0] valueForKey:@"link"]];
+    NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test5/root/%@",[[resultOfARequest objectAtIndex:0] valueForKey:@"link"]];
     urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL *url = [[NSURL alloc] initWithString:urlForImage];
     return url;
@@ -542,5 +553,38 @@
     if (![context save:&error]) {
         NSLog(@"Error deleting %@ - error:%@", entityName, error);
     }
+}
+
+- (NSArray *) fetchAllIdsInEntity:(NSString *)entityName
+{
+    NSManagedObjectContext *context = self.managedObjectContext;
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:context]];
+    
+    NSError *error;
+    NSArray *items= [context executeFetchRequest:request error:&error];
+    NSMutableArray *outputArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i<items.count; i++)
+    {
+        [outputArray addObject:[[items objectAtIndex:i] valueForKey:@"underbarid"]];
+    }
+    return outputArray.copy;
+}
+
+- (NSNumber *) fetchMaximumVersionOfEntity:(NSString *)entityName
+{
+    NSManagedObjectContext *context = self.managedObjectContext;
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:context]];
+    
+    NSError *error;
+    NSArray *items= [context executeFetchRequest:request error:&error];
+    NSNumber *maxVersion = [[items objectAtIndex:0] valueForKey:@"version"];
+    for (int i = 0; i<items.count; i++)
+    {
+        if ([[[items objectAtIndex:i] valueForKey:@"version"] intValue] > maxVersion.intValue)
+            maxVersion = [[items objectAtIndex:i] valueForKey:@"version"];
+    }
+    return maxVersion;
 }
 @end
