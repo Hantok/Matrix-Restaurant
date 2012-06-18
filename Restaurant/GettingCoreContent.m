@@ -133,7 +133,7 @@
 
 
 - (void) deleteAllObjectsFromEntity:(NSString *)entityDescription{
-    NSManagedObjectContext * context = [(RestaurantAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSManagedObjectContext * context = self.managedObjectContext;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityDescription inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
@@ -141,15 +141,18 @@
     NSError *error;
     if (entityDescription == nil)
         NSLog(@"NSLOG");
-    NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
+    else 
+    {
+        NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
     
     
-    for (NSManagedObject *managedObject in items) {
-        [context deleteObject:managedObject];
+        for (NSManagedObject *managedObject in items) {
+            [context deleteObject:managedObject];
         //NSLog(@"%@ object deleted",entityDescription);
-    }
-    if (![context save:&error]) {
+        }
+        if (![context save:&error]) {
         NSLog(@"Error deleting %@ - error:%@",entityDescription,error);
+        }
     }
     
 }
