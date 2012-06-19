@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PickerViewCell : UIView
+@interface PickerViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *menuImage;
 @property (weak, nonatomic) IBOutlet UILabel *menuTitle;
 

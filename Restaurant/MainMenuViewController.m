@@ -190,8 +190,8 @@
     self.cartButton.enabled = YES;
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
-    UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pickerTapped:)];
-    [self.pickerView addGestureRecognizer:tapgesture];
+    //UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pickerTapped:)];
+    //[self.pickerView addGestureRecognizer:tapgesture];
     self.restorantsButton.titleLabel.text = @"Restaurants";
     
     [self.settingsButton setHidden:NO];
@@ -302,17 +302,17 @@
 {
     [super viewDidAppear:YES];
 
-    if(self.isMenuMode)
-    {
-        [self.pickerView reloadAllComponents];
-        self.restorantsButton.titleLabel.text = @"Restaurants";
-    }
-    else 
-    {
-        self.arrayOfObjects = nil;
-        [[self tableView] reloadData];
-            self.restorantsButton.titleLabel.text = @"Order";
-    }
+//    if(self.isMenuMode)
+//    {
+//        [self.pickerView reloadAllComponents];
+//        self.restorantsButton.titleLabel.text = @"Restaurants";
+//    }
+//    else 
+//    {
+//        self.arrayOfObjects = nil;
+//        [[self tableView] reloadData];
+//            self.restorantsButton.titleLabel.text = @"Order";
+//    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -334,7 +334,7 @@
 }
 
 
-#pragma pickerView Delegate
+#pragma mark - pickerView Delegate
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     self.arrayData = nil;
@@ -345,7 +345,7 @@
 {
     if(self.isMenuMode)
     {
-        return self.arrayData.count + 1;
+        return 1;//self.arrayData.count + 1;
     }
     else 
     {
@@ -377,52 +377,56 @@
     }
     else 
     {
-        if (row == 0)
-        {
-            PickerViewCell *viewForRow;
-            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PickerViewCell" owner:nil options:nil];
-            for(id currentObject in topLevelObjects)
-            {
-                if([currentObject isKindOfClass:[PickerViewCell class]])
-                {
-                    viewForRow = (PickerViewCell *)currentObject;
-                    break;
-                }
-            }
-            
-            viewForRow.menuTitle.text = @"Favorites";
-            viewForRow.menuImage.image = [UIImage imageNamed:@"Heart.png"];
-            
-            return viewForRow;
-        }
-        else
-        {
-            MenuDataStruct *dataStruct = [self.arrayData objectAtIndex:row-1];
-            
-            //UIView *viewForRow = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.pickerView.frame.size.width-30, self.pickerView.frame.size.height/5)];
-            //NSLog(@"%f", viewForRow.frame.size.width);
-            //NSLog(@"%f", viewForRow.frame.size.height);
-            //UIImage *imageForUIImageView  = dataStruct.image;
-            //UIImageView *imageViewForViewForRow = [[UIImageView alloc] initWithImage:imageForUIImageView];
-            //UILabel *labelForRow = [[UILabel alloc] initWithFrame:CGRectMake(imageViewForViewForRow.frame.size.width, 5, self.pickerView.frame.size.width-30, pickerView.frame.size.height/5)];
-            //labelForRow.text = dataStruct.title;
-            //[viewForRow addSubview:imageViewForViewForRow];
-            //[viewForRow addSubview:labelForRow];
-            PickerViewCell *viewForRow;
-            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PickerViewCell" owner:nil options:nil];
-            for(id currentObject in topLevelObjects)
-            {
-                if([currentObject isKindOfClass:[PickerViewCell class]])
-                {
-                    viewForRow = (PickerViewCell *)currentObject;
-                    break;
-                }
-            }
-            viewForRow.menuImage.image = dataStruct.image;
-            viewForRow.menuTitle.text = dataStruct.title;
-            
-            return viewForRow;
-        }
+        self.tableView = [[UITableView alloc] init];//WithFrame:CGRectMake(0, 0, 100, 216)];
+        self.tableView.delegate = self;
+        self.tableView.dataSource = self;
+        return self.tableView;
+//        if (row == 0)
+//        {
+//            PickerViewCell *viewForRow;
+//            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PickerViewCell" owner:nil options:nil];
+//            for(id currentObject in topLevelObjects)
+//            {
+//                if([currentObject isKindOfClass:[PickerViewCell class]])
+//                {
+//                    viewForRow = (PickerViewCell *)currentObject;
+//                    break;
+//                }
+//            }
+//            
+//            viewForRow.menuTitle.text = @"Favorites";
+//            viewForRow.menuImage.image = [UIImage imageNamed:@"Heart.png"];
+//            
+//            return viewForRow;
+//        }
+//        else
+//        {
+//            MenuDataStruct *dataStruct = [self.arrayData objectAtIndex:row-1];
+//            
+//            //UIView *viewForRow = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.pickerView.frame.size.width-30, self.pickerView.frame.size.height/5)];
+//            //NSLog(@"%f", viewForRow.frame.size.width);
+//            //NSLog(@"%f", viewForRow.frame.size.height);
+//            //UIImage *imageForUIImageView  = dataStruct.image;
+//            //UIImageView *imageViewForViewForRow = [[UIImageView alloc] initWithImage:imageForUIImageView];
+//            //UILabel *labelForRow = [[UILabel alloc] initWithFrame:CGRectMake(imageViewForViewForRow.frame.size.width, 5, self.pickerView.frame.size.width-30, pickerView.frame.size.height/5)];
+//            //labelForRow.text = dataStruct.title;
+//            //[viewForRow addSubview:imageViewForViewForRow];
+//            //[viewForRow addSubview:labelForRow];
+//            PickerViewCell *viewForRow;
+//            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PickerViewCell" owner:nil options:nil];
+//            for(id currentObject in topLevelObjects)
+//            {
+//                if([currentObject isKindOfClass:[PickerViewCell class]])
+//                {
+//                    viewForRow = (PickerViewCell *)currentObject;
+//                    break;
+//                }
+//            }
+//            viewForRow.menuImage.image = dataStruct.image;
+//            viewForRow.menuTitle.text = dataStruct.title;
+//            
+//            return viewForRow;
+//        }
     }
 }
 
@@ -547,10 +551,10 @@
     if(self.isCartMode)
         return self.pickerView.frame.size.height;
     else 
-        return self.pickerView.frame.size.height/4;
+        return self.pickerView.frame.size.height;//4;
 }
 
-#pragma segue Delegate
+#pragma mark - segue Delegate
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -575,92 +579,97 @@
 }
 
 
-#pragma tableView Delegate
+#pragma mark - tableView Delegate
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //Offers* offers = [[Offers alloc] init];
-    //return offers.offers.count;
-    return self.arrayOfObjects.count;
+    if(self.isMenuMode)
+    {
+        return self.arrayData.count + 1;
+    }
+    else 
+    {
+        return self.arrayOfObjects.count;
+    };
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSString *CellIdentifier = @"CartCell";
-//    CartCell *cell = (CartCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    
-//    if(!cell)
-//    {
-//        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"CartCell" owner:nil options:nil];
-//        for(id currentObject in topLevelObjects)
-//        {
-//            if([currentObject isKindOfClass:[CartCell class]])
-//            {
-//                cell = (CartCell *)currentObject;
-//                break;
-//            }
-//        }
-//    }
-//    
-//    Offers* offers = [[Offers alloc] init];
-//    ProductDataStruct *dataStruct = [[ProductDataStruct alloc] initWithDictionary:[offers.offers objectAtIndex:indexPath.row]];
-//    
-//    
-//    cell.productTitle.text = dataStruct.title;
-//    NSNumber *count = dataStruct.count;
-//
-//    cell.productCount.text = [NSString stringWithFormat:@"%i шт.", [count intValue]];
-//    NSNumber *cost = [NSNumber numberWithDouble:dataStruct.price.doubleValue];
-//    cell.productPrice.text = [NSString stringWithFormat:@"%i грн.", [cost intValue]*[count intValue]];
-    
-    NSString *CellIdentifier = @"CartCell1";
-    CartCell *cell = (CartCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if(!cell)
+    if(self.isCartMode)
     {
-        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"CartCell" owner:nil options:nil];
-        for(id currentObject in topLevelObjects)
+
+        NSString *CellIdentifier = @"CartCell1";
+        CartCell *cell = (CartCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+        if(!cell)
         {
-            if([currentObject isKindOfClass:[CartCell class]])
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"CartCell" owner:nil options:nil];
+            for(id currentObject in topLevelObjects)
             {
-                cell = (CartCell *)currentObject;
+                if([currentObject isKindOfClass:[CartCell class]])
+                {
+                    cell = (CartCell *)currentObject;
                 
-                break;
+                    break;
+                }
             }
         }
+        ProductDataStruct *productStruct = [self.arrayOfObjects objectAtIndex:indexPath.row];
+        cell.productTitle.text  = productStruct.title;
+        cell.productCount.text  = [NSString stringWithFormat:@"%@",productStruct.count];
+        cell.imageView.image    = productStruct.image;
+        cell.productPrice.text  = productStruct.price;
+    
+        return cell;
     }
-//    NSArray *array = [self.db fetchAllProductsIdAndTheirCountWithPriceForEntity:@"Cart"];
-//    NSArray *arrayOfElements = [self.db fetchObjectsFromCoreDataForEntity:@"Descriptions_translation" withArrayObjects:array withDefaultLanguageId:[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
-//    cell.productTitle.text = [NSString stringWithFormat:@"%@",[[arrayOfElements objectAtIndex:indexPath.row] valueForKey:@"nameText"]];
-//    cell.productCount.text = [NSString stringWithFormat:@"%@", [[array objectAtIndex:indexPath.row] valueForKey:@"count"]];
-//    cell.imageView.image = [UIImage imageWithData:[[array objectAtIndex:indexPath.row] valueForKey:@"picture"]];
-//    
-//    NSNumber *numbers = [NSNumber numberWithFloat:([[[array objectAtIndex:indexPath.row] valueForKey:@"count"] intValue]*[[[array objectAtIndex:indexPath.row] valueForKey:@"cost"] floatValue])];
-//    
-//    if (!self.product)
-//    {
-//        self.product = [[ProductDataStruct alloc] init];
-//        self.arrayOfObjects = [[NSMutableArray alloc] init];
-//    }
-//
-//    cell.productPrice.text = [NSString stringWithFormat:@"%@ грн.", numbers];
-//    
-//    [self.product setProductId:[[arrayOfElements objectAtIndex:indexPath.row] valueForKey:@"idProduct"]];
-//    [self.product setTitle:[[arrayOfElements objectAtIndex:indexPath.row] valueForKey:@"nameText"]];
-//    [self.product setDescriptionText:[[arrayOfElements objectAtIndex:indexPath.row] valueForKey:@"descriptionText"]];
-//    [self.product setPrice:[[array objectAtIndex:indexPath.row] valueForKey:@"cost"]];
-//    [self.product setImage:[UIImage imageWithData:[[array objectAtIndex:indexPath.row] valueForKey:@"picture"]]];
-//    [self.product setCount:[[array objectAtIndex:indexPath.row] valueForKey:@"count"]];
-//    
-//    [self.arrayOfObjects addObject:self.product];
-    
-    ProductDataStruct *productStruct = [self.arrayOfObjects objectAtIndex:indexPath.row];
-    cell.productTitle.text  = productStruct.title;
-    cell.productCount.text  = [NSString stringWithFormat:@"%@",productStruct.count];
-    cell.imageView.image    = productStruct.image;
-    cell.productPrice.text  = productStruct.price;
-    
-    return cell;
+    else 
+    {
+        if(indexPath.row != 0)
+        {
+                //        {
+
+                //        }
+
+            NSString *CellIdentifier = @"PickerViewCell";
+            PickerViewCell *cell = (PickerViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+            if(!cell)
+            {
+                NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PickerViewCell" owner:nil options:nil];
+                for(id currentObject in topLevelObjects)
+                {
+                    if([currentObject isKindOfClass:[PickerViewCell class]])
+                    {
+                        cell = (PickerViewCell *)currentObject;
+                    
+                        break;
+                    }
+                }
+            }
+            MenuDataStruct *dataStruct = [self.arrayData objectAtIndex:indexPath.row-1];
+            cell.menuImage.image = dataStruct.image;
+            cell.menuTitle.text = dataStruct.title;
+        
+            return cell;
+        }
+        else 
+        {
+            PickerViewCell *viewForRow;
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PickerViewCell" owner:nil options:nil];
+            for(id currentObject in topLevelObjects)
+            {
+                if([currentObject isKindOfClass:[PickerViewCell class]])
+                    {
+                        viewForRow = (PickerViewCell *)currentObject;
+                        break;
+                    }
+            }
+                    
+            viewForRow.menuTitle.text = @"Favorites";
+            viewForRow.menuImage.image = [UIImage imageNamed:@"Heart.png"];
+            return viewForRow;
+        }
+    }
 }
 
 //змінюємо висоту cell
@@ -670,9 +679,49 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.selectedRow = [[NSNumber alloc] initWithInt:indexPath.row];
-    [self performSegueWithIdentifier:@"toProductDetail" sender:self];
-    self.selectedPath = indexPath;
+    if(self.isCartMode)
+    {
+        self.selectedRow = [[NSNumber alloc] initWithInt:indexPath.row];
+        [self performSegueWithIdentifier:@"toProductDetail" sender:self];
+        self.selectedPath = indexPath;
+    }
+    else
+    {
+        if (indexPath.row == 0)
+        {
+            [self performSegueWithIdentifier:@"toFavorites" sender:nil];
+        }
+        else 
+        {
+            NSNumber *selectedRow = [[NSNumber alloc] initWithInt:indexPath.row - 1];
+            //NSLog(@"tapped in %i", row);
+            
+            if(!self.restarauntId)
+            {
+                self.restarauntId = [[self.arrayData objectAtIndex:selectedRow.integerValue] menuId];
+            }
+            else 
+            {
+                id menuId = [[self.arrayData objectAtIndex:selectedRow.integerValue] menuId];
+                NSArray *hz = [self.db fetchChildMenuWithDefaultLanguageForParentMenu:menuId];
+                if (hz.count)
+                {
+                    self.menuId = menuId;
+                }
+                else {
+                    if(self.isMenuMode)
+                    {
+                        self.arrayData = nil;
+                        self.selectedRow = selectedRow;
+                        [self performSegueWithIdentifier:@"menuList" sender:self];
+                    }
+                }
+            }
+            NSLog(@"ups");
+        }
+
+    }
+    
     //self.arrayOfObjects = nil;
     //[self.pickerView reloadAllComponents];
 }
