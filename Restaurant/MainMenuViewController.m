@@ -263,8 +263,6 @@
     
     self.navigationItem.title = @"Main";
     [self menuButton:self];
-    
-    NSString *udid = [[UIDevice currentDevice] uniqueIdentifier];
 
     if(!self.isCartMode)
     {

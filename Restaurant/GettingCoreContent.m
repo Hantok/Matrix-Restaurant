@@ -1,4 +1,4 @@
-//
+	//
 //  GettingCoreContent.m
 //  Restaurants
 //
@@ -107,7 +107,7 @@
                     editAttrinbuteWithUnderBar = @"descriptionAbout";
                     }
                 }
-                if ([editAttrinbuteWithUnderBar isEqualToString:@"idPicture"] || [editAttrinbuteWithUnderBar isEqualToString:@"underbarid"] || [editAttrinbuteWithUnderBar isEqualToString:@"idProduct"]) {
+                if ([editAttrinbuteWithUnderBar isEqualToString:@"idPicture"] || [editAttrinbuteWithUnderBar isEqualToString:@"underbarid"] || [editAttrinbuteWithUnderBar isEqualToString:@"idProduct"] || [editAttrinbuteWithUnderBar isEqualToString:@"version"]||[editAttrinbuteWithUnderBar isEqualToString:@"action"]) {
                     NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
                     [f setNumberStyle:NSNumberFormatterDecimalStyle];
                     NSNumber * idPicture = [f numberFromString:[values objectAtIndex:counter]];
@@ -115,17 +115,7 @@
                 }
                 else 
                 {
-                    if ([editAttrinbuteWithUnderBar isEqualToString:@"version"]||[editAttrinbuteWithUnderBar isEqualToString:@"action"])
-                    {
-                        NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
-                        [f setNumberStyle:NSNumberFormatterDecimalStyle];
-                        NSNumber * myNumber = [f numberFromString:[values objectAtIndex:counter]];
-                        [newManagedObject setValue:myNumber forKey:editAttrinbuteWithUnderBar];
-                    }
-                    else 
-                    {
-                        [newManagedObject setValue:[[values objectAtIndex:counter] description] forKey:editAttrinbuteWithUnderBar];
-                    }
+                    [newManagedObject setValue:[[values objectAtIndex:counter] description] forKey:editAttrinbuteWithUnderBar];
                 }
                 
             }

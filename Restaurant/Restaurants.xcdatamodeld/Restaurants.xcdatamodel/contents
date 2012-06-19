@@ -7,9 +7,9 @@
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="Cities" syncable="YES">
-        <attribute name="action" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="action" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="version" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="Cities_translation" syncable="YES">
         <attribute name="idCity" optional="YES" attributeType="String" syncable="YES"/>
@@ -129,7 +129,7 @@
     </entity>
     <elements>
         <element name="Cart" positionX="160" positionY="192" width="128" height="75"/>
-        <element name="Cities" positionX="160" positionY="192" width="128" height="60"/>
+        <element name="Cities" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Cities_translation" positionX="160" positionY="192" width="128" height="105"/>
         <element name="Currencies" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Deliveries" positionX="160" positionY="192" width="128" height="90"/>
