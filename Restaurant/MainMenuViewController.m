@@ -31,7 +31,7 @@
 @property (nonatomic) NSInteger numberOfRows;
 @property(nonatomic, copy) NSArray *animationImages;
 
-- (void)startIconDownload:(ProductDataStruct *)appRecord forIndexPath:(NSIndexPath *)indexPath;
+- (void)startIconDownload:(MenuDataStruct *)appRecord forIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
@@ -121,17 +121,18 @@
                 dataStruct.idPicture = [[data objectAtIndex:i] valueForKey:@"idPicture"];
                 NSData *dataOfPicture = [self.db fetchPictureDataByPictureId:dataStruct.idPicture];
                 NSURL *url = [self.db fetchImageURLbyPictureID:dataStruct.idPicture];
+                dataStruct.link = url.description;
                 
                 if(dataOfPicture)
                 {
                    dataStruct.image  = [UIImage imageWithData:dataOfPicture]; 
                 }
-                else 
-                {
-                    dataOfPicture = [NSData dataWithContentsOfURL:url];
-                    [self.db SavePictureToCoreData:[[data objectAtIndex:i] valueForKey:@"idPicture"] toData:dataOfPicture];
-                    dataStruct.image  = [UIImage imageWithData:dataOfPicture];
-                }
+//                else 
+//                {
+//                    dataOfPicture = [NSData dataWithContentsOfURL:url];
+//                    [self.db SavePictureToCoreData:[[data objectAtIndex:i] valueForKey:@"idPicture"] toData:dataOfPicture];
+//                    dataStruct.image  = [UIImage imageWithData:dataOfPicture];
+//                }
                 
             }
             else
@@ -230,6 +231,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.imageDownloadsInProgress = [[NSMutableDictionary alloc] init];
 
     [self.menuButton setBackgroundImage:[UIImage imageNamed:@"Button_1.png"] forState:UIControlStateNormal];
     
@@ -588,11 +590,19 @@
 
 #pragma mark - tableView Delegate
 
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    if(self.isMenuMode)
+    return 2;
+    else return 1;
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(self.isMenuMode)
     {
-        return self.arrayData.count + 1;
+        if(section == 0) return 1;
+        else return self.arrayData.count;
     }
     else 
     {
@@ -631,7 +641,7 @@
     }
     else 
     {
-        if(indexPath.row != 0)
+        if(indexPath.section != 0)
         {
                 //        {
 
@@ -653,9 +663,22 @@
                     }
                 }
             }
-            MenuDataStruct *dataStruct = [self.arrayData objectAtIndex:indexPath.row-1];
-            cell.menuImage.image = dataStruct.image;
+            MenuDataStruct *dataStruct = [self.arrayData objectAtIndex:indexPath.row];
             cell.menuTitle.text = dataStruct.title;
+            if (!dataStruct.image)
+            {
+                if (self.tableView.dragging == NO && self.tableView.decelerating == NO)
+                {
+                    [self startIconDownload:dataStruct forIndexPath:indexPath];
+                }
+                // if a download is deferred or in progress, return a placeholder image  
+                cell.menuImage.image = [UIImage imageNamed:@"Placeholder.png"];
+                
+            }
+            else
+            {
+                cell.menuImage.image = dataStruct.image;
+            }
         
             return cell;
         }
@@ -671,7 +694,6 @@
                         break;
                     }
             }
-                    
             viewForRow.menuTitle.text = @"Favorites";
             viewForRow.menuImage.image = [UIImage imageNamed:@"Heart.png"];
             return viewForRow;
@@ -693,6 +715,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self.imageDownloadsInProgress removeAllObjects];
     if(self.isCartMode)
     {
         self.selectedRow = [[NSNumber alloc] initWithInt:indexPath.row];
@@ -701,13 +724,13 @@
     }
     else
     {
-        if (indexPath.row == 0)
+        if (indexPath.section == 0 && indexPath.row == 0)
         {
             [self performSegueWithIdentifier:@"toFavorites" sender:nil];
         }
         else 
         {
-            NSNumber *selectedRow = [[NSNumber alloc] initWithInt:indexPath.row - 1];
+            NSNumber *selectedRow = [[NSNumber alloc] initWithInt:indexPath.row];
             //NSLog(@"tapped in %i", row);
             
             if(!self.restarauntId)
@@ -790,6 +813,75 @@
     {
     
     }
+}
+
+#pragma mark -
+#pragma mark Table cell image support
+
+- (void)startIconDownload:(ProductDataStruct *)appRecord forIndexPath:(NSIndexPath *)indexPath
+{
+    IconDownloader *iconDownloader = [self.imageDownloadsInProgress objectForKey:indexPath];
+    if (iconDownloader == nil) 
+    {
+        iconDownloader = [[IconDownloader alloc] init];
+        iconDownloader.appRecord = appRecord;
+        iconDownloader.indexPathInTableView = indexPath;
+        iconDownloader.delegate = self;
+        [self.imageDownloadsInProgress setObject:iconDownloader forKey:indexPath];
+        [iconDownloader startDownload]; 
+    }
+}
+
+// this method is used in case the user scrolled into a set of cells that don't have their app icons yet
+- (void)loadImagesForOnscreenRows
+{
+    if ([self.arrayData count] > 0)
+    {
+        NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
+        for (NSIndexPath *indexPath in visiblePaths)
+        {   if(indexPath.section != 0)
+            {
+                MenuDataStruct *appRecord = [self.arrayData objectAtIndex:indexPath.row];
+            
+                if (!appRecord.image) // avoid the app icon download if the app already has an icon
+                {
+                    [self startIconDownload:appRecord forIndexPath:indexPath];
+                }
+            }
+        }
+    }
+}
+
+// called by our ImageDownloader when an icon is ready to be displayed
+- (void)appImageDidLoad:(NSIndexPath *)indexPath
+{
+    IconDownloader *iconDownloader = [self.imageDownloadsInProgress objectForKey:indexPath];
+    if (iconDownloader != nil)
+    {
+        PickerViewCell *cell = (PickerViewCell *)[self.tableView cellForRowAtIndexPath:iconDownloader.indexPathInTableView];
+        
+        // Display the newly loaded image
+        cell.menuImage.image = iconDownloader.appRecord.image;
+        [self.db SavePictureToCoreData:iconDownloader.appRecord.idPicture toData:UIImagePNGRepresentation(cell.menuImage.image)];
+        
+    }
+}
+
+#pragma mark -
+#pragma mark Deferred image loading (UIScrollViewDelegate)
+
+// Load images for all onscreen rows when scrolling is finished
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (!decelerate)
+	{
+        [self loadImagesForOnscreenRows];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self loadImagesForOnscreenRows];
 }
 
 
