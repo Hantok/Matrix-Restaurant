@@ -31,9 +31,12 @@
 @property (nonatomic) NSInteger numberOfRows;
 @property(nonatomic, copy) NSArray *animationImages;
 
+- (void)startIconDownload:(ProductDataStruct *)appRecord forIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
 @implementation MainMenuViewController
+@synthesize imageDownloadsInProgress = _imageDownloadsInProgress;
 @synthesize pickerView = _pickerView;
 @synthesize menuButton = _menuButton;
 @synthesize cartButton = _cartButton;
@@ -118,6 +121,7 @@
                 dataStruct.idPicture = [[data objectAtIndex:i] valueForKey:@"idPicture"];
                 NSData *dataOfPicture = [self.db fetchPictureDataByPictureId:dataStruct.idPicture];
                 NSURL *url = [self.db fetchImageURLbyPictureID:dataStruct.idPicture];
+                
                 if(dataOfPicture)
                 {
                    dataStruct.image  = [UIImage imageWithData:dataOfPicture]; 
@@ -677,7 +681,14 @@
 
 //змінюємо висоту cell
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 61.0;
+    if(self.isCartMode)
+    {
+        return 61.0;
+    }
+    else
+    {
+        return 73.0;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -736,7 +747,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) 
+    if (editingStyle == UITableViewCellEditingStyleDelete && self.isCartMode) 
     {
         [self.db deleteObjectFromEntity:@"Cart" withProductId:[[self.arrayOfObjects objectAtIndex:indexPath.row] productId]];
          self.arrayOfObjects = nil;

@@ -11,10 +11,11 @@
 #import "XMLParse.h"
 #import "GettingCoreContent.h"
 #import "PickerViewCell.h"
+#import "IconDownloader.h"
 
 #import <AudioToolbox/AudioToolbox.h>
 
-@interface MainMenuViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource>
+@interface MainMenuViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource, IconDownloaderDelegate>
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (strong, nonatomic) IBOutlet UITableViewController *tableViewController;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -30,6 +31,7 @@
 @property (strong, nonatomic) GettingCoreContent * db;
 @property (strong, nonatomic) NSString *restarauntId;
 @property (strong, nonatomic) NSString *menuId;
+@property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 
 @property(nonatomic, assign) id<UIPickerViewDelegate> delegatepV;
 @property(nonatomic, assign) id<UIPickerViewDataSource> dataSourcepV;
