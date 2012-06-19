@@ -371,6 +371,7 @@
             self.tableView = [[UITableView alloc] init];//WithFrame:CGRectMake(0, 0, 100, 216)];
             self.tableView.delegate = self;
             self.tableView.dataSource = self;
+            self.tableView.backgroundColor = [UIColor clearColor];
             return self.tableView;
             //[[[[NSUserDefaults standardUserDefaults] objectForKey:@"offers"] objectAtIndex:row] objectForKey:@"id"];
         }
@@ -380,6 +381,8 @@
         self.tableView = [[UITableView alloc] init];//WithFrame:CGRectMake(0, 0, 100, 216)];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
+        self.tableView.separatorColor = [UIColor clearColor];
+        self.tableView.backgroundColor = [UIColor clearColor];
         return self.tableView;
 //        if (row == 0)
 //        {
