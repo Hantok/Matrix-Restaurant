@@ -8,6 +8,7 @@
 
 #import "LanguageAndCityTableViewController.h"
 #import "GettingCoreContent.h"
+#import "checkConnection.h"
 
 @interface LanguageAndCityTableViewController ()
 
@@ -154,6 +155,13 @@
     [[NSUserDefaults standardUserDefaults] setObject:data forKey:changeStringForUserDefaults];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [self.navigationController popViewControllerAnimated:YES];
+    
+    if (checkConnection.hasConnectivity)
+    {
+        //тут трeба дописати http request updatePHP with &tag=update
+        
+    }
+
 }
 
 @end

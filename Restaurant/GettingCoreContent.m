@@ -76,12 +76,29 @@
 {
     
     NSManagedObjectContext * context = self.managedObjectContext;
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:context]];
+    
+    NSError *error;
+    NSArray *items= [context executeFetchRequest:request error:&error];
+    
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
     NSArray *keys = [attributeDictionary allKeys];
     int counter = 0;
     NSString *editAttrinbuteWithUnderBar = [[NSString alloc] init];
     if(attributeDictionary.count)
     {
+        NSArray *ArrayOfEnteringIDs = [attributeDictionary objectForKey:@"_id"]; 
+        for (int i = 0; i < items.count; i++)
+        {
+            for (int j = 0; j < ArrayOfEnteringIDs.count; j++)
+                if ([[[items objectAtIndex:i] valueForKey:@"underbarid"] intValue] == [[[attributeDictionary objectForKey:@"_id"] objectAtIndex:j] intValue])
+                {
+                    [self deleteObjectFromEntity:entityName withProductId:[[items objectAtIndex:i] valueForKey:@"underbarid"]];
+                    break;
+                }
+        }
+        
         NSArray *values = [attributeDictionary objectForKey:[keys objectAtIndex:0]];
         while(counter <  values.count)
         {
@@ -104,7 +121,7 @@
                     editAttrinbuteWithUnderBar = [NSString stringWithFormat:@"%@%@", [subString lowercaseString], [editAttrinbuteWithUnderBar substringFromIndex:1]];
                     if ([editAttrinbuteWithUnderBar isEqualToString:@"description"])
                     {
-                    editAttrinbuteWithUnderBar = @"descriptionAbout";
+                        editAttrinbuteWithUnderBar = @"descriptionAbout";
                     }
                 }
                 if ([editAttrinbuteWithUnderBar isEqualToString:@"idPicture"] || [editAttrinbuteWithUnderBar isEqualToString:@"underbarid"] || [editAttrinbuteWithUnderBar isEqualToString:@"idProduct"] || [editAttrinbuteWithUnderBar isEqualToString:@"version"]||[editAttrinbuteWithUnderBar isEqualToString:@"action"]) {
@@ -122,7 +139,7 @@
             counter++;
         }
         // Save the context.
-        NSError *error = nil;
+        //NSError *error = nil;
         if (![context save:&error])
         {
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
@@ -545,7 +562,7 @@
     }
 }
 
-- (NSArray *) fetchAllIdsInEntity:(NSString *)entityName
+- (NSNumber *) fetchMaximumNumberOfAttribute:(NSString *)fieldName fromEntity:(NSString *)entityName
 {
     NSManagedObjectContext *context = self.managedObjectContext;
     NSFetchRequest * request = [[NSFetchRequest alloc] init];
@@ -553,27 +570,11 @@
     
     NSError *error;
     NSArray *items= [context executeFetchRequest:request error:&error];
-    NSMutableArray *outputArray = [[NSMutableArray alloc] init];
+    NSNumber *maxVersion = [[items objectAtIndex:0] valueForKey:fieldName];
     for (int i = 0; i<items.count; i++)
     {
-        [outputArray addObject:[[items objectAtIndex:i] valueForKey:@"underbarid"]];
-    }
-    return outputArray.copy;
-}
-
-- (NSNumber *) fetchMaximumVersionOfEntity:(NSString *)entityName
-{
-    NSManagedObjectContext *context = self.managedObjectContext;
-    NSFetchRequest * request = [[NSFetchRequest alloc] init];
-    [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:context]];
-    
-    NSError *error;
-    NSArray *items= [context executeFetchRequest:request error:&error];
-    NSNumber *maxVersion = [[items objectAtIndex:0] valueForKey:@"version"];
-    for (int i = 0; i<items.count; i++)
-    {
-        if ([[[items objectAtIndex:i] valueForKey:@"version"] intValue] > maxVersion.intValue)
-            maxVersion = [[items objectAtIndex:i] valueForKey:@"version"];
+        if ([[[items objectAtIndex:i] valueForKey:fieldName] intValue] > maxVersion.intValue)
+            maxVersion = [[items objectAtIndex:i] valueForKey:fieldName];
     }
     return maxVersion;
 }

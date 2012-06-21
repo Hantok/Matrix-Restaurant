@@ -16,6 +16,7 @@
 @property (strong, nonatomic) NSMutableData *responseData;
 @property BOOL isHappyEnd;
 @property BOOL isFirstTime;
+@property BOOL isParamTagDone;
 
 @end
 
@@ -29,6 +30,7 @@
 @synthesize isFirstTime = _isFirstTime;
 
 @synthesize responseData = _responseData;
+@synthesize isParamTagDone = _isParamTagDone;
 
 - (void)DropCoreData
 {
@@ -49,8 +51,33 @@
     {
         id key = [allKeys objectAtIndex:i];
         id object = [self.db.tables objectForKey:key];
-        if(object)[content setCoreDataForEntityWithName:key dictionaryOfAtributes:object];
+        if(object)
+            [content setCoreDataForEntityWithName:key dictionaryOfAtributes:object];
     }
+}
+
+- (void)awakeFromNib
+{
+    if(![[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"] && checkConnection.hasConnectivity)
+    {
+        self.isFirstTime = YES;
+        NSString *order = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test5/root/Customer_Scripts/update.php?DBid=10&tag=init"];
+        NSURL *url = [NSURL URLWithString:order];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+        [request setHTTPMethod:@"GET"];
+        NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        if (!theConnection)
+        {
+            // Inform the user that the connection failed.
+            UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"NSURLConnection" 
+                                                                         message:@"Not success"  
+                                                                        delegate:self
+                                                               cancelButtonTitle:@"Ok"
+                                                               otherButtonTitles:nil];
+            [connectFailMessage show];
+        }
+    }
+    NSLog(@"IN awakeFromNib");
 }
 
 - (void)viewDidLoad
@@ -71,27 +98,7 @@
 //        self.db = parser;
 //    }
 //    
-    if(![[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"] && checkConnection.hasConnectivity)
-    {
-        self.isFirstTime = YES;
-        NSString *order = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test5/root/Customer_Scripts/update.php?DBid=10&tag=init"];
-        NSURL *url = [NSURL URLWithString:order];
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-        [request setHTTPMethod:@"GET"];
-        NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-        if (!theConnection)
-        {
-            // Inform the user that the connection failed.
-            UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"NSURLConnection" 
-                                                                         message:@"Not success"  
-                                                                        delegate:self
-                                                               cancelButtonTitle:@"Ok"
-                                                               otherButtonTitles:nil];
-            [connectFailMessage show];
-        }
-
-    }
-    
+    [self.activityIndicator startAnimating];
     NSLog(@"I'm in viewDidLoad");
 }
 
@@ -123,7 +130,7 @@
     self.db = parser;
     
     [self XMLToCoreData];
-    
+        
     if(![[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"])
     {
         NSArray *languages = [self.db GetAllLanguages];
@@ -136,6 +143,52 @@
             [actionSheet addButtonWithTitle:[languages objectAtIndex:i]];
         
         [actionSheet showInView:self.view];
+    }
+    
+    if (self.isParamTagDone && checkConnection.hasConnectivity)
+    {
+        // http request updatePHP with &tag=update
+        GettingCoreContent *content = [[GettingCoreContent alloc] init];
+        
+        NSNumber *maxRestaurantId = [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Restaurants"];
+        NSNumber *maxRestaurantVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Restaurants"];
+        
+        NSNumber *maxMenuId = [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Menus"];
+        NSNumber *maxMenuVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Menus"];
+        
+        NSNumber *maxProductId = [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Products"];
+        NSNumber *maxProductVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Products"];
+        
+        NSMutableString *myString = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test5/root/Customer_Scripts/update.php?DBid=10&tag=update"];
+        
+        [myString appendFormat:@"&city_id=%@", [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"]];
+        [myString appendFormat:@"&lang_id=%@", [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
+        
+        [myString appendFormat:@"&rest_v=%@", maxRestaurantVersion];
+        [myString appendFormat:@"&mrest_id=%@", maxRestaurantId];
+        
+        [myString appendFormat:@"&menu_v=%@", maxMenuVersion];
+        [myString appendFormat:@"&mmenu_id=%@", maxMenuId];
+        
+        [myString appendFormat:@"&prod_v=%@", maxProductVersion];
+        [myString appendFormat:@"&mprod_id=%@", maxProductId];
+        
+        NSURL *url = [NSURL URLWithString:myString.copy];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+        [request setHTTPMethod:@"GET"];
+        NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        if (!theConnection)
+        {
+            // Inform the user that the connection failed.
+            UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"NSURLConnection" 
+                                                                         message:@"Not success"  
+                                                                        delegate:self
+                                                               cancelButtonTitle:@"Ok"
+                                                               otherButtonTitles:nil];
+            [connectFailMessage show];
+        }
+        self.isHappyEnd = YES;
+        self.isParamTagDone = NO;
     }
     
     if (self.isHappyEnd)
@@ -199,16 +252,56 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
-    if (!self.isFirstTime)
+    if (!self.isFirstTime && checkConnection.hasConnectivity)
     {
-        //тут трeба дописати http request updatePHP with &tag=update
+        //http request updatePHP with &tag=param
+        self.isParamTagDone = YES;
+        GettingCoreContent *content = [[GettingCoreContent alloc] init];
+        NSNumber *maxCityId = [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Cities"];
+        NSNumber *maxCityVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Cities"];
         
-        //GettingCoreContent *content = [[GettingCoreContent alloc] init];
-        //NSArray *arrayOfCityIds = [content fetchAllIdsInEntity:@"Cities"];
-        //NSNumber *maxVersion = [content fetchMaximumVersionOfEntity:@"Cities"];
+        NSNumber *maxLanguageId = [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Languages"];
+        NSNumber *maxLanguageVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Languages"];
         
+        NSNumber *maxCurresnciesId =  [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Currencies"];
+        NSNumber *maxCurrencyVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Currencies"];
         
-        [self performSegueWithIdentifier:@"toMain" sender:self];
+        NSNumber *maxStatusId =  [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Statuses"];
+        NSNumber *maxStatusVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Statuses"];
+        
+        NSNumber *maxDeliveriesId =  [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Deliveries"];
+        NSNumber *maxDeliveryVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Deliveries"];
+        
+        NSMutableString *myString = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test5/root/Customer_Scripts/update.php?DBid=10&tag=param"];
+        [myString appendFormat:@"&city_v=%@",maxCityVersion];
+        [myString appendFormat:@"&mcity_id=%@",maxCityId];
+        
+        [myString appendFormat:@"&lang_v=%@",maxLanguageVersion];
+        [myString appendFormat:@"&mlang_id=%@",maxLanguageId];
+        
+        [myString appendFormat:@"&curr_v=%@",maxCurrencyVersion];
+        [myString appendFormat:@"&mcurr_id=%@",maxCurresnciesId];
+        
+        [myString appendFormat:@"&stat_v=%@", maxStatusVersion];
+        [myString appendFormat:@"&mstat_id=%@", maxStatusId];
+        
+        [myString appendFormat:@"&del_v=%@", maxDeliveryVersion];
+        [myString appendFormat:@"&mdel_id=%@",maxDeliveriesId];
+        
+        NSURL *url = [NSURL URLWithString:myString.copy];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+        [request setHTTPMethod:@"GET"];
+        NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        if (!theConnection)
+        {
+            // Inform the user that the connection failed.
+            UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"NSURLConnection" 
+                                                                         message:@"Not success"  
+                                                                        delegate:self
+                                                               cancelButtonTitle:@"Ok"
+                                                               otherButtonTitles:nil];
+            [connectFailMessage show];
+        }    
     }
 }
      
