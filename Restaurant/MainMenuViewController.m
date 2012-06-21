@@ -308,17 +308,17 @@
 {
     [super viewDidAppear:YES];
 
-//    if(self.isMenuMode)
-//    {
-//        [self.pickerView reloadAllComponents];
-//        self.restorantsButton.titleLabel.text = @"Restaurants";
-//    }
-//    else 
-//    {
-//        self.arrayOfObjects = nil;
-//        [[self tableView] reloadData];
-//            self.restorantsButton.titleLabel.text = @"Order";
-//    }
+    if(self.isMenuMode)
+    {
+        [self.pickerView reloadAllComponents];
+        self.restorantsButton.titleLabel.text = @"Restaurants";
+    }
+    else 
+    {
+        self.arrayOfObjects = nil;
+        [[self tableView] reloadData];
+      self.restorantsButton.titleLabel.text = @"Order";
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
