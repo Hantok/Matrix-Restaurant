@@ -53,7 +53,7 @@
 #import "IconDownloader.h"
 #import "ProductDataStruct.h"
 
-#define kAppIconHeight 54
+#define kAppIconHeight 230
 
 
 @implementation IconDownloader
