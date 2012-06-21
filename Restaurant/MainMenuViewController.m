@@ -200,6 +200,7 @@
     self.restorantsButton.titleLabel.text = @"Restaurants";
     
     [self.settingsButton setHidden:NO];
+    [self.drop setHidden:NO];
     
     AudioServicesPlayAlertSound(soundFileObject);
 }
@@ -213,10 +214,11 @@
     [self.pickerView removeGestureRecognizer:[self.pickerView.gestureRecognizers lastObject]];
 
     AudioServicesPlaySystemSound (self.soundFileObject);
-    
-    self.restorantsButton.titleLabel.text = @"Order";
+
+    self.restorantsButton.titleLabel.text = @"Order";    
     
     [self.settingsButton setHidden:YES];
+    [self.drop setHidden:YES];
 }
 - (IBAction)goToSettingsTableViewController:(id)sender 
 {
@@ -308,17 +310,17 @@
 {
     [super viewDidAppear:YES];
 
-//    if(self.isMenuMode)
-//    {
-//        [self.pickerView reloadAllComponents];
-//        self.restorantsButton.titleLabel.text = @"Restaurants";
-//    }
-//    else 
-//    {
-//        self.arrayOfObjects = nil;
-//        [[self tableView] reloadData];
-//            self.restorantsButton.titleLabel.text = @"Order";
-//    }
+    if(self.isMenuMode)
+    {
+        [self.pickerView reloadAllComponents];
+        self.restorantsButton.titleLabel.text = @"Restaurants";
+    }
+    else 
+    {
+        self.arrayOfObjects = nil;
+        [self.pickerView reloadAllComponents];
+            self.restorantsButton.titleLabel.text = @"Order";
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

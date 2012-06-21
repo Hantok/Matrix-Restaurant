@@ -79,14 +79,15 @@
 {
     if (textField == self.phone || textField == self.build || textField == self.appartaments)
     {
-        if (![[NSScanner scannerWithString:textField.text] scanInteger:nil])
-        {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Enter please just numbers!" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alertView show];
-            textField.text = nil;
-            [textField becomeFirstResponder];
-            self.textFieldForFeils = textField;
-        }
+        if (![textField.text isEqual:@""])
+            if (![[NSScanner scannerWithString:textField.text] scanInteger:nil])
+            {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Enter please just numbers!" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alertView show];
+                textField.text = nil;
+                //[textField becomeFirstResponder];
+                self.textFieldForFeils = textField;
+            }
     }
 }
 
@@ -136,6 +137,13 @@
 //send info to the server
 - (IBAction)toOrder:(id)sender 
 {
+    UIActivityIndicatorView *activityView=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    activityView.backgroundColor = [UIColor darkTextColor];
+    activityView.frame = self.parentViewController.view.frame;
+    activityView.center=self.view.center;
+    [activityView startAnimating];
+    [self.view addSubview:activityView];
+    
 //    NSString *orderStringUrl = [@"http://matrix-soft.org/addon_domains_folder/test5/root/Customer_Scripts/makeOrder.php?tag=" stringByAppendingString: @"order"];
 //    orderStringUrl = [orderStringUrl stringByAppendingString: @"&DBid=10&UUID=fdsampled-roma-roma-roma-69416d19df4e&ProdIDs=9;11&counts=30;5&city=Kyiv&street=qweqw&house=1&room_office=232&custName=eqweqwewqewe&phone=+380(099)9999999&idDelivery=1"];
     
@@ -195,7 +203,8 @@
                                                        cancelButtonTitle:@"Ok"
                                                        otherButtonTitles:nil];
     [message show];
-    //[self.navigationController popViewControllerAnimated:YES];
+    [[[GettingCoreContent alloc] init] deleteAllObjectsFromEntity:@"Cart"]; 
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 - (IBAction)saveAddress:(id)sender 

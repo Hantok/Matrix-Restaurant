@@ -18,7 +18,7 @@
 @property (strong, nonatomic) NSMutableData *responseData;
 @property (nonatomic, strong) XMLParse *db;
 @property BOOL isDid;
-@property (nonatomic, strong) UIActivityIndicatorView *activityView;
+//@property (nonatomic, strong) UIActivityIndicatorView *activityView;
 
 @end
 
@@ -30,7 +30,7 @@
 @synthesize responseData = _responseData;
 @synthesize db = _db;
 @synthesize isDid = _isDid;
-@synthesize activityView = _activityView;
+//@synthesize activityView = _activityView;
 
 - (void)setArrayFromSegue:(BOOL)isCityEnter;
 {
@@ -129,12 +129,12 @@
 {
     if (checkConnection.hasConnectivity)
     {
-        self.activityView=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        self.activityView.frame = self.view.frame;
-        self.activityView.backgroundColor = [UIColor grayColor];
-        self.activityView.center=self.view.center;
-        [self.activityView startAnimating];
-        [self.view addSubview:self.activityView];
+        UIActivityIndicatorView *activityView=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        activityView.frame = self.view.frame;
+        activityView.backgroundColor = [UIColor grayColor];
+        activityView.center=self.view.center;
+        [activityView startAnimating];
+        [self.view addSubview:activityView];
         
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         NSString *changeStringForUserDefaults;
@@ -270,7 +270,6 @@
     [parser parse];
     self.db = parser;
     [self XMLToCoreData];
-    //[self.activityView stopAnimating];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
