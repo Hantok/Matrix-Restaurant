@@ -137,7 +137,8 @@
     [super viewDidAppear:YES];
     
     SEL niceBack = @selector(back);
-    UIBarButtonItem *_backButton = [[UIBarButtonItem alloc] initWithTitle:@"bug" style:self.navigationItem.backBarButtonItem.style target:self action:niceBack];
+    UIBarButtonItem *_backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:self.navigationItem.backBarButtonItem.style target:self action:niceBack];
+    _backButton.style = UIBarButtonSystemItemUndo;
     self.navigationItem.leftBarButtonItem = _backButton;
 }
 

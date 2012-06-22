@@ -72,15 +72,10 @@
 
 
 - (void) setCoreDataForEntityWithName:(NSString *)entityName 
-    dictionaryOfAtributes:(NSDictionary *)attributeDictionary;
+                dictionaryOfAtributes:(NSDictionary *)attributeDictionary;
 {
-    
     NSManagedObjectContext * context = self.managedObjectContext;
-    NSFetchRequest * request = [[NSFetchRequest alloc] init];
-    [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:context]];
-    
-    NSError *error;
-    NSArray *items= [context executeFetchRequest:request error:&error];
+    NSArray *items= [self fetchAllIdsFromEntity:entityName];
     
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
     NSArray *keys = [attributeDictionary allKeys];
@@ -92,11 +87,32 @@
         for (int i = 0; i < items.count; i++)
         {
             for (int j = 0; j < ArrayOfEnteringIDs.count; j++)
-                if ([[[items objectAtIndex:i] valueForKey:@"underbarid"] intValue] == [[[attributeDictionary objectForKey:@"_id"] objectAtIndex:j] intValue])
+                if ([[items objectAtIndex:i] intValue] == [[[attributeDictionary objectForKey:@"_id"] objectAtIndex:j] intValue])
                 {
-                    [self deleteObjectFromEntity:entityName withProductId:[[items objectAtIndex:i] valueForKey:@"underbarid"]];
+                    [self deleteObjectFromEntity:entityName withProductId:[items objectAtIndex:i]];
                     break;
                 }
+        }
+        
+        if ([entityName isEqualToString:@"Products"])
+        {
+            NSArray *arrayOfCartsIds = [self fetchAllIdsFromEntity:@"Cart"];
+            NSArray *arrayOfFavoritesIds = [self fetchAllIdsFromEntity:@"Favorites"];
+            
+            for (int i = 0; i < arrayOfCartsIds.count; i++)
+                for (int j = 0; j < ArrayOfEnteringIDs.count; j++)
+                    if ([[[arrayOfCartsIds objectAtIndex:i] valueForKey:@"underbarid"] intValue] == [[[attributeDictionary objectForKey:@"_id"] objectAtIndex:j] intValue])
+                    {
+                        [self deleteObjectFromEntity:@"Cart" withProductId:[[arrayOfCartsIds objectAtIndex:i] valueForKey:@"underbarid"]];
+                    }
+
+            for (int j = 0; j < arrayOfFavoritesIds.count; j++)
+                for (int i = 0; i < ArrayOfEnteringIDs.count; i++)
+                    if ([[[arrayOfFavoritesIds objectAtIndex:i] valueForKey:@"underbarid"] intValue] == [[[attributeDictionary objectForKey:@"_id"] objectAtIndex:j] intValue])
+                    {
+                        [self deleteObjectFromEntity:@"Favorites" withProductId:[[arrayOfFavoritesIds objectAtIndex:i] valueForKey:@"underbarid"]];
+                    }
+
         }
         
         NSArray *values = [attributeDictionary objectForKey:[keys objectAtIndex:0]];
@@ -140,6 +156,7 @@
         }
         // Save the context.
         //NSError *error = nil;
+        NSError *error;
         if (![context save:&error])
         {
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
@@ -577,5 +594,21 @@
             maxVersion = [[items objectAtIndex:i] valueForKey:fieldName];
     }
     return maxVersion;
+}
+
+- (NSArray *) fetchAllIdsFromEntity:(NSString *)entityName
+{   
+    NSManagedObjectContext *context = self.managedObjectContext;
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:context]];
+    
+    NSError *error;
+    NSArray *items= [context executeFetchRequest:request error:&error];
+    NSMutableArray *arrayOfIds = [[NSMutableArray alloc] init];
+    for (int i = 0; i<items.count; i++)
+    {
+        [arrayOfIds addObject:[[items objectAtIndex:i] valueForKey:@"underbarid"]];
+    }    
+    return arrayOfIds.copy;
 }
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "ProductCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation ProductCell
 @synthesize productImage = _productImage;
@@ -28,6 +29,10 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = self.bounds;
+    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor darkGrayColor] CGColor],(id)[[UIColor blackColor] CGColor], nil];
+    [self.layer insertSublayer:gradient atIndex:0];
 }
 
 @end

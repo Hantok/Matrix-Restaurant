@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *cartButton;
 @property (weak, nonatomic) IBOutlet UIImageView *productImage;
 @property (strong, nonatomic) IBOutlet UIButton *addToFavorites;
+@property (strong, nonatomic) IBOutlet UILabel *nameLabal;
 
 - (void)setProduct:(ProductDataStruct *)product isFromFavorites:(BOOL)boolValue;
 

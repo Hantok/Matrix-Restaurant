@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h>
 #import "XMLParse.h"
 #import "GettingCoreContent.h"
 #import "PickerViewCell.h"

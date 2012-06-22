@@ -165,7 +165,9 @@
         [[NSUserDefaults standardUserDefaults] setObject:data forKey:changeStringForUserDefaults];
         [[NSUserDefaults standardUserDefaults] synchronize];
         //[self.navigationController popViewControllerAnimated:YES];
-    
+        
+        GettingCoreContent *content = [[GettingCoreContent alloc] init];
+        
         if ([[NSUserDefaults standardUserDefaults] objectForKey:wasDownloaded] != nil)
         {
             // http request updatePHP with &tag=update
@@ -208,7 +210,9 @@
                                                                    otherButtonTitles:nil];
                 [connectFailMessage show];
             }
-
+//            NSArray *arrayOfCartsIds = [content fetchAllIdsFromEntity:@"Cart"];
+//            NSArray *arrayOfFavoritesIds = [content fetchAllIdsFromEntity:@"Favorites"];
+            
         }
         else 
         {
@@ -230,6 +234,13 @@
                                                                    cancelButtonTitle:@"Ok"
                                                                    otherButtonTitles:nil];
                 [connectFailMessage show];
+            }
+            //видалаляємо вміст корзини i favorites, якщо змінюємо city
+            if (self.isCity)
+            {
+                //GettingCoreContent *content = [[GettingCoreContent alloc] init];
+                [content deleteAllObjectsFromEntity:@"Cart"];
+                [content deleteAllObjectsFromEntity:@"Favorites"];
             }
 
         }

@@ -8,6 +8,7 @@
 
 #import "ProductDetailViewController.h"
 #import "GettingCoreContent.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface ProductDetailViewController ()
 
@@ -27,6 +28,7 @@
 @synthesize count = _count;
 @synthesize productImage = _productImage;
 @synthesize addToFavorites = _addToFavorites;
+@synthesize nameLabal = _nameLabal;
 @synthesize isInFavorites = _isInFavorites;
 @synthesize labelString = _labelString;
 @synthesize selectedPath = _selectedPath;
@@ -47,7 +49,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];    
-    self.navigationItem.title = self.product.title;
+    //self.navigationItem.title = self.product.title;
+    self.nameLabal.text = self.product.title;
     
 	// Do any additional setup after loading the view.
     //self.countPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0.0, 0.0, 63.0, 90.0)];
@@ -57,6 +60,10 @@
     self.priceLabel.text = [NSString stringWithFormat:@"Цена: %@ %@", cost, @"грн."];
     self.productImage.image = self.product.image;
     
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = self.view.bounds;
+    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor darkGrayColor] CGColor],(id)[[UIColor blackColor] CGColor], nil];
+    [self.view.layer insertSublayer:gradient atIndex:0];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -127,8 +134,7 @@
     }
     self.cartButton.titleLabel.text = self.labelString;
 }
-
-- (IBAction)addToFavorites:(id)sender 
+- (IBAction)AddToFavorites:(id)sender 
 {
     GettingCoreContent *db = [[GettingCoreContent alloc] init];
     [db SaveProductToEntityName:@"Favorites" WithId:self.product.productId 
@@ -147,6 +153,7 @@
     [self setCartButton:nil];
     [self setProductImage:nil];
     [self setAddToFavorites:nil];
+    [self setNameLabal:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

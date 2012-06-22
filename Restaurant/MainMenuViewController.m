@@ -15,6 +15,7 @@
 #import "LanguageAndCityTableViewController.h"
 #import "ProductDataStruct.h"
 #import "ProductDetailViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface MainMenuViewController ()
 {
@@ -235,39 +236,39 @@
     [super viewDidLoad];
     self.imageDownloadsInProgress = [[NSMutableDictionary alloc] init];
 
-    [self.menuButton setBackgroundImage:[UIImage imageNamed:@"Button_1.png"] forState:UIControlStateNormal];
+    [self.menuButton setBackgroundImage:[UIImage imageNamed:@"orange.png"] forState:UIControlStateNormal];
     
-    [self.cartButton setBackgroundImage:[UIImage imageNamed:@"Button_9.png"] forState:UIControlStateNormal];
+    [self.cartButton setBackgroundImage:[UIImage imageNamed:@"Button_black_light_rev2.png"] forState:UIControlStateNormal];
     
-    [self.restorantsButton setBackgroundImage:[UIImage imageNamed:@"gray button.png"] forState:UIControlStateNormal];
+    //[self.restorantsButton setBackgroundImage:[UIImage imageNamed:@"gray button.png"] forState:UIControlStateNormal];
     self.restorantsButton.titleLabel.textAlignment = UITextAlignmentCenter;
     
-    [self.settingsButton setBackgroundImage:[UIImage imageNamed:@"blank-gray-button-md.png"] forState:UIControlStateNormal];
+    //[self.settingsButton setBackgroundImage:[UIImage imageNamed:@"blank-gray-button-md.png"] forState:UIControlStateNormal];
     
     CALayer *layerMenu = self.menuButton.layer;
-    [layerMenu setCornerRadius:8.0f];
+    [layerMenu setCornerRadius:10.0f];
     //layerMenu.masksToBounds = YES;
-    [layerMenu setBorderWidth:1.0f];
+    //[layerMenu setBorderWidth:0.0f];
     
      
     CALayer *layerCart = self.cartButton.layer;
-    layerCart.cornerRadius = 8.0f;
+    layerCart.cornerRadius = 10.0f;
     //layerCart.masksToBounds = YES;
-    layerCart.borderWidth = 1.0f;
+    //layerCart.borderWidth = 0.0f;
     //layer.borderColor = [UIColor colorWithWhite:0.4f alpha:0.2f].CGColor;
     
     CALayer *layerRest = self.restorantsButton.layer;
     layerRest.cornerRadius = 8.0f;
     //layerRest.masksToBounds = YES;
-    layerRest.borderWidth = 5.0f;
-    [layerRest setBorderColor:[UIColor grayColor].CGColor];
+    //layerRest.borderWidth = 5.0f;
+    //[layerRest setBorderColor:[UIColor grayColor].CGColor];
     
-    CALayer *layerSett = self.settingsButton.layer;
-    layerSett.cornerRadius = 9.0f;
-    //layerSett.masksToBounds = YES;
-    layerSett.borderWidth = 1.0f;
-    [layerSett setBorderColor:[UIColor grayColor].CGColor];
-    [layerSett setBackgroundColor:[UIColor grayColor].CGColor];
+//    CALayer *layerSett = self.settingsButton.layer;
+//    layerSett.cornerRadius = 9.0f;
+//    //layerSett.masksToBounds = YES;
+//    layerSett.borderWidth = 1.0f;
+//    [layerSett setBorderColor:[UIColor grayColor].CGColor];
+//    [layerSett setBackgroundColor:[UIColor grayColor].CGColor];
     
     self.navigationItem.title = @"Main";
     [self menuButton:self];
@@ -286,12 +287,17 @@
     AudioServicesCreateSystemSoundID (soundFileURLRef, &soundFileObject);
     
     NSArray * imageArray  = [[NSArray alloc] initWithObjects:
-                             [UIImage imageNamed:@"logo.gif"],
-                             [UIImage imageNamed:@"1.png"], nil];
+                             [UIImage imageNamed:@"1.jpg"],
+                             [UIImage imageNamed:@"11.gif"], nil];
     self.imageView.animationImages = imageArray;
     self.imageView.animationDuration = 4.0;
     self.imageView.contentMode = UIViewContentModeBottomLeft;
     [self.imageView startAnimating];
+    
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = self.view.bounds;
+    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor darkGrayColor] CGColor],(id)[[UIColor blackColor] CGColor], nil];
+    [self.view.layer insertSublayer:gradient atIndex:0];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -613,7 +619,7 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+{        
     if(self.isCartMode)
     {
 
@@ -628,7 +634,6 @@
                 if([currentObject isKindOfClass:[CartCell class]])
                 {
                     cell = (CartCell *)currentObject;
-                
                     break;
                 }
             }
@@ -645,10 +650,6 @@
     {
         if(indexPath.section != 0)
         {
-                //        {
-
-                //        }
-
             NSString *CellIdentifier = @"PickerViewCell";
             PickerViewCell *cell = (PickerViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
@@ -711,7 +712,7 @@
     }
     else
     {
-        return 73.0;
+        return 50.0;
     }
 }
 
@@ -767,7 +768,14 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return YES;
+    if (self.isCartMode)
+    {
+        return YES;
+    }
+    else 
+    {
+        return NO;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath

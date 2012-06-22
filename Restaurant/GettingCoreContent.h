@@ -44,4 +44,6 @@
 //для updatePHP, а саме параметра tag=param
 - (NSNumber *) fetchMaximumNumberOfAttribute:(NSString *)fieldName fromEntity:(NSString *)entityName;
 
+
+- (NSArray *) fetchAllIdsFromEntity:(NSString *)entityName;
 @end
