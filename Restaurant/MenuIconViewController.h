@@ -12,14 +12,16 @@
 #import "IconDownloader.h"
 #import "ProductCell.h"
 #import "ProductDataStruct.h"
+#import "IconDownloader.h"
 
-@interface MenuIconViewController : UIViewController <UIScrollViewDelegate>
+@interface MenuIconViewController : UIViewController <UIScrollViewDelegate, IconDownloaderDelegate>
 
 @property (strong, nonatomic) NSMutableArray *arrayData;
 @property (nonatomic, strong) MenuDataStruct *kindOfMenu;
 @property (strong, nonatomic) GettingCoreContent *db;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIPageControl *pageControl;
+@property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 
 - (IBAction)changePage;
 

@@ -46,10 +46,10 @@
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
-    if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"typeOfView"] isEqualToString:@"menuList"]) 
-        self.typeOfView = [[NSString alloc] initWithString:@"List"];
-    else 
+    if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"typeOfView"] isEqualToString:@"iconList"]) 
         self.typeOfView = [[NSString alloc] initWithString:@"Icons"];
+    else 
+        self.typeOfView = [[NSString alloc] initWithString:@"List"];
     
     self.styleCell.detailTextLabel.text = self.typeOfView;
 }

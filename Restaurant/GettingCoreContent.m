@@ -140,7 +140,8 @@
                         editAttrinbuteWithUnderBar = @"descriptionAbout";
                     }
                 }
-                if ([editAttrinbuteWithUnderBar isEqualToString:@"idPicture"] || [editAttrinbuteWithUnderBar isEqualToString:@"underbarid"] || [editAttrinbuteWithUnderBar isEqualToString:@"idProduct"] || [editAttrinbuteWithUnderBar isEqualToString:@"version"]||[editAttrinbuteWithUnderBar isEqualToString:@"action"]) {
+                if ([editAttrinbuteWithUnderBar isEqualToString:@"idPicture"] || [editAttrinbuteWithUnderBar isEqualToString:@"underbarid"] || [editAttrinbuteWithUnderBar isEqualToString:@"idProduct"] || [editAttrinbuteWithUnderBar isEqualToString:@"version"]||[editAttrinbuteWithUnderBar isEqualToString:@"action"]) 
+                {
                     NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
                     [f setNumberStyle:NSNumberFormatterDecimalStyle];
                     NSNumber * idPicture = [f numberFromString:[values objectAtIndex:counter]];

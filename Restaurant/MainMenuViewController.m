@@ -753,7 +753,15 @@
                     {
                         self.arrayData = nil;
                         self.selectedRow = selectedRow;
-                        [self performSegueWithIdentifier:[[NSUserDefaults standardUserDefaults] objectForKey:@"typeOfView"] sender:self];
+                        if (![[NSUserDefaults standardUserDefaults] objectForKey:@"typeOfView"])
+                        {
+                            [self performSegueWithIdentifier:@"menuList" sender:self];
+                            [[NSUserDefaults standardUserDefaults] setValue:@"menuList" forKey:@"typeOfView"];
+                        }
+                        else
+                        {
+                            [self performSegueWithIdentifier:[[NSUserDefaults standardUserDefaults] objectForKey:@"typeOfView"] sender:self];
+                        }
                     }
                 }
             }

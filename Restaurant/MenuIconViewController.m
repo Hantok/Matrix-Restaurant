@@ -21,6 +21,7 @@
 @synthesize arrayData = _arrayData;
 @synthesize db = _db;
 @synthesize scrollView = _scrollView;
+@synthesize imageDownloadsInProgress = _imageDownloadsInProgress;
 @synthesize pageControl;
 
 - (NSMutableArray *)arrayData
@@ -158,7 +159,7 @@
         priceFrame.origin.y = 70;
         priceFrame.size = CGSizeMake(42,21);
         UILabel *priceLabel = [[UILabel alloc] initWithFrame:priceFrame];
-        priceLabel.text = [[self.arrayData objectAtIndex:i] price];
+        priceLabel.text = [[self.arrayData objectAtIndex:i]price];//[NSString stringWithFormat:@"%@", [[self.arrayData objectAtIndex:i]productId]];
         priceLabel.textAlignment = UITextAlignmentRight;
         [element addSubview:priceLabel];
         
@@ -197,7 +198,8 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-//<UIScrollViewDelegate> methods
+#pragma mark -
+#pragma mark <UIScrollViewDelegate> methods
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender {
 	if (!pageControlBeingUsed) {
@@ -230,6 +232,74 @@
 	// number.
 	pageControlBeingUsed = YES;
 }
+
+#pragma mark -
+#pragma mark image downloading support
+
+//- (void)startIconDownload:(ProductDataStruct *)appRecord withID:(NSNumber *)underbarid
+//{
+//    IconDownloader *iconDownloader = [self.imageDownloadsInProgress objectForKey:underbarid];
+//    if (iconDownloader == nil) 
+//    {
+//        iconDownloader = [[IconDownloader alloc] init];
+//        iconDownloader.appRecord = appRecord;
+//        iconDownloader.indexPathInTableView = [NSIndexPath indexPathWithIndex:underbarid.integerValue];
+//        iconDownloader.delegate = self;
+//        [self.imageDownloadsInProgress setObject:iconDownloader forKey:[NSIndexPath indexPathWithIndex:underbarid.integerValue]];
+//        [iconDownloader startDownload]; 
+//    }
+//}
+//
+//// this method is used in case the user scrolled into a set of cells that don't have their app icons yet
+//- (void)loadImagesForOnscreenRows
+//{
+//    if ([self.arrayData count] > 0)
+//    {
+//        NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
+//        NSIndexPath *ip = [[NSIndexPath alloc] initWithIndex:self.pageControl.currentPage];
+//        for (NSIndexPath *indexPath in visiblePaths)
+//        {
+//            ProductDataStruct *appRecord = [self.arrayData objectAtIndex:indexPath.row];
+//            
+//            if (!appRecord.image) // avoid the app icon download if the app already has an icon
+//            {
+//                [self startIconDownload:appRecord forIndexPath:indexPath];
+//            }
+//        }
+//    }
+//}
+//
+//// called by our ImageDownloader when an icon is ready to be displayed
+//- (void)appImageDidLoad:(NSIndexPath *)indexPath
+//{
+//    IconDownloader *iconDownloader = [self.imageDownloadsInProgress objectForKey:indexPath];
+//    if (iconDownloader != nil)
+//    {
+//        ProductCell *cell = (ProductCell *)[self.tableView cellForRowAtIndexPath:iconDownloader.indexPathInTableView];
+//        
+//        // Display the newly loaded image
+//        cell.productImage.image = iconDownloader.appRecord.image;
+//        [self.db SavePictureToCoreData:iconDownloader.appRecord.idPicture toData:UIImagePNGRepresentation(cell.productImage.image)];
+//        
+//    }
+//}
+//
+//#pragma mark -
+//#pragma mark Deferred image loading (UIScrollViewDelegate)
+//
+//// Load images for all onscreen rows when scrolling is finished
+//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+//{
+//    if (!decelerate)
+//	{
+//        [self loadImagesForOnscreenRows];
+//    }
+//}
+//
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+//{
+//    [self loadImagesForOnscreenRows];
+//}
 
 
 @end
