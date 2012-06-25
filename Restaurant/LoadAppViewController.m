@@ -314,9 +314,9 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
-    if (!self.isFirstTime && checkConnection.hasConnectivity)
+    if (!checkConnection.hasConnectivity)
     {
-        
+        [self performSegueWithIdentifier:@"toMain" sender:self];
     }
 }
      

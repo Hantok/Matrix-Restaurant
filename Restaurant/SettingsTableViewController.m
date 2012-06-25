@@ -13,11 +13,19 @@
 
 
 @interface SettingsTableViewController ()
+
 @property BOOL isFriend;
+@property BOOL isStyle;
+@property (nonatomic, strong) NSString *typeOfView;
+
 @end
 
 @implementation SettingsTableViewController
+@synthesize styleCell = _styleCell;
+
 @synthesize isFriend = _isFriend;
+@synthesize isStyle = _isStyle;
+@synthesize typeOfView = _typeOfView;
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -35,8 +43,19 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+    if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"typeOfView"] isEqualToString:@"menuList"]) 
+        self.typeOfView = [[NSString alloc] initWithString:@"List"];
+    else 
+        self.typeOfView = [[NSString alloc] initWithString:@"Icons"];
+    
+    self.styleCell.detailTextLabel.text = self.typeOfView;
+}
 - (void)viewDidUnload
 {
+    [self setStyleCell:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -103,7 +122,8 @@
             }
         }
     }
-    else 
+    
+    if (!self.isStyle && !self.isFriend) 
     {
         if (buttonIndex == 0)
         {
@@ -120,6 +140,22 @@
         }
         
     }
+    
+    if (self.isStyle)
+    {
+        if (buttonIndex == 0)
+        {
+            [[NSUserDefaults standardUserDefaults] setValue:@"menuIcon" forKey:@"typeOfView"];
+            self.styleCell.detailTextLabel.text = @"Icons";
+            
+        }
+        if (buttonIndex == 1)
+        {
+            [[NSUserDefaults standardUserDefaults] setValue:@"menuList" forKey:@"typeOfView"];
+            self.styleCell.detailTextLabel.text = @"List";
+        }
+    }
+        
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -153,6 +189,18 @@
         self.isFriend = YES;
         [actionSheet addButtonWithTitle:@"via SMS"];
         [actionSheet addButtonWithTitle:@"via e-mail"];
+        [actionSheet addButtonWithTitle:@"Cancel"];
+        [actionSheet showInView:self.view];
+    }
+    
+    if ([cell.reuseIdentifier isEqualToString:@"typeOfView"])
+    {
+        UIActionSheet* actionSheet = [[UIActionSheet alloc] init];
+        [actionSheet setTitle:@"Choose style:"];
+        [actionSheet setDelegate:(id)self];
+        self.isStyle = YES;
+        [actionSheet addButtonWithTitle:@"Icons"];
+        [actionSheet addButtonWithTitle:@"List"];
         [actionSheet addButtonWithTitle:@"Cancel"];
         [actionSheet showInView:self.view];
     }

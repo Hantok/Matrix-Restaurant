@@ -13,6 +13,7 @@
 
 -(void)displayComposerSheet;
 -(void)launchMailAppOnDevice;
+@property (strong, nonatomic) IBOutlet UITableViewCell *styleCell;
 
 
 @end

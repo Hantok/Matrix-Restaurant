@@ -549,8 +549,8 @@
                     if(self.isMenuMode)
                     {
                         self.arrayData = nil;
-                        self.selectedRow = selectedRow;
-                        [self performSegueWithIdentifier:@"menuList" sender:self];
+                        self.selectedRow = selectedRow; 
+                        [self performSegueWithIdentifier:[[NSUserDefaults standardUserDefaults] objectForKey:@"typeOfView"] sender:self];
                     }
                 }
             }
@@ -576,7 +576,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     //NSLog(@"%@",[self.arrayData objectAtIndex:self.selectedRow.integerValue]);
-    if ([segue.identifier isEqualToString:@"menuList"])
+    if ([segue.identifier isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"typeOfView"]])
     {
         MenuDataStruct *dataStruct = [self.arrayData objectAtIndex:self.selectedRow.integerValue];
         [segue.destinationViewController setKindOfMenu:dataStruct];
@@ -753,7 +753,7 @@
                     {
                         self.arrayData = nil;
                         self.selectedRow = selectedRow;
-                        [self performSegueWithIdentifier:@"menuList" sender:self];
+                        [self performSegueWithIdentifier:[[NSUserDefaults standardUserDefaults] objectForKey:@"typeOfView"] sender:self];
                     }
                 }
             }

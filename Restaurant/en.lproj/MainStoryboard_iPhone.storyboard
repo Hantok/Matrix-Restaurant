@@ -54,7 +54,7 @@
                                 </connections>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="AbR-Mz-AtW">
-                                <rect key="frame" x="97" y="400" width="127" height="40"/>
+                                <rect key="frame" x="85" y="400" width="150" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Restaurants" backgroundImage="restaurants.png">
@@ -148,6 +148,7 @@
                         <segue destination="ION-IZ-3uP" kind="push" identifier="toDelivery" id="B5Z-Jv-8cG"/>
                         <segue destination="yJk-rP-XK4" kind="push" identifier="toRestaurantList" id="gOg-LO-tbG"/>
                         <segue destination="vn2-XR-gzu" kind="push" identifier="toFavorites" id="dW0-jt-4n2"/>
+                        <segue destination="wOa-81-fZj" kind="push" identifier="menuIcon" id="3eU-AG-9O4"/>
                     </connections>
                 </viewController>
             </objects>
@@ -476,7 +477,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="yuy-6E-Bmu" detailTextLabel="Ln5-na-lrb" style="IBUITableViewCellStyleValue1" id="MZZ-5K-vb6" customClass="CityCell">
-                                        <rect key="frame" x="0.0" y="55" width="320" height="45"/>
+                                        <rect key="frame" x="0.0" y="55" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="280" height="43"/>
@@ -503,12 +504,37 @@
                                             <segue destination="17B-mz-dpq" kind="push" identifier="to Cities" id="32d-88-GZP"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="typeOfView" textLabel="Xho-zd-zbg" detailTextLabel="SbY-4d-KKn" style="IBUITableViewCellStyleValue1" id="SoJ-hi-tsB">
+                                        <rect key="frame" x="0.0" y="99" width="320" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Стиль меню" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xho-zd-zbg">
+                                                    <rect key="frame" x="10" y="11" width="104" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SbY-4d-KKn">
+                                                    <rect key="frame" x="226" y="11" width="44" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.21960784310000001" green="0.3294117647" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="" id="8tk-bB-9DD">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="rk7-XX-X7w" style="IBUITableViewCellStyleDefault" id="yhb-oP-GwP">
-                                        <rect key="frame" x="0.0" y="120" width="320" height="45"/>
+                                        <rect key="frame" x="0.0" y="164" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="280" height="43"/>
@@ -529,7 +555,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Friend" textLabel="edb-qr-Mbu" style="IBUITableViewCellStyleDefault" id="NpZ-xQ-9Pl">
-                                        <rect key="frame" x="0.0" y="165" width="320" height="45"/>
+                                        <rect key="frame" x="0.0" y="209" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="280" height="43"/>
@@ -551,7 +577,7 @@
                             <tableViewSection headerTitle="" id="7O7-t9-4fN">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Social" textLabel="LWH-b9-bqZ" style="IBUITableViewCellStyleDefault" id="C1w-qL-dFX">
-                                        <rect key="frame" x="0.0" y="230" width="320" height="46"/>
+                                        <rect key="frame" x="0.0" y="274" width="320" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="280" height="43"/>
@@ -573,7 +599,7 @@
                             <tableViewSection headerTitle="" id="R63-HG-it2">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Reset" textLabel="PNn-nq-CYU" style="IBUITableViewCellStyleDefault" id="vcO-6I-lh3">
-                                        <rect key="frame" x="0.0" y="296" width="320" height="46"/>
+                                        <rect key="frame" x="0.0" y="340" width="320" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="300" height="43"/>
@@ -600,6 +626,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="YKe-On-gpa"/>
                     <connections>
+                        <outlet property="styleCell" destination="SoJ-hi-tsB" id="40m-eZ-6Vz"/>
                         <segue destination="YcF-qT-ZVg" kind="push" identifier="Social" id="JaF-mp-7Ut"/>
                     </connections>
                 </tableViewController>
@@ -735,7 +762,42 @@
                     </connections>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="1543" y="40"/>
+            <point key="canvasLocation" x="1604" y="70"/>
+        </scene>
+        <!--Menu Icon View Controller-->
+        <scene sceneID="0mg-Ht-QV1">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3zn-Ps-7IN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="wOa-81-fZj" customClass="MenuIconViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Chz-Rd-22A">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="LDX-Vq-37s">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="370"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="wOa-81-fZj" id="WQn-xR-Z7T"/>
+                                </connections>
+                            </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="QQs-c0-wwG">
+                                <rect key="frame" x="126" y="379" width="68" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="changePage" destination="wOa-81-fZj" eventType="valueChanged" id="sf5-Uh-X4H"/>
+                                </connections>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="QRw-yv-h5z"/>
+                    <connections>
+                        <outlet property="pageControl" destination="QQs-c0-wwG" id="R5U-5A-Mtn"/>
+                        <outlet property="scrollView" destination="LDX-Vq-37s" id="hxQ-86-Op0"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1604" y="-503"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2Ty-cS-1r2">
@@ -907,6 +969,14 @@
                 <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
             </relationships>
         </class>
+        <class className="MenuIconViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuIconViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="changePage"/>
+                <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
         <class className="MenuListTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuListTableViewController.h"/>
             <relationships>
@@ -942,6 +1012,9 @@
         </class>
         <class className="SettingsTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="styleCell" candidateClass="UITableViewCell"/>
+            </relationships>
         </class>
         <class className="SocialViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SocialViewController.h"/>
@@ -956,7 +1029,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="uuy-7P-Ssv"/>
         <segue reference="p5O-gN-8X0"/>
+        <segue reference="2cA-1w-ejy"/>
     </inferredMetricsTieBreakers>
 </document>
