@@ -141,7 +141,13 @@
         
         imageFrame.size = CGSizeMake(106,80);
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageFrame];
-        [imageView setImage:[UIImage imageNamed:@"Placeholder.png"]];
+        if ([[self.arrayData objectAtIndex:i] image] == nil)
+        {
+            [imageView setImage:[UIImage imageNamed:@"Placeholder.png"]];
+        }
+        else
+            
+            [imageView setImage:[[self.arrayData objectAtIndex:i] image]];
         [element addSubview:imageView];
         
         nameFrame.origin.x = 0;
@@ -184,6 +190,18 @@
 	self.pageControl.numberOfPages =  (int) self.arrayData.count/9;
 
 }
+
+- (void) viewWillDisappear:(BOOL)animated {
+    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) 
+    {
+        // back button was pressed.  We know this is true because self is no longer
+        // in the navigation stack.
+        NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
+        [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
+    }
+    [super viewWillDisappear:animated];
+}
+
 
 - (void)viewDidUnload
 {
@@ -236,16 +254,16 @@
 #pragma mark -
 #pragma mark image downloading support
 
-//- (void)startIconDownload:(ProductDataStruct *)appRecord withID:(NSNumber *)underbarid
+//- (void)startIconDownload:(ProductDataStruct *)appRecord forIndexPath:(NSIndexPath *)indexPath
 //{
-//    IconDownloader *iconDownloader = [self.imageDownloadsInProgress objectForKey:underbarid];
+//    IconDownloader *iconDownloader = [self.imageDownloadsInProgress objectForKey:indexPath];
 //    if (iconDownloader == nil) 
 //    {
 //        iconDownloader = [[IconDownloader alloc] init];
 //        iconDownloader.appRecord = appRecord;
-//        iconDownloader.indexPathInTableView = [NSIndexPath indexPathWithIndex:underbarid.integerValue];
+//        iconDownloader.indexPathInTableView = indexPath;
 //        iconDownloader.delegate = self;
-//        [self.imageDownloadsInProgress setObject:iconDownloader forKey:[NSIndexPath indexPathWithIndex:underbarid.integerValue]];
+//        [self.imageDownloadsInProgress setObject:iconDownloader forKey:indexPath];
 //        [iconDownloader startDownload]; 
 //    }
 //}
@@ -255,9 +273,11 @@
 //{
 //    if ([self.arrayData count] > 0)
 //    {
-//        NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
-//        NSIndexPath *ip = [[NSIndexPath alloc] initWithIndex:self.pageControl.currentPage];
-//        for (NSIndexPath *indexPath in visiblePaths)
+//        NSIndexPath *path = [[NSIndexPath alloc] initWithIndex:0];
+//        [path indexPathByAddingIndex:1];
+//        //NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
+//        //for (NSIndexPath *indexPath in visiblePaths)
+//        for (NSIndexPath *indexPath in 9)
 //        {
 //            ProductDataStruct *appRecord = [self.arrayData objectAtIndex:indexPath.row];
 //            

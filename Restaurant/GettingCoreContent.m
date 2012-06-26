@@ -140,7 +140,7 @@
                         editAttrinbuteWithUnderBar = @"descriptionAbout";
                     }
                 }
-                if ([editAttrinbuteWithUnderBar isEqualToString:@"idPicture"] || [editAttrinbuteWithUnderBar isEqualToString:@"underbarid"] || [editAttrinbuteWithUnderBar isEqualToString:@"idProduct"] || [editAttrinbuteWithUnderBar isEqualToString:@"version"]||[editAttrinbuteWithUnderBar isEqualToString:@"action"]) 
+                if ([editAttrinbuteWithUnderBar isEqualToString:@"idPicture"] || [editAttrinbuteWithUnderBar isEqualToString:@"underbarid"] || [editAttrinbuteWithUnderBar isEqualToString:@"idProduct"] || [editAttrinbuteWithUnderBar isEqualToString:@"version"]) 
                 {
                     NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
                     [f setNumberStyle:NSNumberFormatterDecimalStyle];
@@ -148,10 +148,25 @@
                     [newManagedObject setValue:idPicture forKey:editAttrinbuteWithUnderBar];
                 }
                 else 
-                {
-                    [newManagedObject setValue:[[values objectAtIndex:counter] description] forKey:editAttrinbuteWithUnderBar];
-                }
-                
+                    if ([editAttrinbuteWithUnderBar isEqualToString:@"action"])
+                    {
+                        if([[[attributeDictionary objectForKey:@"action"] objectAtIndex:counter] isEqual:@"2"])
+                        {
+                            [self deleteObjectFromEntity:entityName withProductId:[ArrayOfEnteringIDs objectAtIndex:counter]];
+                            break;
+                        }
+                        else 
+                        {
+                            NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+                            [f setNumberStyle:NSNumberFormatterDecimalStyle];
+                            NSNumber *numberValue = [f numberFromString:[values objectAtIndex:counter]];
+                            [newManagedObject setValue:numberValue forKey:editAttrinbuteWithUnderBar];
+                        }
+                    }
+                    else 
+                    {
+                        [newManagedObject setValue:[[values objectAtIndex:counter] description] forKey:editAttrinbuteWithUnderBar];
+                    }
             }
             counter++;
         }
@@ -568,7 +583,7 @@
     {
         //if ([[items objectAtIndex:i] isEqual:[items objectAtIndex:indexPath.row]])
         //    [context deleteObject:[items objectAtIndex:i]];
-        if ([[[items objectAtIndex:i] valueForKey:@"underbarid"] isEqual:underbarid])
+        if ([[[items objectAtIndex:i] valueForKey:@"underbarid"] intValue] == underbarid.intValue)
             {
                 [context deleteObject:[items objectAtIndex:i]];
                 break;

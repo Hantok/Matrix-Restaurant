@@ -117,14 +117,6 @@
     _kindOfMenu = kindOfMenu;
 }
 
-- (IBAction)back
-{
-    NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
-    [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
-    [[self navigationController] popViewControllerAnimated:YES];
-    
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -135,11 +127,17 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
-    
-    SEL niceBack = @selector(back);
-    UIBarButtonItem *_backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:self.navigationItem.backBarButtonItem.style target:self action:niceBack];
-    _backButton.style = UIBarButtonSystemItemUndo;
-    self.navigationItem.leftBarButtonItem = _backButton;
+}
+
+- (void) viewWillDisappear:(BOOL)animated {
+    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) 
+    {
+        // back button was pressed.  We know this is true because self is no longer
+        // in the navigation stack.
+        NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
+        [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
+    }
+    [super viewWillDisappear:animated];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

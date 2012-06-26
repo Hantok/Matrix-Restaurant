@@ -46,7 +46,7 @@
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
-    if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"typeOfView"] isEqualToString:@"iconList"]) 
+    if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"typeOfView"] isEqualToString:@"menuIcon"]) 
         self.typeOfView = [[NSString alloc] initWithString:@"Icons"];
     else 
         self.typeOfView = [[NSString alloc] initWithString:@"List"];

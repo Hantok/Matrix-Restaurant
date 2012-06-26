@@ -168,6 +168,8 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"Unable to fetch data");
+    [self performSegueWithIdentifier:@"toMain" sender:self];
+    [self DropCoreData];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection 
