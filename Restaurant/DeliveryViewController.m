@@ -148,7 +148,16 @@
 //    orderStringUrl = [orderStringUrl stringByAppendingString: @"&DBid=10&UUID=fdsampled-roma-roma-roma-69416d19df4e&ProdIDs=9;11&counts=30;5&city=Kyiv&street=qweqw&house=1&room_office=232&custName=eqweqwewqewe&phone=+380(099)9999999&idDelivery=1"];
     
     NSMutableString *order = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test5/root/Customer_Scripts/makeOrder.php?tag=order&DBid=10&UUID="];
-    [order appendString: @"oursample-roma-roma-roma-iPhone19df4e"];
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"uid"])
+    {
+        NSString *uid = [self createUUID];
+        [[NSUserDefaults standardUserDefaults] setValue:uid forKey:@"uid"];
+        //9E3C884C-6E57-4D16-884F-46132825F21E
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [order appendString: uid];
+    }
+    else 
+        [order appendString:[[NSUserDefaults standardUserDefaults] objectForKey:@"uid"]];
     
     NSArray *cartArray = [[[GettingCoreContent alloc] init] fetchAllProductsIdAndTheirCountWithPriceForEntity:@"Cart"];
     NSMutableString *ids = [[NSMutableString alloc] init];
@@ -189,6 +198,14 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"Unable to fetch data");
+    
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Can not access to the server" 
+                                                      message:@"Please try again."  
+                                                     delegate:self
+                                            cancelButtonTitle:@"Ok"
+                                            otherButtonTitles:nil];
+    [message show];
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection 
@@ -215,5 +232,27 @@
                                             cancelButtonTitle:@"Ok"
                                             otherButtonTitles:nil];
     [message show];
+}
+
+- (NSString *)createUUID
+{
+    // Create universally unique identifier (object)
+    CFUUIDRef uuidObject = CFUUIDCreate(kCFAllocatorDefault);
+    
+    // Get the string representation of CFUUID object.
+    NSString *uuidStr = (__bridge NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuidObject);
+    
+    // If needed, here is how to get a representation in bytes, returned as a structure
+    // typedef struct {
+    //   UInt8 byte0;
+    //   UInt8 byte1;
+    //   ...
+    //   UInt8 byte15;
+    // } CFUUIDBytes;
+    //CFUUIDBytes bytes = CFUUIDGetUUIDBytes(uuidObject);
+    
+    //CFRelease(uuidObject);
+    
+    return uuidStr;
 }
 @end

@@ -104,11 +104,16 @@
     int w = 0;
     int j = 1;
     int withSize = 0;
+
+    NSMutableArray *temporaryArray = [[NSMutableArray alloc] init];
+    
     CGRect frame;
     CGRect imageFrame;
     CGRect nameFrame;
     CGRect priceFrame;
     CGRect descriptionFrame;
+    NSNumber *temporary = [NSNumber alloc];
+    
 	for (int i = 0; i < self.arrayData.count; i++)
     {
         if ((i%3==0) && (i!=0))
@@ -138,17 +143,6 @@
         //UIView *elementView = [[UIView alloc] initWithFrame:frame];
         UIButton *element = [[UIButton alloc] initWithFrame:frame];
         element.backgroundColor = [UIColor blueColor];
-        
-        imageFrame.size = CGSizeMake(106,80);
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageFrame];
-        if ([[self.arrayData objectAtIndex:i] image] == nil)
-        {
-            [imageView setImage:[UIImage imageNamed:@"Placeholder.png"]];
-        }
-        else
-            
-            [imageView setImage:[[self.arrayData objectAtIndex:i] image]];
-        [element addSubview:imageView];
         
         nameFrame.origin.x = 0;
         nameFrame.origin.y = 70;
@@ -180,7 +174,20 @@
         descriptionLabel.adjustsFontSizeToFitWidth = YES;
         [element addSubview:descriptionLabel];
         
+        imageFrame.size = CGSizeMake(106,80);
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageFrame];
+        if ([[self.arrayData objectAtIndex:i] image] == nil)
+        {
+            [imageView setImage:[UIImage imageNamed:@"Placeholder.png"]];
+        }
+        else
+        {
+            [imageView setImage:[[self.arrayData objectAtIndex:i] image]];
+        }
+        
+        [element addSubview:imageView];
         [self.scrollView addSubview:element];
+        [temporaryArray addObject:[temporary initWithInt:[self.view.subviews indexOfObject:self.view.subviews.lastObject]]];
     }
     
     //CGFloat countOfPages = self.arrayData.count/9;
@@ -188,9 +195,19 @@
 	
 	self.pageControl.currentPage = 0;
 	self.pageControl.numberOfPages =  (int) self.arrayData.count/9;
+    
+    //self.arrayOfSubViews = temporaryArray.copy;
+    //[self activePageWithId:0];
 
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+    
+    [self activePageWithId:0];
+    
+}
 - (void) viewWillDisappear:(BOOL)animated {
     if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) 
     {
@@ -225,6 +242,7 @@
 		CGFloat pageWidth = self.scrollView.frame.size.width;
 		int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
 		self.pageControl.currentPage = page;
+        [self activePageWithId:[NSNumber numberWithInt:page]];
 	}
 }
 
@@ -320,6 +338,48 @@
 //{
 //    [self loadImagesForOnscreenRows];
 //}
+
+-(void) activePageWithId:(NSNumber *)idOfPage
+{
+    int j;
+    int i = idOfPage.intValue*9;
+    if (self.arrayData.count < 9)
+    {
+        j = self.arrayData.count;
+    }
+    else
+    {
+        j = i + 9;
+    }
+    while (i < j)
+    {
+        //[NSThread detachNewThreadSelector:@selector(downloadingAndSaveImagesWithLink:idOfSubview:) toTarget:self withObject:[[self.arrayData objectAtIndex:i] link]:[self.arrayOfSubViews objectAtIndex:i]];
+        if ([[self.arrayData objectAtIndex:i] image] == nil)
+        {
+            NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:[[self.arrayData objectAtIndex:i] idPicture], @"id",
+                                    [[self.arrayData objectAtIndex:i] link], @"link",
+                                     nil];
+            [NSThread detachNewThreadSelector:@selector(downloadingAndSaveImage:) toTarget:self withObject:parameters];
+        }
+        i++;
+    }
+}
+
+- (void) downloadingAndSaveImage:(NSDictionary *)parameters
+{
+    BOOL is;
+    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[parameters objectForKey:@"link"]]]];
+    if (image != nil)
+    {
+        [self.db SavePictureToCoreData:[parameters objectForKey:@"id"] toData:UIImagePNGRepresentation(image)];
+        is = YES;
+    }
+    
+    if (is)
+    {
+        [super reloadInputViews];
+    }
+}
 
 
 @end

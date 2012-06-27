@@ -101,16 +101,16 @@
             
             for (int i = 0; i < arrayOfCartsIds.count; i++)
                 for (int j = 0; j < ArrayOfEnteringIDs.count; j++)
-                    if ([[[arrayOfCartsIds objectAtIndex:i] valueForKey:@"underbarid"] intValue] == [[[attributeDictionary objectForKey:@"_id"] objectAtIndex:j] intValue])
+                    if ([[arrayOfCartsIds objectAtIndex:i] intValue] == [[[attributeDictionary objectForKey:@"_id"] objectAtIndex:j] intValue])
                     {
-                        [self deleteObjectFromEntity:@"Cart" withProductId:[[arrayOfCartsIds objectAtIndex:i] valueForKey:@"underbarid"]];
+                        [self deleteObjectFromEntity:@"Cart" withProductId:[arrayOfCartsIds objectAtIndex:i]];
                     }
 
             for (int j = 0; j < arrayOfFavoritesIds.count; j++)
                 for (int i = 0; i < ArrayOfEnteringIDs.count; i++)
-                    if ([[[arrayOfFavoritesIds objectAtIndex:i] valueForKey:@"underbarid"] intValue] == [[[attributeDictionary objectForKey:@"_id"] objectAtIndex:j] intValue])
+                    if ([[arrayOfFavoritesIds objectAtIndex:i] intValue] == [[[attributeDictionary objectForKey:@"_id"] objectAtIndex:j] intValue])
                     {
-                        [self deleteObjectFromEntity:@"Favorites" withProductId:[[arrayOfFavoritesIds objectAtIndex:i] valueForKey:@"underbarid"]];
+                        [self deleteObjectFromEntity:@"Favorites" withProductId:[arrayOfFavoritesIds objectAtIndex:i]];
                     }
 
         }
