@@ -240,7 +240,7 @@
     
     self.imageDownloadsInProgress = [[NSMutableDictionary alloc] init];
     
-    [self.menuButton setBackgroundImage:[UIImage imageNamed:@"orange.png"] forState:UIControlStateNormal];
+    [self.menuButton setBackgroundImage:[UIImage imageNamed:@"Button_orange_rev2.png"] forState:UIControlStateNormal];
     
     [self.cartButton setBackgroundImage:[UIImage imageNamed:@"Button_black_light_rev2.png"] forState:UIControlStateNormal];
     
