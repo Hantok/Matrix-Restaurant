@@ -25,7 +25,7 @@
 
 @property (readwrite)	CFURLRef        soundFileURLRef;
 @property (readonly)	SystemSoundID	soundFileObject;
-
+//coomemem
 @property (strong, nonatomic) ProductDataStruct *product;
 @property (strong, nonatomic) NSMutableArray *arrayOfObjects;
 @property (strong, nonatomic) NSIndexPath *selectedPath;
