@@ -35,23 +35,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void) viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:YES];
+    
     if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"typeOfView"] isEqualToString:@"menuIcon"]) 
         self.typeOfView = [[NSString alloc] initWithString:@"Icons"];
     else 
         self.typeOfView = [[NSString alloc] initWithString:@"List"];
     
     self.styleCell.detailTextLabel.text = self.typeOfView;
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+ 
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 - (void)viewDidUnload
 {

@@ -237,6 +237,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.imageDownloadsInProgress = [[NSMutableDictionary alloc] init];
     
     [self.menuButton setBackgroundImage:[UIImage imageNamed:@"orange.png"] forState:UIControlStateNormal];
@@ -747,9 +748,7 @@
             }
             else 
             {
-                id menuId;
-                if(self.singleMenu) menuId = [self.singleMenu menuId];
-                else menuId = [[self.arrayData objectAtIndex:selectedRow.integerValue] menuId];
+                id menuId = [[self.arrayData objectAtIndex:selectedRow.integerValue] menuId];
                 NSArray *hz = [self.db fetchChildMenuWithDefaultLanguageForParentMenu:menuId];
                 if (hz.count)
                 {

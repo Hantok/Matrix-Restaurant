@@ -71,6 +71,7 @@
         NSArray *data = [self.db fetchAllProductsFromMenu:self.kindOfMenu.menuId];
         NSLog(@"first query");
         NSDictionary *pictures = [self.db fetchImageURLAndDatabyMenuID:self.kindOfMenu.menuId];
+        NSLog(@"first query end");
         for(int i=0;i<data.count;i++)
         {
             if(i%2==0) 

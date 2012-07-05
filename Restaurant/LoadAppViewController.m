@@ -316,6 +316,8 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
+    if (![[NSUserDefaults standardUserDefaults] valueForKey:@"typeOfView"])
+        [[NSUserDefaults standardUserDefaults] setValue:@"menuList" forKey:@"typeOfView"];
     if (!checkConnection.hasConnectivity)
     {
         [self performSegueWithIdentifier:@"toMain" sender:self];
