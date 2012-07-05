@@ -306,6 +306,7 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self arrayData];
     [super viewWillAppear:animated];
 }
 
@@ -746,7 +747,9 @@
             }
             else 
             {
-                id menuId = [[self.arrayData objectAtIndex:selectedRow.integerValue] menuId];
+                id menuId;
+                if(self.singleMenu) menuId = [self.singleMenu menuId];
+                else menuId = [[self.arrayData objectAtIndex:selectedRow.integerValue] menuId];
                 NSArray *hz = [self.db fetchChildMenuWithDefaultLanguageForParentMenu:menuId];
                 if (hz.count)
                 {
