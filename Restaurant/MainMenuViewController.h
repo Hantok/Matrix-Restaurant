@@ -11,6 +11,7 @@
 #import "GettingCoreContent.h"
 #import "PickerViewCell.h"
 #import "IconDownloader.h"
+#import "MenuDataStruct.h"
 
 #import <AudioToolbox/AudioToolbox.h>
 
@@ -31,6 +32,8 @@
 @property (strong, nonatomic) NSString *restarauntId;
 @property (strong, nonatomic) NSString *menuId;
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
+@property BOOL shouldBeReloaded;
+@property (strong, nonatomic) MenuDataStruct* singleMenu;
 
 @property(nonatomic, assign) id<UIPickerViewDelegate> delegatepV;
 @property(nonatomic, assign) id<UIPickerViewDataSource> dataSourcepV;
