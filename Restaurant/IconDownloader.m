@@ -63,6 +63,7 @@
 @synthesize delegate;
 @synthesize activeDownload;
 @synthesize imageConnection;
+@synthesize indexForElement;
 
 #pragma mark
 
@@ -129,6 +130,10 @@
     if(delegate && self.indexPathInTableView)
         [delegate appImageDidLoad:self.indexPathInTableView];
     //(objc_object *) $1 = 0x001f24b0 [no Objective-C description available]
+    
+    if (delegate && self.indexForElement) {
+        [delegate appImageDidLoadGrid:self.indexForElement];
+    }
     
 }
 

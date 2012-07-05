@@ -72,6 +72,8 @@
 @property (nonatomic, retain) NSMutableData *activeDownload;
 @property (nonatomic, retain) NSURLConnection *imageConnection;
 
+@property (nonatomic,retain) NSNumber *indexForElement;
+
 - (void)startDownload;
 - (void)cancelDownload;
 
@@ -79,6 +81,8 @@
 
 @protocol IconDownloaderDelegate 
 
+@optional
 - (void)appImageDidLoad:(NSIndexPath *)indexPath;
+- (void)appImageDidLoadGrid:(NSNumber *)index;
 
 @end

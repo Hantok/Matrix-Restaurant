@@ -1,4 +1,4 @@
-	//
+//
 //  GettingCoreContent.m
 //  Restaurants
 //
@@ -33,7 +33,7 @@
 
 - (NSArray *)getArrayFromCoreDatainEntetyName:(NSString *)entityName withSortDescriptor:(NSString *)attributeString
 {
-
+    
     NSManagedObjectContext * context = self.managedObjectContext;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
@@ -105,14 +105,14 @@
                     {
                         [self deleteObjectFromEntity:@"Cart" withProductId:[arrayOfCartsIds objectAtIndex:i]];
                     }
-
+            
             for (int j = 0; j < arrayOfFavoritesIds.count; j++)
                 for (int i = 0; i < ArrayOfEnteringIDs.count; i++)
                     if ([[arrayOfFavoritesIds objectAtIndex:i] intValue] == [[[attributeDictionary objectForKey:@"_id"] objectAtIndex:j] intValue])
                     {
                         [self deleteObjectFromEntity:@"Favorites" withProductId:[arrayOfFavoritesIds objectAtIndex:i]];
                     }
-
+            
         }
         
         NSArray *values = [attributeDictionary objectForKey:[keys objectAtIndex:0]];
@@ -124,14 +124,14 @@
                 id objectAtIndexI = [keys objectAtIndex:i];
                 values = [attributeDictionary objectForKey:objectAtIndexI];
                 editAttrinbuteWithUnderBar = objectAtIndexI;
-            
+                
                 NSString *subString = [editAttrinbuteWithUnderBar substringToIndex:1];
                 //[editAttrinbuteWithUnderBar characterAtIndex:0];
                 if([editAttrinbuteWithUnderBar characterAtIndex:0] == '_')
                 {
                     editAttrinbuteWithUnderBar = [NSString stringWithFormat:@"%@%@", @"underbar", [editAttrinbuteWithUnderBar substringFromIndex:1]];
                 }
-            
+                
                 else if ([subString uppercaseString])
                 {
                     editAttrinbuteWithUnderBar = [NSString stringWithFormat:@"%@%@", [subString lowercaseString], [editAttrinbuteWithUnderBar substringFromIndex:1]];
@@ -179,7 +179,7 @@
             abort();
         }
     }
-
+    
 }
 
 
@@ -195,14 +195,14 @@
     else 
     {
         NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
-    
-    
+        
+        
         for (NSManagedObject *managedObject in items) {
             [context deleteObject:managedObject];
-        //NSLog(@"%@ object deleted",entityDescription);
+            //NSLog(@"%@ object deleted",entityDescription);
         }
         if (![context save:&error]) {
-        NSLog(@"Error deleting %@ - error:%@",entityDescription,error);
+            NSLog(@"Error deleting %@ - error:%@",entityDescription,error);
         }
     }
     
@@ -477,7 +477,7 @@
 {
     NSFetchRequest * request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:self.managedObjectContext]];
-
+    
     NSError *error;
     NSArray *debug= [self.managedObjectContext executeFetchRequest:request error:&error];
     BOOL allreadyInEntity = NO;
@@ -497,7 +497,7 @@
     }
     if (!allreadyInEntity)
     {
-            NSManagedObject *objectToInsert = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.managedObjectContext];
+        NSManagedObject *objectToInsert = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.managedObjectContext];
         [objectToInsert setValue:underbarid forKey:@"underbarid"];
         [objectToInsert setValue:[NSNumber numberWithFloat:cost] forKey:@"cost"];
         [objectToInsert setValue:picture forKey:@"picture"];
@@ -529,7 +529,7 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-
+    
     return  arrayOfDictionaries;
 }
 
@@ -552,7 +552,7 @@
             {
                 if ([[[[items objectAtIndex:i] valueForKey:@"idLanguage"] description] isEqualToString:[languageId description]])
                 {
-                     [outputArray addObject:[items objectAtIndex:i]]; 
+                    [outputArray addObject:[items objectAtIndex:i]]; 
                 }
             }
         }
@@ -578,16 +578,16 @@
     
     NSError *error;
     NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
-
+    
     for (int i = 0; i < items.count; i++)
     {
         //if ([[items objectAtIndex:i] isEqual:[items objectAtIndex:indexPath.row]])
         //    [context deleteObject:[items objectAtIndex:i]];
         if ([[[items objectAtIndex:i] valueForKey:@"underbarid"] intValue] == underbarid.intValue)
-            {
-                [context deleteObject:[items objectAtIndex:i]];
-                break;
-            }
+        {
+            [context deleteObject:[items objectAtIndex:i]];
+            break;
+        }
     }
     
     if (![context save:&error]) {
@@ -603,13 +603,21 @@
     
     NSError *error;
     NSArray *items= [context executeFetchRequest:request error:&error];
-    NSNumber *maxVersion = [[items objectAtIndex:0] valueForKey:fieldName];
-    for (int i = 0; i<items.count; i++)
+    NSNumber *maxVersion;
+    if (items.count != 0)
     {
-        if ([[[items objectAtIndex:i] valueForKey:fieldName] intValue] > maxVersion.intValue)
-            maxVersion = [[items objectAtIndex:i] valueForKey:fieldName];
+        maxVersion = [[items objectAtIndex:0] valueForKey:fieldName];
+        for (int i = 0; i<items.count; i++)
+        {
+            if ([[[items objectAtIndex:i] valueForKey:fieldName] intValue] > maxVersion.intValue)
+                maxVersion = [[items objectAtIndex:i] valueForKey:fieldName];
+        }
+        return maxVersion;
     }
-    return maxVersion;
+    else {
+        maxVersion = [NSNumber numberWithInt:0];
+        return maxVersion;
+    }
 }
 
 - (NSArray *) fetchAllIdsFromEntity:(NSString *)entityName
@@ -621,10 +629,17 @@
     NSError *error;
     NSArray *items= [context executeFetchRequest:request error:&error];
     NSMutableArray *arrayOfIds = [[NSMutableArray alloc] init];
-    for (int i = 0; i<items.count; i++)
+    if (items.count != 0)
     {
-        [arrayOfIds addObject:[[items objectAtIndex:i] valueForKey:@"underbarid"]];
-    }    
-    return arrayOfIds.copy;
+        for (int i = 0; i<items.count; i++)
+        {
+            [arrayOfIds addObject:[[items objectAtIndex:i] valueForKey:@"underbarid"]];
+        }    
+        return arrayOfIds.copy;
+    }
+    else 
+    {
+        return nil;
+    }
 }
 @end
