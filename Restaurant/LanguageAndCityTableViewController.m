@@ -182,7 +182,7 @@
             NSNumber *maxProductId = [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Products"];
             NSNumber *maxProductVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Products"];
             
-            NSMutableString *myString = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test5/root/Customer_Scripts/update.php?DBid=10&tag=update"];
+            NSMutableString *myString = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test6/root/Customer_Scripts/update.php?DBid=11&tag=update"];
             
             [myString appendFormat:@"&city_id=%@", [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"]];
             [myString appendFormat:@"&lang_id=%@", [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
@@ -218,7 +218,7 @@
         {
             [[NSUserDefaults standardUserDefaults] setObject:data forKey:wasDownloaded];
             // http request updatePHP with &tag=rmp
-            NSMutableString *urlString = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test5/root/Customer_Scripts/update.php?DBid=10&tag=rmp"];
+            NSMutableString *urlString = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test6/root/Customer_Scripts/update.php?DBid=11&tag=rmp"];
             [urlString appendFormat:@"&idLang=%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
             [urlString appendFormat:@"&idCity=%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"]];
             NSURL *url = [NSURL URLWithString:urlString.copy];

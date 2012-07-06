@@ -78,12 +78,18 @@
     </entity>
     <entity name="Products" syncable="YES">
         <attribute name="action" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="calories" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="carbs" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="fats" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="hit" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="idDiscount" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="idMenu" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="idPicture" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="protein" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="version" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="weight" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="translation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Products_translation" inverseName="parent" inverseEntity="Products_translation" syncable="YES"/>
     </entity>
     <entity name="Products_translation" syncable="YES">
@@ -94,12 +100,20 @@
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Products" inverseName="translation" inverseEntity="Products" syncable="YES"/>
     </entity>
+    <entity name="Promotions" syncable="YES">
+        <attribute name="idPicture" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+    </entity>
     <entity name="Restaurants" syncable="YES">
         <attribute name="action" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="coordinates" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="idCity" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="idPicture" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="isOrder" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="parking" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="phones" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="seatsNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="terrace" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="version" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
     </entity>
@@ -141,11 +155,12 @@
         <element name="Menus" positionX="160" positionY="192" width="128" height="105"/>
         <element name="Menus_translation" positionX="160" positionY="192" width="128" height="105"/>
         <element name="Pictures" positionX="-135" positionY="-72" width="128" height="90"/>
-        <element name="Products" positionX="99" positionY="-27" width="171" height="135"/>
+        <element name="Products" positionX="99" positionY="-27" width="171" height="255"/>
         <element name="Products_translation" positionX="-135" positionY="36" width="128" height="135"/>
-        <element name="Restaurants" positionX="-333" positionY="-72" width="128" height="120"/>
+        <element name="Restaurants" positionX="-333" positionY="-72" width="128" height="210"/>
         <element name="Restaurants_translation" positionX="-135" positionY="210" width="128" height="195"/>
         <element name="Statuses" positionX="-333" positionY="63" width="128" height="105"/>
         <element name="Statuses_translation" positionX="-342" positionY="162" width="128" height="105"/>
+        <element name="Promotions" positionX="160" positionY="192" width="128" height="75"/>
     </elements>
 </model>

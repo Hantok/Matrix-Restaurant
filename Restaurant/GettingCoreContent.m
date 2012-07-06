@@ -140,7 +140,8 @@
                         editAttrinbuteWithUnderBar = @"descriptionAbout";
                     }
                 }
-                if ([editAttrinbuteWithUnderBar isEqualToString:@"idPicture"] || [editAttrinbuteWithUnderBar isEqualToString:@"underbarid"] || [editAttrinbuteWithUnderBar isEqualToString:@"idProduct"] || [editAttrinbuteWithUnderBar isEqualToString:@"version"]) 
+                if ([editAttrinbuteWithUnderBar isEqualToString:@"idPicture"] || [editAttrinbuteWithUnderBar isEqualToString:@"underbarid"] || [editAttrinbuteWithUnderBar isEqualToString:@"idProduct"] || [editAttrinbuteWithUnderBar isEqualToString:@"version"] || [editAttrinbuteWithUnderBar isEqualToString:@"isOrder"] || [editAttrinbuteWithUnderBar isEqualToString:@"terrace"] || [editAttrinbuteWithUnderBar isEqualToString:@"parking"] || [editAttrinbuteWithUnderBar isEqualToString:@"seatsNumber"] || [editAttrinbuteWithUnderBar isEqualToString:@"hit"] ||
+                    [editAttrinbuteWithUnderBar isEqualToString:@"carbs"] || [editAttrinbuteWithUnderBar isEqualToString:@"calories"] || [editAttrinbuteWithUnderBar isEqualToString:@"weight"] ||[editAttrinbuteWithUnderBar isEqualToString:@"protein"] || [editAttrinbuteWithUnderBar isEqualToString:@"fats"]) 
                 {
                     NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
                     [f setNumberStyle:NSNumberFormatterDecimalStyle];
@@ -373,8 +374,15 @@
     
     NSError *error;
     NSArray *debug= [self.managedObjectContext executeFetchRequest:request error:&error];
-    NSManagedObject *objectToGet = [debug objectAtIndex:0];
-    return [objectToGet valueForKey:@"data"];
+    if (debug.count != 0)
+    {
+        NSManagedObject *objectToGet = [debug objectAtIndex:0];
+        return [objectToGet valueForKey:@"data"];
+    }
+    else
+    {
+        return nil;
+    }
 }
 
 - (NSURL *)fetchImageURLbyPictureID:(NSString *)pictureId
@@ -391,10 +399,16 @@
     NSError *error;
     
     NSArray *resultOfARequest = [moc executeFetchRequest:request error:&error];
-    NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test5/root/%@",[[resultOfARequest objectAtIndex:0] valueForKey:@"link"]];
-    urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSURL *url = [[NSURL alloc] initWithString:urlForImage];
-    return url;
+    if (resultOfARequest.count != 0)
+    {
+        NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test6/root/%@",[[resultOfARequest objectAtIndex:0] valueForKey:@"link"]];
+        urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSURL *url = [[NSURL alloc] initWithString:urlForImage];
+        return url;
+    }
+    else {
+        return nil;
+    }
 }
 
 - (NSDictionary *)fetchImageURLAndDatabyMenuID:(NSString *)menuId

@@ -327,7 +327,7 @@
 				78EF80B1157381FC00478EEB /* Downloaders */,
 				783EB971156FD057001E5BF1 /* CoreDataEntities */,
 				783EB967156FAF3A001E5BF1 /* ViewControllers */,
-				78BA0E1A156E6A0C005C08D7 /* structs */,
+				78BA0E1A156E6A0C005C08D7 /* Structs */,
 				F5E93A4D156CFFB3005ED3ED /* Cells */,
 				78D3CF1C156A9248003202BD /* Restaurants.xcdatamodeld */,
 				78D3CF19156A9241003202BD /* GettingCoreContent.h */,
@@ -397,7 +397,7 @@
 			name = CoreDataEntities;
 			sourceTree = "<group>";
 		};
-		78BA0E1A156E6A0C005C08D7 /* structs */ = {
+		78BA0E1A156E6A0C005C08D7 /* Structs */ = {
 			isa = PBXGroup;
 			children = (
 				78BA0E1C156E6A5E005C08D7 /* MenuDataStruct.h */,
@@ -407,7 +407,7 @@
 				78005A0815778CCC0099F973 /* RestaurantDataStruct.h */,
 				78005A0915778CCC0099F973 /* RestaurantDataStruct.m */,
 			);
-			name = structs;
+			name = Structs;
 			sourceTree = "<group>";
 		};
 		78EF80B1157381FC00478EEB /* Downloaders */ = {
