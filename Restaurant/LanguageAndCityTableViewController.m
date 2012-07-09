@@ -140,11 +140,19 @@
         NSString *changeStringForUserDefaults;
         NSString *wasDownloaded;
         id data;
+        GettingCoreContent *content = [[GettingCoreContent alloc] init];
+        
         if (self.isCity)
         {
             changeStringForUserDefaults = @"defaultCityId";
             data = [[self.destinationArray objectAtIndex:indexPath.row] valueForKey:@"idCity"];
             wasDownloaded = [NSString stringWithFormat:@"isCityHere%@", data];
+            
+            
+            //видалаляємо вміст корзини i favorites, якщо змінюємо city
+            //GettingCoreContent *content = [[GettingCoreContent alloc] init];
+            [content deleteAllObjectsFromEntity:@"Cart"];
+            [content deleteAllObjectsFromEntity:@"Favorites"];
         }
         else 
         {
@@ -166,7 +174,6 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         //[self.navigationController popViewControllerAnimated:YES];
         
-        GettingCoreContent *content = [[GettingCoreContent alloc] init];
         
         if ([[NSUserDefaults standardUserDefaults] objectForKey:wasDownloaded] != nil)
         {
@@ -235,14 +242,6 @@
                                                                    otherButtonTitles:nil];
                 [connectFailMessage show];
             }
-            //видалаляємо вміст корзини i favorites, якщо змінюємо city
-            if (self.isCity)
-            {
-                //GettingCoreContent *content = [[GettingCoreContent alloc] init];
-                [content deleteAllObjectsFromEntity:@"Cart"];
-                [content deleteAllObjectsFromEntity:@"Favorites"];
-            }
-
         }
     }
     else 

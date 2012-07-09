@@ -21,6 +21,8 @@
 {
     CFURLRef        soundFileURLRef;
     SystemSoundID	soundFileObject;
+    BOOL            fromSettings;
+    BOOL            fromDeliveries;
 }
 
 @property (readwrite)	CFURLRef        soundFileURLRef;
@@ -227,6 +229,7 @@
 - (IBAction)goToSettingsTableViewController:(id)sender 
 {
     [self performSegueWithIdentifier:@"toSettings" sender:self];
+    fromSettings = YES;
 }
 
 -(void)awakeFromNib
@@ -307,7 +310,19 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
-    [self arrayData];
+//    [self arrayData];
+    if (fromSettings)
+    {
+        //_arrayData = nil;
+        self.menuId = nil;
+        self.restarauntId = nil;
+        fromSettings = NO;
+    }
+    else if (fromDeliveries)
+    {
+        [self.pickerView reloadAllComponents];
+    }
+    
     [super viewWillAppear:animated];
 }
 
@@ -323,7 +338,7 @@
     
     if(self.isMenuMode)
     {
-        // [self.pickerView reloadAllComponents];
+        //[self.pickerView reloadAllComponents];
         self.restorantsButton.titleLabel.text = @"Restaurants";
     }
     else 
@@ -834,6 +849,7 @@
     if (buttonIndex == 0)
     {
         [self performSegueWithIdentifier:@"toDelivery" sender:nil];
+        fromDeliveries = YES;
     }
     
     else 

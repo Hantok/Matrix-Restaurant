@@ -39,6 +39,7 @@
 @property(nonatomic, assign) id<UIPickerViewDataSource> dataSourcepV;
 
 @property (weak, nonatomic) IBOutlet UIButton *drop;
+- (IBAction)drop:(id)sender;
 - (IBAction)OrderButton:(id)sender;
 
 @end

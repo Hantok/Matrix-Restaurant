@@ -355,12 +355,17 @@
 {
     NSFetchRequest * request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:@"Pictures" inManagedObjectContext:self.managedObjectContext]];
-    [request setPredicate:[NSPredicate predicateWithFormat:@"underbarid==%@", idPicture]];
+    
+    if (idPicture.intValue != 0)
+        [request setPredicate:[NSPredicate predicateWithFormat:@"underbarid==%@", idPicture]];
+    else
+        return;
     
     NSError *error;
     NSArray *debug= [self.managedObjectContext executeFetchRequest:request error:&error];
     NSManagedObject *objectToUpdate = [debug objectAtIndex:0];
-    [objectToUpdate setValue:data forKey:@"data"];
+    if (objectToUpdate != nil)
+        [objectToUpdate setValue:data forKey:@"data"];
     if (![self.managedObjectContext save:&error]) {
         //Handle any error with the saving of the context
     }
@@ -399,16 +404,16 @@
     NSError *error;
     
     NSArray *resultOfARequest = [moc executeFetchRequest:request error:&error];
-    if (resultOfARequest.count != 0)
+//    if (resultOfARequest.count != 0)
     {
         NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test6/root/%@",[[resultOfARequest objectAtIndex:0] valueForKey:@"link"]];
         urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         NSURL *url = [[NSURL alloc] initWithString:urlForImage];
         return url;
     }
-    else {
-        return nil;
-    }
+//    else {
+//        return nil;
+//    }
 }
 
 - (NSDictionary *)fetchImageURLAndDatabyMenuID:(NSString *)menuId
@@ -469,7 +474,7 @@
     // test if array is empty
     if (imax < imin)
         // set is empty, so return value showing not found
-        return -1;
+        return 0;
     else
     {
         // calculate midpoint to cut set in half
@@ -597,7 +602,7 @@
     {
         //if ([[items objectAtIndex:i] isEqual:[items objectAtIndex:indexPath.row]])
         //    [context deleteObject:[items objectAtIndex:i]];
-        if ([[[items objectAtIndex:i] valueForKey:@"underbarid"] intValue] == underbarid.intValue)
+        if ([[[items objectAtIndex:i] valueForKey:@"underbarid"] intValue] == underbarid.intValue || [[[items objectAtIndex:i] valueForKey:@"underbarid"] intValue] == 0)
         {
             [context deleteObject:[items objectAtIndex:i]];
             break;
