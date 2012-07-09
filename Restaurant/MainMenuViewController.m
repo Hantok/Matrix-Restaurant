@@ -323,6 +323,12 @@
         [self.pickerView reloadAllComponents];
     }
     
+    if (!animated)
+    {
+//        self.isMenuMode = NO;
+//        self.isCartMode = YES;
+        [self performSelector:@selector(cartButton:)withObject:nil];
+    }
     [super viewWillAppear:animated];
 }
 
@@ -600,7 +606,6 @@
     {
         //MenuDataStruct *dataStruct = [self.arrayData objectAtIndex:self.selectedRow.integerValue];
         [segue.destinationViewController setKindOfMenu:self.singleMenu];
-        
     }
     //self.arrayData = nil;
     //self.restarauntId = nil;

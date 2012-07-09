@@ -11,8 +11,12 @@
 #import "ProductDetailViewController.h"
 #import "ProductCell.h"
 #import "ProductDataStruct.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface MenuListTableViewController ()
+{
+    int countOfObjects;
+}
 
 - (void)startIconDownload:(ProductDataStruct *)appRecord forIndexPath:(NSIndexPath *)indexPath;
 
@@ -130,6 +134,30 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    countOfObjects = [self.db fetchCountOfProductsInEntity:@"Cart"];
+    if (countOfObjects != 0)
+    {
+        UIButton *cartButton = [[UIButton alloc] init];
+        cartButton.frame=CGRectMake(0,0,60,30);
+        [cartButton setBackgroundImage:[UIImage imageNamed: @"white-cart_big.png"] forState:UIControlStateNormal];
+        cartButton.layer.cornerRadius = 8.0f;
+        UILabel *countLabel = [[UILabel alloc] initWithFrame:CGRectMake(45,0,15,15)];
+        countLabel.text = [NSString stringWithFormat:@"%i", countOfObjects];
+        countLabel.textAlignment = UITextAlignmentCenter;
+        countLabel.textColor = [UIColor whiteColor];
+        countLabel.font = [UIFont boldSystemFontOfSize:10];
+        countLabel.backgroundColor = [UIColor orangeColor];
+        countLabel.layer.cornerRadius = 8;
+        
+        [cartButton addSubview:countLabel];
+        
+        [cartButton addTarget:self action:@selector(toCartMenu:) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:cartButton];
+    }
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
@@ -290,6 +318,12 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     [self loadImagesForOnscreenRows];
+}
+
+- (void)toCartMenu:(id)sender 
+{
+    //обовязково анімація NO !!!
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 @end

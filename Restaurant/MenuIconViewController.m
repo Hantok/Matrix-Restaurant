@@ -9,10 +9,12 @@
 #import "MenuIconViewController.h"
 #import "ProductDetailViewController.h"
 #import "GMGridViewLayoutStrategies.h"
+#import "MainMenuViewController.h"
 
 @interface MenuIconViewController ()
 {
     BOOL pageControlBeingUsed;
+    int countOfObjects;
 }
 
 @end
@@ -100,6 +102,8 @@
 	self.imageDownloadsInProgress = [[NSMutableDictionary alloc] init];
     self.navigationItem.title = self.kindOfMenu.title;
     
+    //self.CartBarItem.image = [UIImage imageNamed:@"Cart.png"];
+//    self.navigationItem.leftBarButtonItem.
 	pageControlBeingUsed = NO;
     
 //	NSArray *colors = [NSArray arrayWithObjects:[UIColor redColor], [UIColor greenColor], [UIColor blueColor], nil];
@@ -250,6 +254,30 @@
     gradient.frame = self.viewForOutput.bounds;
     gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor darkGrayColor] CGColor],(id)[[UIColor blackColor] CGColor], nil];
     [self.viewForOutput.layer insertSublayer:gradient atIndex:0];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    countOfObjects = [self.db fetchCountOfProductsInEntity:@"Cart"];
+    if (countOfObjects != 0)
+    {
+        UIButton *cartButton = [[UIButton alloc] init];
+        cartButton.frame=CGRectMake(0,0,60,30);
+        [cartButton setBackgroundImage:[UIImage imageNamed: @"white-cart_big.png"] forState:UIControlStateNormal];
+        cartButton.layer.cornerRadius = 8.0f;
+        UILabel *countLabel = [[UILabel alloc] initWithFrame:CGRectMake(45,0,15,15)];
+        countLabel.text = [NSString stringWithFormat:@"%i", countOfObjects];
+        countLabel.textAlignment = UITextAlignmentCenter;
+        countLabel.textColor = [UIColor whiteColor];
+        countLabel.font = [UIFont boldSystemFontOfSize:10];
+        countLabel.backgroundColor = [UIColor orangeColor];
+        countLabel.layer.cornerRadius = 8;
+        
+        [cartButton addSubview:countLabel];
+        
+        [cartButton addTarget:self action:@selector(toCartMenu:) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:cartButton];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -742,4 +770,9 @@
 //}
 
 
+- (void)toCartMenu:(id)sender 
+{
+    //обовязково анімація NO !!!
+    [self.navigationController popViewControllerAnimated:NO];
+}
 @end

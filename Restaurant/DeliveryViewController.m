@@ -205,7 +205,7 @@
                                             cancelButtonTitle:@"Ok"
                                             otherButtonTitles:nil];
     [message show];
-    [self.navigationController popViewControllerAnimated:NO];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection 
@@ -221,7 +221,7 @@
                                                        otherButtonTitles:nil];
     [message show];
     [[[GettingCoreContent alloc] init] deleteAllObjectsFromEntity:@"Cart"]; 
-    [self.navigationController popViewControllerAnimated:NO];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)saveAddress:(id)sender 

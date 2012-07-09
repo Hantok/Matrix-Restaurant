@@ -36,5 +36,6 @@
 @property (strong, nonatomic) NSNumber *selectedIndex;
 
 - (IBAction)changePage;
+- (void)toCartMenu:(id)sender;
 
 @end

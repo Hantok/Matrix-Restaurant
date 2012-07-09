@@ -46,4 +46,6 @@
 
 
 - (NSArray *) fetchAllIdsFromEntity:(NSString *)entityName;
+
+- (int) fetchCountOfProductsInEntity:(NSString *)entityName;
 @end
