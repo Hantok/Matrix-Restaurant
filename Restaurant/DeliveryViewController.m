@@ -172,6 +172,8 @@
     
     [order appendFormat:@"&ProdIDs=%@&counts=%@&city=%@&street=%@&house=%@&room_office=%@&custName=%@&phone=%@&additional_info=%@&idDelivery=1",ids,counts,self.CityName.text,self.street.text,self.build.text,self.appartaments.text,self.customerName.text,self.phone.text,self.otherInformation.text];
     
+    order = [[order stringByReplacingOccurrencesOfString:@" " withString:@"_"] mutableCopy];
+    
     NSURL *url = [NSURL URLWithString:order.copy];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
     [request setHTTPMethod:@"GET"];
