@@ -84,6 +84,9 @@
 		F5EBBBEE15A70F0100C07969 /* SSToolkitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F5EBBBE515A70EAE00C07969 /* SSToolkitResources.bundle */; };
 		F5EBBBF115A70F6000C07969 /* SocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EBBBF015A70F6000C07969 /* SocialViewController.m */; };
 		F5F0215A1588C017009EB482 /* DeliveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F021591588C017009EB482 /* DeliveryViewController.m */; };
+		F5F2D69815AD7DBB00C5094B /* AddressListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F2D69715AD7DBB00C5094B /* AddressListTableViewController.m */; };
+		F5F2D69B15ADB91500C5094B /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F2D69A15ADB91500C5094B /* AddressCell.m */; };
+		F5F2D69D15ADBB8F00C5094B /* AddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5F2D69C15ADBB8E00C5094B /* AddressCell.xib */; };
 		F5F2DD8A15879B8E00E3C6A2 /* Heart.png in Resources */ = {isa = PBXBuildFile; fileRef = F5F2DD8915879B8E00E3C6A2 /* Heart.png */; };
 		F5FA62481580D39700FBF70A /* FavoritesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5FA62471580D39700FBF70A /* FavoritesTableViewController.m */; };
 		F5FA624C1580EB6700FBF70A /* Cart.png in Resources */ = {isa = PBXBuildFile; fileRef = F5FA624B1580EB6700FBF70A /* Cart.png */; };
@@ -259,6 +262,11 @@
 		F5EBBBF015A70F6000C07969 /* SocialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialViewController.m; sourceTree = "<group>"; };
 		F5F021581588C017009EB482 /* DeliveryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeliveryViewController.h; sourceTree = "<group>"; };
 		F5F021591588C017009EB482 /* DeliveryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeliveryViewController.m; sourceTree = "<group>"; };
+		F5F2D69615AD7DBB00C5094B /* AddressListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressListTableViewController.h; sourceTree = "<group>"; };
+		F5F2D69715AD7DBB00C5094B /* AddressListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressListTableViewController.m; sourceTree = "<group>"; };
+		F5F2D69915ADB91400C5094B /* AddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressCell.h; sourceTree = "<group>"; };
+		F5F2D69A15ADB91500C5094B /* AddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressCell.m; sourceTree = "<group>"; };
+		F5F2D69C15ADBB8E00C5094B /* AddressCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressCell.xib; sourceTree = "<group>"; };
 		F5F2DD8915879B8E00E3C6A2 /* Heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Heart.png; sourceTree = "<group>"; };
 		F5FA62461580D39700FBF70A /* FavoritesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesTableViewController.h; sourceTree = "<group>"; };
 		F5FA62471580D39700FBF70A /* FavoritesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesTableViewController.m; sourceTree = "<group>"; };
@@ -388,6 +396,8 @@
 				F5FA62471580D39700FBF70A /* FavoritesTableViewController.m */,
 				F5F021581588C017009EB482 /* DeliveryViewController.h */,
 				F5F021591588C017009EB482 /* DeliveryViewController.m */,
+				F5F2D69615AD7DBB00C5094B /* AddressListTableViewController.h */,
+				F5F2D69715AD7DBB00C5094B /* AddressListTableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -506,6 +516,9 @@
 				78005A0B15778F0E0099F973 /* RestaurantCell.h */,
 				78005A0C15778F0E0099F973 /* RestaurantCell.m */,
 				78005A0E15778F240099F973 /* RestaurantCell.xib */,
+				F5F2D69915ADB91400C5094B /* AddressCell.h */,
+				F5F2D69A15ADB91500C5094B /* AddressCell.m */,
+				F5F2D69C15ADBB8E00C5094B /* AddressCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -667,6 +680,7 @@
 				F53D74081594E30500A420D1 /* picture.png in Resources */,
 				F5056DDB15A33F94000C14D1 /* close_x.png in Resources */,
 				F51B206215AB2EE600074DA1 /* white-cart_big.png in Resources */,
+				F5F2D69D15ADBB8F00C5094B /* AddressCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -717,6 +731,8 @@
 				F5C4299115AC2E1D00D4A061 /* AFURLConnectionOperation.m in Sources */,
 				F5C4299215AC2E1D00D4A061 /* AFXMLRequestOperation.m in Sources */,
 				F5C4299315AC2E1D00D4A061 /* UIImageView+AFNetworking.m in Sources */,
+				F5F2D69815AD7DBB00C5094B /* AddressListTableViewController.m in Sources */,
+				F5F2D69B15ADB91500C5094B /* AddressCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

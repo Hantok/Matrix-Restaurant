@@ -48,4 +48,7 @@
 - (NSArray *) fetchAllIdsFromEntity:(NSString *)entityName;
 
 - (int) fetchCountOfProductsInEntity:(NSString *)entityName;
+
+- (void)addObjectToEntity:(NSString *)entityName withDictionaryOfAttributes:(NSDictionary *)dictionary;
+- (void) deleteAddressWithName:(NSString *)name;
 @end

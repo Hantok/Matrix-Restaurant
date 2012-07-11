@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1171" systemVersion="11E53" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Addresses">
+        <attribute name="access" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="additional_info" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="building" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="floor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="house" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="housing" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="intercom" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="metro" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="room_office" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="username" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Cart" syncable="YES">
         <attribute name="cost" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="count" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -39,12 +55,6 @@
     <entity name="Discounts" syncable="YES">
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
-    </entity>
-    <entity name="Event">
-        <attribute name="cost" optional="YES" attributeType="String"/>
-        <attribute name="descriptionAbout" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="id1" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Favorites" syncable="YES">
         <attribute name="cost" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -149,7 +159,7 @@
         <element name="Deliveries" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Deliveries_translation" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Discounts" positionX="160" positionY="192" width="128" height="75"/>
-        <element name="Event" positionX="576" positionY="138" width="128" height="105"/>
+        <element name="Addresses" positionX="576" positionY="138" width="128" height="255"/>
         <element name="Favorites" positionX="313" positionY="165" width="128" height="90"/>
         <element name="Languages" positionX="160" positionY="192" width="128" height="75"/>
         <element name="Menus" positionX="160" positionY="192" width="128" height="105"/>
@@ -157,10 +167,10 @@
         <element name="Pictures" positionX="-135" positionY="-72" width="128" height="90"/>
         <element name="Products" positionX="99" positionY="-27" width="171" height="255"/>
         <element name="Products_translation" positionX="-135" positionY="36" width="128" height="135"/>
+        <element name="Promotions" positionX="160" positionY="192" width="128" height="75"/>
         <element name="Restaurants" positionX="-333" positionY="-72" width="128" height="210"/>
         <element name="Restaurants_translation" positionX="-135" positionY="210" width="128" height="195"/>
         <element name="Statuses" positionX="-333" positionY="63" width="128" height="105"/>
         <element name="Statuses_translation" positionX="-342" positionY="162" width="128" height="105"/>
-        <element name="Promotions" positionX="160" positionY="192" width="128" height="75"/>
     </elements>
 </model>

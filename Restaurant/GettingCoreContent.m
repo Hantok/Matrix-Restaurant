@@ -209,6 +209,26 @@
     
 }
 
+- (void)addObjectToEntity:(NSString *)entityName withDictionaryOfAttributes:(NSDictionary *)dictionary
+{
+    NSManagedObjectContext *context = self.managedObjectContext;
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
+    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+    NSArray *keys = [dictionary allKeys];
+    for (int i = 0; i < keys.count; i++)
+    {
+        [newManagedObject setValue:[dictionary valueForKey:[keys objectAtIndex:i]] forKey:[keys objectAtIndex:i]];
+    }
+    // Save the context.
+    //NSError *error = nil;
+    NSError *error;
+    if (![context save:&error])
+    {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+}
+
 - (NSArray *)fetchAllRestaurantsWithDefaultLanguageAndCity
 {
     NSManagedObjectContext * context = self.managedObjectContext;
@@ -611,6 +631,30 @@
     
     if (![context save:&error]) {
         NSLog(@"Error deleting %@ - error:%@", entityName, error);
+    }
+}
+
+- (void) deleteAddressWithName:(NSString *)name
+{
+    NSManagedObjectContext * context = self.managedObjectContext;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Addresses" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    NSError *error;
+    NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
+    
+    for (int i = 0; i < items.count; i++)
+    {
+        if ([[[items objectAtIndex:i] valueForKey:@"name"] isEqualToString:name])
+        {
+            [context deleteObject:[items objectAtIndex:i]];
+            break;
+        }
+    }
+    
+    if (![context save:&error]) {
+        NSLog(@"Error deleting %@ - error:%@", @"Addresses", error);
     }
 }
 

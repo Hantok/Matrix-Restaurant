@@ -835,6 +835,7 @@
 {
     if (self.isCartMode)
     {
+        self.restorantsButton.titleLabel.text = @"Order";
         UIActionSheet* actionSheet = [[UIActionSheet alloc] init];
         [actionSheet setTitle:@"Choose method to get order:"];
         [actionSheet setDelegate:(id)self];
@@ -859,7 +860,7 @@
     
     else 
     {
-        
+        self.restorantsButton.titleLabel.text = @"Order";
     }
 }
 
