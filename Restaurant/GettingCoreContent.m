@@ -106,8 +106,8 @@
                         [self deleteObjectFromEntity:@"Cart" withProductId:[arrayOfCartsIds objectAtIndex:i]];
                     }
             
-            for (int j = 0; j < arrayOfFavoritesIds.count; j++)
-                for (int i = 0; i < ArrayOfEnteringIDs.count; i++)
+            for (int i = 0; i < arrayOfFavoritesIds.count; i++)
+                for (int j = 0; j < ArrayOfEnteringIDs.count; j++)
                     if ([[arrayOfFavoritesIds objectAtIndex:i] intValue] == [[[attributeDictionary objectForKey:@"_id"] objectAtIndex:j] intValue])
                     {
                         [self deleteObjectFromEntity:@"Favorites" withProductId:[arrayOfFavoritesIds objectAtIndex:i]];

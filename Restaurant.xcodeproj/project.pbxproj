@@ -51,6 +51,7 @@
 		F507215D156BA37C00D7ACC6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F507215C156BA37C00D7ACC6 /* SystemConfiguration.framework */; };
 		F5072169156BD46900D7ACC6 /* LanguageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5072168156BD46900D7ACC6 /* LanguageCell.m */; };
 		F507216C156BE0D200D7ACC6 /* LanguageAndCityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F507216B156BE0D200D7ACC6 /* LanguageAndCityTableViewController.m */; };
+		F515440D15B03CCB00A2CB88 /* FavoritesIconViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F515440C15B03CCB00A2CB88 /* FavoritesIconViewController.m */; };
 		F51B206215AB2EE600074DA1 /* white-cart_big.png in Resources */ = {isa = PBXBuildFile; fileRef = F51B206115AB2EE500074DA1 /* white-cart_big.png */; };
 		F52225CB1594A0A7003E2728 /* Button_orange_rev2.png in Resources */ = {isa = PBXBuildFile; fileRef = F52225CA1594A0A7003E2728 /* Button_orange_rev2.png */; };
 		F52225CD1594A1F8003E2728 /* Button_black_light_rev2.png in Resources */ = {isa = PBXBuildFile; fileRef = F52225CC1594A1F8003E2728 /* Button_black_light_rev2.png */; };
@@ -215,6 +216,8 @@
 		F5072168156BD46900D7ACC6 /* LanguageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageCell.m; sourceTree = "<group>"; };
 		F507216A156BE0D200D7ACC6 /* LanguageAndCityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageAndCityTableViewController.h; sourceTree = "<group>"; };
 		F507216B156BE0D200D7ACC6 /* LanguageAndCityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageAndCityTableViewController.m; sourceTree = "<group>"; };
+		F515440B15B03CCA00A2CB88 /* FavoritesIconViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesIconViewController.h; sourceTree = "<group>"; };
+		F515440C15B03CCB00A2CB88 /* FavoritesIconViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesIconViewController.m; sourceTree = "<group>"; };
 		F51B206115AB2EE500074DA1 /* white-cart_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "white-cart_big.png"; sourceTree = "<group>"; };
 		F52225CA1594A0A7003E2728 /* Button_orange_rev2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_orange_rev2.png; sourceTree = "<group>"; };
 		F52225CC1594A1F8003E2728 /* Button_black_light_rev2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_black_light_rev2.png; sourceTree = "<group>"; };
@@ -392,8 +395,6 @@
 				781B8F2A1546DD590074EDBD /* MainMenuViewController.h */,
 				781B8F2B1546DD590074EDBD /* MainMenuViewController.m */,
 				F53AF1721598877700EAA5AA /* Type of View */,
-				F5FA62461580D39700FBF70A /* FavoritesTableViewController.h */,
-				F5FA62471580D39700FBF70A /* FavoritesTableViewController.m */,
 				F5F021581588C017009EB482 /* DeliveryViewController.h */,
 				F5F021591588C017009EB482 /* DeliveryViewController.m */,
 				F5F2D69615AD7DBB00C5094B /* AddressListTableViewController.h */,
@@ -465,6 +466,10 @@
 				786B29981546E85900486848 /* MenuListTableViewController.m */,
 				F53AF16E1598876100EAA5AA /* MenuIconViewController.h */,
 				F53AF16F1598876100EAA5AA /* MenuIconViewController.m */,
+				F5FA62461580D39700FBF70A /* FavoritesTableViewController.h */,
+				F5FA62471580D39700FBF70A /* FavoritesTableViewController.m */,
+				F515440B15B03CCA00A2CB88 /* FavoritesIconViewController.h */,
+				F515440C15B03CCB00A2CB88 /* FavoritesIconViewController.m */,
 			);
 			name = "Type of View";
 			sourceTree = "<group>";
@@ -733,6 +738,7 @@
 				F5C4299315AC2E1D00D4A061 /* UIImageView+AFNetworking.m in Sources */,
 				F5F2D69815AD7DBB00C5094B /* AddressListTableViewController.m in Sources */,
 				F5F2D69B15ADB91500C5094B /* AddressCell.m in Sources */,
+				F515440D15B03CCB00A2CB88 /* FavoritesIconViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

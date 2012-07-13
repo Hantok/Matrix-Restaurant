@@ -140,12 +140,14 @@
     {
         if (buttonIndex == 0)
         {
+            [[NSUserDefaults standardUserDefaults] setValue:@"toFavoritesIcon" forKey:@"typeOfViewFavorites"];
             [[NSUserDefaults standardUserDefaults] setValue:@"menuIcon" forKey:@"typeOfView"];
             self.styleCell.detailTextLabel.text = @"Icons";
             
         }
         if (buttonIndex == 1)
         {
+            [[NSUserDefaults standardUserDefaults] setValue:@"toFavoritesList" forKey:@"typeOfViewFavorites"];
             [[NSUserDefaults standardUserDefaults] setValue:@"menuList" forKey:@"typeOfView"];
             self.styleCell.detailTextLabel.text = @"List";
         }

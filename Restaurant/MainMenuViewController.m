@@ -552,7 +552,7 @@
     {
         if (row == 0)
         {
-            [self performSegueWithIdentifier:@"toFavorites" sender:nil];
+            [self performSegueWithIdentifier:[[NSUserDefaults standardUserDefaults] objectForKey:@"typeOfViewFavorites"] sender:nil];
         }
         else 
         {
@@ -754,7 +754,7 @@
     {
         if (indexPath.section == 0 && indexPath.row == 0)
         {
-            [self performSegueWithIdentifier:@"toFavorites" sender:nil];
+            [self performSegueWithIdentifier:[[NSUserDefaults standardUserDefaults] objectForKey:@"typeOfViewFavorites"] sender:nil];
         }
         else 
         {

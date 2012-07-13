@@ -315,9 +315,15 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:YES];
+    [super viewDidAppear:YES];  
     if (![[NSUserDefaults standardUserDefaults] valueForKey:@"typeOfView"])
+    {
         [[NSUserDefaults standardUserDefaults] setValue:@"menuList" forKey:@"typeOfView"];
+    }
+    if (![[NSUserDefaults standardUserDefaults] valueForKey:@"typeOfViewFavorites"])
+    {
+        [[NSUserDefaults standardUserDefaults] setValue:@"toFavoritesList" forKey:@"typeOfViewFavorites"];
+    }
     if (!checkConnection.hasConnectivity)
     {
         [self performSegueWithIdentifier:@"toMain" sender:self];

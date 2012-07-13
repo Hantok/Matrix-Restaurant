@@ -7,14 +7,12 @@
 //
 
 #import "MenuIconViewController.h"
-#import "ProductDetailViewController.h"
-#import "GMGridViewLayoutStrategies.h"
 #import "MainMenuViewController.h"
 
 @interface MenuIconViewController ()
 {
     BOOL pageControlBeingUsed;
-    int countOfObjects;
+    int countOfObjectsInCart;
 }
 
 @end
@@ -238,7 +236,7 @@
     //self.gmGridView.centerGrid = YES;
     self.gmGridView.actionDelegate = self;
 //    self.gmGridView.sortingDelegate = self;
-//    self.gmGridView.transformDelegate = self;
+    self.gmGridView.transformDelegate = self;
     self.gmGridView.dataSource = self;
     self.gmGridView.delegate = self;
     
@@ -258,15 +256,15 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    countOfObjects = [self.db fetchCountOfProductsInEntity:@"Cart"];
-    if (countOfObjects != 0)
+    countOfObjectsInCart = [self.db fetchCountOfProductsInEntity:@"Cart"];
+    if (countOfObjectsInCart != 0)
     {
         UIButton *cartButton = [[UIButton alloc] init];
         cartButton.frame=CGRectMake(0,0,60,30);
         [cartButton setBackgroundImage:[UIImage imageNamed: @"white-cart_big.png"] forState:UIControlStateNormal];
         cartButton.layer.cornerRadius = 8.0f;
         UILabel *countLabel = [[UILabel alloc] initWithFrame:CGRectMake(45,0,15,15)];
-        countLabel.text = [NSString stringWithFormat:@"%i", countOfObjects];
+        countLabel.text = [NSString stringWithFormat:@"%i", countOfObjectsInCart];
         countLabel.textAlignment = UITextAlignmentCenter;
         countLabel.textColor = [UIColor whiteColor];
         countLabel.font = [UIFont boldSystemFontOfSize:10];
@@ -469,10 +467,7 @@
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageFrame];
     if (!dataStruct.image)
     {
-        //if (self.gmGridView.dragging == NO && self.gmGridView.decelerating == NO)
-        {
-            [self startIconDownload:dataStruct forIndex:[NSNumber numberWithInteger:index]];
-        }
+        [self startIconDownload:dataStruct forIndex:[NSNumber numberWithInteger:index]];
         // if a download is deferred or in progress, return a placeholder image
         //[imageView setImage:[UIImage imageNamed:@"Placeholder.png"]];
     }
@@ -661,32 +656,45 @@
 
 - (UIView *)GMGridView:(GMGridView *)gridView fullSizeViewForCell:(GMGridViewCell *)cell atIndex:(NSInteger)index
 {
+//    UIView *fullView = [[UIView alloc] init];
+//    fullView.backgroundColor = [UIColor yellowColor];
+//    fullView.layer.masksToBounds = NO;
+//    fullView.layer.cornerRadius = 8;
+//    
+//    CGSize size = [self GMGridView:gridView sizeInFullSizeForCell:cell atIndex:index inInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
+//    fullView.bounds = CGRectMake(0, 0, size.width, size.height);
+//    
+//    UILabel *label = [[UILabel alloc] initWithFrame:fullView.bounds];
+//    label.text = [NSString stringWithFormat:@"Fullscreen View for cell at index %d", index];
+//    label.textAlignment = UITextAlignmentCenter;
+//    label.backgroundColor = [UIColor clearColor];
+//    label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+//    
+////    if (INTERFACE_IS_PHONE) 
+////    {
+////        label.font = [UIFont boldSystemFontOfSize:15];
+////    }
+////    else
+////    {
+////        label.font = [UIFont boldSystemFontOfSize:20];
+////    }
+//    
+//    label.font = [UIFont boldSystemFontOfSize:15];
+//
+//    [fullView addSubview:label];
     UIView *fullView = [[UIView alloc] init];
-    fullView.backgroundColor = [UIColor yellowColor];
     fullView.layer.masksToBounds = NO;
     fullView.layer.cornerRadius = 8;
     
     CGSize size = [self GMGridView:gridView sizeInFullSizeForCell:cell atIndex:index inInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
     fullView.bounds = CGRectMake(0, 0, size.width, size.height);
     
-    UILabel *label = [[UILabel alloc] initWithFrame:fullView.bounds];
-    label.text = [NSString stringWithFormat:@"Fullscreen View for cell at index %d", index];
-    label.textAlignment = UITextAlignmentCenter;
-    label.backgroundColor = [UIColor clearColor];
-    label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:fullView.bounds];
+    imageView.image = [[self.arrayData objectAtIndex:index] image];
+    imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
-//    if (INTERFACE_IS_PHONE) 
-//    {
-//        label.font = [UIFont boldSystemFontOfSize:15];
-//    }
-//    else
-//    {
-//        label.font = [UIFont boldSystemFontOfSize:20];
-//    }
+    [fullView addSubview:imageView];
     
-    label.font = [UIFont boldSystemFontOfSize:15];
-
-    [fullView addSubview:label];
     
     
     return fullView;
@@ -697,11 +705,9 @@
     [UIView animateWithDuration:0.5 
                           delay:0 
                         options:UIViewAnimationOptionAllowUserInteraction 
-                     animations:^{
-                         cell.contentView.backgroundColor = [UIColor blueColor];
-                         cell.contentView.layer.shadowOpacity = 0.7;
-                     } 
+                     animations:nil
                      completion:nil];
+    self.gmGridView.actionDelegate = nil;
 }
 
 - (void)GMGridView:(GMGridView *)gridView didEndTransformingCell:(GMGridViewCell *)cell
@@ -709,11 +715,10 @@
     [UIView animateWithDuration:0.5 
                           delay:0 
                         options:UIViewAnimationOptionAllowUserInteraction 
-                     animations:^{
-                         cell.contentView.backgroundColor = [UIColor redColor];
-                         cell.contentView.layer.shadowOpacity = 0;
-                     } 
+                     animations:nil
                      completion:nil];
+    
+    self.gmGridView.actionDelegate = self;
 }
 
 - (void)GMGridView:(GMGridView *)gridView didEnterFullSizeForCell:(UIView *)cell
