@@ -8,6 +8,7 @@
 
 #import "RestaurantViewController.h"
 #import "RestaurantCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface RestaurantViewController ()
 
@@ -103,7 +104,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -157,6 +158,11 @@
     
     cell.restaurantAdress.text = dataStruct.street;
     cell.restaurantSubway.text = dataStruct.subwayStation;
+    
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = cell.bounds;
+    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor darkGrayColor] CGColor],(id)[[UIColor blackColor] CGColor], nil];
+    [cell.layer insertSublayer:gradient atIndex:0];
     
 //    if (!dataStruct.image)
 //    {

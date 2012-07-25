@@ -51,6 +51,8 @@
 		F507215D156BA37C00D7ACC6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F507215C156BA37C00D7ACC6 /* SystemConfiguration.framework */; };
 		F5072169156BD46900D7ACC6 /* LanguageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5072168156BD46900D7ACC6 /* LanguageCell.m */; };
 		F507216C156BE0D200D7ACC6 /* LanguageAndCityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F507216B156BE0D200D7ACC6 /* LanguageAndCityTableViewController.m */; };
+		F507E85E15BED2E000B1A772 /* TotalCartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F507E85D15BED2E000B1A772 /* TotalCartCell.m */; };
+		F507E86215BED33D00B1A772 /* TotalCartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F507E86115BED33D00B1A772 /* TotalCartCell.xib */; };
 		F515440D15B03CCB00A2CB88 /* FavoritesIconViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F515440C15B03CCB00A2CB88 /* FavoritesIconViewController.m */; };
 		F51B206215AB2EE600074DA1 /* white-cart_big.png in Resources */ = {isa = PBXBuildFile; fileRef = F51B206115AB2EE500074DA1 /* white-cart_big.png */; };
 		F52225CB1594A0A7003E2728 /* Button_orange_rev2.png in Resources */ = {isa = PBXBuildFile; fileRef = F52225CA1594A0A7003E2728 /* Button_orange_rev2.png */; };
@@ -216,6 +218,9 @@
 		F5072168156BD46900D7ACC6 /* LanguageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageCell.m; sourceTree = "<group>"; };
 		F507216A156BE0D200D7ACC6 /* LanguageAndCityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageAndCityTableViewController.h; sourceTree = "<group>"; };
 		F507216B156BE0D200D7ACC6 /* LanguageAndCityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageAndCityTableViewController.m; sourceTree = "<group>"; };
+		F507E85C15BED2E000B1A772 /* TotalCartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TotalCartCell.h; sourceTree = "<group>"; };
+		F507E85D15BED2E000B1A772 /* TotalCartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TotalCartCell.m; sourceTree = "<group>"; };
+		F507E86115BED33D00B1A772 /* TotalCartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TotalCartCell.xib; sourceTree = "<group>"; };
 		F515440B15B03CCA00A2CB88 /* FavoritesIconViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesIconViewController.h; sourceTree = "<group>"; };
 		F515440C15B03CCB00A2CB88 /* FavoritesIconViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesIconViewController.m; sourceTree = "<group>"; };
 		F51B206115AB2EE500074DA1 /* white-cart_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "white-cart_big.png"; sourceTree = "<group>"; };
@@ -524,6 +529,9 @@
 				F5F2D69915ADB91400C5094B /* AddressCell.h */,
 				F5F2D69A15ADB91500C5094B /* AddressCell.m */,
 				F5F2D69C15ADBB8E00C5094B /* AddressCell.xib */,
+				F507E85C15BED2E000B1A772 /* TotalCartCell.h */,
+				F507E85D15BED2E000B1A772 /* TotalCartCell.m */,
+				F507E86115BED33D00B1A772 /* TotalCartCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -686,6 +694,7 @@
 				F5056DDB15A33F94000C14D1 /* close_x.png in Resources */,
 				F51B206215AB2EE600074DA1 /* white-cart_big.png in Resources */,
 				F5F2D69D15ADBB8F00C5094B /* AddressCell.xib in Resources */,
+				F507E86215BED33D00B1A772 /* TotalCartCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -739,6 +748,7 @@
 				F5F2D69815AD7DBB00C5094B /* AddressListTableViewController.m in Sources */,
 				F5F2D69B15ADB91500C5094B /* AddressCell.m in Sources */,
 				F515440D15B03CCB00A2CB88 /* FavoritesIconViewController.m in Sources */,
+				F507E85E15BED2E000B1A772 /* TotalCartCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

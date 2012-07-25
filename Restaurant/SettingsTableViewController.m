@@ -166,6 +166,7 @@
         [actionSheet addButtonWithTitle:@"Twitter"];
         [actionSheet addButtonWithTitle:@"Facebook"];
         [actionSheet addButtonWithTitle:@"Cancel"];
+        actionSheet.cancelButtonIndex = actionSheet.numberOfButtons - 1;
         [actionSheet showInView:self.view];
     }
     if ([cell.reuseIdentifier isEqualToString:@"Reset"])
@@ -187,6 +188,8 @@
         [actionSheet addButtonWithTitle:@"via SMS"];
         [actionSheet addButtonWithTitle:@"via e-mail"];
         [actionSheet addButtonWithTitle:@"Cancel"];
+        actionSheet.cancelButtonIndex = actionSheet.numberOfButtons - 1;
+        
         [actionSheet showInView:self.view];
     }
     
@@ -199,6 +202,7 @@
         [actionSheet addButtonWithTitle:@"Icons"];
         [actionSheet addButtonWithTitle:@"List"];
         [actionSheet addButtonWithTitle:@"Cancel"];
+        actionSheet.cancelButtonIndex = actionSheet.numberOfButtons - 1;
         [actionSheet showInView:self.view];
     }
 }

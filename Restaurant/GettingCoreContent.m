@@ -238,12 +238,12 @@
     
     [request setEntity:entity];
     
-    request.predicate = [NSPredicate predicateWithFormat:@"idCity == %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"]];
+    request.predicate = [NSPredicate predicateWithFormat:@"idCity == %@ && action!=2",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"]];
     NSManagedObjectContext *moc = context;
     NSError *error;
     NSMutableArray *citiesIDs = [[moc executeFetchRequest:request error:&error] mutableCopy];
     NSMutableArray *resultOfARequest = [[NSMutableArray alloc] init];
-    request = [NSFetchRequest fetchRequestWithEntityName:@"Restaurants_translation"];
+    request = [NSFetchRequest fetchRequestWithEntityName:@"Restaurants_translation"	];
     for(int i=0;i<citiesIDs.count;i++)
     {
         id currentCity = [citiesIDs objectAtIndex:i];
@@ -263,7 +263,7 @@
     
     [request setEntity:entity];
     
-    request.predicate = [NSPredicate predicateWithFormat:@"idParentMenu == 0 && idRestaurant == %@",restaurnatId];
+    request.predicate = [NSPredicate predicateWithFormat:@"idParentMenu == 0 && idRestaurant == %@ && action!=2",restaurnatId];
     NSManagedObjectContext *moc = context;
     NSError *error;
     NSMutableArray *menuIDs = [[moc executeFetchRequest:request error:&error] mutableCopy];
@@ -288,7 +288,7 @@
     
     [request setEntity:entity];
     
-    request.predicate = [NSPredicate predicateWithFormat:@"idParentMenu == %@",parentMenuId];
+    request.predicate = [NSPredicate predicateWithFormat:@"idParentMenu == %@ && action!=2",parentMenuId];
     NSManagedObjectContext *moc = context;
     NSError *error;
     NSMutableArray *menuIDs = [[moc executeFetchRequest:request error:&error] mutableCopy];
@@ -304,7 +304,7 @@
     return [resultOfARequest copy]; 
 }
 
--(NSArray *)fetchAllLanguages
+    -(NSArray *)fetchAllLanguages
 {
     NSManagedObjectContext * context = self.managedObjectContext;
     NSFetchRequest *request = [[NSFetchRequest alloc] init];

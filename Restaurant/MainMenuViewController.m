@@ -1,4 +1,4 @@
-    //
+//
 //  MainMenuViewController.m
 //  Restaurant
 //
@@ -9,6 +9,7 @@
 #import "MainMenuViewController.h"
 #import "MenuListTableViewController.h"
 #import "CartCell.h"
+#import "TotalCartCell.h"
 #import "Offers.h"
 #import "GettingCoreContent.h"
 #import "MenuDataStruct.h"
@@ -22,7 +23,7 @@
     CFURLRef        soundFileURLRef;
     SystemSoundID	soundFileObject;
     BOOL            fromSettings;
-    BOOL            fromDeliveries;
+    BOOL            fromDeliveriesAndDatailViewController;
 }
 
 @property (readwrite)	CFURLRef        soundFileURLRef;
@@ -203,7 +204,8 @@
     self.pickerView.dataSource = self;
     //UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pickerTapped:)];
     //[self.pickerView addGestureRecognizer:tapgesture];
-    self.restorantsButton.titleLabel.text = @"Restaurants";
+    
+    [self.restorantsButton setTitle:@"Restaurants" forState:UIControlStateNormal];
     
     [self.settingsButton setHidden:NO];
     [self.drop setHidden:NO];
@@ -221,7 +223,7 @@
     
     AudioServicesPlaySystemSound (self.soundFileObject);
     
-    self.restorantsButton.titleLabel.text = @"Order";    
+    [self.restorantsButton setTitle:@"Order" forState:UIControlStateNormal];  
     
     [self.settingsButton setHidden:YES];
     [self.drop setHidden:YES];
@@ -318,7 +320,7 @@
         self.restarauntId = nil;
         fromSettings = NO;
     }
-    else if (fromDeliveries)
+    else if (fromDeliveriesAndDatailViewController)
     {
         [self.pickerView reloadAllComponents];
     }
@@ -345,13 +347,13 @@
     if(self.isMenuMode)
     {
         //[self.pickerView reloadAllComponents];
-        self.restorantsButton.titleLabel.text = @"Restaurants";
+        [self.restorantsButton setTitle:@"Restaurants" forState:UIControlStateNormal];
     }
     else 
     {
         self.arrayOfObjects = nil;
         //[self.pickerView reloadAllComponents];
-        self.restorantsButton.titleLabel.text = @"Order";
+        [self.restorantsButton setTitle:@"Order" forState:UIControlStateNormal];
     }
 }
 
@@ -591,10 +593,10 @@
 
 -(CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
 {
-    if(self.isCartMode)
-        return self.pickerView.frame.size.height;
-    else 
-        return self.pickerView.frame.size.height;//4;
+//    if(self.isCartMode)
+//        return self.pickerView.frame.size.height-10;
+//    else 
+        return self.pickerView.frame.size.height-15;//4;
 }
 
 #pragma mark - segue Delegate
@@ -614,7 +616,8 @@
     if([segue.identifier isEqualToString:@"toProductDetail"])
     {
         [[segue destinationViewController] setProduct:[self.arrayOfObjects objectAtIndex:self.selectedRow.integerValue] isFromFavorites:NO];
-        [[segue destinationViewController] setLabelOfAddingButtonWithString:@"Изменить" withIndexPathInDB:self.selectedPath];
+        [[segue destinationViewController] setLabelOfAddingButtonWithString:@"Change" withIndexPathInDB:self.selectedPath];
+        fromDeliveriesAndDatailViewController = YES;
     }
     self.arrayOfObjects = nil;
     
@@ -625,21 +628,26 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if(self.isMenuMode)
+//    if(self.isMenuMode)
         return 2;
-    else return 1;
+//    else return 1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(self.isMenuMode)
     {
-        if(section == 0) return 1;
-        else return self.arrayData.count;
+        if(section == 0) 
+            return 1;
+        else 
+            return self.arrayData.count;
     }
     else 
     {
-        return self.arrayOfObjects.count;
+        if (section == 0)
+            return self.arrayOfObjects.count;
+        else 
+            return 1;
     };
 }
 
@@ -647,29 +655,78 @@
 {        
     if(self.isCartMode)
     {
-        
-        NSString *CellIdentifier = @"CartCell1";
-        CartCell *cell = (CartCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
-        if(!cell)
+        if (indexPath.section == 0)
         {
-            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"CartCell" owner:nil options:nil];
-            for(id currentObject in topLevelObjects)
+            NSString *CellIdentifier = @"CartCell1";
+            CartCell *cell = (CartCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            
+            if(!cell)
             {
-                if([currentObject isKindOfClass:[CartCell class]])
+                NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"CartCell" owner:nil options:nil];
+                for(id currentObject in topLevelObjects)
                 {
-                    cell = (CartCell *)currentObject;
-                    break;
+                    if([currentObject isKindOfClass:[CartCell class]])
+                    {
+                        cell = (CartCell *)currentObject;
+                        break;
+                    }
                 }
             }
+            ProductDataStruct *productStruct = [self.arrayOfObjects objectAtIndex:indexPath.row];
+            cell.productTitle.text  = productStruct.title;
+            cell.productCount.text  = [NSString stringWithFormat:@"%@",productStruct.count];
+            cell.imageView.image    = productStruct.image;
+            cell.productPrice.text  = productStruct.price;
+            
+            return cell;
         }
-        ProductDataStruct *productStruct = [self.arrayOfObjects objectAtIndex:indexPath.row];
-        cell.productTitle.text  = productStruct.title;
-        cell.productCount.text  = [NSString stringWithFormat:@"%@",productStruct.count];
-        cell.imageView.image    = productStruct.image;
-        cell.productPrice.text  = productStruct.price;
-        
-        return cell;
+        else 
+        {
+            NSString *cellIdentifier = @"Total";
+            TotalCartCell *cell = (TotalCartCell *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            
+            if (!cell)
+            {
+                NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"TotalCartCell" owner:nil options:nil];
+                for (id currentObject in topLevelObjects)
+                {
+                    if ([currentObject isKindOfClass:[TotalCartCell class]])
+                    {
+                        cell = (TotalCartCell *)currentObject;
+                        break;
+                    }
+                }
+            }
+            
+            cell.sumLabel.text = @"Total";
+            cell.sumWithDiscountsLabel.text = @"With discounts";
+            cell.countLabel.text = @"Count";
+            
+            int sum = 0;
+            int sumWithDiscounts = 0;
+            int totalCount = 0;
+            for (int i = 0; i < self.arrayOfObjects.count; i++)
+            {
+                ProductDataStruct *productDataStruct = [self.arrayOfObjects objectAtIndex:i];
+                sum = sum + [[productDataStruct price] intValue];
+                sumWithDiscounts = sumWithDiscounts + [[[self.arrayOfObjects objectAtIndex:i] price] intValue];
+                totalCount = totalCount + productDataStruct.count.intValue;
+            }
+            cell.sumNumberLabel.text = [NSString stringWithFormat:@"%i",sum]; 
+            cell.sumWithDiscountsNumberLabel.text = [NSString stringWithFormat:@"%i",sumWithDiscounts];
+            cell.countNumberLabel.text = [NSString stringWithFormat:@"%i", totalCount];
+            
+            
+//            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+//            if (cell == nil) 
+//            {
+//                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+//                
+//                cell.textLabel.text = @"Total";
+//                
+//            }
+            return cell;
+        }
     }
     else 
     {
@@ -741,14 +798,36 @@
     }
 }
 
+-(CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (self.isCartMode)
+    {
+        if(section == 1)
+        {
+            return 1.0;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    else 
+    {
+        return 0.1;
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.imageDownloadsInProgress removeAllObjects];
     if(self.isCartMode)
     {
-        self.selectedRow = [[NSNumber alloc] initWithInt:indexPath.row];
-        [self performSegueWithIdentifier:@"toProductDetail" sender:self];
-        self.selectedPath = indexPath;
+        if (indexPath.section == 0)
+        {
+            self.selectedRow = [[NSNumber alloc] initWithInt:indexPath.row];
+            [self performSegueWithIdentifier:@"toProductDetail" sender:self];
+            self.selectedPath = indexPath;
+        }
     }
     else
     {
@@ -776,7 +855,8 @@
                     self.menuId = menuId;
                     [self.pickerView reloadAllComponents];
                 }
-                else {
+                else 
+                {
                     if(self.isMenuMode)
                     {
                         self.singleMenu = [self.arrayData objectAtIndex:selectedRow.integerValue];
@@ -798,7 +878,7 @@
         }
         
     }
-    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     //self.arrayOfObjects = nil;
     //[self.pickerView reloadAllComponents];
 }
@@ -819,16 +899,39 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete && self.isCartMode) 
     {
-        [self.db deleteObjectFromEntity:@"Cart" withProductId:[[self.arrayOfObjects objectAtIndex:indexPath.row] productId]];
-        self.arrayOfObjects = nil;
-        [self arrayOfObjects];
-        if (!self.arrayOfObjects)
-            [self.arrayOfObjects removeObjectAtIndex:indexPath.row];
-        else {
-            [self.pickerView reloadAllComponents];
+        if (indexPath.section != 1)
+        {
+            [self.db deleteObjectFromEntity:@"Cart" withProductId:[[self.arrayOfObjects objectAtIndex:indexPath.row] productId]];
+            self.arrayOfObjects = nil;
+            [self arrayOfObjects];
+            if (!self.arrayOfObjects)
+                [self.arrayOfObjects removeObjectAtIndex:indexPath.row];
+            else 
+            {
+                [self.pickerView reloadAllComponents];
+            }
+            [self.tableView reloadData];
         }
-        [self.tableView reloadData];
+        else 
+        {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil 
+                                                            message:@"Do you want to delete all items from Cart"
+                                                           delegate:self 
+                                                  cancelButtonTitle:@"YES" 
+                                                  otherButtonTitles: @"NO", nil];
+            [alert show];
+        }
     }  
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        [self.db deleteAllObjectsFromEntity:@"Cart"];
+        self.arrayOfObjects = nil;
+        [self.pickerView reloadAllComponents];
+    }
 }
 
 - (IBAction)OrderButton:(id)sender 
@@ -840,7 +943,10 @@
         [actionSheet setTitle:@"Choose method to get order:"];
         [actionSheet setDelegate:(id)self];
         [actionSheet addButtonWithTitle:@"Delivery"];
+        [actionSheet addButtonWithTitle:@"Delivery by time"];
         [actionSheet addButtonWithTitle:@"Pick up"];
+        [actionSheet addButtonWithTitle:@"Cancel"];
+        actionSheet.cancelButtonIndex = actionSheet.numberOfButtons - 1;
         [actionSheet showInView:self.view];
         
     }
@@ -855,7 +961,7 @@
     if (buttonIndex == 0)
     {
         [self performSegueWithIdentifier:@"toDelivery" sender:nil];
-        fromDeliveries = YES;
+        fromDeliveriesAndDatailViewController = YES;
     }
     
     else 

@@ -175,54 +175,54 @@
         //[self.navigationController popViewControllerAnimated:YES];
         
         
-        if ([[NSUserDefaults standardUserDefaults] objectForKey:wasDownloaded] != nil)
-        {
-            // http request updatePHP with &tag=update
-            GettingCoreContent *content = [[GettingCoreContent alloc] init];
-            
-            NSNumber *maxRestaurantId = [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Restaurants"];
-            NSNumber *maxRestaurantVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Restaurants"];
-            
-            NSNumber *maxMenuId = [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Menus"];
-            NSNumber *maxMenuVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Menus"];
-            
-            NSNumber *maxProductId = [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Products"];
-            NSNumber *maxProductVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Products"];
-            
-            NSMutableString *myString = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test6/root/Customer_Scripts/update.php?DBid=11&tag=update"];
-            
-            [myString appendFormat:@"&city_id=%@", [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"]];
-            [myString appendFormat:@"&lang_id=%@", [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
-            
-            [myString appendFormat:@"&rest_v=%@", maxRestaurantVersion];
-            [myString appendFormat:@"&mrest_id=%@", maxRestaurantId];
-            
-            [myString appendFormat:@"&menu_v=%@", maxMenuVersion];
-            [myString appendFormat:@"&mmenu_id=%@", maxMenuId];
-            
-            [myString appendFormat:@"&prod_v=%@", maxProductVersion];
-            [myString appendFormat:@"&mprod_id=%@", maxProductId];
-            
-            NSURL *url = [NSURL URLWithString:myString.copy];
-            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-            [request setHTTPMethod:@"GET"];
-            NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-            if (!theConnection)
-            {
-                // Inform the user that the connection failed.
-                UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"NSURLConnection" 
-                                                                             message:@"Not success"  
-                                                                            delegate:self
-                                                                   cancelButtonTitle:@"Ok"
-                                                                   otherButtonTitles:nil];
-                [connectFailMessage show];
-            }
-//            NSArray *arrayOfCartsIds = [content fetchAllIdsFromEntity:@"Cart"];
-//            NSArray *arrayOfFavoritesIds = [content fetchAllIdsFromEntity:@"Favorites"];
-            
-        }
-        else 
-        {
+//        if ([[NSUserDefaults standardUserDefaults] objectForKey:wasDownloaded] != nil)
+//        {
+//            // http request updatePHP with &tag=update
+//            GettingCoreContent *content = [[GettingCoreContent alloc] init];
+//            
+//            NSNumber *maxRestaurantId = [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Restaurants"];
+//            NSNumber *maxRestaurantVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Restaurants"];
+//            
+//            NSNumber *maxMenuId = [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Menus"];
+//            NSNumber *maxMenuVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Menus"];
+//            
+//            NSNumber *maxProductId = [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Products"];
+//            NSNumber *maxProductVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Products"];
+//            
+//            NSMutableString *myString = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test6/root/Customer_Scripts/update.php?DBid=11&tag=update"];
+//            
+//            [myString appendFormat:@"&city_id=%@", [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"]];
+//            [myString appendFormat:@"&lang_id=%@", [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
+//            
+//            [myString appendFormat:@"&rest_v=%@", maxRestaurantVersion];
+//            [myString appendFormat:@"&mrest_id=%@", maxRestaurantId];
+//            
+//            [myString appendFormat:@"&menu_v=%@", maxMenuVersion];
+//            [myString appendFormat:@"&mmenu_id=%@", maxMenuId];
+//            
+//            [myString appendFormat:@"&prod_v=%@", maxProductVersion];
+//            [myString appendFormat:@"&mprod_id=%@", maxProductId];
+//            
+//            NSURL *url = [NSURL URLWithString:myString.copy];
+//            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+//            [request setHTTPMethod:@"GET"];
+//            NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+//            if (!theConnection)
+//            {
+//                // Inform the user that the connection failed.
+//                UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"NSURLConnection" 
+//                                                                             message:@"Not success"  
+//                                                                            delegate:self
+//                                                                   cancelButtonTitle:@"Ok"
+//                                                                   otherButtonTitles:nil];
+//                [connectFailMessage show];
+//            }
+////            NSArray *arrayOfCartsIds = [content fetchAllIdsFromEntity:@"Cart"];
+////            NSArray *arrayOfFavoritesIds = [content fetchAllIdsFromEntity:@"Favorites"];
+//            
+//        }
+//        else 
+//        {
             [[NSUserDefaults standardUserDefaults] setObject:data forKey:wasDownloaded];
             // http request updatePHP with &tag=rmp
             NSMutableString *urlString = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test6/root/Customer_Scripts/update.php?DBid=11&tag=rmp"];
@@ -241,7 +241,7 @@
                                                                    cancelButtonTitle:@"Ok"
                                                                    otherButtonTitles:nil];
                 [connectFailMessage show];
-            }
+//            }
         }
     }
     else 

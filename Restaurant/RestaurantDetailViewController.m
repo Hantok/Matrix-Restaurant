@@ -8,6 +8,7 @@
 
 #import "RestaurantDetailViewController.h"
 #import "MapViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface RestaurantDetailViewController ()
 
@@ -79,6 +80,11 @@
     }
     restaurantImage.image = self.dataStruct.image;
     //[self.db SavePictureToCoreData:self.dataStruct.idPicture toData:UIImagePNGRepresentation(cell.productImage.image)];
+    
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = self.view.bounds;
+    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor darkGrayColor] CGColor], (id)[[UIColor blackColor] CGColor],(id)[[UIColor darkGrayColor] CGColor],(id)[[UIColor blackColor] CGColor], nil];
+    [self.view.layer insertSublayer:gradient atIndex:0];
     
 }
 

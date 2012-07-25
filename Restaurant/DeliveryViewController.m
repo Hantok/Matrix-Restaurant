@@ -80,14 +80,15 @@
 #pragma mark LOADS methods
 ///////////////////////////////////////////////
 
-//-(void)viewWillAppear:(BOOL)animated
-//{
-//    //self.arrayOfAddresses = [self.content getArrayFromCoreDatainEntetyName:@"Addresses" withSortDescriptor:@"name"];
-//    if (self.arrayOfAddresses.count != 0)
-//    {
-//        //[self performSelector:@selector(showListOfAddresses:) withObject:nil];
-//    }
-//}
+-(void)viewWillAppear:(BOOL)animated
+{
+    NSArray *arrayOfAddresses = [self.content getArrayFromCoreDatainEntetyName:@"Addresses" withSortDescriptor:@"name"];
+    if (arrayOfAddresses.count != 0)
+    {
+        //[self performSelector:@selector(showListOfAddresses:) withObject:nil];
+        [self performSegueWithIdentifier:@"toAddressList" sender:self];
+    }
+}
 
 - (void)viewDidLoad
 {
@@ -208,6 +209,22 @@
 {
     if ([self checkForLiteracy])
     {
+        //save address
+        self.dictionary = [[NSMutableDictionary alloc] init];
+        [self.dictionary setObject:self.addressName.text forKey:@"name"];
+        [self.dictionary setObject:self.customerName.text forKey:@"username"];
+        [self.dictionary setObject:self.phone.text forKey:@"phone"];
+        [self.dictionary setObject:self.CityName.text forKey:@"city"];
+        [self.dictionary setObject:self.street.text forKey:@"street"];
+        [self.dictionary setObject:self.build.text forKey:@"house"];
+        [self.dictionary setObject:self.appartaments.text forKey:@"room_office"];
+        [self.dictionary setObject:self.metroName.text forKey:@"metro"];
+        [self.dictionary setObject:self.floor.text forKey:@"floor"];
+        [self.dictionary setObject:self.intercom.text forKey:@"intercom"];
+        [self.dictionary setObject:self.access.text forKey:@"access"];
+        [self.dictionary setObject:self.otherInformation.text forKey:@"additional_info"];
+        [self.content addObjectToEntity:@"Addresses" withDictionaryOfAttributes:self.dictionary.copy];
+        
         UIActivityIndicatorView *activityView=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         activityView.backgroundColor = [UIColor darkTextColor];
         activityView.frame = self.parentViewController.view.frame;
@@ -273,13 +290,6 @@
 
 - (IBAction)saveAddress:(id)sender 
 {
-//    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Sorry!" 
-//                                                      message:@"Not working now."  
-//                                                     delegate:self
-//                                            cancelButtonTitle:@"Ok"
-//                                            otherButtonTitles:nil];
-//    [message show];
-    
     if ([self checkForLiteracy])
     {
         self.dictionary = [[NSMutableDictionary alloc] init];
@@ -298,7 +308,8 @@
         
         [self.content addObjectToEntity:@"Addresses" withDictionaryOfAttributes:self.dictionary.copy];
     }
-    else {
+    else 
+    {
         UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"Fill all rows with '*'." 
                                                                      message:nil //@"Not success"  
                                                                     delegate:self
@@ -306,6 +317,13 @@
                                                            otherButtonTitles:nil];
         [connectFailMessage show];
     }
+    
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Saved new address %@.", self.addressName.text]
+                                                      message:nil  
+                                                     delegate:self
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+    [message show];
 }
 
 - (IBAction)toAddressList:(id)sender 

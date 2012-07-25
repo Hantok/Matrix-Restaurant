@@ -14,8 +14,6 @@
 
 @property BOOL isInFavorites;
 @property (strong, nonatomic) NSString *labelString;
-@property (strong, nonatomic) NSIndexPath *selectedPath;
-@property BOOL countForDeleting;
 
 @end
 
@@ -31,8 +29,6 @@
 @synthesize nameLabal = _nameLabal;
 @synthesize isInFavorites = _isInFavorites;
 @synthesize labelString = _labelString;
-@synthesize selectedPath = _selectedPath;
-@synthesize countForDeleting = _countForDeleting;
 
 - (void)setProduct:(ProductDataStruct *)product isFromFavorites:(BOOL)boolValue
 {
@@ -43,11 +39,21 @@
 -(void)setLabelOfAddingButtonWithString:(NSString *)labelString withIndexPathInDB:(NSIndexPath *)indexPath
 {
     self.labelString = labelString;
-    self.selectedPath = indexPath;
+    [_product setCount:[NSNumber numberWithInt:0]];
 }
 
 - (void)viewDidLoad
 {
+    self.cartButton.titleLabel.textAlignment = UITextAlignmentCenter;
+    if (self.labelString)
+    {
+        [self.cartButton setTitle:self.labelString forState:UIControlStateNormal];
+    }
+    else 
+    {
+        [self.cartButton setTitle:@"Add to Cart" forState:UIControlStateNormal];
+    }
+    
     [super viewDidLoad];    
     //self.navigationItem.title = self.product.title;
     self.nameLabal.text = self.product.title;
@@ -64,6 +70,11 @@
     gradient.frame = self.view.bounds;
     gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor darkGrayColor] CGColor],(id)[[UIColor blackColor] CGColor], nil];
     [self.view.layer insertSublayer:gradient atIndex:0];
+    
+    if(self.isInFavorites)
+    {
+        [self.navigationItem.rightBarButtonItem setEnabled:NO];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -102,13 +113,19 @@
 //        [alert show];
 //        [[self navigationController] popViewControllerAnimated:YES];
 //    }
-    
+        
     GettingCoreContent *db = [[GettingCoreContent alloc] init];
     
-    if (self.countForDeleting || self.product.count.intValue == 0)
+    if (self.product.count.intValue == 0)
     {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Do you want to delete item %@", self.product.title] delegate:self cancelButtonTitle:@"YES" otherButtonTitles: @"NO", nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil 
+                                                        message:[NSString stringWithFormat:@"Do you want to delete item %@", self.product.title] 
+                                                       delegate:self 
+                                              cancelButtonTitle:@"YES" 
+        
+                                              otherButtonTitles: @"NO", nil];
         [alert show];
+        
     }
     else 
     {
@@ -132,7 +149,6 @@
         NSLog(@"deleted");
         [self.navigationController popViewControllerAnimated:NO];
     }
-    self.cartButton.titleLabel.text = self.labelString;
 }
 - (IBAction)AddToFavorites:(id)sender 
 {
@@ -187,8 +203,6 @@
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    self.countForDeleting = NO;
-    
     if (self.labelString)
         self.product.count = [NSNumber numberWithInt:row];
     else 

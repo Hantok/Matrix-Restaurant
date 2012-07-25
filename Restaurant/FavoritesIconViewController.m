@@ -269,7 +269,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     //NSLog(@"%@",[self.Products objectAtIndex:self.selectedRow.integerValue]);
-    [segue.destinationViewController setProduct:[self.arrayOfObjects objectAtIndex:self.selectedIndex.integerValue] isFromFavorites:NO];
+    [segue.destinationViewController setProduct:[self.arrayOfObjects objectAtIndex:self.selectedIndex.integerValue] isFromFavorites:YES];
 }
 
 - (void)GMGridViewDidTapOnEmptySpace:(GMGridView *)gridView
