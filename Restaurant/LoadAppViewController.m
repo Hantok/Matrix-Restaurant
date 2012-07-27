@@ -326,6 +326,12 @@
     {
         [[NSUserDefaults standardUserDefaults] setValue:@"toFavoritesList" forKey:@"typeOfViewFavorites"];
     }
+    if (![[NSUserDefaults standardUserDefaults] valueForKey:@"Currency"])
+    {
+        [[NSUserDefaults standardUserDefaults] setValue:@"USD" forKey:@"Currency"];
+        [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:@"CurrencyCoefficient"];
+    }
+    
     if (!checkConnection.hasConnectivity)
     {
         [self performSegueWithIdentifier:@"toMain" sender:self];

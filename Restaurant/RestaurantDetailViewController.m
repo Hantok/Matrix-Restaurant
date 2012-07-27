@@ -52,31 +52,22 @@
     [segue.destinationViewController setCoordinates:location];
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	workTimeDetailLabel.text = self.dataStruct.workingTime;
     telephoneDetailLabel.text = self.dataStruct.phones;
     NSData *dataOfPicture = [self.db fetchPictureDataByPictureId:self.dataStruct.idPicture];
-    NSURL *url = [self.db fetchImageURLbyPictureID:self.dataStruct.idPicture];
+//    NSURL *url = [self.db fetchImageURLbyPictureID:self.dataStruct.idPicture];
     if(dataOfPicture)
     {
         self.dataStruct.image  = [UIImage imageWithData:dataOfPicture]; 
     }
     else 
     {
-        dataOfPicture = [NSData dataWithContentsOfURL:url];
-        [self.db SavePictureToCoreData:self.dataStruct.idPicture toData:dataOfPicture];
-        self.dataStruct.image  = [UIImage imageWithData:dataOfPicture];
+//        dataOfPicture = [NSData dataWithContentsOfURL:url];
+//        [self.db SavePictureToCoreData:self.dataStruct.idPicture toData:dataOfPicture];
+        //self.dataStruct.image  = [UIImage imageWithData:dataOfPicture];
     }
     restaurantImage.image = self.dataStruct.image;
     //[self.db SavePictureToCoreData:self.dataStruct.idPicture toData:UIImagePNGRepresentation(cell.productImage.image)];

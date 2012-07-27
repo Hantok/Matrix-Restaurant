@@ -403,7 +403,10 @@
         if (self.arrayOfObjects.count == 0)
         {
             PickerViewCell *viewForRow;
-            UIImageView *one = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Cart.png"]];
+            UIImageView *one = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"shopping-cart.png"]];
+//            one.frame = self.pickerView.frame;
+//            one.frame = CGRectMake(self.pickerView.frame.origin.x + 100, self.pickerView.frame.origin.y + 100, self.pickerView.frame.size.width,self.pickerView.frame.size.height);
+            
             //NSArray* ballsArray = [NSArray arrayWithObjects:one, nil];
             viewForRow = (PickerViewCell *)one;
             return viewForRow;
@@ -684,7 +687,7 @@
             NSString *price = [formatter stringFromNumber:[NSNumber numberWithFloat:(productStruct.price.floatValue * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]];
             NSString *priceString = [NSString stringWithFormat:@"%@ %@", price, [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
             
-            [[_arrayOfObjects objectAtIndex:indexPath.row] setPrice:price];
+            //[[self.arrayOfObjects objectAtIndex:indexPath.row] setPrice:price];
             
             cell.productPrice.text = priceString;
             
@@ -724,12 +727,12 @@
             {
                 ProductDataStruct *productDataStruct = [self.arrayOfObjects objectAtIndex:i];
                 
-                sum                 = sum + [[formatter numberFromString:productDataStruct.price] floatValue];
-                sumWithDiscounts    = sumWithDiscounts + [[formatter numberFromString:productDataStruct.price] floatValue];
+                sum                 = sum + ([[formatter numberFromString:[formatter stringFromNumber:[NSNumber numberWithFloat:(productDataStruct.price.floatValue * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]]] floatValue]);
+                sumWithDiscounts    = sum;//sumWithDiscounts + [[formatter numberFromString:productDataStruct.price] floatValue];
                 totalCount          = totalCount + productDataStruct.count.intValue;
             }
             
-            cell.sumNumberLabel.text = [NSString stringWithFormat:@"%@ %@",[formatter stringFromNumber:[NSNumber numberWithFloat:sumWithDiscounts]], [[NSUserDefaults standardUserDefaults] valueForKey:@"Currency"]];
+            cell.sumNumberLabel.text = [NSString stringWithFormat:@"%@ %@",[formatter stringFromNumber:[NSNumber numberWithFloat:sum]], [[NSUserDefaults standardUserDefaults] valueForKey:@"Currency"]];
             cell.sumWithDiscountsNumberLabel.text = [NSString stringWithFormat:@"%@ %@",[formatter stringFromNumber:[NSNumber numberWithFloat:sumWithDiscounts]], [[NSUserDefaults standardUserDefaults] valueForKey:@"Currency"]];
             cell.countNumberLabel.text = [NSString stringWithFormat:@"%i", totalCount];
             

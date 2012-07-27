@@ -146,7 +146,7 @@
         }
     }
     
-    cell.restaurantAdress.text = dataStruct.street;
+    cell.restaurantAdress.text = dataStruct.name;
     cell.restaurantSubway.text = dataStruct.subwayStation;
     
     CAGradientLayer *gradient = [CAGradientLayer layer];

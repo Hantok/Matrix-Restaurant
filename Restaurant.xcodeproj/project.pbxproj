@@ -71,6 +71,9 @@
 		F59344EB157F77DA0080EDE3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F59344EA157F77DA0080EDE3 /* AudioToolbox.framework */; };
 		F59344F7157F8D730080EDE3 /* images.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F59344F6157F8D730080EDE3 /* images.jpeg */; };
 		F599588115875CCF0000469F /* Settings1.png in Resources */ = {isa = PBXBuildFile; fileRef = F599588015875CCF0000469F /* Settings1.png */; };
+		F5B4609615C2B78F00A6815C /* Cart1.PNG in Resources */ = {isa = PBXBuildFile; fileRef = F5B4609515C2B78F00A6815C /* Cart1.PNG */; };
+		F5B4609A15C2BF7900A6815C /* shopping-cart.png in Resources */ = {isa = PBXBuildFile; fileRef = F5B4609915C2BF7900A6815C /* shopping-cart.png */; };
+		F5B4609C15C2D4A500A6815C /* metro.png in Resources */ = {isa = PBXBuildFile; fileRef = F5B4609B15C2D4A500A6815C /* metro.png */; };
 		F5C4298A15AC2E1D00D4A061 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C4297615AC2E1D00D4A061 /* AFHTTPClient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F5C4298B15AC2E1D00D4A061 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C4297815AC2E1D00D4A061 /* AFHTTPRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F5C4298C15AC2E1D00D4A061 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C4297A15AC2E1D00D4A061 /* AFImageRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -241,6 +244,9 @@
 		F59344EA157F77DA0080EDE3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		F59344F6157F8D730080EDE3 /* images.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = images.jpeg; sourceTree = "<group>"; };
 		F599588015875CCF0000469F /* Settings1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Settings1.png; sourceTree = "<group>"; };
+		F5B4609515C2B78F00A6815C /* Cart1.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cart1.PNG; sourceTree = "<group>"; };
+		F5B4609915C2BF7900A6815C /* shopping-cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shopping-cart.png"; sourceTree = "<group>"; };
+		F5B4609B15C2D4A500A6815C /* metro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metro.png; sourceTree = "<group>"; };
 		F5C4297515AC2E1D00D4A061 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPClient.h; path = Restaurant/AFNetworking/AFHTTPClient.h; sourceTree = "<group>"; };
 		F5C4297615AC2E1D00D4A061 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFHTTPClient.m; path = Restaurant/AFNetworking/AFHTTPClient.m; sourceTree = "<group>"; };
 		F5C4297715AC2E1D00D4A061 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPRequestOperation.h; path = Restaurant/AFNetworking/AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -389,12 +395,12 @@
 		783EB967156FAF3A001E5BF1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				78005A0515778C8A0099F973 /* RestaurantViewController.h */,
+				78005A0615778C8A0099F973 /* RestaurantViewController.m */,
 				7851AC87157E45F10027BDDF /* RestaurantDetailViewController.h */,
 				7851AC88157E45F10027BDDF /* RestaurantDetailViewController.m */,
 				7851AC8A157E52020027BDDF /* MapViewController.h */,
 				7851AC8B157E52020027BDDF /* MapViewController.m */,
-				78005A0515778C8A0099F973 /* RestaurantViewController.h */,
-				78005A0615778C8A0099F973 /* RestaurantViewController.m */,
 				786B29A31546EC3F00486848 /* ProductDetailViewController.h */,
 				786B29A41546EC3F00486848 /* ProductDetailViewController.m */,
 				781B8F2A1546DD590074EDBD /* MainMenuViewController.h */,
@@ -454,9 +460,12 @@
 				F52225CA1594A0A7003E2728 /* Button_orange_rev2.png */,
 				F599588015875CCF0000469F /* Settings1.png */,
 				F5FA624B1580EB6700FBF70A /* Cart.png */,
+				F5B4609515C2B78F00A6815C /* Cart1.PNG */,
+				F5B4609915C2BF7900A6815C /* shopping-cart.png */,
 				78864DDB154957EE00D339B7 /* files.iphone.shop.category7.jpg */,
 				78864DDE15495E0A00D339B7 /* files.iphone.shop.good1582.png */,
 				78005A10157793050099F973 /* icon_Metro.gif */,
+				F5B4609B15C2D4A500A6815C /* metro.png */,
 				F59344F6157F8D730080EDE3 /* images.jpeg */,
 				F5F2DD8915879B8E00E3C6A2 /* Heart.png */,
 				78EF80B21573A50100478EEB /* Placeholder.png */,
@@ -695,6 +704,9 @@
 				F51B206215AB2EE600074DA1 /* white-cart_big.png in Resources */,
 				F5F2D69D15ADBB8F00C5094B /* AddressCell.xib in Resources */,
 				F507E86215BED33D00B1A772 /* TotalCartCell.xib in Resources */,
+				F5B4609615C2B78F00A6815C /* Cart1.PNG in Resources */,
+				F5B4609A15C2BF7900A6815C /* shopping-cart.png in Resources */,
+				F5B4609C15C2D4A500A6815C /* metro.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

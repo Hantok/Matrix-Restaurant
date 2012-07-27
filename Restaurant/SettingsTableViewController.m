@@ -49,16 +49,14 @@
     self.styleCell.detailTextLabel.text = self.typeOfView;
     
     
-    if (![[NSUserDefaults standardUserDefaults] valueForKey:@"Currency"])
-    {
-        [[NSUserDefaults standardUserDefaults] setValue:@"USD" forKey:@"Currency"];
-        [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:@"CurrencyCoefficient"];
-        self.currencyCell.detailTextLabel.text = @"USD";
-    }
-    else
-    {
-        self.currencyCell.detailTextLabel.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"Currency"];
-    }
+//    if (![[NSUserDefaults standardUserDefaults] valueForKey:@"Currency"])
+//    {
+//        [[NSUserDefaults standardUserDefaults] setValue:@"USD" forKey:@"Currency"];
+//        [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:@"CurrencyCoefficient"];
+//        self.currencyCell.detailTextLabel.text = @"USD";
+//    }
+    
+    self.currencyCell.detailTextLabel.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"Currency"];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
