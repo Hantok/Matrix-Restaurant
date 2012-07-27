@@ -32,23 +32,33 @@
 - (NSData *)fetchPictureDataByPictureId:(NSString *)pictureId;
 - (NSDictionary *)fetchImageURLAndDatabyMenuID:(NSString *)menuId;
 
-- (void)SaveProductToEntityName:(NSString *)entityName WithId:(NSNumber *)underbarid withCount:(int)countOfProducts withPrice:(float)cost withPicture:(NSObject *)picture;
+- (void)SaveProductToEntityName:(NSString *)entityName
+                         WithId:(NSNumber *)underbarid
+                      withCount:(int)countOfProducts
+                      withPrice:(float)cost
+                    withPicture:(NSObject *)picture;
 
 - (NSArray *)fetchAllProductsIdAndTheirCountWithPriceForEntity:(NSString *)entityName;
 
 //- (void) deleteObjectFromEntity:(NSString *)entityName atIndexPath:(NSIndexPath *)indexPath;
-- (void) deleteObjectFromEntity:(NSString *)entityName withProductId:(NSNumber *)underbarid;
+- (void) deleteObjectFromEntity:(NSString *)entityName
+                  withProductId:(NSNumber *)underbarid;
 
-- (NSArray *) fetchObjectsFromCoreDataForEntity:(NSString *)entityName withArrayObjects:(NSArray *)underbaridsArray withDefaultLanguageId:(NSString *)languageId;
+- (NSArray *) fetchObjectsFromCoreDataForEntity:(NSString *)entityName
+                               withArrayObjects:(NSArray *)underbaridsArray
+                          withDefaultLanguageId:(NSString *)languageId;
 
 //для updatePHP, а саме параметра tag=param
-- (NSNumber *) fetchMaximumNumberOfAttribute:(NSString *)fieldName fromEntity:(NSString *)entityName;
+- (NSNumber *) fetchMaximumNumberOfAttribute:(NSString *)fieldName
+                                  fromEntity:(NSString *)entityName;
 
 
 - (NSArray *) fetchAllIdsFromEntity:(NSString *)entityName;
 
 - (int) fetchCountOfProductsInEntity:(NSString *)entityName;
 
-- (void)addObjectToEntity:(NSString *)entityName withDictionaryOfAttributes:(NSDictionary *)dictionary;
+-  (void) addObjectToEntity:(NSString *)entityName
+ withDictionaryOfAttributes:(NSDictionary *)dictionary;
+
 - (void) deleteAddressWithName:(NSString *)name;
 @end

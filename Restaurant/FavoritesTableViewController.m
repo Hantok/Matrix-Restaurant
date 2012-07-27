@@ -110,7 +110,14 @@
     }
     
     ProductDataStruct *productStruct = [self.arrayOfObjects objectAtIndex:indexPath.row];
-    cell.productPrice.text = [NSString stringWithFormat:@"%@ uah", productStruct.price];
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    formatter.roundingIncrement = [NSNumber numberWithDouble:0.01];
+    formatter.numberStyle = NSNumberFormatterDecimalStyle;
+    
+    NSString *price = [formatter stringFromNumber:[NSNumber numberWithFloat:(productStruct.price.floatValue * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]];
+    NSString *priceString = [NSString stringWithFormat:@"%@ %@", price, [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
+    
+    cell.productPrice.text = priceString;
     cell.productDescription.text = [NSString stringWithFormat:@"%@", productStruct.descriptionText];
     cell.productTitle.text = [NSString stringWithFormat:@"%@", productStruct.title];
     cell.productImage.image = productStruct.image;

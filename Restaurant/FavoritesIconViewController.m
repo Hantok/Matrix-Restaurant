@@ -219,7 +219,14 @@
     priceFrame.size = CGSizeMake(30,21);
     UILabel *priceLabel = [[UILabel alloc] initWithFrame:priceFrame];
     //priceLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    priceLabel.text = [NSString stringWithFormat:@"%@",dataStruct.price];
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    formatter.roundingIncrement = [NSNumber numberWithDouble:0.01];
+    formatter.numberStyle = NSNumberFormatterDecimalStyle;
+    
+    NSString *price = [formatter stringFromNumber:[NSNumber numberWithFloat:(dataStruct.price.floatValue * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]];
+    NSString *priceString = [NSString stringWithFormat:@"%@ %@", price, [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
+    
+    priceLabel.text = priceString;
     priceLabel.textColor = [UIColor yellowColor];
     priceLabel.textAlignment = UITextAlignmentRight;
     priceLabel.backgroundColor = [UIColor clearColor];

@@ -596,7 +596,7 @@
 //    if(self.isCartMode)
 //        return self.pickerView.frame.size.height-10;
 //    else 
-        return self.pickerView.frame.size.height-15;//4;
+        return self.pickerView.frame.size.height-20;//4;
 }
 
 #pragma mark - segue Delegate
@@ -676,7 +676,17 @@
             cell.productTitle.text  = productStruct.title;
             cell.productCount.text  = [NSString stringWithFormat:@"%@",productStruct.count];
             cell.imageView.image    = productStruct.image;
-            cell.productPrice.text  = productStruct.price;
+            
+            NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+            formatter.roundingIncrement = [NSNumber numberWithDouble:0.01];
+            formatter.numberStyle = NSNumberFormatterDecimalStyle;
+            
+            NSString *price = [formatter stringFromNumber:[NSNumber numberWithFloat:(productStruct.price.floatValue * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]];
+            NSString *priceString = [NSString stringWithFormat:@"%@ %@", price, [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
+            
+            [[_arrayOfObjects objectAtIndex:indexPath.row] setPrice:price];
+            
+            cell.productPrice.text = priceString;
             
             return cell;
         }
@@ -702,18 +712,25 @@
             cell.sumWithDiscountsLabel.text = @"With discounts";
             cell.countLabel.text = @"Count";
             
-            int sum = 0;
-            int sumWithDiscounts = 0;
+            NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+            formatter.roundingIncrement = [NSNumber numberWithFloat:0.01];
+            formatter.numberStyle = NSNumberFormatterDecimalStyle;
+            
+            
+            float sum = 0;
+            float sumWithDiscounts = 0;
             int totalCount = 0;
             for (int i = 0; i < self.arrayOfObjects.count; i++)
             {
                 ProductDataStruct *productDataStruct = [self.arrayOfObjects objectAtIndex:i];
-                sum = sum + [[productDataStruct price] intValue];
-                sumWithDiscounts = sumWithDiscounts + [[[self.arrayOfObjects objectAtIndex:i] price] intValue];
-                totalCount = totalCount + productDataStruct.count.intValue;
+                
+                sum                 = sum + [[formatter numberFromString:productDataStruct.price] floatValue];
+                sumWithDiscounts    = sumWithDiscounts + [[formatter numberFromString:productDataStruct.price] floatValue];
+                totalCount          = totalCount + productDataStruct.count.intValue;
             }
-            cell.sumNumberLabel.text = [NSString stringWithFormat:@"%i",sum]; 
-            cell.sumWithDiscountsNumberLabel.text = [NSString stringWithFormat:@"%i",sumWithDiscounts];
+            
+            cell.sumNumberLabel.text = [NSString stringWithFormat:@"%@ %@",[formatter stringFromNumber:[NSNumber numberWithFloat:sumWithDiscounts]], [[NSUserDefaults standardUserDefaults] valueForKey:@"Currency"]];
+            cell.sumWithDiscountsNumberLabel.text = [NSString stringWithFormat:@"%@ %@",[formatter stringFromNumber:[NSNumber numberWithFloat:sumWithDiscounts]], [[NSUserDefaults standardUserDefaults] valueForKey:@"Currency"]];
             cell.countNumberLabel.text = [NSString stringWithFormat:@"%i", totalCount];
             
             

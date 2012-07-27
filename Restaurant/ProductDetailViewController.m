@@ -61,9 +61,15 @@
 	// Do any additional setup after loading the view.
     //self.countPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0.0, 0.0, 63.0, 90.0)];
     self.countPickerView.frame = CGRectMake(237, 236, 63, 108);
-    NSString *cost = self.product.price;
     
-    self.priceLabel.text = [NSString stringWithFormat:@"Цена: %@ %@", cost, @"грн."];
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    formatter.roundingIncrement = [NSNumber numberWithDouble:0.01];
+    formatter.numberStyle = NSNumberFormatterDecimalStyle;
+    
+    NSString *price = [formatter stringFromNumber:[NSNumber numberWithFloat:(self.product.price.floatValue * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]];
+    NSString *priceString = [NSString stringWithFormat:@"%@ %@", price, [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
+    
+    self.priceLabel.text = priceString;
     self.productImage.image = self.product.image;
     
     CAGradientLayer *gradient = [CAGradientLayer layer];

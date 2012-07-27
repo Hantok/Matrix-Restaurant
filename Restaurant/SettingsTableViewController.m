@@ -16,16 +16,21 @@
 
 @property BOOL isFriend;
 @property BOOL isStyle;
+@property BOOL isCurrency;
+@property (nonatomic, strong) NSArray *currencyArray;
 @property (nonatomic, strong) NSString *typeOfView;
 
 @end
 
 @implementation SettingsTableViewController
 @synthesize styleCell = _styleCell;
+@synthesize currencyCell = _currencyCell;
 
 @synthesize isFriend = _isFriend;
 @synthesize isStyle = _isStyle;
 @synthesize typeOfView = _typeOfView;
+@synthesize isCurrency = _isCurrency;
+@synthesize currencyArray = _currencyArray;
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -37,11 +42,23 @@
     [super viewDidLoad];
     
     if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"typeOfView"] isEqualToString:@"menuIcon"]) 
-        self.typeOfView = [[NSString alloc] initWithString:@"Icons"];
+        self.typeOfView = @"Icons";
     else 
-        self.typeOfView = [[NSString alloc] initWithString:@"List"];
+        self.typeOfView = @"List";
     
     self.styleCell.detailTextLabel.text = self.typeOfView;
+    
+    
+    if (![[NSUserDefaults standardUserDefaults] valueForKey:@"Currency"])
+    {
+        [[NSUserDefaults standardUserDefaults] setValue:@"USD" forKey:@"Currency"];
+        [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:@"CurrencyCoefficient"];
+        self.currencyCell.detailTextLabel.text = @"USD";
+    }
+    else
+    {
+        self.currencyCell.detailTextLabel.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"Currency"];
+    }
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -51,6 +68,7 @@
 - (void)viewDidUnload
 {
     [self setStyleCell:nil];
+    [self setCurrencyCell:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -118,7 +136,7 @@
         }
     }
     
-    if (!self.isStyle && !self.isFriend) 
+    if (!self.isStyle && !self.isFriend && !self.isCurrency)
     {
         if (buttonIndex == 0)
         {
@@ -151,6 +169,28 @@
             [[NSUserDefaults standardUserDefaults] setValue:@"menuList" forKey:@"typeOfView"];
             self.styleCell.detailTextLabel.text = @"List";
         }
+    }
+    
+    if (self.isCurrency)
+    {
+        for (int i = 0; i <self.currencyArray.count; i++)
+        {
+            if (buttonIndex == i)
+            {
+                [[NSUserDefaults standardUserDefaults] setValue:[[self.currencyArray objectAtIndex:i] valueForKey:@"currency"] forKey:@"Currency"];
+                [[NSUserDefaults standardUserDefaults] setValue:[[self.currencyArray objectAtIndex:i] valueForKey:@"coef"] forKey:@"CurrencyCoefficient"];
+                [[NSUserDefaults standardUserDefaults] synchronize];    
+                break;
+            }
+        }
+        self.currencyCell.detailTextLabel.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"Currency"];
+    }
+    
+    if (actionSheet.cancelButtonIndex == buttonIndex)
+    {
+        self.isFriend = 0;
+        self.isStyle = 0;
+        self.isCurrency = 0;
     }
         
 }
@@ -205,9 +245,30 @@
         actionSheet.cancelButtonIndex = actionSheet.numberOfButtons - 1;
         [actionSheet showInView:self.view];
     }
+    
+    if ([cell.reuseIdentifier isEqualToString:@"currency"])
+    {
+        GettingCoreContent *db = [[GettingCoreContent alloc] init];
+        self.currencyArray = [NSArray arrayWithArray:[db getArrayFromCoreDatainEntetyName:@"Currencies" withSortDescriptor:@"underbarid"]];
+        
+        UIActionSheet* actionSheet = [[UIActionSheet alloc] init];
+        [actionSheet setTitle:@"Set currency:"];
+        [actionSheet setDelegate:(id)self];
+        self.isCurrency = YES;
+        
+        for (int i = 0; i < self.currencyArray.count; i++)
+        {
+            [actionSheet addButtonWithTitle:[[self.currencyArray objectAtIndex:i] valueForKey:@"currency"]];
+        }
+        
+        [actionSheet addButtonWithTitle:@"Cancel"];
+        actionSheet.cancelButtonIndex = actionSheet.numberOfButtons - 1;
+        
+        [actionSheet showInView:self.view];
+    }
 }
 
-- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex 
+- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0)
     {

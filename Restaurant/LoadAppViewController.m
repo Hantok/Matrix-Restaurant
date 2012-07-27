@@ -59,6 +59,7 @@
 - (void)awakeFromNib
 {
     if (checkConnection.hasConnectivity)
+    {
         if(![[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"])
         {
             //tag=init http request
@@ -79,7 +80,7 @@
                 [connectFailMessage show];
             }
         }
-        else 
+        else
         {
             //http request updatePHP with &tag=param
             self.isParamTagDone = YES;
@@ -131,6 +132,7 @@
             }    
 
         }
+    }
     NSLog(@"IN awakeFromNib");
 }
 

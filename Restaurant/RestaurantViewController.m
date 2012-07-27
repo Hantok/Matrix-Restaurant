@@ -91,16 +91,6 @@
     return  _db;
 }
 
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -161,6 +151,9 @@
     
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = cell.bounds;
+    gradient.cornerRadius = 8.0f;
+    [gradient setBorderWidth:0.5f];
+    [gradient setBorderColor:[[UIColor darkGrayColor] CGColor]];
     gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor darkGrayColor] CGColor],(id)[[UIColor blackColor] CGColor], nil];
     [cell.layer insertSublayer:gradient atIndex:0];
     

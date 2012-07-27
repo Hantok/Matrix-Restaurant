@@ -211,8 +211,14 @@
             }
         }
     }
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    formatter.roundingIncrement = [NSNumber numberWithDouble:0.01];
+    formatter.numberStyle = NSNumberFormatterDecimalStyle;
     
-    cell.productPrice.text = [NSString stringWithFormat:@"%@ uah", dataStruct.price];
+    NSString *price = [formatter stringFromNumber:[NSNumber numberWithFloat:(dataStruct.price.floatValue * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]];
+    NSString *priceString = [NSString stringWithFormat:@"%@ %@", price, [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
+    
+    cell.productPrice.text = priceString;
     cell.productDescription.text = [NSString stringWithFormat:@"%@", dataStruct.descriptionText];
     cell.productTitle.text = [NSString stringWithFormat:@"%@", dataStruct.title];
     
