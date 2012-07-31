@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "ProductDataStruct.h"
+#import "GettingCoreContent.h"
 
 @interface ProductDetailViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UIAlertViewDelegate>
 
 @property (strong, nonatomic) ProductDataStruct *product;
+@property (strong, nonatomic) GettingCoreContent *db;
 @property (strong, nonatomic) NSNumber *count;
 @property (weak, nonatomic) IBOutlet UIPickerView *countPickerView;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;

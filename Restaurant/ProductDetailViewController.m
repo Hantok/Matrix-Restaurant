@@ -7,7 +7,6 @@
 //
 
 #import "ProductDetailViewController.h"
-#import "GettingCoreContent.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface ProductDetailViewController ()
@@ -18,7 +17,7 @@
 @end
 
 @implementation ProductDetailViewController
-
+@synthesize db = _db;
 @synthesize product = _product;
 @synthesize countPickerView = _countPickerView;
 @synthesize priceLabel = _priceLabel;
@@ -40,6 +39,15 @@
 {
     self.labelString = labelString;
     [_product setCount:[NSNumber numberWithInt:0]];
+}
+
+- (GettingCoreContent *)db
+{
+    if(!_db)
+    {
+        _db = [[GettingCoreContent alloc] init];
+    }
+    return  _db;
 }
 
 - (void)viewDidLoad
@@ -68,6 +76,25 @@
     
     NSString *price = [formatter stringFromNumber:[NSNumber numberWithFloat:(self.product.price.floatValue * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]];
     NSString *priceString = [NSString stringWithFormat:@"%@ %@", price, [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
+    
+    NSArray *discountsArray = [self.db getArrayFromCoreDatainEntetyName:@"Discounts" withSortDescriptor:@"underbarid"];
+    	
+    if (!self.isInFavorites)
+    {
+        for (int i = 0; i < discountsArray.count; i++)
+        {
+            if ([[[[discountsArray objectAtIndex:i] valueForKey:@"underbarid"] description] isEqual:self.product.discountValue])
+            {
+                self.product.discountValue = [[discountsArray objectAtIndex:i] valueForKey:@"value"];
+                priceString = [NSString stringWithFormat:@"%@ (with discount - %@) %@", price, [formatter stringFromNumber:[NSNumber numberWithFloat:(self.product.price.floatValue * self.product.discountValue.floatValue * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]], [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
+                break;
+            }
+        }
+    }
+    else
+        {
+            priceString = [NSString stringWithFormat:@"%@ (with discount - %@) %@", price, [formatter stringFromNumber:[NSNumber numberWithFloat:(self.product.price.floatValue * self.product.discountValue.floatValue * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]], [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
+        }
     
     self.priceLabel.text = priceString;
     self.productImage.image = self.product.image;
@@ -119,8 +146,6 @@
 //        [alert show];
 //        [[self navigationController] popViewControllerAnimated:YES];
 //    }
-        
-    GettingCoreContent *db = [[GettingCoreContent alloc] init];
     
     if (self.product.count.intValue == 0)
     {
@@ -135,10 +160,11 @@
     }
     else 
     {
-        [db SaveProductToEntityName:@"Cart" WithId:self.product.productId 
+        [self.db SaveProductToEntityName:@"Cart" WithId:self.product.productId
                           withCount:self.product.count.integerValue
                           withPrice:self.product.price.floatValue
-                        withPicture:UIImagePNGRepresentation(self.product.image)];
+                        withPicture:UIImagePNGRepresentation(self.product.image)
+                       withDiscountValue:self.product.discountValue.floatValue];
         
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Добавлено %i ед. товара \"%@\" в корзину.",self.product.count.integerValue, self.product.title] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
@@ -150,19 +176,18 @@
 {
     if (buttonIndex == 0)
     {
-        GettingCoreContent *db = [[GettingCoreContent alloc] init];
-        [db deleteObjectFromEntity:@"Cart" withProductId:self.product.productId];
+        [self.db deleteObjectFromEntity:@"Cart" withProductId:self.product.productId];
         NSLog(@"deleted");
         [self.navigationController popViewControllerAnimated:NO];
     }
 }
 - (IBAction)AddToFavorites:(id)sender 
 {
-    GettingCoreContent *db = [[GettingCoreContent alloc] init];
-    [db SaveProductToEntityName:@"Favorites" WithId:self.product.productId 
+    [self.db SaveProductToEntityName:@"Favorites" WithId:self.product.productId
                       withCount:0
                       withPrice:self.product.price.floatValue
-                    withPicture:UIImagePNGRepresentation(self.product.image)];
+                    withPicture:UIImagePNGRepresentation(self.product.image)
+                   withDiscountValue:self.product.discountValue.floatValue];
     
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Добавлено товар \"%@\" в favorites.", self.product.title] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];

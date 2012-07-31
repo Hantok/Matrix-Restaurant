@@ -18,6 +18,7 @@
 @property (strong, nonatomic) NSNumber *count;
 @property (strong, nonatomic) NSString *idPicture;
 @property (strong, nonatomic) NSString *link;
+@property (strong, nonatomic) NSNumber *discountValue;
 
 - (NSDictionary *)getDictionaryDependOnDataStruct;
 - (id)initWithDictionary:(NSMutableDictionary *)aDictionary;

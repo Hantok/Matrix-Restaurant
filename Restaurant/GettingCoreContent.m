@@ -512,7 +512,7 @@
 }
 
 
-- (void)SaveProductToEntityName:(NSString *)entityName WithId:(NSNumber *)underbarid withCount:(int)countOfProducts withPrice:(float)cost withPicture:(NSData *)picture
+- (void)SaveProductToEntityName:(NSString *)entityName WithId:(NSNumber *)underbarid withCount:(int)countOfProducts withPrice:(float)cost withPicture:(NSData *)picture withDiscountValue:(float)discountValue
 {
     NSFetchRequest * request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:self.managedObjectContext]];
@@ -540,6 +540,7 @@
         [objectToInsert setValue:underbarid forKey:@"underbarid"];
         [objectToInsert setValue:[NSNumber numberWithFloat:cost] forKey:@"cost"];
         [objectToInsert setValue:picture forKey:@"picture"];
+        [objectToInsert setValue:[NSNumber numberWithFloat:discountValue] forKey:@"discountValue"];
         if(countOfProducts != 0)
         {
             [objectToInsert setValue:[NSNumber numberWithInt:countOfProducts] forKey:@"count"];

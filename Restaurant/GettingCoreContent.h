@@ -36,7 +36,8 @@
                          WithId:(NSNumber *)underbarid
                       withCount:(int)countOfProducts
                       withPrice:(float)cost
-                    withPicture:(NSObject *)picture;
+                    withPicture:(NSData *)picture
+                   withDiscountValue:(float)discountValue;
 
 - (NSArray *)fetchAllProductsIdAndTheirCountWithPriceForEntity:(NSString *)entityName;
 

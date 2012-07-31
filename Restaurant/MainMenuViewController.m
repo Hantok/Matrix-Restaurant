@@ -176,7 +176,7 @@
             [productStruct setPrice:[NSString stringWithFormat:@"%@",numbers]];
             [productStruct setImage:[UIImage imageWithData:[[array objectAtIndex:i] valueForKey:@"picture"]]];
             [productStruct setCount:[[array objectAtIndex:i] valueForKey:@"count"]];
-            
+            [productStruct setDiscountValue:[[array objectAtIndex:i] valueForKey:@"discountValue"]];
             
             [_arrayOfObjects addObject:productStruct];     
         }
@@ -337,6 +337,15 @@
 - (void) viewWillDisappear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:NO animated:animated];
+    
+    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound)
+    {
+        // back button was pressed.  We know this is true because self is no longer
+        // in the navigation stack.
+        NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
+        [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
+    }
+
     [super viewWillDisappear:animated];
 }
 
@@ -683,11 +692,17 @@
             NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
             formatter.roundingIncrement = [NSNumber numberWithDouble:0.01];
             formatter.numberStyle = NSNumberFormatterDecimalStyle;
-            
             NSString *price = [formatter stringFromNumber:[NSNumber numberWithFloat:(productStruct.price.floatValue * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]];
-            NSString *priceString = [NSString stringWithFormat:@"%@ %@", price, [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
-            
-            //[[self.arrayOfObjects objectAtIndex:indexPath.row] setPrice:price];
+            NSString *priceString;
+            if (productStruct.discountValue.floatValue != 0)
+            {
+                NSString *discountPrice = [formatter stringFromNumber:[NSNumber numberWithFloat:(productStruct.price.floatValue * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue] * productStruct.discountValue.floatValue)]];
+                priceString = [NSString stringWithFormat:@"%@(%@)%@", price, discountPrice, [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
+            }
+            else
+            {
+                priceString = [NSString stringWithFormat:@"%@ %@", price, [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
+            }
             
             cell.productPrice.text = priceString;
             
@@ -728,7 +743,14 @@
                 ProductDataStruct *productDataStruct = [self.arrayOfObjects objectAtIndex:i];
                 
                 sum                 = sum + ([[formatter numberFromString:[formatter stringFromNumber:[NSNumber numberWithFloat:(productDataStruct.price.floatValue * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]]] floatValue]);
-                sumWithDiscounts    = sum;//sumWithDiscounts + [[formatter numberFromString:productDataStruct.price] floatValue];
+                if (productDataStruct.discountValue.floatValue != 0)
+                {
+                    sumWithDiscounts    = sumWithDiscounts + (productDataStruct.price.floatValue * productDataStruct.discountValue.floatValue);
+                }
+                else
+                {
+                    sumWithDiscounts = sumWithDiscounts + [[formatter numberFromString:productDataStruct.price] floatValue];
+                }
                 totalCount          = totalCount + productDataStruct.count.intValue;
             }
             

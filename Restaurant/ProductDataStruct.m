@@ -39,6 +39,7 @@
     self.descriptionText = [aDictionary objectForKey:@"descriptionText"];
     self.title = [aDictionary objectForKey:@"title"];
     self.count = [aDictionary objectForKey:@"count"];
+    self.discountValue = [aDictionary objectForKey:@"idDiscount"];
     return self;
     
 }
@@ -51,6 +52,7 @@
     [result setObject:self.descriptionText forKey:@"descriptionText"];
     [result setObject:self.title forKey:@"title"];
     [result setObject:self.count forKey:@"count"];
+    [result setObject:self.discountValue forKey:@"idDiscount"];
     return result.copy;
 }
 

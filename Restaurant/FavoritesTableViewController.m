@@ -42,6 +42,7 @@
             [productStruct setTitle:[[arrayOfElements objectAtIndex:i] valueForKey:@"nameText"]];
             [productStruct setPrice:[[array objectAtIndex:i] valueForKey:@"cost"]];
             [productStruct setImage:[UIImage imageWithData:[[array objectAtIndex:i] valueForKey:@"picture"]]];
+            [productStruct setDiscountValue:[[array objectAtIndex:i] valueForKey:@"discountValue"]];
             
             [_arrayOfObjects addObject:productStruct];     
         }
