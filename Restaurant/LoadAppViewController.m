@@ -342,6 +342,9 @@
 {
     [self setImageView:nil];
     [self setActivityIndicator:nil];
+    
+    //custom
+    [self setDb:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     NSLog(@"I'm in viewDidUnload");

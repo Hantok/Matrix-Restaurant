@@ -33,8 +33,6 @@
         RestaurantDataStruct *dataStruct;
         NSArray *data = [self.db fetchAllRestaurantsWithDefaultLanguageAndCity];
         id restaurant;
-        NSNumberFormatter *f;
-        NSNumber *number;
         for(int i=0;i<data.count;i++)
         {
             if(i%2==0) 
@@ -45,12 +43,9 @@
                 dataStruct.phones = [restaurant valueForKey:@"phones"];
                 dataStruct.idPicture = [restaurant valueForKey:@"idPicture"];
                 NSArray *coordinates = [[restaurant valueForKey:@"coordinates"] componentsSeparatedByString:@";"];
-                f = [[NSNumberFormatter alloc] init];
-                [f setNumberStyle:NSNumberFormatterDecimalStyle];
-                number = [f numberFromString:[coordinates objectAtIndex:0]];
-                dataStruct.latitude = number.doubleValue;
-                number = [f numberFromString:[coordinates objectAtIndex:1]];
-                dataStruct.longitude = number.doubleValue;
+                dataStruct.latitude = [coordinates objectAtIndex:0];
+                dataStruct.longitude = [coordinates objectAtIndex:1];
+                
 //                NSData *dataOfPicture = [[pictures objectForKey:dataStruct.idPicture] valueForKey:@"data"];
 //                NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test4/root/%@",[[pictures objectForKey:dataStruct.idPicture] valueForKey:@"link"]];
 //                urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];

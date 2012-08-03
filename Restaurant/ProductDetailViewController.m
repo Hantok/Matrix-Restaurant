@@ -13,6 +13,7 @@
 
 @property BOOL isInFavorites;
 @property (strong, nonatomic) NSString *labelString;
+@property (strong, nonatomic) UIAlertView *alert;
 
 @end
 
@@ -28,6 +29,7 @@
 @synthesize nameLabal = _nameLabal;
 @synthesize isInFavorites = _isInFavorites;
 @synthesize labelString = _labelString;
+@synthesize alert = _alert;
 
 - (void)setProduct:(ProductDataStruct *)product isFromFavorites:(BOOL)boolValue
 {
@@ -86,14 +88,21 @@
             if ([[[[discountsArray objectAtIndex:i] valueForKey:@"underbarid"] description] isEqual:self.product.discountValue])
             {
                 self.product.discountValue = [[discountsArray objectAtIndex:i] valueForKey:@"value"];
-                priceString = [NSString stringWithFormat:@"%@ (with discount - %@) %@", price, [formatter stringFromNumber:[NSNumber numberWithFloat:(self.product.price.floatValue * self.product.discountValue.floatValue * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]], [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
+                if ([[[[discountsArray objectAtIndex:i] valueForKey:@"value"] description] isEqual:@"0"])
+                {
+                    break;
+                }
+                else
+                {
+                    priceString = [NSString stringWithFormat:@"%@ (with discount - %@) %@", price, [formatter stringFromNumber:[NSNumber numberWithFloat:(self.product.price.floatValue * (1 - self.product.discountValue.floatValue) * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]], [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
+                }
                 break;
             }
         }
     }
     else
         {
-            priceString = [NSString stringWithFormat:@"%@ (with discount - %@) %@", price, [formatter stringFromNumber:[NSNumber numberWithFloat:(self.product.price.floatValue * self.product.discountValue.floatValue * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]], [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
+            priceString = [NSString stringWithFormat:@"%@ (with discount - %@) %@", price, [formatter stringFromNumber:[NSNumber numberWithFloat:(self.product.price.floatValue * (1 - self.product.discountValue.floatValue) * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]], [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
         }
     
     self.priceLabel.text = priceString;
@@ -166,8 +175,9 @@
                         withPicture:UIImagePNGRepresentation(self.product.image)
                        withDiscountValue:self.product.discountValue.floatValue];
         
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Добавлено %i ед. товара \"%@\" в корзину.",self.product.count.integerValue, self.product.title] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
+        self.alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Добавлено %i ед. товара \"%@\" в корзину.",self.product.count.integerValue, self.product.title] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [self. alert show];
+        [self performSelector:@selector(dismiss) withObject:nil afterDelay:2];
         [[self navigationController] popViewControllerAnimated:YES];
     }
 }
@@ -189,8 +199,18 @@
                     withPicture:UIImagePNGRepresentation(self.product.image)
                    withDiscountValue:self.product.discountValue.floatValue];
     
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Добавлено товар \"%@\" в favorites.", self.product.title] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    [alert show];
+    self.alert = [[UIAlertView alloc] initWithTitle:nil
+                                                    message:[NSString stringWithFormat:@"Добавлено товар \"%@\" в favorites.", self.product.title]
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [self.alert show];
+    [self performSelector:@selector(dismiss) withObject:nil afterDelay:2];
+}
+
+- (void) dismiss
+{
+    [self.alert dismissWithClickedButtonIndex:0 animated:YES];
 }
 
 - (void)viewDidUnload
@@ -201,6 +221,7 @@
     [self setProductImage:nil];
     [self setAddToFavorites:nil];
     [self setNameLabal:nil];
+    [self setAlert:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

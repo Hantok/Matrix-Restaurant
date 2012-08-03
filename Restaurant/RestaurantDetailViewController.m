@@ -12,6 +12,8 @@
 
 @interface RestaurantDetailViewController ()
 
+@property (nonatomic, strong) UIAlertView *alert;
+
 @end
 
 @implementation RestaurantDetailViewController
@@ -24,6 +26,7 @@
 @synthesize restaurantImage;
 @synthesize dataStruct = _dataStruct;
 @synthesize db = _db;
+@synthesize alert = _alert;
 
 - (GettingCoreContent *)db
 {
@@ -38,7 +41,16 @@
 
 - (IBAction)callToRestaurant:(id)sender 
 {
-    NSURL *url = [NSURL URLWithString:@"telprompt://067-412-72-05"];
+    NSString *phoneNumber = self.dataStruct.phones;
+    for (int i = 0; i < phoneNumber.length; i++)
+    {
+        if ([phoneNumber characterAtIndex:i] == ';')
+        {
+            phoneNumber = [phoneNumber substringToIndex:i];
+            break;
+        }
+    }
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@",phoneNumber]]; //@"telprompt://067-412-72-05"];
     [[UIApplication sharedApplication] openURL:url];
     NSLog(@"Calling");
 }
@@ -48,13 +60,24 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    CLLocationCoordinate2D location = {.latitude = self.dataStruct.latitude, .longitude =  self.dataStruct.longitude};
-    [segue.destinationViewController setCoordinates:location];
+    if ([segue.identifier isEqualToString:@"toMap"])
+    {
+        NSString *aLatitude = self.dataStruct.latitude;
+        NSString *aLongitude = self.dataStruct.longitude;
+
+        aLatitude = [aLatitude stringByReplacingOccurrencesOfString:@"," withString:@","];
+        aLongitude = [aLongitude stringByReplacingOccurrencesOfString:@"," withString:@","];
+        
+        CLLocationCoordinate2D location = {.latitude = aLatitude.doubleValue, .longitude =  aLongitude.doubleValue};
+        [segue.destinationViewController setCoordinates:location];
+    }
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.navigationItem.title = self.dataStruct.name;
 	workTimeDetailLabel.text = self.dataStruct.workingTime;
     telephoneDetailLabel.text = self.dataStruct.phones;
     NSData *dataOfPicture = [self.db fetchPictureDataByPictureId:self.dataStruct.idPicture];
@@ -77,8 +100,36 @@
     gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor darkGrayColor] CGColor], (id)[[UIColor blackColor] CGColor],(id)[[UIColor darkGrayColor] CGColor],(id)[[UIColor blackColor] CGColor], nil];
     [self.view.layer insertSublayer:gradient atIndex:0];
     
+    //[self.callButton setBackgroundImage:[UIImage imageNamed:@"Button_orange_rev2.png"] forState:UIControlStateNormal];
+    
+    //[self.showOnMapButton setBackgroundImage:[UIImage imageNamed:@"Button_black_light_rev2.png"] forState:UIControlStateNormal];
+    
+    self.callButton.titleLabel.minimumFontSize = 10;
+    self.showOnMapButton.titleLabel.minimumFontSize = 10;
+    
+    CALayer *layerCall = self.callButton.layer;
+    [layerCall setCornerRadius:8.0f];
+    
+    CALayer *layerMap = self.showOnMapButton.layer;
+    layerMap.cornerRadius = 8.0f;
+    
 }
 
+- (IBAction)tebleReserve:(id)sender
+{
+    self.alert = [[UIAlertView alloc] initWithTitle:@"Sorry.Not suppurting now."
+                                                    message:nil
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil, nil];
+    [self.alert show];
+    [self performSelector:@selector(dismiss) withObject:nil afterDelay:2];
+}
+
+- (void) dismiss
+{
+    [self.alert dismissWithClickedButtonIndex:0 animated:YES];
+}
 - (void)viewDidUnload
 {
     [self setCallButton:nil];
@@ -89,6 +140,7 @@
     [self setTelephoneDetailLabel:nil];
     [self setRestaurantImage:nil];
     [super viewDidUnload];
+    [self setAlert:nil];
     // Release any retained subviews of the main view.
 }
 

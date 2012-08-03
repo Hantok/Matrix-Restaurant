@@ -247,7 +247,10 @@
     
     
     self.pageControl.currentPage = 0;
-    self.pageControl.numberOfPages = (int) self.arrayData.count/9;
+    if (self.arrayData.count%9 != 0)
+        self.pageControl.numberOfPages = (int) self.arrayData.count/9 + 1;
+    else
+        self.pageControl.numberOfPages = (int) self.arrayData.count/9;
 
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = self.viewForOutput.bounds;
@@ -286,14 +289,16 @@
     //[self activePageWithId:0];
     
 }
-- (void) viewWillDisappear:(BOOL)animated {
-    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) 
-    {
+- (void) viewWillDisappear:(BOOL)animated
+{
+//    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) 
+//    {
         // back button was pressed.  We know this is true because self is no longer
         // in the navigation stack.
-        NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
-        [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
-    }
+    NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
+    [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
+    
+//    }
     [super viewWillDisappear:animated];
 }
 
@@ -302,7 +307,8 @@
 {
     [self setPageControl:nil];
     [self setGmGridView:nil];
-    //[self setScrollView:nil];
+    [self setDb:nil];
+    [self setKindOfMenu:nil];
     [self setViewForOutput:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.

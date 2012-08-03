@@ -162,13 +162,15 @@
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
-    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) 
-    {
+//    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) 
+//    {
         // back button was pressed.  We know this is true because self is no longer
         // in the navigation stack.
-        NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
-        [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
-    }
+    
+    NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
+    [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
+    
+//    }
     [super viewWillDisappear:animated];
 }
 
@@ -181,6 +183,9 @@
 {
     [self setTableView:nil];
     [self setNavigationBar:nil];
+    
+    [self setKindOfMenu:nil];
+    [self setDb:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

@@ -103,6 +103,10 @@
 {
     [self setViewForOutput:nil];
     [self setPageControl:nil];
+    
+    [self setDb:nil];
+    [self setGmGridView:nil];
+    
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

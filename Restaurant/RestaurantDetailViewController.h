@@ -20,5 +20,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *restaurantImage;
 @property (weak, nonatomic) RestaurantDataStruct *dataStruct;
 @property (strong, nonatomic) GettingCoreContent *db;
+- (IBAction)tebleReserve:(id)sender;
 
 @end

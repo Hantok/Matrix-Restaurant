@@ -10,7 +10,7 @@
 #import "MenuListTableViewController.h"
 #import "CartCell.h"
 #import "TotalCartCell.h"
-#import "Offers.h"
+//#import "Offers.h"
 #import "GettingCoreContent.h"
 #import "MenuDataStruct.h"
 #import "LanguageAndCityTableViewController.h"
@@ -338,13 +338,15 @@
 {
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     
-    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound)
-    {
+//    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound)
+//    {
         // back button was pressed.  We know this is true because self is no longer
         // in the navigation stack.
-        NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
-        [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
-    }
+    
+    NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
+    [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
+    
+//    }
 
     [super viewWillDisappear:animated];
 }
@@ -380,6 +382,12 @@
     [self setRestorantsButton:nil];
     [self setDrop:nil];
     [self setImageView:nil];
+    
+    //custom
+    [self setDb:nil];
+    [self setTableView:nil];
+    [self setTableViewController:nil];
+    [self setPickerView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -696,7 +704,7 @@
             NSString *priceString;
             if (productStruct.discountValue.floatValue != 0)
             {
-                NSString *discountPrice = [formatter stringFromNumber:[NSNumber numberWithFloat:(productStruct.price.floatValue * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue] * productStruct.discountValue.floatValue)]];
+                NSString *discountPrice = [formatter stringFromNumber:[NSNumber numberWithFloat:(productStruct.price.floatValue * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue] * (1 - productStruct.discountValue.floatValue))]];
                 priceString = [NSString stringWithFormat:@"%@(%@)%@", price, discountPrice, [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
             }
             else
@@ -745,7 +753,7 @@
                 sum                 = sum + ([[formatter numberFromString:[formatter stringFromNumber:[NSNumber numberWithFloat:(productDataStruct.price.floatValue * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]]] floatValue]);
                 if (productDataStruct.discountValue.floatValue != 0)
                 {
-                    sumWithDiscounts    = sumWithDiscounts + (productDataStruct.price.floatValue * productDataStruct.discountValue.floatValue);
+                    sumWithDiscounts    = sumWithDiscounts + (productDataStruct.price.floatValue * (1 - productDataStruct.discountValue.floatValue));
                 }
                 else
                 {
@@ -957,7 +965,7 @@
         else 
         {
             UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil 
-                                                            message:@"Do you want to delete all items from Cart"
+                                                            message:@"Do you want to delete all items from Cart?"
                                                            delegate:self 
                                                   cancelButtonTitle:@"YES" 
                                                   otherButtonTitles: @"NO", nil];

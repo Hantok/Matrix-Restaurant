@@ -22,7 +22,7 @@
 @property (strong, nonatomic) NSString *additionalContactInfo;
 @property (strong, nonatomic) NSString *phones;
 @property (strong, nonatomic) NSString *link;
-@property double longitude;
-@property double latitude;
+@property (strong, nonatomic) NSString *longitude;
+@property (strong, nonatomic) NSString *latitude;
 
 @end
