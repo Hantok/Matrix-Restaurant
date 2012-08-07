@@ -10,6 +10,7 @@
 #import "GettingCoreContent.h"
 #import "XMLParse.h"
 #import "checkConnection.h"
+#import "SSToolkit/SSLoadingView.h"
 
 @interface LoadAppViewController ()
 
@@ -23,7 +24,7 @@
 @implementation LoadAppViewController
 
 @synthesize imageView = _imageView;
-@synthesize activityIndicator = _activityIndicator;
+//@synthesize activityIndicator = _activityIndicator;
 @synthesize city = _city;
 @synthesize db = _db;
 @synthesize isHappyEnd = _isHappyEnd;
@@ -72,8 +73,8 @@
             if (!theConnection)
             {
                 // Inform the user that the connection failed.
-                UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"NSURLConnection" 
-                                                                             message:@"Not success"  
+                UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"NSURLConnection"
+                                                                             message:@"Not success"
                                                                             delegate:self
                                                                    cancelButtonTitle:@"Ok"
                                                                    otherButtonTitles:nil];
@@ -123,14 +124,14 @@
             if (!theConnection)
             {
                 // Inform the user that the connection failed.
-                UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"NSURLConnection" 
-                                                                             message:@"Not success"  
+                UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"NSURLConnection"
+                                                                             message:@"Not success"
                                                                             delegate:self
                                                                    cancelButtonTitle:@"Ok"
                                                                    otherButtonTitles:nil];
                 [connectFailMessage show];
-            }    
-
+            }
+            
         }
     }
     NSLog(@"IN awakeFromNib");
@@ -138,23 +139,29 @@
 
 - (void)viewDidLoad
 {
-//    [super viewDidLoad];
-//	// Do any additional setup after loading the view.
-//    [self.activityIndicator startAnimating];
-//    
-//    
-//    if(checkConnection.hasConnectivity)
-//    {
-//        NSURL* rssURL = [NSURL URLWithString:@"http://matrix-soft.org/addon_domains_folder/test5/root/System_files/XML/matrixso_test5/DBStructure.xml"];
-//    // создаем парсер при помощи URL, назначаем делегат и запускаем
-//        NSLog(@"Download is begin");
-//        XMLParse* parser = [[XMLParse alloc] initWithContentsOfURL:rssURL];
-//        [parser setDelegate:parser];
-//        [parser parse];
-//        self.db = parser;
-//    }
-//    
-    [self.activityIndicator startAnimating];
+    //    [super viewDidLoad];
+    //	// Do any additional setup after loading the view.
+    //    [self.activityIndicator startAnimating];
+    //
+    //
+    //    if(checkConnection.hasConnectivity)
+    //    {
+    //        NSURL* rssURL = [NSURL URLWithString:@"http://matrix-soft.org/addon_domains_folder/test5/root/System_files/XML/matrixso_test5/DBStructure.xml"];
+    //    // создаем парсер при помощи URL, назначаем делегат и запускаем
+    //        NSLog(@"Download is begin");
+    //        XMLParse* parser = [[XMLParse alloc] initWithContentsOfURL:rssURL];
+    //        [parser setDelegate:parser];
+    //        [parser parse];
+    //        self.db = parser;
+    //    }
+    //
+    //[self.activityIndicator startAnimating];
+    
+    SSLoadingView *loadingView = [[SSLoadingView alloc] initWithFrame:self.view.frame];
+    loadingView.backgroundColor = [UIColor clearColor];
+    loadingView.activityIndicatorView.color = [UIColor whiteColor];
+    loadingView.textLabel.textColor = [UIColor whiteColor];
+    [self.view addSubview:loadingView];
     NSLog(@"I'm in viewDidLoad");
 }
 
@@ -174,7 +181,7 @@
     [self DropCoreData];
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection 
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     NSLog(@"Succeeded! Received %d bytes of data",[self.responseData
                                                    length]);
@@ -188,7 +195,7 @@
     self.db = parser;
     
     [self XMLToCoreData];
-        
+    
     if(![[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"])
     {
         NSArray *languages = [self.db GetAllLanguages];
@@ -238,8 +245,8 @@
         if (!theConnection)
         {
             // Inform the user that the connection failed.
-            UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"NSURLConnection" 
-                                                                         message:@"Not success"  
+            UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"NSURLConnection"
+                                                                         message:@"Not success"
                                                                         delegate:self
                                                                cancelButtonTitle:@"Ok"
                                                                otherButtonTitles:nil];
@@ -261,29 +268,29 @@
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-     if(![[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"])
-     {
-         NSNumber *idLanguage = [[NSNumber alloc] initWithInteger:buttonIndex+1];
-         [[NSUserDefaults standardUserDefaults] setObject:idLanguage forKey:@"defaultLanguageId"];
-         [[NSUserDefaults standardUserDefaults] synchronize];
-         UIActionSheet* actionSheet = [[UIActionSheet alloc] init];
-         [actionSheet setTitle:@"Select city:"];
-         [actionSheet setDelegate:(id)self];
-         
-         NSArray *cities = [self.db GetAllCitiesOnLanguage:[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
-         for( int i=0; i<cities.count; i++ )
-             [actionSheet addButtonWithTitle:[cities objectAtIndex:i]];
-         
-         [actionSheet showInView:self.view];
-         
-         //зберігаємо стан загрузки мови
-         [[NSUserDefaults standardUserDefaults] setObject:idLanguage forKey:[NSString stringWithFormat:@"isLanguageHere%@", idLanguage]];
-         return;
-     }
+    if(![[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"])
+    {
+        NSNumber *idLanguage = [[NSNumber alloc] initWithInteger:buttonIndex+1];
+        [[NSUserDefaults standardUserDefaults] setObject:idLanguage forKey:@"defaultLanguageId"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        UIActionSheet* actionSheet = [[UIActionSheet alloc] init];
+        [actionSheet setTitle:@"Select city:"];
+        [actionSheet setDelegate:(id)self];
+        
+        NSArray *cities = [self.db GetAllCitiesOnLanguage:[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
+        for( int i=0; i<cities.count; i++ )
+            [actionSheet addButtonWithTitle:[cities objectAtIndex:i]];
+        
+        [actionSheet showInView:self.view];
+        
+        //зберігаємо стан загрузки мови
+        [[NSUserDefaults standardUserDefaults] setObject:idLanguage forKey:[NSString stringWithFormat:@"isLanguageHere%@", idLanguage]];
+        return;
+    }
     if(![[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"])
     {
         NSNumber *idCity = [[NSNumber alloc] initWithInteger:buttonIndex+1];
-         [[NSUserDefaults standardUserDefaults] setObject:idCity forKey:@"defaultCityId"];
+        [[NSUserDefaults standardUserDefaults] setObject:idCity forKey:@"defaultCityId"];
         
         //зберігаємо стан загрузки міста
         [[NSUserDefaults standardUserDefaults] setObject:idCity forKey:[NSString stringWithFormat:@"isCityHere%@", idCity]];
@@ -303,8 +310,8 @@
             if (!theConnection)
             {
                 // Inform the user that the connection failed.
-                UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"NSURLConnection" 
-                                                                             message:@"Not success"  
+                UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"NSURLConnection"
+                                                                             message:@"Not success"
                                                                             delegate:self
                                                                    cancelButtonTitle:@"Ok"
                                                                    otherButtonTitles:nil];
@@ -317,7 +324,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:YES];  
+    [super viewDidAppear:YES];
     if (![[NSUserDefaults standardUserDefaults] valueForKey:@"typeOfView"])
     {
         [[NSUserDefaults standardUserDefaults] setValue:@"menuList" forKey:@"typeOfView"];
@@ -337,11 +344,11 @@
         [self performSegueWithIdentifier:@"toMain" sender:self];
     }
 }
-     
+
 - (void)viewDidUnload
 {
     [self setImageView:nil];
-    [self setActivityIndicator:nil];
+    //[self setActivityIndicator:nil];
     
     //custom
     [self setDb:nil];

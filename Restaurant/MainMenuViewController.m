@@ -26,6 +26,7 @@
     SystemSoundID	soundFileObject;
     BOOL            fromSettings;
     BOOL            fromDeliveriesAndDatailViewController;
+    int             currentImage;
 }
 
 @property (readwrite)	CFURLRef        soundFileURLRef;
@@ -48,7 +49,7 @@
 @synthesize cartButton = _cartButton;
 @synthesize settingsButton = _settingsButton;
 @synthesize restorantsButton = _restorantsButton;
-@synthesize imageView = _imageView;
+@synthesize imageButton = _imageView;
 @synthesize arrayData = _arrayData;
 @synthesize selectedRow = _selectedRow;
 @synthesize isCartMode = _isCartMode;
@@ -108,7 +109,7 @@
                 data = [self.db fetchChildMenuWithDefaultLanguageForParentMenu:[[data objectAtIndex:0] valueForKey:@"underbarid"]];
             }
         }
-        else 
+        else
         {
             if(self.menuId)
             {
@@ -123,7 +124,7 @@
         
         for(int i=0;i<data.count;i++)
         {
-            if(i%2==0) 
+            if(i%2==0)
             {
                 dataStruct = [[MenuDataStruct alloc] init];
                 dataStruct.menuId = [[data objectAtIndex:i] valueForKey:@"underbarid"];
@@ -134,9 +135,9 @@
                 
                 if(dataOfPicture)
                 {
-                    dataStruct.image  = [UIImage imageWithData:dataOfPicture]; 
+                    dataStruct.image  = [UIImage imageWithData:dataOfPicture];
                 }
-                //                else 
+                //                else
                 //                {
                 //                    dataOfPicture = [NSData dataWithContentsOfURL:url];
                 //                    [self.db SavePictureToCoreData:[[data objectAtIndex:i] valueForKey:@"idPicture"] toData:dataOfPicture];
@@ -180,7 +181,7 @@
             [productStruct setCount:[[array objectAtIndex:i] valueForKey:@"count"]];
             [productStruct setDiscountValue:[[array objectAtIndex:i] valueForKey:@"discountValue"]];
             
-            [_arrayOfObjects addObject:productStruct];     
+            [_arrayOfObjects addObject:productStruct];
         }
         
         return _arrayOfObjects;
@@ -225,12 +226,12 @@
     
     AudioServicesPlaySystemSound (self.soundFileObject);
     
-    [self.restorantsButton setTitle:@"Order" forState:UIControlStateNormal];  
+    [self.restorantsButton setTitle:@"Order" forState:UIControlStateNormal];
     
     [self.settingsButton setHidden:YES];
     [self.drop setHidden:YES];
 }
-- (IBAction)goToSettingsTableViewController:(id)sender 
+- (IBAction)goToSettingsTableViewController:(id)sender
 {
     [self performSegueWithIdentifier:@"toSettings" sender:self];
     fromSettings = YES;
@@ -238,11 +239,24 @@
 
 -(void)awakeFromNib
 {
+    self.isMenuMode = YES;
     [super awakeFromNib];
 }
 
 - (void)viewDidLoad
 {
+    // get the current date
+    NSDate *date = [NSDate date];
+    
+    // format it
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+    [dateFormat setDateFormat:@"HH:mm:ss zzz"];
+    
+    // convert it to a string
+    NSString *dateString = [dateFormat stringFromDate:date];
+    
+    NSLog(@"%@", dateString);
+    
     [super viewDidLoad];
     
     self.imageDownloadsInProgress = [[NSMutableDictionary alloc] init];
@@ -297,13 +311,26 @@
     
     AudioServicesCreateSystemSoundID (soundFileURLRef, &soundFileObject);
     
-    NSArray * imageArray  = [[NSArray alloc] initWithObjects:
+    NSArray * imageArray  = [NSArray arrayWithObjects:
                              [UIImage imageNamed:@"1.jpg"],
-                             [UIImage imageNamed:@"11.gif"], nil];
-    self.imageView.animationImages = imageArray;
-    self.imageView.animationDuration = 4.0;
-    self.imageView.contentMode = UIViewContentModeBottomLeft;
-    [self.imageView startAnimating];
+                             [UIImage imageNamed:@"2.jpg"], nil];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.imageButton.frame];
+    imageView.animationImages = imageArray;
+    imageView.animationDuration = 8.0;
+    [NSTimer scheduledTimerWithTimeInterval:4.0
+                                     target:self
+                                   selector:@selector(changingAnimation)
+                                   userInfo:nil
+                                    repeats:YES];
+    currentImage = 1;
+    [imageView startAnimating];
+    
+    [self.imageButton addSubview:imageView];
+    
+    //    self.imageButton.imageView.animationImages = imageArray;
+    //    self.imageButton.imageView.animationDuration = 4.0;
+    //    self.imageButton.contentMode = UIViewContentModeRedraw;
+    //    [self.imageButton.imageView startAnimating];
     
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = self.view.bounds;
@@ -311,10 +338,22 @@
     [self.view.layer insertSublayer:gradient atIndex:0];
 }
 
+- (void)changingAnimation
+{
+    if (currentImage < 2)
+    {
+        currentImage++;
+    }
+    else
+    {
+        currentImage = 1;
+    }
+}
+
 - (void) viewWillAppear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
-//    [self arrayData];
+    //    [self arrayData];
     if (fromSettings)
     {
         //_arrayData = nil;
@@ -329,8 +368,8 @@
     
     if (!animated)
     {
-//        self.isMenuMode = NO;
-//        self.isCartMode = YES;
+        //        self.isMenuMode = NO;
+        //        self.isCartMode = YES;
         [self performSelector:@selector(cartButton:)withObject:nil];
     }
     [super viewWillAppear:animated];
@@ -340,16 +379,16 @@
 {
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     
-//    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound)
-//    {
-        // back button was pressed.  We know this is true because self is no longer
-        // in the navigation stack.
+    //    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound)
+    //    {
+    // back button was pressed.  We know this is true because self is no longer
+    // in the navigation stack.
     
     NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
     [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
     
-//    }
-
+    //    }
+    
     [super viewWillDisappear:animated];
 }
 
@@ -362,7 +401,7 @@
         //[self.pickerView reloadAllComponents];
         [self.restorantsButton setTitle:@"Restaurants" forState:UIControlStateNormal];
     }
-    else 
+    else
     {
         self.arrayOfObjects = nil;
         //[self.pickerView reloadAllComponents];
@@ -375,6 +414,32 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (IBAction)viewSpam:(id)sender
+{
+    NSLog(@"current image %i", currentImage);
+    
+    //    subViewSpam *subView = [[subViewSpam alloc] initWithFrame:self.view.frame];
+    //    subView.imageView.image = [UIImage imageNamed:@"11.gif"];
+    //    [subView.imageView setImage:[UIImage imageNamed:@"11.gif"]];
+    //    subView.label.text = [NSString stringWithFormat:@"current image %i", currentImage];
+    //    [self.view addSubview:subView];
+    
+    subViewSpam *subView;
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"subViewSpam" owner:nil options:nil];
+    for(id currentObject in topLevelObjects)
+    {
+        if([currentObject isKindOfClass:[subViewSpam class]])
+        {
+            subView = (subViewSpam *)currentObject;
+            break;
+        }
+    }
+    
+    [subView.imageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%i.jpg", currentImage]]];
+    subView.label.text = [NSString stringWithFormat:@"current image %i", currentImage];
+    [self.view addSubview:subView];
+}
+
 - (void)viewDidUnload
 {
     [self setPickerView:nil];
@@ -383,7 +448,7 @@
     [self setSettingsButton:nil];
     [self setRestorantsButton:nil];
     [self setDrop:nil];
-    [self setImageView:nil];
+    [self setImageButton:nil];
     
     //custom
     [self setDb:nil];
@@ -408,7 +473,7 @@
     {
         return 1;//self.arrayData.count + 1;
     }
-    else 
+    else
     {
         return 1;
     };
@@ -418,13 +483,13 @@
 -(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
     if(self.isCartMode)
-    {   
+    {
         if (self.arrayOfObjects.count == 0)
         {
             PickerViewCell *viewForRow;
             UIImageView *one = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"shopping-cart.png"]];
-//            one.frame = self.pickerView.frame;
-//            one.frame = CGRectMake(self.pickerView.frame.origin.x + 100, self.pickerView.frame.origin.y + 100, self.pickerView.frame.size.width,self.pickerView.frame.size.height);
+            //            one.frame = self.pickerView.frame;
+            //            one.frame = CGRectMake(self.pickerView.frame.origin.x + 100, self.pickerView.frame.origin.y + 100, self.pickerView.frame.size.width,self.pickerView.frame.size.height);
             
             //NSArray* ballsArray = [NSArray arrayWithObjects:one, nil];
             viewForRow = (PickerViewCell *)one;
@@ -440,7 +505,7 @@
             //[[[[NSUserDefaults standardUserDefaults] objectForKey:@"offers"] objectAtIndex:row] objectForKey:@"id"];
         }
     }
-    else 
+    else
     {
         self.tableView = [[UITableView alloc] init];//WithFrame:CGRectMake(0, 0, 100, 216)];
         self.tableView.delegate = self;
@@ -460,16 +525,16 @@
         //                    break;
         //                }
         //            }
-        //            
+        //
         //            viewForRow.menuTitle.text = @"Favorites";
         //            viewForRow.menuImage.image = [UIImage imageNamed:@"Heart.png"];
-        //            
+        //
         //            return viewForRow;
         //        }
         //        else
         //        {
         //            MenuDataStruct *dataStruct = [self.arrayData objectAtIndex:row-1];
-        //            
+        //
         //            //UIView *viewForRow = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.pickerView.frame.size.width-30, self.pickerView.frame.size.height/5)];
         //            //NSLog(@"%f", viewForRow.frame.size.width);
         //            //NSLog(@"%f", viewForRow.frame.size.height);
@@ -491,7 +556,7 @@
         //            }
         //            viewForRow.menuImage.image = dataStruct.image;
         //            viewForRow.menuTitle.text = dataStruct.title;
-        //            
+        //
         //            return viewForRow;
         //        }
     }
@@ -567,9 +632,9 @@
     [self customPickerView:pickerView didSelectRow:row inComponent:component asResultOfTap:NO];
 }
 
-- (void)customPickerView:(UIPickerView *)pickerView 
+- (void)customPickerView:(UIPickerView *)pickerView
             didSelectRow:(NSInteger)row
-             inComponent:(NSInteger)component 
+             inComponent:(NSInteger)component
            asResultOfTap:(bool)userTapped
 {
     if (userTapped)
@@ -578,7 +643,7 @@
         {
             [self performSegueWithIdentifier:[[NSUserDefaults standardUserDefaults] objectForKey:@"typeOfViewFavorites"] sender:nil];
         }
-        else 
+        else
         {
             NSNumber *selectedRow = [[NSNumber alloc] initWithInt:row - 1];
             //NSLog(@"tapped in %i", row);
@@ -587,7 +652,7 @@
             {
                 self.restarauntId = [[self.arrayData objectAtIndex:selectedRow.integerValue] menuId];
             }
-            else 
+            else
             {
                 id menuId = [[self.arrayData objectAtIndex:selectedRow.integerValue] menuId];
                 NSArray *hz = [self.db fetchChildMenuWithDefaultLanguageForParentMenu:menuId];
@@ -599,7 +664,7 @@
                     if(self.isMenuMode)
                     {
                         self.arrayData = nil;
-                        self.selectedRow = selectedRow; 
+                        self.selectedRow = selectedRow;
                         [self performSegueWithIdentifier:[[NSUserDefaults standardUserDefaults] objectForKey:@"typeOfView"] sender:self];
                     }
                 }
@@ -607,7 +672,7 @@
             NSLog(@"ups");
         }
     }
-    else 
+    else
     {
         //NSLog(@"selected row %i", row);
     }
@@ -615,10 +680,10 @@
 
 -(CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
 {
-//    if(self.isCartMode)
-//        return self.pickerView.frame.size.height-10;
-//    else 
-        return self.pickerView.frame.size.height-20;//4;
+    //    if(self.isCartMode)
+    //        return self.pickerView.frame.size.height-10;
+    //    else
+    return self.pickerView.frame.size.height-20;//4;
 }
 
 #pragma mark - segue Delegate
@@ -650,31 +715,38 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-//    if(self.isMenuMode)
-        return 2;
-//    else return 1;
+    //    if(self.isMenuMode)
+    return 2;
+    //    else return 1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(self.isMenuMode)
     {
-        if(section == 0) 
+        if(section == 0)
             return 1;
-        else 
-            return self.arrayData.count;
+        else
+        {
+            if (self.arrayData.count == 0)
+            {
+                return 0;
+            }
+            else
+                return self.arrayData.count;
+        }
     }
-    else 
+    else
     {
         if (section == 0)
             return self.arrayOfObjects.count;
-        else 
+        else
             return 1;
     };
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{        
+{
     if(self.isCartMode)
     {
         if (indexPath.section == 0)
@@ -718,7 +790,7 @@
             
             return cell;
         }
-        else 
+        else
         {
             NSString *cellIdentifier = @"Total";
             TotalCartCell *cell = (TotalCartCell *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -755,11 +827,11 @@
                 sum                 = sum + ([[formatter numberFromString:[formatter stringFromNumber:[NSNumber numberWithFloat:(productDataStruct.price.floatValue * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]]] floatValue]);
                 if (productDataStruct.discountValue.floatValue != 0)
                 {
-                    sumWithDiscounts    = sumWithDiscounts + (productDataStruct.price.floatValue * (1 - productDataStruct.discountValue.floatValue));
+                    sumWithDiscounts    = sumWithDiscounts + (productDataStruct.price.floatValue * (1 - productDataStruct.discountValue.floatValue) * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue]);
                 }
                 else
                 {
-                    sumWithDiscounts = sumWithDiscounts + [[formatter numberFromString:productDataStruct.price] floatValue];
+                    sumWithDiscounts = sumWithDiscounts + [[formatter numberFromString:productDataStruct.price] floatValue]* [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue];
                 }
                 totalCount          = totalCount + productDataStruct.count.intValue;
             }
@@ -769,18 +841,18 @@
             cell.countNumberLabel.text = [NSString stringWithFormat:@"%i", totalCount];
             
             
-//            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-//            if (cell == nil) 
-//            {
-//                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-//                
-//                cell.textLabel.text = @"Total";
-//                
-//            }
+            //            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            //            if (cell == nil)
+            //            {
+            //                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+            //
+            //                cell.textLabel.text = @"Total";
+            //
+            //            }
             return cell;
         }
     }
-    else 
+    else
     {
         if(indexPath.section != 0)
         {
@@ -808,7 +880,7 @@
                 {
                     [self startIconDownload:dataStruct forIndexPath:indexPath];
                 }
-                // if a download is deferred or in progress, return a placeholder image  
+                // if a download is deferred or in progress, return a placeholder image
                 cell.menuImage.image = [UIImage imageNamed:@"Placeholder.png"];
                 
             }
@@ -819,7 +891,7 @@
             
             return cell;
         }
-        else 
+        else
         {
             PickerViewCell *viewForRow;
             NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PickerViewCell" owner:nil options:nil];
@@ -863,7 +935,7 @@
             return 0;
         }
     }
-    else 
+    else
     {
         return 0.1;
     }
@@ -887,7 +959,7 @@
         {
             [self performSegueWithIdentifier:[[NSUserDefaults standardUserDefaults] objectForKey:@"typeOfViewFavorites"] sender:nil];
         }
-        else 
+        else
         {
             NSNumber *selectedRow = [[NSNumber alloc] initWithInt:indexPath.row];
             //NSLog(@"tapped in %i", row);
@@ -897,7 +969,7 @@
                 self.restarauntId = [[self.arrayData objectAtIndex:selectedRow.integerValue] menuId];
                 [self.pickerView reloadAllComponents];
             }
-            else 
+            else
             {
                 id menuId = [[self.arrayData objectAtIndex:selectedRow.integerValue] menuId];
                 NSArray *hz = [self.db fetchChildMenuWithDefaultLanguageForParentMenu:menuId];
@@ -907,22 +979,19 @@
                     self.menuId = menuId;
                     [self.pickerView reloadAllComponents];
                 }
-                else 
+                else
                 {
-                    if(self.isMenuMode)
+                    self.singleMenu = [self.arrayData objectAtIndex:selectedRow.integerValue];
+                    self.arrayData = nil;
+                    self.selectedRow = selectedRow;
+                    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"typeOfView"])
                     {
-                        self.singleMenu = [self.arrayData objectAtIndex:selectedRow.integerValue];
-                        self.arrayData = nil;
-                        self.selectedRow = selectedRow;
-                        if (![[NSUserDefaults standardUserDefaults] objectForKey:@"typeOfView"])
-                        {
-                            [self performSegueWithIdentifier:@"menuList" sender:self];
-                            [[NSUserDefaults standardUserDefaults] setValue:@"menuList" forKey:@"typeOfView"];
-                        }
-                        else
-                        {
-                            [self performSegueWithIdentifier:[[NSUserDefaults standardUserDefaults] objectForKey:@"typeOfView"] sender:self];
-                        }
+                        [self performSegueWithIdentifier:@"menuList" sender:self];
+                        [[NSUserDefaults standardUserDefaults] setValue:@"menuList" forKey:@"typeOfView"];
+                    }
+                    else
+                    {
+                        [self performSegueWithIdentifier:[[NSUserDefaults standardUserDefaults] objectForKey:@"typeOfView"] sender:self];
                     }
                 }
             }
@@ -941,7 +1010,7 @@
     {
         return YES;
     }
-    else 
+    else
     {
         return NO;
     }
@@ -949,7 +1018,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete && self.isCartMode) 
+    if (editingStyle == UITableViewCellEditingStyleDelete && self.isCartMode)
     {
         if (indexPath.section != 1)
         {
@@ -958,22 +1027,22 @@
             [self arrayOfObjects];
             if (!self.arrayOfObjects)
                 [self.arrayOfObjects removeObjectAtIndex:indexPath.row];
-            else 
+            else
             {
                 [self.pickerView reloadAllComponents];
             }
             [self.tableView reloadData];
         }
-        else 
+        else
         {
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil 
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil
                                                             message:@"Do you want to delete all items from Cart?"
-                                                           delegate:self 
-                                                  cancelButtonTitle:@"YES" 
+                                                           delegate:self
+                                                  cancelButtonTitle:@"YES"
                                                   otherButtonTitles: @"NO", nil];
             [alert show];
         }
-    }  
+    }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -986,7 +1055,7 @@
     }
 }
 
-- (IBAction)OrderButton:(id)sender 
+- (IBAction)OrderButton:(id)sender
 {
     if (self.isCartMode)
     {
@@ -1002,7 +1071,7 @@
         [actionSheet showInView:self.view];
         
     }
-    else 
+    else
     {
         [self performSegueWithIdentifier:@"toRestaurantList" sender:nil];
     }
@@ -1016,7 +1085,7 @@
         fromDeliveriesAndDatailViewController = YES;
     }
     
-    else 
+    else
     {
         self.restorantsButton.titleLabel.text = @"Order";
     }
@@ -1028,14 +1097,14 @@
 - (void)startIconDownload:(ProductDataStruct *)appRecord forIndexPath:(NSIndexPath *)indexPath
 {
     IconDownloader *iconDownloader = [self.imageDownloadsInProgress objectForKey:indexPath];
-    if (iconDownloader == nil) 
+    if (iconDownloader == nil)
     {
         iconDownloader = [[IconDownloader alloc] init];
         iconDownloader.appRecord = appRecord;
         iconDownloader.indexPathInTableView = indexPath;
         iconDownloader.delegate = self;
         [self.imageDownloadsInProgress setObject:iconDownloader forKey:indexPath];
-        [iconDownloader startDownload]; 
+        [iconDownloader startDownload];
     }
 }
 

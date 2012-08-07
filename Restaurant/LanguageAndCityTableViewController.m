@@ -9,6 +9,7 @@
 #import "LanguageAndCityTableViewController.h"
 #import "GettingCoreContent.h"
 #import "checkConnection.h"
+#import "SSToolkit/SSToolkit.h"
 
 @interface LanguageAndCityTableViewController ()
 
@@ -18,6 +19,7 @@
 @property (strong, nonatomic) NSMutableData *responseData;
 @property (nonatomic, strong) XMLParse *db;
 @property BOOL isDid;
+@property (nonatomic, strong) SSHUDView *hudView;
 //@property (nonatomic, strong) UIActivityIndicatorView *activityView;
 
 @end
@@ -30,6 +32,7 @@
 @synthesize responseData = _responseData;
 @synthesize db = _db;
 @synthesize isDid = _isDid;
+@synthesize hudView = _hudView;
 //@synthesize activityView = _activityView;
 
 - (void)setArrayFromSegue:(BOOL)isCityEnter;
@@ -127,14 +130,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (checkConnection.hasConnectivity)
     {
-        UIActivityIndicatorView *activityView=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        activityView.frame = self.view.frame;
-        activityView.backgroundColor = [UIColor grayColor];
-        activityView.center=self.view.center;
-        [activityView startAnimating];
-        [self.view addSubview:activityView];
+        self.hudView = [[SSHUDView alloc] initWithTitle:@"Loading..."];
+        [self.hudView show];
+        
+        //        UIActivityIndicatorView *activityView=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        //        activityView.frame = self.view.frame;
+        //        activityView.backgroundColor = [UIColor grayColor];
+        //        activityView.center=self.view.center;
+        //        [activityView startAnimating];
+        //        [self.view addSubview:activityView];
         
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         NSString *changeStringForUserDefaults;
@@ -154,7 +161,7 @@
             [content deleteAllObjectsFromEntity:@"Cart"];
             [content deleteAllObjectsFromEntity:@"Favorites"];
         }
-        else 
+        else
         {
             changeStringForUserDefaults = @"defaultLanguageId";
             data = [[self.destinationArray objectAtIndex:indexPath.row] valueForKey:@"underbarid"];
@@ -163,8 +170,8 @@
         
         if (self.selectedIndex != NSNotFound)
         {
-            UITableViewCell *cell = [tableView 
-                                     cellForRowAtIndexPath:[NSIndexPath 
+            UITableViewCell *cell = [tableView
+                                     cellForRowAtIndexPath:[NSIndexPath
                                                             indexPathForRow:self.selectedIndex inSection:0]];
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
@@ -175,76 +182,76 @@
         //[self.navigationController popViewControllerAnimated:YES];
         
         
-//        if ([[NSUserDefaults standardUserDefaults] objectForKey:wasDownloaded] != nil)
-//        {
-//            // http request updatePHP with &tag=update
-//            GettingCoreContent *content = [[GettingCoreContent alloc] init];
-//            
-//            NSNumber *maxRestaurantId = [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Restaurants"];
-//            NSNumber *maxRestaurantVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Restaurants"];
-//            
-//            NSNumber *maxMenuId = [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Menus"];
-//            NSNumber *maxMenuVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Menus"];
-//            
-//            NSNumber *maxProductId = [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Products"];
-//            NSNumber *maxProductVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Products"];
-//            
-//            NSMutableString *myString = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test6/root/Customer_Scripts/update.php?DBid=11&tag=update"];
-//            
-//            [myString appendFormat:@"&city_id=%@", [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"]];
-//            [myString appendFormat:@"&lang_id=%@", [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
-//            
-//            [myString appendFormat:@"&rest_v=%@", maxRestaurantVersion];
-//            [myString appendFormat:@"&mrest_id=%@", maxRestaurantId];
-//            
-//            [myString appendFormat:@"&menu_v=%@", maxMenuVersion];
-//            [myString appendFormat:@"&mmenu_id=%@", maxMenuId];
-//            
-//            [myString appendFormat:@"&prod_v=%@", maxProductVersion];
-//            [myString appendFormat:@"&mprod_id=%@", maxProductId];
-//            
-//            NSURL *url = [NSURL URLWithString:myString.copy];
-//            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-//            [request setHTTPMethod:@"GET"];
-//            NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-//            if (!theConnection)
-//            {
-//                // Inform the user that the connection failed.
-//                UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"NSURLConnection" 
-//                                                                             message:@"Not success"  
-//                                                                            delegate:self
-//                                                                   cancelButtonTitle:@"Ok"
-//                                                                   otherButtonTitles:nil];
-//                [connectFailMessage show];
-//            }
-////            NSArray *arrayOfCartsIds = [content fetchAllIdsFromEntity:@"Cart"];
-////            NSArray *arrayOfFavoritesIds = [content fetchAllIdsFromEntity:@"Favorites"];
-//            
-//        }
-//        else 
-//        {
-            [[NSUserDefaults standardUserDefaults] setObject:data forKey:wasDownloaded];
-            // http request updatePHP with &tag=rmp
-            NSMutableString *urlString = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test6/root/Customer_Scripts/update.php?DBid=11&tag=rmp"];
-            [urlString appendFormat:@"&idLang=%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
-            [urlString appendFormat:@"&idCity=%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"]];
-            NSURL *url = [NSURL URLWithString:urlString.copy];
-            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-            [request setHTTPMethod:@"GET"];
-            NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-            if (!theConnection)
-            {
-                // Inform the user that the connection failed.
-                UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"NSURLConnection" 
-                                                                             message:@"Not success"  
-                                                                            delegate:self
-                                                                   cancelButtonTitle:@"Ok"
-                                                                   otherButtonTitles:nil];
-                [connectFailMessage show];
-//            }
+        //        if ([[NSUserDefaults standardUserDefaults] objectForKey:wasDownloaded] != nil)
+        //        {
+        //            // http request updatePHP with &tag=update
+        //            GettingCoreContent *content = [[GettingCoreContent alloc] init];
+        //
+        //            NSNumber *maxRestaurantId = [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Restaurants"];
+        //            NSNumber *maxRestaurantVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Restaurants"];
+        //
+        //            NSNumber *maxMenuId = [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Menus"];
+        //            NSNumber *maxMenuVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Menus"];
+        //
+        //            NSNumber *maxProductId = [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Products"];
+        //            NSNumber *maxProductVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Products"];
+        //
+        //            NSMutableString *myString = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test6/root/Customer_Scripts/update.php?DBid=11&tag=update"];
+        //
+        //            [myString appendFormat:@"&city_id=%@", [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"]];
+        //            [myString appendFormat:@"&lang_id=%@", [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
+        //
+        //            [myString appendFormat:@"&rest_v=%@", maxRestaurantVersion];
+        //            [myString appendFormat:@"&mrest_id=%@", maxRestaurantId];
+        //
+        //            [myString appendFormat:@"&menu_v=%@", maxMenuVersion];
+        //            [myString appendFormat:@"&mmenu_id=%@", maxMenuId];
+        //
+        //            [myString appendFormat:@"&prod_v=%@", maxProductVersion];
+        //            [myString appendFormat:@"&mprod_id=%@", maxProductId];
+        //
+        //            NSURL *url = [NSURL URLWithString:myString.copy];
+        //            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+        //            [request setHTTPMethod:@"GET"];
+        //            NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        //            if (!theConnection)
+        //            {
+        //                // Inform the user that the connection failed.
+        //                UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"NSURLConnection"
+        //                                                                             message:@"Not success"
+        //                                                                            delegate:self
+        //                                                                   cancelButtonTitle:@"Ok"
+        //                                                                   otherButtonTitles:nil];
+        //                [connectFailMessage show];
+        //            }
+        ////            NSArray *arrayOfCartsIds = [content fetchAllIdsFromEntity:@"Cart"];
+        ////            NSArray *arrayOfFavoritesIds = [content fetchAllIdsFromEntity:@"Favorites"];
+        //
+        //        }
+        //        else
+        //        {
+        [[NSUserDefaults standardUserDefaults] setObject:data forKey:wasDownloaded];
+        // http request updatePHP with &tag=rmp
+        NSMutableString *urlString = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test6/root/Customer_Scripts/update.php?DBid=11&tag=rmp"];
+        [urlString appendFormat:@"&idLang=%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
+        [urlString appendFormat:@"&idCity=%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"]];
+        NSURL *url = [NSURL URLWithString:urlString.copy];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+        [request setHTTPMethod:@"GET"];
+        NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        if (!theConnection)
+        {
+            // Inform the user that the connection failed.
+            UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"NSURLConnection"
+                                                                         message:@"Not success"
+                                                                        delegate:self
+                                                               cancelButtonTitle:@"Ok"
+                                                               otherButtonTitles:nil];
+            [connectFailMessage show];
+            //            }
         }
     }
-    else 
+    else
     {
         [self.navigationController popViewControllerAnimated:YES];
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Sorry!" message:@"You do not have internet connecntion to update data" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -267,7 +274,7 @@
     NSLog(@"Unable to fetch data");
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection 
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     NSLog(@"Succeeded! Received %d bytes of data",[self.responseData
                                                    length]);
@@ -280,7 +287,22 @@
     [parser parse];
     self.db = parser;
     [self XMLToCoreData];
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    [self performSelector:@selector(complete:) withObject:nil];
+    //[self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - hudView Actions
+
+- (void)complete:(id)sender {
+	[self.hudView completeWithTitle:@"Finished"];
+	[self performSelector:@selector(pop:) withObject:nil afterDelay:0.7];
+}
+
+
+- (void)pop:(id)sender {
+	[self.hudView dismiss];
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma finish pragma connention with server

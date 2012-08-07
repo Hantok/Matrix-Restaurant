@@ -78,6 +78,8 @@
 		F5B4609A15C2BF7900A6815C /* shopping-cart.png in Resources */ = {isa = PBXBuildFile; fileRef = F5B4609915C2BF7900A6815C /* shopping-cart.png */; };
 		F5B4609C15C2D4A500A6815C /* metro.png in Resources */ = {isa = PBXBuildFile; fileRef = F5B4609B15C2D4A500A6815C /* metro.png */; };
 		F5B70D8E15D177EB00695FAA /* libGMGridView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F5B70D8B15D177C600695FAA /* libGMGridView.a */; };
+		F5B70D9815D178E200695FAA /* subViewSpam.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B70D9615D178E200695FAA /* subViewSpam.m */; };
+		F5B70D9915D178E200695FAA /* subViewSpam.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5B70D9715D178E200695FAA /* subViewSpam.xib */; };
 		F5C4298A15AC2E1D00D4A061 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C4297615AC2E1D00D4A061 /* AFHTTPClient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F5C4298B15AC2E1D00D4A061 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C4297815AC2E1D00D4A061 /* AFHTTPRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F5C4298C15AC2E1D00D4A061 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C4297A15AC2E1D00D4A061 /* AFImageRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -256,6 +258,9 @@
 		F5B4609915C2BF7900A6815C /* shopping-cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shopping-cart.png"; sourceTree = "<group>"; };
 		F5B4609B15C2D4A500A6815C /* metro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metro.png; sourceTree = "<group>"; };
 		F5B70D8315D177C600695FAA /* GMGridView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GMGridView.xcodeproj; path = ../../GMGridView/GMGridView.xcodeproj; sourceTree = "<group>"; };
+		F5B70D9515D178E200695FAA /* subViewSpam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = subViewSpam.h; sourceTree = "<group>"; };
+		F5B70D9615D178E200695FAA /* subViewSpam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = subViewSpam.m; sourceTree = "<group>"; };
+		F5B70D9715D178E200695FAA /* subViewSpam.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = subViewSpam.xib; sourceTree = "<group>"; };
 		F5C4297515AC2E1D00D4A061 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPClient.h; path = Restaurant/AFNetworking/AFHTTPClient.h; sourceTree = "<group>"; };
 		F5C4297615AC2E1D00D4A061 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFHTTPClient.m; path = Restaurant/AFNetworking/AFHTTPClient.m; sourceTree = "<group>"; };
 		F5C4297715AC2E1D00D4A061 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPRequestOperation.h; path = Restaurant/AFNetworking/AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -321,7 +326,6 @@
 		781B8EF81546DB870074EDBD = {
 			isa = PBXGroup;
 			children = (
-				F591ECD715CD723C006BD0E6 /* CoreLocation.framework */,
 				781B8F0D1546DB870074EDBD /* Restaurant */,
 				781B8F061546DB870074EDBD /* Frameworks */,
 				781B8F041546DB870074EDBD /* Products */,
@@ -342,6 +346,7 @@
 				F5B70D8315D177C600695FAA /* GMGridView.xcodeproj */,
 				F5EBBBDA15A70EAE00C07969 /* SSToolkit.xcodeproj */,
 				F5DCCB7615A3279500739B11 /* AFNetworking */,
+				F591ECD715CD723C006BD0E6 /* CoreLocation.framework */,
 				F59344EA157F77DA0080EDE3 /* AudioToolbox.framework */,
 				7851AC8D157E52440027BDDF /* MapKit.framework */,
 				F58BD5AC156E7B8A00D31A09 /* MessageUI.framework */,
@@ -557,6 +562,9 @@
 		F5E93A4D156CFFB3005ED3ED /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				F5B70D9515D178E200695FAA /* subViewSpam.h */,
+				F5B70D9615D178E200695FAA /* subViewSpam.m */,
+				F5B70D9715D178E200695FAA /* subViewSpam.xib */,
 				78FB4D01154BF1CD0035236F /* CartCell.h */,
 				78FB4D02154BF1CE0035236F /* CartCell.m */,
 				78FB4D05154BF20D0035236F /* CartCell.xib */,
@@ -737,6 +745,7 @@
 				F5B4609A15C2BF7900A6815C /* shopping-cart.png in Resources */,
 				F5B4609C15C2D4A500A6815C /* metro.png in Resources */,
 				F591ECDE15CEEE11006BD0E6 /* MyLoc.png in Resources */,
+				F5B70D9915D178E200695FAA /* subViewSpam.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -793,6 +802,7 @@
 				F507E85E15BED2E000B1A772 /* TotalCartCell.m in Sources */,
 				F596BFDC15CA8A1300C72B37 /* ReservationViewController.m in Sources */,
 				F58E734F15D1358800CBCE65 /* MapViewAnnotation.m in Sources */,
+				F5B70D9815D178E200695FAA /* subViewSpam.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,10 +9,16 @@
 #import "RestaurantDetailViewController.h"
 #import "MapViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "SSToolkit/SSToolkit.h"
+#import "checkConnection.h"
 
 @interface RestaurantDetailViewController ()
+{
+    BOOL isDownloadingPicture;
+}
 
 @property (nonatomic, strong) UIAlertView *alert;
+@property (nonatomic, strong) SSLoadingView *loadingView;
 
 @end
 
@@ -27,6 +33,7 @@
 @synthesize dataStruct = _dataStruct;
 @synthesize db = _db;
 @synthesize alert = _alert;
+@synthesize loadingView = _loadingView;
 
 - (GettingCoreContent *)db
 {
@@ -39,7 +46,7 @@
     _dataStruct = dataStruct;
 }
 
-- (IBAction)callToRestaurant:(id)sender 
+- (IBAction)callToRestaurant:(id)sender
 {
     NSString *phoneNumber = self.dataStruct.phones;
     for (int i = 0; i < phoneNumber.length; i++)
@@ -64,7 +71,7 @@
     {
         NSString *aLatitude = self.dataStruct.latitude;
         NSString *aLongitude = self.dataStruct.longitude;
-
+        
         aLatitude = [aLatitude stringByReplacingOccurrencesOfString:@"," withString:@"."];
         aLongitude = [aLongitude stringByReplacingOccurrencesOfString:@"," withString:@"."];
         
@@ -82,18 +89,29 @@
 	workTimeDetailLabel.text = self.dataStruct.workingTime;
     telephoneDetailLabel.text = self.dataStruct.phones;
     NSData *dataOfPicture = [self.db fetchPictureDataByPictureId:self.dataStruct.idPicture];
-//    NSURL *url = [self.db fetchImageURLbyPictureID:self.dataStruct.idPicture];
+    //    NSURL *url = [self.db fetchImageURLbyPictureID:self.dataStruct.idPicture];
     if(dataOfPicture)
     {
-        self.dataStruct.image  = [UIImage imageWithData:dataOfPicture]; 
+        self.dataStruct.image  = [UIImage imageWithData:dataOfPicture];
+        self.restaurantImage.image = self.dataStruct.image;
     }
-    else 
+    else
     {
-//        dataOfPicture = [NSData dataWithContentsOfURL:url];
-//        [self.db SavePictureToCoreData:self.dataStruct.idPicture toData:dataOfPicture];
+        if (checkConnection.hasConnectivity)
+        {
+            self.loadingView = [[SSLoadingView alloc] initWithFrame:self.restaurantImage.frame];
+            self.loadingView.backgroundColor = [UIColor clearColor];
+            self.loadingView.activityIndicatorView.color = [UIColor whiteColor];
+            self.loadingView.textLabel.textColor = [UIColor whiteColor];
+            [self.view addSubview:self.loadingView];
+        }
+        
+        //        dataOfPicture = [NSData dataWithContentsOfURL:url];
+        //        [self.db SavePictureToCoreData:self.dataStruct.idPicture toData:dataOfPicture];
         //self.dataStruct.image  = [UIImage imageWithData:dataOfPicture];
+        
+        
     }
-    restaurantImage.image = self.dataStruct.image;
     //[self.db SavePictureToCoreData:self.dataStruct.idPicture toData:UIImagePNGRepresentation(cell.productImage.image)];
     
     CAGradientLayer *gradient = [CAGradientLayer layer];
@@ -116,13 +134,33 @@
     
 }
 
+- (void) viewDidAppear:(BOOL)animated
+{
+    if (!self.dataStruct.image && isDownloadingPicture == NO && checkConnection.hasConnectivity)
+    {
+        isDownloadingPicture = YES;
+        [self performSelectorInBackground:@selector(downloadingPic) withObject:nil];
+    }
+}
+
+- (void)downloadingPic
+{
+    NSURL *url = [self.db fetchImageURLbyPictureID:self.dataStruct.idPicture];
+    NSData *dataOfPicture = [NSData dataWithContentsOfURL:url];
+    [self.db SavePictureToCoreData:self.dataStruct.idPicture toData:dataOfPicture];
+    self.dataStruct.image  = [UIImage imageWithData:dataOfPicture];
+    self.restaurantImage.image = self.dataStruct.image;
+    [self.loadingView removeFromSuperview];
+    [self.restaurantImage reloadInputViews];
+}
+
 - (IBAction)tebleReserve:(id)sender
 {
     self.alert = [[UIAlertView alloc] initWithTitle:@"Sorry.Not suppurting now."
-                                                    message:nil
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil, nil];
+                                            message:nil
+                                           delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil, nil];
     [self.alert show];
     [self performSelector:@selector(dismiss) withObject:nil afterDelay:2];
 }
@@ -133,6 +171,7 @@
 }
 - (void)viewDidUnload
 {
+    [self setLoadingView:nil];
     [self setCallButton:nil];
     [self setShowOnMapButton:nil];
     [self setWorkTimeLabel:nil];

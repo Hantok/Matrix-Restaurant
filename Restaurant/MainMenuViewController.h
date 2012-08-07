@@ -12,6 +12,7 @@
 #import "PickerViewCell.h"
 #import "IconDownloader.h"
 #import "MenuDataStruct.h"
+#import "subViewSpam.h"
 
 #import <AudioToolbox/AudioToolbox.h>
 
@@ -23,7 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *cartButton;
 @property (weak, nonatomic) IBOutlet UIButton *settingsButton;
 @property (weak, nonatomic) IBOutlet UIButton *restorantsButton;
-@property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) IBOutlet UIButton *imageButton;
 @property (strong, nonatomic) NSMutableArray *arrayData;
 @property (strong, nonatomic) NSNumber *selectedRow;
 @property BOOL isCartMode;
@@ -41,5 +42,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *drop;
 - (IBAction)drop:(id)sender;
 - (IBAction)OrderButton:(id)sender;
+- (IBAction)viewSpam:(id)sender;
 
 @end
