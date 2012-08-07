@@ -54,9 +54,12 @@
     if(self.annotations) [self.mapView addAnnotations:self.annotations];
 }
 
-- (IBAction) showAddress {
+- (IBAction) showAddress
+{
+    //
     //Скрываем клавиатуру
     //[addressField resignFirstResponder];
+    
     MKCoordinateRegion region;
     MKCoordinateSpan span;
     
