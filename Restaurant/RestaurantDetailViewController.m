@@ -65,11 +65,12 @@
         NSString *aLatitude = self.dataStruct.latitude;
         NSString *aLongitude = self.dataStruct.longitude;
 
-        aLatitude = [aLatitude stringByReplacingOccurrencesOfString:@"," withString:@","];
-        aLongitude = [aLongitude stringByReplacingOccurrencesOfString:@"," withString:@","];
+        aLatitude = [aLatitude stringByReplacingOccurrencesOfString:@"," withString:@"."];
+        aLongitude = [aLongitude stringByReplacingOccurrencesOfString:@"," withString:@"."];
         
         CLLocationCoordinate2D location = {.latitude = aLatitude.doubleValue, .longitude =  aLongitude.doubleValue};
         [segue.destinationViewController setCoordinates:location];
+        [segue.destinationViewController setDataStruct:self.dataStruct];
     }
 }
 

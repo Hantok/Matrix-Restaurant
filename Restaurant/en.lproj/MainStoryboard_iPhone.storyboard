@@ -529,13 +529,33 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="aJp-z5-brn"/>
+                    <navigationItem key="navigationItem" id="aJp-z5-brn">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="vfz-rT-hAK">
+                            <rect key="frame" x="72" y="7" width="176" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Map"/>
+                                <segment title="Earth"/>
+                                <segment title="Hybrid"/>
+                            </segments>
+                            <connections>
+                                <action selector="segmentControlAction:" destination="YPw-UT-cMt" eventType="valueChanged" id="xRq-on-dqU"/>
+                            </connections>
+                        </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" image="MyLoc.png" id="yLu-aN-BjF">
+                            <connections>
+                                <action selector="userLocation:" destination="YPw-UT-cMt" id="54M-KG-1Bl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="SWB-FH-Lse" id="0tI-Sv-6zV"/>
+                        <outlet property="segment" destination="vfz-rT-hAK" id="Dg8-eS-o4F"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1072" y="967"/>
+            <point key="canvasLocation" x="1079" y="967"/>
         </scene>
         <!--Reservation View Controller-->
         <scene sceneID="Ptw-b5-fUZ">
@@ -1083,6 +1103,7 @@
         <image name="Button_blue_rev2.png" width="288" height="90"/>
         <image name="Button_green_rev2.png" width="288" height="90"/>
         <image name="Button_orange_rev2.png" width="288" height="90"/>
+        <image name="MyLoc.png" width="24" height="24"/>
         <image name="Settings1.png" width="256" height="256"/>
         <image name="back.png" width="97" height="96"/>
         <image name="images.jpeg" width="224" height="225"/>
@@ -1164,7 +1185,10 @@
         <class className="MapViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
             <relationships>
+                <relationship kind="action" name="segmentControlAction:"/>
+                <relationship kind="action" name="userLocation:"/>
                 <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="segment" candidateClass="UISegmentedControl"/>
             </relationships>
         </class>
         <class className="MenuIconViewController" superclassName="UIViewController">
@@ -1232,7 +1256,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="uuy-7P-Ssv"/>
         <segue reference="p5O-gN-8X0"/>
-        <segue reference="U3I-DZ-boL"/>
     </inferredMetricsTieBreakers>
 </document>

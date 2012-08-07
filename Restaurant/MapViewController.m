@@ -7,6 +7,8 @@
 //
 
 #import "MapViewController.h"
+#import "MapViewAnnotation.h"
+
 @interface MapViewController ()
 
 @end
@@ -15,11 +17,23 @@
 @synthesize mapView = _mapView;
 @synthesize coordinates = _coordinates;
 @synthesize annotations = _annotations;
+@synthesize segment = _segment;
+@synthesize location;
+@synthesize dataStruct = _dataStruct;
+//@synthesize annotationTitle = _annotationTitle;
+//@synthesize annotationSubTitle = _annotationSubTitle;
+//@synthesize annotationCoordinate = _annotationCoordinate;
+@synthesize coordinate = _coordinate;
 
 
 -(void)setCoordinates:(CLLocationCoordinate2D)coordinates
 {
     _coordinates = coordinates;
+}
+
+- (void)setDataStruct:(RestaurantDataStruct *)dataStruct
+{
+    _dataStruct = dataStruct;
 }
 
 -(void)setMapView:(MKMapView *)mapView
@@ -36,7 +50,7 @@
 
 -(void)updateMapView
 {
-    if(self.mapView.annotations) [self.mapView removeAnnotations:self.annotations];
+    if(self.mapView.annotations) [self.mapView removeAnnotations:self.mapView.annotations];
     if(self.annotations) [self.mapView addAnnotations:self.annotations];
 }
 
@@ -46,8 +60,10 @@
     MKCoordinateRegion region;
     MKCoordinateSpan span;
     
-    span.latitudeDelta=0.2;
-    span.longitudeDelta=0.2;
+    //self.mapView.annotations
+    
+    span.latitudeDelta=0.1;
+    span.longitudeDelta=0.1;
     id <MKAnnotation> addAnnotation;
     if(addAnnotation != nil) {
         [self.mapView removeAnnotation:addAnnotation];
@@ -58,16 +74,44 @@
     if(addAnnotation) [self.mapView addAnnotation:addAnnotation];
     region.span=span;
     region.center=self.coordinates;
-    
+        
     [self.mapView setRegion:region animated:TRUE];
     [self.mapView regionThatFits:region];
+    
+}
+
+- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views
+{
+    MKAnnotationView *annotationView = [views objectAtIndex:0];
+    id<MKAnnotation> mp = [annotationView annotation];
+    
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance([mp coordinate], 1000, 1000);
+    [self.mapView setRegion:region animated:TRUE];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [self showAddress];
+    //[self showAddress];
+    
+    self.mapView.delegate = self;
+    
+    self.location = [[CLLocationManager alloc]init];
+    [location setDelegate:self];
+    
+    [location setDistanceFilter:kCLDistanceFilterNone];
+    [location setDesiredAccuracy:kCLLocationAccuracyBest];
+    
+    //[self.mapView setShowsUserLocation:YES];
+    
+    CLLocationCoordinate2D annotLocation;
+    annotLocation.latitude = self.coordinates.latitude;
+    annotLocation.longitude = self.coordinates.longitude;
+    
+    MapViewAnnotation *mapAnnotation = [[MapViewAnnotation alloc]initWithTitle:self.dataStruct.name withSubTitle:self.dataStruct.street withCoordinate:annotLocation];
+    [self.mapView addAnnotation:mapAnnotation];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -78,10 +122,49 @@
 - (void)viewDidUnload
 {
     [self setMapView:nil];
+    [self setSegment:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
 
+- (IBAction)segmentControlAction:(id)sender
+{
+    if (_segment.selectedSegmentIndex == 0) {
+        self.mapView.mapType = MKMapTypeStandard;
+    } else if (_segment.selectedSegmentIndex == 1) {
+        self.mapView.mapType = MKMapTypeSatellite;
+    } else if (_segment.selectedSegmentIndex == 2) {
+        self.mapView.mapType = MKMapTypeHybrid;
+    }
+}
+
+- (IBAction)userLocation:(id)sender {
+    self.location = [[CLLocationManager alloc]init];
+    location.delegate = self;
+    location.desiredAccuracy = kCLLocationAccuracyBest;
+    location.distanceFilter = kCLDistanceFilterNone;
+    [location startUpdatingLocation];
+    self.mapView.showsUserLocation = YES;
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    
+    MKCoordinateSpan span;
+    span.latitudeDelta = 0.1;
+    span.longitudeDelta = 0.1;
+    
+//    MKCoordinateRegion region;
+//    region.center = newLocation.coordinate;
+//    region.span = span;
+    
+    //[_mapView setRegion:region animated:TRUE];
+    
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.mapView.userLocation.location.coordinate, 8000, 8000);
+    [self.mapView setRegion:region animated:TRUE];
+    
+    [manager stopUpdatingLocation];
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
