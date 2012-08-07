@@ -64,7 +64,6 @@
 		F53D73FC1594CE7800A420D1 /* Button_green_rev2.png in Resources */ = {isa = PBXBuildFile; fileRef = F53D73FB1594CE7800A420D1 /* Button_green_rev2.png */; };
 		F53D73FE1594DC3900A420D1 /* restaurants.png in Resources */ = {isa = PBXBuildFile; fileRef = F53D73FD1594DC3900A420D1 /* restaurants.png */; };
 		F53D74001594DDC400A420D1 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F53D73FF1594DDC400A420D1 /* 1.jpg */; };
-		F53D74021594DE3300A420D1 /* 11.gif in Resources */ = {isa = PBXBuildFile; fileRef = F53D74011594DE3300A420D1 /* 11.gif */; };
 		F53D74041594E00500A420D1 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F53D74031594E00500A420D1 /* icon.png */; };
 		F53D74081594E30500A420D1 /* picture.png in Resources */ = {isa = PBXBuildFile; fileRef = F53D74071594E30500A420D1 /* picture.png */; };
 		F58BD5AD156E7B8A00D31A09 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58BD5AC156E7B8A00D31A09 /* MessageUI.framework */; };
@@ -241,7 +240,6 @@
 		F53D73FB1594CE7800A420D1 /* Button_green_rev2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_green_rev2.png; sourceTree = "<group>"; };
 		F53D73FD1594DC3900A420D1 /* restaurants.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = restaurants.png; sourceTree = "<group>"; };
 		F53D73FF1594DDC400A420D1 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
-		F53D74011594DE3300A420D1 /* 11.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 11.gif; sourceTree = "<group>"; };
 		F53D74031594E00500A420D1 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		F53D74071594E30500A420D1 /* picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = picture.png; sourceTree = "<group>"; };
 		F58BD5AC156E7B8A00D31A09 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -455,7 +453,6 @@
 				F53D74071594E30500A420D1 /* picture.png */,
 				F53D73FF1594DDC400A420D1 /* 1.jpg */,
 				F591ECDD15CEEE10006BD0E6 /* MyLoc.png */,
-				F53D74011594DE3300A420D1 /* 11.gif */,
 				F53D73FD1594DC3900A420D1 /* restaurants.png */,
 				F53D73FB1594CE7800A420D1 /* Button_green_rev2.png */,
 				F53D73F91594CDE600A420D1 /* Button_blue_rev2.png */,
@@ -730,7 +727,6 @@
 				F53D73FC1594CE7800A420D1 /* Button_green_rev2.png in Resources */,
 				F53D73FE1594DC3900A420D1 /* restaurants.png in Resources */,
 				F53D74001594DDC400A420D1 /* 1.jpg in Resources */,
-				F53D74021594DE3300A420D1 /* 11.gif in Resources */,
 				F53D74041594E00500A420D1 /* icon.png in Resources */,
 				F53D74081594E30500A420D1 /* picture.png in Resources */,
 				F5056DDB15A33F94000C14D1 /* close_x.png in Resources */,

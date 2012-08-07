@@ -112,6 +112,7 @@
     MapViewAnnotation *mapAnnotation = [[MapViewAnnotation alloc]initWithTitle:self.dataStruct.name withSubTitle:self.dataStruct.street withCoordinate:annotLocation];
     [self.mapView addAnnotation:mapAnnotation];
     
+    //bla bla bla
 }
 
 - (void)viewDidAppear:(BOOL)animated
