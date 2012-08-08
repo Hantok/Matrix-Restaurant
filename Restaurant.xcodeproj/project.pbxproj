@@ -77,7 +77,6 @@
 		F5B4609615C2B78F00A6815C /* Cart1.PNG in Resources */ = {isa = PBXBuildFile; fileRef = F5B4609515C2B78F00A6815C /* Cart1.PNG */; };
 		F5B4609A15C2BF7900A6815C /* shopping-cart.png in Resources */ = {isa = PBXBuildFile; fileRef = F5B4609915C2BF7900A6815C /* shopping-cart.png */; };
 		F5B4609C15C2D4A500A6815C /* metro.png in Resources */ = {isa = PBXBuildFile; fileRef = F5B4609B15C2D4A500A6815C /* metro.png */; };
-		F5B70D8E15D177EB00695FAA /* libGMGridView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F5B70D8B15D177C600695FAA /* libGMGridView.a */; };
 		F5B70D9815D178E200695FAA /* subViewSpam.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B70D9615D178E200695FAA /* subViewSpam.m */; };
 		F5B70D9915D178E200695FAA /* subViewSpam.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5B70D9715D178E200695FAA /* subViewSpam.xib */; };
 		F5C4298A15AC2E1D00D4A061 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C4297615AC2E1D00D4A061 /* AFHTTPClient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -94,6 +93,7 @@
 		F5EBBBED15A70EEA00C07969 /* libSSToolkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F5EBBBE115A70EAE00C07969 /* libSSToolkit.a */; };
 		F5EBBBEE15A70F0100C07969 /* SSToolkitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F5EBBBE515A70EAE00C07969 /* SSToolkitResources.bundle */; };
 		F5EBBBF115A70F6000C07969 /* SocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EBBBF015A70F6000C07969 /* SocialViewController.m */; };
+		F5EC5DD815D17DB500040324 /* libGMGridView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F5EC5DD515D17DA000040324 /* libGMGridView.a */; };
 		F5F0215A1588C017009EB482 /* DeliveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F021591588C017009EB482 /* DeliveryViewController.m */; };
 		F5F2D69815AD7DBB00C5094B /* AddressListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F2D69715AD7DBB00C5094B /* AddressListTableViewController.m */; };
 		F5F2D69B15ADB91500C5094B /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F2D69A15ADB91500C5094B /* AddressCell.m */; };
@@ -104,20 +104,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		F5B70D8A15D177C600695FAA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F5B70D8315D177C600695FAA /* GMGridView.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 78509312149FAC2E000787E4;
-			remoteInfo = GMGridView;
-		};
-		F5B70D8C15D177E200695FAA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F5B70D8315D177C600695FAA /* GMGridView.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 78509311149FAC2E000787E4;
-			remoteInfo = GMGridView;
-		};
 		F5EBBBE015A70EAE00C07969 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F5EBBBDA15A70EAE00C07969 /* SSToolkit.xcodeproj */;
@@ -152,6 +138,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = B2C507E9151BA64400E94614;
 			remoteInfo = SSToolkitResources;
+		};
+		F5EC5DD415D17DA000040324 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F5EC5DCD15D17DA000040324 /* GMGridView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 78509312149FAC2E000787E4;
+			remoteInfo = GMGridView;
+		};
+		F5EC5DD615D17DB100040324 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F5EC5DCD15D17DA000040324 /* GMGridView.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 78509311149FAC2E000787E4;
+			remoteInfo = GMGridView;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -257,7 +257,6 @@
 		F5B4609515C2B78F00A6815C /* Cart1.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cart1.PNG; sourceTree = "<group>"; };
 		F5B4609915C2BF7900A6815C /* shopping-cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shopping-cart.png"; sourceTree = "<group>"; };
 		F5B4609B15C2D4A500A6815C /* metro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metro.png; sourceTree = "<group>"; };
-		F5B70D8315D177C600695FAA /* GMGridView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GMGridView.xcodeproj; path = ../../GMGridView/GMGridView.xcodeproj; sourceTree = "<group>"; };
 		F5B70D9515D178E200695FAA /* subViewSpam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = subViewSpam.h; sourceTree = "<group>"; };
 		F5B70D9615D178E200695FAA /* subViewSpam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = subViewSpam.m; sourceTree = "<group>"; };
 		F5B70D9715D178E200695FAA /* subViewSpam.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = subViewSpam.xib; sourceTree = "<group>"; };
@@ -287,6 +286,7 @@
 		F5EBBBDA15A70EAE00C07969 /* SSToolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SSToolkit.xcodeproj; path = /Users/matrixsoft/GMGridView/../Vendor/SSToolkit/SSToolkit.xcodeproj; sourceTree = "<absolute>"; };
 		F5EBBBEF15A70F6000C07969 /* SocialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialViewController.h; sourceTree = "<group>"; };
 		F5EBBBF015A70F6000C07969 /* SocialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialViewController.m; sourceTree = "<group>"; };
+		F5EC5DCD15D17DA000040324 /* GMGridView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GMGridView.xcodeproj; path = ../../../GMGridView/GMGridView.xcodeproj; sourceTree = "<group>"; };
 		F5F021581588C017009EB482 /* DeliveryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeliveryViewController.h; sourceTree = "<group>"; };
 		F5F021591588C017009EB482 /* DeliveryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeliveryViewController.m; sourceTree = "<group>"; };
 		F5F2D69615AD7DBB00C5094B /* AddressListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressListTableViewController.h; sourceTree = "<group>"; };
@@ -305,7 +305,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5B70D8E15D177EB00695FAA /* libGMGridView.a in Frameworks */,
+				F5EC5DD815D17DB500040324 /* libGMGridView.a in Frameworks */,
 				F591ECD815CD723C006BD0E6 /* CoreLocation.framework in Frameworks */,
 				F5EBBBED15A70EEA00C07969 /* libSSToolkit.a in Frameworks */,
 				F59344EB157F77DA0080EDE3 /* AudioToolbox.framework in Frameworks */,
@@ -343,7 +343,7 @@
 		781B8F061546DB870074EDBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F5B70D8315D177C600695FAA /* GMGridView.xcodeproj */,
+				F5EC5DCD15D17DA000040324 /* GMGridView.xcodeproj */,
 				F5EBBBDA15A70EAE00C07969 /* SSToolkit.xcodeproj */,
 				F5DCCB7615A3279500739B11 /* AFNetworking */,
 				F591ECD715CD723C006BD0E6 /* CoreLocation.framework */,
@@ -523,14 +523,6 @@
 			name = "Type of View";
 			sourceTree = "<group>";
 		};
-		F5B70D8415D177C600695FAA /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F5B70D8B15D177C600695FAA /* libGMGridView.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		F5DCCB7615A3279500739B11 /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -601,6 +593,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		F5EC5DCE15D17DA000040324 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F5EC5DD515D17DA000040324 /* libGMGridView.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -615,7 +615,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				F5B70D8D15D177E200695FAA /* PBXTargetDependency */,
+				F5EC5DD715D17DB100040324 /* PBXTargetDependency */,
 				F5EBBBE915A70EE300C07969 /* PBXTargetDependency */,
 				F5EBBBEB15A70EE300C07969 /* PBXTargetDependency */,
 			);
@@ -660,8 +660,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = F5B70D8415D177C600695FAA /* Products */;
-					ProjectRef = F5B70D8315D177C600695FAA /* GMGridView.xcodeproj */;
+					ProductGroup = F5EC5DCE15D17DA000040324 /* Products */;
+					ProjectRef = F5EC5DCD15D17DA000040324 /* GMGridView.xcodeproj */;
 				},
 				{
 					ProductGroup = F5EBBBDB15A70EAE00C07969 /* Products */;
@@ -676,13 +676,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		F5B70D8B15D177C600695FAA /* libGMGridView.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libGMGridView.a;
-			remoteRef = F5B70D8A15D177C600695FAA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		F5EBBBE115A70EAE00C07969 /* libSSToolkit.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -702,6 +695,13 @@
 			fileType = wrapper.cfbundle;
 			path = SSToolkitResources.bundle;
 			remoteRef = F5EBBBE415A70EAE00C07969 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F5EC5DD515D17DA000040324 /* libGMGridView.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libGMGridView.a;
+			remoteRef = F5EC5DD415D17DA000040324 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -809,11 +809,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		F5B70D8D15D177E200695FAA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = GMGridView;
-			targetProxy = F5B70D8C15D177E200695FAA /* PBXContainerItemProxy */;
-		};
 		F5EBBBE915A70EE300C07969 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SSToolkit;
@@ -823,6 +818,11 @@
 			isa = PBXTargetDependency;
 			name = SSToolkitResources;
 			targetProxy = F5EBBBEA15A70EE300C07969 /* PBXContainerItemProxy */;
+		};
+		F5EC5DD715D17DB100040324 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GMGridView;
+			targetProxy = F5EC5DD615D17DB100040324 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

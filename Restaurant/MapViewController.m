@@ -9,8 +9,8 @@
 #import "MapViewController.h"
 #import "MapViewAnnotation.h"
 
-@interface MapViewController ()
-
+@interface MapViewController () <MKMapViewDelegate>
+- (void)pressToButton: (id)sender;
 @end
 
 @implementation MapViewController
@@ -25,6 +25,11 @@
 //@synthesize annotationCoordinate = _annotationCoordinate;
 @synthesize coordinate = _coordinate;
 
+- (void)pressToButton:(id)sender
+{
+    NSLog(@"Presses");
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 -(void)setCoordinates:(CLLocationCoordinate2D)coordinates
 {
@@ -92,11 +97,38 @@
     [self.mapView setRegion:region animated:TRUE];
 }
 
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+        return  nil;
+    
+    NSString *annotationIndentifier = @"PinViewAnnotation";
+    MKPinAnnotationView *pinView = (MKPinAnnotationView *) [mapView dequeueReusableAnnotationViewWithIdentifier:annotationIndentifier];
+    
+    if (!pinView) {
+        pinView = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:annotationIndentifier];
+        
+//        [pinView setPinColor:MKPinAnnotationColorGreen];
+        [pinView setAnimatesDrop:YES];
+        pinView.canShowCallout = YES;
+                
+        UIButton *iconButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+        [iconButton setBackgroundImage:self.dataStruct.image forState:UIControlStateNormal];
+        
+        pinView.leftCalloutAccessoryView = iconButton;
+        [iconButton addTarget:self action:@selector(pressToButton:) forControlEvents:UIControlEventTouchUpInside];
+    } else {
+        pinView.annotation = annotation;
+    }
+    
+    return pinView;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    //[self showAddress];
+//    [self showAddress];
     
     self.mapView.delegate = self;
     
@@ -112,10 +144,14 @@
     annotLocation.latitude = self.coordinates.latitude;
     annotLocation.longitude = self.coordinates.longitude;
     
-    MapViewAnnotation *mapAnnotation = [[MapViewAnnotation alloc]initWithTitle:self.dataStruct.name withSubTitle:self.dataStruct.street withCoordinate:annotLocation];
+    NSString *restaurantStreet = self.dataStruct.street;
+    NSString *restaurantBuild = [@" " stringByAppendingString:self.dataStruct.build];
+    NSString *restaurantAddress = [restaurantStreet stringByAppendingString:restaurantBuild];
+    
+    MapViewAnnotation *mapAnnotation = [[MapViewAnnotation alloc]initWithTitle:self.dataStruct.name withSubTitle:restaurantAddress withCoordinate:annotLocation];
+    
     [self.mapView addAnnotation:mapAnnotation];
     
-    //bla bla bla
 }
 
 - (void)viewDidAppear:(BOOL)animated
