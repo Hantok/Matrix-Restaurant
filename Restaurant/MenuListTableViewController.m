@@ -103,7 +103,14 @@
             }
             
         }
-        _arrayData = array;
+        
+        //сортуємо по id продукта
+        NSSortDescriptor *sortDescriptor;
+        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"productId" ascending:YES];
+        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+        NSArray *sortedArray;
+        sortedArray = [array sortedArrayUsingDescriptors:sortDescriptors];
+        _arrayData = [[NSMutableArray alloc] initWithArray:sortedArray];
         
         NSLog(@"end;;;;;");
         return _arrayData;
