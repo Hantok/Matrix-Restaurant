@@ -487,22 +487,23 @@
     
     CGRect nameFrame;
     nameFrame.origin.x = 0;
-    nameFrame.origin.y = 70;
-    nameFrame.size = CGSizeMake(60,21);
+    nameFrame.origin.y = 90;
+    nameFrame.size = CGSizeMake(90,20);
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:nameFrame];
     nameLabel.backgroundColor = [UIColor clearColor];
-    nameLabel.textColor = [UIColor orangeColor];
+    nameLabel.textColor = [UIColor lightGrayColor];
     nameLabel.text = dataStruct.title;
-    nameLabel.textAlignment = UITextAlignmentRight;
+    nameLabel.textAlignment = UITextAlignmentLeft;
     nameLabel.numberOfLines = 1;
-    nameLabel.minimumFontSize = 12;
+    nameLabel.minimumFontSize = 9;
+    nameLabel.font = [UIFont boldSystemFontOfSize:12];
     nameLabel.adjustsFontSizeToFitWidth = YES;
     [cell.contentView addSubview:nameLabel];
     
     CGRect priceFrame;
-    priceFrame.origin.x = 60;
-    priceFrame.origin.y = 70;
-    priceFrame.size = CGSizeMake(30,21);
+    priceFrame.origin.x = 0;
+    priceFrame.origin.y = 75;
+    priceFrame.size = CGSizeMake(90,20);
     UILabel *priceLabel = [[UILabel alloc] initWithFrame:priceFrame];
     //priceLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
@@ -514,28 +515,28 @@
     NSString *priceString = [NSString stringWithFormat:@"%@ %@", price, [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
     priceLabel.text = priceString;
     
-    priceLabel.textColor = [UIColor yellowColor];
-    priceLabel.textAlignment = UITextAlignmentRight;
+    priceLabel.textColor = [UIColor orangeColor];
+    priceLabel.textAlignment = UITextAlignmentLeft;
     priceLabel.backgroundColor = [UIColor clearColor];
     //priceLabel.highlightedTextColor = [UIColor yellowColor];
     priceLabel.numberOfLines = 1;
-    priceLabel.minimumFontSize = 10;
-    //priceLabel.font = [UIFont boldSystemFontOfSize:20];
+    priceLabel.minimumFontSize = 9;
+    priceLabel.font = [UIFont systemFontOfSize:12];
     [cell.contentView addSubview:priceLabel];
     
-    CGRect descriptionFrame;
-    descriptionFrame.origin.x = 0;
-    descriptionFrame.origin.y = 90;
-    descriptionFrame.size = CGSizeMake(90,15);
-    UILabel *descriptionLabel = [[UILabel alloc] initWithFrame:descriptionFrame];
-    descriptionLabel.backgroundColor = [UIColor clearColor];
-    descriptionLabel.text = dataStruct.descriptionText;
-    descriptionLabel.textColor = [UIColor lightGrayColor];
-    descriptionLabel.textAlignment = UITextAlignmentRight;
-    descriptionLabel.numberOfLines = 1;
-    descriptionLabel.minimumFontSize = 8;
-    descriptionLabel.adjustsFontSizeToFitWidth = YES;
-    [cell.contentView addSubview:descriptionLabel];
+//    CGRect descriptionFrame;
+//    descriptionFrame.origin.x = 0;
+//    descriptionFrame.origin.y = 90;
+//    descriptionFrame.size = CGSizeMake(90,15);
+//    UILabel *descriptionLabel = [[UILabel alloc] initWithFrame:descriptionFrame];
+//    descriptionLabel.backgroundColor = [UIColor clearColor];
+//    descriptionLabel.text = dataStruct.descriptionText;
+//    descriptionLabel.textColor = [UIColor lightGrayColor];
+//    descriptionLabel.textAlignment = UITextAlignmentRight;
+//    descriptionLabel.numberOfLines = 1;
+//    descriptionLabel.minimumFontSize = 8;
+//    descriptionLabel.adjustsFontSizeToFitWidth = YES;
+//    [cell.contentView addSubview:descriptionLabel];
 
     
     return cell;

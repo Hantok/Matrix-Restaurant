@@ -154,7 +154,14 @@
                 [array addObject:dataStruct];
             }
         }
-        _arrayData = array;
+        
+        //сортуємо по id продукта
+        NSSortDescriptor *sortDescriptor;
+        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"menuId" ascending:YES];
+        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+        NSArray *sortedArray;
+        sortedArray = [array sortedArrayUsingDescriptors:sortDescriptors];
+        _arrayData = [[NSMutableArray alloc] initWithArray:sortedArray];
         return _arrayData;
     }
     return _arrayData;
