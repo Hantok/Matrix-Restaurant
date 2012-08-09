@@ -27,7 +27,6 @@
 
 - (void)pressToButton:(id)sender
 {
-    NSLog(@"Presses");
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -129,7 +128,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 //    [self showAddress];
-    
     self.mapView.delegate = self;
     
     self.location = [[CLLocationManager alloc]init];
@@ -150,8 +148,7 @@
     
     MapViewAnnotation *mapAnnotation = [[MapViewAnnotation alloc]initWithTitle:self.dataStruct.name withSubTitle:restaurantAddress withCoordinate:annotLocation];
     
-    [self.mapView addAnnotation:mapAnnotation];
-    
+    [self.mapView addAnnotation:mapAnnotation];    
 }
 
 - (void)viewDidAppear:(BOOL)animated
