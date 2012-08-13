@@ -443,7 +443,7 @@
     }
     
     [subView.imageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%i.jpg", currentImage]]];
-    subView.label.text = [NSString stringWithFormat:@"current image %i", currentImage];
+    subView.label.text = [NSString stringWithFormat:@"Here is title"];
     [self.view addSubview:subView];
 }
 
