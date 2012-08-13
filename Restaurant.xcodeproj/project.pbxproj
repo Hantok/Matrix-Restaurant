@@ -100,6 +100,7 @@
 		F5F2DD8A15879B8E00E3C6A2 /* Heart.png in Resources */ = {isa = PBXBuildFile; fileRef = F5F2DD8915879B8E00E3C6A2 /* Heart.png */; };
 		F5FA62481580D39700FBF70A /* FavoritesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5FA62471580D39700FBF70A /* FavoritesTableViewController.m */; };
 		F5FA624C1580EB6700FBF70A /* Cart.png in Resources */ = {isa = PBXBuildFile; fileRef = F5FA624B1580EB6700FBF70A /* Cart.png */; };
+		F5FD7EB315D91C98006BCD6C /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F5FD7EB215D91C98006BCD6C /* 2.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -297,6 +298,7 @@
 		F5FA62461580D39700FBF70A /* FavoritesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesTableViewController.h; sourceTree = "<group>"; };
 		F5FA62471580D39700FBF70A /* FavoritesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesTableViewController.m; sourceTree = "<group>"; };
 		F5FA624B1580EB6700FBF70A /* Cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cart.png; sourceTree = "<group>"; };
+		F5FD7EB215D91C98006BCD6C /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -456,6 +458,7 @@
 				F5056DDA15A33F94000C14D1 /* close_x.png */,
 				F53D74071594E30500A420D1 /* picture.png */,
 				F53D73FF1594DDC400A420D1 /* 1.jpg */,
+				F5FD7EB215D91C98006BCD6C /* 2.jpg */,
 				F591ECDD15CEEE10006BD0E6 /* MyLoc.png */,
 				F53D73FD1594DC3900A420D1 /* restaurants.png */,
 				F53D73FB1594CE7800A420D1 /* Button_green_rev2.png */,
@@ -744,6 +747,7 @@
 				F5B4609C15C2D4A500A6815C /* metro.png in Resources */,
 				F591ECDE15CEEE11006BD0E6 /* MyLoc.png in Resources */,
 				F5B70D9915D178E200695FAA /* subViewSpam.xib in Resources */,
+				F5FD7EB315D91C98006BCD6C /* 2.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
