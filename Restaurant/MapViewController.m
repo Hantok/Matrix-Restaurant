@@ -58,34 +58,34 @@
     if(self.annotations) [self.mapView addAnnotations:self.annotations];
 }
 
-- (IBAction) showAddress
-{
-    //
-    //Скрываем клавиатуру
-    //[addressField resignFirstResponder];
-    
-    MKCoordinateRegion region;
-    MKCoordinateSpan span;
-    
-    //self.mapView.annotations
-    
-    span.latitudeDelta=0.1;
-    span.longitudeDelta=0.1;
-    id <MKAnnotation> addAnnotation;
-    if(addAnnotation != nil) {
-        [self.mapView removeAnnotation:addAnnotation];
-        addAnnotation = nil;
-    }
-    addAnnotation = [[MKPointAnnotation alloc] init];
-    addAnnotation.coordinate = self.coordinates;
-    if(addAnnotation) [self.mapView addAnnotation:addAnnotation];
-    region.span=span;
-    region.center=self.coordinates;
-        
-    [self.mapView setRegion:region animated:TRUE];
-    [self.mapView regionThatFits:region];
-    
-}
+//- (IBAction) showAddress
+//{
+//    //
+//    //Скрываем клавиатуру
+//    //[addressField resignFirstResponder];
+//    
+//    MKCoordinateRegion region;
+//    MKCoordinateSpan span;
+//    
+//    //self.mapView.annotations
+//    
+//    span.latitudeDelta=0.1;
+//    span.longitudeDelta=0.1;
+//    id <MKAnnotation> addAnnotation;
+//    if(addAnnotation != nil) {
+//        [self.mapView removeAnnotation:addAnnotation];
+//        addAnnotation = nil;
+//    }
+//    addAnnotation = [[MKPointAnnotation alloc] init];
+//    addAnnotation.coordinate = self.coordinates;
+//    if(addAnnotation) [self.mapView addAnnotation:addAnnotation];
+//    region.span=span;
+//    region.center=self.coordinates;
+//        
+//    [self.mapView setRegion:region animated:TRUE];
+//    [self.mapView regionThatFits:region];
+//    
+//}
 
 - (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views
 {

@@ -10,9 +10,29 @@
 
 @interface ReservationViewController ()
 
+@property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer;
+
 @end
 
 @implementation ReservationViewController
+
+@synthesize name;
+@synthesize  numberPeople;
+@synthesize date;
+@synthesize datePicker;
+
+@synthesize tapRecognizer;
+
+
+-(void) keyboardWillShow:(NSNotification *) note
+{
+    [self.view addGestureRecognizer:self.tapRecognizer];
+}
+
+-(void) keyboardWillHide:(NSNotification *) note
+{
+    [self.view removeGestureRecognizer:self.tapRecognizer];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

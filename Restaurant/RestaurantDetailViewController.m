@@ -156,13 +156,15 @@
 
 - (IBAction)tebleReserve:(id)sender
 {
-    self.alert = [[UIAlertView alloc] initWithTitle:@"Sorry.Not suppurting now."
-                                            message:nil
-                                           delegate:nil
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil, nil];
-    [self.alert show];
-    [self performSelector:@selector(dismiss) withObject:nil afterDelay:2];
+//    self.alert = [[UIAlertView alloc] initWithTitle:@"Sorry.Not suppurting now."
+//                                            message:nil
+//                                           delegate:nil
+//                                  cancelButtonTitle:@"OK"
+//                                  otherButtonTitles:nil, nil];
+//    [self.alert show];
+//    [self performSelector:@selector(dismiss) withObject:nil afterDelay:2];
+    
+    [self performSegueWithIdentifier:@"reserve" sender:self];
 }
 
 - (void) dismiss
