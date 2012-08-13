@@ -218,7 +218,7 @@
                              withPicture:UIImagePNGRepresentation(self.product.image)
                        withDiscountValue:self.product.discountValue.floatValue];
         
-        self.alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Добавлено %i ед. товара \"%@\" в корзину.",self.product.count.integerValue, self.product.title] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        self.alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Added %i item(s) \"%@\" to the Cart.",self.product.count.integerValue, self.product.title] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [self. alert show];
         [self performSelector:@selector(dismiss) withObject:nil afterDelay:2];
         [[self navigationController] popViewControllerAnimated:YES];
@@ -243,7 +243,7 @@
                    withDiscountValue:self.product.discountValue.floatValue];
     
     self.alert = [[UIAlertView alloc] initWithTitle:nil
-                                            message:[NSString stringWithFormat:@"Добавлено товар \"%@\" в favorites.", self.product.title]
+                                            message:[NSString stringWithFormat:@"Is \"%@\" in favorites.", self.product.title]
                                            delegate:nil
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil];

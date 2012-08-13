@@ -127,17 +127,28 @@
                                     <action selector="drop:" destination="Spv-H0-bQc" eventType="touchUpInside" id="7VY-jd-8F4"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="gVF-vp-hsp">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="i3A-TY-oUU">
                                 <rect key="frame" x="0.0" y="2" width="320" height="76"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="viewSpam:" destination="Spv-H0-bQc" eventType="touchUpInside" id="8ga-rY-A4D"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <navigationItem key="navigationItem" id="KBv-HE-LPE"/>
                     <connections>
                         <outlet property="cartButton" destination="Vfm-1i-dqn" id="zEo-jd-l37"/>
                         <outlet property="drop" destination="SgP-j4-BZ7" id="Olb-Ux-otE"/>
-                        <outlet property="imageView" destination="gVF-vp-hsp" id="Z3D-Gz-QI9"/>
+                        <outlet property="imageButton" destination="i3A-TY-oUU" id="AVc-Lz-JfW"/>
                         <outlet property="menuButton" destination="x4R-f4-uLk" id="UT5-uE-bqv"/>
                         <outlet property="pickerView" destination="xOG-l4-ES5" id="MCG-DE-YrM"/>
                         <outlet property="restorantsButton" destination="AbR-Mz-AtW" id="gbt-Gd-h7V"/>
@@ -1170,7 +1181,6 @@
                 <relationship kind="outlet" name="cartButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="drop" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="imageButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="menuButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
                 <relationship kind="outlet" name="restorantsButton" candidateClass="UIButton"/>
