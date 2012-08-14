@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'SSToolkit' target in the 'SSToolkit' project
-//
-
-#ifdef __OBJC__
-    #import <Foundation/Foundation.h>
-#endif
