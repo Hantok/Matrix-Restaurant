@@ -17,6 +17,7 @@
 #import "ProductDataStruct.h"
 #import "ProductDetailViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "checkConnection.h"
 
 //first commit
 
@@ -36,7 +37,8 @@
 @property (strong, nonatomic) NSMutableArray *arrayOfObjects;
 @property (strong, nonatomic) NSIndexPath *selectedPath;
 @property (nonatomic) NSInteger numberOfRows;
-@property(nonatomic, copy) NSArray *animationImages;
+@property (nonatomic, copy) NSArray *animationImages;
+@property (nonatomic,strong) UIAlertView *alert;
 
 - (void)startIconDownload:(MenuDataStruct *)appRecord forIndexPath:(NSIndexPath *)indexPath;
 
@@ -71,6 +73,7 @@
 @synthesize animationImages = _animationImages;
 @synthesize shouldBeReloaded = _shouldBeReloaded;
 @synthesize singleMenu = _singleMenu;
+@synthesize alert = _alert;
 
 
 - (IBAction)drop:(id)sender {
@@ -462,6 +465,7 @@
     [self setTableView:nil];
     [self setTableViewController:nil];
     [self setPickerView:nil];
+    [self setAlert:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -1066,22 +1070,45 @@
 {
     if (self.isCartMode)
     {
-        self.restorantsButton.titleLabel.text = @"Order";
-        UIActionSheet* actionSheet = [[UIActionSheet alloc] init];
-        [actionSheet setTitle:@"Choose method to get order:"];
-        [actionSheet setDelegate:(id)self];
-        [actionSheet addButtonWithTitle:@"Delivery"];
-        [actionSheet addButtonWithTitle:@"Delivery by time"];
-        [actionSheet addButtonWithTitle:@"Pick up"];
-        [actionSheet addButtonWithTitle:@"Cancel"];
-        actionSheet.cancelButtonIndex = actionSheet.numberOfButtons - 1;
-        [actionSheet showInView:self.view];
+        if (!checkConnection.hasConnectivity)
+        {
+            self.alert = [[UIAlertView alloc] initWithTitle:@"Internet error" message:@"No internet connection" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
+            [self.alert show];
+            [self performSelector:@selector(dismiss) withObject:nil afterDelay:2];
+        }
+        else
+            if(self.arrayOfObjects.count == 0)
+            {
+                self.alert = [[UIAlertView alloc] initWithTitle:@"Cart is empty." message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
+                [self.alert show];
+                [self performSelector:@selector(dismiss) withObject:nil afterDelay:2];
+
+            }
+            else
+            {
+                self.restorantsButton.titleLabel.text = @"Order";
+                UIActionSheet* actionSheet = [[UIActionSheet alloc] init];
+                [actionSheet setTitle:@"Choose method to get order:"];
+                [actionSheet setDelegate:(id)self];
+                [actionSheet addButtonWithTitle:@"Delivery"];
+                [actionSheet addButtonWithTitle:@"Delivery by time"];
+                [actionSheet addButtonWithTitle:@"Pick up"];
+                [actionSheet addButtonWithTitle:@"Cancel"];
+                actionSheet.cancelButtonIndex = actionSheet.numberOfButtons - 1;
+                [actionSheet showInView:self.view];
+            }
         
     }
     else
     {
         [self performSegueWithIdentifier:@"toRestaurantList" sender:nil];
     }
+}
+
+//private
+- (void) dismiss
+{
+    [self.alert dismissWithClickedButtonIndex:0 animated:YES];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex

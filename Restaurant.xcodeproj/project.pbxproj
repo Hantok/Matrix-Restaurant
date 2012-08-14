@@ -64,8 +64,53 @@
 		F53D73FC1594CE7800A420D1 /* Button_green_rev2.png in Resources */ = {isa = PBXBuildFile; fileRef = F53D73FB1594CE7800A420D1 /* Button_green_rev2.png */; };
 		F53D73FE1594DC3900A420D1 /* restaurants.png in Resources */ = {isa = PBXBuildFile; fileRef = F53D73FD1594DC3900A420D1 /* restaurants.png */; };
 		F53D74001594DDC400A420D1 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F53D73FF1594DDC400A420D1 /* 1.jpg */; };
-		F53D74041594E00500A420D1 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F53D74031594E00500A420D1 /* icon.png */; };
 		F53D74081594E30500A420D1 /* picture.png in Resources */ = {isa = PBXBuildFile; fileRef = F53D74071594E30500A420D1 /* picture.png */; };
+		F5513A0915DA3AA90083E075 /* IconDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 78EF80AD157381DD00478EEB /* IconDownloader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A0A15DA3AA90083E075 /* LoadAppViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 781B8F271546DBDD0074EDBD /* LoadAppViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A0B15DA3AA90083E075 /* MainMenuViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 781B8F2A1546DD590074EDBD /* MainMenuViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A0C15DA3AA90083E075 /* MenuListTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 786B29971546E85900486848 /* MenuListTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A0D15DA3AA90083E075 /* MenuIconViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F53AF16E1598876100EAA5AA /* MenuIconViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A0E15DA3AA90083E075 /* FavoritesTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5FA62461580D39700FBF70A /* FavoritesTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A0F15DA3AA90083E075 /* FavoritesIconViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F515440B15B03CCA00A2CB88 /* FavoritesIconViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A1015DA3AA90083E075 /* RestaurantViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 78005A0515778C8A0099F973 /* RestaurantViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A1115DA3AA90083E075 /* RestaurantDetailViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7851AC87157E45F10027BDDF /* RestaurantDetailViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A1215DA3AA90083E075 /* ReservationViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F596BFDA15CA8A1300C72B37 /* ReservationViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A1315DA3AA90083E075 /* MapViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7851AC8A157E52020027BDDF /* MapViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A1415DA3AA90083E075 /* MapViewAnnotation.h in Headers */ = {isa = PBXBuildFile; fileRef = F58E734D15D1358800CBCE65 /* MapViewAnnotation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A1515DA3AA90083E075 /* ProductDetailViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 786B29A31546EC3F00486848 /* ProductDetailViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A1615DA3AA90083E075 /* DeliveryViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5F021581588C017009EB482 /* DeliveryViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A1715DA3AA90083E075 /* AddressListTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5F2D69615AD7DBB00C5094B /* AddressListTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A1815DA3AA90083E075 /* SettingsTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 78354F7B155944F1001890F1 /* SettingsTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A1915DA3AA90083E075 /* LanguageAndCityTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F507216A156BE0D200D7ACC6 /* LanguageAndCityTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A1A15DA3AA90083E075 /* SocialViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5EBBBEF15A70F6000C07969 /* SocialViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A1B15DA3AA90083E075 /* MenuDataStruct.h in Headers */ = {isa = PBXBuildFile; fileRef = 78BA0E1C156E6A5E005C08D7 /* MenuDataStruct.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A1C15DA3AA90083E075 /* ProductDataStruct.h in Headers */ = {isa = PBXBuildFile; fileRef = 78BA0E23156E934B005C08D7 /* ProductDataStruct.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A1D15DA3AA90083E075 /* RestaurantDataStruct.h in Headers */ = {isa = PBXBuildFile; fileRef = 78005A0815778CCC0099F973 /* RestaurantDataStruct.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A1E15DA3AA90083E075 /* subViewSpam.h in Headers */ = {isa = PBXBuildFile; fileRef = F5B70D9515D178E200695FAA /* subViewSpam.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A1F15DA3AA90083E075 /* CartCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 78FB4D01154BF1CD0035236F /* CartCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A2015DA3AA90083E075 /* ProductCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 78864DE015497E7700D339B7 /* ProductCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A2115DA3AA90083E075 /* LanguageCell.h in Headers */ = {isa = PBXBuildFile; fileRef = F5072167156BD46900D7ACC6 /* LanguageCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A2215DA3AA90083E075 /* CityCell.h in Headers */ = {isa = PBXBuildFile; fileRef = F5E93A49156CFC6B005ED3ED /* CityCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A2315DA3AA90083E075 /* PickerViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D7DB781573B74300D4F6A2 /* PickerViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A2415DA3AA90083E075 /* RestaurantCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 78005A0B15778F0E0099F973 /* RestaurantCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A2515DA3AA90083E075 /* AddressCell.h in Headers */ = {isa = PBXBuildFile; fileRef = F5F2D69915ADB91400C5094B /* AddressCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A2615DA3AA90083E075 /* TotalCartCell.h in Headers */ = {isa = PBXBuildFile; fileRef = F507E85C15BED2E000B1A772 /* TotalCartCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A2715DA3AA90083E075 /* GettingCoreContent.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D3CF19156A9241003202BD /* GettingCoreContent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A2815DA3AA90083E075 /* Offers.h in Headers */ = {isa = PBXBuildFile; fileRef = 78354F7815590E07001890F1 /* Offers.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A2915DA3AA90083E075 /* XMLParse.h in Headers */ = {isa = PBXBuildFile; fileRef = 786B299A1546EA7400486848 /* XMLParse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A2A15DA3AA90083E075 /* checkConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = F5072158156BA2C200D7ACC6 /* checkConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A2B15DA3AA90083E075 /* RestaurantAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 781B8F161546DB870074EDBD /* RestaurantAppDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A2C15DA3AA90083E075 /* AFHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = F5C4297515AC2E1D00D4A061 /* AFHTTPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A2D15DA3AA90083E075 /* AFHTTPRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = F5C4297715AC2E1D00D4A061 /* AFHTTPRequestOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A2E15DA3AA90083E075 /* AFImageRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = F5C4297915AC2E1D00D4A061 /* AFImageRequestOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A2F15DA3AA90083E075 /* AFJSONRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = F5C4297B15AC2E1D00D4A061 /* AFJSONRequestOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A3015DA3AA90083E075 /* AFJSONUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = F5C4297D15AC2E1D00D4A061 /* AFJSONUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A3115DA3AA90083E075 /* AFNetworkActivityIndicatorManager.h in Headers */ = {isa = PBXBuildFile; fileRef = F5C4297F15AC2E1D00D4A061 /* AFNetworkActivityIndicatorManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A3215DA3AA90083E075 /* AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = F5C4298115AC2E1D00D4A061 /* AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A3315DA3AA90083E075 /* AFPropertyListRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = F5C4298215AC2E1D00D4A061 /* AFPropertyListRequestOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A3415DA3AA90083E075 /* AFURLConnectionOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = F5C4298415AC2E1D00D4A061 /* AFURLConnectionOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A3515DA3AA90083E075 /* AFXMLRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = F5C4298615AC2E1D00D4A061 /* AFXMLRequestOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A3615DA3AA90083E075 /* UIImageView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = F5C4298815AC2E1D00D4A061 /* UIImageView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F570141515D90C81005C0B41 /* libGMGridView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F57013FE15D90C5B005C0B41 /* libGMGridView.a */; };
 		F570141615D90C81005C0B41 /* libSSToolkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F570140A15D90C67005C0B41 /* libSSToolkit.a */; };
 		F58BD5AD156E7B8A00D31A09 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58BD5AC156E7B8A00D31A09 /* MessageUI.framework */; };
@@ -91,6 +136,8 @@
 		F5C4299115AC2E1D00D4A061 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C4298515AC2E1D00D4A061 /* AFURLConnectionOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F5C4299215AC2E1D00D4A061 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C4298715AC2E1D00D4A061 /* AFXMLRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F5C4299315AC2E1D00D4A061 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C4298915AC2E1D00D4A061 /* UIImageView+AFNetworking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F5E0D80515D953DA004BA70B /* icons.png in Resources */ = {isa = PBXBuildFile; fileRef = F5E0D80415D953DA004BA70B /* icons.png */; };
+		F5E0D80715D953FF004BA70B /* icons57.png in Resources */ = {isa = PBXBuildFile; fileRef = F5E0D80615D953FF004BA70B /* icons57.png */; };
 		F5E93A4B156CFC6B005ED3ED /* CityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E93A4A156CFC6B005ED3ED /* CityCell.m */; };
 		F5EBBBF115A70F6000C07969 /* SocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EBBBF015A70F6000C07969 /* SocialViewController.m */; };
 		F5F0215A1588C017009EB482 /* DeliveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F021591588C017009EB482 /* DeliveryViewController.m */; };
@@ -242,7 +289,6 @@
 		F53D73FB1594CE7800A420D1 /* Button_green_rev2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_green_rev2.png; sourceTree = "<group>"; };
 		F53D73FD1594DC3900A420D1 /* restaurants.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = restaurants.png; sourceTree = "<group>"; };
 		F53D73FF1594DDC400A420D1 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
-		F53D74031594E00500A420D1 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		F53D74071594E30500A420D1 /* picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = picture.png; sourceTree = "<group>"; };
 		F57013F615D90C5B005C0B41 /* GMGridView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GMGridView.xcodeproj; path = ../../GMGridView/GMGridView.xcodeproj; sourceTree = "<group>"; };
 		F57013FF15D90C66005C0B41 /* SSToolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SSToolkit.xcodeproj; path = ../../Vendor/SSToolkit/SSToolkit.xcodeproj; sourceTree = "<group>"; };
@@ -283,6 +329,8 @@
 		F5C4298715AC2E1D00D4A061 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFXMLRequestOperation.m; path = Restaurant/AFNetworking/AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		F5C4298815AC2E1D00D4A061 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+AFNetworking.h"; path = "Restaurant/AFNetworking/UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		F5C4298915AC2E1D00D4A061 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+AFNetworking.m"; path = "Restaurant/AFNetworking/UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		F5E0D80415D953DA004BA70B /* icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icons.png; sourceTree = "<group>"; };
+		F5E0D80615D953FF004BA70B /* icons57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icons57.png; sourceTree = "<group>"; };
 		F5E93A49156CFC6B005ED3ED /* CityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityCell.h; sourceTree = "<group>"; };
 		F5E93A4A156CFC6B005ED3ED /* CityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityCell.m; sourceTree = "<group>"; };
 		F5EBBBEF15A70F6000C07969 /* SocialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialViewController.h; sourceTree = "<group>"; };
@@ -327,6 +375,8 @@
 		781B8EF81546DB870074EDBD = {
 			isa = PBXGroup;
 			children = (
+				F5E0D80615D953FF004BA70B /* icons57.png */,
+				F5E0D80415D953DA004BA70B /* icons.png */,
 				781B8F0D1546DB870074EDBD /* Restaurant */,
 				781B8F061546DB870074EDBD /* Frameworks */,
 				781B8F041546DB870074EDBD /* Products */,
@@ -385,7 +435,6 @@
 		781B8F0E1546DB870074EDBD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				F53D74031594E00500A420D1 /* icon.png */,
 				781B8F0F1546DB870074EDBD /* Restaurant-Info.plist */,
 				781B8F101546DB870074EDBD /* InfoPlist.strings */,
 				781B8F131546DB870074EDBD /* main.m */,
@@ -605,6 +654,62 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		F5513A0815DA3A0E0083E075 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5513A0915DA3AA90083E075 /* IconDownloader.h in Headers */,
+				F5513A0A15DA3AA90083E075 /* LoadAppViewController.h in Headers */,
+				F5513A0B15DA3AA90083E075 /* MainMenuViewController.h in Headers */,
+				F5513A0C15DA3AA90083E075 /* MenuListTableViewController.h in Headers */,
+				F5513A0D15DA3AA90083E075 /* MenuIconViewController.h in Headers */,
+				F5513A0E15DA3AA90083E075 /* FavoritesTableViewController.h in Headers */,
+				F5513A0F15DA3AA90083E075 /* FavoritesIconViewController.h in Headers */,
+				F5513A1015DA3AA90083E075 /* RestaurantViewController.h in Headers */,
+				F5513A1115DA3AA90083E075 /* RestaurantDetailViewController.h in Headers */,
+				F5513A1215DA3AA90083E075 /* ReservationViewController.h in Headers */,
+				F5513A1315DA3AA90083E075 /* MapViewController.h in Headers */,
+				F5513A1415DA3AA90083E075 /* MapViewAnnotation.h in Headers */,
+				F5513A1515DA3AA90083E075 /* ProductDetailViewController.h in Headers */,
+				F5513A1615DA3AA90083E075 /* DeliveryViewController.h in Headers */,
+				F5513A1715DA3AA90083E075 /* AddressListTableViewController.h in Headers */,
+				F5513A1815DA3AA90083E075 /* SettingsTableViewController.h in Headers */,
+				F5513A1915DA3AA90083E075 /* LanguageAndCityTableViewController.h in Headers */,
+				F5513A1A15DA3AA90083E075 /* SocialViewController.h in Headers */,
+				F5513A1B15DA3AA90083E075 /* MenuDataStruct.h in Headers */,
+				F5513A1C15DA3AA90083E075 /* ProductDataStruct.h in Headers */,
+				F5513A1D15DA3AA90083E075 /* RestaurantDataStruct.h in Headers */,
+				F5513A1E15DA3AA90083E075 /* subViewSpam.h in Headers */,
+				F5513A1F15DA3AA90083E075 /* CartCell.h in Headers */,
+				F5513A2015DA3AA90083E075 /* ProductCell.h in Headers */,
+				F5513A2115DA3AA90083E075 /* LanguageCell.h in Headers */,
+				F5513A2215DA3AA90083E075 /* CityCell.h in Headers */,
+				F5513A2315DA3AA90083E075 /* PickerViewCell.h in Headers */,
+				F5513A2415DA3AA90083E075 /* RestaurantCell.h in Headers */,
+				F5513A2515DA3AA90083E075 /* AddressCell.h in Headers */,
+				F5513A2615DA3AA90083E075 /* TotalCartCell.h in Headers */,
+				F5513A2715DA3AA90083E075 /* GettingCoreContent.h in Headers */,
+				F5513A2815DA3AA90083E075 /* Offers.h in Headers */,
+				F5513A2915DA3AA90083E075 /* XMLParse.h in Headers */,
+				F5513A2A15DA3AA90083E075 /* checkConnection.h in Headers */,
+				F5513A2B15DA3AA90083E075 /* RestaurantAppDelegate.h in Headers */,
+				F5513A2C15DA3AA90083E075 /* AFHTTPClient.h in Headers */,
+				F5513A2D15DA3AA90083E075 /* AFHTTPRequestOperation.h in Headers */,
+				F5513A2E15DA3AA90083E075 /* AFImageRequestOperation.h in Headers */,
+				F5513A2F15DA3AA90083E075 /* AFJSONRequestOperation.h in Headers */,
+				F5513A3015DA3AA90083E075 /* AFJSONUtilities.h in Headers */,
+				F5513A3115DA3AA90083E075 /* AFNetworkActivityIndicatorManager.h in Headers */,
+				F5513A3215DA3AA90083E075 /* AFNetworking.h in Headers */,
+				F5513A3315DA3AA90083E075 /* AFPropertyListRequestOperation.h in Headers */,
+				F5513A3415DA3AA90083E075 /* AFURLConnectionOperation.h in Headers */,
+				F5513A3515DA3AA90083E075 /* AFXMLRequestOperation.h in Headers */,
+				F5513A3615DA3AA90083E075 /* UIImageView+AFNetworking.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		781B8F021546DB870074EDBD /* Restaurant */ = {
 			isa = PBXNativeTarget;
@@ -613,6 +718,7 @@
 				781B8EFF1546DB870074EDBD /* Sources */,
 				781B8F001546DB870074EDBD /* Frameworks */,
 				781B8F011546DB870074EDBD /* Resources */,
+				F5513A0815DA3A0E0083E075 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -736,7 +842,6 @@
 				F53D73FC1594CE7800A420D1 /* Button_green_rev2.png in Resources */,
 				F53D73FE1594DC3900A420D1 /* restaurants.png in Resources */,
 				F53D74001594DDC400A420D1 /* 1.jpg in Resources */,
-				F53D74041594E00500A420D1 /* icon.png in Resources */,
 				F53D74081594E30500A420D1 /* picture.png in Resources */,
 				F5056DDB15A33F94000C14D1 /* close_x.png in Resources */,
 				F51B206215AB2EE600074DA1 /* white-cart_big.png in Resources */,
@@ -748,6 +853,8 @@
 				F591ECDE15CEEE11006BD0E6 /* MyLoc.png in Resources */,
 				F5B70D9915D178E200695FAA /* subViewSpam.xib in Resources */,
 				F5FD7EB315D91C98006BCD6C /* 2.jpg in Resources */,
+				F5E0D80515D953DA004BA70B /* icons.png in Resources */,
+				F5E0D80715D953FF004BA70B /* icons57.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -881,10 +988,10 @@
 					"~/Library/Vendor/SSToolkit",
 					"~/Library/GMGridView",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "~/Library/Vendor/SSToolkit ~/Library/GMGridView";
 			};
 			name = Debug;
@@ -896,7 +1003,7 @@
 				APPLY_RULES_IN_COPY_FILES = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -907,11 +1014,12 @@
 					"~/Library/Vendor/SSToolkit",
 					"~/Library/GMGridView",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "~/Library/Vendor/SSToolkit ~/Library/GMGridView";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -920,7 +1028,7 @@
 		781B8F251546DB870074EDBD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Oguz Demir (5C3QGJ6V4B)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Oguz Demir (5C3QGJ6V4B)";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -945,7 +1053,7 @@
 		781B8F261546DB870074EDBD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Oguz Demir (5C3QGJ6V4B)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Oguz Demir (5C3QGJ6V4B)";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
