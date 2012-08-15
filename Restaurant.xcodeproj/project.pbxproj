@@ -1053,8 +1053,8 @@
 		781B8F261546DB870074EDBD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Oguz Demir (5C3QGJ6V4B)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Oguz Demir (5C3QGJ6V4B)";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Restaurant/Restaurant-Prefix.pch";
