@@ -67,6 +67,27 @@
     if (buttonIndex == 0)
     {
         NSLog(@"Twitter");
+        if ([TWTweetComposeViewController canSendTweet])
+        {
+            TWTweetComposeViewController *tweetSheet = [[TWTweetComposeViewController alloc] init];
+            [tweetSheet setInitialText:[NSString stringWithFormat:@"I like %@ from www.matrix-soft.org =)", self.product.title]];
+            
+            [self presentModalViewController:tweetSheet animated:YES];
+        }
+        else
+        {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Sorry"
+                                                                message:@"You can't send a tweet right now, make sure your device has an internet connection and you have at least one Twitter account setup"
+                                                               delegate:self
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+            [alertView show];
+        }
+
+    }
+    else
+    {
+        NSLog(@"Facebook");
     }
 }
 

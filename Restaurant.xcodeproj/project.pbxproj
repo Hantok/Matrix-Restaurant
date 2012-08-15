@@ -74,7 +74,7 @@
 		F5513A0F15DA3AA90083E075 /* FavoritesIconViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F515440B15B03CCA00A2CB88 /* FavoritesIconViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F5513A1015DA3AA90083E075 /* RestaurantViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 78005A0515778C8A0099F973 /* RestaurantViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F5513A1115DA3AA90083E075 /* RestaurantDetailViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7851AC87157E45F10027BDDF /* RestaurantDetailViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A1215DA3AA90083E075 /* ReservationViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F596BFDA15CA8A1300C72B37 /* ReservationViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A1215DA3AA90083E075 /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
 		F5513A1315DA3AA90083E075 /* MapViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7851AC8A157E52020027BDDF /* MapViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F5513A1415DA3AA90083E075 /* MapViewAnnotation.h in Headers */ = {isa = PBXBuildFile; fileRef = F58E734D15D1358800CBCE65 /* MapViewAnnotation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F5513A1515DA3AA90083E075 /* ProductDetailViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 786B29A31546EC3F00486848 /* ProductDetailViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -121,6 +121,7 @@
 		F59344EB157F77DA0080EDE3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F59344EA157F77DA0080EDE3 /* AudioToolbox.framework */; };
 		F59344F7157F8D730080EDE3 /* images.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F59344F6157F8D730080EDE3 /* images.jpeg */; };
 		F599588115875CCF0000469F /* Settings1.png in Resources */ = {isa = PBXBuildFile; fileRef = F599588015875CCF0000469F /* Settings1.png */; };
+		F5ACDBCA15DBEE510074E028 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5ACDBC915DBEE510074E028 /* Twitter.framework */; };
 		F5B4609615C2B78F00A6815C /* Cart1.PNG in Resources */ = {isa = PBXBuildFile; fileRef = F5B4609515C2B78F00A6815C /* Cart1.PNG */; };
 		F5B4609A15C2BF7900A6815C /* shopping-cart.png in Resources */ = {isa = PBXBuildFile; fileRef = F5B4609915C2BF7900A6815C /* shopping-cart.png */; };
 		F5B4609C15C2D4A500A6815C /* metro.png in Resources */ = {isa = PBXBuildFile; fileRef = F5B4609B15C2D4A500A6815C /* metro.png */; };
@@ -302,6 +303,7 @@
 		F59344EA157F77DA0080EDE3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		F59344F6157F8D730080EDE3 /* images.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = images.jpeg; sourceTree = "<group>"; };
 		F599588015875CCF0000469F /* Settings1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Settings1.png; sourceTree = "<group>"; };
+		F5ACDBC915DBEE510074E028 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		F5B4609515C2B78F00A6815C /* Cart1.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cart1.PNG; sourceTree = "<group>"; };
 		F5B4609915C2BF7900A6815C /* shopping-cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shopping-cart.png"; sourceTree = "<group>"; };
 		F5B4609B15C2D4A500A6815C /* metro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metro.png; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5ACDBCA15DBEE510074E028 /* Twitter.framework in Frameworks */,
 				F570141515D90C81005C0B41 /* libGMGridView.a in Frameworks */,
 				F570141615D90C81005C0B41 /* libSSToolkit.a in Frameworks */,
 				F591ECD815CD723C006BD0E6 /* CoreLocation.framework in Frameworks */,
@@ -392,6 +395,7 @@
 		781B8F061546DB870074EDBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F5ACDBC915DBEE510074E028 /* Twitter.framework */,
 				F57013FF15D90C66005C0B41 /* SSToolkit.xcodeproj */,
 				F57013F615D90C5B005C0B41 /* GMGridView.xcodeproj */,
 				F5DCCB7615A3279500739B11 /* AFNetworking */,
@@ -668,7 +672,7 @@
 				F5513A0F15DA3AA90083E075 /* FavoritesIconViewController.h in Headers */,
 				F5513A1015DA3AA90083E075 /* RestaurantViewController.h in Headers */,
 				F5513A1115DA3AA90083E075 /* RestaurantDetailViewController.h in Headers */,
-				F5513A1215DA3AA90083E075 /* ReservationViewController.h in Headers */,
+				F5513A1215DA3AA90083E075 /* (null) in Headers */,
 				F5513A1315DA3AA90083E075 /* MapViewController.h in Headers */,
 				F5513A1415DA3AA90083E075 /* MapViewAnnotation.h in Headers */,
 				F5513A1515DA3AA90083E075 /* ProductDetailViewController.h in Headers */,
