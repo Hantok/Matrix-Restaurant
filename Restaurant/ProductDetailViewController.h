@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ProductDataStruct.h"
 #import "GettingCoreContent.h"
+#import <Twitter/Twitter.h>
 
 @interface ProductDetailViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UIAlertViewDelegate>
 
