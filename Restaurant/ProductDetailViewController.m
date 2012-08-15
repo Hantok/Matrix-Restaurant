@@ -31,7 +31,7 @@
 @synthesize cartButton = _cartButton;
 @synthesize count = _count;
 @synthesize productImage = _productImage;
-@synthesize addToFavorites = _addToFavorites;
+@synthesize shareButton = _addToFavorites;
 @synthesize nameLabal = _nameLabal;
 @synthesize isInFavorites = _isInFavorites;
 @synthesize labelString = _labelString;
@@ -48,6 +48,26 @@
 {
     self.labelString = labelString;
     [_product setCount:[NSNumber numberWithInt:0]];
+}
+
+- (IBAction)share:(id)sender
+{
+    UIActionSheet* actionSheet = [[UIActionSheet alloc] init];
+    [actionSheet setTitle:@"Share wia:"];
+    [actionSheet setDelegate:(id)self];
+    [actionSheet addButtonWithTitle:@"Twitter"];
+    [actionSheet addButtonWithTitle:@"Facebook"];
+    [actionSheet addButtonWithTitle:@"Cancel"];
+    actionSheet.cancelButtonIndex = actionSheet.numberOfButtons - 1;
+    [actionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        NSLog(@"Twitter");
+    }
 }
 
 - (GettingCoreContent *)db
@@ -262,7 +282,7 @@
     [self setPriceLabel:nil];
     [self setCartButton:nil];
     [self setProductImage:nil];
-    [self setAddToFavorites:nil];
+    [self setShareButton:nil];
     [self setNameLabal:nil];
     [self setAlert:nil];
     
