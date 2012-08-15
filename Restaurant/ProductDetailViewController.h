@@ -19,11 +19,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *cartButton;
 @property (weak, nonatomic) IBOutlet UIImageView *productImage;
-@property (strong, nonatomic) IBOutlet UIButton *addToFavorites;
+@property (strong, nonatomic) IBOutlet UIButton *shareButton;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabal;
 
 - (void)setProduct:(ProductDataStruct *)product isFromFavorites:(BOOL)boolValue;
 
 -(void)setLabelOfAddingButtonWithString:(NSString *)labelString withIndexPathInDB:(NSIndexPath *)indexPath;
+- (IBAction)share:(id)sender;
 
 @end

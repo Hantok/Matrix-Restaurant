@@ -1131,6 +1131,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="share:" destination="WSq-ly-76H" eventType="touchUpInside" id="h8I-4U-xro"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="HzJ-9C-UvQ">
                                 <rect key="frame" x="45" y="228" width="156" height="28"/>
@@ -1149,12 +1152,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addToFavorites" destination="yE6-m4-3eB" id="YiS-Qv-wga"/>
                         <outlet property="cartButton" destination="lul-tu-ZdZ" id="aqe-Mq-eS4"/>
                         <outlet property="countPickerView" destination="Q3C-9E-HzQ" id="GqV-zv-PNI"/>
                         <outlet property="nameLabal" destination="HzJ-9C-UvQ" id="zXv-tb-PTW"/>
                         <outlet property="priceLabel" destination="R9E-Xi-VMX" id="HS3-9B-Luk"/>
                         <outlet property="productImage" destination="03Y-MB-NfZ" id="cL4-Ib-bWw"/>
+                        <outlet property="shareButton" destination="yE6-m4-3eB" id="jic-aG-mlx"/>
                     </connections>
                 </viewController>
             </objects>
