@@ -18,7 +18,6 @@
 
 - (IBAction)hideButton:(id)sender;
 - (IBAction)okButton:(id)sender;
-- (IBAction)showDatePicker:(id)sender;
 - (IBAction)keyboardHide:(id)sender;
 
 @end

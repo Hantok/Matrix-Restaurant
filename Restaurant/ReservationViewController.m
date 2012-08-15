@@ -68,6 +68,12 @@
     if (textField == self.dateOfReservation) {
         [self.name resignFirstResponder];
         [self.numberOfPeople resignFirstResponder];
+        
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.3];
+        pickerViewContainer.frame = CGRectMake(0, 156, 320, 260);
+        [UIView commitAnimations];
+                
         return NO;
     }
     return YES;
@@ -132,14 +138,6 @@
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
     pickerViewContainer.frame = CGRectMake(0, 460, 320, 260);
-    [UIView commitAnimations];
-
-}
-
-- (IBAction)showDatePicker:(id)sender {
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
-    pickerViewContainer.frame = CGRectMake(0, 156, 320, 260);
     [UIView commitAnimations];
 
 }
