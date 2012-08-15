@@ -70,11 +70,11 @@
 		F570141615D90C81005C0B41 /* libSSToolkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F570140A15D90C67005C0B41 /* libSSToolkit.a */; };
 		F58BD5AD156E7B8A00D31A09 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58BD5AC156E7B8A00D31A09 /* MessageUI.framework */; };
 		F58E734F15D1358800CBCE65 /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = F58E734E15D1358800CBCE65 /* MapViewAnnotation.m */; };
+		F58EC35615DB8A4E00ADBA80 /* ReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58EC35515DB8A4E00ADBA80 /* ReservationViewController.m */; };
 		F591ECD815CD723C006BD0E6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F591ECD715CD723C006BD0E6 /* CoreLocation.framework */; };
 		F591ECDE15CEEE11006BD0E6 /* MyLoc.png in Resources */ = {isa = PBXBuildFile; fileRef = F591ECDD15CEEE10006BD0E6 /* MyLoc.png */; };
 		F59344EB157F77DA0080EDE3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F59344EA157F77DA0080EDE3 /* AudioToolbox.framework */; };
 		F59344F7157F8D730080EDE3 /* images.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F59344F6157F8D730080EDE3 /* images.jpeg */; };
-		F596BFDC15CA8A1300C72B37 /* ReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F596BFDB15CA8A1300C72B37 /* ReservationViewController.m */; };
 		F599588115875CCF0000469F /* Settings1.png in Resources */ = {isa = PBXBuildFile; fileRef = F599588015875CCF0000469F /* Settings1.png */; };
 		F5B4609615C2B78F00A6815C /* Cart1.PNG in Resources */ = {isa = PBXBuildFile; fileRef = F5B4609515C2B78F00A6815C /* Cart1.PNG */; };
 		F5B4609A15C2BF7900A6815C /* shopping-cart.png in Resources */ = {isa = PBXBuildFile; fileRef = F5B4609915C2BF7900A6815C /* shopping-cart.png */; };
@@ -249,12 +249,12 @@
 		F58BD5AC156E7B8A00D31A09 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		F58E734D15D1358800CBCE65 /* MapViewAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewAnnotation.h; sourceTree = "<group>"; };
 		F58E734E15D1358800CBCE65 /* MapViewAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewAnnotation.m; sourceTree = "<group>"; };
+		F58EC35415DB8A4E00ADBA80 /* ReservationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservationViewController.h; sourceTree = "<group>"; };
+		F58EC35515DB8A4E00ADBA80 /* ReservationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservationViewController.m; sourceTree = "<group>"; };
 		F591ECD715CD723C006BD0E6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F591ECDD15CEEE10006BD0E6 /* MyLoc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MyLoc.png; sourceTree = "<group>"; };
 		F59344EA157F77DA0080EDE3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		F59344F6157F8D730080EDE3 /* images.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = images.jpeg; sourceTree = "<group>"; };
-		F596BFDA15CA8A1300C72B37 /* ReservationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservationViewController.h; sourceTree = "<group>"; };
-		F596BFDB15CA8A1300C72B37 /* ReservationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservationViewController.m; sourceTree = "<group>"; };
 		F599588015875CCF0000469F /* Settings1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Settings1.png; sourceTree = "<group>"; };
 		F5B4609515C2B78F00A6815C /* Cart1.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cart1.PNG; sourceTree = "<group>"; };
 		F5B4609915C2BF7900A6815C /* shopping-cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shopping-cart.png"; sourceTree = "<group>"; };
@@ -397,6 +397,8 @@
 		783EB967156FAF3A001E5BF1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				F58EC35415DB8A4E00ADBA80 /* ReservationViewController.h */,
+				F58EC35515DB8A4E00ADBA80 /* ReservationViewController.m */,
 				781B8F271546DBDD0074EDBD /* LoadAppViewController.h */,
 				781B8F281546DBDD0074EDBD /* LoadAppViewController.m */,
 				781B8F2A1546DD590074EDBD /* MainMenuViewController.h */,
@@ -406,8 +408,6 @@
 				78005A0615778C8A0099F973 /* RestaurantViewController.m */,
 				7851AC87157E45F10027BDDF /* RestaurantDetailViewController.h */,
 				7851AC88157E45F10027BDDF /* RestaurantDetailViewController.m */,
-				F596BFDA15CA8A1300C72B37 /* ReservationViewController.h */,
-				F596BFDB15CA8A1300C72B37 /* ReservationViewController.m */,
 				7851AC8A157E52020027BDDF /* MapViewController.h */,
 				7851AC8B157E52020027BDDF /* MapViewController.m */,
 				F58E734D15D1358800CBCE65 /* MapViewAnnotation.h */,
@@ -802,9 +802,9 @@
 				F5F2D69B15ADB91500C5094B /* AddressCell.m in Sources */,
 				F515440D15B03CCB00A2CB88 /* FavoritesIconViewController.m in Sources */,
 				F507E85E15BED2E000B1A772 /* TotalCartCell.m in Sources */,
-				F596BFDC15CA8A1300C72B37 /* ReservationViewController.m in Sources */,
 				F58E734F15D1358800CBCE65 /* MapViewAnnotation.m in Sources */,
 				F5B70D9815D178E200695FAA /* subViewSpam.m in Sources */,
+				F58EC35615DB8A4E00ADBA80 /* ReservationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -946,7 +946,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Oguz Demir (5C3QGJ6V4B)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Oguz Demir (5C3QGJ6V4B)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Restaurant/Restaurant-Prefix.pch";

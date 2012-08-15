@@ -164,7 +164,7 @@
 //    [self.alert show];
 //    [self performSelector:@selector(dismiss) withObject:nil afterDelay:2];
     
-    [self performSegueWithIdentifier:@"reserve" sender:self];
+//    [self performSegueWithIdentifier:@"reserve" sender:self];
 }
 
 - (void) dismiss
