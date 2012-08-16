@@ -8,6 +8,7 @@
 
 #import "RestaurantAppDelegate.h"
 #import "CoreData/CoreData.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @implementation RestaurantAppDelegate
 
@@ -15,6 +16,14 @@
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    // attempt to extract a token from the url
+    return [FBSession.activeSession handleOpenURL:url];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -48,6 +57,10 @@
 {
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
+    
+    // FBSample logic
+    // if the app is going away, we close the session object
+    [FBSession.activeSession close];
 }
 
 - (void)saveContext

@@ -11,15 +11,21 @@
 #import "SSToolkit/SSToolkit.h"
 #import "checkConnection.h"
 
-@interface ProductDetailViewController ()
+#import <FacebookSDK/FacebookSDK.h>
+
+@interface ProductDetailViewController () <FBLoginViewDelegate>
 {
     BOOL isDownloadingPicture;
+    BOOL facebookIn;
 }
 
 @property BOOL isInFavorites;
 @property (strong, nonatomic) NSString *labelString;
 @property (strong, nonatomic) UIAlertView *alert;
 @property (nonatomic, strong) SSLoadingView *loadingView;
+@property (strong, nonatomic) id<FBGraphUser> loggedInUser;
+@property (strong, nonatomic) UIView *facebookView;
+@property (strong, nonatomic) FBProfilePictureView *fbProfilePictureView;
 
 @end
 
@@ -37,6 +43,9 @@
 @synthesize labelString = _labelString;
 @synthesize alert = _alert;
 @synthesize loadingView = _loadingView;
+@synthesize loggedInUser = _loggedInUser;
+@synthesize facebookView = _facebookView;
+@synthesize fbProfilePictureView = _fbProfilePictureView;
 
 - (void)setProduct:(ProductDataStruct *)product isFromFavorites:(BOOL)boolValue
 {
@@ -87,8 +96,102 @@
     }
     else
     {
-        NSLog(@"Facebook");
+        self.facebookView = [[UIView alloc] initWithFrame:self.view.frame];
+        self.facebookView.backgroundColor = [UIColor darkGrayColor];
+//        UITextView *text = [[UITextView alloc] initWithFrame:CGRectMake(self.facebookView.bounds.origin.x, self.facebookView.bounds.origin.y, self.facebookView.bounds.size.width/2, self.facebookView.bounds.size.height)];
+        
+        FBLoginView *loginview =
+        [[FBLoginView alloc] initWithPermissions:[NSArray arrayWithObject:@"status_update"]];
+        loginview.frame = CGRectOffset(loginview.frame, 5, 5);
+        loginview.delegate = self;
+        [loginview sizeToFit];
+        
+        [self.facebookView addSubview:loginview];
+        
+        self.fbProfilePictureView = [[FBProfilePictureView alloc] initWithFrame:CGRectMake(95, 102, 130,130)];
+        [self.facebookView addSubview:self.fbProfilePictureView];
+        
+        UIButton *exitButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        exitButton.frame = self.shareButton.frame;
+        [exitButton addTarget:self action:@selector(removeMySelf) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self.facebookView addSubview:exitButton];
+        
+        
+        if (facebookIn == YES)
+        {
+            NSString *message = [NSString stringWithFormat:@"Updating %@'s status at %@",
+                                 self.loggedInUser.first_name, [NSDate date]];
+            
+            [FBRequestConnection startForPostStatusUpdate:message
+                                        completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                                            
+                                            [self showAlert:message result:result error:error];
+                                            //self.buttonPostStatus.enabled = YES;
+                                        }];
+            
+    //        self.buttonPostStatus.enabled = NO;
+            NSLog(@"Facebook");
+        }
+        
+        
+        
+        [self.view addSubview:self.facebookView];
     }
+}
+
+- (void)removeMySelf
+{
+    [self.facebookView removeFromSuperview];
+}
+
+- (void)showAlert:(NSString *)message
+           result:(id)result
+            error:(NSError *)error {
+    
+    NSString *alertMsg;
+    NSString *alertTitle;
+    if (error) {
+        alertMsg = error.localizedDescription;
+        alertTitle = @"Error";
+    } else {
+        NSDictionary *resultDict = (NSDictionary *)result;
+        alertMsg = [NSString stringWithFormat:@"Successfully posted '%@'.\nPost ID: %@",
+                    message, [resultDict valueForKey:@"id"]];
+        alertTitle = @"Success";
+    }
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:alertTitle
+                                                        message:alertMsg
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    [alertView show];
+}
+
+
+- (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView
+{
+    NSLog(@"In");
+    facebookIn = YES;
+}
+
+- (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView
+{
+    NSLog(@"Out");
+    facebookIn = NO;
+}
+
+- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
+                            user:(id<FBGraphUser>)user {
+    // here we use helper properties of FBGraphUser to dot-through to first_name and
+    // id properties of the json response from the server; alternatively we could use
+    // NSDictionary methods such as objectForKey to get values from the my json object
+//    self.labelFirstName.text = [NSString stringWithFormat:@"Hello %@!", user.first_name];
+    // setting the profileID property of the FBProfilePictureView instance
+    // causes the control to fetch and display the profile picture for the user
+    self.fbProfilePictureView.profileID = user.id;
+    self.loggedInUser = user;
 }
 
 - (GettingCoreContent *)db
@@ -310,6 +413,7 @@
     [self setLoadingView:nil];
     [self setDb:nil];
     [self setProduct:nil];
+    [self setLoggedInUser:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
