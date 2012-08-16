@@ -49,7 +49,7 @@
                                                                  action:@selector(didTapAnywhere:)];
     
     pickerViewContainer.frame = CGRectMake(0, 460, 320, 261);
-
+    
 }
 
 - (void)viewDidUnload
@@ -73,6 +73,10 @@
         [UIView setAnimationDuration:0.3];
         pickerViewContainer.frame = CGRectMake(0, 156, 320, 260);
         [UIView commitAnimations];
+        
+        [datePicker setMinimumDate:[datePicker date]];
+//        [datePicker setMaximumDate:[[datePicker date] dateByAddingTimeInterval:86400 * 1]];
+
                 
         return NO;
     }
@@ -122,7 +126,7 @@
 }
 
 - (IBAction)okButton:(id)sender {
-    
+        
     //  get the current date
     NSDate *date = [datePicker date];
     
