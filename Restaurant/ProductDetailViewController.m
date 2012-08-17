@@ -13,10 +13,10 @@
 
 #import <FacebookSDK/FacebookSDK.h>
 
-@interface ProductDetailViewController () <FBLoginViewDelegate>
+@interface ProductDetailViewController () <FBLoginViewDelegate, UITextViewDelegate>
 {
     BOOL isDownloadingPicture;
-    BOOL facebookIn;
+    BOOL isDeletingFromCart;
 }
 
 @property BOOL isInFavorites;
@@ -26,6 +26,11 @@
 @property (strong, nonatomic) id<FBGraphUser> loggedInUser;
 @property (strong, nonatomic) UIView *facebookView;
 @property (strong, nonatomic) FBProfilePictureView *fbProfilePictureView;
+@property (strong, nonatomic) FBLoginView *loginview;
+@property (strong, nonatomic) UIButton *postOnWallButton;
+@property (strong, nonatomic) UIButton *tellFriendButton;
+@property (strong, nonatomic) UIActivityIndicatorView *indicator;
+@property (strong, nonatomic) UITextView *textView;
 
 @end
 
@@ -46,6 +51,11 @@
 @synthesize loggedInUser = _loggedInUser;
 @synthesize facebookView = _facebookView;
 @synthesize fbProfilePictureView = _fbProfilePictureView;
+@synthesize loginview = _loginview;
+@synthesize postOnWallButton = _postOnWallButton;
+@synthesize tellFriendButton = _tellFriendButton;
+@synthesize indicator = _indicator;
+@synthesize textView = _textView;
 
 - (void)setProduct:(ProductDataStruct *)product isFromFavorites:(BOOL)boolValue
 {
@@ -96,53 +106,164 @@
     }
     else
     {
-        self.facebookView = [[UIView alloc] initWithFrame:self.view.frame];
-        self.facebookView.backgroundColor = [UIColor darkGrayColor];
+//        self.facebookView = [[UIView alloc] initWithFrame:CGRectMake(0,110, 320, 350)];
+        
+        [self.navigationController setNavigationBarHidden:YES animated:NO];
+        
+        if (!self.facebookView)
+        {
+            self.facebookView = [[UIView alloc] initWithFrame:self.view.frame];
+            self.facebookView.backgroundColor = [UIColor whiteColor];
+        }
 //        UITextView *text = [[UITextView alloc] initWithFrame:CGRectMake(self.facebookView.bounds.origin.x, self.facebookView.bounds.origin.y, self.facebookView.bounds.size.width/2, self.facebookView.bounds.size.height)];
         
-        FBLoginView *loginview =
-        [[FBLoginView alloc] initWithPermissions:[NSArray arrayWithObject:@"status_update"]];
-        loginview.frame = CGRectOffset(loginview.frame, 5, 5);
-        loginview.delegate = self;
-        [loginview sizeToFit];
-        
-        [self.facebookView addSubview:loginview];
-        
-        self.fbProfilePictureView = [[FBProfilePictureView alloc] initWithFrame:CGRectMake(95, 102, 130,130)];
-        [self.facebookView addSubview:self.fbProfilePictureView];
-        
-        UIButton *exitButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        exitButton.frame = self.shareButton.frame;
-        [exitButton addTarget:self action:@selector(removeMySelf) forControlEvents:UIControlEventTouchUpInside];
-        
-        [self.facebookView addSubview:exitButton];
-        
-        
-        if (facebookIn == YES)
+
+
+        if (!self.loginview)
         {
-            NSString *message = [NSString stringWithFormat:@"Updating %@'s status at %@",
-                                 self.loggedInUser.first_name, [NSDate date]];
-            
-            [FBRequestConnection startForPostStatusUpdate:message
-                                        completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-                                            
-                                            [self showAlert:message result:result error:error];
-                                            //self.buttonPostStatus.enabled = YES;
-                                        }];
-            
-    //        self.buttonPostStatus.enabled = NO;
-            NSLog(@"Facebook");
+//            if ([[FBSession activeSession] isOpen])
+//            {
+////                [[FBSession activeSession] close];
+//                //_loginview = nil;
+//                self.loginview = [[FBLoginView alloc] init];
+//            }
+//            else
+//            {
+            self.loginview = [[FBLoginView alloc] initWithPermissions:[NSArray arrayWithObject:@"status_update"]];
+//            }
+            self.loginview.frame = CGRectOffset(self.loginview.frame, 5, 5);
+            self.loginview.delegate = self;
+            [self.loginview sizeToFit];
+            [self.facebookView addSubview:self.loginview];
         }
         
         
+        if (!self.fbProfilePictureView)
+        {
+            self.fbProfilePictureView = [[FBProfilePictureView alloc] initWithFrame:CGRectMake(20, 70, 100, 100)];
+            [self.facebookView addSubview:self.fbProfilePictureView];
+        }
         
+        self.textView = [[UITextView alloc] initWithFrame:CGRectMake(127, 70, 173, 100)];
+        [self.facebookView addSubview:self.textView];
+        self.textView.text = [NSString stringWithFormat:@"I like %@ from www.matrix-soft.org =)", self.product.title];
+        [self.textView setReturnKeyType:UIReturnKeyDone];
+        [self.textView setDelegate:self];
+        [self.textView.layer setBorderColor:[[UIColor colorWithRed:59.0f/255.0f green:89.0f/255.0f blue:182.0f/255.0f alpha:1.0f] CGColor]];
+        [self.textView.layer setBorderWidth:2];
+        [self.textView.layer setCornerRadius:2];
+        
+        UIButton *exitButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        exitButton.frame = CGRectMake(280, 0, 35, 35);
+        [exitButton setImage:[UIImage imageNamed:@"close_x.png"] forState:UIControlStateNormal];
+        [exitButton addTarget:self action:@selector(removeMySelf) forControlEvents:UIControlEventTouchUpInside];
+        [self.facebookView addSubview:exitButton];
+        
+        self.postOnWallButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        self.postOnWallButton.frame = CGRectMake(84, 307, 150, 37);
+        [self.postOnWallButton setTitle:@"Post on timeline" forState:UIControlStateNormal];
+        [self.postOnWallButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+        [self.postOnWallButton addTarget:self action:@selector(postOnWall) forControlEvents:UIControlEventTouchUpInside];
+        [self.facebookView addSubview:self.postOnWallButton];
+        
+//        self.tellFriendButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//        self.tellFriendButton.frame = CGRectMake(84, 357, 150, 37);
+//        [self.tellFriendButton setTitle:@"Tell a Friend" forState:UIControlStateNormal];
+//        [self.tellFriendButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+//        self.tellFriendButton.titleLabel.textColor = [UIColor blueColor];
+//        self.tellFriendButton.titleLabel.textAlignment = UITextAlignmentCenter;
+//        [self.tellFriendButton addTarget:self action:@selector(tellFriend) forControlEvents:UIControlEventTouchUpInside];
+//        [self.facebookView addSubview:self.tellFriendButton];
+
+        NSLog(@"Facebook");
+
         [self.view addSubview:self.facebookView];
     }
 }
 
+#pragma mark UITextViewDelegate
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{    
+    if([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    
+    return YES;
+}
+
+
+//////////////////////
+#pragma mark FACEBOOK
+//////////////////////
+
+
 - (void)removeMySelf
 {
     [self.facebookView removeFromSuperview];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    if (self.indicator)
+        [self.indicator stopAnimating];
+}
+
+- (void) postOnWall
+{
+    self.indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.indicator.frame = self.facebookView.frame;
+    [self.facebookView addSubview:self.indicator];
+    [self.indicator startAnimating];
+    
+    NSString *message = self.textView.text;
+    //[NSString stringWithFormat:@"I like %@ from www.matrix-soft.org =)", self.product.title];
+    
+    [FBRequestConnection startForPostStatusUpdate:message
+                                completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                                    
+                                    [self showAlert:message result:result error:error];
+                                }];
+}
+
+- (void) tellFriend
+{
+    FBFriendPickerViewController *friendPickerController = [[FBFriendPickerViewController alloc] init];
+    friendPickerController.title = @"Pick Friends";
+    [friendPickerController loadData];
+    
+    // Use the modal wrapper method to display the picker.
+    [friendPickerController presentModallyFromViewController:self animated:YES handler:
+     ^(FBViewController *sender, BOOL donePressed) {
+         if (!donePressed) {
+             [self performSelector:@selector(removeMySelf)];
+             return;
+         }
+         NSString *message;
+         
+         if (friendPickerController.selection.count == 0) {
+             message = @"<No Friends Selected>";
+         } else {
+             
+             NSMutableString *text = [[NSMutableString alloc] init];
+             
+             // we pick up the users from the selection, and create a string that we use to update the text view
+             // at the bottom of the display; note that self.selection is a property inherited from our base class
+             for (id<FBGraphUser> user in friendPickerController.selection) {
+                 if ([text length]) {
+                     [text appendString:@", "];
+                 }
+                 [text appendString:user.name];
+             }
+             message = text;
+         }
+         
+         [[[UIAlertView alloc] initWithTitle:@"You Picked:"
+                                     message:message
+                                    delegate:nil
+                           cancelButtonTitle:@"OK"
+                           otherButtonTitles:nil]
+          show];
+     }];
+
 }
 
 - (void)showAlert:(NSString *)message
@@ -161,25 +282,30 @@
         alertTitle = @"Success";
     }
     
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:alertTitle
+    self.alert = [[UIAlertView alloc] initWithTitle:alertTitle
                                                         message:alertMsg
-                                                       delegate:nil
+                                                       delegate:self
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
-    [alertView show];
+    [self.alert show];
+    [self performSelector:@selector(removeMySelf)];
+    [self performSelector:@selector(dismiss) withObject:nil afterDelay:2];
 }
 
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView
 {
     NSLog(@"In");
-    facebookIn = YES;
+    self.tellFriendButton.enabled = YES;
+    self.postOnWallButton.enabled = YES;
 }
 
 - (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView
 {
     NSLog(@"Out");
-    facebookIn = NO;
+    self.tellFriendButton.enabled = NO;
+    self.postOnWallButton.enabled = NO;
+    self.fbProfilePictureView.profileID = nil;
 }
 
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
@@ -190,6 +316,8 @@
 //    self.labelFirstName.text = [NSString stringWithFormat:@"Hello %@!", user.first_name];
     // setting the profileID property of the FBProfilePictureView instance
     // causes the control to fetch and display the profile picture for the user
+    
+    
     self.fbProfilePictureView.profileID = user.id;
     self.loggedInUser = user;
 }
@@ -349,9 +477,9 @@
                                                         message:[NSString stringWithFormat:@"Do you want to delete item %@", self.product.title]
                                                        delegate:self
                                               cancelButtonTitle:@"YES"
-                              
                                               otherButtonTitles: @"NO", nil];
         [alert show];
+        isDeletingFromCart = YES;
         
     }
     else
@@ -371,7 +499,7 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0)
+    if (buttonIndex == 0 && isDeletingFromCart == YES)
     {
         [self.db deleteObjectFromEntity:@"Cart" withProductId:self.product.productId];
         NSLog(@"deleted");
@@ -398,6 +526,17 @@
 - (void) dismiss
 {
     [self.alert dismissWithClickedButtonIndex:0 animated:YES];
+    [self setAlert:nil];
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    if ([[FBSession activeSession] isOpen])
+    {
+        [[FBSession activeSession] close];
+        
+        //An instance 0x1001e130 of class FBSession was deallocated while key value observers were still registered with it. Observation info was leaked, and may even become mistakenly attached to some other object. Set a breakpoint on NSKVODeallocateBreak to stop here in the debugger. Here's the current observation info:
+    }
 }
 
 - (void)viewDidUnload
@@ -413,7 +552,14 @@
     [self setLoadingView:nil];
     [self setDb:nil];
     [self setProduct:nil];
+    
     [self setLoggedInUser:nil];
+    [self setFacebookView:nil];
+    [self setFbProfilePictureView:nil];
+    [self setLoginview:nil];
+    [self setPostOnWallButton:nil];
+    [self setTellFriendButton:nil];
+
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

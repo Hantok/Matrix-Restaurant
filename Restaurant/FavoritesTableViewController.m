@@ -49,10 +49,10 @@
         
         //сортуємо по id продукта
         NSSortDescriptor *sortDescriptor;
-        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"productId" ascending:YES];
+        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"underbarid" ascending:YES];
         NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
         NSArray *sortedArray;
-        sortedArray = [array sortedArrayUsingDescriptors:sortDescriptors];
+        sortedArray = [_arrayOfObjects sortedArrayUsingDescriptors:sortDescriptors];
         _arrayOfObjects = [[NSMutableArray alloc] initWithArray:sortedArray];
         return _arrayOfObjects;
     }
