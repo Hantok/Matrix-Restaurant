@@ -37,9 +37,11 @@
         NSLog(@"request is began");
         NSMutableArray *array = [[NSMutableArray alloc] init];
         ProductDataStruct *dataStruct;
+        NSLog(@"first query begin");
         NSArray *data = [self.db fetchAllProductsFromMenu:self.kindOfMenu.menuId];
-        NSLog(@"first query");
-        NSDictionary *pictures = [self.db fetchImageURLAndDatabyMenuID:self.kindOfMenu.menuId];
+        NSLog(@"first query end. Second query begin");
+//        NSDictionary *pictures = [self.db fetchImageURLAndDatabyMenuID:self.kindOfMenu.menuId];
+        NSLog(@"Second query end. For begin");
         for(int i=0;i<data.count;i++)
         {
             if(i%2==0) 
@@ -49,15 +51,15 @@
                 dataStruct.price = [[data objectAtIndex:i] valueForKey:@"price"];
                 dataStruct.idPicture = [[data objectAtIndex:i] valueForKey:@"idPicture"];
                 dataStruct.discountValue = [[data objectAtIndex:i] valueForKey:@"idDiscount"]; //here is not value, underbarid of table discounts;
-                NSData *dataOfPicture = [[pictures objectForKey:dataStruct.idPicture] valueForKey:@"data"];
-                NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test6/root/%@",[[pictures objectForKey:dataStruct.idPicture] valueForKey:@"link"]];
-                urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-                NSURL *url = [[NSURL alloc] initWithString:urlForImage];
-                dataStruct.link = url.description;
-                if(dataOfPicture)
-                {
-                    dataStruct.image  = [UIImage imageWithData:dataOfPicture]; 
-                }
+//                NSData *dataOfPicture = [[pictures objectForKey:dataStruct.idPicture] valueForKey:@"data"];
+//                NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test6/root/%@",[[pictures objectForKey:dataStruct.idPicture] valueForKey:@"link"]];
+//                urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//                NSURL *url = [[NSURL alloc] initWithString:urlForImage];
+//                dataStruct.link = url.description;
+//                if(dataOfPicture)
+//                {
+//                    dataStruct.image  = [UIImage imageWithData:dataOfPicture]; 
+//                }
             }
             else
             {
@@ -79,6 +81,36 @@
         return _arrayData;
     }
     return _arrayData;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+    
+    //fetching pictures
+    NSDictionary *pictures = [self.db fetchImageURLAndDatabyMenuID:self.kindOfMenu.menuId];
+    ProductDataStruct *dataStruct;
+    for (int i = 0; i < self.arrayData.count; i++)
+    {
+        dataStruct = [self.arrayData objectAtIndex:i];
+        NSData *dataOfPicture = [[pictures objectForKey:dataStruct.idPicture] valueForKey:@"data"];
+        NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test6/root/%@",[[pictures objectForKey:dataStruct.idPicture] valueForKey:@"link"]];
+        urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSURL *url = [NSURL URLWithString:urlForImage];
+//        dataStruct.link = url.description;
+        
+        //saving results of secon request
+        [[self.arrayData objectAtIndex:i] setLink:url.description];
+        if(dataOfPicture)
+        {
+            [[self.arrayData objectAtIndex:i] setImage:[UIImage imageWithData:dataOfPicture]];
+        }
+    }
+    
+    [self.gmGridView reloadData];
+    
+    //[self activePageWithId:0];
+    
 }
 
 - (GettingCoreContent *)db
@@ -282,13 +314,6 @@
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:YES];
-    
-    //[self activePageWithId:0];
-    
-}
 - (void) viewWillDisappear:(BOOL)animated
 {
 //    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) 
