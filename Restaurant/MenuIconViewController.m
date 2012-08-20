@@ -15,6 +15,8 @@
     int countOfObjectsInCart;
 }
 
+@property (strong, nonatomic) UIAlertView *alert;
+
 @end
 
 @implementation MenuIconViewController
@@ -26,8 +28,10 @@
 @synthesize viewForOutput = _viewForOutput;
 @synthesize imageDownloadsInProgress = _imageDownloadsInProgress;
 @synthesize pageControl;
+@synthesize stopEditButton = _stopEditButton;
 //@synthesize scrollView = _scrollView;
 @synthesize selectedIndex = _selectedIndex;
+@synthesize alert;
 
 - (NSMutableArray *)arrayData
 {
@@ -268,15 +272,22 @@
     self.gmGridView.minEdgeInsets = UIEdgeInsetsMake(spacing, spacing, spacing, spacing);
     //self.gmGridView.centerGrid = YES;
     self.gmGridView.actionDelegate = self;
-//    self.gmGridView.sortingDelegate = self;
+    self.gmGridView.sortingDelegate = self;
     self.gmGridView.transformDelegate = self;
     self.gmGridView.dataSource = self;
     self.gmGridView.delegate = self;
+    
+//    [self.gmGridView layoutSubviewsWithAnimation:GMGridViewItemAnimationFade];
+//    self.gmGridView.editing = YES;
+    self.gmGridView.enableEditOnLongPress = YES;
+    
+    self.stopEditButton.hidden = YES;
     
     //задаємо тип скроллінга
     self.gmGridView.layoutStrategy = [GMGridViewLayoutStrategyFactory strategyFromType:GMGridViewLayoutHorizontalPagedLTR];
     self.gmGridView.showsHorizontalScrollIndicator = NO;
     
+//    self.gmGridView.style = GMGridViewStylePush;
     
     self.pageControl.currentPage = 0;
     if (self.arrayData.count%9 != 0)
@@ -335,6 +346,7 @@
     [self setDb:nil];
     [self setKindOfMenu:nil];
     [self setViewForOutput:nil];
+    [self setStopEditButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -480,7 +492,7 @@
     if (!cell) 
     {
         cell = [[GMGridViewCell alloc] init];
-        cell.deleteButtonIcon = [UIImage imageNamed:@"close_x.png"];
+        cell.deleteButtonIcon = [UIImage imageNamed:@"alphanumeric-plus-sign.png"];
         cell.deleteButtonOffset = CGPointMake(-15, -15);
         
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
@@ -569,10 +581,8 @@
 
 - (BOOL)GMGridView:(GMGridView *)gridView canDeleteItemAtIndex:(NSInteger)index
 {
-    return NO; //index % 2 == 0;
+    return YES; //index % 2 == 0;
 }
-
-
 
 //////////////////////////////////////////////////////////////
 #pragma mark GMGridViewActionDelegate
@@ -599,11 +609,22 @@
     NSLog(@"Tap on empty space");
 }
 
+- (void)GMGridView:(GMGridView *)gridView changedEdit:(BOOL)edit
+{
+    if (edit == YES)
+    {
+        self.stopEditButton.hidden = NO;
+    }
+    else
+        self.stopEditButton.hidden = YES;
+}
+
 - (void)GMGridView:(GMGridView *)gridView processDeleteActionForItemAtIndex:(NSInteger)index
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Add to favorites?(not working)" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"YES", nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Add to favorites?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"YES", nil];
     
-    [alert show];
+    [alertView show];
+    self.selectedIndex = [NSNumber numberWithInteger:index];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -611,9 +632,32 @@
     if (buttonIndex == 1) 
     {
         // add to favorites here
+        self.gmGridView.editing = NO;
+        id currentOne = [self.arrayData objectAtIndex:self.selectedIndex.integerValue];
+        [self.db SaveProductToEntityName:@"Favorites" WithId:[currentOne productId]
+                               withCount:0
+                               withPrice:[[currentOne price]floatValue]
+                             withPicture:UIImagePNGRepresentation([currentOne image])
+                       withDiscountValue:[[currentOne discountValue] floatValue]];
+        
+        self.alert = [[UIAlertView alloc] initWithTitle:nil
+                                                message:[NSString stringWithFormat:@"Is \"%@\" in favorites.", [currentOne title]]
+                                               delegate:nil
+                                      cancelButtonTitle:@"OK"
+                                      otherButtonTitles:nil];
+        [self.alert show];
+        [self performSelector:@selector(dismiss) withObject:nil afterDelay:2];
     }
 }
 
+/////////////////////////////
+#pragma mark myPrivateMethod
+/////////////////////////////
+- (void) dismiss
+{
+    [self.alert dismissWithClickedButtonIndex:0 animated:YES];
+    [self setAlert:nil];
+}
 
 //////////////////////////////////////////////////////////////
 #pragma mark GMGridViewSortingDelegate
@@ -820,5 +864,10 @@
 {
     //обовязково анімація NO !!!
     [self.navigationController popViewControllerAnimated:NO];
+}
+
+- (IBAction)stopEditing:(id)sender
+{
+    self.gmGridView.editing = NO;
 }
 @end

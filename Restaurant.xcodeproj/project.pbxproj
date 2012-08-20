@@ -56,6 +56,7 @@
 		F50DF92C15DD2DA300EEC8B4 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F50DF92B15DD2DA300EEC8B4 /* FacebookSDK.framework */; };
 		F515440D15B03CCB00A2CB88 /* FavoritesIconViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F515440C15B03CCB00A2CB88 /* FavoritesIconViewController.m */; };
 		F51B206215AB2EE600074DA1 /* white-cart_big.png in Resources */ = {isa = PBXBuildFile; fileRef = F51B206115AB2EE500074DA1 /* white-cart_big.png */; };
+		F51CDF7515E28AA600BED2E4 /* alphanumeric-plus-sign.png in Resources */ = {isa = PBXBuildFile; fileRef = F51CDF7415E28AA600BED2E4 /* alphanumeric-plus-sign.png */; };
 		F52225CB1594A0A7003E2728 /* Button_orange_rev2.png in Resources */ = {isa = PBXBuildFile; fileRef = F52225CA1594A0A7003E2728 /* Button_orange_rev2.png */; };
 		F52225CD1594A1F8003E2728 /* Button_black_light_rev2.png in Resources */ = {isa = PBXBuildFile; fileRef = F52225CC1594A1F8003E2728 /* Button_black_light_rev2.png */; };
 		F52225D31594BCA4003E2728 /* Button_black_dark_rev2.png in Resources */ = {isa = PBXBuildFile; fileRef = F52225D21594BCA4003E2728 /* Button_black_dark_rev2.png */; };
@@ -284,6 +285,7 @@
 		F515440B15B03CCA00A2CB88 /* FavoritesIconViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesIconViewController.h; sourceTree = "<group>"; };
 		F515440C15B03CCB00A2CB88 /* FavoritesIconViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesIconViewController.m; sourceTree = "<group>"; };
 		F51B206115AB2EE500074DA1 /* white-cart_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "white-cart_big.png"; sourceTree = "<group>"; };
+		F51CDF7415E28AA600BED2E4 /* alphanumeric-plus-sign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alphanumeric-plus-sign.png"; sourceTree = "<group>"; };
 		F52225CA1594A0A7003E2728 /* Button_orange_rev2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_orange_rev2.png; sourceTree = "<group>"; };
 		F52225CC1594A1F8003E2728 /* Button_black_light_rev2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_black_light_rev2.png; sourceTree = "<group>"; };
 		F52225D21594BCA4003E2728 /* Button_black_dark_rev2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_black_dark_rev2.png; sourceTree = "<group>"; };
@@ -466,6 +468,8 @@
 				781B8F2A1546DD590074EDBD /* MainMenuViewController.h */,
 				781B8F2B1546DD590074EDBD /* MainMenuViewController.m */,
 				F53AF1721598877700EAA5AA /* Type of View */,
+				786B29A31546EC3F00486848 /* ProductDetailViewController.h */,
+				786B29A41546EC3F00486848 /* ProductDetailViewController.m */,
 				78005A0515778C8A0099F973 /* RestaurantViewController.h */,
 				78005A0615778C8A0099F973 /* RestaurantViewController.m */,
 				7851AC87157E45F10027BDDF /* RestaurantDetailViewController.h */,
@@ -474,8 +478,6 @@
 				7851AC8B157E52020027BDDF /* MapViewController.m */,
 				F58E734D15D1358800CBCE65 /* MapViewAnnotation.h */,
 				F58E734E15D1358800CBCE65 /* MapViewAnnotation.m */,
-				786B29A31546EC3F00486848 /* ProductDetailViewController.h */,
-				786B29A41546EC3F00486848 /* ProductDetailViewController.m */,
 				F5F021581588C017009EB482 /* DeliveryViewController.h */,
 				F5F021591588C017009EB482 /* DeliveryViewController.m */,
 				F5F2D69615AD7DBB00C5094B /* AddressListTableViewController.h */,
@@ -516,6 +518,7 @@
 		78EF80B41573A51300478EEB /* images */ = {
 			isa = PBXGroup;
 			children = (
+				F51CDF7415E28AA600BED2E4 /* alphanumeric-plus-sign.png */,
 				F5E0D80615D953FF004BA70B /* icons57.png */,
 				F5E0D80415D953DA004BA70B /* icons.png */,
 				F51B206115AB2EE500074DA1 /* white-cart_big.png */,
@@ -871,6 +874,7 @@
 				F5E0D80515D953DA004BA70B /* icons.png in Resources */,
 				F5E0D80715D953FF004BA70B /* icons57.png in Resources */,
 				F5F105A015DD355000B03533 /* FacebookSDKResources.bundle in Resources */,
+				F51CDF7515E28AA600BED2E4 /* alphanumeric-plus-sign.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
