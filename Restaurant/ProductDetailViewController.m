@@ -360,7 +360,7 @@
     
     NSArray *discountsArray = [self.db getArrayFromCoreDatainEntetyName:@"Discounts" withSortDescriptor:@"underbarid"];
     
-    if (!self.isInFavorites)
+    if (!self.isInFavorites)//!!!means that previous viewController was FavoritesViewController
     {
         for (int i = 0; i < discountsArray.count; i++)
         {
@@ -407,7 +407,7 @@
     gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor darkGrayColor] CGColor],(id)[[UIColor blackColor] CGColor], nil];
     [self.view.layer insertSublayer:gradient atIndex:0];
     
-    if(self.isInFavorites)
+    if(self.product.isFavorites.boolValue)
     {
         [self.navigationItem.rightBarButtonItem setEnabled:NO];
     }
@@ -508,19 +508,49 @@
 }
 - (IBAction)AddToFavorites:(id)sender
 {
-    [self.db SaveProductToEntityName:@"Favorites" WithId:self.product.productId
-                           withCount:0
-                           withPrice:self.product.price.floatValue
-                         withPicture:UIImagePNGRepresentation(self.product.image)
-                   withDiscountValue:self.product.discountValue.floatValue];
+//    [self.db SaveProductToEntityName:@"Favorites" WithId:self.product.productId
+//                           withCount:0
+//                           withPrice:self.product.price.floatValue
+//                         withPicture:UIImagePNGRepresentation(self.product.image)
+//                   withDiscountValue:self.product.discountValue.floatValue];
+//    
+//    self.alert = [[UIAlertView alloc] initWithTitle:nil
+//                                            message:[NSString stringWithFormat:@"Is \"%@\" in favorites.", self.product.title]
+//                                           delegate:nil
+//                                  cancelButtonTitle:@"OK"
+//                                  otherButtonTitles:nil];
+//    [self.alert show];
+//    [self performSelector:@selector(dismiss) withObject:nil afterDelay:2];
     
-    self.alert = [[UIAlertView alloc] initWithTitle:nil
-                                            message:[NSString stringWithFormat:@"Is \"%@\" in favorites.", self.product.title]
-                                           delegate:nil
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil];
+    
+    // add to favorites here
+    id currentOne = self.product;
+    //changing is database
+    [self.db changeFavoritesBoolValue:![[currentOne isFavorites] boolValue] forId:[currentOne productId]];
+    //changing in Array
+    [currentOne setIsFavorites:[NSNumber numberWithBool:![[currentOne isFavorites] boolValue]]];
+    
+    if ([currentOne isFavorites].boolValue)
+    {
+        self.alert = [[UIAlertView alloc] initWithTitle:nil
+                                                message:[NSString stringWithFormat:@"Added \"%@\" to favorites.", [currentOne title]]
+                                               delegate:nil
+                                      cancelButtonTitle:@"OK"
+                                      otherButtonTitles:nil];
+    }
+    else
+    {
+        self.alert = [[UIAlertView alloc] initWithTitle:nil
+                                                message:[NSString stringWithFormat:@"Removed \"%@\" from favorites.", [currentOne title]]
+                                               delegate:nil
+                                      cancelButtonTitle:@"OK"
+                                      otherButtonTitles:nil];
+    }
+    
     [self.alert show];
+    [self.navigationItem.rightBarButtonItem setEnabled:NO];
     [self performSelector:@selector(dismiss) withObject:nil afterDelay:2];
+
 }
 
 - (void) dismiss

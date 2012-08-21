@@ -84,20 +84,11 @@
     if(attributeDictionary.count)
     {
         NSArray *ArrayOfEnteringIDs = [attributeDictionary objectForKey:@"_id"]; 
-        for (int i = 0; i < items.count; i++)
-        {
-            for (int j = 0; j < ArrayOfEnteringIDs.count; j++)
-                if ([[items objectAtIndex:i] intValue] == [[[attributeDictionary objectForKey:@"_id"] objectAtIndex:j] intValue])
-                {
-                    [self deleteObjectFromEntity:entityName withProductId:[items objectAtIndex:i]];
-                    break;
-                }
-        }
-        
         if ([entityName isEqualToString:@"Products"])
         {
+            NSArray *favoritesArray = [self fetchFavoritesFromEntityName:@"Products"];
             NSArray *arrayOfCartsIds = [self fetchAllIdsFromEntity:@"Cart"];
-            NSArray *arrayOfFavoritesIds = [self fetchAllIdsFromEntity:@"Favorites"];
+            //            NSArray *arrayOfFavoritesIds = [self fetchAllIdsFromEntity:@"Favorites"];
             
             for (int i = 0; i < arrayOfCartsIds.count; i++)
                 for (int j = 0; j < ArrayOfEnteringIDs.count; j++)
@@ -106,13 +97,23 @@
                         [self deleteObjectFromEntity:@"Cart" withProductId:[arrayOfCartsIds objectAtIndex:i]];
                     }
             
-            for (int i = 0; i < arrayOfFavoritesIds.count; i++)
+            for (int i = 0; i < favoritesArray.count; i++)
                 for (int j = 0; j < ArrayOfEnteringIDs.count; j++)
-                    if ([[arrayOfFavoritesIds objectAtIndex:i] intValue] == [[[attributeDictionary objectForKey:@"_id"] objectAtIndex:j] intValue])
+                    if ([[[favoritesArray objectAtIndex:i] valueForKey:@"underbarid"] intValue] == [[[attributeDictionary objectForKey:@"_id"] objectAtIndex:j] intValue])
                     {
-                        [self deleteObjectFromEntity:@"Favorites" withProductId:[arrayOfFavoritesIds objectAtIndex:i]];
+                        return;
                     }
             
+        }
+        
+        for (int i = 0; i < items.count; i++)
+        {
+            for (int j = 0; j < ArrayOfEnteringIDs.count; j++)
+                if ([[items objectAtIndex:i] intValue] == [[[attributeDictionary objectForKey:@"_id"] objectAtIndex:j] intValue])
+                {
+                    [self deleteObjectFromEntity:entityName withProductId:[items objectAtIndex:i]];
+                    break;
+                }
         }
         
         NSArray *values = [attributeDictionary objectForKey:[keys objectAtIndex:0]];
@@ -723,4 +724,45 @@
     
     return count;
 }
+
+- (NSArray *)fetchFavoritesFromEntityName:(NSString *)entityName
+{
+    NSManagedObjectContext *context = self.managedObjectContext;
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:context]];
+    
+    request.predicate = [NSPredicate predicateWithFormat:@"isFavorites == YES"];
+    
+    NSError *error;
+    NSArray *result = [context executeFetchRequest:request error:&error];
+    
+    if (![context save:&error])
+    {
+        NSLog(@"Unresolved error in GettingCoreContent %@, %@", error, [error userInfo]);
+        abort();
+    }
+
+    return result;
+}
+
+- (void) changeFavoritesBoolValue:(BOOL)isFavorites forId:(NSNumber *)underbarid
+{
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:@"Products" inManagedObjectContext:self.managedObjectContext]];
+        
+        if (underbarid.intValue != 0)
+            [request setPredicate:[NSPredicate predicateWithFormat:@"underbarid==%@", underbarid]];
+        else
+            return;
+        
+        NSError *error;
+        NSArray *debug= [self.managedObjectContext executeFetchRequest:request error:&error];
+        NSManagedObject *objectToUpdate = [debug objectAtIndex:0];
+        if (objectToUpdate != nil)
+            [objectToUpdate setValue:[NSNumber numberWithBool:isFavorites] forKey:@"isFavorites"];
+        if (![self.managedObjectContext save:&error]) {
+            //Handle any error with the saving of the context
+        }
+}
+    
 @end

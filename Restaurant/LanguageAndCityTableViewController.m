@@ -159,7 +159,7 @@
             //видалаляємо вміст корзини i favorites, якщо змінюємо city
             //GettingCoreContent *content = [[GettingCoreContent alloc] init];
             [content deleteAllObjectsFromEntity:@"Cart"];
-            [content deleteAllObjectsFromEntity:@"Favorites"];
+//            [content deleteAllObjectsFromEntity:@"Favorites"];
         }
         else
         {

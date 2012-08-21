@@ -55,6 +55,7 @@
                 dataStruct.price = [[data objectAtIndex:i] valueForKey:@"price"];
                 dataStruct.idPicture = [[data objectAtIndex:i] valueForKey:@"idPicture"];
                 dataStruct.discountValue = [[data objectAtIndex:i] valueForKey:@"idDiscount"]; //here is not value, underbarid of table discounts;
+                dataStruct.isFavorites = [[data objectAtIndex:i] valueForKey:@"isFavorites"];
 //                NSData *dataOfPicture = [[pictures objectForKey:dataStruct.idPicture] valueForKey:@"data"];
 //                NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test6/root/%@",[[pictures objectForKey:dataStruct.idPicture] valueForKey:@"link"]];
 //                urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -347,6 +348,7 @@
     [self setKindOfMenu:nil];
     [self setViewForOutput:nil];
     [self setStopEditButton:nil];
+    [self setAlert:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -492,7 +494,6 @@
     if (!cell) 
     {
         cell = [[GMGridViewCell alloc] init];
-        cell.deleteButtonIcon = [UIImage imageNamed:@"alphanumeric-plus-sign.png"];
         cell.deleteButtonOffset = CGPointMake(-15, -15);
         
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
@@ -502,6 +503,11 @@
         
         cell.contentView = view;
     }
+    
+    if (dataStruct.isFavorites.boolValue != YES)
+        cell.deleteButtonIcon = [UIImage imageNamed:@"alphanumeric-plus-sign.png"];
+    else
+        cell.deleteButtonIcon = [UIImage imageNamed:@"close_x.png"];
     
     [[cell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
@@ -622,7 +628,15 @@
 
 - (void)GMGridView:(GMGridView *)gridView processDeleteActionForItemAtIndex:(NSInteger)index
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Add to favorites?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"YES", nil];
+    UIAlertView *alertView;
+    if (![[[self.arrayData objectAtIndex:self.selectedIndex.integerValue] isFavorites] boolValue])
+    {
+        alertView = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Add to favorites?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"YES", nil];
+    }
+    else
+    {
+        alertView = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Remove to favorites?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"YES", nil];
+    }
     
     [alertView show];
     self.selectedIndex = [NSNumber numberWithInteger:index];
@@ -633,20 +647,32 @@
     if (buttonIndex == 1) 
     {
         // add to favorites here
-        self.gmGridView.editing = NO;
         id currentOne = [self.arrayData objectAtIndex:self.selectedIndex.integerValue];
-        [self.db SaveProductToEntityName:@"Favorites" WithId:[currentOne productId]
-                               withCount:0
-                               withPrice:[[currentOne price]floatValue]
-                             withPicture:UIImagePNGRepresentation([currentOne image])
-                       withDiscountValue:[[currentOne discountValue] floatValue]];
+        //changing is database
+        [self.db changeFavoritesBoolValue:![[currentOne isFavorites] boolValue] forId:[currentOne productId]];
+        //changing in Array
+        [currentOne setIsFavorites:[NSNumber numberWithBool:![[currentOne isFavorites] boolValue]]];
         
-        self.alert = [[UIAlertView alloc] initWithTitle:nil
-                                                message:[NSString stringWithFormat:@"Is \"%@\" in favorites.", [currentOne title]]
-                                               delegate:nil
-                                      cancelButtonTitle:@"OK"
-                                      otherButtonTitles:nil];
+        if ([currentOne isFavorites].boolValue)
+        {
+            self.alert = [[UIAlertView alloc] initWithTitle:nil
+                                                    message:[NSString stringWithFormat:@"Added \"%@\" to favorites.", [currentOne title]]
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+        }
+        else
+        {
+            self.alert = [[UIAlertView alloc] initWithTitle:nil
+                                                    message:[NSString stringWithFormat:@"Removed \"%@\" from favorites.", [currentOne title]]
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+        }
+        
         [self.alert show];
+        self.gmGridView.editing = NO;
+        [self.gmGridView reloadData];
         [self performSelector:@selector(dismiss) withObject:nil afterDelay:2];
     }
 }

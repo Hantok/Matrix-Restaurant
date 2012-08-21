@@ -60,12 +60,6 @@
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Favorites" syncable="YES">
-        <attribute name="cost" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="discountValue" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="picture" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-    </entity>
     <entity name="Languages" syncable="YES">
         <attribute name="action" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="language" optional="YES" attributeType="String" syncable="YES"/>
@@ -100,6 +94,7 @@
         <attribute name="idDiscount" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="idMenu" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="idPicture" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="isFavorites" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="protein" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -157,25 +152,24 @@
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Addresses" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Cart" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Cities" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Cities_translation" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Currencies" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Deliveries" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Deliveries_translation" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Discounts" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Favorites" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Languages" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Menus" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Menus_translation" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Pictures" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Products" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Products_translation" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Promotions" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Restaurants" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Restaurants_translation" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Statuses" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Statuses_translation" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Addresses" positionX="0" positionY="0" width="128" height="255"/>
+        <element name="Cart" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="Cities" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="Cities_translation" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="Currencies" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="Deliveries" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="Deliveries_translation" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="Discounts" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="Languages" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="Menus" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="Menus_translation" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="Pictures" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="Products" positionX="0" positionY="0" width="128" height="270"/>
+        <element name="Products_translation" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="Promotions" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="Restaurants" positionX="0" positionY="0" width="128" height="210"/>
+        <element name="Restaurants_translation" positionX="0" positionY="0" width="128" height="195"/>
+        <element name="Statuses" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="Statuses_translation" positionX="0" positionY="0" width="128" height="105"/>
     </elements>
 </model>
