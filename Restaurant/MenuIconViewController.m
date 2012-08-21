@@ -511,7 +511,8 @@
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageFrame];
     if (!dataStruct.image)
     {
-        [self startIconDownload:dataStruct forIndex:[NSNumber numberWithInteger:index]];
+        if (dataStruct.link)
+            [self startIconDownload:dataStruct forIndex:[NSNumber numberWithInteger:index]];
         // if a download is deferred or in progress, return a placeholder image
         //[imageView setImage:[UIImage imageNamed:@"Placeholder.png"]];
     }

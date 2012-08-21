@@ -100,6 +100,8 @@
     
     // Release the connection now that it's finished
     self.imageConnection = nil;
+    
+    [self startDownload];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
@@ -127,12 +129,17 @@
     self.imageConnection = nil;
         
     // call our delegate and tell it that our icon is ready for display
-    if(delegate && self.indexPathInTableView)
-        [delegate appImageDidLoad:self.indexPathInTableView];
-    //(objc_object *) $1 = 0x001f24b0 [no Objective-C description available]
-    
-    if (delegate && self.indexForElement) {
-        [delegate appImageDidLoadGrid:self.indexForElement];
+    if(delegate)
+    {
+        if (self.indexPathInTableView)
+        {
+            [delegate appImageDidLoad:self.indexPathInTableView];
+        }
+        else
+        {
+            //if (self.indexForElement) {
+            [delegate appImageDidLoadGrid:self.indexForElement];
+        }
     }
     
 }

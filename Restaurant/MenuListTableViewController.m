@@ -277,7 +277,7 @@
     
     if (!dataStruct.image)
     {
-        if (self.tableView.dragging == NO && self.tableView.decelerating == NO)
+        if (self.tableView.dragging == NO && self.tableView.decelerating == NO && dataStruct.link)
         {
             [self startIconDownload:dataStruct forIndexPath:indexPath];
         }
