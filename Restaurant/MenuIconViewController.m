@@ -15,6 +15,8 @@
     int countOfObjectsInCart;
 }
 
+@property (strong, nonatomic) UIAlertView *alert;
+
 @end
 
 @implementation MenuIconViewController
@@ -26,8 +28,10 @@
 @synthesize viewForOutput = _viewForOutput;
 @synthesize imageDownloadsInProgress = _imageDownloadsInProgress;
 @synthesize pageControl;
+@synthesize stopEditButton = _stopEditButton;
 //@synthesize scrollView = _scrollView;
 @synthesize selectedIndex = _selectedIndex;
+@synthesize alert;
 
 - (NSMutableArray *)arrayData
 {
@@ -37,9 +41,11 @@
         NSLog(@"request is began");
         NSMutableArray *array = [[NSMutableArray alloc] init];
         ProductDataStruct *dataStruct;
+        NSLog(@"first query begin");
         NSArray *data = [self.db fetchAllProductsFromMenu:self.kindOfMenu.menuId];
-        NSLog(@"first query");
-        NSDictionary *pictures = [self.db fetchImageURLAndDatabyMenuID:self.kindOfMenu.menuId];
+        NSLog(@"first query end. Second query begin");
+//        NSDictionary *pictures = [self.db fetchImageURLAndDatabyMenuID:self.kindOfMenu.menuId];
+        NSLog(@"Second query end. For begin");
         for(int i=0;i<data.count;i++)
         {
             if(i%2==0) 
@@ -49,15 +55,16 @@
                 dataStruct.price = [[data objectAtIndex:i] valueForKey:@"price"];
                 dataStruct.idPicture = [[data objectAtIndex:i] valueForKey:@"idPicture"];
                 dataStruct.discountValue = [[data objectAtIndex:i] valueForKey:@"idDiscount"]; //here is not value, underbarid of table discounts;
-                NSData *dataOfPicture = [[pictures objectForKey:dataStruct.idPicture] valueForKey:@"data"];
-                NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test6/root/%@",[[pictures objectForKey:dataStruct.idPicture] valueForKey:@"link"]];
-                urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-                NSURL *url = [[NSURL alloc] initWithString:urlForImage];
-                dataStruct.link = url.description;
-                if(dataOfPicture)
-                {
-                    dataStruct.image  = [UIImage imageWithData:dataOfPicture]; 
-                }
+                dataStruct.isFavorites = [[data objectAtIndex:i] valueForKey:@"isFavorites"];
+//                NSData *dataOfPicture = [[pictures objectForKey:dataStruct.idPicture] valueForKey:@"data"];
+//                NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test6/root/%@",[[pictures objectForKey:dataStruct.idPicture] valueForKey:@"link"]];
+//                urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//                NSURL *url = [[NSURL alloc] initWithString:urlForImage];
+//                dataStruct.link = url.description;
+//                if(dataOfPicture)
+//                {
+//                    dataStruct.image  = [UIImage imageWithData:dataOfPicture]; 
+//                }
             }
             else
             {
@@ -79,6 +86,36 @@
         return _arrayData;
     }
     return _arrayData;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+    
+    //fetching pictures
+    NSDictionary *pictures = [self.db fetchImageURLAndDatabyMenuID:self.kindOfMenu.menuId];
+    ProductDataStruct *dataStruct;
+    for (int i = 0; i < self.arrayData.count; i++)
+    {
+        dataStruct = [self.arrayData objectAtIndex:i];
+        NSData *dataOfPicture = [[pictures objectForKey:dataStruct.idPicture] valueForKey:@"data"];
+        NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test6/root/%@",[[pictures objectForKey:dataStruct.idPicture] valueForKey:@"link"]];
+        urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSURL *url = [NSURL URLWithString:urlForImage];
+//        dataStruct.link = url.description;
+        
+        //saving results of secon request
+        [[self.arrayData objectAtIndex:i] setLink:url.description];
+        if(dataOfPicture)
+        {
+            [[self.arrayData objectAtIndex:i] setImage:[UIImage imageWithData:dataOfPicture]];
+        }
+    }
+    
+    [self.gmGridView reloadData];
+    
+    //[self activePageWithId:0];
+    
 }
 
 - (GettingCoreContent *)db
@@ -236,15 +273,22 @@
     self.gmGridView.minEdgeInsets = UIEdgeInsetsMake(spacing, spacing, spacing, spacing);
     //self.gmGridView.centerGrid = YES;
     self.gmGridView.actionDelegate = self;
-//    self.gmGridView.sortingDelegate = self;
+    self.gmGridView.sortingDelegate = self;
     self.gmGridView.transformDelegate = self;
     self.gmGridView.dataSource = self;
     self.gmGridView.delegate = self;
+    
+//    [self.gmGridView layoutSubviewsWithAnimation:GMGridViewItemAnimationFade];
+//    self.gmGridView.editing = YES;
+    self.gmGridView.enableEditOnLongPress = YES;
+    
+    self.stopEditButton.hidden = YES;
     
     //задаємо тип скроллінга
     self.gmGridView.layoutStrategy = [GMGridViewLayoutStrategyFactory strategyFromType:GMGridViewLayoutHorizontalPagedLTR];
     self.gmGridView.showsHorizontalScrollIndicator = NO;
     
+//    self.gmGridView.style = GMGridViewStylePush;
     
     self.pageControl.currentPage = 0;
     if (self.arrayData.count%9 != 0)
@@ -282,13 +326,6 @@
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:YES];
-    
-    //[self activePageWithId:0];
-    
-}
 - (void) viewWillDisappear:(BOOL)animated
 {
 //    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) 
@@ -310,6 +347,8 @@
     [self setDb:nil];
     [self setKindOfMenu:nil];
     [self setViewForOutput:nil];
+    [self setStopEditButton:nil];
+    [self setAlert:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -455,7 +494,6 @@
     if (!cell) 
     {
         cell = [[GMGridViewCell alloc] init];
-        cell.deleteButtonIcon = [UIImage imageNamed:@"close_x.png"];
         cell.deleteButtonOffset = CGPointMake(-15, -15);
         
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
@@ -466,6 +504,11 @@
         cell.contentView = view;
     }
     
+    if (dataStruct.isFavorites.boolValue != YES)
+        cell.deleteButtonIcon = [UIImage imageNamed:@"alphanumeric-plus-sign.png"];
+    else
+        cell.deleteButtonIcon = [UIImage imageNamed:@"close_x.png"];
+    
     [[cell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
 //    налаштування виду елемента
@@ -474,7 +517,8 @@
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageFrame];
     if (!dataStruct.image)
     {
-        [self startIconDownload:dataStruct forIndex:[NSNumber numberWithInteger:index]];
+        if (dataStruct.link)
+            [self startIconDownload:dataStruct forIndex:[NSNumber numberWithInteger:index]];
         // if a download is deferred or in progress, return a placeholder image
         //[imageView setImage:[UIImage imageNamed:@"Placeholder.png"]];
     }
@@ -544,10 +588,8 @@
 
 - (BOOL)GMGridView:(GMGridView *)gridView canDeleteItemAtIndex:(NSInteger)index
 {
-    return NO; //index % 2 == 0;
+    return YES; //index % 2 == 0;
 }
-
-
 
 //////////////////////////////////////////////////////////////
 #pragma mark GMGridViewActionDelegate
@@ -574,11 +616,30 @@
     NSLog(@"Tap on empty space");
 }
 
+- (void)GMGridView:(GMGridView *)gridView changedEdit:(BOOL)edit
+{
+    if (edit == YES)
+    {
+        self.stopEditButton.hidden = NO;
+    }
+    else
+        self.stopEditButton.hidden = YES;
+}
+
 - (void)GMGridView:(GMGridView *)gridView processDeleteActionForItemAtIndex:(NSInteger)index
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Add to favorites?(not working)" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"YES", nil];
+    UIAlertView *alertView;
+    if (![[[self.arrayData objectAtIndex:self.selectedIndex.integerValue] isFavorites] boolValue])
+    {
+        alertView = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Add to favorites?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"YES", nil];
+    }
+    else
+    {
+        alertView = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Remove to favorites?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"YES", nil];
+    }
     
-    [alert show];
+    [alertView show];
+    self.selectedIndex = [NSNumber numberWithInteger:index];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -586,9 +647,44 @@
     if (buttonIndex == 1) 
     {
         // add to favorites here
+        id currentOne = [self.arrayData objectAtIndex:self.selectedIndex.integerValue];
+        //changing is database
+        [self.db changeFavoritesBoolValue:![[currentOne isFavorites] boolValue] forId:[currentOne productId]];
+        //changing in Array
+        [currentOne setIsFavorites:[NSNumber numberWithBool:![[currentOne isFavorites] boolValue]]];
+        
+        if ([currentOne isFavorites].boolValue)
+        {
+            self.alert = [[UIAlertView alloc] initWithTitle:nil
+                                                    message:[NSString stringWithFormat:@"Added \"%@\" to favorites.", [currentOne title]]
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+        }
+        else
+        {
+            self.alert = [[UIAlertView alloc] initWithTitle:nil
+                                                    message:[NSString stringWithFormat:@"Removed \"%@\" from favorites.", [currentOne title]]
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+        }
+        
+        [self.alert show];
+        self.gmGridView.editing = NO;
+        [self.gmGridView reloadData];
+        [self performSelector:@selector(dismiss) withObject:nil afterDelay:2];
     }
 }
 
+/////////////////////////////
+#pragma mark myPrivateMethod
+/////////////////////////////
+- (void) dismiss
+{
+    [self.alert dismissWithClickedButtonIndex:0 animated:YES];
+    [self setAlert:nil];
+}
 
 //////////////////////////////////////////////////////////////
 #pragma mark GMGridViewSortingDelegate
@@ -795,5 +891,10 @@
 {
     //обовязково анімація NO !!!
     [self.navigationController popViewControllerAnimated:NO];
+}
+
+- (IBAction)stopEditing:(id)sender
+{
+    self.gmGridView.editing = NO;
 }
 @end

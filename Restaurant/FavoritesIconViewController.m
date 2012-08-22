@@ -13,6 +13,8 @@
     BOOL pageControlBeingUsed;
 }
 
+@property (strong, nonatomic) UIAlertView *alert;
+
 @end
 
 @implementation FavoritesIconViewController
@@ -23,6 +25,8 @@
 @synthesize arrayOfObjects = _arrayOfObjects;
 @synthesize db = _db;
 @synthesize selectedIndex = _selectedIndex;
+@synthesize stopEditButton = _stopEditButton;
+@synthesize alert;
 
 
 - (GettingCoreContent *)db
@@ -38,33 +42,62 @@
 {
     if (!_arrayOfObjects)
     {
-        NSArray *array = [self.db fetchAllProductsIdAndTheirCountWithPriceForEntity:@"Favorites"];
-        NSArray *arrayOfElements = [self.db fetchObjectsFromCoreDataForEntity:@"Products_translation" withArrayObjects:array withDefaultLanguageId:[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
-        _arrayOfObjects = [[NSMutableArray alloc] init];
-        for (int i = 0; i <array.count; i++)
+        NSArray *array = [self.db fetchFavoritesFromEntityName:@"Products"];
+        if (array.count != 0)
         {
-            ProductDataStruct *productStruct = [[ProductDataStruct alloc] init];
-            //[productStruct setProductId:[[arrayOfElements objectAtIndex:i] valueForKey:@"idProduct"]];
-            [productStruct setProductId:[[array objectAtIndex:i] valueForKey:@"underbarid"]];
-            [productStruct setDescriptionText:[[arrayOfElements objectAtIndex:i] valueForKey:@"descriptionText"]];
-            [productStruct setTitle:[[arrayOfElements objectAtIndex:i] valueForKey:@"nameText"]];
-            [productStruct setPrice:[[array objectAtIndex:i] valueForKey:@"cost"]];
-            [productStruct setImage:[UIImage imageWithData:[[array objectAtIndex:i] valueForKey:@"picture"]]];
-            [productStruct setDiscountValue:[[array objectAtIndex:i] valueForKey:@"discountValue"]];
-            
-            [_arrayOfObjects addObject:productStruct];     
+            NSArray *arrayOfElements = [self.db fetchObjectsFromCoreDataForEntity:@"Products_translation" withArrayObjects:array withDefaultLanguageId:[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
+            _arrayOfObjects = [[NSMutableArray alloc] init];
+            for (int i = 0; i < array.count; i++)
+            {
+                ProductDataStruct *productStruct = [[ProductDataStruct alloc] init];
+                //[productStruct setProductId:[[arrayOfElements objectAtIndex:i] valueForKey:@"idProduct"]];
+                [productStruct setProductId:[[array objectAtIndex:i] valueForKey:@"underbarid"]];
+                [productStruct setDescriptionText:[[arrayOfElements objectAtIndex:i] valueForKey:@"descriptionText"]];
+                [productStruct setTitle:[[arrayOfElements objectAtIndex:i] valueForKey:@"nameText"]];
+                [productStruct setPrice:[[array objectAtIndex:i] valueForKey:@"price"]];
+                [productStruct setDiscountValue:[[array objectAtIndex:i] valueForKey:@"idDiscount"]];
+                [productStruct setIsFavorites:[[array objectAtIndex:i] valueForKey:@"isFavorites"]];
+                [productStruct setIdPicture:[[array objectAtIndex:i] valueForKey:@"idPicture"]];
+                
+                [_arrayOfObjects addObject:productStruct];
+            }
         }
-        
-        //сортуємо по id продукта
-        NSSortDescriptor *sortDescriptor;
-        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"underbarid" ascending:YES];
-        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-        NSArray *sortedArray;
-        sortedArray = [_arrayOfObjects sortedArrayUsingDescriptors:sortDescriptors];
-        _arrayOfObjects = [[NSMutableArray alloc] initWithArray:sortedArray];
-        return _arrayOfObjects;
+        else
+        {
+            return _arrayOfObjects;
+        }
     }
     return _arrayOfObjects;
+        
+//        NSArray *array = [self.db fetchAllProductsIdAndTheirCountWithPriceForEntity:@"Favorites"];
+//        NSArray *arrayOfElements = [self.db fetchObjectsFromCoreDataForEntity:@"Products_translation" withArrayObjects:array withDefaultLanguageId:[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
+//        _arrayOfObjects = [[NSMutableArray alloc] init];
+//        for (int i = 0; i <array.count; i++)
+//        {
+//            ProductDataStruct *productStruct = [[ProductDataStruct alloc] init];
+//            //[productStruct setProductId:[[arrayOfElements objectAtIndex:i] valueForKey:@"idProduct"]];
+//            [productStruct setProductId:[[array objectAtIndex:i] valueForKey:@"underbarid"]];
+//            [productStruct setDescriptionText:[[arrayOfElements objectAtIndex:i] valueForKey:@"descriptionText"]];
+//            [productStruct setTitle:[[arrayOfElements objectAtIndex:i] valueForKey:@"nameText"]];
+//            [productStruct setPrice:[[array objectAtIndex:i] valueForKey:@"cost"]];
+//            [productStruct setImage:[UIImage imageWithData:[[array objectAtIndex:i] valueForKey:@"picture"]]];
+//            [productStruct setDiscountValue:[[array objectAtIndex:i] valueForKey:@"discountValue"]];
+//            
+//            [_arrayOfObjects addObject:productStruct];     
+//        }
+//
+//        //сортуємо по id продукта
+//        NSSortDescriptor *sortDescriptor;
+//        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"productId" ascending:YES];
+//        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+//        NSArray *sortedArray;
+//        sortedArray = [_arrayOfObjects sortedArrayUsingDescriptors:sortDescriptors];
+//        _arrayOfObjects = [[NSMutableArray alloc] initWithArray:sortedArray];
+//        return _arrayOfObjects;
+//    }
+//    return _arrayOfObjects;
+    
+    
 }
 
 - (void)viewDidLoad
@@ -97,6 +130,7 @@
     self.gmGridView.layoutStrategy = [GMGridViewLayoutStrategyFactory strategyFromType:GMGridViewLayoutHorizontalPagedLTR];
     self.gmGridView.showsHorizontalScrollIndicator = NO;
     
+    self.gmGridView.enableEditOnLongPress = YES;
     
     self.pageControl.currentPage = 0;
     self.pageControl.numberOfPages = (int) self.arrayOfObjects.count/9;
@@ -105,6 +139,35 @@
     gradient.frame = self.viewForOutput.bounds;
     gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor darkGrayColor] CGColor],(id)[[UIColor blackColor] CGColor], nil];
     [self.viewForOutput.layer insertSublayer:gradient atIndex:0];
+    
+    self.stopEditButton.hidden = YES;
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    //fetching pictures
+    ProductDataStruct *dataStruct;
+    for (int i = 0; i < self.arrayOfObjects.count; i++)
+    {
+        dataStruct = [self.arrayOfObjects objectAtIndex:i];
+        NSData *dataOfPicture = [self.db fetchPictureDataByPictureId:[[self.arrayOfObjects objectAtIndex:i] idPicture]];
+//        NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test6/root/%@",[[pictures objectForKey:dataStruct.idPicture] valueForKey:@"link"]];
+//        urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//        NSURL *url = [NSURL URLWithString:urlForImage];
+        //        dataStruct.link = url.description;
+        
+        //saving results of secon request
+//        [[self.arrayData objectAtIndex:i] setLink:url.description];
+        if(dataOfPicture)
+        {
+            [[self.arrayOfObjects objectAtIndex:i] setImage:[UIImage imageWithData:dataOfPicture]];
+        }
+    }
+    
+    [self.gmGridView reloadData];
+    
 }
 
 - (void)viewDidUnload
@@ -115,6 +178,8 @@
     [self setDb:nil];
     [self setGmGridView:nil];
     
+    [self setStopEditButton:nil];
+    [self setAlert:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -166,6 +231,11 @@
 	pageControlBeingUsed = YES;
 }
 
+- (IBAction)stopEditing:(id)sender
+{
+    self.gmGridView.editing = NO;
+}
+
 //////////////////////////////////////////////////////////////
 #pragma mark GMGridViewDataSource
 //////////////////////////////////////////////////////////////
@@ -209,59 +279,65 @@
     CGRect imageFrame;
     imageFrame.size = CGSizeMake(90,80);
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageFrame];
-    [imageView setImage:dataStruct.image];
+    if (dataStruct.image)
+    {
+        [imageView setImage:dataStruct.image];
+    }
+    
     [cell.contentView addSubview:imageView];
     
     CGRect nameFrame;
     nameFrame.origin.x = 0;
-    nameFrame.origin.y = 70;
-    nameFrame.size = CGSizeMake(60,21);
+    nameFrame.origin.y = 90;
+    nameFrame.size = CGSizeMake(90,20);
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:nameFrame];
     nameLabel.backgroundColor = [UIColor clearColor];
-    nameLabel.textColor = [UIColor orangeColor];
+    nameLabel.textColor = [UIColor lightGrayColor];
     nameLabel.text = dataStruct.title;
-    nameLabel.textAlignment = UITextAlignmentRight;
+    nameLabel.textAlignment = UITextAlignmentLeft;
     nameLabel.numberOfLines = 1;
-    nameLabel.minimumFontSize = 12;
+    nameLabel.minimumFontSize = 9;
+    nameLabel.font = [UIFont boldSystemFontOfSize:12];
     nameLabel.adjustsFontSizeToFitWidth = YES;
     [cell.contentView addSubview:nameLabel];
     
     CGRect priceFrame;
-    priceFrame.origin.x = 60;
-    priceFrame.origin.y = 70;
-    priceFrame.size = CGSizeMake(30,21);
+    priceFrame.origin.x = 0;
+    priceFrame.origin.y = 75;
+    priceFrame.size = CGSizeMake(90,20);
     UILabel *priceLabel = [[UILabel alloc] initWithFrame:priceFrame];
     //priceLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     formatter.roundingIncrement = [NSNumber numberWithDouble:0.01];
     formatter.numberStyle = NSNumberFormatterDecimalStyle;
     
     NSString *price = [formatter stringFromNumber:[NSNumber numberWithFloat:(dataStruct.price.floatValue * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]];
     NSString *priceString = [NSString stringWithFormat:@"%@ %@", price, [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
-    
     priceLabel.text = priceString;
-    priceLabel.textColor = [UIColor yellowColor];
-    priceLabel.textAlignment = UITextAlignmentRight;
+    
+    priceLabel.textColor = [UIColor orangeColor];
+    priceLabel.textAlignment = UITextAlignmentLeft;
     priceLabel.backgroundColor = [UIColor clearColor];
     //priceLabel.highlightedTextColor = [UIColor yellowColor];
     priceLabel.numberOfLines = 1;
-    priceLabel.minimumFontSize = 10;
-    //priceLabel.font = [UIFont boldSystemFontOfSize:20];
+    priceLabel.minimumFontSize = 9;
+    priceLabel.font = [UIFont systemFontOfSize:12];
     [cell.contentView addSubview:priceLabel];
     
-    CGRect descriptionFrame;
-    descriptionFrame.origin.x = 0;
-    descriptionFrame.origin.y = 90;
-    descriptionFrame.size = CGSizeMake(90,15);
-    UILabel *descriptionLabel = [[UILabel alloc] initWithFrame:descriptionFrame];
-    descriptionLabel.backgroundColor = [UIColor clearColor];
-    descriptionLabel.text = dataStruct.descriptionText;
-    descriptionLabel.textColor = [UIColor lightGrayColor];
-    descriptionLabel.textAlignment = UITextAlignmentRight;
-    descriptionLabel.numberOfLines = 1;
-    descriptionLabel.minimumFontSize = 8;
-    descriptionLabel.adjustsFontSizeToFitWidth = YES;
-    [cell.contentView addSubview:descriptionLabel];
+    //    CGRect descriptionFrame;
+    //    descriptionFrame.origin.x = 0;
+    //    descriptionFrame.origin.y = 90;
+    //    descriptionFrame.size = CGSizeMake(90,15);
+    //    UILabel *descriptionLabel = [[UILabel alloc] initWithFrame:descriptionFrame];
+    //    descriptionLabel.backgroundColor = [UIColor clearColor];
+    //    descriptionLabel.text = dataStruct.descriptionText;
+    //    descriptionLabel.textColor = [UIColor lightGrayColor];
+    //    descriptionLabel.textAlignment = UITextAlignmentRight;
+    //    descriptionLabel.numberOfLines = 1;
+    //    descriptionLabel.minimumFontSize = 8;
+    //    descriptionLabel.adjustsFontSizeToFitWidth = YES;
+    //    [cell.contentView addSubview:descriptionLabel];
     
     
     return cell;
@@ -297,17 +373,54 @@
     NSLog(@"Tap on empty space");
 }
 
+- (void)GMGridView:(GMGridView *)gridView changedEdit:(BOOL)edit
+{
+    if (edit == YES)
+    {
+        self.stopEditButton.hidden = NO;
+    }
+    else
+        self.stopEditButton.hidden = YES;
+}
+
 - (void)GMGridView:(GMGridView *)gridView processDeleteActionForItemAtIndex:(NSInteger)index
 {
-    NSLog(@"DELETE!!!");
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Remove to favorites?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"YES", nil];
+    
+    [alertView show];
+    self.selectedIndex = [NSNumber numberWithInteger:index];
+
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) 
     {
-        // add to favorites here
+        id currentOne = [self.arrayOfObjects objectAtIndex:self.selectedIndex.integerValue];
+        //changing is database
+        [self.db changeFavoritesBoolValue:NO forId:[currentOne productId]];
+        //changing in Array
+        [self.arrayOfObjects removeObjectAtIndex:self.selectedIndex.integerValue];
+        self.alert = [[UIAlertView alloc] initWithTitle:nil
+                                                message:[NSString stringWithFormat:@"Removed \"%@\" from favorites.", [currentOne title]]
+                                               delegate:nil
+                                      cancelButtonTitle:@"OK"
+                                      otherButtonTitles:nil];
+        [self.alert show];
+        self.gmGridView.editing = NO;
+        [self.gmGridView removeObjectAtIndex:self.selectedIndex.intValue withAnimation:GMGridViewItemAnimationFade];
+        [self performSelector:@selector(dismiss) withObject:nil afterDelay:2];
+
     }
+}
+
+/////////////////////////////
+#pragma mark myPrivateMethod
+/////////////////////////////
+- (void) dismiss
+{
+    [self.alert dismissWithClickedButtonIndex:0 animated:YES];
+    [self setAlert:nil];
 }
 
 //////////////////////////////////////////////////////////////

@@ -30,31 +30,30 @@
 {
     if (!_arrayOfObjects)
     {
-        NSArray *array = [self.db fetchAllProductsIdAndTheirCountWithPriceForEntity:@"Favorites"];
-        NSArray *arrayOfElements = [self.db fetchObjectsFromCoreDataForEntity:@"Products_translation" withArrayObjects:array withDefaultLanguageId:[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
-        _arrayOfObjects = [[NSMutableArray alloc] init];
-        for (int i = 0; i <array.count; i++)
+        NSArray *array = [self.db fetchFavoritesFromEntityName:@"Products"];
+        if (array.count != 0)
         {
-            ProductDataStruct *productStruct = [[ProductDataStruct alloc] init];
-            //[productStruct setProductId:[[arrayOfElements objectAtIndex:i] valueForKey:@"idProduct"]];
-            [productStruct setProductId:[[array objectAtIndex:i] valueForKey:@"underbarid"]];
-            [productStruct setDescriptionText:[[arrayOfElements objectAtIndex:i] valueForKey:@"descriptionText"]];
-            [productStruct setTitle:[[arrayOfElements objectAtIndex:i] valueForKey:@"nameText"]];
-            [productStruct setPrice:[[array objectAtIndex:i] valueForKey:@"cost"]];
-            [productStruct setImage:[UIImage imageWithData:[[array objectAtIndex:i] valueForKey:@"picture"]]];
-            [productStruct setDiscountValue:[[array objectAtIndex:i] valueForKey:@"discountValue"]];
-            
-            [_arrayOfObjects addObject:productStruct];     
+            NSArray *arrayOfElements = [self.db fetchObjectsFromCoreDataForEntity:@"Products_translation" withArrayObjects:array withDefaultLanguageId:[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
+            _arrayOfObjects = [[NSMutableArray alloc] init];
+            for (int i = 0; i < array.count; i++)
+            {
+                ProductDataStruct *productStruct = [[ProductDataStruct alloc] init];
+                //[productStruct setProductId:[[arrayOfElements objectAtIndex:i] valueForKey:@"idProduct"]];
+                [productStruct setProductId:[[array objectAtIndex:i] valueForKey:@"underbarid"]];
+                [productStruct setDescriptionText:[[arrayOfElements objectAtIndex:i] valueForKey:@"descriptionText"]];
+                [productStruct setTitle:[[arrayOfElements objectAtIndex:i] valueForKey:@"nameText"]];
+                [productStruct setPrice:[[array objectAtIndex:i] valueForKey:@"price"]];
+                [productStruct setDiscountValue:[[array objectAtIndex:i] valueForKey:@"idDiscount"]];
+                [productStruct setIsFavorites:[[array objectAtIndex:i] valueForKey:@"isFavorites"]];
+                [productStruct setIdPicture:[[array objectAtIndex:i] valueForKey:@"idPicture"]];
+                
+                [_arrayOfObjects addObject:productStruct];
+            }
         }
-        
-        //сортуємо по id продукта
-        NSSortDescriptor *sortDescriptor;
-        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"underbarid" ascending:YES];
-        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-        NSArray *sortedArray;
-        sortedArray = [_arrayOfObjects sortedArrayUsingDescriptors:sortDescriptors];
-        _arrayOfObjects = [[NSMutableArray alloc] initWithArray:sortedArray];
-        return _arrayOfObjects;
+        else
+        {
+            return _arrayOfObjects;
+        }
     }
     return _arrayOfObjects;
 }
@@ -72,6 +71,33 @@
 {
     [super viewDidLoad];
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    //fetching pictures
+    ProductDataStruct *dataStruct;
+    for (int i = 0; i < self.arrayOfObjects.count; i++)
+    {
+        dataStruct = [self.arrayOfObjects objectAtIndex:i];
+        NSData *dataOfPicture = [self.db fetchPictureDataByPictureId:[[self.arrayOfObjects objectAtIndex:i] idPicture]];
+        //        NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test6/root/%@",[[pictures objectForKey:dataStruct.idPicture] valueForKey:@"link"]];
+        //        urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        //        NSURL *url = [NSURL URLWithString:urlForImage];
+        //        dataStruct.link = url.description;
+        
+        //saving results of secon request
+        //        [[self.arrayData objectAtIndex:i] setLink:url.description];
+        if(dataOfPicture)
+        {
+            [[self.arrayOfObjects objectAtIndex:i] setImage:[UIImage imageWithData:dataOfPicture]];
+        }
+    }
+    
+    [self.tableView reloadData];
+    
 }
 
 - (void)viewDidUnload
@@ -179,7 +205,12 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) 
     {
-        [self.db deleteObjectFromEntity:@"Favorites" withProductId:[[self.arrayOfObjects objectAtIndex:indexPath.row] productId]];
+//        [self.db deleteObjectFromEntity:@"Favorites" withProductId:[[self.arrayOfObjects objectAtIndex:indexPath.row] productId]];
+//        [self.arrayOfObjects removeObjectAtIndex:indexPath.row];
+        id currentOne = [self.arrayOfObjects objectAtIndex:indexPath.row];
+        //changing is database
+        [self.db changeFavoritesBoolValue:NO forId:[currentOne productId]];
+        //changing in Array
         [self.arrayOfObjects removeObjectAtIndex:indexPath.row];
         [self.tableView reloadData];
     }  

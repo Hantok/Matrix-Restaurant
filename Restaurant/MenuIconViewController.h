@@ -33,10 +33,12 @@
 @property (strong, nonatomic) GMGridView *gmGridView;
 @property (strong, nonatomic) IBOutlet UIView *viewForOutput;
 @property (strong, nonatomic) IBOutlet UIPageControl *pageControl;
+@property (weak, nonatomic) IBOutlet UIButton *stopEditButton;
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 @property (strong, nonatomic) NSNumber *selectedIndex;
 
 - (IBAction)changePage;
 - (void)toCartMenu:(id)sender;
+- (IBAction)stopEditing:(id)sender;
 
 @end

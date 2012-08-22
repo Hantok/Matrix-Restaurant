@@ -159,7 +159,7 @@
             //видалаляємо вміст корзини i favorites, якщо змінюємо city
             //GettingCoreContent *content = [[GettingCoreContent alloc] init];
             [content deleteAllObjectsFromEntity:@"Cart"];
-            [content deleteAllObjectsFromEntity:@"Favorites"];
+//            [content deleteAllObjectsFromEntity:@"Favorites"];
         }
         else
         {
@@ -314,9 +314,12 @@
     for(int i = 0; i< allKeys.count; i++)
     {
         id key = [allKeys objectAtIndex:i];
-        id object = [self.db.tables objectForKey:key];
-        if(object)
-            [content setCoreDataForEntityWithName:key dictionaryOfAtributes:object];
+        if (![key isEqualToString:@"Pictures"])
+        {
+            id object = [self.db.tables objectForKey:key];
+            if(object)
+                [content setCoreDataForEntityWithName:key dictionaryOfAtributes:object];
+        }
     }
 }
 @end

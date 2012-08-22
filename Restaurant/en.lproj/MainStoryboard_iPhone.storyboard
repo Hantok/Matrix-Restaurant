@@ -1045,12 +1045,28 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yU1-01-Rhm">
+                                <rect key="frame" x="263" y="373" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="stop.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="stopEditing:" destination="wOa-81-fZj" eventType="touchUpInside" id="dSO-gp-Em6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="QRw-yv-h5z"/>
                     <connections>
                         <outlet property="pageControl" destination="QQs-c0-wwG" id="R5U-5A-Mtn"/>
+                        <outlet property="stopEditButton" destination="yU1-01-Rhm" id="vqv-oU-jJu"/>
                         <outlet property="viewForOutput" destination="dhi-kq-CiP" id="DUI-Oy-nCI"/>
                         <segue destination="WSq-ly-76H" kind="push" identifier="toProductDetail" id="U3I-DZ-boL"/>
                     </connections>
@@ -1162,7 +1178,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="1160" y="-1200"/>
         </scene>
-        <!--Favorites Icon View Controller-->
+        <!--Favorites Icon View Controller - Favorites-->
         <scene sceneID="x5D-Hk-NAf">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5LD-x0-S10" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1183,12 +1199,29 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5fs-Pf-p7N">
+                                <rect key="frame" x="263" y="373" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="stop.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="stopEditing:" destination="wOa-81-fZj" eventType="touchUpInside" id="FV9-Sm-SDk"/>
+                                    <action selector="stopEditing:" destination="9oc-Jo-suM" eventType="touchUpInside" id="nAv-eL-XiF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="UjU-UU-77A"/>
+                    <navigationItem key="navigationItem" title="Favorites" id="UjU-UU-77A"/>
                     <connections>
                         <outlet property="pageControl" destination="Fm5-Dw-u37" id="kZV-GI-PbL"/>
+                        <outlet property="stopEditButton" destination="5fs-Pf-p7N" id="Ev6-5C-w2L"/>
                         <outlet property="viewForOutput" destination="LZu-HM-TEN" id="5S5-tN-kFh"/>
                         <segue destination="WSq-ly-76H" kind="push" identifier="toProductDetail" id="zci-Y9-P4H"/>
                     </connections>
@@ -1208,6 +1241,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="images.jpeg" width="224" height="225"/>
         <image name="picture.png" width="590" height="626"/>
         <image name="restaurants.png" width="294" height="94"/>
+        <image name="stop.png" width="256" height="256"/>
         <image name="Снимок экрана 2012-04-17 в 18.14.31.png" width="16" height="16"/>
     </resources>
     <classes>
@@ -1365,7 +1399,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="uuy-7P-Ssv"/>
         <segue reference="p5O-gN-8X0"/>
+        <segue reference="zci-Y9-P4H"/>
     </inferredMetricsTieBreakers>
 </document>

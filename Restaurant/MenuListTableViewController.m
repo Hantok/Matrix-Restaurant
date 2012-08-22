@@ -35,65 +35,37 @@
 
 - (NSMutableArray *)arrayData
 {
-    //for you baby! 
     
     if(!_arrayData)
     {
-//        NSLog(@"<----------initiation");
-//        NSMutableArray *array = [[NSMutableArray alloc] init];
-//        ProductDataStruct *dataStruct;
-//        NSArray *data = [self.db fetchAllProductsFromMenu:self.kindOfMenu.menuId];
-//        for(int i=0;i<data.count;i++)
-//        {
-//            if(i%2==0) 
-//            {
-//                dataStruct = [[ProductDataStruct alloc] init];
-//                dataStruct.productId = [[data objectAtIndex:i] valueForKey:@"underbarid"];
-//                dataStruct.price = [[data objectAtIndex:i] valueForKey:@"price"];
-//                dataStruct.idPicture = [[data objectAtIndex:i] valueForKey:@"idPicture"];
-//                NSData *dataOfPicture = [self.db fetchPictureDataByPictureId:dataStruct.idPicture];
-//                NSURL *url = [self.db fetchImageURLbyPictureID:dataStruct.idPicture];
-//                dataStruct.link = url.description;
-//                if(dataOfPicture)
-//                {
-//                    dataStruct.image  = [UIImage imageWithData:dataOfPicture]; 
-//                }
-//            }
-//            else
-//            {
-//                dataStruct.title = [[data objectAtIndex:i] valueForKey:@"nameText"];
-//                dataStruct.descriptionText = [[data objectAtIndex:i] valueForKey:@"descriptionText"];
-//                [array addObject:dataStruct];
-//            }
-//        }
-//        _arrayData = array;
-//        NSLog(@"<----------initiation is deactivated");
         
         NSLog(@"request is began");
         NSMutableArray *array = [[NSMutableArray alloc] init];
         ProductDataStruct *dataStruct;
+        NSLog(@"first query begin");
         NSArray *data = [self.db fetchAllProductsFromMenu:self.kindOfMenu.menuId];
-        NSLog(@"first query");
-        NSDictionary *pictures = [self.db fetchImageURLAndDatabyMenuID:self.kindOfMenu.menuId];
-        NSLog(@"first query end");
+//        NSLog(@"first query end. Second query begin");
+//        NSDictionary *pictures = [self.db fetchImageURLAndDatabyMenuID:self.kindOfMenu.menuId];
+//        sNSLog(@"Second query end. For begin");
         for(int i=0;i<data.count;i++)
         {
-            if(i%2==0) 
+            if(i%2==0)
             {
                 dataStruct = [[ProductDataStruct alloc] init];
                 dataStruct.productId = [[data objectAtIndex:i] valueForKey:@"underbarid"];
                 dataStruct.price = [[data objectAtIndex:i] valueForKey:@"price"];
                 dataStruct.idPicture = [[data objectAtIndex:i] valueForKey:@"idPicture"];
-                dataStruct.discountValue = [[data objectAtIndex:i] valueForKey:@"idDiscount"]; //here is not value, underbarid of table discounts
-                NSData *dataOfPicture = [[pictures objectForKey:dataStruct.idPicture] valueForKey:@"data"];
-                NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test6/root/%@",[[pictures objectForKey:dataStruct.idPicture] valueForKey:@"link"]];
-                urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-                NSURL *url = [[NSURL alloc] initWithString:urlForImage];
-                dataStruct.link = url.description;
-                if(dataOfPicture)
-                {
-                    dataStruct.image  = [UIImage imageWithData:dataOfPicture]; 
-                }
+                dataStruct.discountValue = [[data objectAtIndex:i] valueForKey:@"idDiscount"]; //here is not value, underbarid of table discounts;
+                dataStruct.isFavorites = [[data objectAtIndex:i] valueForKey:@"isFavorites"];
+                //                NSData *dataOfPicture = [[pictures objectForKey:dataStruct.idPicture] valueForKey:@"data"];
+                //                NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test6/root/%@",[[pictures objectForKey:dataStruct.idPicture] valueForKey:@"link"]];
+                //                urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                //                NSURL *url = [[NSURL alloc] initWithString:urlForImage];
+                //                dataStruct.link = url.description;
+                //                if(dataOfPicture)
+                //                {
+                //                    dataStruct.image  = [UIImage imageWithData:dataOfPicture];
+                //                }
             }
             else
             {
@@ -103,7 +75,6 @@
             }
             
         }
-        
         //сортуємо по id продукта
         NSSortDescriptor *sortDescriptor;
         sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"productId" ascending:YES];
@@ -116,6 +87,54 @@
         return _arrayData;
     }
     return _arrayData;
+//    //old one
+//        NSLog(@"request is began");
+//        NSMutableArray *array = [[NSMutableArray alloc] init];
+//        ProductDataStruct *dataStruct;
+//        NSArray *data = [self.db fetchAllProductsFromMenu:self.kindOfMenu.menuId];
+//        NSLog(@"first query");
+//        NSDictionary *pictures = [self.db fetchImageURLAndDatabyMenuID:self.kindOfMenu.menuId];
+//        NSLog(@"first query end");
+//        for(int i=0;i<data.count;i++)
+//        {
+//            if(i%2==0) 
+//            {
+//                dataStruct = [[ProductDataStruct alloc] init];
+//                dataStruct.productId = [[data objectAtIndex:i] valueForKey:@"underbarid"];
+//                dataStruct.price = [[data objectAtIndex:i] valueForKey:@"price"];
+//                dataStruct.idPicture = [[data objectAtIndex:i] valueForKey:@"idPicture"];
+//                dataStruct.discountValue = [[data objectAtIndex:i] valueForKey:@"idDiscount"]; //here is not value, underbarid of table discounts
+//                NSData *dataOfPicture = [[pictures objectForKey:dataStruct.idPicture] valueForKey:@"data"];
+//                NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test6/root/%@",[[pictures objectForKey:dataStruct.idPicture] valueForKey:@"link"]];
+//                urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//                NSURL *url = [[NSURL alloc] initWithString:urlForImage];
+//                dataStruct.link = url.description;
+//                if(dataOfPicture)
+//                {
+//                    dataStruct.image  = [UIImage imageWithData:dataOfPicture]; 
+//                }
+//            }
+//            else
+//            {
+//                dataStruct.title = [[data objectAtIndex:i] valueForKey:@"nameText"];
+//                dataStruct.descriptionText = [[data objectAtIndex:i] valueForKey:@"descriptionText"];
+//                [array addObject:dataStruct];
+//            }
+//            
+//        }
+//        
+//        //сортуємо по id продукта
+//        NSSortDescriptor *sortDescriptor;
+//        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"productId" ascending:YES];
+//        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+//        NSArray *sortedArray;
+//        sortedArray = [array sortedArrayUsingDescriptors:sortDescriptors];
+//        _arrayData = [[NSMutableArray alloc] initWithArray:sortedArray];
+//        
+//        NSLog(@"end;;;;;");
+//        return _arrayData;
+//    }
+//    return _arrayData;
 }
 
 - (GettingCoreContent *)db
@@ -142,6 +161,28 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
+    
+    //fetching pictures
+    NSDictionary *pictures = [self.db fetchImageURLAndDatabyMenuID:self.kindOfMenu.menuId];
+    ProductDataStruct *dataStruct;
+    for (int i = 0; i < self.arrayData.count; i++)
+    {
+        dataStruct = [self.arrayData objectAtIndex:i];
+        NSData *dataOfPicture = [[pictures objectForKey:dataStruct.idPicture] valueForKey:@"data"];
+        NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test6/root/%@",[[pictures objectForKey:dataStruct.idPicture] valueForKey:@"link"]];
+        urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSURL *url = [NSURL URLWithString:urlForImage];
+        //        dataStruct.link = url.description;
+        
+        //saving results of secon request
+        [[self.arrayData objectAtIndex:i] setLink:url.description];
+        if(dataOfPicture)
+        {
+            [[self.arrayData objectAtIndex:i] setImage:[UIImage imageWithData:dataOfPicture]];
+        }
+    }
+    
+    [self.tableView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -237,7 +278,7 @@
     
     if (!dataStruct.image)
     {
-        if (self.tableView.dragging == NO && self.tableView.decelerating == NO)
+        if (self.tableView.dragging == NO && self.tableView.decelerating == NO && dataStruct.link)
         {
             [self startIconDownload:dataStruct forIndexPath:indexPath];
         }

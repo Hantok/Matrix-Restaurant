@@ -25,8 +25,10 @@
 @property (strong, nonatomic) NSMutableArray *arrayOfObjects;
 @property (strong, nonatomic) GettingCoreContent *db;
 @property (strong, nonatomic) NSNumber *selectedIndex;
+@property (weak, nonatomic) IBOutlet UIButton *stopEditButton;
 
 - (IBAction)changePage:(id)sender;
+- (IBAction)stopEditing:(id)sender;
 
 
 @end
