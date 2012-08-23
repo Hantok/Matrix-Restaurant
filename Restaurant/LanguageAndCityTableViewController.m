@@ -311,11 +311,24 @@
 {
     NSArray *allKeys = [self.db.tables allKeys];
     GettingCoreContent *content = [[GettingCoreContent alloc] init];
-    for(int i = 0; i< allKeys.count; i++)
+    if (!self.isCity)
     {
-        id key = [allKeys objectAtIndex:i];
-        if (![key isEqualToString:@"Pictures"])
+        for(int i = 0; i< allKeys.count; i++)
         {
+            id key = [allKeys objectAtIndex:i];
+            if (![key isEqualToString:@"Pictures"])
+            {
+                id object = [self.db.tables objectForKey:key];
+                if(object)
+                    [content setCoreDataForEntityWithName:key dictionaryOfAtributes:object];
+            }
+        }
+    }
+    else
+    {
+        for(int i = 0; i< allKeys.count; i++)
+        {
+            id key = [allKeys objectAtIndex:i];
             id object = [self.db.tables objectForKey:key];
             if(object)
                 [content setCoreDataForEntityWithName:key dictionaryOfAtributes:object];
