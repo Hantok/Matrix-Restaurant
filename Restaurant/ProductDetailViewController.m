@@ -42,7 +42,7 @@
 @synthesize priceLabel = _priceLabel;
 @synthesize cartButton = _cartButton;
 @synthesize count = _count;
-@synthesize productImage = _productImage;
+//@synthesize productImage = _productImage;
 @synthesize shareButton = _addToFavorites;
 @synthesize nameLabal = _nameLabal;
 @synthesize pictureViewContainer = _pictureViewContainer;
@@ -127,7 +127,7 @@
         }
 
     }
-    else
+    if (buttonIndex == 1)
     {
 //        self.facebookView = [[UIView alloc] initWithFrame:CGRectMake(0,110, 320, 350)];
         
@@ -613,7 +613,7 @@
     [self setCountPickerView:nil];
     [self setPriceLabel:nil];
     [self setCartButton:nil];
-    [self setProductImage:nil];
+//    [self setProductImage:nil];
     [self setShareButton:nil];
     [self setNameLabal:nil];
     [self setAlert:nil];
