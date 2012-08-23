@@ -19,7 +19,6 @@
 		781B8F141546DB870074EDBD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B8F131546DB870074EDBD /* main.m */; };
 		781B8F181546DB870074EDBD /* RestaurantAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B8F171546DB870074EDBD /* RestaurantAppDelegate.m */; };
 		781B8F1B1546DB870074EDBD /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 781B8F191546DB870074EDBD /* MainStoryboard_iPhone.storyboard */; };
-		781B8F1E1546DB870074EDBD /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 781B8F1C1546DB870074EDBD /* MainStoryboard_iPad.storyboard */; };
 		781B8F291546DBDD0074EDBD /* LoadAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B8F281546DBDD0074EDBD /* LoadAppViewController.m */; };
 		781B8F2C1546DD590074EDBD /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B8F2B1546DD590074EDBD /* MainMenuViewController.m */; };
 		78354F7A15590E07001890F1 /* Offers.m in Sources */ = {isa = PBXBuildFile; fileRef = 78354F7915590E07001890F1 /* Offers.m */; };
@@ -56,6 +55,7 @@
 		F50DF92C15DD2DA300EEC8B4 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F50DF92B15DD2DA300EEC8B4 /* FacebookSDK.framework */; };
 		F514734C15E3A40D003E836B /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = F514734B15E3A40D003E836B /* stop.png */; };
 		F515440D15B03CCB00A2CB88 /* FavoritesIconViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F515440C15B03CCB00A2CB88 /* FavoritesIconViewController.m */; };
+		F51635AA15E61CBA00F76ECE /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F51635AC15E61CBA00F76ECE /* MainStoryboard_iPad.storyboard */; };
 		F51A455D15E3DDC600FD0BB9 /* alphanumeric-plus-sign.png in Resources */ = {isa = PBXBuildFile; fileRef = F51A455C15E3DDC600FD0BB9 /* alphanumeric-plus-sign.png */; };
 		F51B206215AB2EE600074DA1 /* white-cart_big.png in Resources */ = {isa = PBXBuildFile; fileRef = F51B206115AB2EE500074DA1 /* white-cart_big.png */; };
 		F52225CB1594A0A7003E2728 /* Button_orange_rev2.png in Resources */ = {isa = PBXBuildFile; fileRef = F52225CA1594A0A7003E2728 /* Button_orange_rev2.png */; };
@@ -228,7 +228,6 @@
 		781B8F161546DB870074EDBD /* RestaurantAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RestaurantAppDelegate.h; sourceTree = "<group>"; };
 		781B8F171546DB870074EDBD /* RestaurantAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RestaurantAppDelegate.m; sourceTree = "<group>"; };
 		781B8F1A1546DB870074EDBD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		781B8F1D1546DB870074EDBD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		781B8F271546DBDD0074EDBD /* LoadAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadAppViewController.h; sourceTree = "<group>"; };
 		781B8F281546DBDD0074EDBD /* LoadAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadAppViewController.m; sourceTree = "<group>"; };
 		781B8F2A1546DD590074EDBD /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
@@ -286,6 +285,10 @@
 		F514734B15E3A40D003E836B /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
 		F515440B15B03CCA00A2CB88 /* FavoritesIconViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesIconViewController.h; sourceTree = "<group>"; };
 		F515440C15B03CCB00A2CB88 /* FavoritesIconViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesIconViewController.m; sourceTree = "<group>"; };
+		F51635AB15E61CBA00F76ECE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		F51635AD15E61F3300F76ECE /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ru; path = ru.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		F51635AE15E61F3300F76ECE /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ru; path = ru.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		F51635AF15E61F3300F76ECE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F51A455C15E3DDC600FD0BB9 /* alphanumeric-plus-sign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alphanumeric-plus-sign.png"; sourceTree = "<group>"; };
 		F51B206115AB2EE500074DA1 /* white-cart_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "white-cart_big.png"; sourceTree = "<group>"; };
 		F52225CA1594A0A7003E2728 /* Button_orange_rev2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_orange_rev2.png; sourceTree = "<group>"; };
@@ -439,7 +442,7 @@
 				F5E93A4D156CFFB3005ED3ED /* Cells */,
 				F51063BE15C918FA00ED0368 /* Models */,
 				781B8F191546DB870074EDBD /* MainStoryboard_iPhone.storyboard */,
-				781B8F1C1546DB870074EDBD /* MainStoryboard_iPad.storyboard */,
+				F51635AC15E61CBA00F76ECE /* MainStoryboard_iPad.storyboard */,
 				78D3CF1C156A9248003202BD /* Restaurants.xcdatamodeld */,
 				781B8F161546DB870074EDBD /* RestaurantAppDelegate.h */,
 				781B8F171546DB870074EDBD /* RestaurantAppDelegate.m */,
@@ -842,7 +845,6 @@
 			files = (
 				781B8F121546DB870074EDBD /* InfoPlist.strings in Resources */,
 				781B8F1B1546DB870074EDBD /* MainStoryboard_iPhone.storyboard in Resources */,
-				781B8F1E1546DB870074EDBD /* MainStoryboard_iPad.storyboard in Resources */,
 				78864DDC154957EE00D339B7 /* files.iphone.shop.category7.jpg in Resources */,
 				78864DDF15495E0A00D339B7 /* files.iphone.shop.good1582.png in Resources */,
 				78864DE41549804400D339B7 /* productCell.xib in Resources */,
@@ -879,6 +881,7 @@
 				F5F105A015DD355000B03533 /* FacebookSDKResources.bundle in Resources */,
 				F514734C15E3A40D003E836B /* stop.png in Resources */,
 				F51A455D15E3DDC600FD0BB9 /* alphanumeric-plus-sign.png in Resources */,
+				F51635AA15E61CBA00F76ECE /* MainStoryboard_iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -964,6 +967,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				781B8F111546DB870074EDBD /* en */,
+				F51635AF15E61F3300F76ECE /* ru */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -972,14 +976,16 @@
 			isa = PBXVariantGroup;
 			children = (
 				781B8F1A1546DB870074EDBD /* en */,
+				F51635AD15E61F3300F76ECE /* ru */,
 			);
 			name = MainStoryboard_iPhone.storyboard;
 			sourceTree = "<group>";
 		};
-		781B8F1C1546DB870074EDBD /* MainStoryboard_iPad.storyboard */ = {
+		F51635AC15E61CBA00F76ECE /* MainStoryboard_iPad.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				781B8F1D1546DB870074EDBD /* en */,
+				F51635AB15E61CBA00F76ECE /* en */,
+				F51635AE15E61F3300F76ECE /* ru */,
 			);
 			name = MainStoryboard_iPad.storyboard;
 			sourceTree = "<group>";
