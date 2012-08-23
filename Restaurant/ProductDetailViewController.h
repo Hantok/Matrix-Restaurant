@@ -22,10 +22,14 @@
 @property (weak, nonatomic) IBOutlet UIImageView *productImage;
 @property (strong, nonatomic) IBOutlet UIButton *shareButton;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabal;
+@property (weak, nonatomic) IBOutlet UIView *pictureViewContainer;
+@property (weak, nonatomic) IBOutlet UIButton *pictureButton;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 - (void)setProduct:(ProductDataStruct *)product isFromFavorites:(BOOL)boolValue;
 
 -(void)setLabelOfAddingButtonWithString:(NSString *)labelString withIndexPathInDB:(NSIndexPath *)indexPath;
 - (IBAction)share:(id)sender;
+- (IBAction)showOrHidePictureViewContainer:(id)sender;
 
 @end

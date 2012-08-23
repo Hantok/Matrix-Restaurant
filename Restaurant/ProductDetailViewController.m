@@ -17,6 +17,7 @@
 {
     BOOL isDownloadingPicture;
     BOOL isDeletingFromCart;
+    BOOL isPictureViewContanerShow;
 }
 
 @property BOOL isInFavorites;
@@ -44,6 +45,9 @@
 @synthesize productImage = _productImage;
 @synthesize shareButton = _addToFavorites;
 @synthesize nameLabal = _nameLabal;
+@synthesize pictureViewContainer = _pictureViewContainer;
+@synthesize pictureButton = _pictureButton;
+@synthesize imageView = _imageView;
 @synthesize isInFavorites = _isInFavorites;
 @synthesize labelString = _labelString;
 @synthesize alert = _alert;
@@ -79,6 +83,25 @@
     [actionSheet addButtonWithTitle:@"Cancel"];
     actionSheet.cancelButtonIndex = actionSheet.numberOfButtons - 1;
     [actionSheet showInView:self.view];
+}
+
+- (IBAction)showOrHidePictureViewContainer:(id)sender {
+    if (!isPictureViewContanerShow) {
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.3];
+        self.pictureViewContainer.frame = CGRectMake(35, -220, 250, 240);
+        [UIView commitAnimations];
+        
+        isPictureViewContanerShow = YES;
+    } else {
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.3];
+        self.pictureViewContainer.frame = CGRectMake(35, 0, 250, 240);
+        [UIView commitAnimations];
+        
+        isPictureViewContanerShow = NO;
+
+    }
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -333,6 +356,8 @@
 
 - (void)viewDidLoad
 {
+    self.pictureViewContainer.frame = CGRectMake(35, -240, 250, 240);
+    
     self.cartButton.titleLabel.textAlignment = UITextAlignmentCenter;
     if (self.labelString)
     {
@@ -349,7 +374,7 @@
     
 	// Do any additional setup after loading the view.
     //self.countPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0.0, 0.0, 63.0, 90.0)];
-    self.countPickerView.frame = CGRectMake(237, 236, 63, 108);
+    self.countPickerView.frame = CGRectMake(237, 248, 63, 108);
     
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     formatter.roundingIncrement = [NSNumber numberWithDouble:0.01];
@@ -385,23 +410,31 @@
     }
     
     self.priceLabel.text = priceString;
-    if (self.product.image)
-    {
-        self.productImage.image = self.product.image;
-    }
-    else
-    {
-        if (checkConnection.hasConnectivity)
-        {
-            self.loadingView = [[SSLoadingView alloc] initWithFrame:self.productImage.frame];
+    
+    self.imageView.frame = self.pictureButton.frame;
+    
+    if (self.product.image) {
+        
+        self.imageView.image = self.product.image;
+        [self.pictureButton addSubview:self.imageView];
+        
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.3];
+        self.pictureViewContainer.frame = CGRectMake(35, 0, 250, 240);
+        [UIView commitAnimations];
+
+        
+    } else {
+        if (checkConnection.hasConnectivity) {
+            
+            self.loadingView = [[SSLoadingView alloc] initWithFrame:CGRectMake(0, 230, 250, 240)];
             self.loadingView.backgroundColor = [UIColor clearColor];
             self.loadingView.activityIndicatorView.color = [UIColor whiteColor];
             self.loadingView.textLabel.textColor = [UIColor whiteColor];
-            [self.view addSubview:self.loadingView];
+            [self.pictureButton addSubview:self.loadingView];
         }
-        
     }
-    
+        
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = self.view.bounds;
     gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor darkGrayColor] CGColor],(id)[[UIColor blackColor] CGColor], nil];
@@ -428,9 +461,15 @@
     NSData *dataOfPicture = [NSData dataWithContentsOfURL:url];
     [self.db SavePictureToCoreData:self.product.idPicture toData:dataOfPicture];
     self.product.image  = [UIImage imageWithData:dataOfPicture];
-    self.productImage.image = self.product.image;
+    self.imageView.image = self.product.image;
     [self.loadingView removeFromSuperview];
-    [self.productImage reloadInputViews];
+    [self.imageView reloadInputViews];
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+    self.pictureViewContainer.frame = CGRectMake(35, 0, 250, 240);
+    [UIView commitAnimations];
+
 }
 
 
@@ -590,6 +629,9 @@
     [self setPostOnWallButton:nil];
     [self setTellFriendButton:nil];
 
+    [self setPictureViewContainer:nil];
+    [self setPictureButton:nil];
+    [self setImageView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -628,4 +670,6 @@
     else 
         self.product.count = [NSNumber numberWithInt:row+1];
 }
+
+
 @end
