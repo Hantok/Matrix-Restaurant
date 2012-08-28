@@ -93,9 +93,9 @@
         [self.view addSubview:self.pickerViewContainer];
         [UIView commitAnimations];
         
-//        [pickerViewContainer.timePicker]
-//        [datePicker setMinimumDate:[datePicker date]];
-//        [datePicker setMaximumDate:[[datePicker date] dateByAddingTimeInterval:86400 * 1]];
+        NSTimeInterval twoHours = 2 * 60 * 60;
+        NSDate *date = [[self.pickerViewContainer.datePicker date] dateByAddingTimeInterval:twoHours];
+        [self.pickerViewContainer.datePicker setMinimumDate:date];
 
                 
         return NO;

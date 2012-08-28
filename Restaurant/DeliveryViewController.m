@@ -206,6 +206,10 @@
             [self.pickerViewContainer.hideButton setTarget:self];
             [self.pickerViewContainer.hideButton setAction:@selector(hideButton)];
             
+            NSTimeInterval twoHours = 2 * 60 * 60;
+            NSDate *date = [[self.pickerViewContainer.datePicker date] dateByAddingTimeInterval:twoHours];
+            [self.pickerViewContainer.datePicker setMinimumDate:date];
+            
 //            [self.view addSubview:self.pickerViewContainer];
         }
         
