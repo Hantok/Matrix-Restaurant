@@ -121,6 +121,8 @@
 		F58EC35615DB8A4E00ADBA80 /* ReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58EC35515DB8A4E00ADBA80 /* ReservationViewController.m */; };
 		F591ECD815CD723C006BD0E6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F591ECD715CD723C006BD0E6 /* CoreLocation.framework */; };
 		F591ECDE15CEEE11006BD0E6 /* MyLoc.png in Resources */ = {isa = PBXBuildFile; fileRef = F591ECDD15CEEE10006BD0E6 /* MyLoc.png */; };
+		F592B3F115ECDAA900F977C9 /* Line2p.png in Resources */ = {isa = PBXBuildFile; fileRef = F592B3EF15ECDAA900F977C9 /* Line2p.png */; };
+		F592B3F215ECDAA900F977C9 /* Line1p.png in Resources */ = {isa = PBXBuildFile; fileRef = F592B3F015ECDAA900F977C9 /* Line1p.png */; };
 		F59344EB157F77DA0080EDE3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F59344EA157F77DA0080EDE3 /* AudioToolbox.framework */; };
 		F59344F7157F8D730080EDE3 /* images.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F59344F6157F8D730080EDE3 /* images.jpeg */; };
 		F599588115875CCF0000469F /* Settings1.png in Resources */ = {isa = PBXBuildFile; fileRef = F599588015875CCF0000469F /* Settings1.png */; };
@@ -311,6 +313,8 @@
 		F58EC35515DB8A4E00ADBA80 /* ReservationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservationViewController.m; sourceTree = "<group>"; };
 		F591ECD715CD723C006BD0E6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F591ECDD15CEEE10006BD0E6 /* MyLoc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MyLoc.png; sourceTree = "<group>"; };
+		F592B3EF15ECDAA900F977C9 /* Line2p.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Line2p.png; sourceTree = "<group>"; };
+		F592B3F015ECDAA900F977C9 /* Line1p.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Line1p.png; sourceTree = "<group>"; };
 		F59344EA157F77DA0080EDE3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		F59344F6157F8D730080EDE3 /* images.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = images.jpeg; sourceTree = "<group>"; };
 		F599588015875CCF0000469F /* Settings1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Settings1.png; sourceTree = "<group>"; };
@@ -523,6 +527,8 @@
 		78EF80B41573A51300478EEB /* images */ = {
 			isa = PBXGroup;
 			children = (
+				F592B3EF15ECDAA900F977C9 /* Line2p.png */,
+				F592B3F015ECDAA900F977C9 /* Line1p.png */,
 				F514734B15E3A40D003E836B /* stop.png */,
 				F51A455C15E3DDC600FD0BB9 /* alphanumeric-plus-sign.png */,
 				F5E0D80615D953FF004BA70B /* icons57.png */,
@@ -882,6 +888,8 @@
 				F514734C15E3A40D003E836B /* stop.png in Resources */,
 				F51A455D15E3DDC600FD0BB9 /* alphanumeric-plus-sign.png in Resources */,
 				F51635AA15E61CBA00F76ECE /* MainStoryboard_iPad.storyboard in Resources */,
+				F592B3F115ECDAA900F977C9 /* Line2p.png in Resources */,
+				F592B3F215ECDAA900F977C9 /* Line1p.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

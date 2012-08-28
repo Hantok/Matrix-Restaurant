@@ -48,6 +48,24 @@
 @synthesize pictureViewContainer = _pictureViewContainer;
 @synthesize pictureButton = _pictureButton;
 @synthesize imageView = _imageView;
+@synthesize scrollView = _scrollView;
+@synthesize captionLabel = _captionLabel;
+@synthesize nilCaption = _nilCaption;
+@synthesize proteinLabel = _proteinLabel;
+@synthesize fatLabel = _fatLabel;
+@synthesize carbohydratesLabel = _carbohydratesLabel;
+@synthesize kCalLabel = _kCal;
+@synthesize portionLabel = _portionLabel;
+@synthesize portionProteinLabel = _portionProteinLabel;
+@synthesize portionFatLabel = _portionFatLabel;
+@synthesize portionCarbohydratesLabel = _portionCarbohydratesLabel;
+@synthesize portionKCalLabel = _portionKCalLabel;
+@synthesize in100gLabel = _in100gLabel;
+@synthesize in100gProteinLabel = _in100gProteinLabel;
+@synthesize in100gFatLabel = _in100gFatLabel;
+@synthesize in100gCarbohydratesLabel = _in100gCarbohydratesLabel;
+@synthesize in100gKCalLabel = _in100gKCalLabel;
+@synthesize descriptionLabel = _descriptionLabel;
 @synthesize isInFavorites = _isInFavorites;
 @synthesize labelString = _labelString;
 @synthesize alert = _alert;
@@ -92,6 +110,8 @@
         self.pictureViewContainer.frame = CGRectMake(35, -220, 250, 240);
         [UIView commitAnimations];
         
+        [self.scrollView setHidden:NO];
+        
         isPictureViewContanerShow = YES;
     } else {
         [UIView beginAnimations:nil context:NULL];
@@ -99,8 +119,9 @@
         self.pictureViewContainer.frame = CGRectMake(35, 0, 250, 240);
         [UIView commitAnimations];
         
+//        [self.scrollView setHidden:YES];
+        
         isPictureViewContanerShow = NO;
-
     }
 }
 
@@ -356,6 +377,59 @@
 
 - (void)viewDidLoad
 {
+    [self.scrollView setScrollEnabled:YES];
+    [self.scrollView setContentSize:CGSizeMake(250, 250)];
+    [self.scrollView setShowsVerticalScrollIndicator:NO];
+    
+//    self.captionLabel.layer.borderColor = [UIColor darkGrayColor].CGColor;
+//    self.captionLabel.layer.borderWidth = 2.0;
+//    
+//    self.nilCaption.layer.borderColor = [UIColor darkGrayColor].CGColor;
+//    self.nilCaption.layer.borderWidth = 2.0;
+//    
+//    self.proteinLabel.layer.borderColor = [UIColor darkGrayColor].CGColor;
+//    self.proteinLabel.layer.borderWidth = 2.0;
+//    
+//    self.fatLabel.layer.borderColor = [UIColor darkGrayColor].CGColor;
+//    self.fatLabel.layer.borderWidth = 2.0;
+//    
+//    self.carbohydratesLabel.layer.borderColor = [UIColor darkGrayColor].CGColor;
+//    self.carbohydratesLabel.layer.borderWidth = 2.0;
+//    
+//    self.kCalLabel.layer.borderColor = [UIColor darkGrayColor].CGColor;
+//    self.kCalLabel.layer.borderWidth = 2.0;
+//    
+//    self.portionLabel.layer.borderColor = [UIColor darkGrayColor].CGColor;
+//    self.portionLabel.layer.borderWidth = 2.0;
+//    
+//    self.portionProteinLabel.layer.borderColor = [UIColor darkGrayColor].CGColor;
+//    self.portionProteinLabel.layer.borderWidth = 2.0;
+//    
+//    self.portionFatLabel.layer.borderColor = [UIColor darkGrayColor].CGColor;
+//    self.portionFatLabel.layer.borderWidth = 2.0;
+//    
+//    self.portionCarbohydratesLabel.layer.borderColor = [UIColor darkGrayColor].CGColor;
+//    self.portionCarbohydratesLabel.layer.borderWidth = 2.0;
+//    
+//    self.portionKCalLabel.layer.borderColor = [UIColor darkGrayColor].CGColor;
+//    self.portionKCalLabel.layer.borderWidth = 2.0;
+//    
+//    self.in100gLabel.layer.borderColor = [UIColor darkGrayColor].CGColor;
+//    self.in100gLabel.layer.borderWidth = 2.0;
+//    
+//    self.in100gProteinLabel.layer.borderColor = [UIColor darkGrayColor].CGColor;
+//    self.in100gProteinLabel.layer.borderWidth = 2.0;
+//    
+//    self.in100gFatLabel.layer.borderColor = [UIColor darkGrayColor].CGColor;
+//    self.in100gFatLabel.layer.borderWidth = 2.0;
+//    
+//    self.in100gCarbohydratesLabel.layer.borderColor = [UIColor darkGrayColor].CGColor;
+//    self.in100gCarbohydratesLabel.layer.borderWidth = 2.0;
+//    
+//    self.in100gKCalLabel.layer.borderColor = [UIColor darkGrayColor].CGColor;
+//    self.in100gKCalLabel.layer.borderWidth = 2.0;
+
+    
     self.pictureViewContainer.frame = CGRectMake(35, -240, 250, 240);
     
     self.cartButton.titleLabel.textAlignment = UITextAlignmentCenter;
@@ -372,6 +446,13 @@
     //self.navigationItem.title = self.product.title;
     self.nameLabal.text = self.product.title;
     
+    if ([self.product.descriptionText isEqualToString:@""]) {
+        self.descriptionLabel.text = @"Description is not available";
+    } else {
+        self.descriptionLabel.text = self.product.descriptionText;
+        [self.descriptionLabel sizeToFit];
+    }
+        
 	// Do any additional setup after loading the view.
     //self.countPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0.0, 0.0, 63.0, 90.0)];
     self.countPickerView.frame = CGRectMake(237, 248, 63, 108);
@@ -632,6 +713,24 @@
     [self setPictureViewContainer:nil];
     [self setPictureButton:nil];
     [self setImageView:nil];
+    [self setScrollView:nil];
+    [self setCaptionLabel:nil];
+    [self setNilCaption:nil];
+    [self setProteinLabel:nil];
+    [self setFatLabel:nil];
+    [self setCarbohydratesLabel:nil];
+    [self setKCalLabel:nil];
+    [self setPortionLabel:nil];
+    [self setPortionProteinLabel:nil];
+    [self setPortionFatLabel:nil];
+    [self setPortionCarbohydratesLabel:nil];
+    [self setPortionKCalLabel:nil];
+    [self setIn100gLabel:nil];
+    [self setIn100gProteinLabel:nil];
+    [self setIn100gFatLabel:nil];
+    [self setIn100gCarbohydratesLabel:nil];
+    [self setIn100gKCalLabel:nil];
+    [self setDescriptionLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
