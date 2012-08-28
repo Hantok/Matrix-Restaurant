@@ -210,24 +210,32 @@
     
 }
 
-- (void)addObjectToEntity:(NSString *)entityName withDictionaryOfAttributes:(NSDictionary *)dictionary
+- (BOOL)addObjectToEntity:(NSString *)entityName withDictionaryOfAttributes:(NSDictionary *)dictionary
 {
     NSManagedObjectContext *context = self.managedObjectContext;
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
-    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+    
     NSArray *keys = [dictionary allKeys];
-    for (int i = 0; i < keys.count; i++)
+    NSArray *alreadyInDB = [self fetchAddressWithPredicate:[dictionary valueForKey:@"name"]];
+    
+    if (alreadyInDB.count == 0)
     {
-        [newManagedObject setValue:[dictionary valueForKey:[keys objectAtIndex:i]] forKey:[keys objectAtIndex:i]];
+        NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+        for (int i = 0; i < keys.count; i++)
+        {
+            [newManagedObject setValue:[dictionary valueForKey:[keys objectAtIndex:i]] forKey:[keys objectAtIndex:i]];
+        }
+        // Save the context.
+        //NSError *error = nil;
+        NSError *error;
+        if (![context save:&error])
+        {
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+        return YES;
     }
-    // Save the context.
-    //NSError *error = nil;
-    NSError *error;
-    if (![context save:&error])
-    {
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
+    return NO;
 }
 
 - (NSArray *)fetchAllRestaurantsWithDefaultLanguageAndCity
@@ -305,7 +313,23 @@
     return [resultOfARequest copy]; 
 }
 
-    -(NSArray *)fetchAllLanguages
+- (NSArray *)fetchAddressWithPredicate:(NSString *)predicate
+{
+    NSManagedObjectContext * context = self.managedObjectContext;
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Addresses" inManagedObjectContext:context];
+    
+    [request setEntity:entity];
+    
+    request.predicate = [NSPredicate predicateWithFormat:@"name == %@", predicate];
+//    NSManagedObjectContext *moc = context;
+    NSError *error;
+    NSMutableArray *resultOfARequest = [[context executeFetchRequest:request error:&error] mutableCopy];
+    return [resultOfARequest copy];
+}
+
+- (NSArray *)fetchAllLanguages
 {
     NSManagedObjectContext * context = self.managedObjectContext;
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -513,7 +537,19 @@
 }
 
 
-- (void)SaveProductToEntityName:(NSString *)entityName WithId:(NSNumber *)underbarid withCount:(int)countOfProducts withPrice:(float)cost withPicture:(NSData *)picture withDiscountValue:(float)discountValue
+- (void)SaveProductToEntityName:(NSString *)entityName
+                         WithId:(NSNumber *)underbarid
+                      withCount:(int)countOfProducts
+                      withPrice:(float)cost
+                    withPicture:(NSData *)picture
+              withDiscountValue:(float)discountValue
+                     withWeight:(NSNumber *)weight
+                    withProtein:(NSNumber *)protein
+                      withCarbs:(NSNumber *)carbs
+                       withFats:(NSNumber *)fats
+                   withCalories:(NSNumber *)calories
+                    isFavorites:(BOOL)isFavorites
+                          isHit:(BOOL)hit
 {
     NSFetchRequest * request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:self.managedObjectContext]];
@@ -542,6 +578,13 @@
         [objectToInsert setValue:[NSNumber numberWithFloat:cost] forKey:@"cost"];
         [objectToInsert setValue:picture forKey:@"picture"];
         [objectToInsert setValue:[NSNumber numberWithFloat:discountValue] forKey:@"discountValue"];
+        [objectToInsert setValue:weight forKey:@"weight"];
+        [objectToInsert setValue:protein forKey:@"protein"];
+        [objectToInsert setValue:carbs forKey:@"carbs"];
+        [objectToInsert setValue:fats forKey:@"fats"];
+        [objectToInsert setValue:calories forKey:@"calories"];
+        [objectToInsert setValue:[NSNumber numberWithBool:isFavorites] forKey:@"isFavorites"];
+        [objectToInsert setValue:[NSNumber numberWithBool:hit] forKey:@"hit"];
         if(countOfProducts != 0)
         {
             [objectToInsert setValue:[NSNumber numberWithInt:countOfProducts] forKey:@"count"];

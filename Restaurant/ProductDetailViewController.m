@@ -42,7 +42,7 @@
 @synthesize priceLabel = _priceLabel;
 @synthesize cartButton = _cartButton;
 @synthesize count = _count;
-@synthesize productImage = _productImage;
+//@synthesize productImage = _productImage;
 @synthesize shareButton = _addToFavorites;
 @synthesize nameLabal = _nameLabal;
 @synthesize pictureViewContainer = _pictureViewContainer;
@@ -148,7 +148,7 @@
         }
 
     }
-    else
+    if (buttonIndex == 1)
     {
 //        self.facebookView = [[UIView alloc] initWithFrame:CGRectMake(0,110, 320, 350)];
         
@@ -465,8 +465,7 @@
     NSString *priceString = [NSString stringWithFormat:@"%@ %@", price, [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
     
     NSArray *discountsArray = [self.db getArrayFromCoreDatainEntetyName:@"Discounts" withSortDescriptor:@"underbarid"];
-    
-    if (!self.isInFavorites)//!!!means that previous viewController was FavoritesViewController
+    if (self.product.discountValue.floatValue >= 1)
     {
         for (int i = 0; i < discountsArray.count; i++)
         {
@@ -608,7 +607,13 @@
                                withCount:self.product.count.integerValue
                                withPrice:self.product.price.floatValue
                              withPicture:UIImagePNGRepresentation(self.product.image)
-                       withDiscountValue:self.product.discountValue.floatValue];
+                       withDiscountValue:self.product.discountValue.floatValue
+                              withWeight:self.product.weight
+                             withProtein:self.product.protein withCarbs:self.product.carbs
+                                withFats:self.product.fats
+                            withCalories:self.product.calories
+                             isFavorites:self.product.isFavorites.boolValue
+                                   isHit:NO];//isHit need to be added to ProductDataStruct
         
         self.alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Added %i item(s) \"%@\" to the Cart.",self.product.count.integerValue, self.product.title] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [self. alert show];
@@ -694,7 +699,7 @@
     [self setCountPickerView:nil];
     [self setPriceLabel:nil];
     [self setCartButton:nil];
-    [self setProductImage:nil];
+//    [self setProductImage:nil];
     [self setShareButton:nil];
     [self setNameLabal:nil];
     [self setAlert:nil];

@@ -19,6 +19,12 @@
 @synthesize idPicture = _idPicture;
 @synthesize link = _link;
 @synthesize isFavorites = _isFavorites;
+@synthesize discountValue = _discountValue;
+@synthesize weight = _weight;
+@synthesize protein = _protein;
+@synthesize carbs = _carbs;
+@synthesize fats = _fats;
+@synthesize calories = _calories;
 
 - (NSNumber *)count
 {
@@ -41,6 +47,11 @@
     self.count = [aDictionary objectForKey:@"count"];
     self.discountValue = [aDictionary objectForKey:@"idDiscount"];
     self.isFavorites = [aDictionary objectForKey:@"isFavorites"];
+    self.weight = [aDictionary objectForKey:@"weight"];
+    self.protein = [aDictionary objectForKey:@"protein"];
+    self.carbs = [aDictionary objectForKey:@"carbs"];
+    self.fats = [aDictionary objectForKey:@"fats"];
+    self.calories = [aDictionary objectForKey:@"calories"];
     return self;
     
 }
@@ -55,6 +66,11 @@
     [result setObject:self.count forKey:@"count"];
     [result setObject:self.discountValue forKey:@"idDiscount"];
     [result setObject:self.isFavorites forKey:@"isFavorites"];
+    [result setObject:self.weight forKey:@"weight"];
+    [result setObject:self.protein forKey:@"protein"];
+    [result setObject:self.carbs forKey:@"carbs"];
+    [result setObject:self.fats forKey:@"fats"];
+    [result setObject:self.calories forKey:@"calories"];
     return result.copy;
 }
 

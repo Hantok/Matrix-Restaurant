@@ -20,6 +20,11 @@
 @property (strong, nonatomic) NSString *link;
 @property (strong, nonatomic) NSNumber *discountValue;
 @property (strong, nonatomic) NSNumber *isFavorites;
+@property (strong, nonatomic) NSNumber *weight;
+@property (strong, nonatomic) NSNumber *protein;
+@property (strong, nonatomic) NSNumber *carbs;
+@property (strong, nonatomic) NSNumber *fats;
+@property (strong, nonatomic) NSNumber *calories;
 
 - (NSDictionary *)getDictionaryDependOnDataStruct;
 - (id)initWithDictionary:(NSMutableDictionary *)aDictionary;

@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *countPickerView;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *cartButton;
-@property (weak, nonatomic) IBOutlet UIImageView *productImage;
+//@property (weak, nonatomic) IBOutlet UIImageView *productImage;
 @property (strong, nonatomic) IBOutlet UIButton *shareButton;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabal;
 @property (weak, nonatomic) IBOutlet UIView *pictureViewContainer;

@@ -56,6 +56,11 @@
                 dataStruct.idPicture = [[data objectAtIndex:i] valueForKey:@"idPicture"];
                 dataStruct.discountValue = [[data objectAtIndex:i] valueForKey:@"idDiscount"]; //here is not value, underbarid of table discounts;
                 dataStruct.isFavorites = [[data objectAtIndex:i] valueForKey:@"isFavorites"];
+                [dataStruct setWeight:[[data objectAtIndex:i] valueForKey:@"weight"]];
+                [dataStruct setProtein:[[data objectAtIndex:i] valueForKey:@"protein"]];
+                [dataStruct setCarbs:[[data objectAtIndex:i] valueForKey:@"carbs"]];
+                [dataStruct setFats:[[data objectAtIndex:i] valueForKey:@"fats"]];
+                [dataStruct setCalories:[[data objectAtIndex:i] valueForKey:@"calories"]];
 //                NSData *dataOfPicture = [[pictures objectForKey:dataStruct.idPicture] valueForKey:@"data"];
 //                NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test6/root/%@",[[pictures objectForKey:dataStruct.idPicture] valueForKey:@"link"]];
 //                urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];

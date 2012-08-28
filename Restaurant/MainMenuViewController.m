@@ -18,6 +18,7 @@
 #import "ProductDetailViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "checkConnection.h"
+#import "DeliveryViewController.h"
 
 //first commit
 
@@ -28,6 +29,7 @@
     BOOL            fromSettings;
     BOOL            fromDeliveriesAndDatailViewController;
     int             currentImage;
+    BOOL            deliveryTime;
 }
 
 @property (readwrite)	CFURLRef        soundFileURLRef;
@@ -190,6 +192,11 @@
             [productStruct setImage:[UIImage imageWithData:[[array objectAtIndex:i] valueForKey:@"picture"]]];
             [productStruct setCount:[[array objectAtIndex:i] valueForKey:@"count"]];
             [productStruct setDiscountValue:[[array objectAtIndex:i] valueForKey:@"discountValue"]];
+            [productStruct setWeight:[[array objectAtIndex:i] valueForKey:@"weight"]];
+            [productStruct setProtein:[[array objectAtIndex:i] valueForKey:@"protein"]];
+            [productStruct setCarbs:[[array objectAtIndex:i] valueForKey:@"carbs"]];
+            [productStruct setFats:[[array objectAtIndex:i] valueForKey:@"fats"]];
+            [productStruct setCalories:[[array objectAtIndex:i] valueForKey:@"calories"]];
             
             [_arrayOfObjects addObject:productStruct];
         }
@@ -446,7 +453,11 @@
     }
     
     [subView.imageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%i.jpg", currentImage]]];
-    subView.label.text = [NSString stringWithFormat:@"Here is title"];
+    subView.label.text = [NSString stringWithFormat:@"Matrix Restaurant"];
+    if (currentImage == 0)
+        subView.textView.text = @"We are serving most tasty food in the city";
+    else
+        subView.textView.text = @"Our delivery service has started. We are giving 10% of discount for online orders. Do not forget to make your first odrer today :)";
     [self.view addSubview:subView];
 }
 
@@ -707,16 +718,22 @@
         //MenuDataStruct *dataStruct = [self.arrayData objectAtIndex:self.selectedRow.integerValue];
         [segue.destinationViewController setKindOfMenu:self.singleMenu];
     }
-    //self.arrayData = nil;
-    //self.restarauntId = nil;
-    //self.menuId = nil;
+    else
+        if([segue.identifier isEqualToString:@"toProductDetail"])
+        {
+            [[segue destinationViewController] setProduct:[self.arrayOfObjects objectAtIndex:self.selectedRow.integerValue] isFromFavorites:NO];
+            [[segue destinationViewController] setLabelOfAddingButtonWithString:@"Change" withIndexPathInDB:self.selectedPath];
+            fromDeliveriesAndDatailViewController = YES;
+        }
+        else
+            if([segue.identifier isEqualToString:@"toDelivery"] && deliveryTime == YES)
+            {
+                deliveryTime = NO;
+                [[segue destinationViewController] setEnableTime:YES];
+//                [[segue.destinationViewController setEnableTiming:YES]];
+            }
+    
     self.shouldBeReloaded = YES;
-    if([segue.identifier isEqualToString:@"toProductDetail"])
-    {
-        [[segue destinationViewController] setProduct:[self.arrayOfObjects objectAtIndex:self.selectedRow.integerValue] isFromFavorites:NO];
-        [[segue destinationViewController] setLabelOfAddingButtonWithString:@"Change" withIndexPathInDB:self.selectedPath];
-        fromDeliveriesAndDatailViewController = YES;
-    }
     self.arrayOfObjects = nil;
     
 }
@@ -1092,7 +1109,7 @@
                 [actionSheet setDelegate:(id)self];
                 [actionSheet addButtonWithTitle:@"Delivery"];
                 [actionSheet addButtonWithTitle:@"Delivery by time"];
-                [actionSheet addButtonWithTitle:@"Pick up"];
+//                [actionSheet addButtonWithTitle:@"Pick up"];
                 [actionSheet addButtonWithTitle:@"Cancel"];
                 actionSheet.cancelButtonIndex = actionSheet.numberOfButtons - 1;
                 [actionSheet showInView:self.view];
@@ -1117,12 +1134,20 @@
     {
         [self performSegueWithIdentifier:@"toDelivery" sender:nil];
         fromDeliveriesAndDatailViewController = YES;
+        return;
     }
-    
     else
-    {
-        self.restorantsButton.titleLabel.text = @"Order";
-    }
+        if (buttonIndex == 1)
+        {
+            deliveryTime = YES;
+            [self performSegueWithIdentifier:@"toDelivery" sender:nil];
+            fromDeliveriesAndDatailViewController = YES;
+            return;
+        }
+        else
+        {
+            self.restorantsButton.titleLabel.text = @"Order";
+        }
 }
 
 #pragma mark -

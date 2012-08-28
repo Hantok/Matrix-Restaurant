@@ -63,6 +63,9 @@
 		F52225D31594BCA4003E2728 /* Button_black_dark_rev2.png in Resources */ = {isa = PBXBuildFile; fileRef = F52225D21594BCA4003E2728 /* Button_black_dark_rev2.png */; };
 		F52A6A201594BF8D00C96F2C /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = F52A6A1F1594BF8D00C96F2C /* back.png */; };
 		F53AF1701598876100EAA5AA /* MenuIconViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F53AF16F1598876100EAA5AA /* MenuIconViewController.m */; };
+		F53BFF6015EB7287000AB558 /* TimePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = F53BFF5F15EB7287000AB558 /* TimePicker.xib */; };
+		F53BFF6315EB7301000AB558 /* TimePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = F53BFF6115EB7301000AB558 /* TimePicker.h */; };
+		F53BFF6415EB7301000AB558 /* TimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = F53BFF6215EB7301000AB558 /* TimePicker.m */; };
 		F53D73FA1594CDE600A420D1 /* Button_blue_rev2.png in Resources */ = {isa = PBXBuildFile; fileRef = F53D73F91594CDE600A420D1 /* Button_blue_rev2.png */; };
 		F53D73FC1594CE7800A420D1 /* Button_green_rev2.png in Resources */ = {isa = PBXBuildFile; fileRef = F53D73FB1594CE7800A420D1 /* Button_green_rev2.png */; };
 		F53D73FE1594DC3900A420D1 /* restaurants.png in Resources */ = {isa = PBXBuildFile; fileRef = F53D73FD1594DC3900A420D1 /* restaurants.png */; };
@@ -299,6 +302,9 @@
 		F52A6A1F1594BF8D00C96F2C /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		F53AF16E1598876100EAA5AA /* MenuIconViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuIconViewController.h; sourceTree = "<group>"; };
 		F53AF16F1598876100EAA5AA /* MenuIconViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuIconViewController.m; sourceTree = "<group>"; };
+		F53BFF5F15EB7287000AB558 /* TimePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimePicker.xib; sourceTree = "<group>"; };
+		F53BFF6115EB7301000AB558 /* TimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePicker.h; sourceTree = "<group>"; };
+		F53BFF6215EB7301000AB558 /* TimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePicker.m; sourceTree = "<group>"; };
 		F53D73F91594CDE600A420D1 /* Button_blue_rev2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_blue_rev2.png; sourceTree = "<group>"; };
 		F53D73FB1594CE7800A420D1 /* Button_green_rev2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_green_rev2.png; sourceTree = "<group>"; };
 		F53D73FD1594DC3900A420D1 /* restaurants.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = restaurants.png; sourceTree = "<group>"; };
@@ -653,6 +659,9 @@
 		F5E93A4D156CFFB3005ED3ED /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				F53BFF6115EB7301000AB558 /* TimePicker.h */,
+				F53BFF6215EB7301000AB558 /* TimePicker.m */,
+				F53BFF5F15EB7287000AB558 /* TimePicker.xib */,
 				F5B70D9515D178E200695FAA /* subViewSpam.h */,
 				F5B70D9615D178E200695FAA /* subViewSpam.m */,
 				F5B70D9715D178E200695FAA /* subViewSpam.xib */,
@@ -735,6 +744,7 @@
 				F5513A3415DA3AA90083E075 /* AFURLConnectionOperation.h in Headers */,
 				F5513A3515DA3AA90083E075 /* AFXMLRequestOperation.h in Headers */,
 				F5513A3615DA3AA90083E075 /* UIImageView+AFNetworking.h in Headers */,
+				F53BFF6315EB7301000AB558 /* TimePicker.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -947,6 +957,7 @@
 				F58E734F15D1358800CBCE65 /* MapViewAnnotation.m in Sources */,
 				F5B70D9815D178E200695FAA /* subViewSpam.m in Sources */,
 				F58EC35615DB8A4E00ADBA80 /* ReservationViewController.m in Sources */,
+				F53BFF6415EB7301000AB558 /* TimePicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
