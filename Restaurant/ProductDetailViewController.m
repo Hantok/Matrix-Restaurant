@@ -384,8 +384,7 @@
     NSString *priceString = [NSString stringWithFormat:@"%@ %@", price, [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
     
     NSArray *discountsArray = [self.db getArrayFromCoreDatainEntetyName:@"Discounts" withSortDescriptor:@"underbarid"];
-    
-    if (!self.isInFavorites)//!!!means that previous viewController was FavoritesViewController
+    if (self.product.discountValue.floatValue >= 1)
     {
         for (int i = 0; i < discountsArray.count; i++)
         {

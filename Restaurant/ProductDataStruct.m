@@ -19,6 +19,7 @@
 @synthesize idPicture = _idPicture;
 @synthesize link = _link;
 @synthesize isFavorites = _isFavorites;
+@synthesize discountValue = _discountValue;
 
 - (NSNumber *)count
 {
