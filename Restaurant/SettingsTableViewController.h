@@ -15,6 +15,7 @@
 -(void)launchMailAppOnDevice;
 @property (strong, nonatomic) IBOutlet UITableViewCell *styleCell;
 @property (strong, nonatomic) IBOutlet UITableViewCell *currencyCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *resetCell;
 
 
 @end

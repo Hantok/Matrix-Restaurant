@@ -454,8 +454,8 @@
     
     [subView.imageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%i.jpg", currentImage]]];
     subView.label.text = [NSString stringWithFormat:@"Matrix Restaurant"];
-    if (currentImage == 0)
-        subView.textView.text = @"We are serving most tasty food in the city";
+    if (currentImage == 2)
+        subView.textView.text = @"We are serving most tasty food in the city.";
     else
         subView.textView.text = @"Our delivery service has started. We are giving 10% of discount for online orders. Do not forget to make your first odrer today :)";
     [self.view addSubview:subView];
