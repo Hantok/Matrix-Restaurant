@@ -18,7 +18,7 @@
 @synthesize name;
 @synthesize numberOfPeople;
 @synthesize dateOfReservation;
-@synthesize datePicker;
+//@synthesize datePicker;
 @synthesize pickerViewContainer;
 
 @synthesize tapRecognizer;
@@ -48,7 +48,25 @@
     self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                  action:@selector(didTapAnywhere:)];
     
-    pickerViewContainer.frame = CGRectMake(0, 460, 320, 261);
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"TimePicker" owner:nil options:nil];
+    for(id currentObject in topLevelObjects)
+    {
+        if([currentObject isKindOfClass:[TimePicker class]])
+        {
+            self.pickerViewContainer = (TimePicker *)currentObject;
+            break;
+        }
+    }
+    self.pickerViewContainer.frame = CGRectMake(0, 460, 320, 261);
+    [self.pickerViewContainer.okButton setTarget:self];
+    [self.pickerViewContainer.okButton setAction:@selector(okButton)];
+    
+    [self.pickerViewContainer.hideButton setTarget:self];
+    [self.pickerViewContainer.hideButton setAction:@selector(hideButton)];
+//    self.pickerViewContainer.hideButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonItemStylePlain target:self action:@selector(hideButton)];
+//    self.pickerViewContainer.okButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonItemStylePlain target:self action:@selector(okButton)];
+    
+//    [self.view addSubview:self.pickerViewContainer];
     
 }
 
@@ -58,7 +76,7 @@
     [self setNumberOfPeople:nil];
     [self setDateOfReservation:nil];
     [self setPickerViewContainer:nil];
-    [self setDatePicker:nil];
+//    [self setDatePicker:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -72,9 +90,11 @@
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:0.3];
         pickerViewContainer.frame = CGRectMake(0, 156, 320, 260);
+        [self.view addSubview:self.pickerViewContainer];
         [UIView commitAnimations];
         
-        [datePicker setMinimumDate:[datePicker date]];
+//        [pickerViewContainer.timePicker]
+//        [datePicker setMinimumDate:[datePicker date]];
 //        [datePicker setMaximumDate:[[datePicker date] dateByAddingTimeInterval:86400 * 1]];
 
                 
@@ -117,7 +137,7 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (IBAction)hideButton:(id)sender {
+- (void)hideButton {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
     pickerViewContainer.frame = CGRectMake(0, 460, 320, 260);
@@ -125,10 +145,10 @@
 
 }
 
-- (IBAction)okButton:(id)sender {
+- (void)okButton {
         
     //  get the current date
-    NSDate *date = [datePicker date];
+    NSDate *date = [self.pickerViewContainer.datePicker date];
     
     // format it
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];

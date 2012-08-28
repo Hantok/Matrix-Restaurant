@@ -7,17 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TimePicker.h"
 
 @interface ReservationViewController : UIViewController <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *name;
 @property (weak, nonatomic) IBOutlet UITextField *numberOfPeople;
 @property (weak, nonatomic) IBOutlet UITextField *dateOfReservation;
-@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
-@property (weak, nonatomic) IBOutlet UIView *pickerViewContainer;
+//@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (strong, nonatomic) TimePicker *pickerViewContainer;
 
-- (IBAction)hideButton:(id)sender;
-- (IBAction)okButton:(id)sender;
 - (IBAction)keyboardHide:(id)sender;
 
 @end

@@ -18,6 +18,7 @@
 #import "ProductDetailViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "checkConnection.h"
+#import "DeliveryViewController.h"
 
 //first commit
 
@@ -28,6 +29,7 @@
     BOOL            fromSettings;
     BOOL            fromDeliveriesAndDatailViewController;
     int             currentImage;
+    BOOL            deliveryTime;
 }
 
 @property (readwrite)	CFURLRef        soundFileURLRef;
@@ -707,16 +709,22 @@
         //MenuDataStruct *dataStruct = [self.arrayData objectAtIndex:self.selectedRow.integerValue];
         [segue.destinationViewController setKindOfMenu:self.singleMenu];
     }
-    //self.arrayData = nil;
-    //self.restarauntId = nil;
-    //self.menuId = nil;
+    else
+        if([segue.identifier isEqualToString:@"toProductDetail"])
+        {
+            [[segue destinationViewController] setProduct:[self.arrayOfObjects objectAtIndex:self.selectedRow.integerValue] isFromFavorites:NO];
+            [[segue destinationViewController] setLabelOfAddingButtonWithString:@"Change" withIndexPathInDB:self.selectedPath];
+            fromDeliveriesAndDatailViewController = YES;
+        }
+        else
+            if([segue.identifier isEqualToString:@"toDelivery"] && deliveryTime == YES)
+            {
+                deliveryTime = NO;
+                [[segue destinationViewController] setEnableTime:YES];
+//                [[segue.destinationViewController setEnableTiming:YES]];
+            }
+    
     self.shouldBeReloaded = YES;
-    if([segue.identifier isEqualToString:@"toProductDetail"])
-    {
-        [[segue destinationViewController] setProduct:[self.arrayOfObjects objectAtIndex:self.selectedRow.integerValue] isFromFavorites:NO];
-        [[segue destinationViewController] setLabelOfAddingButtonWithString:@"Change" withIndexPathInDB:self.selectedPath];
-        fromDeliveriesAndDatailViewController = YES;
-    }
     self.arrayOfObjects = nil;
     
 }
@@ -1117,12 +1125,20 @@
     {
         [self performSegueWithIdentifier:@"toDelivery" sender:nil];
         fromDeliveriesAndDatailViewController = YES;
+        return;
     }
-    
     else
-    {
-        self.restorantsButton.titleLabel.text = @"Order";
-    }
+        if (buttonIndex == 1)
+        {
+            deliveryTime = YES;
+            [self performSegueWithIdentifier:@"toDelivery" sender:nil];
+            fromDeliveriesAndDatailViewController = YES;
+            return;
+        }
+        else
+        {
+            self.restorantsButton.titleLabel.text = @"Order";
+        }
 }
 
 #pragma mark -

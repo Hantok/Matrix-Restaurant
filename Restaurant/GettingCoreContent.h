@@ -58,7 +58,7 @@
 
 - (int) fetchCountOfProductsInEntity:(NSString *)entityName;
 
--  (void) addObjectToEntity:(NSString *)entityName
+-  (BOOL) addObjectToEntity:(NSString *)entityName
  withDictionaryOfAttributes:(NSDictionary *)dictionary;
 
 - (void) deleteAddressWithName:(NSString *)name;
