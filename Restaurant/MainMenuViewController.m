@@ -192,6 +192,11 @@
             [productStruct setImage:[UIImage imageWithData:[[array objectAtIndex:i] valueForKey:@"picture"]]];
             [productStruct setCount:[[array objectAtIndex:i] valueForKey:@"count"]];
             [productStruct setDiscountValue:[[array objectAtIndex:i] valueForKey:@"discountValue"]];
+            [productStruct setWeight:[[array objectAtIndex:i] valueForKey:@"weight"]];
+            [productStruct setProtein:[[array objectAtIndex:i] valueForKey:@"protein"]];
+            [productStruct setCarbs:[[array objectAtIndex:i] valueForKey:@"carbs"]];
+            [productStruct setFats:[[array objectAtIndex:i] valueForKey:@"fats"]];
+            [productStruct setCalories:[[array objectAtIndex:i] valueForKey:@"calories"]];
             
             [_arrayOfObjects addObject:productStruct];
         }

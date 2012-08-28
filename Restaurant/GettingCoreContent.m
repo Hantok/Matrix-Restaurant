@@ -537,7 +537,19 @@
 }
 
 
-- (void)SaveProductToEntityName:(NSString *)entityName WithId:(NSNumber *)underbarid withCount:(int)countOfProducts withPrice:(float)cost withPicture:(NSData *)picture withDiscountValue:(float)discountValue
+- (void)SaveProductToEntityName:(NSString *)entityName
+                         WithId:(NSNumber *)underbarid
+                      withCount:(int)countOfProducts
+                      withPrice:(float)cost
+                    withPicture:(NSData *)picture
+              withDiscountValue:(float)discountValue
+                     withWeight:(NSNumber *)weight
+                    withProtein:(NSNumber *)protein
+                      withCarbs:(NSNumber *)carbs
+                       withFats:(NSNumber *)fats
+                   withCalories:(NSNumber *)calories
+                    isFavorites:(BOOL)isFavorites
+                          isHit:(BOOL)hit
 {
     NSFetchRequest * request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:self.managedObjectContext]];
@@ -566,6 +578,13 @@
         [objectToInsert setValue:[NSNumber numberWithFloat:cost] forKey:@"cost"];
         [objectToInsert setValue:picture forKey:@"picture"];
         [objectToInsert setValue:[NSNumber numberWithFloat:discountValue] forKey:@"discountValue"];
+        [objectToInsert setValue:weight forKey:@"weight"];
+        [objectToInsert setValue:protein forKey:@"protein"];
+        [objectToInsert setValue:carbs forKey:@"carbs"];
+        [objectToInsert setValue:fats forKey:@"fats"];
+        [objectToInsert setValue:calories forKey:@"calories"];
+        [objectToInsert setValue:[NSNumber numberWithBool:isFavorites] forKey:@"isFavorites"];
+        [objectToInsert setValue:[NSNumber numberWithBool:hit] forKey:@"hit"];
         if(countOfProducts != 0)
         {
             [objectToInsert setValue:[NSNumber numberWithInt:countOfProducts] forKey:@"count"];

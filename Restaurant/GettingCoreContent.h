@@ -37,7 +37,14 @@
                       withCount:(int)countOfProducts
                       withPrice:(float)cost
                     withPicture:(NSData *)picture
-                   withDiscountValue:(float)discountValue;
+              withDiscountValue:(float)discountValue
+                     withWeight:(NSNumber *)weight
+                    withProtein:(NSNumber *)protein
+                      withCarbs:(NSNumber *)carbs
+                       withFats:(NSNumber *)fats
+                   withCalories:(NSNumber *)calories
+                    isFavorites:(BOOL)isFavorites
+                          isHit:(BOOL)hit;
 
 - (NSArray *)fetchAllProductsIdAndTheirCountWithPriceForEntity:(NSString *)entityName;
 
