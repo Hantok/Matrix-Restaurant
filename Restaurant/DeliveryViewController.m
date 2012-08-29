@@ -385,8 +385,8 @@
 //send info to the server
 - (IBAction)toOrder:(id)sender 
 {
-    if (!self.enableTime)
-    {
+//    if (!self.enableTime)
+//    {
         self.scrollView.contentSize = CGSizeMake(320, 430);
         if ([self checkForLiteracy])
         {
@@ -470,11 +470,11 @@
                                                                otherButtonTitles:nil];
             [connectFailMessage show];
         }
-    }
-    else
-    {
-        // send order delivery by Time
-    }
+//    }
+//    else
+//    {
+//        // send order delivery by Time
+//    }
 }
 
 - (IBAction)saveAddress:(id)sender

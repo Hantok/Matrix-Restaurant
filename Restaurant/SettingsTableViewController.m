@@ -25,6 +25,7 @@
 @implementation SettingsTableViewController
 @synthesize styleCell = _styleCell;
 @synthesize currencyCell = _currencyCell;
+@synthesize resetCell = _resetCell;
 
 @synthesize isFriend = _isFriend;
 @synthesize isStyle = _isStyle;
@@ -40,6 +41,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.resetCell.hidden = YES;//треба дописати завантаження стандартних налаштувань, тому тимчасово вимикаємо цю фічу
     
     if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"typeOfView"] isEqualToString:@"menuIcon"]) 
         self.typeOfView = @"Icons";
@@ -67,6 +70,7 @@
 {
     [self setStyleCell:nil];
     [self setCurrencyCell:nil];
+    [self setResetCell:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
