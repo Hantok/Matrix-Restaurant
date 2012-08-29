@@ -131,13 +131,13 @@
 		F5F0215A1588C017009EB482 /* DeliveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F021591588C017009EB482 /* DeliveryViewController.m */; };
 		F5F1058E15DD2E1200B03533 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F5F1058D15DD2E1200B03533 /* libsqlite3.0.dylib */; };
 		F5F105A015DD355000B03533 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F5F1059F15DD355000B03533 /* FacebookSDKResources.bundle */; };
+		F5F254EF15EE1C0E00BC48AB /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F5F254EE15EE1C0E00BC48AB /* 2.jpg */; };
 		F5F2D69815AD7DBB00C5094B /* AddressListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F2D69715AD7DBB00C5094B /* AddressListTableViewController.m */; };
 		F5F2D69B15ADB91500C5094B /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F2D69A15ADB91500C5094B /* AddressCell.m */; };
 		F5F2D69D15ADBB8F00C5094B /* AddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5F2D69C15ADBB8E00C5094B /* AddressCell.xib */; };
 		F5F2DD8A15879B8E00E3C6A2 /* Heart.png in Resources */ = {isa = PBXBuildFile; fileRef = F5F2DD8915879B8E00E3C6A2 /* Heart.png */; };
 		F5FA62481580D39700FBF70A /* FavoritesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5FA62471580D39700FBF70A /* FavoritesTableViewController.m */; };
 		F5FA624C1580EB6700FBF70A /* Cart.png in Resources */ = {isa = PBXBuildFile; fileRef = F5FA624B1580EB6700FBF70A /* Cart.png */; };
-		F5FD7EB315D91C98006BCD6C /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F5FD7EB215D91C98006BCD6C /* 2.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -320,6 +320,7 @@
 		F5F021591588C017009EB482 /* DeliveryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeliveryViewController.m; sourceTree = "<group>"; };
 		F5F1058D15DD2E1200B03533 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		F5F1059F15DD355000B03533 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
+		F5F254EE15EE1C0E00BC48AB /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 		F5F2D69615AD7DBB00C5094B /* AddressListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressListTableViewController.h; sourceTree = "<group>"; };
 		F5F2D69715AD7DBB00C5094B /* AddressListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressListTableViewController.m; sourceTree = "<group>"; };
 		F5F2D69915ADB91400C5094B /* AddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressCell.h; sourceTree = "<group>"; };
@@ -329,7 +330,6 @@
 		F5FA62461580D39700FBF70A /* FavoritesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesTableViewController.h; sourceTree = "<group>"; };
 		F5FA62471580D39700FBF70A /* FavoritesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesTableViewController.m; sourceTree = "<group>"; };
 		F5FA624B1580EB6700FBF70A /* Cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cart.png; sourceTree = "<group>"; };
-		F5FD7EB215D91C98006BCD6C /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -500,8 +500,8 @@
 				F51B206115AB2EE500074DA1 /* white-cart_big.png */,
 				F5056DDA15A33F94000C14D1 /* close_x.png */,
 				F53D74071594E30500A420D1 /* picture.png */,
+				F5F254EE15EE1C0E00BC48AB /* 2.jpg */,
 				F53D73FF1594DDC400A420D1 /* 1.jpg */,
-				F5FD7EB215D91C98006BCD6C /* 2.jpg */,
 				F591ECDD15CEEE10006BD0E6 /* MyLoc.png */,
 				F53D73FD1594DC3900A420D1 /* restaurants.png */,
 				F53D73FB1594CE7800A420D1 /* Button_green_rev2.png */,
@@ -816,7 +816,6 @@
 				F5B4609C15C2D4A500A6815C /* metro.png in Resources */,
 				F591ECDE15CEEE11006BD0E6 /* MyLoc.png in Resources */,
 				F5B70D9915D178E200695FAA /* subViewSpam.xib in Resources */,
-				F5FD7EB315D91C98006BCD6C /* 2.jpg in Resources */,
 				F5E0D80515D953DA004BA70B /* icons.png in Resources */,
 				F5E0D80715D953FF004BA70B /* icons57.png in Resources */,
 				F5F105A015DD355000B03533 /* FacebookSDKResources.bundle in Resources */,
@@ -827,6 +826,7 @@
 				F50DF0EB15ED10C8005665DB /* label.jpg in Resources */,
 				F592B3F115ECDAA900F977C9 /* Line2p.png in Resources */,
 				F592B3F215ECDAA900F977C9 /* Line1p.png in Resources */,
+				F5F254EF15EE1C0E00BC48AB /* 2.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
