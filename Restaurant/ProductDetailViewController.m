@@ -461,26 +461,20 @@
 
     
     if ([self.product.descriptionText isEqualToString:@""]) {
-        self.descriptionLabel.text = @"Description is not available";
+        self.descriptionLabel.text = self.product.descriptionText;
     } else {
         
 //        NSString *str = self.product.descriptionText;
 
         if (self.product.descriptionText.length < 50) {
-            NSLog(@"Кількість символів < 50");
             
             [self.scrollView setScrollEnabled:NO];
-//            [self.scrollView setContentSize:CGSizeMake(250, 300)];
-//            [self.scrollView setShowsVerticalScrollIndicator:NO];
 
         } else {
-            NSLog(@"Кількість символів >= 50");
             
             NSString *str = self.product.descriptionText;
             
             int countStr = str.length / 25;
-            NSLog(@"Довжина стрічки %i кількість стрічок %i", str.length, countStr);
-
             
             [self.scrollView setScrollEnabled:YES];
             [self.scrollView setContentSize:CGSizeMake(250, 220 + (countStr - 2) * 15)];
