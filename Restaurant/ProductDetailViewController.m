@@ -378,9 +378,6 @@
 
 - (void)viewDidLoad
 {
-    [self.scrollView setScrollEnabled:YES];
-    [self.scrollView setContentSize:CGSizeMake(250, 300)];
-    [self.scrollView setShowsVerticalScrollIndicator:NO];
     
 //    self.captionLabel.layer.borderColor = [UIColor darkGrayColor].CGColor;
 //    self.captionLabel.layer.borderWidth = 2.0;
@@ -466,9 +463,36 @@
     if ([self.product.descriptionText isEqualToString:@""]) {
         self.descriptionLabel.text = @"Description is not available";
     } else {
+        
+//        NSString *str = self.product.descriptionText;
+
+        if (self.product.descriptionText.length < 50) {
+            NSLog(@"Кількість символів < 50");
+            
+            [self.scrollView setScrollEnabled:NO];
+//            [self.scrollView setContentSize:CGSizeMake(250, 300)];
+//            [self.scrollView setShowsVerticalScrollIndicator:NO];
+
+        } else {
+            NSLog(@"Кількість символів >= 50");
+            
+            NSString *str = self.product.descriptionText;
+            
+            int countStr = str.length / 25;
+            NSLog(@"Довжина стрічки %i кількість стрічок %i", str.length, countStr);
+
+            
+            [self.scrollView setScrollEnabled:YES];
+            [self.scrollView setContentSize:CGSizeMake(250, 220 + (countStr - 2) * 15)];
+            [self.scrollView setShowsVerticalScrollIndicator:NO];
+
+        }
         self.descriptionLabel.text = self.product.descriptionText;
         [self.descriptionLabel sizeToFit];
     }
+    
+    NSString *str = self.product.descriptionText;
+    NSLog(@"Довжина стрічки = %i",[str length]);
         
 	// Do any additional setup after loading the view.
     //self.countPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0.0, 0.0, 63.0, 90.0)];

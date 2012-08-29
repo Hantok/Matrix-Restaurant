@@ -1092,7 +1092,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="XYr-ry-Dab">
+                            <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="XYr-ry-Dab">
                                 <rect key="frame" x="35" y="0.0" width="250" height="220"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
@@ -1456,10 +1456,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuViewController.h"/>
             <relationships>
                 <relationship kind="action" name="OrderButton:"/>
-                <relationship kind="action" name="cartButton:"/>
                 <relationship kind="action" name="drop:"/>
-                <relationship kind="action" name="goToSettingsTableViewController:"/>
-                <relationship kind="action" name="menuButton:"/>
                 <relationship kind="action" name="viewSpam:"/>
                 <relationship kind="outlet" name="cartButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="drop" candidateClass="UIButton"/>
