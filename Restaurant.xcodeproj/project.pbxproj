@@ -271,9 +271,6 @@
 		F515440B15B03CCA00A2CB88 /* FavoritesIconViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesIconViewController.h; sourceTree = "<group>"; };
 		F515440C15B03CCB00A2CB88 /* FavoritesIconViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesIconViewController.m; sourceTree = "<group>"; };
 		F51635AB15E61CBA00F76ECE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		F51635AD15E61F3300F76ECE /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ru; path = ru.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		F51635AE15E61F3300F76ECE /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ru; path = ru.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		F51635AF15E61F3300F76ECE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F51A455C15E3DDC600FD0BB9 /* alphanumeric-plus-sign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alphanumeric-plus-sign.png"; sourceTree = "<group>"; };
 		F51B206115AB2EE500074DA1 /* white-cart_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "white-cart_big.png"; sourceTree = "<group>"; };
 		F52225CA1594A0A7003E2728 /* Button_orange_rev2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button_orange_rev2.png; sourceTree = "<group>"; };
@@ -903,7 +900,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				781B8F111546DB870074EDBD /* en */,
-				F51635AF15E61F3300F76ECE /* ru */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -912,7 +908,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				781B8F1A1546DB870074EDBD /* en */,
-				F51635AD15E61F3300F76ECE /* ru */,
 			);
 			name = MainStoryboard_iPhone.storyboard;
 			sourceTree = "<group>";
@@ -921,7 +916,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				F51635AB15E61CBA00F76ECE /* en */,
-				F51635AE15E61F3300F76ECE /* ru */,
 			);
 			name = MainStoryboard_iPad.storyboard;
 			sourceTree = "<group>";
