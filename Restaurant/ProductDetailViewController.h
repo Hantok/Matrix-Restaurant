@@ -43,6 +43,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *in100gCarbohydratesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *in100gKCalLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (strong, nonatomic) IBOutlet UILabel *weightLabel;
 
 - (void)setProduct:(ProductDataStruct *)product isFromFavorites:(BOOL)boolValue;
 

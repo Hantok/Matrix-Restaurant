@@ -66,6 +66,7 @@
 @synthesize in100gCarbohydratesLabel = _in100gCarbohydratesLabel;
 @synthesize in100gKCalLabel = _in100gKCalLabel;
 @synthesize descriptionLabel = _descriptionLabel;
+@synthesize weightLabel = _weightLabel;
 @synthesize isInFavorites = _isInFavorites;
 @synthesize labelString = _labelString;
 @synthesize alert = _alert;
@@ -378,7 +379,7 @@
 - (void)viewDidLoad
 {
     [self.scrollView setScrollEnabled:YES];
-    [self.scrollView setContentSize:CGSizeMake(250, 250)];
+    [self.scrollView setContentSize:CGSizeMake(250, 400)];
     [self.scrollView setShowsVerticalScrollIndicator:NO];
     
 //    self.captionLabel.layer.borderColor = [UIColor darkGrayColor].CGColor;
@@ -445,6 +446,22 @@
     [super viewDidLoad];
     //self.navigationItem.title = self.product.title;
     self.nameLabal.text = self.product.title;
+        
+    self.portionProteinLabel.text = [NSString stringWithFormat:@"%5.1f", ((self.product.weight.floatValue * self.product.protein.floatValue) / 100)];
+    self.portionFatLabel.text = [NSString stringWithFormat:@"%5.1f", ((self.product.weight.floatValue * self.product.fats.floatValue) / 100)];
+    self.portionCarbohydratesLabel.text = [NSString stringWithFormat:@"%5.1f", ((self.product.weight.floatValue * self.product.carbs.floatValue) / 100)];
+    self.portionKCalLabel.text = [NSString stringWithFormat:@"%5.1f", ((self.product.weight.floatValue * self.product.calories.floatValue) / 100)];
+
+
+
+    
+    self.in100gProteinLabel.text = [NSString stringWithFormat:@"%@",self.product.protein];
+    self.in100gFatLabel.text = [NSString stringWithFormat:@"%@",self.product.fats];
+    self.in100gCarbohydratesLabel.text = [NSString stringWithFormat:@"%@",self.product.carbs];
+    self.in100gKCalLabel.text = [NSString stringWithFormat:@"%@",self.product.calories];
+    
+    self.weightLabel.text = [NSString stringWithFormat:@"%@%@%@%@",self.weightLabel.text, @" ", self.product.weight, @" g"];
+
     
     if ([self.product.descriptionText isEqualToString:@""]) {
         self.descriptionLabel.text = @"Description is not available";
@@ -736,6 +753,7 @@
     [self setIn100gCarbohydratesLabel:nil];
     [self setIn100gKCalLabel:nil];
     [self setDescriptionLabel:nil];
+    [self setWeightLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

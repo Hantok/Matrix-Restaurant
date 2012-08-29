@@ -898,6 +898,7 @@
 				F514734C15E3A40D003E836B /* stop.png in Resources */,
 				F51A455D15E3DDC600FD0BB9 /* alphanumeric-plus-sign.png in Resources */,
 				F51635AA15E61CBA00F76ECE /* MainStoryboard_iPad.storyboard in Resources */,
+				F53BFF6015EB7287000AB558 /* TimePicker.xib in Resources */,
 				F592B3F115ECDAA900F977C9 /* Line2p.png in Resources */,
 				F592B3F215ECDAA900F977C9 /* Line1p.png in Resources */,
 			);
