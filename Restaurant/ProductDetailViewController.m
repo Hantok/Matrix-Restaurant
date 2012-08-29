@@ -379,7 +379,7 @@
 - (void)viewDidLoad
 {
     [self.scrollView setScrollEnabled:YES];
-    [self.scrollView setContentSize:CGSizeMake(250, 400)];
+    [self.scrollView setContentSize:CGSizeMake(250, 300)];
     [self.scrollView setShowsVerticalScrollIndicator:NO];
     
 //    self.captionLabel.layer.borderColor = [UIColor darkGrayColor].CGColor;
