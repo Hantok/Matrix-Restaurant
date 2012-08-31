@@ -72,6 +72,10 @@
 		F53D73FE1594DC3900A420D1 /* restaurants.png in Resources */ = {isa = PBXBuildFile; fileRef = F53D73FD1594DC3900A420D1 /* restaurants.png */; };
 		F53D74001594DDC400A420D1 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F53D73FF1594DDC400A420D1 /* 1.jpg */; };
 		F53D74081594E30500A420D1 /* picture.png in Resources */ = {isa = PBXBuildFile; fileRef = F53D74071594E30500A420D1 /* picture.png */; };
+		F541FCD815EF535C003B13AE /* back_.png in Resources */ = {isa = PBXBuildFile; fileRef = F541FCD715EF535C003B13AE /* back_.png */; };
+		F541FCDA15EF54A3003B13AE /* cart2.png in Resources */ = {isa = PBXBuildFile; fileRef = F541FCD915EF54A3003B13AE /* cart2.png */; };
+		F541FCDC15EF5982003B13AE /* Button2.png in Resources */ = {isa = PBXBuildFile; fileRef = F541FCDB15EF5982003B13AE /* Button2.png */; };
+		F541FCDE15EF6987003B13AE /* button3.png in Resources */ = {isa = PBXBuildFile; fileRef = F541FCDD15EF6987003B13AE /* button3.png */; };
 		F5513A0915DA3AA90083E075 /* IconDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 78EF80AD157381DD00478EEB /* IconDownloader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F5513A0A15DA3AA90083E075 /* LoadAppViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 781B8F271546DBDD0074EDBD /* LoadAppViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F5513A0B15DA3AA90083E075 /* MainMenuViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 781B8F2A1546DD590074EDBD /* MainMenuViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -287,6 +291,10 @@
 		F53D73FD1594DC3900A420D1 /* restaurants.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = restaurants.png; sourceTree = "<group>"; };
 		F53D73FF1594DDC400A420D1 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		F53D74071594E30500A420D1 /* picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = picture.png; sourceTree = "<group>"; };
+		F541FCD715EF535C003B13AE /* back_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_.png; sourceTree = "<group>"; };
+		F541FCD915EF54A3003B13AE /* cart2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cart2.png; sourceTree = "<group>"; };
+		F541FCDB15EF5982003B13AE /* Button2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button2.png; sourceTree = "<group>"; };
+		F541FCDD15EF6987003B13AE /* button3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button3.png; sourceTree = "<group>"; };
 		F57013F615D90C5B005C0B41 /* GMGridView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GMGridView.xcodeproj; path = ../../GMGridView/GMGridView.xcodeproj; sourceTree = "<group>"; };
 		F57013FF15D90C66005C0B41 /* SSToolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SSToolkit.xcodeproj; path = ../../Vendor/SSToolkit/SSToolkit.xcodeproj; sourceTree = "<group>"; };
 		F58BD5AC156E7B8A00D31A09 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -504,20 +512,24 @@
 				F53D73FB1594CE7800A420D1 /* Button_green_rev2.png */,
 				F53D73F91594CDE600A420D1 /* Button_blue_rev2.png */,
 				F52A6A1F1594BF8D00C96F2C /* back.png */,
+				F541FCD715EF535C003B13AE /* back_.png */,
 				F52225D21594BCA4003E2728 /* Button_black_dark_rev2.png */,
 				F52225CC1594A1F8003E2728 /* Button_black_light_rev2.png */,
 				F52225CA1594A0A7003E2728 /* Button_orange_rev2.png */,
 				F599588015875CCF0000469F /* Settings1.png */,
 				F5FA624B1580EB6700FBF70A /* Cart.png */,
 				F5B4609515C2B78F00A6815C /* Cart1.PNG */,
+				F541FCD915EF54A3003B13AE /* cart2.png */,
 				F5B4609915C2BF7900A6815C /* shopping-cart.png */,
+				F541FCDB15EF5982003B13AE /* Button2.png */,
+				F541FCDD15EF6987003B13AE /* button3.png */,
 				78864DDB154957EE00D339B7 /* files.iphone.shop.category7.jpg */,
 				78864DDE15495E0A00D339B7 /* files.iphone.shop.good1582.png */,
 				78005A10157793050099F973 /* icon_Metro.gif */,
 				F5B4609B15C2D4A500A6815C /* metro.png */,
 				F5F2DD8915879B8E00E3C6A2 /* Heart.png */,
-				78EF80B21573A50100478EEB /* Placeholder.png */,
 				F50DF0EA15ED10C8005665DB /* label.jpg */,
+				78EF80B21573A50100478EEB /* Placeholder.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -824,6 +836,10 @@
 				F592B3F115ECDAA900F977C9 /* Line2p.png in Resources */,
 				F592B3F215ECDAA900F977C9 /* Line1p.png in Resources */,
 				F5F254EF15EE1C0E00BC48AB /* 2.jpg in Resources */,
+				F541FCD815EF535C003B13AE /* back_.png in Resources */,
+				F541FCDA15EF54A3003B13AE /* cart2.png in Resources */,
+				F541FCDC15EF5982003B13AE /* Button2.png in Resources */,
+				F541FCDE15EF6987003B13AE /* button3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

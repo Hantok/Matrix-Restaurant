@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IconDownloader.h"
 
-@interface FavoritesTableViewController : UITableViewController
+@interface FavoritesTableViewController : UITableViewController <IconDownloaderDelegate>
+
+@property (nonatomic, strong) NSMutableDictionary *imageDownloadsInProgress;
 
 @end

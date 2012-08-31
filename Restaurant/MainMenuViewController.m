@@ -282,6 +282,7 @@
     
     [self.cartButton setBackgroundImage:[UIImage imageNamed:@"Button_black_light_rev2.png"] forState:UIControlStateNormal];
     
+    [self.drop setTitle:@"Back" forState:UIControlStateNormal];
     //[self.restorantsButton setBackgroundImage:[UIImage imageNamed:@"gray button.png"] forState:UIControlStateNormal];
     self.restorantsButton.titleLabel.textAlignment = UITextAlignmentCenter;
     
@@ -509,7 +510,7 @@
         if (self.arrayOfObjects.count == 0)
         {
             PickerViewCell *viewForRow;
-            UIImageView *one = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"shopping-cart.png"]];
+            UIImageView *one = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cart2.PNG"]];
             //            one.frame = self.pickerView.frame;
             //            one.frame = CGRectMake(self.pickerView.frame.origin.x + 100, self.pickerView.frame.origin.y + 100, self.pickerView.frame.size.width,self.pickerView.frame.size.height);
             

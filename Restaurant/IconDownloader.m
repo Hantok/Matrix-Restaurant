@@ -101,7 +101,7 @@
     // Release the connection now that it's finished
     self.imageConnection = nil;
     
-    [self startDownload];
+//    [self startDownload];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection

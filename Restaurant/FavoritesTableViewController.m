@@ -76,6 +76,7 @@
 {
     [super viewDidLoad];
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.imageDownloadsInProgress = [[NSMutableDictionary alloc] init];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -88,21 +89,34 @@
     {
         dataStruct = [self.arrayOfObjects objectAtIndex:i];
         NSData *dataOfPicture = [self.db fetchPictureDataByPictureId:[[self.arrayOfObjects objectAtIndex:i] idPicture]];
-        //        NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test6/root/%@",[[pictures objectForKey:dataStruct.idPicture] valueForKey:@"link"]];
-        //        urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        //        NSURL *url = [NSURL URLWithString:urlForImage];
-        //        dataStruct.link = url.description;
+//        NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test6/root/%@",[[pictures objectForKey:dataStruct.idPicture] valueForKey:@"link"]];
+//        urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//        NSURL *url = [NSURL URLWithString:urlForImage];
+//        dataStruct.link = url.description;
         
         //saving results of secon request
-        //        [[self.arrayData objectAtIndex:i] setLink:url.description];
+//        [[self.arrayData objectAtIndex:i] setLink:url.description];
         if(dataOfPicture)
         {
             [[self.arrayOfObjects objectAtIndex:i] setImage:[UIImage imageWithData:dataOfPicture]];
+        }
+        else
+        {
+            NSString *urlString = [self.db fetchImageStringURLbyPictureID:[[self.arrayOfObjects objectAtIndex:i] idPicture]];
+            [[self.arrayOfObjects objectAtIndex:i] setLink:urlString];
         }
     }
     
     [self.tableView reloadData];
     
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{    
+    NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
+    [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
+
+    [super viewWillDisappear:animated];
 }
 
 - (void)viewDidUnload
@@ -160,7 +174,21 @@
     cell.productPrice.text = priceString;
     cell.productDescription.text = [NSString stringWithFormat:@"%@", productStruct.descriptionText];
     cell.productTitle.text = [NSString stringWithFormat:@"%@", productStruct.title];
-    cell.productImage.image = productStruct.image;
+    
+    if (!productStruct.image)
+    {
+        if (self.tableView.dragging == NO && self.tableView.decelerating == NO && productStruct.link)
+        {
+            [self startIconDownload:productStruct forIndexPath:indexPath];
+        }
+        // if a download is deferred or in progress, return a placeholder image
+        cell.productImage.image = [UIImage imageNamed:@"Placeholder.png"];
+        
+    }
+    else
+    {
+        cell.productImage.image = productStruct.image;
+    }
     
 //    NSArray *array = [self.db fetchAllProductsIdAndTheirCountWithPriceForEntity:@"Favorites"];
 //    NSArray *arrayOfElements = [self.db fetchObjectsFromCoreDataForEntity:@"Descriptions_translation" withArrayObjects:array withDefaultLanguageId:[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
@@ -224,6 +252,74 @@
 //змінюємо висоту cell
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 98.0;
+}
+
+
+#pragma mark -
+#pragma mark Table cell image support
+
+- (void)startIconDownload:(ProductDataStruct *)appRecord forIndexPath:(NSIndexPath *)indexPath
+{
+    IconDownloader *iconDownloader = [self.imageDownloadsInProgress objectForKey:indexPath];
+    if (iconDownloader == nil)
+    {
+        iconDownloader = [[IconDownloader alloc] init];
+        iconDownloader.appRecord = appRecord;
+        iconDownloader.indexPathInTableView = indexPath;
+        iconDownloader.delegate = self;
+        [self.imageDownloadsInProgress setObject:iconDownloader forKey:indexPath];
+        [iconDownloader startDownload];
+    }
+}
+
+// this method is used in case the user scrolled into a set of cells that don't have their app icons yet
+- (void)loadImagesForOnscreenRows
+{
+    if ([self.arrayOfObjects count] > 0)
+    {
+        NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
+        for (NSIndexPath *indexPath in visiblePaths)
+        {
+            ProductDataStruct *appRecord = [self.arrayOfObjects objectAtIndex:indexPath.row];
+            
+            if (!appRecord.image) // avoid the app icon download if the app already has an icon
+            {
+                [self startIconDownload:appRecord forIndexPath:indexPath];
+            }
+        }
+    }
+}
+
+// called by our ImageDownloader when an icon is ready to be displayed
+- (void)appImageDidLoad:(NSIndexPath *)indexPath
+{
+    IconDownloader *iconDownloader = [self.imageDownloadsInProgress objectForKey:indexPath];
+    if (iconDownloader != nil)
+    {
+        ProductCell *cell = (ProductCell *)[self.tableView cellForRowAtIndexPath:iconDownloader.indexPathInTableView];
+        
+        // Display the newly loaded image
+        cell.productImage.image = iconDownloader.appRecord.image;
+        [self.db SavePictureToCoreData:iconDownloader.appRecord.idPicture toData:UIImagePNGRepresentation(cell.productImage.image)];
+        
+    }
+}
+
+#pragma mark -
+#pragma mark Deferred image loading (UIScrollViewDelegate)
+
+// Load images for all onscreen rows when scrolling is finished
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (!decelerate)
+	{
+        [self loadImagesForOnscreenRows];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self loadImagesForOnscreenRows];
 }
 
 

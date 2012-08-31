@@ -461,6 +461,32 @@
 //    }
 }
 
+- (NSString *)fetchImageStringURLbyPictureID:(NSString *)pictureId
+{
+    NSManagedObjectContext * context = self.managedObjectContext;
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Pictures" inManagedObjectContext:context];
+    
+    [request setEntity:entity];
+    
+    request.predicate = [NSPredicate predicateWithFormat:@"underbarid == %@", pictureId];
+    NSManagedObjectContext *moc = context;
+    NSError *error;
+    
+    NSArray *resultOfARequest = [moc executeFetchRequest:request error:&error];
+    //    if (resultOfARequest.count != 0)
+    {
+        NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test6/root/%@",[[resultOfARequest objectAtIndex:0] valueForKey:@"link"]];
+        urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//        NSURL *url = [[NSURL alloc] initWithString:urlForImage];
+        return urlForImage;
+    }
+    //    else {
+    //        return nil;
+    //    }
+}
+
 - (NSDictionary *)fetchImageURLAndDatabyMenuID:(NSString *)menuId
 {
     

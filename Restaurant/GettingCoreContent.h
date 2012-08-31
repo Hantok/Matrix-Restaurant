@@ -27,6 +27,7 @@
 - (NSArray *)fetchAllLanguages;
 - (NSArray *)fetchAllCitiesByLanguage:(NSString *)languageId;
 - (NSURL *)fetchImageURLbyPictureID:(NSString *)pictureId;
+- (NSString *)fetchImageStringURLbyPictureID:(NSString *)pictureId;
 - (NSArray *)fetchAllProductsFromMenu:(NSString *)menuId;
 - (void)SavePictureToCoreData:(NSString *)idPicture toData:(NSData *)data;
 - (NSData *)fetchPictureDataByPictureId:(NSString *)pictureId;
