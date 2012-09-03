@@ -20,6 +20,7 @@
 @property (strong, nonatomic) NSString *link;
 @property (strong, nonatomic) NSNumber *discountValue;
 @property (strong, nonatomic) NSNumber *isFavorites;
+@property (strong, nonatomic) NSNumber *hit;
 @property (strong, nonatomic) NSNumber *weight;
 @property (strong, nonatomic) NSNumber *protein;
 @property (strong, nonatomic) NSNumber *carbs;

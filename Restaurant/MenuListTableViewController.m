@@ -18,6 +18,8 @@
     int countOfObjects;
 }
 
+@property (nonatomic, strong) UIImageView *hitView;
+
 - (void)startIconDownload:(ProductDataStruct *)appRecord forIndexPath:(NSIndexPath *)indexPath;
 
 @end
@@ -30,6 +32,7 @@
 @synthesize arrayData = _arrayData;
 @synthesize db = _db;
 @synthesize imageDownloadsInProgress = _imageDownloadsInProgress;
+@synthesize hitView;
 
 
 
@@ -62,6 +65,7 @@
                 [dataStruct setCarbs:[[data objectAtIndex:i] valueForKey:@"carbs"]];
                 [dataStruct setFats:[[data objectAtIndex:i] valueForKey:@"fats"]];
                 [dataStruct setCalories:[[data objectAtIndex:i] valueForKey:@"calories"]];
+                [dataStruct setHit:[[data objectAtIndex:i] valueForKey:@"hit"]];
                 //                NSData *dataOfPicture = [[pictures objectForKey:dataStruct.idPicture] valueForKey:@"data"];
                 //                NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test6/root/%@",[[pictures objectForKey:dataStruct.idPicture] valueForKey:@"link"]];
                 //                urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -161,6 +165,8 @@
     [super viewDidLoad];
     self.imageDownloadsInProgress = [[NSMutableDictionary alloc] init];
     self.navigationItem.title = self.kindOfMenu.title;
+    
+    hitView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HIT1.png"]];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -239,6 +245,7 @@
     
     [self setKindOfMenu:nil];
     [self setDb:nil];
+    [self setHitView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -258,8 +265,8 @@
     NSString *CellIdentifier = @"CellWithViewForProduct";
     ProductCell *cell = (ProductCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     ProductDataStruct *dataStruct = [self.arrayData objectAtIndex:indexPath.row];
-    if(!cell)
-    {
+//    if(!cell)
+//    {
         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"productCell" owner:nil options:nil];
         for(id currentObject in topLevelObjects)
         {
@@ -269,7 +276,7 @@
                 break;
             }
         }
-    }
+//    }
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     formatter.roundingIncrement = [NSNumber numberWithDouble:0.01];
     formatter.numberStyle = NSNumberFormatterDecimalStyle;
@@ -280,6 +287,12 @@
     cell.productPrice.text = priceString;
     cell.productDescription.text = [NSString stringWithFormat:@"%@", dataStruct.descriptionText];
     cell.productTitle.text = [NSString stringWithFormat:@"%@", dataStruct.title];
+    
+    if (dataStruct.hit.integerValue == 1)
+    {
+        //            [cell.productImage addSubview:hitView];
+        [cell.productImage.layer addSublayer:[hitView layer]];
+    }
     
     if (!dataStruct.image)
     {
@@ -294,6 +307,10 @@
     else
     {
         cell.productImage.image = dataStruct.image;
+//        else
+//        {
+//            [hitView removeFromSuperview];
+//        }
     }
     
     return cell;

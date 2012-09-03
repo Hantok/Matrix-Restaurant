@@ -30,6 +30,7 @@
     BOOL            fromDeliveriesAndDatailViewController;
     int             currentImage;
     BOOL            deliveryTime;
+    BOOL            oneRestaurant;
 }
 
 @property (readwrite)	CFURLRef        soundFileURLRef;
@@ -81,6 +82,14 @@
 - (IBAction)drop:(id)sender {
     self.menuId = nil;
     self.restarauntId = nil;
+    if (!oneRestaurant)
+    {
+        if(self.cartButton.isHidden)
+        {
+            [self.cartButton setHidden:NO];
+            [self.menuButton setHidden:NO];
+        }
+    }
 }
 
 -(void)setRestarauntId:(NSString *)restarauntId
@@ -110,6 +119,13 @@
             if(data.count == 2)
             {
                 self.restarauntId = [[data objectAtIndex:0] valueForKey:@"underbarid"];
+                if (![self.db isRestaurantCanMakeOrderWithRestaurantID:self.restarauntId])
+                {
+                    [self.cartButton setHidden:YES];
+                    [self.menuButton setHidden:YES];
+                    oneRestaurant = YES;
+                    
+                }
                 data = [self.db fetchRootMenuWithDefaultLanguageForRestaurant:self.restarauntId];
                 data = [self.db fetchChildMenuWithDefaultLanguageForParentMenu:[[data objectAtIndex:0] valueForKey:@"underbarid"]];
             }
@@ -414,6 +430,8 @@
 {
     [super viewDidAppear:YES];
     
+    if (oneRestaurant)
+        self.arrayData = nil;
     if(self.isMenuMode)
     {
         //[self.pickerView reloadAllComponents];
@@ -996,6 +1014,16 @@
             if(!self.restarauntId)
             {
                 self.restarauntId = [[self.arrayData objectAtIndex:selectedRow.integerValue] menuId];
+                if (![self.db isRestaurantCanMakeOrderWithRestaurantID:self.restarauntId])
+                {
+                    [self.cartButton setHidden:YES];
+                    [self.menuButton setHidden:YES];
+                }
+                else
+                {
+                    [self.menuButton setHidden:NO];
+                    [self.cartButton setHidden:NO];
+                }
                 [self.pickerView reloadAllComponents];
             }
             else

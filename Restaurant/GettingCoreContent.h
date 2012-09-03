@@ -73,4 +73,6 @@
 
 - (NSArray *)fetchFavoritesFromEntityName:(NSString *)entityName;
 - (void) changeFavoritesBoolValue:(BOOL)isFavorites forId:(NSNumber *)underbarid;
+
+- (BOOL)isRestaurantCanMakeOrderWithRestaurantID:(NSString *)idRestaurant;
 @end

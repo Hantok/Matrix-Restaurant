@@ -833,5 +833,28 @@
             //Handle any error with the saving of the context
         }
 }
+
+- (BOOL)isRestaurantCanMakeOrderWithRestaurantID:(NSString *)idRestaurant
+{
+    NSManagedObjectContext *context = self.managedObjectContext;
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:@"Restaurants" inManagedObjectContext:context]];
+    
+    request.predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"underbarid == %@ AND isOrder == NO", idRestaurant]];
+    
+    NSError *error;
+    NSArray *result = [context executeFetchRequest:request error:&error];
+    
+    if (result.count == 1)
+        return NO;
+    
+    if (![context save:&error])
+    {
+        NSLog(@"Unresolved error in GettingCoreContent %@, %@", error, [error userInfo]);
+        abort();
+    }
+    
+    return YES;
+}
     
 @end

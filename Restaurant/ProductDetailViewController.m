@@ -549,6 +549,11 @@
             [self.pictureButton addSubview:self.loadingView];
         }
     }
+    
+    if (self.product.hit.integerValue == 1)
+    {
+        [self.imageView.layer addSublayer:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HIT1.png"]].layer];
+    }
         
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = self.view.bounds;

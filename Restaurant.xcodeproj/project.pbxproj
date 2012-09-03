@@ -111,6 +111,7 @@
 		F5513A2915DA3AA90083E075 /* XMLParse.h in Headers */ = {isa = PBXBuildFile; fileRef = 786B299A1546EA7400486848 /* XMLParse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F5513A2A15DA3AA90083E075 /* checkConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = F5072158156BA2C200D7ACC6 /* checkConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F5513A2B15DA3AA90083E075 /* RestaurantAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 781B8F161546DB870074EDBD /* RestaurantAppDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F56DCB2A15F4F8F0003CC0DD /* HIT1.png in Resources */ = {isa = PBXBuildFile; fileRef = F56DCB2915F4F8F0003CC0DD /* HIT1.png */; };
 		F570141515D90C81005C0B41 /* libGMGridView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F57013FE15D90C5B005C0B41 /* libGMGridView.a */; };
 		F570141615D90C81005C0B41 /* libSSToolkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F570140A15D90C67005C0B41 /* libSSToolkit.a */; };
 		F58BD5AD156E7B8A00D31A09 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58BD5AC156E7B8A00D31A09 /* MessageUI.framework */; };
@@ -295,6 +296,7 @@
 		F541FCD915EF54A3003B13AE /* cart2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cart2.png; sourceTree = "<group>"; };
 		F541FCDB15EF5982003B13AE /* Button2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button2.png; sourceTree = "<group>"; };
 		F541FCDD15EF6987003B13AE /* button3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button3.png; sourceTree = "<group>"; };
+		F56DCB2915F4F8F0003CC0DD /* HIT1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HIT1.png; sourceTree = "<group>"; };
 		F57013F615D90C5B005C0B41 /* GMGridView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GMGridView.xcodeproj; path = ../../GMGridView/GMGridView.xcodeproj; sourceTree = "<group>"; };
 		F57013FF15D90C66005C0B41 /* SSToolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SSToolkit.xcodeproj; path = ../../Vendor/SSToolkit/SSToolkit.xcodeproj; sourceTree = "<group>"; };
 		F58BD5AC156E7B8A00D31A09 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -496,6 +498,7 @@
 		78EF80B41573A51300478EEB /* images */ = {
 			isa = PBXGroup;
 			children = (
+				F56DCB2915F4F8F0003CC0DD /* HIT1.png */,
 				F592B3EF15ECDAA900F977C9 /* Line2p.png */,
 				F592B3F015ECDAA900F977C9 /* Line1p.png */,
 				F514734B15E3A40D003E836B /* stop.png */,
@@ -840,6 +843,7 @@
 				F541FCDA15EF54A3003B13AE /* cart2.png in Resources */,
 				F541FCDC15EF5982003B13AE /* Button2.png in Resources */,
 				F541FCDE15EF6987003B13AE /* button3.png in Resources */,
+				F56DCB2A15F4F8F0003CC0DD /* HIT1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

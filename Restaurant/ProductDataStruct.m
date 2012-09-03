@@ -19,6 +19,7 @@
 @synthesize idPicture = _idPicture;
 @synthesize link = _link;
 @synthesize isFavorites = _isFavorites;
+@synthesize hit = _hit;
 @synthesize discountValue = _discountValue;
 @synthesize weight = _weight;
 @synthesize protein = _protein;
@@ -52,6 +53,7 @@
     self.carbs = [aDictionary objectForKey:@"carbs"];
     self.fats = [aDictionary objectForKey:@"fats"];
     self.calories = [aDictionary objectForKey:@"calories"];
+    self.hit = [aDictionary objectForKey:@"hit"];
     return self;
     
 }
@@ -71,6 +73,7 @@
     [result setObject:self.carbs forKey:@"carbs"];
     [result setObject:self.fats forKey:@"fats"];
     [result setObject:self.calories forKey:@"calories"];
+    [result setObject:self.hit forKey:@"hit"];
     return result.copy;
 }
 

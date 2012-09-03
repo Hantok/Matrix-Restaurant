@@ -10,12 +10,15 @@
 #import "ProductDetailViewController.h"
 #import "GettingCoreContent.h"
 #import "ProductCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface FavoritesTableViewController ()
 
 @property (strong, nonatomic) GettingCoreContent *db;
 @property (strong, nonatomic) NSNumber *selectedRow;
 @property (strong, nonatomic) NSMutableArray *arrayOfObjects;
+
+@property (nonatomic, strong) UIImageView *hitView;
 
 @end
 
@@ -24,6 +27,7 @@
 @synthesize db = _db;
 @synthesize selectedRow = _selectedRow;
 @synthesize arrayOfObjects = _arrayOfObjects;
+@synthesize hitView;
 
 
 -(NSMutableArray *)arrayOfObjects
@@ -51,6 +55,7 @@
                 [productStruct setCarbs:[[array objectAtIndex:i] valueForKey:@"carbs"]];
                 [productStruct setFats:[[array objectAtIndex:i] valueForKey:@"fats"]];
                 [productStruct setCalories:[[array objectAtIndex:i] valueForKey:@"calories"]];
+                [productStruct setHit:[[array objectAtIndex:i] valueForKey:@"hit"]];
                 
                 [_arrayOfObjects addObject:productStruct];
             }
@@ -77,6 +82,8 @@
     [super viewDidLoad];
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.imageDownloadsInProgress = [[NSMutableDictionary alloc] init];
+    
+    hitView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HIT1.png"]];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -122,6 +129,9 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    
+    [self setHitView:nil];
+    [self setDb:nil];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -188,6 +198,10 @@
     else
     {
         cell.productImage.image = productStruct.image;
+        if (productStruct.hit.integerValue == 1)
+        {
+            [cell.productImage.layer addSublayer:[hitView layer]];
+        }
     }
     
 //    NSArray *array = [self.db fetchAllProductsIdAndTheirCountWithPriceForEntity:@"Favorites"];
