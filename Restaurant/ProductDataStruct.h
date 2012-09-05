@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSNumber *count;
 @property (strong, nonatomic) NSString *idPicture;
+@property (strong, nonatomic) NSString *idMenu;
 @property (strong, nonatomic) NSString *link;
 @property (strong, nonatomic) NSNumber *discountValue;
 @property (strong, nonatomic) NSNumber *isFavorites;

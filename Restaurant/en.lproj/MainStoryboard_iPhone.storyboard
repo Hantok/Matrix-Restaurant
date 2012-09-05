@@ -115,12 +115,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SgP-j4-BZ7">
-                                <rect key="frame" x="20" y="400" width="40" height="35"/>
+                                <rect key="frame" x="18" y="396" width="45" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                <state key="normal" backgroundImage="button3.png">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <state key="normal" backgroundImage="dropButton.png">
                                     <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
-                                    <color key="titleShadowColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 </state>
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1395,7 +1394,7 @@
         <image name="Line1p.png" width="250" height="1"/>
         <image name="MyLoc.png" width="24" height="24"/>
         <image name="Settings1.png" width="256" height="256"/>
-        <image name="button3.png" width="1500" height="600"/>
+        <image name="dropButton.png" width="1500" height="900"/>
         <image name="label.jpg" width="613" height="614"/>
         <image name="picture.png" width="590" height="626"/>
         <image name="restaurants.png" width="294" height="94"/>
@@ -1576,7 +1575,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="2cA-1w-ejy"/>
+        <segue reference="uuy-7P-Ssv"/>
         <segue reference="p5O-gN-8X0"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -427,6 +427,11 @@
 //    self.in100gKCalLabel.layer.borderColor = [UIColor darkGrayColor].CGColor;
 //    self.in100gKCalLabel.layer.borderWidth = 2.0;
 
+    if (![self.db isRestaurantCanMakeOrderWithRestaurantID:[self.db fetchIdRestaurantFromIdMenu:self.product.idMenu]])
+    {
+        self.cartButton.hidden = YES;
+        self.countPickerView.hidden = YES;
+    }
     
     self.pictureViewContainer.frame = CGRectMake(35, -240, 250, 240);
     
@@ -554,6 +559,11 @@
     {
         [self.imageView.layer addSublayer:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HIT1.png"]].layer];
     }
+    else
+        if (self.product.hit.integerValue == 2)
+        {
+            [self.imageView.layer addSublayer:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"New1.png"]].layer];
+        }
         
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = self.view.bounds;

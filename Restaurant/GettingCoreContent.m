@@ -856,5 +856,27 @@
     
     return YES;
 }
+
+-(NSString *)fetchIdRestaurantFromIdMenu:(NSString *)idMenu
+{
+    NSManagedObjectContext *context = self.managedObjectContext;
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:@"Menus" inManagedObjectContext:context]];
+    
+    request.predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"underbarid == %@", idMenu]];
+    
+    NSError *error;
+    NSArray *result = [context executeFetchRequest:request error:&error];
+    
+    
+    if (![context save:&error])
+    {
+        NSLog(@"Unresolved error in GettingCoreContent %@, %@", error, [error userInfo]);
+        abort();
+    }
+    
+    return [[result objectAtIndex:0] valueForKey:@"idRestaurant"];
+
+}
     
 @end

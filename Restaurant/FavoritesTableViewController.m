@@ -19,6 +19,7 @@
 @property (strong, nonatomic) NSMutableArray *arrayOfObjects;
 
 @property (nonatomic, strong) UIImageView *hitView;
+@property (nonatomic, strong) UIImageView *newsItemView;
 
 @end
 
@@ -28,7 +29,7 @@
 @synthesize selectedRow = _selectedRow;
 @synthesize arrayOfObjects = _arrayOfObjects;
 @synthesize hitView;
-
+@synthesize newsItemView;
 
 -(NSMutableArray *)arrayOfObjects
 {
@@ -56,6 +57,7 @@
                 [productStruct setFats:[[array objectAtIndex:i] valueForKey:@"fats"]];
                 [productStruct setCalories:[[array objectAtIndex:i] valueForKey:@"calories"]];
                 [productStruct setHit:[[array objectAtIndex:i] valueForKey:@"hit"]];
+                [productStruct setIdMenu:[[array objectAtIndex:i] valueForKey:@"idMenu"]];
                 
                 [_arrayOfObjects addObject:productStruct];
             }
@@ -84,6 +86,7 @@
     self.imageDownloadsInProgress = [[NSMutableDictionary alloc] init];
     
     hitView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HIT1.png"]];
+    newsItemView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"New1.png"]];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -131,6 +134,7 @@
     [super viewDidUnload];
     
     [self setHitView:nil];
+    [self setNewsItemView:nil];
     [self setDb:nil];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -202,6 +206,9 @@
         {
             [cell.productImage.layer addSublayer:[hitView layer]];
         }
+        else
+            if (productStruct.hit.integerValue == 2)
+                [cell.productImage.layer addSublayer:[newsItemView layer]];
     }
     
 //    NSArray *array = [self.db fetchAllProductsIdAndTheirCountWithPriceForEntity:@"Favorites"];

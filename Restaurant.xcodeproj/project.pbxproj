@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E3F3D8515F76ACE00E9E08A /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E3F3D8415F76ACE00E9E08A /* FacebookSDK.framework */; };
+		4E3F3D8715F76ADD00E9E08A /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4E3F3D8615F76ADD00E9E08A /* FacebookSDKResources.bundle */; };
+		4E3F3D8915F76BF800E9E08A /* New1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E3F3D8815F76BF800E9E08A /* New1.png */; };
+		4E3F3D8B15F76C2700E9E08A /* dropButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E3F3D8A15F76C2700E9E08A /* dropButton.png */; };
 		78005A0715778C8A0099F973 /* RestaurantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78005A0615778C8A0099F973 /* RestaurantViewController.m */; };
 		78005A0A15778CCC0099F973 /* RestaurantDataStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 78005A0915778CCC0099F973 /* RestaurantDataStruct.m */; };
 		78005A0D15778F0E0099F973 /* RestaurantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78005A0C15778F0E0099F973 /* RestaurantCell.m */; };
@@ -53,7 +57,6 @@
 		F507E85E15BED2E000B1A772 /* TotalCartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F507E85D15BED2E000B1A772 /* TotalCartCell.m */; };
 		F507E86215BED33D00B1A772 /* TotalCartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F507E86115BED33D00B1A772 /* TotalCartCell.xib */; };
 		F50DF0EB15ED10C8005665DB /* label.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F50DF0EA15ED10C8005665DB /* label.jpg */; };
-		F50DF92C15DD2DA300EEC8B4 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F50DF92B15DD2DA300EEC8B4 /* FacebookSDK.framework */; };
 		F514734C15E3A40D003E836B /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = F514734B15E3A40D003E836B /* stop.png */; };
 		F515440D15B03CCB00A2CB88 /* FavoritesIconViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F515440C15B03CCB00A2CB88 /* FavoritesIconViewController.m */; };
 		F51635AA15E61CBA00F76ECE /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F51635AC15E61CBA00F76ECE /* MainStoryboard_iPad.storyboard */; };
@@ -73,7 +76,6 @@
 		F53D74001594DDC400A420D1 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F53D73FF1594DDC400A420D1 /* 1.jpg */; };
 		F53D74081594E30500A420D1 /* picture.png in Resources */ = {isa = PBXBuildFile; fileRef = F53D74071594E30500A420D1 /* picture.png */; };
 		F541FCD815EF535C003B13AE /* back_.png in Resources */ = {isa = PBXBuildFile; fileRef = F541FCD715EF535C003B13AE /* back_.png */; };
-		F541FCDA15EF54A3003B13AE /* cart2.png in Resources */ = {isa = PBXBuildFile; fileRef = F541FCD915EF54A3003B13AE /* cart2.png */; };
 		F541FCDC15EF5982003B13AE /* Button2.png in Resources */ = {isa = PBXBuildFile; fileRef = F541FCDB15EF5982003B13AE /* Button2.png */; };
 		F541FCDE15EF6987003B13AE /* button3.png in Resources */ = {isa = PBXBuildFile; fileRef = F541FCDD15EF6987003B13AE /* button3.png */; };
 		F5513A0915DA3AA90083E075 /* IconDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 78EF80AD157381DD00478EEB /* IconDownloader.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -135,14 +137,12 @@
 		F5EBBBF115A70F6000C07969 /* SocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EBBBF015A70F6000C07969 /* SocialViewController.m */; };
 		F5F0215A1588C017009EB482 /* DeliveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F021591588C017009EB482 /* DeliveryViewController.m */; };
 		F5F1058E15DD2E1200B03533 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F5F1058D15DD2E1200B03533 /* libsqlite3.0.dylib */; };
-		F5F105A015DD355000B03533 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F5F1059F15DD355000B03533 /* FacebookSDKResources.bundle */; };
 		F5F254EF15EE1C0E00BC48AB /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F5F254EE15EE1C0E00BC48AB /* 2.jpg */; };
 		F5F2D69815AD7DBB00C5094B /* AddressListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F2D69715AD7DBB00C5094B /* AddressListTableViewController.m */; };
 		F5F2D69B15ADB91500C5094B /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F2D69A15ADB91500C5094B /* AddressCell.m */; };
 		F5F2D69D15ADBB8F00C5094B /* AddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5F2D69C15ADBB8E00C5094B /* AddressCell.xib */; };
 		F5F2DD8A15879B8E00E3C6A2 /* Heart.png in Resources */ = {isa = PBXBuildFile; fileRef = F5F2DD8915879B8E00E3C6A2 /* Heart.png */; };
 		F5FA62481580D39700FBF70A /* FavoritesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5FA62471580D39700FBF70A /* FavoritesTableViewController.m */; };
-		F5FA624C1580EB6700FBF70A /* Cart.png in Resources */ = {isa = PBXBuildFile; fileRef = F5FA624B1580EB6700FBF70A /* Cart.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -198,6 +198,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E3F3D8415F76ACE00E9E08A /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		4E3F3D8615F76ADD00E9E08A /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
+		4E3F3D8815F76BF800E9E08A /* New1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = New1.png; sourceTree = "<group>"; };
+		4E3F3D8A15F76C2700E9E08A /* dropButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropButton.png; sourceTree = "<group>"; };
 		78005A0515778C8A0099F973 /* RestaurantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantViewController.h; sourceTree = "<group>"; };
 		78005A0615778C8A0099F973 /* RestaurantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantViewController.m; sourceTree = "<group>"; };
 		78005A0815778CCC0099F973 /* RestaurantDataStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantDataStruct.h; sourceTree = "<group>"; };
@@ -271,7 +275,6 @@
 		F507E85D15BED2E000B1A772 /* TotalCartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TotalCartCell.m; sourceTree = "<group>"; };
 		F507E86115BED33D00B1A772 /* TotalCartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TotalCartCell.xib; sourceTree = "<group>"; };
 		F50DF0EA15ED10C8005665DB /* label.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = label.jpg; sourceTree = "<group>"; };
-		F50DF92B15DD2DA300EEC8B4 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		F514734B15E3A40D003E836B /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
 		F515440B15B03CCA00A2CB88 /* FavoritesIconViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesIconViewController.h; sourceTree = "<group>"; };
 		F515440C15B03CCB00A2CB88 /* FavoritesIconViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesIconViewController.m; sourceTree = "<group>"; };
@@ -293,7 +296,6 @@
 		F53D73FF1594DDC400A420D1 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		F53D74071594E30500A420D1 /* picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = picture.png; sourceTree = "<group>"; };
 		F541FCD715EF535C003B13AE /* back_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_.png; sourceTree = "<group>"; };
-		F541FCD915EF54A3003B13AE /* cart2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cart2.png; sourceTree = "<group>"; };
 		F541FCDB15EF5982003B13AE /* Button2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button2.png; sourceTree = "<group>"; };
 		F541FCDD15EF6987003B13AE /* button3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button3.png; sourceTree = "<group>"; };
 		F56DCB2915F4F8F0003CC0DD /* HIT1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HIT1.png; sourceTree = "<group>"; };
@@ -326,7 +328,6 @@
 		F5F021581588C017009EB482 /* DeliveryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeliveryViewController.h; sourceTree = "<group>"; };
 		F5F021591588C017009EB482 /* DeliveryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeliveryViewController.m; sourceTree = "<group>"; };
 		F5F1058D15DD2E1200B03533 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		F5F1059F15DD355000B03533 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		F5F254EE15EE1C0E00BC48AB /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 		F5F2D69615AD7DBB00C5094B /* AddressListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressListTableViewController.h; sourceTree = "<group>"; };
 		F5F2D69715AD7DBB00C5094B /* AddressListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressListTableViewController.m; sourceTree = "<group>"; };
@@ -336,7 +337,6 @@
 		F5F2DD8915879B8E00E3C6A2 /* Heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Heart.png; sourceTree = "<group>"; };
 		F5FA62461580D39700FBF70A /* FavoritesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesTableViewController.h; sourceTree = "<group>"; };
 		F5FA62471580D39700FBF70A /* FavoritesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesTableViewController.m; sourceTree = "<group>"; };
-		F5FA624B1580EB6700FBF70A /* Cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cart.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -345,7 +345,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5F1058E15DD2E1200B03533 /* libsqlite3.0.dylib in Frameworks */,
-				F50DF92C15DD2DA300EEC8B4 /* FacebookSDK.framework in Frameworks */,
 				F5ACDBCA15DBEE510074E028 /* Twitter.framework in Frameworks */,
 				F570141515D90C81005C0B41 /* libGMGridView.a in Frameworks */,
 				F570141615D90C81005C0B41 /* libSSToolkit.a in Frameworks */,
@@ -359,6 +358,7 @@
 				781B8F081546DB870074EDBD /* UIKit.framework in Frameworks */,
 				781B8F0A1546DB870074EDBD /* Foundation.framework in Frameworks */,
 				781B8F0C1546DB870074EDBD /* CoreGraphics.framework in Frameworks */,
+				4E3F3D8515F76ACE00E9E08A /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,8 +385,8 @@
 		781B8F061546DB870074EDBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F5F1059F15DD355000B03533 /* FacebookSDKResources.bundle */,
-				F50DF92B15DD2DA300EEC8B4 /* FacebookSDK.framework */,
+				4E3F3D8615F76ADD00E9E08A /* FacebookSDKResources.bundle */,
+				4E3F3D8415F76ACE00E9E08A /* FacebookSDK.framework */,
 				F5F1058D15DD2E1200B03533 /* libsqlite3.0.dylib */,
 				F5ACDBC915DBEE510074E028 /* Twitter.framework */,
 				F57013FF15D90C66005C0B41 /* SSToolkit.xcodeproj */,
@@ -499,6 +499,7 @@
 			isa = PBXGroup;
 			children = (
 				F56DCB2915F4F8F0003CC0DD /* HIT1.png */,
+				4E3F3D8815F76BF800E9E08A /* New1.png */,
 				F592B3EF15ECDAA900F977C9 /* Line2p.png */,
 				F592B3F015ECDAA900F977C9 /* Line1p.png */,
 				F514734B15E3A40D003E836B /* stop.png */,
@@ -520,12 +521,11 @@
 				F52225CC1594A1F8003E2728 /* Button_black_light_rev2.png */,
 				F52225CA1594A0A7003E2728 /* Button_orange_rev2.png */,
 				F599588015875CCF0000469F /* Settings1.png */,
-				F5FA624B1580EB6700FBF70A /* Cart.png */,
 				F5B4609515C2B78F00A6815C /* Cart1.PNG */,
-				F541FCD915EF54A3003B13AE /* cart2.png */,
 				F5B4609915C2BF7900A6815C /* shopping-cart.png */,
 				F541FCDB15EF5982003B13AE /* Button2.png */,
 				F541FCDD15EF6987003B13AE /* button3.png */,
+				4E3F3D8A15F76C2700E9E08A /* dropButton.png */,
 				78864DDB154957EE00D339B7 /* files.iphone.shop.category7.jpg */,
 				78864DDE15495E0A00D339B7 /* files.iphone.shop.good1582.png */,
 				78005A10157793050099F973 /* icon_Metro.gif */,
@@ -807,7 +807,6 @@
 				78EF80B61573B3EA00478EEB /* PickerViewCell.xib in Resources */,
 				78005A0F15778F240099F973 /* RestaurantCell.xib in Resources */,
 				78005A11157793050099F973 /* icon_Metro.gif in Resources */,
-				F5FA624C1580EB6700FBF70A /* Cart.png in Resources */,
 				F599588115875CCF0000469F /* Settings1.png in Resources */,
 				F5F2DD8A15879B8E00E3C6A2 /* Heart.png in Resources */,
 				F52225CB1594A0A7003E2728 /* Button_orange_rev2.png in Resources */,
@@ -830,7 +829,6 @@
 				F5B70D9915D178E200695FAA /* subViewSpam.xib in Resources */,
 				F5E0D80515D953DA004BA70B /* icons.png in Resources */,
 				F5E0D80715D953FF004BA70B /* icons57.png in Resources */,
-				F5F105A015DD355000B03533 /* FacebookSDKResources.bundle in Resources */,
 				F514734C15E3A40D003E836B /* stop.png in Resources */,
 				F51A455D15E3DDC600FD0BB9 /* alphanumeric-plus-sign.png in Resources */,
 				F51635AA15E61CBA00F76ECE /* MainStoryboard_iPad.storyboard in Resources */,
@@ -840,10 +838,12 @@
 				F592B3F215ECDAA900F977C9 /* Line1p.png in Resources */,
 				F5F254EF15EE1C0E00BC48AB /* 2.jpg in Resources */,
 				F541FCD815EF535C003B13AE /* back_.png in Resources */,
-				F541FCDA15EF54A3003B13AE /* cart2.png in Resources */,
 				F541FCDC15EF5982003B13AE /* Button2.png in Resources */,
 				F541FCDE15EF6987003B13AE /* button3.png in Resources */,
 				F56DCB2A15F4F8F0003CC0DD /* HIT1.png in Resources */,
+				4E3F3D8715F76ADD00E9E08A /* FacebookSDKResources.bundle in Resources */,
+				4E3F3D8915F76BF800E9E08A /* New1.png in Resources */,
+				4E3F3D8B15F76C2700E9E08A /* dropButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1014,6 +1014,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../FacebookSDK\"",
+					"\"$(SRCROOT)/../../Documents/FacebookSDK\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Restaurant/Restaurant-Prefix.pch";
@@ -1047,6 +1048,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../FacebookSDK\"",
+					"\"$(SRCROOT)/../../Documents/FacebookSDK\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Restaurant/Restaurant-Prefix.pch";

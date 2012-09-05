@@ -17,6 +17,9 @@
 
 @property (strong, nonatomic) UIAlertView *alert;
 
+@property (nonatomic, strong) UIImageView *hitView;
+@property (nonatomic, strong) UIImageView *newsItemView;
+
 @end
 
 @implementation MenuIconViewController
@@ -32,6 +35,8 @@
 //@synthesize scrollView = _scrollView;
 @synthesize selectedIndex = _selectedIndex;
 @synthesize alert;
+@synthesize hitView;
+@synthesize newsItemView;
 
 - (NSMutableArray *)arrayData
 {
@@ -61,6 +66,8 @@
                 [dataStruct setCarbs:[[data objectAtIndex:i] valueForKey:@"carbs"]];
                 [dataStruct setFats:[[data objectAtIndex:i] valueForKey:@"fats"]];
                 [dataStruct setCalories:[[data objectAtIndex:i] valueForKey:@"calories"]];
+                [dataStruct setHit:[[data objectAtIndex:i] valueForKey:@"hit"]];
+                [dataStruct setIdMenu:[[data objectAtIndex:i] valueForKey:@"idMenu"]];
 //                NSData *dataOfPicture = [[pictures objectForKey:dataStruct.idPicture] valueForKey:@"data"];
 //                NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test6/root/%@",[[pictures objectForKey:dataStruct.idPicture] valueForKey:@"link"]];
 //                urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -305,6 +312,9 @@
     gradient.frame = self.viewForOutput.bounds;
     gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor darkGrayColor] CGColor],(id)[[UIColor blackColor] CGColor], nil];
     [self.viewForOutput.layer insertSublayer:gradient atIndex:0];
+    
+    hitView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HIT1.png"]];
+    newsItemView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"New1.png"]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -354,6 +364,8 @@
     [self setViewForOutput:nil];
     [self setStopEditButton:nil];
     [self setAlert:nil];
+    [self setHitView:nil];
+    [self setNewsItemView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -532,6 +544,15 @@
         [imageView setImage:dataStruct.image];
     }
     
+    if (dataStruct.hit.integerValue == 1)
+    {
+        //            [cell.productImage addSubview:hitView];
+        [imageView.layer addSublayer:[hitView layer]];
+    }
+    else
+        if (dataStruct.hit.integerValue == 2)
+            [imageView.layer addSublayer:[newsItemView layer]];
+    
     [cell.contentView addSubview:imageView];
     
     CGRect nameFrame;
@@ -586,7 +607,6 @@
 //    descriptionLabel.minimumFontSize = 8;
 //    descriptionLabel.adjustsFontSizeToFitWidth = YES;
 //    [cell.contentView addSubview:descriptionLabel];
-
     
     return cell;
 }

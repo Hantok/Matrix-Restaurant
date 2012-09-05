@@ -19,6 +19,7 @@
 }
 
 @property (nonatomic, strong) UIImageView *hitView;
+@property (nonatomic, strong) UIImageView *newsItemView;
 
 - (void)startIconDownload:(ProductDataStruct *)appRecord forIndexPath:(NSIndexPath *)indexPath;
 
@@ -33,6 +34,7 @@
 @synthesize db = _db;
 @synthesize imageDownloadsInProgress = _imageDownloadsInProgress;
 @synthesize hitView;
+@synthesize newsItemView;
 
 
 
@@ -66,6 +68,7 @@
                 [dataStruct setFats:[[data objectAtIndex:i] valueForKey:@"fats"]];
                 [dataStruct setCalories:[[data objectAtIndex:i] valueForKey:@"calories"]];
                 [dataStruct setHit:[[data objectAtIndex:i] valueForKey:@"hit"]];
+                [dataStruct setIdMenu:[[data objectAtIndex:i] valueForKey:@"idMenu"]];
                 //                NSData *dataOfPicture = [[pictures objectForKey:dataStruct.idPicture] valueForKey:@"data"];
                 //                NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test6/root/%@",[[pictures objectForKey:dataStruct.idPicture] valueForKey:@"link"]];
                 //                urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -167,6 +170,8 @@
     self.navigationItem.title = self.kindOfMenu.title;
     
     hitView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HIT1.png"]];
+    newsItemView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"New1.png"]];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -246,6 +251,7 @@
     [self setKindOfMenu:nil];
     [self setDb:nil];
     [self setHitView:nil];
+    [self setNewsItemView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -293,6 +299,9 @@
         //            [cell.productImage addSubview:hitView];
         [cell.productImage.layer addSublayer:[hitView layer]];
     }
+    else
+        if (dataStruct.hit.integerValue == 2)
+            [cell.productImage.layer addSublayer:[newsItemView layer]];
     
     if (!dataStruct.image)
     {

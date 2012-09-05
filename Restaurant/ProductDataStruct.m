@@ -17,6 +17,7 @@
 @synthesize title = _title;
 @synthesize count = _count;
 @synthesize idPicture = _idPicture;
+@synthesize idMenu = _idMenu;
 @synthesize link = _link;
 @synthesize isFavorites = _isFavorites;
 @synthesize hit = _hit;
@@ -54,6 +55,7 @@
     self.fats = [aDictionary objectForKey:@"fats"];
     self.calories = [aDictionary objectForKey:@"calories"];
     self.hit = [aDictionary objectForKey:@"hit"];
+    self.idMenu = [aDictionary objectForKey:@"idMenu"];
     return self;
     
 }
@@ -74,6 +76,7 @@
     [result setObject:self.fats forKey:@"fats"];
     [result setObject:self.calories forKey:@"calories"];
     [result setObject:self.hit forKey:@"hit"];
+    [result setObject:self.idMenu forKey:@"idMenu"];
     return result.copy;
 }
 

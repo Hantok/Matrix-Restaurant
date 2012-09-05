@@ -14,6 +14,8 @@
 }
 
 @property (strong, nonatomic) UIAlertView *alert;
+@property (nonatomic, strong) UIImageView *hitView;
+@property (nonatomic, strong) UIImageView *newsItemView;
 
 @end
 
@@ -27,6 +29,9 @@
 @synthesize selectedIndex = _selectedIndex;
 @synthesize stopEditButton = _stopEditButton;
 @synthesize alert;
+@synthesize hitView;
+@synthesize newsItemView;
+
 
 
 - (GettingCoreContent *)db
@@ -63,6 +68,8 @@
                 [productStruct setCarbs:[[array objectAtIndex:i] valueForKey:@"carbs"]];
                 [productStruct setFats:[[array objectAtIndex:i] valueForKey:@"fats"]];
                 [productStruct setCalories:[[array objectAtIndex:i] valueForKey:@"calories"]];
+                [productStruct setHit:[[array objectAtIndex:i] valueForKey:@"hit"]];
+                [productStruct setIdMenu:[[array objectAtIndex:i] valueForKey:@"idMenu"]];
                 
                 [_arrayOfObjects addObject:productStruct];
             }
@@ -146,6 +153,9 @@
     [self.viewForOutput.layer insertSublayer:gradient atIndex:0];
     
     self.stopEditButton.hidden = YES;
+    
+    hitView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HIT1.png"]];
+    newsItemView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"New1.png"]];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -185,6 +195,10 @@
     
     [self setStopEditButton:nil];
     [self setAlert:nil];
+    
+    [self setHitView:nil];
+    [self setNewsItemView:nil];
+    
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -288,6 +302,15 @@
     {
         [imageView setImage:dataStruct.image];
     }
+    
+    if (dataStruct.hit.integerValue == 1)
+    {
+        //            [cell.productImage addSubview:hitView];
+        [imageView.layer addSublayer:[hitView layer]];
+    }
+    else
+        if (dataStruct.hit.integerValue == 2)
+            [imageView.layer addSublayer:[newsItemView layer]];
     
     [cell.contentView addSubview:imageView];
     
