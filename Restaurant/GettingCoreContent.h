@@ -77,4 +77,5 @@
 - (BOOL)isRestaurantCanMakeOrderWithRestaurantID:(NSString *)idRestaurant;
 
 -(NSString *)fetchIdRestaurantFromIdMenu:(NSString *)idMenu;
+- (NSArray *)fetchAllObjectsFromEntity:(NSString *)entityName;
 @end

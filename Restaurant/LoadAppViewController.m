@@ -18,6 +18,7 @@
 @property BOOL isHappyEnd;
 @property BOOL isFirstTime;
 @property BOOL isParamTagDone;
+@property (nonatomic, strong) GettingCoreContent *content;
 
 @end
 
@@ -32,6 +33,16 @@
 
 @synthesize responseData = _responseData;
 @synthesize isParamTagDone = _isParamTagDone;
+@synthesize content = _content;
+
+- (GettingCoreContent *)content
+{
+    if(!_content)
+    {
+        _content = [[GettingCoreContent alloc] init];
+    }
+    return  _content;
+}
 
 - (void)DropCoreData
 {
@@ -65,7 +76,7 @@
         {
             //tag=init http request
             self.isFirstTime = YES;
-            NSString *order = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test6/root/Customer_Scripts/update.php?DBid=11&tag=init"];
+            NSString *order = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test7/root/Customer_Scripts/update.php?DBid=12&tag=init"];
             NSURL *url = [NSURL URLWithString:order];
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
             [request setHTTPMethod:@"GET"];
@@ -101,7 +112,10 @@
             NSNumber *maxDeliveriesId =  [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Deliveries"];
             NSNumber *maxDeliveryVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Deliveries"];
             
-            NSMutableString *myString = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test6/root/Customer_Scripts/update.php?DBid=11&tag=param"];
+            NSNumber *maxPromotionsId =  [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Promotions"];
+            NSNumber *maxPromotionsVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Promotions"];
+            
+            NSMutableString *myString = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test7/root/Customer_Scripts/update.php?DBid=12&tag=param"];
             [myString appendFormat:@"&city_v=%@",maxCityVersion];
             [myString appendFormat:@"&mcity_id=%@",maxCityId];
             
@@ -116,6 +130,9 @@
             
             [myString appendFormat:@"&del_v=%@", maxDeliveryVersion];
             [myString appendFormat:@"&mdel_id=%@",maxDeliveriesId];
+            
+            [myString appendFormat:@"&prom_v=%@", maxPromotionsVersion];
+            [myString appendFormat:@"&mprom_id=%@",maxPromotionsId];
             
             NSURL *url = [NSURL URLWithString:myString.copy];
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
@@ -162,6 +179,31 @@
     loadingView.activityIndicatorView.color = [UIColor whiteColor];
     loadingView.textLabel.textColor = [UIColor whiteColor];
     [self.view addSubview:loadingView];
+    
+    NSArray *arrayOfPromotions = [self.content getArrayFromCoreDatainEntetyName:@"Promotions" withSortDescriptor:@"underbarid"];
+    if (arrayOfPromotions.count == 0)
+    {
+        self.imageView.image = [UIImage imageNamed:@"picture.png"];
+        return;
+    }
+    NSString *idPicture = [[arrayOfPromotions objectAtIndex:0] valueForKey:@"idPicture"];
+    self.imageView.image = [UIImage imageWithData:[self.content fetchPictureDataByPictureId:idPicture]];
+    if (!self.imageView.image)
+    {
+        if(checkConnection.hasConnectivity)
+        {
+            NSString *stringURL = [self.content fetchImageStringURLbyPictureID:idPicture];
+            NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:stringURL]];
+            UIImage *image = [UIImage imageWithData: imageData];
+            [self.content SavePictureToCoreData:idPicture toData:imageData];
+            self.imageView.image = image;
+        }
+        else
+        {
+            self.imageView.image = [UIImage imageNamed:@"picture.png"];
+        }
+    }
+    
     NSLog(@"I'm in viewDidLoad");
 }
 
@@ -224,7 +266,10 @@
         NSNumber *maxProductId = [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Products"];
         NSNumber *maxProductVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Products"];
         
-        NSMutableString *myString = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test6/root/Customer_Scripts/update.php?DBid=11&tag=update"];
+        NSNumber *maxPromotionsId =  [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Promotions"];
+        NSNumber *maxPromotionsVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Promotions"];
+        
+        NSMutableString *myString = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test7/root/Customer_Scripts/update.php?DBid=12&tag=update"];
         
         [myString appendFormat:@"&city_id=%@", [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"]];
         [myString appendFormat:@"&lang_id=%@", [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
@@ -237,6 +282,9 @@
         
         [myString appendFormat:@"&prod_v=%@", maxProductVersion];
         [myString appendFormat:@"&mprod_id=%@", maxProductId];
+        
+        [myString appendFormat:@"&prom_v=%@", maxPromotionsVersion];
+        [myString appendFormat:@"&mprom_id=%@",maxPromotionsId];
         
         NSURL *url = [NSURL URLWithString:myString.copy];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
@@ -300,7 +348,7 @@
         //створюємо http зарпос
         if (checkConnection.hasConnectivity)
         {
-            NSMutableString *order = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test6/root/Customer_Scripts/update.php?DBid=11&tag=rmp"];
+            NSMutableString *order = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test7/root/Customer_Scripts/update.php?DBid=12&tag=rmp"];
             [order appendFormat:@"&idLang=%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
             [order appendFormat:@"&idCity=%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultCityId"]];
             NSURL *url = [NSURL URLWithString:order.copy];

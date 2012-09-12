@@ -19,6 +19,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "checkConnection.h"
 #import "DeliveryViewController.h"
+#import "PromotionStruct.h"
 
 //first commit
 
@@ -42,6 +43,7 @@
 @property (nonatomic) NSInteger numberOfRows;
 @property (nonatomic, copy) NSArray *animationImages;
 @property (nonatomic,strong) UIAlertView *alert;
+@property (nonatomic, strong) NSMutableArray *promotionsArray;
 
 - (void)startIconDownload:(MenuDataStruct *)appRecord forIndexPath:(NSIndexPath *)indexPath;
 
@@ -77,6 +79,7 @@
 @synthesize shouldBeReloaded = _shouldBeReloaded;
 @synthesize singleMenu = _singleMenu;
 @synthesize alert = _alert;
+@synthesize promotionsArray = _promotionsArray;
 
 
 - (IBAction)drop:(id)sender {
@@ -106,6 +109,7 @@
     [self.pickerView reloadAllComponents];
 }
 
+//menu
 - (NSMutableArray *)arrayData
 {
     if(!_arrayData)
@@ -188,6 +192,7 @@
     return _arrayData;
 }
 
+//cart
 -(NSMutableArray *)arrayOfObjects
 {
     if (!_arrayOfObjects || _arrayOfObjects.count != [self.db fetchAllProductsIdAndTheirCountWithPriceForEntity:@"Cart"].count)
@@ -220,6 +225,33 @@
         return _arrayOfObjects;
     }
     return _arrayOfObjects;
+}
+
+//promotions
+- (NSMutableArray *)promotionsArray
+{
+    
+    if (!_promotionsArray)
+    {
+        NSArray *arrayOfPromotions = [self.db getArrayFromCoreDatainEntetyName:@"Promotions" withSortDescriptor:@"underbarid"];
+        NSArray *arrayOfPromotionsWithTranslation = [self.db fetchObjectsFromCoreDataForEntity:@"Promotions_translation" withArrayObjects:arrayOfPromotions withDefaultLanguageId:[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
+        _promotionsArray = [[NSMutableArray alloc] init];
+        for (int i = 1; i < arrayOfPromotionsWithTranslation.count; i++)
+        {
+            PromotionStruct *promotion = [[PromotionStruct alloc] init];
+            promotion.promotionId = [[arrayOfPromotions objectAtIndex:i] valueForKey:@"underbarid"];
+            promotion.idPicture = [[arrayOfPromotions objectAtIndex:i] valueForKey:@"idPicture"];
+            
+            promotion.link = [self.db fetchImageStringURLbyPictureID:promotion.idPicture];
+            promotion.image = [UIImage imageWithData:[self.db fetchPictureDataByPictureId:promotion.idPicture]];
+            promotion.descriptionText = [[arrayOfPromotionsWithTranslation objectAtIndex:i] valueForKey:@"descriptionAbout"];
+            promotion.title = [[arrayOfPromotionsWithTranslation objectAtIndex:i] valueForKey:@"title"];
+            
+            [_promotionsArray addObject:promotion];
+        }
+        return _promotionsArray;
+    }
+    return _promotionsArray;
 }
 
 - (GettingCoreContent *)db
@@ -344,19 +376,36 @@
     soundFileURLRef = (__bridge CFURLRef) tapSound;
     
     AudioServicesCreateSystemSoundID (soundFileURLRef, &soundFileObject);
-    
-    NSArray * imageArray  = [NSArray arrayWithObjects:
-                             [UIImage imageNamed:@"1.jpg"],
-                             [UIImage imageNamed:@"2.jpg"], nil];
+
+    NSMutableArray *imageArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i < self.promotionsArray.count; i++)
+    {
+        PromotionStruct *promotion = [self.promotionsArray objectAtIndex:i];
+        if (![promotion image])
+        {
+            NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:[promotion link]]];
+            UIImage *image = [UIImage imageWithData: imageData];
+            [promotion setImage:image];
+            [self.db SavePictureToCoreData:[promotion idPicture] toData:imageData];
+            [imageArray addObject:image];
+        }
+        else
+        {
+            [imageArray addObject:[promotion image]];
+        }
+    }
+//    NSArray * imageArray  = [NSArray arrayWithObjects:
+//                             [UIImage imageNamed:@"1.jpg"],
+//                             [UIImage imageNamed:@"2.jpg"], nil];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.imageButton.frame];
     imageView.animationImages = imageArray;
-    imageView.animationDuration = 8.0;
+    imageView.animationDuration = self.promotionsArray.count * 4.0;
     [NSTimer scheduledTimerWithTimeInterval:4.0
                                      target:self
                                    selector:@selector(changingAnimation)
                                    userInfo:nil
                                     repeats:YES];
-    currentImage = 1;
+    currentImage = 0;
     [imageView startAnimating];
     
     [self.imageButton addSubview:imageView];
@@ -374,13 +423,13 @@
 
 - (void)changingAnimation
 {
-    if (currentImage < 2)
+    if (currentImage < self.promotionsArray.count - 1)
     {
         currentImage++;
     }
     else
     {
-        currentImage = 1;
+        currentImage = 0;
     }
 }
 
@@ -470,13 +519,14 @@
             break;
         }
     }
-    
-    [subView.imageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%i.jpg", currentImage]]];
-    subView.label.text = [NSString stringWithFormat:@"Matrix Restaurant"];
-    if (currentImage == 2)
-        subView.textView.text = @"We are serving most tasty food in the city.";
-    else
-        subView.textView.text = @"Our delivery service has started. We are giving 10% of discount for online orders. Do not forget to make your first odrer today :)";
+//    int i = currentImage - 1;
+    [subView.imageView setImage:[[self.promotionsArray objectAtIndex:currentImage] image]];
+    subView.label.text = [[self.promotionsArray objectAtIndex:currentImage] title];
+    subView.textView.text = [[self.promotionsArray objectAtIndex:currentImage] descriptionText];
+//    if (currentImage == 2)
+//        subView.textView.text = @"We are serving most tasty food in the city.";
+//    else
+//        subView.textView.text = @"Our delivery service has started. We are giving 10% of discount for online orders. Do not forget to make your first odrer today :)";
     [self.view addSubview:subView];
 }
 

@@ -11,6 +11,8 @@
 		4E3F3D8715F76ADD00E9E08A /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4E3F3D8615F76ADD00E9E08A /* FacebookSDKResources.bundle */; };
 		4E3F3D8915F76BF800E9E08A /* New1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E3F3D8815F76BF800E9E08A /* New1.png */; };
 		4E3F3D8B15F76C2700E9E08A /* dropButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E3F3D8A15F76C2700E9E08A /* dropButton.png */; };
+		4E5A34C71600BFA100725D93 /* PromotionStruct.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E5A34C51600BFA100725D93 /* PromotionStruct.h */; };
+		4E5A34C81600BFA100725D93 /* PromotionStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5A34C61600BFA100725D93 /* PromotionStruct.m */; };
 		78005A0715778C8A0099F973 /* RestaurantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78005A0615778C8A0099F973 /* RestaurantViewController.m */; };
 		78005A0A15778CCC0099F973 /* RestaurantDataStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 78005A0915778CCC0099F973 /* RestaurantDataStruct.m */; };
 		78005A0D15778F0E0099F973 /* RestaurantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78005A0C15778F0E0099F973 /* RestaurantCell.m */; };
@@ -202,6 +204,8 @@
 		4E3F3D8615F76ADD00E9E08A /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		4E3F3D8815F76BF800E9E08A /* New1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = New1.png; sourceTree = "<group>"; };
 		4E3F3D8A15F76C2700E9E08A /* dropButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropButton.png; sourceTree = "<group>"; };
+		4E5A34C51600BFA100725D93 /* PromotionStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromotionStruct.h; sourceTree = "<group>"; };
+		4E5A34C61600BFA100725D93 /* PromotionStruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionStruct.m; sourceTree = "<group>"; };
 		78005A0515778C8A0099F973 /* RestaurantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantViewController.h; sourceTree = "<group>"; };
 		78005A0615778C8A0099F973 /* RestaurantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantViewController.m; sourceTree = "<group>"; };
 		78005A0815778CCC0099F973 /* RestaurantDataStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantDataStruct.h; sourceTree = "<group>"; };
@@ -480,6 +484,8 @@
 				78BA0E1D156E6A5E005C08D7 /* MenuDataStruct.m */,
 				78BA0E23156E934B005C08D7 /* ProductDataStruct.h */,
 				78BA0E24156E934B005C08D7 /* ProductDataStruct.m */,
+				4E5A34C51600BFA100725D93 /* PromotionStruct.h */,
+				4E5A34C61600BFA100725D93 /* PromotionStruct.m */,
 				78005A0815778CCC0099F973 /* RestaurantDataStruct.h */,
 				78005A0915778CCC0099F973 /* RestaurantDataStruct.m */,
 			);
@@ -683,6 +689,7 @@
 				F5513A2A15DA3AA90083E075 /* checkConnection.h in Headers */,
 				F5513A2B15DA3AA90083E075 /* RestaurantAppDelegate.h in Headers */,
 				F53BFF6315EB7301000AB558 /* TimePicker.h in Headers */,
+				4E5A34C71600BFA100725D93 /* PromotionStruct.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -892,6 +899,7 @@
 				F5B70D9815D178E200695FAA /* subViewSpam.m in Sources */,
 				F58EC35615DB8A4E00ADBA80 /* ReservationViewController.m in Sources */,
 				F53BFF6415EB7301000AB558 /* TimePicker.m in Sources */,
+				4E5A34C81600BFA100725D93 /* PromotionStruct.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

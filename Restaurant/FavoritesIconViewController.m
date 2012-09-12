@@ -168,7 +168,7 @@
     {
         dataStruct = [self.arrayOfObjects objectAtIndex:i];
         NSData *dataOfPicture = [self.db fetchPictureDataByPictureId:[[self.arrayOfObjects objectAtIndex:i] idPicture]];
-//        NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test6/root/%@",[[pictures objectForKey:dataStruct.idPicture] valueForKey:@"link"]];
+//        NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test7/root/%@",[[pictures objectForKey:dataStruct.idPicture] valueForKey:@"link"]];
 //        urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 //        NSURL *url = [NSURL URLWithString:urlForImage];
         //        dataStruct.link = url.description;

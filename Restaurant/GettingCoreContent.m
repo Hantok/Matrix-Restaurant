@@ -451,7 +451,7 @@
     NSArray *resultOfARequest = [moc executeFetchRequest:request error:&error];
 //    if (resultOfARequest.count != 0)
     {
-        NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test6/root/%@",[[resultOfARequest objectAtIndex:0] valueForKey:@"link"]];
+        NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test7/root/%@",[[resultOfARequest objectAtIndex:0] valueForKey:@"link"]];
         urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         NSURL *url = [[NSURL alloc] initWithString:urlForImage];
         return url;
@@ -477,7 +477,7 @@
     NSArray *resultOfARequest = [moc executeFetchRequest:request error:&error];
     //    if (resultOfARequest.count != 0)
     {
-        NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test6/root/%@",[[resultOfARequest objectAtIndex:0] valueForKey:@"link"]];
+        NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test7/root/%@",[[resultOfARequest objectAtIndex:0] valueForKey:@"link"]];
         urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 //        NSURL *url = [[NSURL alloc] initWithString:urlForImage];
         return urlForImage;
@@ -643,6 +643,22 @@
     return  arrayOfDictionaries;
 }
 
+- (NSArray *)fetchAllObjectsFromEntity:(NSString *)entityName
+{
+    NSManagedObjectContext * context = self.managedObjectContext;
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
+    
+    [request setEntity:entity];
+    
+    request.predicate = [NSPredicate predicateWithFormat:@"underbarid > 0"];
+    NSManagedObjectContext *moc = context;
+    NSError *error;
+    NSMutableArray *resultOfARequest = [[moc executeFetchRequest:request error:&error] mutableCopy];
+    return [resultOfARequest copy];
+}
+
 
 //working
 - (NSArray *) fetchObjectsFromCoreDataForEntity:(NSString *)entityName withArrayObjects:(NSArray *)underbaridsArray withDefaultLanguageId:(NSString *)languageId
@@ -654,11 +670,20 @@
     NSError *error;
     NSArray *items= [context executeFetchRequest:request error:&error];
     NSMutableArray *outputArray = [[NSMutableArray alloc] init];
+    NSString *inputPredicate;
+    if (entityName == @"Promotions_translation")
+    {
+        inputPredicate = @"idPromotion";
+    }
+    else
+    {
+        inputPredicate = @"idProduct";
+    }
     for (int i = 0; i <items.count; i++)
     {
         for (int j = 0; j < underbaridsArray.count; j++)
         {
-            if ([[[[items objectAtIndex:i] valueForKey:@"idProduct"] description] isEqual:[[[underbaridsArray objectAtIndex:j] valueForKey:@"underbarid"] description]])
+            if ([[[[items objectAtIndex:i] valueForKey:inputPredicate] description] isEqual:[[[underbaridsArray objectAtIndex:j] valueForKey:@"underbarid"] description]])
             {
                 if ([[[[items objectAtIndex:i] valueForKey:@"idLanguage"] description] isEqualToString:[languageId description]])
                 {

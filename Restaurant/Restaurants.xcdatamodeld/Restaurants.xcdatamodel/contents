@@ -53,6 +53,7 @@
     </entity>
     <entity name="Deliveries" syncable="YES">
         <attribute name="action" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="version" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
@@ -118,7 +119,16 @@
         <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Products" inverseName="translation" inverseEntity="Products" syncable="YES"/>
     </entity>
     <entity name="Promotions" syncable="YES">
+        <attribute name="action" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="idPicture" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="Promotions_translation" syncable="YES">
+        <attribute name="descriptionAbout" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idLanguage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idPromotion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="Restaurants" syncable="YES">
@@ -129,10 +139,14 @@
         <attribute name="isOrder" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="parking" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="phones" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reservTableNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reservTime" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="seatsNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="terrace" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="timeZone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="version" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="workingTime" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Restaurants_translation" syncable="YES">
         <attribute name="additionalAddressInfo" optional="YES" attributeType="String" syncable="YES"/>
@@ -173,10 +187,11 @@
         <element name="Pictures" positionX="0" positionY="0" width="128" height="90"/>
         <element name="Products" positionX="0" positionY="0" width="128" height="270"/>
         <element name="Products_translation" positionX="0" positionY="0" width="128" height="135"/>
-        <element name="Promotions" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="Promotions" positionX="0" positionY="0" width="128" height="105"/>
         <element name="Restaurants" positionX="0" positionY="0" width="128" height="210"/>
         <element name="Restaurants_translation" positionX="0" positionY="0" width="128" height="195"/>
         <element name="Statuses" positionX="0" positionY="0" width="128" height="105"/>
         <element name="Statuses_translation" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="Promotions_translation" positionX="160" positionY="192" width="128" height="120"/>
     </elements>
 </model>
