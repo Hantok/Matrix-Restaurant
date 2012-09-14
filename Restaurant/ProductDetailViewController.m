@@ -108,7 +108,7 @@
     if (!isPictureViewContanerShow) {
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:0.3];
-        self.pictureViewContainer.frame = CGRectMake(35, -220, 250, 240);
+        self.pictureViewContainer.frame = CGRectMake(35, -180, 250, 240);
         [UIView commitAnimations];
         
         [self.scrollView setHidden:NO];
@@ -123,6 +123,33 @@
 //        [self.scrollView setHidden:YES];
         
         isPictureViewContanerShow = NO;
+    }
+}
+
+- (IBAction)dragPictureViewContainer:(UIPanGestureRecognizer *)sender
+{
+    CGPoint translation = [sender translationInView:self.view];
+    //    translation.y
+    sender.view.center = CGPointMake(sender.view.center.x, sender.view.center.y + translation.y);
+    
+    if (sender.view.center.y >= 120) {
+        sender.view.center = CGPointMake(sender.view.center.x, 120);
+        [sender setTranslation:CGPointMake(0, 0) inView:self.view];
+        
+        isPictureViewContanerShow = NO;
+    } else if (sender.view.center.y <= -60) {
+        sender.view.center = CGPointMake(sender.view.center.x, -60);
+        [sender setTranslation:CGPointMake(0, 0) inView:self.view];
+        
+        //        [self.scrollView setHidden:NO];
+        
+        isPictureViewContanerShow = YES;
+        
+    } else {
+        [sender setTranslation:CGPointMake(0, 0) inView:self.view];
+        
+        isPictureViewContanerShow = NO;
+        
     }
 }
 
@@ -542,6 +569,8 @@
         [UIView setAnimationDuration:0.3];
         self.pictureViewContainer.frame = CGRectMake(35, 0, 250, 240);
         [UIView commitAnimations];
+        
+        [self.scrollView setHidden:NO];
 
         
     } else {
@@ -599,6 +628,8 @@
     [UIView setAnimationDuration:0.3];
     self.pictureViewContainer.frame = CGRectMake(35, 0, 250, 240);
     [UIView commitAnimations];
+    
+    [self.scrollView setHidden:NO];
 
 }
 
