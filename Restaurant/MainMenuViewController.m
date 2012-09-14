@@ -78,6 +78,7 @@
 @synthesize animationImages = _animationImages;
 @synthesize shouldBeReloaded = _shouldBeReloaded;
 @synthesize singleMenu = _singleMenu;
+@synthesize historyButton = _historyButton;
 @synthesize alert = _alert;
 @synthesize promotionsArray = _promotionsArray;
 
@@ -277,6 +278,7 @@
     
     [self.settingsButton setHidden:NO];
     [self.drop setHidden:NO];
+    [self.historyButton setHidden:YES];
     
     AudioServicesPlayAlertSound(soundFileObject);
 }
@@ -295,6 +297,7 @@
     
     [self.settingsButton setHidden:YES];
     [self.drop setHidden:YES];
+    [self.historyButton setHidden:NO];
 }
 - (IBAction)goToSettingsTableViewController:(id)sender
 {
@@ -546,6 +549,7 @@
     [self setTableViewController:nil];
     [self setPickerView:nil];
     [self setAlert:nil];
+    [self setHistoryButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
