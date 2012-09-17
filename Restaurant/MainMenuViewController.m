@@ -233,10 +233,21 @@
     
     if (!_promotionsArray)
     {
+        //отримуємо мисив з табл промотіонс
         NSArray *arrayOfPromotions = [self.db getArrayFromCoreDatainEntetyName:@"Promotions" withSortDescriptor:@"underbarid"];
-        NSArray *arrayOfPromotionsWithTranslation = [self.db fetchObjectsFromCoreDataForEntity:@"Promotions_translation" withArrayObjects:arrayOfPromotions withDefaultLanguageId:[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
+        
+        //отримуємо переклад згідно з поточною мовою
+        NSArray *array = [self.db fetchObjectsFromCoreDataForEntity:@"Promotions_translation" withArrayObjects:arrayOfPromotions withDefaultLanguageId:[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"]];
+        
+        //сортуємо масив щоб картинки з текстом співпадали
+        NSSortDescriptor *sortDescriptor;
+        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"IdPromotion" ascending:YES];
+        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+        NSArray *arrayOfPromotionsWithTranslation;
+        arrayOfPromotionsWithTranslation = [array sortedArrayUsingDescriptors:sortDescriptors];
+        
         _promotionsArray = [[NSMutableArray alloc] init];
-        for (int i = 1; i < arrayOfPromotionsWithTranslation.count; i++)
+        for (int i = 0; i < arrayOfPromotionsWithTranslation.count; i++)
         {
             PromotionStruct *promotion = [[PromotionStruct alloc] init];
             promotion.promotionId = [[arrayOfPromotions objectAtIndex:i] valueForKey:@"underbarid"];
@@ -523,10 +534,6 @@
     [subView.imageView setImage:[[self.promotionsArray objectAtIndex:currentImage] image]];
     subView.label.text = [[self.promotionsArray objectAtIndex:currentImage] title];
     subView.textView.text = [[self.promotionsArray objectAtIndex:currentImage] descriptionText];
-//    if (currentImage == 2)
-//        subView.textView.text = @"We are serving most tasty food in the city.";
-//    else
-//        subView.textView.text = @"Our delivery service has started. We are giving 10% of discount for online orders. Do not forget to make your first odrer today :)";
     [self.view addSubview:subView];
 }
 
@@ -802,9 +809,10 @@
 //                [[segue.destinationViewController setEnableTiming:YES]];
             }
     
+    
     self.shouldBeReloaded = YES;
     self.arrayOfObjects = nil;
-    
+    self.promotionsArray = nil;
 }
 
 

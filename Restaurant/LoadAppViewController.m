@@ -94,7 +94,7 @@
         }
         else
         {
-            //http request updatePHP with &tag=param
+            //http request updatePHP with &tag=params
             self.isParamTagDone = YES;
             GettingCoreContent *content = [[GettingCoreContent alloc] init];
             NSNumber *maxCityId = [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Cities"];
@@ -115,7 +115,7 @@
             NSNumber *maxPromotionsId =  [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Promotions"];
             NSNumber *maxPromotionsVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Promotions"];
             
-            NSMutableString *myString = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test7/root/Customer_Scripts/update.php?DBid=12&tag=param"];
+            NSMutableString *myString = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test7/root/Customer_Scripts/update.php?DBid=12&tag=params"];
             [myString appendFormat:@"&city_v=%@",maxCityVersion];
             [myString appendFormat:@"&mcity_id=%@",maxCityId];
             

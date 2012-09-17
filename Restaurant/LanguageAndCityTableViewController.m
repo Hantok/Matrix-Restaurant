@@ -272,6 +272,9 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"Unable to fetch data");
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Sorry!" message:@"Unable to fetch data" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alertView show];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
@@ -334,5 +337,11 @@
                 [content setCoreDataForEntityWithName:key dictionaryOfAtributes:object];
         }
     }
+}
+
+#pragma mark UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end
