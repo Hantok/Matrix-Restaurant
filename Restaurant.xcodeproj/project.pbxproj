@@ -121,6 +121,7 @@
 		F58BD5AD156E7B8A00D31A09 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58BD5AC156E7B8A00D31A09 /* MessageUI.framework */; };
 		F58E734F15D1358800CBCE65 /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = F58E734E15D1358800CBCE65 /* MapViewAnnotation.m */; };
 		F58EC35615DB8A4E00ADBA80 /* ReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58EC35515DB8A4E00ADBA80 /* ReservationViewController.m */; };
+		F591A9BC1607214200720104 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = F591A9BB1607214200720104 /* clock.png */; };
 		F591ECD815CD723C006BD0E6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F591ECD715CD723C006BD0E6 /* CoreLocation.framework */; };
 		F591ECDE15CEEE11006BD0E6 /* MyLoc.png in Resources */ = {isa = PBXBuildFile; fileRef = F591ECDD15CEEE10006BD0E6 /* MyLoc.png */; };
 		F592B3F115ECDAA900F977C9 /* Line2p.png in Resources */ = {isa = PBXBuildFile; fileRef = F592B3EF15ECDAA900F977C9 /* Line2p.png */; };
@@ -319,6 +320,7 @@
 		F58E734E15D1358800CBCE65 /* MapViewAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewAnnotation.m; sourceTree = "<group>"; };
 		F58EC35415DB8A4E00ADBA80 /* ReservationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservationViewController.h; sourceTree = "<group>"; };
 		F58EC35515DB8A4E00ADBA80 /* ReservationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservationViewController.m; sourceTree = "<group>"; };
+		F591A9BB1607214200720104 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
 		F591ECD715CD723C006BD0E6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F591ECDD15CEEE10006BD0E6 /* MyLoc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MyLoc.png; sourceTree = "<group>"; };
 		F592B3EF15ECDAA900F977C9 /* Line2p.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Line2p.png; sourceTree = "<group>"; };
@@ -526,6 +528,7 @@
 		78EF80B41573A51300478EEB /* images */ = {
 			isa = PBXGroup;
 			children = (
+				F591A9BB1607214200720104 /* clock.png */,
 				F59A9EDB16034DC600D8A6ED /* buttonPlayRight.png */,
 				F59A9EDC16034DC600D8A6ED /* buttonPlayDown.png */,
 				F56DCB2915F4F8F0003CC0DD /* HIT1.png */,
@@ -884,6 +887,7 @@
 				F59A9ED216034C3800D8A6ED /* HistoryPartCell.xib in Resources */,
 				F59A9EDD16034DC600D8A6ED /* buttonPlayRight.png in Resources */,
 				F59A9EDE16034DC600D8A6ED /* buttonPlayDown.png in Resources */,
+				F591A9BC1607214200720104 /* clock.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

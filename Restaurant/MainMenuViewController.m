@@ -20,6 +20,7 @@
 #import "checkConnection.h"
 #import "DeliveryViewController.h"
 #import "PromotionStruct.h"
+#import "HistoryTableListViewController.h"
 
 //first commit
 
@@ -32,6 +33,7 @@
     int             currentImage;
     BOOL            deliveryTime;
     BOOL            oneRestaurant;
+    HistoryTableListViewController *tempHistory;
 }
 
 @property (readwrite)	CFURLRef        soundFileURLRef;
@@ -297,7 +299,13 @@
     
     [self.settingsButton setHidden:YES];
     [self.drop setHidden:YES];
-    [self.historyButton setHidden:NO];
+    
+    int countHistory = [[self.db getArrayFromCoreDatainEntetyName:@"CustomerOrders" withSortDescriptor:@"name"] count];
+    if (countHistory != 0) {
+        [self.historyButton setHidden:NO];
+    }
+//    [self.historyButton setHidden:NO];
+
 }
 - (IBAction)goToSettingsTableViewController:(id)sender
 {
@@ -313,6 +321,7 @@
 
 - (void)viewDidLoad
 {
+    
     // get the current date
     NSDate *date = [NSDate date];
     
@@ -438,6 +447,10 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
+    if (self.isCartMode == YES && [[self.db getArrayFromCoreDatainEntetyName:@"CustomerOrders" withSortDescriptor:@"name"] count] != 0) {
+        [self.historyButton setHidden:NO];
+    }
+    
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     //    [self arrayData];
     if (fromSettings)
@@ -481,7 +494,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
-    
+        
     if (oneRestaurant)
         self.arrayData = nil;
     if(self.isMenuMode)

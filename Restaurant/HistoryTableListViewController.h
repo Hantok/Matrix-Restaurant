@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "PartOfHistoryViewController.h"
+#import "GettingCoreContent.h"
 
 @interface HistoryTableListViewController : UITableViewController <UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *historyArray;
+@property (strong, nonatomic) NSMutableArray *historyArray;
 @property NSInteger selectedRow;
-//@property (strong, nonatomic)
+@property (strong, nonatomic) GettingCoreContent *content;
 
 @end

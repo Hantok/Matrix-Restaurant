@@ -35,6 +35,7 @@
 //@synthesize intercom;
 //@synthesize floor;
 @synthesize dictionary = _dictionary;
+@synthesize historyDictionary =_historyDictionary;
 
 @synthesize tapRecognizer = _tapRecognizer;
 @synthesize textFieldForFeils = _textFieldForFeils;
@@ -441,6 +442,42 @@
             }
             [ids setString:[ids substringToIndex:(ids.length - 1)]];
             [counts setString:[counts substringToIndex:(counts.length - 1)]];
+            
+//            self.dictionary = [[NSMutableDictionary alloc] init];
+//            [self.dictionary setObject:self.addressName.text forKey:@"name"];
+//            [self.dictionary setObject:self.customerName.text forKey:@"username"];
+//            [self.dictionary setObject:self.phone.text forKey:@"phone"];
+//            [self.dictionary setObject:self.CityName.text forKey:@"city"];
+//            [self.dictionary setObject:self.street.text forKey:@"street"];
+//            [self.dictionary setObject:self.build.text forKey:@"house"];
+//            [self.dictionary setObject:self.appartaments.text forKey:@"room_office"];
+//            //        [self.dictionary setObject:self.metroName.text forKey:@"metro"];
+//            //        [self.dictionary setObject:self.floor.text forKey:@"floor"];
+//            //        [self.dictionary setObject:self.intercom.text forKey:@"intercom"];
+//            //        [self.dictionary setObject:self.access.text forKey:@"access"];
+//            [self.dictionary setObject:self.otherInformation.text forKey:@"additional_info"];
+//            //            [self.dictionary setObject:self.deliveryTime.text forKey:@"deliveryTime"];
+//            
+//            [self.content addObjectToEntity:@"Addresses" withDictionaryOfAttributes:self.dictionary.copy];
+            
+            self.historyDictionary = [[NSMutableDictionary alloc] init];
+            [self.historyDictionary setObject:addressName.text forKey:@"name"];
+            [self.historyDictionary setObject:build.text forKey:@"house"];
+            [self.historyDictionary setObject:CityName.text forKey:@"city"];
+            [self.historyDictionary setObject:@"date" forKey:@"date"];
+            [self.historyDictionary setObject:@"deliveryID" forKey:@"deliveryID"];
+            [self.historyDictionary setObject:@"floor" forKey:@"floor"];
+            [self.historyDictionary setObject:@"metro" forKey:@"metro"];
+            [self.historyDictionary setObject:@"orderID" forKey:@"orderID"];
+            [self.historyDictionary setObject:counts forKey:@"productsCounts"];
+            [self.historyDictionary setObject:ids forKey:@"productsIDs"];
+            [self.historyDictionary setObject:self.appartaments.text forKey:@"room_office"];
+            [self.historyDictionary setObject:@"status id" forKey:@"statusID"];
+            [self.historyDictionary setObject:self.street.text forKey:@"street"];
+            
+//            [self.content addObjectToEntity:@"CustomerOrders" withDictionaryOfAttributes:self.historyDictionary.copy];
+            [self.content addObjectToCoreDataEntity:@"CustomerOrders" withDictionaryOfAttributes:self.historyDictionary.copy];
+            
             
             [order appendFormat:@"&ProdIDs=%@&counts=%@&city=%@&street=%@&house=%@&room_office=%@&custName=%@&phone=%@&additional_info=%@&idDelivery=1",ids,counts,self.CityName.text,self.street.text,self.build.text,self.appartaments.text,self.customerName.text,self.phone.text,self.otherInformation.text];
             

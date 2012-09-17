@@ -52,16 +52,17 @@
         <attribute name="version" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <entity name="CustomerOrders" syncable="YES">
-        <attribute name="building" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="deliveryID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="floor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="house" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="metro" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="orderID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="productCounts" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="orderID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="productsCounts" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="productsIDs" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="roomOrOffice" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="room_office" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="statusID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
@@ -207,6 +208,6 @@
         <element name="Restaurants_translation" positionX="-414" positionY="-72" width="128" height="195"/>
         <element name="Statuses" positionX="-270" positionY="-198" width="128" height="105"/>
         <element name="Statuses_translation" positionX="-414" positionY="-198" width="128" height="105"/>
-        <element name="CustomerOrders" positionX="16" positionY="171" width="128" height="223"/>
+        <element name="CustomerOrders" positionX="16" positionY="171" width="128" height="238"/>
     </elements>
 </model>

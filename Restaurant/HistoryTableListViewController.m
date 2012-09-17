@@ -18,6 +18,37 @@
 @synthesize tableView = _tableView;
 @synthesize historyArray = _historyArray;
 @synthesize selectedRow = _selectedRow;
+@synthesize content = _content;
+
+- (GettingCoreContent *)content
+{
+    if(!_content)
+    {
+        _content = [[GettingCoreContent alloc] init];
+    }
+    return  _content;
+}
+
+//- (NSMutableArray *)arrayOfAddresses
+//{
+//    if (!_arrayOfAddresses)
+//    {
+//        _arrayOfAddresses = [self.content getArrayFromCoreDatainEntetyName:@"Addresses" withSortDescriptor:@"name"].mutableCopy;
+//        return _arrayOfAddresses;
+//    }
+//    
+//    return _arrayOfAddresses;
+//}
+
+- (NSMutableArray *)historyArray
+{
+    if (!_historyArray) {
+        _historyArray = [[self.content getArrayFromCoreDatainEntetyName:@"CustomerOrders" withSortDescriptor:@"name"] mutableCopy];
+        return _historyArray;
+    }
+    return _historyArray;
+}
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -32,7 +63,9 @@
 {
 //    [self.tableView setBackgroundColor:[UIColor darkGrayColor]];
     
-    self.historyArray = [NSArray arrayWithObjects:@"one", @"two", @"three", nil];
+//    NSMutableArray *arr = self.historyArray;
+    
+//    self.historyArray = [NSArray arrayWithObjects:@"one", @"two", @"three", nil];
     
     
     [super viewDidLoad];
@@ -89,7 +122,8 @@
         }
     }
     
-    cell.dateOfOrder.text = [self.historyArray objectAtIndex:indexPath.row];
+//    cell.dateOfOrder.text = [self.historyArray objectAtIndex:indexPath.row];
+    cell.dateOfOrder.text = [[self.historyArray objectAtIndex:indexPath.row] valueForKey:@"name"];
     
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = cell.bounds;
@@ -161,7 +195,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {    
-    [segue.destinationViewController setTempStr:[self.historyArray objectAtIndex:self.selectedRow]];
+//    [segue.destinationViewController setTempStr:[self.historyArray objectAtIndex:self.selectedRow]];
 }
 
 @end

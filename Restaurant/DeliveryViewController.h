@@ -32,6 +32,7 @@
 - (IBAction)toAddressList:(id)sender;
 
 @property (strong, nonatomic) NSMutableDictionary *dictionary;
+@property (strong, nonatomic) NSMutableDictionary *historyDictionary;
 @property (strong, nonatomic) GettingCoreContent *content;
 
 @property (strong, nonatomic) TimePicker *pickerViewContainer;

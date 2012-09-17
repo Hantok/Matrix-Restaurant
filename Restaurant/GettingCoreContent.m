@@ -238,6 +238,28 @@
     return NO;
 }
 
+- (void)addObjectToCoreDataEntity:(NSString *)entityName withDictionaryOfAttributes:(NSDictionary *)dictionary
+{
+    NSManagedObjectContext *context = self.managedObjectContext;
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
+    
+    NSArray *keys = [dictionary allKeys];
+    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+    for (int i = 0; i < keys.count; i++)
+    {
+        [newManagedObject setValue:[dictionary valueForKey:[keys objectAtIndex:i]] forKey:[keys objectAtIndex:i]];
+    }
+    // Save the context.
+    //NSError *error = nil;
+    NSError *error;
+    if (![context save:&error])
+    {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+
+}
+
 - (NSArray *)fetchAllRestaurantsWithDefaultLanguageAndCity
 {
     NSManagedObjectContext * context = self.managedObjectContext;

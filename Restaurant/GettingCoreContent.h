@@ -69,6 +69,9 @@
 -  (BOOL) addObjectToEntity:(NSString *)entityName
  withDictionaryOfAttributes:(NSDictionary *)dictionary;
 
+- (void) addObjectToCoreDataEntity:(NSString *)entityName
+        withDictionaryOfAttributes:(NSDictionary *)dictionary;
+
 - (void) deleteAddressWithName:(NSString *)name;
 
 - (NSArray *)fetchFavoritesFromEntityName:(NSString *)entityName;
