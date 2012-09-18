@@ -51,20 +51,6 @@
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="version" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
     </entity>
-    <entity name="CustomerOrders" syncable="YES">
-        <attribute name="building" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="deliveryID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="floor" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="metro" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="orderID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="productCounts" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="productsIDs" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="roomOrOffice" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="statusID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
-    </entity>
     <entity name="Deliveries" syncable="YES">
         <attribute name="action" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
