@@ -166,6 +166,7 @@
                         <outlet property="drop" destination="SgP-j4-BZ7" id="Olb-Ux-otE"/>
                         <outlet property="historyButton" destination="Q0L-ZH-LDE" id="JKm-E2-l91"/>
                         <outlet property="imageButton" destination="i3A-TY-oUU" id="AVc-Lz-JfW"/>
+                        <outlet property="mainView" destination="XuW-0s-rPi" id="lqJ-Xf-nXC"/>
                         <outlet property="menuButton" destination="x4R-f4-uLk" id="UT5-uE-bqv"/>
                         <outlet property="pickerView" destination="xOG-l4-ES5" id="MCG-DE-YrM"/>
                         <outlet property="restorantsButton" destination="AbR-Mz-AtW" id="gbt-Gd-h7V"/>
@@ -237,6 +238,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="History" id="mNm-EU-XGF"/>
                     <connections>
+                        <outlet property="tableView" destination="dn2-Mz-4G1" id="yGS-gk-HqX"/>
                         <segue destination="470-x0-Ti8" kind="push" identifier="toHistoryPartDetail" id="rOT-Dc-P0Y"/>
                     </connections>
                 </viewController>
@@ -1662,6 +1664,7 @@
                 <relationship kind="outlet" name="drop" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="historyButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="imageButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="mainView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="menuButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
                 <relationship kind="outlet" name="restorantsButton" candidateClass="UIButton"/>

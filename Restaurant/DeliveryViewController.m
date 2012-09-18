@@ -43,6 +43,7 @@
 @synthesize content = _content;
 @synthesize enableTime = _enableTime;
 @synthesize pickerViewContainer;
+@synthesize db = _db;
 
 - (GettingCoreContent *)content
 {
@@ -443,28 +444,17 @@
             [ids setString:[ids substringToIndex:(ids.length - 1)]];
             [counts setString:[counts substringToIndex:(counts.length - 1)]];
             
-//            self.dictionary = [[NSMutableDictionary alloc] init];
-//            [self.dictionary setObject:self.addressName.text forKey:@"name"];
-//            [self.dictionary setObject:self.customerName.text forKey:@"username"];
-//            [self.dictionary setObject:self.phone.text forKey:@"phone"];
-//            [self.dictionary setObject:self.CityName.text forKey:@"city"];
-//            [self.dictionary setObject:self.street.text forKey:@"street"];
-//            [self.dictionary setObject:self.build.text forKey:@"house"];
-//            [self.dictionary setObject:self.appartaments.text forKey:@"room_office"];
-//            //        [self.dictionary setObject:self.metroName.text forKey:@"metro"];
-//            //        [self.dictionary setObject:self.floor.text forKey:@"floor"];
-//            //        [self.dictionary setObject:self.intercom.text forKey:@"intercom"];
-//            //        [self.dictionary setObject:self.access.text forKey:@"access"];
-//            [self.dictionary setObject:self.otherInformation.text forKey:@"additional_info"];
-//            //            [self.dictionary setObject:self.deliveryTime.text forKey:@"deliveryTime"];
-//            
-//            [self.content addObjectToEntity:@"Addresses" withDictionaryOfAttributes:self.dictionary.copy];
+            
+            NSDate *date = [NSDate date];
+            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+            [dateFormat setDateFormat:@"dd.MM.yyyy"];
+            NSString *dateString = [dateFormat stringFromDate:date];
             
             self.historyDictionary = [[NSMutableDictionary alloc] init];
             [self.historyDictionary setObject:addressName.text forKey:@"name"];
             [self.historyDictionary setObject:build.text forKey:@"house"];
             [self.historyDictionary setObject:CityName.text forKey:@"city"];
-            [self.historyDictionary setObject:@"date" forKey:@"date"];
+            [self.historyDictionary setObject:dateString forKey:@"date"];
             [self.historyDictionary setObject:@"deliveryID" forKey:@"deliveryID"];
             [self.historyDictionary setObject:@"floor" forKey:@"floor"];
             [self.historyDictionary setObject:@"metro" forKey:@"metro"];
@@ -475,7 +465,6 @@
             [self.historyDictionary setObject:@"status id" forKey:@"statusID"];
             [self.historyDictionary setObject:self.street.text forKey:@"street"];
             
-//            [self.content addObjectToEntity:@"CustomerOrders" withDictionaryOfAttributes:self.historyDictionary.copy];
             [self.content addObjectToCoreDataEntity:@"CustomerOrders" withDictionaryOfAttributes:self.historyDictionary.copy];
             
             
@@ -614,13 +603,35 @@
                                                    length]);
     NSString *txt = [[NSString alloc] initWithData:self.responseData encoding: NSASCIIStringEncoding];
     NSLog(@"strinng is - %@",txt);
-    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Thank you for order!" 
-                                                                 message:@"Our operator will call you for a while."  
-                                                                delegate:self
-                                                       cancelButtonTitle:@"Ok"
-                                                       otherButtonTitles:nil];
-    [message show];
-    [[[GettingCoreContent alloc] init] deleteAllObjectsFromEntity:@"Cart"]; 
+    
+    // создаем парсер
+    XMLParseResponseFromTheServer *parser = [[XMLParseResponseFromTheServer alloc] initWithData:self.responseData];
+    [parser setDelegate:parser];
+    [parser parse];
+    self.db = parser;
+    
+    NSLog(@"Success: %@", self.db.success);
+    NSLog(@"orderNumber: %@", self.db.orderNumber);
+    
+    if ([self.db.success isEqualToString:@"1"]) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Thank you for order!"
+                                                          message:@"Our operator will call you for a while."
+                                                         delegate:self
+                                                cancelButtonTitle:@"Ok"
+                                                otherButtonTitles:nil];
+        [message show];
+
+    } else {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Thank you for order!"
+                                                          message:@"Our operator will call you for a while."
+                                                         delegate:self
+                                                cancelButtonTitle:@"Ok"
+                                                otherButtonTitles:nil];
+        [message show];
+
+    }
+    
+    [[[GettingCoreContent alloc] init] deleteAllObjectsFromEntity:@"Cart"];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

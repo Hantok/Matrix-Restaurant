@@ -121,6 +121,8 @@
 		F58BD5AD156E7B8A00D31A09 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58BD5AC156E7B8A00D31A09 /* MessageUI.framework */; };
 		F58E734F15D1358800CBCE65 /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = F58E734E15D1358800CBCE65 /* MapViewAnnotation.m */; };
 		F58EC35615DB8A4E00ADBA80 /* ReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58EC35515DB8A4E00ADBA80 /* ReservationViewController.m */; };
+		F58F877816085B17002F3765 /* XMLParseResponseFromTheServer.h in Headers */ = {isa = PBXBuildFile; fileRef = F58F877616085B17002F3765 /* XMLParseResponseFromTheServer.h */; };
+		F58F877916085B17002F3765 /* XMLParseResponseFromTheServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F58F877716085B17002F3765 /* XMLParseResponseFromTheServer.m */; };
 		F591A9BC1607214200720104 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = F591A9BB1607214200720104 /* clock.png */; };
 		F591ECD815CD723C006BD0E6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F591ECD715CD723C006BD0E6 /* CoreLocation.framework */; };
 		F591ECDE15CEEE11006BD0E6 /* MyLoc.png in Resources */ = {isa = PBXBuildFile; fileRef = F591ECDD15CEEE10006BD0E6 /* MyLoc.png */; };
@@ -320,6 +322,8 @@
 		F58E734E15D1358800CBCE65 /* MapViewAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewAnnotation.m; sourceTree = "<group>"; };
 		F58EC35415DB8A4E00ADBA80 /* ReservationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservationViewController.h; sourceTree = "<group>"; };
 		F58EC35515DB8A4E00ADBA80 /* ReservationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservationViewController.m; sourceTree = "<group>"; };
+		F58F877616085B17002F3765 /* XMLParseResponseFromTheServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParseResponseFromTheServer.h; sourceTree = "<group>"; };
+		F58F877716085B17002F3765 /* XMLParseResponseFromTheServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParseResponseFromTheServer.m; sourceTree = "<group>"; };
 		F591A9BB1607214200720104 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
 		F591ECD715CD723C006BD0E6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F591ECDD15CEEE10006BD0E6 /* MyLoc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MyLoc.png; sourceTree = "<group>"; };
@@ -590,6 +594,8 @@
 				78D3CF1A156A9241003202BD /* GettingCoreContent.m */,
 				78354F7815590E07001890F1 /* Offers.h */,
 				78354F7915590E07001890F1 /* Offers.m */,
+				F58F877616085B17002F3765 /* XMLParseResponseFromTheServer.h */,
+				F58F877716085B17002F3765 /* XMLParseResponseFromTheServer.m */,
 				786B299A1546EA7400486848 /* XMLParse.h */,
 				786B299B1546EA7400486848 /* XMLParse.m */,
 				F5072158156BA2C200D7ACC6 /* checkConnection.h */,
@@ -723,6 +729,7 @@
 				F59A9ED016034C3800D8A6ED /* HistoryPartCell.h in Headers */,
 				F59A9ED516034C5A00D8A6ED /* HistoryTableListViewController.h in Headers */,
 				F59A9ED916034C6C00D8A6ED /* PartOfHistoryViewController.h in Headers */,
+				F58F877816085B17002F3765 /* XMLParseResponseFromTheServer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -940,6 +947,7 @@
 				F59A9ED116034C3800D8A6ED /* HistoryPartCell.m in Sources */,
 				F59A9ED616034C5A00D8A6ED /* HistoryTableListViewController.m in Sources */,
 				F59A9EDA16034C6C00D8A6ED /* PartOfHistoryViewController.m in Sources */,
+				F58F877916085B17002F3765 /* XMLParseResponseFromTheServer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

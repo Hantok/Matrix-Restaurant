@@ -53,6 +53,7 @@
 @synthesize secondContainerWidth = _secondContainerWidth;
 @synthesize secondContainerHeight = _secondContainerHeight;
 @synthesize tempFirstContainerY = _tempFirstContainerY;
+@synthesize historyDictionary = _historyDictionary;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -65,7 +66,7 @@
 
 - (void)viewDidLoad
 {
-    self.messageLabel.text = self.tempStr;
+//    self.messageLabel.text = self.tempStr;
     
     [super viewDidLoad];
         

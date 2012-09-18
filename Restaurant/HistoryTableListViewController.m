@@ -191,11 +191,13 @@
 {
     self.selectedRow = indexPath.row;
     [self performSegueWithIdentifier:@"toHistoryPartDetail" sender:self];
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {    
 //    [segue.destinationViewController setTempStr:[self.historyArray objectAtIndex:self.selectedRow]];
+    [segue.destinationViewController setHistoryDictionary:[self.historyArray objectAtIndex:self.selectedRow]];
 }
 
 @end

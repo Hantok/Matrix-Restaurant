@@ -36,6 +36,7 @@
 @property BOOL shouldBeReloaded;
 @property (strong, nonatomic) MenuDataStruct* singleMenu;
 @property (strong, nonatomic) IBOutlet UIButton *historyButton;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
 
 @property(nonatomic, assign) id<UIPickerViewDelegate> delegatepV;
 @property(nonatomic, assign) id<UIPickerViewDataSource> dataSourcepV;

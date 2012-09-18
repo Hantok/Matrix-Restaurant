@@ -81,6 +81,7 @@
 @synthesize shouldBeReloaded = _shouldBeReloaded;
 @synthesize singleMenu = _singleMenu;
 @synthesize historyButton = _historyButton;
+@synthesize mainView = _mainView;
 @synthesize alert = _alert;
 @synthesize promotionsArray = _promotionsArray;
 
@@ -563,6 +564,7 @@
     [self setPickerView:nil];
     [self setAlert:nil];
     [self setHistoryButton:nil];
+    [self setMainView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

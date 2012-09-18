@@ -11,6 +11,7 @@
 #import "PartOfHistoryViewController.h"
 #import "GettingCoreContent.h"
 
+
 @interface HistoryTableListViewController : UITableViewController <UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *historyArray;

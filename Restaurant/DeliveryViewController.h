@@ -10,6 +10,7 @@
 #import "GettingCoreContent.h"
 #import "AddressListTableViewController.h"
 #import "TimePicker.h"
+#import "XMLParseResponseFromTheServer.h"
 
 @interface DeliveryViewController : UIViewController <UITextFieldDelegate, NSURLConnectionDelegate, AddressListDelegate, UIScrollViewDelegate>
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -26,6 +27,7 @@
 //@property (strong, nonatomic) IBOutlet UITextField *intercom;
 @property (strong, nonatomic) IBOutlet UITextField *otherInformation;
 @property (strong, nonatomic) IBOutlet UITextField *deliveryTime;
+@property (strong, nonatomic) XMLParseResponseFromTheServer *db;
 
 - (IBAction)toOrder:(id)sender;
 - (IBAction)saveAddress:(id)sender;

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "HistoryTableListViewController.h"
 
 @interface PartOfHistoryViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UILabel *messageLabel;
@@ -26,6 +27,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *showOrHideButtonSecond;
 @property (strong, nonatomic) IBOutlet UIView *infoOfProductInOrderDetailView;
 @property (strong, nonatomic) IBOutlet UILabel *tempLabel2;
+@property (strong, nonatomic) NSDictionary *historyDictionary;
 
 
 - (IBAction)showOrHideInfoOfOrder:(id)sender;
