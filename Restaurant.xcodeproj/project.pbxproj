@@ -127,6 +127,15 @@
 		F592B3F215ECDAA900F977C9 /* Line1p.png in Resources */ = {isa = PBXBuildFile; fileRef = F592B3F015ECDAA900F977C9 /* Line1p.png */; };
 		F59344EB157F77DA0080EDE3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F59344EA157F77DA0080EDE3 /* AudioToolbox.framework */; };
 		F599588115875CCF0000469F /* Settings1.png in Resources */ = {isa = PBXBuildFile; fileRef = F599588015875CCF0000469F /* Settings1.png */; };
+		F59A9ED016034C3800D8A6ED /* HistoryPartCell.h in Headers */ = {isa = PBXBuildFile; fileRef = F59A9ECD16034C3800D8A6ED /* HistoryPartCell.h */; };
+		F59A9ED116034C3800D8A6ED /* HistoryPartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F59A9ECE16034C3800D8A6ED /* HistoryPartCell.m */; };
+		F59A9ED216034C3800D8A6ED /* HistoryPartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F59A9ECF16034C3800D8A6ED /* HistoryPartCell.xib */; };
+		F59A9ED516034C5A00D8A6ED /* HistoryTableListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F59A9ED316034C5A00D8A6ED /* HistoryTableListViewController.h */; };
+		F59A9ED616034C5A00D8A6ED /* HistoryTableListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F59A9ED416034C5A00D8A6ED /* HistoryTableListViewController.m */; };
+		F59A9ED916034C6C00D8A6ED /* PartOfHistoryViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F59A9ED716034C6C00D8A6ED /* PartOfHistoryViewController.h */; };
+		F59A9EDA16034C6C00D8A6ED /* PartOfHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F59A9ED816034C6C00D8A6ED /* PartOfHistoryViewController.m */; };
+		F59A9EDD16034DC600D8A6ED /* buttonPlayRight.png in Resources */ = {isa = PBXBuildFile; fileRef = F59A9EDB16034DC600D8A6ED /* buttonPlayRight.png */; };
+		F59A9EDE16034DC600D8A6ED /* buttonPlayDown.png in Resources */ = {isa = PBXBuildFile; fileRef = F59A9EDC16034DC600D8A6ED /* buttonPlayDown.png */; };
 		F5ACDBCA15DBEE510074E028 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5ACDBC915DBEE510074E028 /* Twitter.framework */; };
 		F5B4609615C2B78F00A6815C /* Cart1.PNG in Resources */ = {isa = PBXBuildFile; fileRef = F5B4609515C2B78F00A6815C /* Cart1.PNG */; };
 		F5B4609A15C2BF7900A6815C /* shopping-cart.png in Resources */ = {isa = PBXBuildFile; fileRef = F5B4609915C2BF7900A6815C /* shopping-cart.png */; };
@@ -316,6 +325,15 @@
 		F592B3F015ECDAA900F977C9 /* Line1p.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Line1p.png; sourceTree = "<group>"; };
 		F59344EA157F77DA0080EDE3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		F599588015875CCF0000469F /* Settings1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Settings1.png; sourceTree = "<group>"; };
+		F59A9ECD16034C3800D8A6ED /* HistoryPartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryPartCell.h; sourceTree = "<group>"; };
+		F59A9ECE16034C3800D8A6ED /* HistoryPartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryPartCell.m; sourceTree = "<group>"; };
+		F59A9ECF16034C3800D8A6ED /* HistoryPartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryPartCell.xib; sourceTree = "<group>"; };
+		F59A9ED316034C5A00D8A6ED /* HistoryTableListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryTableListViewController.h; sourceTree = "<group>"; };
+		F59A9ED416034C5A00D8A6ED /* HistoryTableListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryTableListViewController.m; sourceTree = "<group>"; };
+		F59A9ED716034C6C00D8A6ED /* PartOfHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartOfHistoryViewController.h; sourceTree = "<group>"; };
+		F59A9ED816034C6C00D8A6ED /* PartOfHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartOfHistoryViewController.m; sourceTree = "<group>"; };
+		F59A9EDB16034DC600D8A6ED /* buttonPlayRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonPlayRight.png; sourceTree = "<group>"; };
+		F59A9EDC16034DC600D8A6ED /* buttonPlayDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonPlayDown.png; sourceTree = "<group>"; };
 		F5ACDBC915DBEE510074E028 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		F5B4609515C2B78F00A6815C /* Cart1.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cart1.PNG; sourceTree = "<group>"; };
 		F5B4609915C2BF7900A6815C /* shopping-cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shopping-cart.png"; sourceTree = "<group>"; };
@@ -445,6 +463,10 @@
 		783EB967156FAF3A001E5BF1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				F59A9ED716034C6C00D8A6ED /* PartOfHistoryViewController.h */,
+				F59A9ED816034C6C00D8A6ED /* PartOfHistoryViewController.m */,
+				F59A9ED316034C5A00D8A6ED /* HistoryTableListViewController.h */,
+				F59A9ED416034C5A00D8A6ED /* HistoryTableListViewController.m */,
 				F58EC35415DB8A4E00ADBA80 /* ReservationViewController.h */,
 				F58EC35515DB8A4E00ADBA80 /* ReservationViewController.m */,
 				781B8F271546DBDD0074EDBD /* LoadAppViewController.h */,
@@ -504,6 +526,8 @@
 		78EF80B41573A51300478EEB /* images */ = {
 			isa = PBXGroup;
 			children = (
+				F59A9EDB16034DC600D8A6ED /* buttonPlayRight.png */,
+				F59A9EDC16034DC600D8A6ED /* buttonPlayDown.png */,
 				F56DCB2915F4F8F0003CC0DD /* HIT1.png */,
 				4E3F3D8815F76BF800E9E08A /* New1.png */,
 				F592B3EF15ECDAA900F977C9 /* Line2p.png */,
@@ -614,6 +638,9 @@
 		F5E93A4D156CFFB3005ED3ED /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				F59A9ECD16034C3800D8A6ED /* HistoryPartCell.h */,
+				F59A9ECE16034C3800D8A6ED /* HistoryPartCell.m */,
+				F59A9ECF16034C3800D8A6ED /* HistoryPartCell.xib */,
 				F53BFF6115EB7301000AB558 /* TimePicker.h */,
 				F53BFF6215EB7301000AB558 /* TimePicker.m */,
 				F53BFF5F15EB7287000AB558 /* TimePicker.xib */,
@@ -690,6 +717,9 @@
 				F5513A2B15DA3AA90083E075 /* RestaurantAppDelegate.h in Headers */,
 				F53BFF6315EB7301000AB558 /* TimePicker.h in Headers */,
 				4E5A34C71600BFA100725D93 /* PromotionStruct.h in Headers */,
+				F59A9ED016034C3800D8A6ED /* HistoryPartCell.h in Headers */,
+				F59A9ED516034C5A00D8A6ED /* HistoryTableListViewController.h in Headers */,
+				F59A9ED916034C6C00D8A6ED /* PartOfHistoryViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -851,6 +881,9 @@
 				4E3F3D8715F76ADD00E9E08A /* FacebookSDKResources.bundle in Resources */,
 				4E3F3D8915F76BF800E9E08A /* New1.png in Resources */,
 				4E3F3D8B15F76C2700E9E08A /* dropButton.png in Resources */,
+				F59A9ED216034C3800D8A6ED /* HistoryPartCell.xib in Resources */,
+				F59A9EDD16034DC600D8A6ED /* buttonPlayRight.png in Resources */,
+				F59A9EDE16034DC600D8A6ED /* buttonPlayDown.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -900,6 +933,9 @@
 				F58EC35615DB8A4E00ADBA80 /* ReservationViewController.m in Sources */,
 				F53BFF6415EB7301000AB558 /* TimePicker.m in Sources */,
 				4E5A34C81600BFA100725D93 /* PromotionStruct.m in Sources */,
+				F59A9ED116034C3800D8A6ED /* HistoryPartCell.m in Sources */,
+				F59A9ED616034C5A00D8A6ED /* HistoryTableListViewController.m in Sources */,
+				F59A9EDA16034C6C00D8A6ED /* PartOfHistoryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

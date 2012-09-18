@@ -50,5 +50,6 @@
 -(void)setLabelOfAddingButtonWithString:(NSString *)labelString withIndexPathInDB:(NSIndexPath *)indexPath;
 - (IBAction)share:(id)sender;
 - (IBAction)showOrHidePictureViewContainer:(id)sender;
+- (IBAction)dragPictureViewContainer:(UIPanGestureRecognizer *)sender;
 
 @end
