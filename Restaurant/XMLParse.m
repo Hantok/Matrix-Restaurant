@@ -9,6 +9,9 @@
 #import "XMLParse.h"
 
 @interface XMLParse()
+{
+    BOOL needToChangeLogoPicture;
+}
 
 @property (strong, nonatomic) NSMutableArray *fields;
 @property (strong, nonatomic) NSMutableDictionary *rows;
@@ -95,9 +98,6 @@
         }
     }
     
-    
-    
-    
 }
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
     
@@ -115,10 +115,39 @@
             
         }
     }
-    
-    
+
 }
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
+{
+    // трішки бидлокоду
+    if (string.integerValue)
+    {
+        if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"logoVersion"] integerValue] != string.integerValue)
+        {
+            NSLog(@"Logo Version = %@", string);
+            [[NSUserDefaults standardUserDefaults] setValue:string forKey:@"logoVersion"];
+            needToChangeLogoPicture = YES;
+            return;
+        }
+    }
+    if (needToChangeLogoPicture == YES && string.length > 6)
+    {
+        NSLog(@"Link is %@", string);
+        NSString *utf8String = [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        NSString *fullURLString = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test7/root/%@",utf8String];
+        
+        //add logoURL
+        //[[NSUserDefaults standardUserDefaults] setValue:fullURLString forKey:@"LogoURL"];
+        
+        NSData *dataImage =  [NSData dataWithContentsOfURL:[NSURL URLWithString:fullURLString]];
+        if (dataImage)
+        {
+            [[NSUserDefaults standardUserDefaults] setValue:dataImage forKey:@"logo"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+        return;
+    }
 }
 
 
@@ -217,8 +246,17 @@
     }
 }
 
-#pragma mark - Roman Slysh
+#pragma mark - Private methods
 
-
+//Get Image From URL
+-(UIImage *) getImageFromURL:(NSString *)fileURL
+{
+    UIImage * result;
+    
+    NSData * data = [NSData dataWithContentsOfFile:fileURL];//initWithContentsOfURL:[NSURL URLWithString:fileURL]];
+    result = [UIImage imageWithData:data];
+    
+    return result;
+}
 
 @end

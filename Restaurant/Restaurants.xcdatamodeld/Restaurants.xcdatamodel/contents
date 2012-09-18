@@ -187,6 +187,19 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
+    <entity name="Titles" syncable="YES">
+        <attribute name="action" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name_EN" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="Titles_translation" syncable="YES">
+        <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idLanguage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Addresses" positionX="-126" positionY="-63" width="128" height="255"/>
         <element name="Cart" positionX="-414" positionY="135" width="128" height="225"/>

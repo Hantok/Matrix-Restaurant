@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface LanguageAndCityTableViewController : UITableViewController
+@interface LanguageAndCityTableViewController : UITableViewController <UIAlertViewDelegate>
 
 
 - (void)setArrayFromSegue:(BOOL)isCityEnter;
