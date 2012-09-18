@@ -576,6 +576,7 @@
                    withCalories:(NSNumber *)calories
                     isFavorites:(BOOL)isFavorites
                           isHit:(BOOL)hit
+                     withIdMenu:(NSString *)idMenu;
 {
     NSFetchRequest * request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:self.managedObjectContext]];
@@ -611,6 +612,7 @@
         [objectToInsert setValue:calories forKey:@"calories"];
         [objectToInsert setValue:[NSNumber numberWithBool:isFavorites] forKey:@"isFavorites"];
         [objectToInsert setValue:[NSNumber numberWithBool:hit] forKey:@"hit"];
+        [objectToInsert setValue:idMenu forKey:@"idMenu"];
         if(countOfProducts != 0)
         {
             [objectToInsert setValue:[NSNumber numberWithInt:countOfProducts] forKey:@"count"];

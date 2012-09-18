@@ -178,7 +178,7 @@
     loadingView.backgroundColor = [UIColor clearColor];
     loadingView.activityIndicatorView.color = [UIColor whiteColor];
     loadingView.textLabel.textColor = [UIColor whiteColor];
-    loadingView.textLabel.text = @"Fetching data from server";
+    loadingView.textLabel.text = @"Loading...";
     [self.view addSubview:loadingView];
     
 //    NSArray *arrayOfPromotions = [self.content getArrayFromCoreDatainEntetyName:@"Promotions" withSortDescriptor:@"underbarid"];
