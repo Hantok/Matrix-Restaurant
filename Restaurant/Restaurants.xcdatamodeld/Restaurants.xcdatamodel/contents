@@ -172,6 +172,19 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
+    <entity name="Titles" syncable="YES">
+        <attribute name="action" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name_EN" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="Titles_translation" syncable="YES">
+        <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idLanguage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="underbarid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Addresses" positionX="0" positionY="0" width="128" height="255"/>
         <element name="Cart" positionX="0" positionY="0" width="128" height="225"/>
@@ -188,10 +201,12 @@
         <element name="Products" positionX="0" positionY="0" width="128" height="270"/>
         <element name="Products_translation" positionX="0" positionY="0" width="128" height="135"/>
         <element name="Promotions" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="Promotions_translation" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Restaurants" positionX="0" positionY="0" width="128" height="210"/>
         <element name="Restaurants_translation" positionX="0" positionY="0" width="128" height="195"/>
         <element name="Statuses" positionX="0" positionY="0" width="128" height="105"/>
         <element name="Statuses_translation" positionX="0" positionY="0" width="128" height="105"/>
-        <element name="Promotions_translation" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Titles" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Titles_translation" positionX="160" positionY="192" width="128" height="105"/>
     </elements>
 </model>

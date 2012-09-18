@@ -178,30 +178,40 @@
     loadingView.backgroundColor = [UIColor clearColor];
     loadingView.activityIndicatorView.color = [UIColor whiteColor];
     loadingView.textLabel.textColor = [UIColor whiteColor];
+    loadingView.textLabel.text = @"Fetching data from server";
     [self.view addSubview:loadingView];
     
-    NSArray *arrayOfPromotions = [self.content getArrayFromCoreDatainEntetyName:@"Promotions" withSortDescriptor:@"underbarid"];
-    if (arrayOfPromotions.count == 0)
+//    NSArray *arrayOfPromotions = [self.content getArrayFromCoreDatainEntetyName:@"Promotions" withSortDescriptor:@"underbarid"];
+//    if (arrayOfPromotions.count == 0)
+//    {
+//        self.imageView.image = [UIImage imageNamed:@"picture.png"];
+//        return;
+//    }
+//    NSString *idPicture = [[arrayOfPromotions objectAtIndex:0] valueForKey:@"idPicture"];
+//    self.imageView.image = [UIImage imageWithData:[self.content fetchPictureDataByPictureId:idPicture]];
+//    if (!self.imageView.image)
+//    {
+//        if(checkConnection.hasConnectivity)
+//        {
+//            NSString *stringURL = [self.content fetchImageStringURLbyPictureID:idPicture];
+//            NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:stringURL]];
+//            UIImage *image = [UIImage imageWithData: imageData];
+//            [self.content SavePictureToCoreData:idPicture toData:imageData];
+//            self.imageView.image = image;
+//        }
+//        else
+//        {
+//            self.imageView.image = [UIImage imageNamed:@"picture.png"];
+//        }
+//    }
+    
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:@"logo"])
+    {
+        self.imageView.image = [UIImage imageWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"logo"]];
+    }
+    else
     {
         self.imageView.image = [UIImage imageNamed:@"picture.png"];
-        return;
-    }
-    NSString *idPicture = [[arrayOfPromotions objectAtIndex:0] valueForKey:@"idPicture"];
-    self.imageView.image = [UIImage imageWithData:[self.content fetchPictureDataByPictureId:idPicture]];
-    if (!self.imageView.image)
-    {
-        if(checkConnection.hasConnectivity)
-        {
-            NSString *stringURL = [self.content fetchImageStringURLbyPictureID:idPicture];
-            NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:stringURL]];
-            UIImage *image = [UIImage imageWithData: imageData];
-            [self.content SavePictureToCoreData:idPicture toData:imageData];
-            self.imageView.image = image;
-        }
-        else
-        {
-            self.imageView.image = [UIImage imageNamed:@"picture.png"];
-        }
     }
     
     NSLog(@"I'm in viewDidLoad");
