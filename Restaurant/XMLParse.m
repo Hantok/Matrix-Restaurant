@@ -144,8 +144,12 @@
         if (dataImage)
         {
             [[NSUserDefaults standardUserDefaults] setValue:dataImage forKey:@"logo"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
         }
+        else
+        {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"logoVersion"];
+        }
+        [[NSUserDefaults standardUserDefaults] synchronize];
         return;
     }
 }

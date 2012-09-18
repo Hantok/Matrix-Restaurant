@@ -222,7 +222,7 @@
             [productStruct setCarbs:[[array objectAtIndex:i] valueForKey:@"carbs"]];
             [productStruct setFats:[[array objectAtIndex:i] valueForKey:@"fats"]];
             [productStruct setCalories:[[array objectAtIndex:i] valueForKey:@"calories"]];
-            
+            [productStruct setIdMenu:[[array objectAtIndex:i] valueForKey:@"idMenu"]];
             [_arrayOfObjects addObject:productStruct];
         }
         
@@ -1195,7 +1195,7 @@
     {
         if (!checkConnection.hasConnectivity)
         {
-            self.alert = [[UIAlertView alloc] initWithTitle:@"Internet error" message:@"No internet connection" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
+            self.alert = [[UIAlertView alloc] initWithTitle:@"Internet error" message:@"No internet connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
             [self.alert show];
             [self performSelector:@selector(dismiss) withObject:nil afterDelay:2];
         }

@@ -45,7 +45,8 @@
                        withFats:(NSNumber *)fats
                    withCalories:(NSNumber *)calories
                     isFavorites:(BOOL)isFavorites
-                          isHit:(BOOL)hit;
+                          isHit:(BOOL)hit
+                     withIdMenu:(NSString *)idMenu;
 
 - (NSArray *)fetchAllProductsIdAndTheirCountWithPriceForEntity:(NSString *)entityName;
 

@@ -694,7 +694,8 @@
                                 withFats:self.product.fats
                             withCalories:self.product.calories
                              isFavorites:self.product.isFavorites.boolValue
-                                   isHit:NO];//isHit need to be added to ProductDataStruct
+                                   isHit:NO
+                              withIdMenu:self.product.idMenu];
         
         self.alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Added %i item(s) \"%@\" to the Cart.",self.product.count.integerValue, self.product.title] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [self. alert show];

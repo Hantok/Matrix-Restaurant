@@ -536,7 +536,7 @@
         }
         else
         {
-            UIAlertView *message = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"You allready have address with name %@.", self.addressName.text]
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"You already have address with name %@.", self.addressName.text]
                                                               message:nil
                                                              delegate:self
                                                     cancelButtonTitle:@"OK"
