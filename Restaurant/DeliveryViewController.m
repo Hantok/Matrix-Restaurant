@@ -456,7 +456,7 @@
             [self.historyDictionary setObject:CityName.text forKey:@"city"];
             [self.historyDictionary setObject:dateString forKey:@"date"];
             [self.historyDictionary setObject:@"deliveryID" forKey:@"deliveryID"];
-            [self.historyDictionary setObject:@"floor" forKey:@"floor"];
+//            [self.historyDictionary setObject:@"floor" forKey:@"floor"];
             [self.historyDictionary setObject:@"metro" forKey:@"metro"];
             [self.historyDictionary setObject:@"orderID" forKey:@"orderID"];
             [self.historyDictionary setObject:counts forKey:@"productsCounts"];

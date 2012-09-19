@@ -312,7 +312,7 @@
     [self.settingsButton setHidden:YES];
     [self.drop setHidden:YES];
     
-    int countHistory = [[self.db getArrayFromCoreDatainEntetyName:@"CustomerOrders" withSortDescriptor:@"name"] count];
+    int countHistory = [self.db fetchCountOfProductsInEntity:@"CustomerOrders"];
     if (countHistory != 0) {
         [self.historyButton setHidden:NO];
     }
