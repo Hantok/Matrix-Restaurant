@@ -315,7 +315,25 @@
     }
     
     if (self.isHappyEnd)
+    {
+        //якщо нема лого - качаєм і зберігаємо картинку
+        if (![[NSUserDefaults standardUserDefaults] valueForKey:@"logo"])
+        {
+            NSString *logoURLstring = [[NSUserDefaults standardUserDefaults] valueForKey:@"logoURL"];
+            NSData *dataImage =  [NSData dataWithContentsOfURL:[NSURL URLWithString:logoURLstring]];
+            if (dataImage)
+            {
+                [[NSUserDefaults standardUserDefaults] setValue:dataImage forKey:@"logo"];
+            }
+            else
+            {
+                [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"logoVersion"];
+            }
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+        
         [self performSegueWithIdentifier:@"toMain" sender:self];
+    }
 }
 
 #pragma finish pragma connention with server

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E0EEABB160B45D40095AD29 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E0EEABA160B45D40095AD29 /* Default-568h@2x.png */; };
 		4E3F3D8515F76ACE00E9E08A /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E3F3D8415F76ACE00E9E08A /* FacebookSDK.framework */; };
 		4E3F3D8715F76ADD00E9E08A /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4E3F3D8615F76ADD00E9E08A /* FacebookSDKResources.bundle */; };
 		4E3F3D8915F76BF800E9E08A /* New1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E3F3D8815F76BF800E9E08A /* New1.png */; };
@@ -212,6 +213,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E0EEABA160B45D40095AD29 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		4E3F3D8415F76ACE00E9E08A /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		4E3F3D8615F76ADD00E9E08A /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		4E3F3D8815F76BF800E9E08A /* New1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = New1.png; sourceTree = "<group>"; };
@@ -458,6 +460,7 @@
 		781B8F0E1546DB870074EDBD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4E0EEABA160B45D40095AD29 /* Default-568h@2x.png */,
 				781B8F0F1546DB870074EDBD /* Restaurant-Info.plist */,
 				781B8F101546DB870074EDBD /* InfoPlist.strings */,
 				781B8F131546DB870074EDBD /* main.m */,
@@ -895,6 +898,7 @@
 				F59A9EDD16034DC600D8A6ED /* buttonPlayRight.png in Resources */,
 				F59A9EDE16034DC600D8A6ED /* buttonPlayDown.png in Resources */,
 				F591A9BC1607214200720104 /* clock.png in Resources */,
+				4E0EEABB160B45D40095AD29 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

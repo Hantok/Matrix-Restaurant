@@ -138,18 +138,7 @@
         NSString *fullURLString = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test7/root/%@",utf8String];
         
         //add logoURL
-        //[[NSUserDefaults standardUserDefaults] setValue:fullURLString forKey:@"LogoURL"];
-        
-        NSData *dataImage =  [NSData dataWithContentsOfURL:[NSURL URLWithString:fullURLString]];
-        if (dataImage)
-        {
-            [[NSUserDefaults standardUserDefaults] setValue:dataImage forKey:@"logo"];
-        }
-        else
-        {
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"logoVersion"];
-        }
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        [[NSUserDefaults standardUserDefaults] setValue:fullURLString forKey:@"logoURL"];
         return;
     }
 }
