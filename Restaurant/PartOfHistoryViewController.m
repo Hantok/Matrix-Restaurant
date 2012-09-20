@@ -37,7 +37,6 @@
 @synthesize infoOfOrderContainerInnerView = _infoOfOrderContainerInnerView;
 @synthesize showOrHideButtonFirst = _showOrHideButtonFirst;
 @synthesize infoOfOrderDetailView = _infoOfOrderDetailView;
-@synthesize tempLabel = _tempLabel;
 @synthesize infoOfProductInOrderContainer = _infoOfProductInOrderContainer;
 @synthesize infoOfProductInOrderInnerView = _infoOfProductInOrderInnerView;
 @synthesize showOrHideButtonSecond = _showOrHideButtonSecond;
@@ -54,6 +53,14 @@
 @synthesize secondContainerHeight = _secondContainerHeight;
 @synthesize tempFirstContainerY = _tempFirstContainerY;
 @synthesize historyDictionary = _historyDictionary;
+@synthesize addressLabel = _addressLabel;
+@synthesize cityLabel = _cityLabel;
+@synthesize metroLabel = _metroLabel;
+@synthesize additionalLabel = _additionalLabel;
+@synthesize addressDescriptionLabel = _addressDescriptionLabel;
+@synthesize cityDescriptionLabel = _cityDescriptionLabel;
+@synthesize metroDescriptionLabel = _metroDescriptionLabel;
+@synthesize additionalDescriptionLabel = _additionalDescriptionLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -86,15 +93,18 @@
     self.secondContainerHeight = self.infoOfProductInOrderContainer.frame.size.height;
     
     self.infoOfOrderContainerInnerView.frame = CGRectMake(0, 1, self.firstContainerWidth, self.firstContainerHeight - 2);
-    [self.tempLabel sizeToFit];
-    self.infoOfOrderDetailView.frame = CGRectMake(20, 30, 272, self.tempLabel.frame.size.height + 10);
+//    self.infoOfOrderDetailView.frame = CGRectMake(20, 30, 272, self.tempLabel.frame.size.height + 10);
+    self.infoOfOrderDetailView.frame = CGRectMake(20, 30, 272, self.additionalDescriptionLabel.frame.origin.y + self.additionalDescriptionLabel.frame.size.height + 10);
     
     self.infoOfProductInOrderInnerView.frame = CGRectMake(0, 1, self.secondContainerWidth, self.secondContainerHeight - 2);
     [self.tempLabel2 sizeToFit];
     self.infoOfProductInOrderDetailView.frame = CGRectMake(20, 30, 272, self.tempLabel2.frame.size.height + 10);
-            
+                
     [self.scrollView setScrollEnabled:YES];
     [self.scrollView setContentSize:CGSizeMake(320 , 420)];
+    
+//    self.addressDescriptionLabel.text = [self.historyDictionary valueForKey:@"street"];
+    self.addressDescriptionLabel.text = [NSString stringWithFormat:[self.historyDictionary valueForKey:@"street"], @", ", [self.historyDictionary valueForKey:@"house"]];
     
 }
 
@@ -107,12 +117,19 @@
     [self setInfoOfOrderContainerInnerView:nil];
     [self setShowOrHideButtonFirst:nil];
     [self setInfoOfOrderDetailView:nil];
-    [self setTempLabel:nil];
     [self setInfoOfProductInOrderContainer:nil];
     [self setInfoOfProductInOrderInnerView:nil];
     [self setShowOrHideButtonSecond:nil];
     [self setInfoOfProductInOrderDetailView:nil];
     [self setTempLabel2:nil];
+    [self setCityLabel:nil];
+    [self setMetroLabel:nil];
+    [self setAdditionalLabel:nil];
+    [self setCityDescriptionLabel:nil];
+    [self setMetroDescriptionLabel:nil];
+    [self setAdditionalDescriptionLabel:nil];
+    [self setAddressLabel:nil];
+    [self setAddressDescriptionLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

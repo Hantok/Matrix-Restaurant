@@ -401,6 +401,7 @@
     
     AudioServicesCreateSystemSoundID (soundFileURLRef, &soundFileObject);
 
+    
     NSMutableArray *imageArray = [[NSMutableArray alloc] init];
     for (int i = 0; i < self.promotionsArray.count; i++)
     {

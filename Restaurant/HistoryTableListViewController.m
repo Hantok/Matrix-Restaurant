@@ -123,7 +123,8 @@
     }
     
 //    cell.dateOfOrder.text = [self.historyArray objectAtIndex:indexPath.row];
-    cell.dateOfOrder.text = [[self.historyArray objectAtIndex:indexPath.row] valueForKey:@"name"];
+    cell.dateOfOrder.text = [[self.historyArray objectAtIndex:indexPath.row] valueForKey:@"date"];
+    cell.numberOfOrder.text = [[self.historyArray objectAtIndex:indexPath.row] valueForKey:@"orderID"];
     
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = cell.bounds;
