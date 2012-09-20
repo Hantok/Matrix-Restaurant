@@ -16,6 +16,8 @@
 @property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer;
 @property (strong, nonatomic) UITextField *textFieldForFeils;
 @property (strong, nonatomic) NSMutableData *responseData;
+@property (strong, nonatomic) NSMutableString *ids;
+@property (strong, nonatomic) NSMutableString *counts;
 
 @end
 
@@ -444,28 +446,31 @@
             [ids setString:[ids substringToIndex:(ids.length - 1)]];
             [counts setString:[counts substringToIndex:(counts.length - 1)]];
             
+            self.ids = ids;
+            self.counts = counts;
             
-            NSDate *date = [NSDate date];
-            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-            [dateFormat setDateFormat:@"dd.MM.yyyy"];
-            NSString *dateString = [dateFormat stringFromDate:date];
             
-            self.historyDictionary = [[NSMutableDictionary alloc] init];
-            [self.historyDictionary setObject:addressName.text forKey:@"name"];
-            [self.historyDictionary setObject:build.text forKey:@"house"];
-            [self.historyDictionary setObject:CityName.text forKey:@"city"];
-            [self.historyDictionary setObject:dateString forKey:@"date"];
-            [self.historyDictionary setObject:@"deliveryID" forKey:@"deliveryID"];
-//            [self.historyDictionary setObject:@"floor" forKey:@"floor"];
-            [self.historyDictionary setObject:@"metro" forKey:@"metro"];
-            [self.historyDictionary setObject:@"orderID" forKey:@"orderID"];
-            [self.historyDictionary setObject:counts forKey:@"productsCounts"];
-            [self.historyDictionary setObject:ids forKey:@"productsIDs"];
-            [self.historyDictionary setObject:self.appartaments.text forKey:@"room_office"];
-            [self.historyDictionary setObject:@"status id" forKey:@"statusID"];
-            [self.historyDictionary setObject:self.street.text forKey:@"street"];
-            
-            [self.content addObjectToCoreDataEntity:@"CustomerOrders" withDictionaryOfAttributes:self.historyDictionary.copy];
+//            NSDate *date = [NSDate date];
+//            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+//            [dateFormat setDateFormat:@"dd.MM.yyyy"];
+//            NSString *dateString = [dateFormat stringFromDate:date];
+//            
+//            self.historyDictionary = [[NSMutableDictionary alloc] init];
+//            [self.historyDictionary setObject:addressName.text forKey:@"name"];
+//            [self.historyDictionary setObject:build.text forKey:@"house"];
+//            [self.historyDictionary setObject:CityName.text forKey:@"city"];
+//            [self.historyDictionary setObject:dateString forKey:@"date"];
+//            [self.historyDictionary setObject:@"deliveryID" forKey:@"deliveryID"];
+////            [self.historyDictionary setObject:@"floor" forKey:@"floor"];
+//            [self.historyDictionary setObject:@"metro" forKey:@"metro"];
+//            [self.historyDictionary setObject:@"orderID" forKey:@"orderID"];
+//            [self.historyDictionary setObject:counts forKey:@"productsCounts"];
+//            [self.historyDictionary setObject:ids forKey:@"productsIDs"];
+//            [self.historyDictionary setObject:self.appartaments.text forKey:@"room_office"];
+//            [self.historyDictionary setObject:@"status id" forKey:@"statusID"];
+//            [self.historyDictionary setObject:self.street.text forKey:@"street"];
+//            
+//            [self.content addObjectToCoreDataEntity:@"CustomerOrders" withDictionaryOfAttributes:self.historyDictionary.copy];
             
             
             [order appendFormat:@"&ProdIDs=%@&counts=%@&city=%@&street=%@&house=%@&room_office=%@&custName=%@&phone=%@&additional_info=%@&idDelivery=1",ids,counts,self.CityName.text,self.street.text,self.build.text,self.appartaments.text,self.customerName.text,self.phone.text,self.otherInformation.text];
@@ -613,6 +618,31 @@
     NSLog(@"Success: %@", self.db.success);
     NSLog(@"orderNumber: %@", self.db.orderNumber);
     
+    NSDate *date = [NSDate date];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"dd.MM.yyyy"];
+    NSString *dateString = [dateFormat stringFromDate:date];
+    
+    self.historyDictionary = [[NSMutableDictionary alloc] init];
+    [self.historyDictionary setObject:addressName.text forKey:@"name"];
+    [self.historyDictionary setObject:build.text forKey:@"house"];
+    [self.historyDictionary setObject:CityName.text forKey:@"city"];
+    [self.historyDictionary setObject:dateString forKey:@"date"];
+    [self.historyDictionary setObject:@"deliveryID" forKey:@"deliveryID"];
+    //            [self.historyDictionary setObject:@"floor" forKey:@"floor"];
+    [self.historyDictionary setObject:@"metro" forKey:@"metro"];
+    [self.historyDictionary setObject:self.db.orderNumber forKey:@"orderID"];
+    [self.historyDictionary setObject:self.counts forKey:@"productsCounts"];
+    [self.historyDictionary setObject:self.ids forKey:@"productsIDs"];
+    [self.historyDictionary setObject:self.appartaments.text forKey:@"room_office"];
+    [self.historyDictionary setObject:@"status id" forKey:@"statusID"];
+    [self.historyDictionary setObject:self.street.text forKey:@"street"];
+    [self.historyDictionary setObject:self.otherInformation.text forKey:@"additional_info"];
+
+    
+    [self.content addObjectToCoreDataEntity:@"CustomerOrders" withDictionaryOfAttributes:self.historyDictionary.copy];
+
+    
     if ([self.db.success isEqualToString:@"1"]) {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Thank you for order!"
                                                           message:@"Our operator will call you for a while."
@@ -622,7 +652,7 @@
         [message show];
 
     } else {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Thank you for order!"
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Error"
                                                           message:@"Our operator will call you for a while."
                                                          delegate:self
                                                 cancelButtonTitle:@"Ok"

@@ -20,7 +20,6 @@
 @property (strong, nonatomic) IBOutlet UIView *infoOfOrderContainerInnerView;
 @property (strong, nonatomic) IBOutlet UIButton *showOrHideButtonFirst;
 @property (strong, nonatomic) IBOutlet UIView *infoOfOrderDetailView;
-@property (strong, nonatomic) IBOutlet UILabel *tempLabel;
 
 @property (strong, nonatomic) IBOutlet UIView *infoOfProductInOrderContainer;
 @property (strong, nonatomic) IBOutlet UIView *infoOfProductInOrderInnerView;
@@ -28,6 +27,14 @@
 @property (strong, nonatomic) IBOutlet UIView *infoOfProductInOrderDetailView;
 @property (strong, nonatomic) IBOutlet UILabel *tempLabel2;
 @property (strong, nonatomic) NSDictionary *historyDictionary;
+@property (strong, nonatomic) IBOutlet UILabel *addressLabel;
+@property (strong, nonatomic) IBOutlet UILabel *cityLabel;
+@property (strong, nonatomic) IBOutlet UILabel *metroLabel;
+@property (strong, nonatomic) IBOutlet UILabel *additionalLabel;
+@property (strong, nonatomic) IBOutlet UILabel *addressDescriptionLabel;
+@property (strong, nonatomic) IBOutlet UILabel *cityDescriptionLabel;
+@property (strong, nonatomic) IBOutlet UILabel *metroDescriptionLabel;
+@property (strong, nonatomic) IBOutlet UILabel *additionalDescriptionLabel;
 
 
 - (IBAction)showOrHideInfoOfOrder:(id)sender;

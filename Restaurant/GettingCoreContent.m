@@ -40,6 +40,7 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     
+    
     [fetchRequest setResultType:NSDictionaryResultType];
     
     // Set the batch size to a suitable number.
