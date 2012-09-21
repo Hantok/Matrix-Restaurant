@@ -696,19 +696,28 @@
     NSArray *items= [context executeFetchRequest:request error:&error];
     NSMutableArray *outputArray = [[NSMutableArray alloc] init];
     NSString *inputPredicate;
-    if (entityName == @"Promotions_translation")
+    NSString *outputPredicate;
+
+    if ([entityName isEqualToString:@"Promotions_translation"])
     {
         inputPredicate = @"idPromotion";
+        outputPredicate = @"underbarid";
+    }
+    else if ([entityName isEqualToString:@"ProductsTranslation"])
+    {
+        inputPredicate = @"idProduct";
+        outputPredicate = @"underbarid";
     }
     else
     {
-        inputPredicate = @"idProduct";
+        inputPredicate = @"code";
+        outputPredicate = inputPredicate;
     }
     for (int i = 0; i <items.count; i++)
     {
         for (int j = 0; j < underbaridsArray.count; j++)
         {
-            if ([[[[items objectAtIndex:i] valueForKey:inputPredicate] description] isEqual:[[[underbaridsArray objectAtIndex:j] valueForKey:@"underbarid"] description]])
+            if ([[[[items objectAtIndex:i] valueForKey:inputPredicate] description] isEqual:[[[underbaridsArray objectAtIndex:j] valueForKey:outputPredicate] description]])
             {
                 if ([[[[items objectAtIndex:i] valueForKey:@"idLanguage"] description] isEqualToString:[languageId description]])
                 {

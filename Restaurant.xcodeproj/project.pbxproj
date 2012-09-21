@@ -14,6 +14,8 @@
 		4E3F3D8B15F76C2700E9E08A /* dropButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E3F3D8A15F76C2700E9E08A /* dropButton.png */; };
 		4E5A34C71600BFA100725D93 /* PromotionStruct.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E5A34C51600BFA100725D93 /* PromotionStruct.h */; };
 		4E5A34C81600BFA100725D93 /* PromotionStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5A34C61600BFA100725D93 /* PromotionStruct.m */; };
+		4EBB78E8160C97D70034D0BB /* Singleton.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EBB78E6160C97D70034D0BB /* Singleton.h */; };
+		4EBB78E9160C97D70034D0BB /* Singleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBB78E7160C97D70034D0BB /* Singleton.m */; };
 		78005A0715778C8A0099F973 /* RestaurantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78005A0615778C8A0099F973 /* RestaurantViewController.m */; };
 		78005A0A15778CCC0099F973 /* RestaurantDataStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 78005A0915778CCC0099F973 /* RestaurantDataStruct.m */; };
 		78005A0D15778F0E0099F973 /* RestaurantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78005A0C15778F0E0099F973 /* RestaurantCell.m */; };
@@ -220,6 +222,8 @@
 		4E3F3D8A15F76C2700E9E08A /* dropButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropButton.png; sourceTree = "<group>"; };
 		4E5A34C51600BFA100725D93 /* PromotionStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromotionStruct.h; sourceTree = "<group>"; };
 		4E5A34C61600BFA100725D93 /* PromotionStruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionStruct.m; sourceTree = "<group>"; };
+		4EBB78E6160C97D70034D0BB /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
+		4EBB78E7160C97D70034D0BB /* Singleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Singleton.m; sourceTree = "<group>"; };
 		78005A0515778C8A0099F973 /* RestaurantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantViewController.h; sourceTree = "<group>"; };
 		78005A0615778C8A0099F973 /* RestaurantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantViewController.m; sourceTree = "<group>"; };
 		78005A0815778CCC0099F973 /* RestaurantDataStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantDataStruct.h; sourceTree = "<group>"; };
@@ -595,6 +599,8 @@
 			children = (
 				78D3CF19156A9241003202BD /* GettingCoreContent.h */,
 				78D3CF1A156A9241003202BD /* GettingCoreContent.m */,
+				4EBB78E6160C97D70034D0BB /* Singleton.h */,
+				4EBB78E7160C97D70034D0BB /* Singleton.m */,
 				78354F7815590E07001890F1 /* Offers.h */,
 				78354F7915590E07001890F1 /* Offers.m */,
 				F58F877616085B17002F3765 /* XMLParseResponseFromTheServer.h */,
@@ -733,6 +739,7 @@
 				F59A9ED516034C5A00D8A6ED /* HistoryTableListViewController.h in Headers */,
 				F59A9ED916034C6C00D8A6ED /* PartOfHistoryViewController.h in Headers */,
 				F58F877816085B17002F3765 /* XMLParseResponseFromTheServer.h in Headers */,
+				4EBB78E8160C97D70034D0BB /* Singleton.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -952,6 +959,7 @@
 				F59A9ED616034C5A00D8A6ED /* HistoryTableListViewController.m in Sources */,
 				F59A9EDA16034C6C00D8A6ED /* PartOfHistoryViewController.m in Sources */,
 				F58F877916085B17002F3765 /* XMLParseResponseFromTheServer.m in Sources */,
+				4EBB78E9160C97D70034D0BB /* Singleton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

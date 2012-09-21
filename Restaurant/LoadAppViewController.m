@@ -75,8 +75,9 @@
         if(![[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"])
         {
             //tag=init http request
+            NSLog(@"<<<<<<<<<Generating init request>>>>>>>>>>");
             self.isFirstTime = YES;
-            NSString *order = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test7/root/Customer_Scripts/update.php?DBid=12&tag=init"];
+            NSString *order = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test7/root/Customer_Scripts/update.php?DBid=12&tag=init&idPhone=1&"];
             NSURL *url = [NSURL URLWithString:order];
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
             [request setHTTPMethod:@"GET"];
@@ -95,6 +96,7 @@
         else
         {
             //http request updatePHP with &tag=params
+            NSLog(@"<<<<<<<<<Generating params request>>>>>>>>>>");
             self.isParamTagDone = YES;
             GettingCoreContent *content = [[GettingCoreContent alloc] init];
             NSNumber *maxCityId = [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Cities"];
@@ -115,7 +117,7 @@
             NSNumber *maxPromotionsId =  [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Promotions"];
             NSNumber *maxPromotionsVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Promotions"];
             
-            NSMutableString *myString = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test7/root/Customer_Scripts/update.php?DBid=12&tag=params"];
+            NSMutableString *myString = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test7/root/Customer_Scripts/update.php?DBid=12&tag=params&idPhone=1&"];
             [myString appendFormat:@"&city_v=%@",maxCityVersion];
             [myString appendFormat:@"&mcity_id=%@",maxCityId];
             
@@ -237,7 +239,7 @@
 {
     NSLog(@"Succeeded! Received %d bytes of data",[self.responseData
                                                    length]);
-    NSString *txt = [[NSString alloc] initWithData:self.responseData encoding: NSASCIIStringEncoding];
+    NSString *txt = [[NSString alloc] initWithData:self.responseData encoding: NSUTF8StringEncoding];
     NSLog(@"strinng is - %@",txt);
     
     // создаем парсер
@@ -264,6 +266,7 @@
     
     if (self.isParamTagDone && checkConnection.hasConnectivity)
     {
+        NSLog(@"<<<<<<<<<< UPDATE request >>>>>>>>>>");
         // http request updatePHP with &tag=update
         GettingCoreContent *content = [[GettingCoreContent alloc] init];
         

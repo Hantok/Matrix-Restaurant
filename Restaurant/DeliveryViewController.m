@@ -473,7 +473,13 @@
 //            [self.content addObjectToCoreDataEntity:@"CustomerOrders" withDictionaryOfAttributes:self.historyDictionary.copy];
             
             
-            [order appendFormat:@"&ProdIDs=%@&counts=%@&city=%@&street=%@&house=%@&room_office=%@&custName=%@&phone=%@&additional_info=%@&idDelivery=1",ids,counts,self.CityName.text,self.street.text,self.build.text,self.appartaments.text,self.customerName.text,self.phone.text,self.otherInformation.text];
+            NSString *deliveryType;
+            if (!self.enableTime)
+                deliveryType = @"1";
+            else
+                deliveryType = @"2";
+            
+            [order appendFormat:@"&ProdIDs=%@&counts=%@&city=%@&street=%@&house=%@&room_office=%@&custName=%@&phone=%@&additional_info=%@&deliveryType=%@",ids,counts,self.CityName.text,self.street.text,self.build.text,self.appartaments.text,self.customerName.text,self.phone.text,self.otherInformation.text, deliveryType];
             
             order = [order stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding].copy;
             
