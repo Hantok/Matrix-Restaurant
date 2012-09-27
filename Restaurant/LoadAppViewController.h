@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "XMLParse.h"
 #import "GettingCoreContent.h"
+#import "Singleton.h"
 
 @interface LoadAppViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;

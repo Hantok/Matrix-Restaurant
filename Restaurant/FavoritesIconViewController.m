@@ -17,6 +17,13 @@
 @property (nonatomic, strong) UIImageView *hitView;
 @property (nonatomic, strong) UIImageView *newsItemView;
 
+//Titles
+
+@property (nonatomic, strong) NSString *titleRemoveToFavotites;
+@property (nonatomic, strong) NSString *titleYES;
+@property (nonatomic, strong) NSString *titleCancel;
+@property (nonatomic, strong) NSString *titleRemovedFav;
+
 @end
 
 @implementation FavoritesIconViewController
@@ -32,6 +39,11 @@
 @synthesize hitView;
 @synthesize newsItemView;
 
+//Titles
+@synthesize titleRemoveToFavotites = _titleRemoveToFavotites;
+@synthesize titleYES = _titleYES;
+@synthesize titleCancel = _titleCancel;
+@synthesize titleRemovedFav = _titleRemovedFav;
 
 
 - (GettingCoreContent *)db
@@ -156,6 +168,8 @@
     
     hitView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HIT1.png"]];
     newsItemView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"New1.png"]];
+    
+    [self setAllTitlesOnThisPage];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -413,7 +427,11 @@
 
 - (void)GMGridView:(GMGridView *)gridView processDeleteActionForItemAtIndex:(NSInteger)index
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Remove to favorites?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"YES", nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:self.titleRemoveToFavotites
+                                                        message:nil
+                                                       delegate:self
+                                              cancelButtonTitle:self.titleCancel
+                                              otherButtonTitles:self.titleYES, nil];
     
     [alertView show];
     self.selectedIndex = [NSNumber numberWithInteger:index];
@@ -430,7 +448,7 @@
         //changing in Array
         [self.arrayOfObjects removeObjectAtIndex:self.selectedIndex.integerValue];
         self.alert = [[UIAlertView alloc] initWithTitle:nil
-                                                message:[NSString stringWithFormat:@"Removed \"%@\" from favorites.", [currentOne title]]
+                                                message:[NSString stringWithFormat:self.titleRemovedFav, [currentOne title]]
                                                delegate:nil
                                       cancelButtonTitle:@"OK"
                                       otherButtonTitles:nil];
@@ -556,6 +574,37 @@
                      completion:nil];
         
     self.gmGridView.actionDelegate = self;
+}
+
+#pragma mark
+#pragma mark PRIVATE METHODS
+
+-(void)setAllTitlesOnThisPage
+{
+    NSArray *array = [Singleton sharedManager];
+    for (int i = 0; i <array.count; i++)
+    {
+        
+        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Remove from favorites?"])
+        {
+            self.titleRemoveToFavotites = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"YES"])
+        {
+            self.titleYES = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Cancel"])
+        {
+            self.titleCancel = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Removed %@ from favorites."])
+        {
+            self.titleRemovedFav = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+    }
 }
 
 @end

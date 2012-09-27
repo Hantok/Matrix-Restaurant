@@ -20,6 +20,9 @@
 @property BOOL isParamTagDone;
 @property (nonatomic, strong) GettingCoreContent *content;
 
+//Titles
+//@property (nonatomic, weak) NSString *titleLoading;
+
 @end
 
 @implementation LoadAppViewController
@@ -34,6 +37,9 @@
 @synthesize responseData = _responseData;
 @synthesize isParamTagDone = _isParamTagDone;
 @synthesize content = _content;
+
+//titles
+//@synthesize titleLoading = _titleLoading;
 
 - (GettingCoreContent *)content
 {
@@ -158,29 +164,19 @@
 
 - (void)viewDidLoad
 {
-    //    [super viewDidLoad];
-    //	// Do any additional setup after loading the view.
-    //    [self.activityIndicator startAnimating];
-    //
-    //
-    //    if(checkConnection.hasConnectivity)
-    //    {
-    //        NSURL* rssURL = [NSURL URLWithString:@"http://matrix-soft.org/addon_domains_folder/test5/root/System_files/XML/matrixso_test5/DBStructure.xml"];
-    //    // создаем парсер при помощи URL, назначаем делегат и запускаем
-    //        NSLog(@"Download is begin");
-    //        XMLParse* parser = [[XMLParse alloc] initWithContentsOfURL:rssURL];
-    //        [parser setDelegate:parser];
-    //        [parser parse];
-    //        self.db = parser;
-    //    }
-    //
-    //[self.activityIndicator startAnimating];
-    
     SSLoadingView *loadingView = [[SSLoadingView alloc] initWithFrame:self.view.frame];
     loadingView.backgroundColor = [UIColor clearColor];
     loadingView.activityIndicatorView.color = [UIColor whiteColor];
     loadingView.textLabel.textColor = [UIColor whiteColor];
-    loadingView.textLabel.text = @"Loading...";
+    
+//    if (self.isFirstTime)
+//        loadingView.textLabel.text = @"Loading...";
+//    else
+//    {
+//        [self setAllTitlesOnThisPage];
+//        loadingView.textLabel.text = self.titleLoading;
+//    }
+    
     [self.view addSubview:loadingView];
     
 //    NSArray *arrayOfPromotions = [self.content getArrayFromCoreDatainEntetyName:@"Promotions" withSortDescriptor:@"underbarid"];
@@ -436,6 +432,21 @@
     NSLog(@"I'm in viewDidUnload");
 }
 
+
+#pragma mark
+#pragma mark PRIVATE METHODS
+
+//-(void)setAllTitlesOnThisPage
+//{
+//    NSArray *array = [Singleton sharedManager];
+//    for (int i = 0; i <array.count; i++)
+//    {
+//        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Loading..."])
+//        {
+//            self.titleLoading = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+//        }
+//    }
+//}
 
 
 @end

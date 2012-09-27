@@ -33,6 +33,14 @@
 @property (strong, nonatomic) UIActivityIndicatorView *indicator;
 @property (strong, nonatomic) UITextView *textView;
 
+//titles
+@property (strong, nonatomic) NSString *titleWihtDiscounts;
+@property (strong, nonatomic) NSString *titleCancel;
+@property (strong, nonatomic) NSString *titleAddetItemToTheCart;
+@property (weak, nonatomic) NSString *titleYES;
+@property (weak, nonatomic) NSString *titleNO;
+@property (weak, nonatomic) NSString *titleDoYouWantDeleteItemFromCart;
+
 @end
 
 @implementation ProductDetailViewController
@@ -79,6 +87,14 @@
 @synthesize tellFriendButton = _tellFriendButton;
 @synthesize indicator = _indicator;
 @synthesize textView = _textView;
+@synthesize titleAddetItemToTheCart = _titleAddetItemToTheCart;
+
+//titles
+@synthesize titleWihtDiscounts = _titleWihtDiscounts;
+@synthesize titleCancel = _titleCancel;
+@synthesize titleYES = _titleYES;
+@synthesize titleNO = _titleNO;
+@synthesize titleDoYouWantDeleteItemFromCart = _titleDoYouWantDeleteItemFromCart;
 
 - (void)setProduct:(ProductDataStruct *)product isFromFavorites:(BOOL)boolValue
 {
@@ -95,7 +111,7 @@
 - (IBAction)share:(id)sender
 {
     UIActionSheet* actionSheet = [[UIActionSheet alloc] init];
-    [actionSheet setTitle:@"Share wia:"];
+    [actionSheet setTitle:self.shareButton.titleLabel.text];
     [actionSheet setDelegate:(id)self];
     [actionSheet addButtonWithTitle:@"Twitter"];
     [actionSheet addButtonWithTitle:@"Facebook"];
@@ -405,6 +421,9 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    
+    [self setAllTitlesOnThisPage];
     
 //    self.captionLabel.layer.borderColor = [UIColor darkGrayColor].CGColor;
 //    self.captionLabel.layer.borderWidth = 2.0;
@@ -463,16 +482,15 @@
     self.pictureViewContainer.frame = CGRectMake(35, -240, 250, 240);
     
     self.cartButton.titleLabel.textAlignment = UITextAlignmentCenter;
-    if (self.labelString)
-    {
-        [self.cartButton setTitle:self.labelString forState:UIControlStateNormal];
-    }
-    else
-    {
-        [self.cartButton setTitle:@"Add to Cart" forState:UIControlStateNormal];
-    }
-    
-    [super viewDidLoad];
+//    if (self.labelString)
+//    {
+//        [self.cartButton setTitle:self.labelString forState:UIControlStateNormal];
+//    }
+//    else
+//    {
+//        [self.cartButton setTitle:@"Add to Cart" forState:UIControlStateNormal];
+//    }
+
     //self.navigationItem.title = self.product.title;
     self.nameLabal.text = self.product.title;
         
@@ -545,7 +563,7 @@
                 }
                 else
                 {
-                    priceString = [NSString stringWithFormat:@"%@ (with discount - %@) %@", price, [formatter stringFromNumber:[NSNumber numberWithFloat:(self.product.price.floatValue * (1 - self.product.discountValue.floatValue) * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]], [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
+                    priceString = [NSString stringWithFormat:@"%@ (%@ - %@) %@", price,self.titleWihtDiscounts, [formatter stringFromNumber:[NSNumber numberWithFloat:(self.product.price.floatValue * (1 - self.product.discountValue.floatValue) * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]], [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
                 }
                 break;
             }
@@ -553,7 +571,7 @@
     }
     else
     {
-        priceString = [NSString stringWithFormat:@"%@ (with discount - %@) %@", price, [formatter stringFromNumber:[NSNumber numberWithFloat:(self.product.price.floatValue * (1 - self.product.discountValue.floatValue) * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]], [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
+        priceString = [NSString stringWithFormat:@"%@ (%@ - %@) %@", price, self.titleWihtDiscounts, [formatter stringFromNumber:[NSNumber numberWithFloat:(self.product.price.floatValue * (1 - self.product.discountValue.floatValue) * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]], [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
     }
     
     self.priceLabel.text = priceString;
@@ -577,6 +595,7 @@
         if (checkConnection.hasConnectivity) {
             
             self.loadingView = [[SSLoadingView alloc] initWithFrame:CGRectMake(0, 230, 250, 240)];
+            self.loadingView.textLabel.text = @"";
             self.loadingView.backgroundColor = [UIColor clearColor];
             self.loadingView.activityIndicatorView.color = [UIColor whiteColor];
             self.loadingView.textLabel.textColor = [UIColor whiteColor];
@@ -674,10 +693,10 @@
     if (self.product.count.intValue == 0)
     {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil
-                                                        message:[NSString stringWithFormat:@"Do you want to delete item %@", self.product.title]
+                                                        message:[NSString stringWithFormat:self.titleDoYouWantDeleteItemFromCart, self.product.title]
                                                        delegate:self
-                                              cancelButtonTitle:@"YES"
-                                              otherButtonTitles: @"NO", nil];
+                                              cancelButtonTitle:self.titleYES
+                                              otherButtonTitles:self.titleNO, nil];
         [alert show];
         isDeletingFromCart = YES;
         
@@ -697,7 +716,7 @@
                                    isHit:NO
                               withIdMenu:self.product.idMenu];
         
-        self.alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Added %i item(s) \"%@\" to the Cart.",self.product.count.integerValue, self.product.title] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        self.alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:self.titleAddetItemToTheCart,self.product.count.integerValue, self.product.title] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [self. alert show];
         [self performSelector:@selector(dismiss) withObject:nil afterDelay:2];
         [[self navigationController] popViewControllerAnimated:YES];
@@ -819,6 +838,7 @@
     [self setIn100gKCalLabel:nil];
     [self setDescriptionLabel:nil];
     [self setWeightLabel:nil];
+    [self setFavoritesButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -856,6 +876,106 @@
         self.product.count = [NSNumber numberWithInt:row];
     else 
         self.product.count = [NSNumber numberWithInt:row+1];
+}
+
+
+#pragma mark
+#pragma mark PRIVATE METHODS
+
+-(void)setAllTitlesOnThisPage
+{
+    NSArray *array = [Singleton sharedManager];
+    for (int i = 0; i <array.count; i++)
+    {
+        if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"the nutritional values"])
+        {
+            self.captionLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"portion"])
+        {
+            self.portionLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"protein"])
+        {
+            self.proteinLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"in 100g"])
+        {
+            self.in100gLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"fat"])
+        {
+            self.fatLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"carbohydrate"])
+        {
+            self.carbohydratesLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Weight"])
+        {
+            self.weightLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Add favorites"])
+        {
+            self.favoritesButton.title = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if (!self.labelString && [[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Add to Cart"])
+        {
+            [self.cartButton setTitle:[[array objectAtIndex:i] valueForKey:@"title"] forState:UIControlStateNormal];
+        }
+        
+        else if (self.labelString && [[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Change"])
+        {
+            [self.cartButton setTitle:[[array objectAtIndex:i] valueForKey:@"title"] forState:UIControlStateNormal];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Share"])
+        {
+            [self.shareButton setTitle:[[array objectAtIndex:i] valueForKey:@"title"] forState:UIControlStateNormal];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"with discount"])
+        {
+            self.titleWihtDiscounts = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Cancel"])
+        {
+            self.titleCancel = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Added %i item(s) %@ to the Cart."])
+        {
+            self.titleAddetItemToTheCart = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Do you want to delete item %@"])
+        {
+            self.titleDoYouWantDeleteItemFromCart = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+    
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"YES"])
+        {
+            self.titleYES = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"NO"])
+        {
+            self.titleNO = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Loading..."])
+        {
+            self.loadingView.textLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+    }
 }
 
 

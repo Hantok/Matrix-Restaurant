@@ -10,6 +10,7 @@
 #import "ProductDataStruct.h"
 #import "GettingCoreContent.h"
 #import <Twitter/Twitter.h>
+#import "Singleton.h"
 
 @interface ProductDetailViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UIAlertViewDelegate>
 
@@ -44,6 +45,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *in100gKCalLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (strong, nonatomic) IBOutlet UILabel *weightLabel;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *favoritesButton;
 
 - (void)setProduct:(ProductDataStruct *)product isFromFavorites:(BOOL)boolValue;
 

@@ -472,16 +472,16 @@
     NSError *error;
     
     NSArray *resultOfARequest = [moc executeFetchRequest:request error:&error];
-//    if (resultOfARequest.count != 0)
+    if (resultOfARequest.count != 0)
     {
         NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test7/root/%@",[[resultOfARequest objectAtIndex:0] valueForKey:@"link"]];
         urlForImage = [urlForImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         NSURL *url = [[NSURL alloc] initWithString:urlForImage];
         return url;
     }
-//    else {
-//        return nil;
-//    }
+    else {
+        return nil;
+    }
 }
 
 - (NSString *)fetchImageStringURLbyPictureID:(NSString *)pictureId
@@ -703,16 +703,45 @@
         inputPredicate = @"idPromotion";
         outputPredicate = @"underbarid";
     }
-    else if ([entityName isEqualToString:@"ProductsTranslation"])
+    else if ([entityName isEqualToString:@"Products_translation"])
     {
         inputPredicate = @"idProduct";
         outputPredicate = @"underbarid";
     }
-    else
+    else //Titles_Translation
     {
         inputPredicate = @"code";
         outputPredicate = inputPredicate;
+        
+        for (int i = 0; i <items.count; i++)
+        {
+            for (int j = 0; j < underbaridsArray.count; j++)
+            {
+                if ([[[[items objectAtIndex:i] valueForKey:inputPredicate] description] isEqual:[[[underbaridsArray objectAtIndex:j] valueForKey:outputPredicate] description]])
+                {
+                    if ([[[[items objectAtIndex:i] valueForKey:@"idLanguage"] description] isEqualToString:[languageId description]])
+                    {
+                        //замінюємо значення змінної "code" в значення змінної "name_EN" з табл Titles
+                        [[items objectAtIndex:i] setValue:[[underbaridsArray objectAtIndex:j] valueForKey:@"name_EN"] forKey:@"code"];
+                        [outputArray addObject:[items objectAtIndex:i]];
+                    }
+                }
+            }
+        }
+        
+        // Save the context.
+        if (![context save:&error])
+        {
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+        
+        return  outputArray.copy;
     }
+    
+    
+    
+    
     for (int i = 0; i <items.count; i++)
     {
         for (int j = 0; j < underbaridsArray.count; j++)
@@ -721,7 +750,8 @@
             {
                 if ([[[[items objectAtIndex:i] valueForKey:@"idLanguage"] description] isEqualToString:[languageId description]])
                 {
-                    [outputArray addObject:[items objectAtIndex:i]]; 
+//                    [[items objectAtIndex:i] addObject:[underbaridsArray objectAtIndex:j]];
+                    [outputArray addObject:[items objectAtIndex:i]];
                 }
             }
         }

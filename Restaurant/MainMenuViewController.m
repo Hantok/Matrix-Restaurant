@@ -21,6 +21,7 @@
 #import "DeliveryViewController.h"
 #import "PromotionStruct.h"
 #import "HistoryTableListViewController.h"
+#import "RestaurantViewController.h"
 
 //first commit
 
@@ -48,6 +49,23 @@
 @property (nonatomic, strong) NSMutableArray *promotionsArray;
 
 - (void)startIconDownload:(MenuDataStruct *)appRecord forIndexPath:(NSIndexPath *)indexPath;
+
+
+//titles!!!
+@property (nonatomic, weak) NSString *titleRestaurants;
+@property (nonatomic, weak) NSString *titleOrder;
+@property (nonatomic, weak) NSString *titleMenu;
+@property (nonatomic, weak) NSString *titleCart;
+@property (nonatomic, weak) NSString *titleBack;
+@property (nonatomic, weak) NSString *titleFavorites;
+@property (nonatomic, weak) NSString *titleTotal;
+@property (nonatomic, weak) NSString *titleCount;
+@property (nonatomic, weak) NSString *titleWithDiscounts;
+@property (nonatomic, weak) NSString *titleChooseMethodToGetOrder;
+@property (nonatomic, weak) NSString *titleDelivery;
+@property (nonatomic, weak) NSString *titleDeliveryByTime;
+@property (nonatomic, weak) NSString *titleCancel;
+@property (nonatomic, weak) NSString *titleMain;
 
 @end
 
@@ -84,6 +102,23 @@
 @synthesize mainView = _mainView;
 @synthesize alert = _alert;
 @synthesize promotionsArray = _promotionsArray;
+
+
+//Titles!!!!
+@synthesize titleMain = _titleMain;
+@synthesize titleRestaurants = _titleRestarants;
+@synthesize titleOrder = _titleOrder;
+@synthesize titleMenu = _titleMenu;
+@synthesize titleCart = _titleCart;
+@synthesize titleBack = _titleBack;
+@synthesize titleFavorites = _titleFavorites;
+@synthesize titleCount = _titleCount;
+@synthesize titleTotal = _titleTotal;
+@synthesize titleWithDiscounts = _titleWithDiscounts;
+@synthesize titleChooseMethodToGetOrder = _titleChooseMethodToGetOrder;
+@synthesize titleDelivery = _titleDelivery;
+@synthesize titleDeliveryByTime = _titleDeliveryByTime;
+@synthesize titleCancel = _titleCancel;
 
 
 - (IBAction)drop:(id)sender {
@@ -288,7 +323,7 @@
     //UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pickerTapped:)];
     //[self.pickerView addGestureRecognizer:tapgesture];
     
-    [self.restorantsButton setTitle:@"Restaurants" forState:UIControlStateNormal];
+    [self.restorantsButton setTitle:self.titleRestaurants forState:UIControlStateNormal];
     
     [self.settingsButton setHidden:NO];
     [self.drop setHidden:NO];
@@ -307,7 +342,7 @@
     
     AudioServicesPlaySystemSound (self.soundFileObject);
     
-    [self.restorantsButton setTitle:@"Order" forState:UIControlStateNormal];
+    [self.restorantsButton setTitle:self.titleOrder forState:UIControlStateNormal];
     
     [self.settingsButton setHidden:YES];
     [self.drop setHidden:YES];
@@ -333,20 +368,12 @@
 
 - (void)viewDidLoad
 {
-    
-    // get the current date
-    NSDate *date = [NSDate date];
-    
-    // format it
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-    [dateFormat setDateFormat:@"HH:mm:ss zzz"];
-    
-    // convert it to a string
-    NSString *dateString = [dateFormat stringFromDate:date];
-    
-    NSLog(@"%@", dateString);
-    
     [super viewDidLoad];
+    
+    [self setAllTitlesOnThisPage];
+    
+    [self.menuButton setTitle:self.titleMenu forState:UIControlStateNormal];
+    [self.cartButton setTitle:self.titleCart forState:UIControlStateNormal];
     
     self.imageDownloadsInProgress = [[NSMutableDictionary alloc] init];
     
@@ -354,7 +381,7 @@
     
     [self.cartButton setBackgroundImage:[UIImage imageNamed:@"Button_black_light_rev2.png"] forState:UIControlStateNormal];
     
-    [self.drop setTitle:@"Back" forState:UIControlStateNormal];
+    [self.drop setTitle:self.titleBack forState:UIControlStateNormal];
     //[self.restorantsButton setBackgroundImage:[UIImage imageNamed:@"gray button.png"] forState:UIControlStateNormal];
     self.restorantsButton.titleLabel.textAlignment = UITextAlignmentCenter;
     
@@ -385,7 +412,7 @@
     //    [layerSett setBorderColor:[UIColor grayColor].CGColor];
     //    [layerSett setBackgroundColor:[UIColor grayColor].CGColor];
     
-    self.navigationItem.title = @"Main";
+    self.navigationItem.title = self.titleMain; //@"Main";
     [self menuButton:self];
     
     if(!self.isCartMode)
@@ -507,19 +534,19 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
-        
+    
     if (oneRestaurant)
         self.arrayData = nil;
+    
     if(self.isMenuMode)
     {
-        //[self.pickerView reloadAllComponents];
-        [self.restorantsButton setTitle:@"Restaurants" forState:UIControlStateNormal];
+        [self.restorantsButton setTitle:self.titleRestaurants forState:UIControlStateNormal];
     }
     else
     {
         self.arrayOfObjects = nil;
         //[self.pickerView reloadAllComponents];
-        [self.restorantsButton setTitle:@"Order" forState:UIControlStateNormal];
+        [self.restorantsButton setTitle:self.titleOrder forState:UIControlStateNormal];
     }
 }
 
@@ -828,6 +855,10 @@
                 [[segue destinationViewController] setEnableTime:YES];
 //                [[segue.destinationViewController setEnableTiming:YES]];
             }
+            else if ([segue.identifier isEqualToString:@"toRestaurantList"])
+            {
+                [[segue.destinationViewController navigationItem] setTitle:self.restorantsButton.titleLabel.text];
+            }
     
     
     self.shouldBeReloaded = YES;
@@ -933,9 +964,9 @@
                 }
             }
             
-            cell.sumLabel.text = @"Total";
-            cell.sumWithDiscountsLabel.text = @"With discounts";
-            cell.countLabel.text = @"Count";
+            cell.sumLabel.text = self.titleTotal;
+            cell.sumWithDiscountsLabel.text = self.titleWithDiscounts; //@"With discounts";
+            cell.countLabel.text = self.titleCount; //@"Count";
             
             NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
             formatter.roundingIncrement = [NSNumber numberWithFloat:0.01];
@@ -1028,7 +1059,7 @@
                     break;
                 }
             }
-            viewForRow.menuTitle.text = @"Favorites";
+            viewForRow.menuTitle.text = self.titleFavorites;
             viewForRow.menuImage.image = [UIImage imageNamed:@"Heart.png"];
             return viewForRow;
         }
@@ -1210,14 +1241,14 @@
             }
             else
             {
-                self.restorantsButton.titleLabel.text = @"Order";
+                self.restorantsButton.titleLabel.text = self.titleOrder; //@"Order";
                 UIActionSheet* actionSheet = [[UIActionSheet alloc] init];
-                [actionSheet setTitle:@"Choose method to get order:"];
+                [actionSheet setTitle:self.titleChooseMethodToGetOrder];  //@"Choose method to get order:"];
                 [actionSheet setDelegate:(id)self];
-                [actionSheet addButtonWithTitle:@"Delivery"];
-                [actionSheet addButtonWithTitle:@"Delivery by time"];
+                [actionSheet addButtonWithTitle:self.titleDelivery];  //@"Delivery"];
+                [actionSheet addButtonWithTitle:self.titleDeliveryByTime]; //@"Delivery by time"];
 //                [actionSheet addButtonWithTitle:@"Pick up"];
-                [actionSheet addButtonWithTitle:@"Cancel"];
+                [actionSheet addButtonWithTitle:self.titleCancel]; //@"Cancel"];
                 actionSheet.cancelButtonIndex = actionSheet.numberOfButtons - 1;
                 [actionSheet showInView:self.view];
             }
@@ -1324,6 +1355,89 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     [self loadImagesForOnscreenRows];
+}
+
+
+#pragma mark 
+#pragma mark PRIVATE METHODS
+
+-(void)setAllTitlesOnThisPage
+{
+    NSArray *array = [Singleton sharedManager];
+    for (int i = 0; i <array.count; i++)
+    {
+        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Main"])
+        {
+            self.titleMain = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Restaurants"])
+        {
+            self.titleRestaurants = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Order"])
+        {
+            self.titleOrder = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Menu"])
+        {
+            self.titleMenu = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Cart"])
+        {
+            self.titleCart = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Back"])
+        {
+            self.titleBack = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Favorites"])
+        {
+            self.titleFavorites = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Total"])
+        {
+            self.titleTotal = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Count"])
+        {
+            self.titleCount = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+        }
+
+        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"With discounts"])
+        {
+            self.titleWithDiscounts = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+        }
+    
+        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Choose method to get order:"])
+        {
+            self.titleChooseMethodToGetOrder = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+        }
+    
+        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Delivery"])
+        {
+            self.titleDelivery = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Delivery by time"])
+        {
+            self.titleDeliveryByTime = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Cancel"])
+        {
+            self.titleCancel = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+        }
+    
+    }
+
 }
 
 

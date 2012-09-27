@@ -20,6 +20,15 @@
 @property (nonatomic, strong) UIImageView *hitView;
 @property (nonatomic, strong) UIImageView *newsItemView;
 
+//Titles
+
+@property (nonatomic, strong) NSString *titleAddToFavotites;
+@property (nonatomic, strong) NSString *titleRemoveToFavotites;
+@property (nonatomic, strong) NSString *titleYES;
+@property (nonatomic, strong) NSString *titleCancel;
+@property (nonatomic, strong) NSString *titleAddedFav;
+@property (nonatomic, strong) NSString *titleRemovedFav;
+
 @end
 
 @implementation MenuIconViewController
@@ -37,6 +46,14 @@
 @synthesize alert;
 @synthesize hitView;
 @synthesize newsItemView;
+
+//Titles
+@synthesize titleAddToFavotites = _titleAddToFavotites;
+@synthesize titleRemoveToFavotites = _titleRemoveToFavotites;
+@synthesize titleYES = _titleYES;
+@synthesize titleCancel = _titleCancel;
+@synthesize titleAddedFav = _titleAddedFav;
+@synthesize titleRemovedFav = _titleRemovedFav;
 
 - (NSMutableArray *)arrayData
 {
@@ -315,6 +332,9 @@
     
     hitView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HIT1.png"]];
     newsItemView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"New1.png"]];
+    
+    //даємо слова =)
+    [self setAllTitlesOnThisPage];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -654,13 +674,21 @@
 - (void)GMGridView:(GMGridView *)gridView processDeleteActionForItemAtIndex:(NSInteger)index
 {
     UIAlertView *alertView;
-    if (![[[self.arrayData objectAtIndex:self.selectedIndex.integerValue] isFavorites] boolValue])
+    if (![[[self.arrayData objectAtIndex:index] isFavorites] boolValue])
     {
-        alertView = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Add to favorites?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"YES", nil];
+        alertView = [[UIAlertView alloc] initWithTitle:self.titleAddToFavotites
+                                               message:nil
+                                              delegate:self
+                                     cancelButtonTitle:self.titleCancel
+                                     otherButtonTitles:self.titleYES, nil];
     }
     else
     {
-        alertView = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Remove to favorites?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"YES", nil];
+        alertView = [[UIAlertView alloc] initWithTitle:self.titleRemoveToFavotites
+                                               message:nil
+                                              delegate:self
+                                     cancelButtonTitle:self.titleCancel
+                                     otherButtonTitles:self.titleYES, nil];
     }
     
     [alertView show];
@@ -681,7 +709,7 @@
         if ([currentOne isFavorites].boolValue)
         {
             self.alert = [[UIAlertView alloc] initWithTitle:nil
-                                                    message:[NSString stringWithFormat:@"Added \"%@\" to favorites.", [currentOne title]]
+                                                    message:[NSString stringWithFormat:self.titleAddedFav, [currentOne title]]
                                                    delegate:nil
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
@@ -689,7 +717,7 @@
         else
         {
             self.alert = [[UIAlertView alloc] initWithTitle:nil
-                                                    message:[NSString stringWithFormat:@"Removed \"%@\" from favorites.", [currentOne title]]
+                                                    message:[NSString stringWithFormat:self.titleRemovedFav, [currentOne title]]
                                                    delegate:nil
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
@@ -922,4 +950,46 @@
 {
     self.gmGridView.editing = NO;
 }
+
+
+#pragma mark
+#pragma mark PRIVATE METHODS
+
+-(void)setAllTitlesOnThisPage
+{
+    NSArray *array = [Singleton sharedManager];
+    for (int i = 0; i <array.count; i++)
+    {
+        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Add to favorites?"])
+        {
+            self.titleAddToFavotites = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Remove from favorites?"])
+        {
+            self.titleRemoveToFavotites = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"YES"])
+        {
+            self.titleYES = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Cancel"])
+        {
+            self.titleCancel = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Added %@ to favorites."])
+        {
+            self.titleAddedFav = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Removed %@ from favorites."])
+        {
+            self.titleRemovedFav = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+    }
+}
+
 @end

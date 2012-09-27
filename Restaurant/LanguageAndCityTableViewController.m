@@ -10,6 +10,7 @@
 #import "GettingCoreContent.h"
 #import "checkConnection.h"
 #import "SSToolkit/SSToolkit.h"
+#import "Singleton.h"
 
 @interface LanguageAndCityTableViewController ()
 
@@ -52,16 +53,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    if (self.isCity)
-        self.navigationItem.title = @"City";
-    else 
-        self.navigationItem.title = @"Language";
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewDidUnload
@@ -292,6 +283,7 @@
     [self XMLToCoreData];
     
     [self performSelector:@selector(complete:) withObject:nil];
+    
     //[self.navigationController popViewControllerAnimated:YES];
 }
 

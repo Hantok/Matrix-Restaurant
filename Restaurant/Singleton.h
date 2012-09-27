@@ -11,8 +11,6 @@
 
 @interface Singleton : NSObject
 
-@property (nonatomic, strong) NSArray *someProperty;
-
 + (id)sharedManager;
 
 @end

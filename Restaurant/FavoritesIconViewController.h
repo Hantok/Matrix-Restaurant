@@ -15,6 +15,7 @@
 #import "GMGridView.h"
 #import "ProductDetailViewController.h"
 #import "GMGridViewLayoutStrategies.h"
+#import "Singleton.h"
 
 
 @interface FavoritesIconViewController : UIViewController <UIScrollViewDelegate, GMGridViewDataSource,GMGridViewSortingDelegate, GMGridViewTransformationDelegate, GMGridViewActionDelegate>

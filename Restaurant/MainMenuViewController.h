@@ -13,6 +13,7 @@
 #import "IconDownloader.h"
 #import "MenuDataStruct.h"
 #import "subViewSpam.h"
+#import "Singleton.h"
 
 #import <AudioToolbox/AudioToolbox.h>
 

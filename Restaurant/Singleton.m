@@ -8,6 +8,12 @@
 
 #import "Singleton.h"
 
+@interface Singleton()
+
+@property (nonatomic, strong) NSArray *someProperty;
+
+@end
+
 @implementation Singleton
 
 @synthesize someProperty = _someProperty;

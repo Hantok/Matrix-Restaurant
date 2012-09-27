@@ -9,6 +9,7 @@
 #import "RestaurantViewController.h"
 #import "RestaurantCell.h"
 #import <QuartzCore/QuartzCore.h>
+#import "Singleton.h"
 
 @interface RestaurantViewController ()
 
@@ -89,6 +90,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [Singleton sharedManager];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
