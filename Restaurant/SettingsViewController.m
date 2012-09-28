@@ -64,20 +64,22 @@
 {
     [super viewDidLoad];
 
-    [self setAllTitlesOnThisPage];
-    
-    self.navigationItem.title = self.titleSettings;
-    
-    if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"typeOfView"] isEqualToString:@"menuIcon"])
-        self.titleStyle = self.titleIcons;
-    else
-        self.titleStyle = self.titleList;
-
+//    [self setAllTitlesOnThisPage];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    [self setAllTitlesOnThisPage];
+    
+    if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"typeOfView"] isEqualToString:@"menuIcon"])
+        self.titleStyle = self.titleIcons;
+    else
+        self.titleStyle = self.titleList;
+    
+    [self.navigationItem.titleView reloadInputViews];
+    self.navigationItem.title = self.titleSettings;
     
     [self.tableView reloadData];
 }
@@ -421,77 +423,77 @@
 
 -(void)setAllTitlesOnThisPage
 {
-    NSArray *array = [Singleton sharedManager];
+    NSArray *array = [Singleton titlesTranslation_withISfromSettings:NO];
     for (int i = 0; i <array.count; i++)
     {
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Settings"])
+        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Settings"])
         {
-            self.titleSettings = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleSettings = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Language"])
+        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Language"])
         {
-            self.titleLanguage = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleLanguage = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"City"])
+        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"City"])
         {
-            self.titleCity = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleCity = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Menu style"])
+        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Menu style"])
         {
-            self.titleMenuStyle = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleMenuStyle = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Currency"])
+        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Currency"])
         {
-            self.titleCurrency = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleCurrency = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Share"])
+        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Share"])
         {
-            self.titleShare = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleShare = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Tell a friend"])
+        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Tell a friend"])
         {
-            self.titleTellFriend = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleTellFriend = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"About"])
+        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"About"])
         {
-            self.titleAbout = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleAbout = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Choose style"])
+        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Choose style"])
         {
-            self.titleChooseStyle = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleChooseStyle = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Icons"])
+        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Icons"])
         {
-            self.titleIcons = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleIcons = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"List"])
+        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"List"])
         {
-            self.titleList = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleList = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Set currency"])
+        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Set currency"])
         {
-            self.titleSetCurrency = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleSetCurrency = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Social networks"])
+        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Social networks"])
         {
-            self.titleSosialNetworks = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleSosialNetworks = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Cancel"])
+        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Cancel"])
         {
-            self.titleCancel = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleCancel = [[array objectAtIndex:i] valueForKey:@"title"];
         }
     }
 }

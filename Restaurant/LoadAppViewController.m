@@ -439,12 +439,12 @@
 
 //-(void)setAllTitlesOnThisPage
 //{
-//    NSArray *array = [Singleton sharedManager];
+//    NSArray *array = [Singleton titlesTranslation_withISfromSettings:NO]Manager];
 //    for (int i = 0; i <array.count; i++)
 //    {
-//        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Loading..."])
+//        if ([[[[Singleton titlesTranslation_withISfromSettings:NO]Manager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Loading..."])
 //        {
-//            self.titleLoading = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+//            self.titleLoading = [[[Singleton titlesTranslation_withISfromSettings:NO]Manager] objectAtIndex:i] valueForKey:@"title"];
 //        }
 //    }
 //}

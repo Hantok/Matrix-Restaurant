@@ -581,26 +581,26 @@
 
 -(void)setAllTitlesOnThisPage
 {
-    NSArray *array = [Singleton sharedManager];
+    NSArray *array = [Singleton titlesTranslation_withISfromSettings:NO];
     for (int i = 0; i <array.count; i++)
     {
         
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Remove from favorites?"])
+        if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Remove from favorites?"])
         {
             self.titleRemoveToFavotites = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"YES"])
+        if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"YES"])
         {
             self.titleYES = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Cancel"])
+        if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Cancel"])
         {
             self.titleCancel = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Removed %@ from favorites."])
+        if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Removed %@ from favorites."])
         {
             self.titleRemovedFav = [[array objectAtIndex:i] valueForKey:@"title"];
         }

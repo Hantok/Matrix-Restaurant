@@ -200,34 +200,34 @@
 
 -(void)setAllTitlesOnThisPage
 {
-    NSArray *array = [Singleton sharedManager];
+    NSArray *array = [Singleton titlesTranslation_withISfromSettings:NO];
     for (int i = 0; i <array.count; i++)
     {
-        if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Working time"])
+        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Working time"])
         {
             self.workTimeLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"phone"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"phone"])
         {
             self.telephoneLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Show on map"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Show on map"])
         {
             [self.showOnMapButton setTitle:[[array objectAtIndex:i] valueForKey:@"title"] forState:UIControlStateNormal];
         }
         
-        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Reserve table"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Reserve table"])
         {
             [self.reserveButton setTitle:[[array objectAtIndex:i] valueForKey:@"title"] forState:UIControlStateNormal];        }
         
-        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Call"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Call"])
         {
             [self.callButton setTitle:[[array objectAtIndex:i] valueForKey:@"title"] forState:UIControlStateNormal];
         }
         
-        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Loading..."])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Loading..."])
         {
             self.loadingView.textLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
         }

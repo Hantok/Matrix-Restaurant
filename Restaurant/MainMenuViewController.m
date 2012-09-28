@@ -380,10 +380,7 @@
 {
     [super viewDidLoad];
     
-    [self setAllTitlesOnThisPage];
-    
-    [self.menuButton setTitle:self.titleMenu forState:UIControlStateNormal];
-    [self.cartButton setTitle:self.titleCart forState:UIControlStateNormal];
+    [self somethingStupid];
     
     self.imageDownloadsInProgress = [[NSMutableDictionary alloc] init];
     
@@ -391,7 +388,6 @@
     
     [self.cartButton setBackgroundImage:[UIImage imageNamed:@"Button_black_light_rev2.png"] forState:UIControlStateNormal];
     
-    [self.drop setTitle:self.titleBack forState:UIControlStateNormal];
     //[self.restorantsButton setBackgroundImage:[UIImage imageNamed:@"gray button.png"] forState:UIControlStateNormal];
     self.restorantsButton.titleLabel.textAlignment = UITextAlignmentCenter;
     
@@ -422,22 +418,12 @@
     //    [layerSett setBorderColor:[UIColor grayColor].CGColor];
     //    [layerSett setBackgroundColor:[UIColor grayColor].CGColor];
     
-    self.navigationItem.title = self.titleMain; //@"Main";
     [self menuButton:self];
     
     if(!self.isCartMode)
     {
         self.isMenuMode = YES;
     }
-    
-    //не працює з ARC!!!!!
-    NSURL *tapSound   = [[NSBundle mainBundle] URLForResource: @"tap"
-                                                withExtension: @"aif"];
-    
-    soundFileURLRef = (__bridge CFURLRef) tapSound;
-    
-    AudioServicesCreateSystemSoundID (soundFileURLRef, &soundFileObject);
-
     
     NSMutableArray *imageArray = [[NSMutableArray alloc] init];
     for (int i = 0; i < self.promotionsArray.count; i++)
@@ -481,6 +467,19 @@
     gradient.frame = self.view.bounds;
     gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor darkGrayColor] CGColor],(id)[[UIColor blackColor] CGColor], nil];
     [self.view.layer insertSublayer:gradient atIndex:0];
+}
+
+- (void)somethingStupid
+{
+    [self setAllTitlesOnThisPage];
+    
+    self.navigationItem.title = @"<-"; //@"Main";
+    
+    [self.menuButton setTitle:self.titleMenu forState:UIControlStateNormal];
+    [self.cartButton setTitle:self.titleCart forState:UIControlStateNormal];
+    [self.drop setTitle:self.titleBack forState:UIControlStateNormal];
+    
+    [self.pickerView reloadAllComponents];
 }
 
 - (void)changingAnimation
@@ -547,6 +546,9 @@
     
     if (oneRestaurant)
         self.arrayData = nil;
+    
+    //лол =)
+    [self somethingStupid];
     
     if(self.isMenuMode)
     {
@@ -850,6 +852,10 @@
     {
         //MenuDataStruct *dataStruct = [self.arrayData objectAtIndex:self.selectedRow.integerValue];
         [segue.destinationViewController setKindOfMenu:self.singleMenu];
+    }
+    else if([segue.identifier isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"typeOfViewFavorites"]])
+    {
+        [[segue.destinationViewController navigationItem] setTitle:self.titleFavorites];
     }
     else
         if([segue.identifier isEqualToString:@"toProductDetail"])
@@ -1380,102 +1386,102 @@
 
 -(void)setAllTitlesOnThisPage
 {
-    NSArray *array = [Singleton sharedManager];
+    NSArray *array = [Singleton titlesTranslation_withISfromSettings:NO];
     for (int i = 0; i <array.count; i++)
     {
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Main"])
+        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Main"])
         {
-            self.titleMain = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleMain = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Restaurants"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Restaurants"])
         {
-            self.titleRestaurants = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleRestaurants = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Order"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Order"])
         {
-            self.titleOrder = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleOrder = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Menu"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Menu"])
         {
-            self.titleMenu = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleMenu = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Cart"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Cart"])
         {
-            self.titleCart = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleCart = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Back"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Back"])
         {
-            self.titleBack = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleBack = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Favorites"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Favorites"])
         {
-            self.titleFavorites = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleFavorites = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Total"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Total"])
         {
-            self.titleTotal = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleTotal = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Count"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Count"])
         {
-            self.titleCount = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleCount = [[array objectAtIndex:i] valueForKey:@"title"];
         }
 
-        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"With discounts"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"With discounts"])
         {
-            self.titleWithDiscounts = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleWithDiscounts = [[array objectAtIndex:i] valueForKey:@"title"];
         }
     
-        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Choose method to get order:"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Choose method to get order:"])
         {
-            self.titleChooseMethodToGetOrder = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleChooseMethodToGetOrder = [[array objectAtIndex:i] valueForKey:@"title"];
         }
     
-        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Delivery"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Delivery"])
         {
-            self.titleDelivery = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleDelivery = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Delivery by time"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Delivery by time"])
         {
-            self.titleDeliveryByTime = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleDeliveryByTime = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Cancel"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Cancel"])
         {
-            self.titleCancel = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleCancel = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"YES"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"YES"])
         {
-            self.titleYES = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleYES = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"NO"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"NO"])
         {
-            self.titleNO = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleNO = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Do you want to delete all items from Cart?"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Do you want to delete all items from Cart?"])
         {
-            self.titleDoYouWantDeleteAllItemsFromCart = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleDoYouWantDeleteAllItemsFromCart = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"No internet connection."])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"No internet connection."])
         {
-            self.titleNoInternet = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleNoInternet = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Cart is empty."])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Cart is empty."])
         {
-            self.titleCartIsEmpty = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+            self.titleCartIsEmpty = [[array objectAtIndex:i] valueForKey:@"title"];
         }
     }
 

@@ -722,7 +722,7 @@
                     if ([[[[items objectAtIndex:i] valueForKey:@"idLanguage"] description] isEqualToString:[languageId description]])
                     {
                         //замінюємо значення змінної "code" в значення змінної "name_EN" з табл Titles
-                        [[items objectAtIndex:i] setValue:[[underbaridsArray objectAtIndex:j] valueForKey:@"name_EN"] forKey:@"code"];
+                        [[items objectAtIndex:i] setValue:[[underbaridsArray objectAtIndex:j] valueForKey:@"name_EN"] forKey:@"name_EN"];
                         [outputArray addObject:[items objectAtIndex:i]];
                     }
                 }

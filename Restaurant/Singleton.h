@@ -11,6 +11,6 @@
 
 @interface Singleton : NSObject
 
-+ (id)sharedManager;
++ (NSArray *)titlesTranslation_withISfromSettings:(BOOL)boolValue;
 
 @end
