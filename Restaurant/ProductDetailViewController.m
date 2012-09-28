@@ -734,21 +734,6 @@
 }
 - (IBAction)AddToFavorites:(id)sender
 {
-//    [self.db SaveProductToEntityName:@"Favorites" WithId:self.product.productId
-//                           withCount:0
-//                           withPrice:self.product.price.floatValue
-//                         withPicture:UIImagePNGRepresentation(self.product.image)
-//                   withDiscountValue:self.product.discountValue.floatValue];
-//    
-//    self.alert = [[UIAlertView alloc] initWithTitle:nil
-//                                            message:[NSString stringWithFormat:@"Is \"%@\" in favorites.", self.product.title]
-//                                           delegate:nil
-//                                  cancelButtonTitle:@"OK"
-//                                  otherButtonTitles:nil];
-//    [self.alert show];
-//    [self performSelector:@selector(dismiss) withObject:nil afterDelay:2];
-    
-    
     // add to favorites here
     id currentOne = self.product;
     //changing is database
