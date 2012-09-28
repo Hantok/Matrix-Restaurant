@@ -99,8 +99,10 @@
 
 - (void)viewDidLoad
 {
-    //[super viewDidLoad];
-	// Do any additional setup after loading the view.
+    [super viewDidLoad];
+    
+    [self setAllTitlesOnThisPage];
+	
     self.scrollView.contentSize = CGSizeMake(320, 430);
 
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
@@ -155,6 +157,8 @@
 //    [self setAccess:nil];
 //    [self setIntercom:nil];
     [self setDeliveryTime:nil];
+    [self setToOrderButton:nil];
+    [self setSaveAddressButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -712,6 +716,9 @@
     }
 }
 
+#pragma mark
+#pragma mark PRIVATE METHODS
+
 - (NSString *)createUUID
 {
     // Create universally unique identifier (object)
@@ -732,5 +739,67 @@
     //CFRelease(uuidObject);
     
     return uuidStr;
+}
+
+-(void)setAllTitlesOnThisPage
+{
+    NSArray *array = [Singleton sharedManager];
+    for (int i = 0; i <array.count; i++)
+    {
+        if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"*Address name"])
+        {
+            self.addressName.placeholder = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"*Your name"])
+        {
+            self.customerName.placeholder = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"*Phone"])
+        {
+            self.phone.placeholder = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"*City"])
+        {
+            self.CityName.placeholder = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"*Street"])
+        {
+            self.street.placeholder = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"*Build"])
+        {
+            self.build.placeholder = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"*App/office"])
+        {
+            self.appartaments.placeholder = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"*Other information"])
+        {
+            self.otherInformation.placeholder = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"*Time"])
+        {
+            self.deliveryTime.placeholder = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"To order"])
+        {
+            [self.toOrderButton setTitle:[[array objectAtIndex:i] valueForKey:@"title"] forState:UIControlStateNormal];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Save address"])
+        {
+            [self.saveAddressButton setTitle:[[array objectAtIndex:i] valueForKey:@"title"] forState:UIControlStateNormal];
+        }
+    }
 }
 @end

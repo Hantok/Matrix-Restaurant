@@ -85,6 +85,8 @@
 {
     [super viewDidLoad];
     
+    [self setAllTitlesOnThisPage];
+    
     self.navigationItem.title = self.dataStruct.name;
 	workTimeDetailLabel.text = self.dataStruct.workingTime;
     telephoneDetailLabel.text = self.dataStruct.phones;
@@ -103,6 +105,7 @@
             self.loadingView.backgroundColor = [UIColor clearColor];
             self.loadingView.activityIndicatorView.color = [UIColor whiteColor];
             self.loadingView.textLabel.textColor = [UIColor whiteColor];
+            self.loadingView.textLabel.text = @"";
             [self.view addSubview:self.loadingView];
         }
         
@@ -181,6 +184,7 @@
     [self setTelephoneLabel:nil];
     [self setTelephoneDetailLabel:nil];
     [self setRestaurantImage:nil];
+    [self setReserveButton:nil];
     [super viewDidUnload];
     [self setAlert:nil];
     // Release any retained subviews of the main view.
@@ -189,6 +193,46 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark
+#pragma mark PRIVATE METHODS
+
+-(void)setAllTitlesOnThisPage
+{
+    NSArray *array = [Singleton sharedManager];
+    for (int i = 0; i <array.count; i++)
+    {
+        if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Working time"])
+        {
+            self.workTimeLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"phone"])
+        {
+            self.telephoneLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Show on map"])
+        {
+            [self.showOnMapButton setTitle:[[array objectAtIndex:i] valueForKey:@"title"] forState:UIControlStateNormal];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Reserve table"])
+        {
+            [self.reserveButton setTitle:[[array objectAtIndex:i] valueForKey:@"title"] forState:UIControlStateNormal];        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Call"])
+        {
+            [self.callButton setTitle:[[array objectAtIndex:i] valueForKey:@"title"] forState:UIControlStateNormal];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Loading..."])
+        {
+            self.loadingView.textLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+    }
 }
 
 @end

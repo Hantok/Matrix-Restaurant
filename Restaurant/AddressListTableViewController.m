@@ -49,6 +49,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self setAllTitlesOnThisPage];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -59,6 +61,8 @@
 
 - (void)viewDidUnload
 {
+    [self setCancelButton:nil];
+    [self setSaveAddressItem:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -152,5 +156,26 @@
     [self.delegate setAddressDictionary:[self.arrayOfAddresses objectAtIndex:indexPath.row]];
     [self dismissModalViewControllerAnimated:YES];   
 }
+
+
+#pragma mark - Prive methods
+
+-(void)setAllTitlesOnThisPage
+{
+    NSArray *array = [Singleton sharedManager];
+    for (int i = 0; i <array.count; i++)
+    {
+        if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Saved addresses"])
+        {
+            [self.saveAddressItem setTitle:[[array objectAtIndex:i] valueForKey:@"title"]];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Cancel"])
+        {
+            [self.cancelButton setTitle:[[array objectAtIndex:i] valueForKey:@"title"]];
+        }
+    }
+}
+
 
 @end

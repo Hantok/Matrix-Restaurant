@@ -168,6 +168,7 @@
     loadingView.backgroundColor = [UIColor clearColor];
     loadingView.activityIndicatorView.color = [UIColor whiteColor];
     loadingView.textLabel.textColor = [UIColor whiteColor];
+    loadingView.textLabel.text = @"";
     
 //    if (self.isFirstTime)
 //        loadingView.textLabel.text = @"Loading...";

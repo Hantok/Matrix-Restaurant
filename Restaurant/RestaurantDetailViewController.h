@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "RestaurantDataStruct.h"
 #import "GettingCoreContent.h"
+#import "Singleton.h"
 
 @interface RestaurantDetailViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIButton *reserveButton;
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *showOnMapButton;
 @property (weak, nonatomic) IBOutlet UILabel *workTimeLabel;

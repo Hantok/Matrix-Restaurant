@@ -11,6 +11,7 @@
 #import "AddressListTableViewController.h"
 #import "TimePicker.h"
 #import "XMLParseResponseFromTheServer.h"
+#import "Singleton.h"
 
 @interface DeliveryViewController : UIViewController <UITextFieldDelegate, NSURLConnectionDelegate, AddressListDelegate, UIScrollViewDelegate>
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -28,6 +29,9 @@
 @property (strong, nonatomic) IBOutlet UITextField *otherInformation;
 @property (strong, nonatomic) IBOutlet UITextField *deliveryTime;
 @property (strong, nonatomic) XMLParseResponseFromTheServer *db;
+
+@property (weak, nonatomic) IBOutlet UIButton *toOrderButton;
+@property (weak, nonatomic) IBOutlet UIButton *saveAddressButton;
 
 - (IBAction)toOrder:(id)sender;
 - (IBAction)saveAddress:(id)sender;

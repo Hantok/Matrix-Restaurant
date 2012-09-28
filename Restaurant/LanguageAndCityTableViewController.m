@@ -10,7 +10,6 @@
 #import "GettingCoreContent.h"
 #import "checkConnection.h"
 #import "SSToolkit/SSToolkit.h"
-#import "Singleton.h"
 
 @interface LanguageAndCityTableViewController ()
 
@@ -22,6 +21,12 @@
 @property BOOL isDid;
 @property (nonatomic, strong) SSHUDView *hudView;
 //@property (nonatomic, strong) UIActivityIndicatorView *activityView;
+
+//titles
+@property (nonatomic, weak) NSString *titleLoading;
+@property (nonatomic, weak) NSString *titleFinished;
+@property (nonatomic, weak) NSString *titleUnableFetchData;
+@property (nonatomic, weak) NSString *titleSuccesLanguage;
 
 @end
 
@@ -35,6 +40,12 @@
 @synthesize isDid = _isDid;
 @synthesize hudView = _hudView;
 //@synthesize activityView = _activityView;
+
+//titles
+@synthesize titleLoading = _titleLoading;
+@synthesize titleFinished = _titleFinished;
+@synthesize titleUnableFetchData = _titleUnableFetchData;
+@synthesize titleSuccesLanguage = _titleSuccesLanguage;
 
 - (void)setArrayFromSegue:(BOOL)isCityEnter;
 {
@@ -53,6 +64,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self setAllTitlesOnThisPage];
 }
 
 - (void)viewDidUnload
@@ -124,7 +137,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (checkConnection.hasConnectivity)
     {
-        self.hudView = [[SSHUDView alloc] initWithTitle:@"Loading..."];
+        self.hudView = [[SSHUDView alloc] initWithTitle:self.titleLoading];
         [self.hudView show];
         
         //        UIActivityIndicatorView *activityView=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -264,8 +277,7 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"Unable to fetch data");
     
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Sorry!" message:@"Unable to fetch data" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    [alertView show];
+    [self.hudView failAndDismissWithTitle:self.titleUnableFetchData];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
@@ -284,13 +296,19 @@
     
     [self performSelector:@selector(complete:) withObject:nil];
     
+    if (!self.isCity)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil/*Success*/ message:self.titleSuccesLanguage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alertView show];
+    }
+    
     //[self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - hudView Actions
 
 - (void)complete:(id)sender {
-	[self.hudView completeWithTitle:@"Finished"];
+	[self.hudView completeWithTitle:self.titleFinished];
 	[self performSelector:@selector(pop:) withObject:nil afterDelay:0.7];
 }
 
@@ -335,5 +353,34 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - Prive methods
+
+-(void)setAllTitlesOnThisPage
+{
+    NSArray *array = [Singleton sharedManager];
+    for (int i = 0; i <array.count; i++)
+    {
+        if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Loading..."])
+        {
+            self.titleLoading = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Finished"])
+        {
+            self.titleFinished = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Please. Relaunch application to see all changes"])
+        {
+            self.titleSuccesLanguage = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Unable to fetch data"])
+        {
+            self.titleUnableFetchData = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+    }
 }
 @end

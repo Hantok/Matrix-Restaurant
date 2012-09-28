@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "GettingCoreContent.h"
+#import "Singleton.h"
 
 @protocol AddressListDelegate <NSObject>
 
@@ -22,4 +23,6 @@
 @property (strong, nonatomic) GettingCoreContent *content;
 - (IBAction)cancelButton:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UINavigationItem *saveAddressItem;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
 @end

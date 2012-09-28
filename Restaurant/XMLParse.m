@@ -126,6 +126,7 @@
         {
             NSLog(@"Logo Version = %@", string);
             [[NSUserDefaults standardUserDefaults] setValue:string forKey:@"logoVersion"];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"logo"];
             needToChangeLogoPicture = YES;
             return;
         }

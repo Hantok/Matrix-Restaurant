@@ -66,6 +66,11 @@
 @property (nonatomic, weak) NSString *titleDeliveryByTime;
 @property (nonatomic, weak) NSString *titleCancel;
 @property (nonatomic, weak) NSString *titleMain;
+@property (nonatomic, weak) NSString *titleYES;
+@property (nonatomic, weak) NSString *titleNO;
+@property (nonatomic, weak) NSString *titleDoYouWantDeleteAllItemsFromCart;
+@property (nonatomic, weak) NSString *titleNoInternet;
+@property (nonatomic, weak) NSString *titleCartIsEmpty;
 
 @end
 
@@ -119,6 +124,11 @@
 @synthesize titleDelivery = _titleDelivery;
 @synthesize titleDeliveryByTime = _titleDeliveryByTime;
 @synthesize titleCancel = _titleCancel;
+@synthesize titleYES = _titleYES;
+@synthesize titleNO = _titleNO;
+@synthesize titleDoYouWantDeleteAllItemsFromCart = _titleDoYouWantDeleteAllItemsFromCart;
+@synthesize titleNoInternet = _titleNoInternet;
+@synthesize titleCartIsEmpty = _titleCartIsEmpty;
 
 
 - (IBAction)drop:(id)sender {
@@ -849,11 +859,18 @@
             fromDeliveriesAndDatailViewController = YES;
         }
         else
-            if([segue.identifier isEqualToString:@"toDelivery"] && deliveryTime == YES)
+            if([segue.identifier isEqualToString:@"toDelivery"])
             {
-                deliveryTime = NO;
-                [[segue destinationViewController] setEnableTime:YES];
-//                [[segue.destinationViewController setEnableTiming:YES]];
+                if (deliveryTime == YES)
+                {
+                    deliveryTime = NO;
+                    [[segue destinationViewController] setEnableTime:YES];
+                    [[segue.destinationViewController navigationItem] setTitle:self.titleDeliveryByTime];
+                }
+                else
+                {
+                    [[segue.destinationViewController navigationItem] setTitle:self.titleDelivery];
+                }
             }
             else if ([segue.identifier isEqualToString:@"toRestaurantList"])
             {
@@ -1202,10 +1219,10 @@
         else
         {
             UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil
-                                                            message:@"Do you want to delete all items from Cart?"
+                                                            message:self.titleDoYouWantDeleteAllItemsFromCart
                                                            delegate:self
-                                                  cancelButtonTitle:@"YES"
-                                                  otherButtonTitles: @"NO", nil];
+                                                  cancelButtonTitle:self.titleYES
+                                                  otherButtonTitles:self.titleNO, nil];
             [alert show];
         }
     }
@@ -1227,14 +1244,14 @@
     {
         if (!checkConnection.hasConnectivity)
         {
-            self.alert = [[UIAlertView alloc] initWithTitle:@"Internet error" message:@"No internet connection." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
+            self.alert = [[UIAlertView alloc] initWithTitle:nil/*@"Internet error"*/ message:self.titleNoInternet delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
             [self.alert show];
             [self performSelector:@selector(dismiss) withObject:nil afterDelay:2];
         }
         else
             if(self.arrayOfObjects.count == 0)
             {
-                self.alert = [[UIAlertView alloc] initWithTitle:@"Cart is empty." message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
+                self.alert = [[UIAlertView alloc] initWithTitle:self.titleCartIsEmpty message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
                 [self.alert show];
                 [self performSelector:@selector(dismiss) withObject:nil afterDelay:2];
 
@@ -1284,7 +1301,7 @@
         }
         else
         {
-            self.restorantsButton.titleLabel.text = @"Order";
+            self.restorantsButton.titleLabel.text = self.titleOrder;
         }
 }
 
@@ -1371,71 +1388,95 @@
             self.titleMain = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Restaurants"])
+        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Restaurants"])
         {
             self.titleRestaurants = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Order"])
+        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Order"])
         {
             self.titleOrder = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Menu"])
+        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Menu"])
         {
             self.titleMenu = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Cart"])
+        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Cart"])
         {
             self.titleCart = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Back"])
+        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Back"])
         {
             self.titleBack = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Favorites"])
+        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Favorites"])
         {
             self.titleFavorites = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Total"])
+        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Total"])
         {
             self.titleTotal = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Count"])
+        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Count"])
         {
             self.titleCount = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
         }
 
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"With discounts"])
+        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"With discounts"])
         {
             self.titleWithDiscounts = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
         }
     
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Choose method to get order:"])
+        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Choose method to get order:"])
         {
             self.titleChooseMethodToGetOrder = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
         }
     
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Delivery"])
+        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Delivery"])
         {
             self.titleDelivery = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Delivery by time"])
+        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Delivery by time"])
         {
             self.titleDeliveryByTime = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Cancel"])
+        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Cancel"])
         {
             self.titleCancel = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
         }
-    
+        
+        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"YES"])
+        {
+            self.titleYES = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"NO"])
+        {
+            self.titleNO = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Do you want to delete all items from Cart?"])
+        {
+            self.titleDoYouWantDeleteAllItemsFromCart = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"No internet connection."])
+        {
+            self.titleNoInternet = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Cart is empty."])
+        {
+            self.titleCartIsEmpty = [[[Singleton sharedManager] objectAtIndex:i] valueForKey:@"title"];
+        }
     }
 
 }
