@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "HistoryTableListViewController.h"
+#import "GettingCoreContent.h"
 
 @interface PartOfHistoryViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UILabel *messageLabel;
@@ -35,6 +36,11 @@
 @property (strong, nonatomic) IBOutlet UILabel *cityDescriptionLabel;
 @property (strong, nonatomic) IBOutlet UILabel *metroDescriptionLabel;
 @property (strong, nonatomic) IBOutlet UILabel *additionalDescriptionLabel;
+@property (strong, nonatomic) GettingCoreContent *db;
+@property (strong, nonatomic) IBOutlet UILabel *productName;
+@property (strong, nonatomic) IBOutlet UILabel *productsCount;
+@property (strong, nonatomic) IBOutlet UILabel *productPriceSumm;
+@property (strong, nonatomic) NSArray *productsArray;
 
 
 - (IBAction)showOrHideInfoOfOrder:(id)sender;

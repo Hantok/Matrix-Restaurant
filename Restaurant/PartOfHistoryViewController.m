@@ -7,6 +7,7 @@
 //
 
 #import "PartOfHistoryViewController.h"
+#import "ProductDescriptionViewCell.h"
 
 @interface PartOfHistoryViewController ()
 
@@ -61,6 +62,18 @@
 @synthesize cityDescriptionLabel = _cityDescriptionLabel;
 @synthesize metroDescriptionLabel = _metroDescriptionLabel;
 @synthesize additionalDescriptionLabel = _additionalDescriptionLabel;
+@synthesize db = _db;
+@synthesize productName = _productName;
+@synthesize productsArray = _productsArray;
+
+- (GettingCoreContent *)db
+{
+    if(!_db)
+    {
+        _db = [[GettingCoreContent alloc] init];
+    }
+    return  _db;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -72,11 +85,9 @@
 }
 
 - (void)viewDidLoad
-{
-//    self.messageLabel.text = self.tempStr;
-    
+{    
     [super viewDidLoad];
-        
+                    
     CAGradientLayer *mainGradient = [CAGradientLayer layer];
     mainGradient.frame = self.mainView.bounds;
     mainGradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor darkGrayColor] CGColor],(id)[[UIColor blackColor] CGColor], nil];
@@ -94,18 +105,131 @@
     
     self.infoOfOrderContainerInnerView.frame = CGRectMake(0, 1, self.firstContainerWidth, self.firstContainerHeight - 2);
 //    self.infoOfOrderDetailView.frame = CGRectMake(20, 30, 272, self.tempLabel.frame.size.height + 10);
-    self.infoOfOrderDetailView.frame = CGRectMake(20, 30, 272, self.additionalDescriptionLabel.frame.origin.y + self.additionalDescriptionLabel.frame.size.height + 10);
+    self.infoOfOrderDetailView.frame = CGRectMake(15, 40, 290, self.additionalDescriptionLabel.frame.origin.y + self.additionalDescriptionLabel.frame.size.height + 10);
     
     self.infoOfProductInOrderInnerView.frame = CGRectMake(0, 1, self.secondContainerWidth, self.secondContainerHeight - 2);
-    [self.tempLabel2 sizeToFit];
-    self.infoOfProductInOrderDetailView.frame = CGRectMake(20, 30, 272, self.tempLabel2.frame.size.height + 10);
-                
+//    [self.tempLabel2 sizeToFit];
+//    self.infoOfProductInOrderDetailView.frame = CGRectMake(20, 30, 272, self.tempLabel2.frame.size.height + 10);
+    
+    
     [self.scrollView setScrollEnabled:YES];
     [self.scrollView setContentSize:CGSizeMake(320 , 420)];
     
 //    self.addressDescriptionLabel.text = [self.historyDictionary valueForKey:@"street"];
-    self.addressDescriptionLabel.text = [NSString stringWithFormat:[self.historyDictionary valueForKey:@"street"], @", ", [self.historyDictionary valueForKey:@"house"]];
+        
+    self.addressDescriptionLabel.text = [NSString stringWithFormat:@"%@%@%@%@%@", [self.historyDictionary valueForKey:@"street"], @", ", [self.historyDictionary valueForKey:@"house"], @"/", [self.historyDictionary valueForKey:@"room_office"]];
+    self.cityDescriptionLabel.text = [self.historyDictionary valueForKey:@"city"];
+    self.metroDescriptionLabel.text = [self.historyDictionary valueForKey:@"metro"];
+    self.additionalDescriptionLabel.text = [self.historyDictionary valueForKey:@"additional_info"];
     
+//    self.productName.text = [[[[self.productsArray objectAtIndex:0] valueForKey:@"resultArray"] objectAtIndex:1] valueForKey:@"nameText"];
+//    self.productsCount.text = [[self.productsArray objectAtIndex:0] valueForKey:@"count"];
+//    int productCount = [[self.historyDictionary valueForKey:@"productsCounts"] intValue];
+//    float productPrice = [[[[[self.productsArray objectAtIndex:0] valueForKey:@"resultArray"] objectAtIndex:0] valueForKey:@"price"] floatValue];
+//    self.productPriceSumm.text = [NSString stringWithFormat:@"%6.2f", productCount * productPrice];
+    
+    NSMutableArray *viewCellArray = [[NSMutableArray alloc] init];
+    ProductDescriptionViewCell *viewCell;
+    float viewCellSumHeight = 0;
+    float totalProductPrice = 0;
+    float totalProductPriceWithDiscount = 0;
+    
+    for (int i = 0; i < self.productsArray.count; i++) {
+        if (i == 0) {
+            viewCell = [[ProductDescriptionViewCell alloc] init];
+            viewCell.productName.text = [[[[self.productsArray objectAtIndex:i] valueForKey:@"resultArray"] objectAtIndex:1] valueForKey:@"nameText"];
+            viewCell.productCount.text = [[self.productsArray objectAtIndex:i] valueForKey:@"count"];
+            int productCount = [viewCell.productCount.text intValue];
+            float productPrice = [[[[[self.productsArray objectAtIndex:i] valueForKey:@"resultArray"] objectAtIndex:0] valueForKey:@"price"] floatValue] * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue];
+            viewCell.productPriceSum.text = [NSString stringWithFormat:@"%6.2f %@", productCount * productPrice, [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
+            totalProductPrice = totalProductPrice + viewCell.productPriceSum.text.floatValue;
+            float discountCoeficient = [self.db fetchDiscountByIdDiscount:[[[[self.productsArray objectAtIndex:i] valueForKey:@"resultArray"] objectAtIndex:0] valueForKey:@"idDiscount"]].floatValue;
+            totalProductPriceWithDiscount = totalProductPriceWithDiscount + viewCell.productPriceSum.text.floatValue - (viewCell.productPriceSum.text.floatValue * discountCoeficient);
+            [viewCell.productName sizeToFit];
+            [viewCell setFrame:CGRectMake(0, 40, 272, viewCell.productName.frame.size.height)];
+            [viewCell.lineSeparator setFrame:CGRectMake(199, 0, 1, viewCell.productName.frame.size.height)];
+            
+            viewCellSumHeight = viewCellSumHeight + viewCell.frame.size.height;
+            
+            [self.infoOfProductInOrderDetailView addSubview:viewCell];
+            [viewCellArray addObject:viewCell];
+        }
+        else {
+            viewCell = [[ProductDescriptionViewCell alloc] init];
+            viewCell.productName.text = [[[[self.productsArray objectAtIndex:i] valueForKey:@"resultArray"] objectAtIndex:1] valueForKey:@"nameText"];
+            viewCell.productCount.text = [[self.productsArray objectAtIndex:i] valueForKey:@"count"];
+            int productCount = [viewCell.productCount.text intValue];
+            float productPrice = [[[[[self.productsArray objectAtIndex:i] valueForKey:@"resultArray"] objectAtIndex:0] valueForKey:@"price"] floatValue] * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue];
+            viewCell.productPriceSum.text = [NSString stringWithFormat:@"%6.2f %@", productCount * productPrice, [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
+            totalProductPrice = totalProductPrice + viewCell.productPriceSum.text.floatValue;
+            float discountCoeficient = [self.db fetchDiscountByIdDiscount:[[[[self.productsArray objectAtIndex:i] valueForKey:@"resultArray"] objectAtIndex:0] valueForKey:@"idDiscount"]].floatValue;
+            totalProductPriceWithDiscount = totalProductPriceWithDiscount + viewCell.productPriceSum.text.floatValue - (viewCell.productPriceSum.text.floatValue * discountCoeficient);
+            [viewCell.productName sizeToFit];
+            float previousY = [[viewCellArray objectAtIndex:i - 1] frame].origin.y;
+            float previousH = [[viewCellArray objectAtIndex:i - 1] frame].size.height;
+            [viewCell setFrame:CGRectMake(0, previousY + previousH, 272, viewCell.productName.frame.size.height)];
+            [viewCell.lineSeparator setFrame:CGRectMake(199, 0, 1, viewCell.productName.frame.size.height)];
+            
+            viewCellSumHeight = viewCellSumHeight + viewCell.frame.size.height;
+
+            [self.infoOfProductInOrderDetailView addSubview:viewCell];
+            [viewCellArray addObject:viewCell];
+        }
+    }
+    
+    UILabel *totalPriceSumCaption = [[UILabel alloc] initWithFrame:CGRectMake(155, 40 + viewCellSumHeight + 10, 37, 15)];
+    [totalPriceSumCaption setFont:[UIFont systemFontOfSize:13]];
+    [totalPriceSumCaption setTextColor:[UIColor darkGrayColor]];
+    [totalPriceSumCaption setBackgroundColor:[UIColor clearColor]];
+    [totalPriceSumCaption setText:@"Total: "];
+    [self.infoOfProductInOrderDetailView addSubview:totalPriceSumCaption];
+    
+    UILabel *totalPriceSumValue = [[UILabel alloc] initWithFrame:CGRectMake(totalPriceSumCaption.frame.origin.x + totalPriceSumCaption.frame.size.width, totalPriceSumCaption.frame.origin.y, 90, totalPriceSumCaption.frame.size.height)];
+    totalPriceSumValue.text = [NSString stringWithFormat:@"%7.2f %@", totalProductPrice, [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
+    [totalPriceSumValue setFont:[UIFont boldSystemFontOfSize:13]];
+    [totalPriceSumValue setBackgroundColor:[UIColor clearColor]];
+    [self.infoOfProductInOrderDetailView addSubview:totalPriceSumValue];
+    
+    UILabel *totalPriceSumWithDiscountCaption = [[UILabel alloc] initWithFrame:CGRectMake(100, totalPriceSumCaption.frame.origin.y + totalPriceSumCaption.frame.size.height, 92, totalPriceSumCaption.frame.size.height)];
+    totalPriceSumWithDiscountCaption.text = @"With discounts: ";
+    [totalPriceSumWithDiscountCaption setFont:[UIFont systemFontOfSize:13]];
+    [totalPriceSumWithDiscountCaption setTextColor:[UIColor orangeColor]];
+    [totalPriceSumWithDiscountCaption setBackgroundColor:[UIColor clearColor]];
+    [self.infoOfProductInOrderDetailView addSubview:totalPriceSumWithDiscountCaption];
+    
+    UILabel *totalPriceSumWithDiscountValue = [[UILabel alloc] initWithFrame:CGRectMake(totalPriceSumWithDiscountCaption.frame.origin.x + totalPriceSumWithDiscountCaption.frame.size.width, totalPriceSumWithDiscountCaption.frame.origin.y, 92, totalPriceSumWithDiscountCaption.frame.size.height)];
+    totalPriceSumWithDiscountValue.text = [NSString stringWithFormat:@"%7.2f %@", totalProductPriceWithDiscount, [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
+    [totalPriceSumWithDiscountValue setFont:[UIFont boldSystemFontOfSize:13]];
+    [totalPriceSumWithDiscountValue setBackgroundColor:[UIColor clearColor]];
+    [self.infoOfProductInOrderDetailView addSubview:totalPriceSumWithDiscountValue];
+    
+    self.infoOfProductInOrderDetailView.frame = CGRectMake(15, 40, 290, totalPriceSumWithDiscountCaption.frame.origin.y + totalPriceSumWithDiscountCaption.frame.size.height + 10);
+    
+    int count = 5;
+    NSMutableArray *arrowArray = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < count; i++) {
+        
+        if (i == 0) {
+            UIImageView *firstArrow = [[UIImageView alloc] initWithFrame:CGRectMake(5, 30, 315 / count, 10)];
+            [firstArrow setImage:[UIImage imageNamed:@"arrow1_red.png"]];
+            [self.scrollView addSubview:firstArrow];
+            [arrowArray addObject:firstArrow];
+        } else {
+            if (i == count - 1) {
+                UIImageView *lastArrow = [[UIImageView alloc] initWithFrame:CGRectMake([[arrowArray objectAtIndex:i - 1] frame].origin.x + [[arrowArray objectAtIndex:i - 1] frame].size.width - 10, 30, 315 / count + 10, 10)];
+                [lastArrow setImage:[UIImage imageNamed:@"arrow3_red.png"]];
+                [self.scrollView addSubview:lastArrow];
+                [arrowArray addObject:lastArrow];
+            }
+            else {
+                UIImageView *arrow = [[UIImageView alloc] initWithFrame:CGRectMake([[arrowArray objectAtIndex:i - 1] frame].origin.x + [[arrowArray objectAtIndex:i - 1] frame].size.width - 10, 30, 315 / count + 10, 10)];
+                [arrow setImage:[UIImage imageNamed:@"arrow2_red.png"]];
+                [self.scrollView addSubview:arrow];
+                [arrowArray addObject:arrow];
+            }
+        }        
+    }
 }
 
 - (void)viewDidUnload
@@ -130,6 +254,9 @@
     [self setAdditionalDescriptionLabel:nil];
     [self setAddressLabel:nil];
     [self setAddressDescriptionLabel:nil];
+    [self setProductName:nil];
+    [self setProductsCount:nil];
+    [self setProductPriceSumm:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

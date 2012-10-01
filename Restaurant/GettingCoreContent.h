@@ -32,6 +32,11 @@
 - (void)SavePictureToCoreData:(NSString *)idPicture toData:(NSData *)data;
 - (NSData *)fetchPictureDataByPictureId:(NSString *)pictureId;
 - (NSDictionary *)fetchImageURLAndDatabyMenuID:(NSString *)menuId;
+- (NSArray *)fetchProductWithId:(NSString *)productsIds
+                     withCounts:(NSString *)productsCounts;
+- (NSString *)fetchDiscountByIdDiscount:(NSString *)idDiscount;
+- (NSArray *)fetchStatusForOrder:(NSString *)idStatus;
+
 
 - (void)SaveProductToEntityName:(NSString *)entityName
                          WithId:(NSNumber *)underbarid

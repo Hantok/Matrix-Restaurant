@@ -419,6 +419,103 @@
     return [resultOfARequest copy]; 
 }
 
+- (NSArray *)fetchProductWithId:(NSString *)productsIds
+                     withCounts:(NSString *)productsCounts
+{
+    NSArray *arrayOfIds = [productsIds componentsSeparatedByString:@";"];
+    NSArray *arrayOfCounts = [productsCounts componentsSeparatedByString:@";"];
+    
+    if (arrayOfIds.count != 0) {
+        
+        NSMutableArray *arrayToGet = [[NSMutableArray alloc] init];
+        
+        NSMutableArray *resultOfARequest;
+        
+        for (int i = 0; i < arrayOfIds.count; i++) {
+            
+            NSFetchRequest * request = [[NSFetchRequest alloc] init];
+            [request setEntity:[NSEntityDescription entityForName:@"Products" inManagedObjectContext:self.managedObjectContext]];
+            [request setPredicate:[NSPredicate predicateWithFormat:@"underbarid==%@", [arrayOfIds objectAtIndex:i]]];
+            NSError *error;
+            NSArray *debug= [self.managedObjectContext executeFetchRequest:request error:&error];
+            
+            if (debug.count != 0)
+            {
+                resultOfARequest = [[NSMutableArray alloc] init];
+                request = [NSFetchRequest fetchRequestWithEntityName:@"Products_translation"];
+                request.predicate = [NSPredicate predicateWithFormat:@"idLanguage == %@ && idProduct == %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"], [[debug objectAtIndex:0] valueForKey:@"underbarid"]];
+                
+                [resultOfARequest addObjectsFromArray:debug];
+                [resultOfARequest addObjectsFromArray:[self.managedObjectContext executeFetchRequest:request error:&error]];
+                
+                NSMutableDictionary *resultDictionary = [[NSMutableDictionary alloc] init];
+                [resultDictionary setObject:resultOfARequest forKey:@"resultArray"];
+                [resultDictionary setObject:[arrayOfCounts objectAtIndex:i] forKey:@"count"];
+                
+                [arrayToGet addObject:resultDictionary];
+                //                return [resultOfARequest copy];
+            }
+            else
+            {
+                return nil;
+            }
+            
+        }
+        
+        return [arrayToGet mutableCopy];
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+- (NSString *)fetchDiscountByIdDiscount:(NSString *)idDiscount
+{
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:@"Discounts" inManagedObjectContext:self.managedObjectContext]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"underbarid==%@", idDiscount]];
+    
+    NSError *error;
+    NSArray *debug= [self.managedObjectContext executeFetchRequest:request error:&error];
+    if (debug.count != 0)
+    {
+        NSManagedObject *objectToGet = [debug objectAtIndex:0];
+        return [objectToGet valueForKey:@"value"];
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+- (NSArray *)fetchStatusForOrder:(NSString *)idStatus
+{
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:@"Statuses" inManagedObjectContext:self.managedObjectContext]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"underbarid==%@", idStatus]];
+    
+    NSError *error;
+    NSArray *debug= [self.managedObjectContext executeFetchRequest:request error:&error];
+    NSMutableArray *resultOfARequest;
+    
+    if (debug.count != 0)
+    {
+        resultOfARequest = [[NSMutableArray alloc] init];
+        request = [NSFetchRequest fetchRequestWithEntityName:@"Statuses_translation"];
+        request.predicate = [NSPredicate predicateWithFormat:@"idLanguage == %@ && idStatus == %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"], [[debug objectAtIndex:0] valueForKey:@"underbarid"]];
+        
+        [resultOfARequest addObjectsFromArray:debug];
+        [resultOfARequest addObjectsFromArray:[self.managedObjectContext executeFetchRequest:request error:&error]];
+        
+        return [resultOfARequest copy];
+    }
+    else
+    {
+        return nil;
+    }
+}
+
 - (void)SavePictureToCoreData:(NSString *)idPicture toData:(NSData *)data
 {
     NSFetchRequest * request = [[NSFetchRequest alloc] init];
