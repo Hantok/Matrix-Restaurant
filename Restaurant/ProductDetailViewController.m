@@ -869,94 +869,94 @@
 
 -(void)setAllTitlesOnThisPage
 {
-    NSArray *array = [Singleton sharedManager];
+    NSArray *array = [Singleton titlesTranslation_withISfromSettings:NO];
     for (int i = 0; i <array.count; i++)
     {
-        if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"the nutritional values"])
+        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"the nutritional values"])
         {
             self.captionLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"portion"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"portion"])
         {
             self.portionLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"protein"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"protein"])
         {
             self.proteinLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"in 100g"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"in 100g"])
         {
             self.in100gLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"fat"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"fat"])
         {
             self.fatLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"carbohydrate"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"carbohydrate"])
         {
             self.carbohydratesLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Weight"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Weight"])
         {
             self.weightLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Add favorites"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Add favorites"])
         {
             self.favoritesButton.title = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if (!self.labelString && [[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Add to Cart"])
+        else if (!self.labelString && [[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Add to Cart"])
         {
             [self.cartButton setTitle:[[array objectAtIndex:i] valueForKey:@"title"] forState:UIControlStateNormal];
         }
         
-        else if (self.labelString && [[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Change"])
+        else if (self.labelString && [[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Change"])
         {
             [self.cartButton setTitle:[[array objectAtIndex:i] valueForKey:@"title"] forState:UIControlStateNormal];
         }
         
-        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Share"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Share"])
         {
             [self.shareButton setTitle:[[array objectAtIndex:i] valueForKey:@"title"] forState:UIControlStateNormal];
         }
         
-        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"with discount"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"with discount"])
         {
             self.titleWihtDiscounts = [[array objectAtIndex:i] valueForKey:@"title"];
         }
 
-        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Cancel"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Cancel"])
         {
             self.titleCancel = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Added %i item(s) %@ to the Cart."])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Added %i item(s) %@ to the Cart."])
         {
             self.titleAddetItemToTheCart = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Do you want to delete item %@"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Do you want to delete item %@"])
         {
             self.titleDoYouWantDeleteItemFromCart = [[array objectAtIndex:i] valueForKey:@"title"];
         }
     
-        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"YES"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"YES"])
         {
             self.titleYES = [[array objectAtIndex:i] valueForKey:@"title"];
         }
-        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"NO"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"NO"])
         {
             self.titleNO = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Loading..."])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Loading..."])
         {
             self.loadingView.textLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
         }

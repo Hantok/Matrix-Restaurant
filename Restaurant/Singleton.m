@@ -10,45 +10,49 @@
 
 @interface Singleton()
 
-@property (nonatomic, strong) NSArray *someProperty;
-
 @end
 
 @implementation Singleton
 
-@synthesize someProperty = _someProperty;
-
 #pragma mark Singleton Methods
 
-+ (id)sharedManager
++ (NSArray *)titlesTranslation_withISfromSettings:(BOOL)boolValue
 {
-    static Singleton *sharedMyManager = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedMyManager = [[self alloc] init];
-    });
-    return sharedMyManager;
-}
-
-- (id)init //повертає массив перекладу на поточній мові
-{
-    if (self = [super init])
+    static NSArray *titles;
+    static NSArray *titles_translation;
+    static GettingCoreContent *db;
+    
+    if (titles_translation == nil)
     {
-        GettingCoreContent *db = [[GettingCoreContent alloc] init];
-        NSArray *array = [db fetchAllObjectsFromEntity:@"Titles"];
+        db = [[GettingCoreContent alloc] init];
+        titles = [db fetchAllObjectsFromEntity:@"Titles"];
         NSString *defaultLanguage = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"];
         if (defaultLanguage)
         {
-            _someProperty = [db fetchObjectsFromCoreDataForEntity:@"Titles_translation" withArrayObjects:array withDefaultLanguageId:defaultLanguage];
+            titles_translation = [db fetchObjectsFromCoreDataForEntity:@"Titles_translation" withArrayObjects:titles withDefaultLanguageId:defaultLanguage];
         }
         else
         {
-            _someProperty = [db fetchObjectsFromCoreDataForEntity:@"Titles_translation" withArrayObjects:array withDefaultLanguageId:@"1"];
+            titles_translation = [db fetchObjectsFromCoreDataForEntity:@"Titles_translation" withArrayObjects:titles withDefaultLanguageId:@"1"];
             
         }
-        
+
     }
-    return (id)_someProperty;
+    else if (boolValue == YES)
+    {
+        NSString *defaultLanguage = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"];
+        if (defaultLanguage)
+        {
+            titles_translation = [db fetchObjectsFromCoreDataForEntity:@"Titles_translation" withArrayObjects:titles withDefaultLanguageId:defaultLanguage];
+        }
+        else
+        {
+            titles_translation = [db fetchObjectsFromCoreDataForEntity:@"Titles_translation" withArrayObjects:titles withDefaultLanguageId:@"1"];
+            
+        }
+    }
+
+    return titles_translation;
 }
 
 @end

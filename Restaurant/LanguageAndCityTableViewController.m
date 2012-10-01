@@ -135,6 +135,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     if (checkConnection.hasConnectivity)
     {
         self.hudView = [[SSHUDView alloc] initWithTitle:self.titleLoading];
@@ -183,6 +184,7 @@
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         [[NSUserDefaults standardUserDefaults] setObject:data forKey:changeStringForUserDefaults];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        
         //[self.navigationController popViewControllerAnimated:YES];
         
         
@@ -294,13 +296,17 @@
     self.db = parser;
     [self XMLToCoreData];
     
-    [self performSelector:@selector(complete:) withObject:nil];
-    
     if (!self.isCity)
     {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil/*Success*/ message:self.titleSuccesLanguage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alertView show];
+        [Singleton titlesTranslation_withISfromSettings:YES];
     }
+    
+    [self performSelector:@selector(complete:) withObject:nil];
+//    if (!self.isCity)
+//    {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil/*Success*/ message:self.titleSuccesLanguage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        [alertView show];
+//    }
     
     //[self.navigationController popViewControllerAnimated:YES];
 }
@@ -309,7 +315,7 @@
 
 - (void)complete:(id)sender {
 	[self.hudView completeWithTitle:self.titleFinished];
-	[self performSelector:@selector(pop:) withObject:nil afterDelay:0.7];
+	[self performSelector:@selector(pop:) withObject:nil afterDelay:0.9];
 }
 
 
@@ -359,25 +365,25 @@
 
 -(void)setAllTitlesOnThisPage
 {
-    NSArray *array = [Singleton sharedManager];
+    NSArray *array = [Singleton titlesTranslation_withISfromSettings:NO];
     for (int i = 0; i <array.count; i++)
     {
-        if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Loading..."])
+        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Loading..."])
         {
             self.titleLoading = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Finished"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Finished"])
         {
             self.titleFinished = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Please. Relaunch application to see all changes"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Please. Relaunch application to see all changes"])
         {
             self.titleSuccesLanguage = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Unable to fetch data"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Unable to fetch data"])
         {
             self.titleUnableFetchData = [[array objectAtIndex:i] valueForKey:@"title"];
         }

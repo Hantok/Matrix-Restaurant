@@ -14,6 +14,8 @@
 #import "MenuDataStruct.h"
 #import "subViewSpam.h"
 #import "Singleton.h"
+#import "FavoritesIconViewController.h"
+#import "FavoritesTableViewController.h"
 
 #import <AudioToolbox/AudioToolbox.h>
 

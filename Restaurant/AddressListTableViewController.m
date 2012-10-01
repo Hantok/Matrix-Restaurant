@@ -162,15 +162,15 @@
 
 -(void)setAllTitlesOnThisPage
 {
-    NSArray *array = [Singleton sharedManager];
+    NSArray *array = [Singleton titlesTranslation_withISfromSettings:NO];
     for (int i = 0; i <array.count; i++)
     {
-        if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Saved addresses"])
+        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Saved addresses"])
         {
             [self.saveAddressItem setTitle:[[array objectAtIndex:i] valueForKey:@"title"]];
         }
         
-        else if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Cancel"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Cancel"])
         {
             [self.cancelButton setTitle:[[array objectAtIndex:i] valueForKey:@"title"]];
         }
