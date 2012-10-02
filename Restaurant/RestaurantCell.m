@@ -9,10 +9,11 @@
 #import "RestaurantCell.h"
 
 @implementation RestaurantCell
-@synthesize restaurantAdress = _restaurantAdress;
 @synthesize restaurantImage = _restaurantImage;
 @synthesize restaurantSubway = _restaurantSubway;
-
+@synthesize restaurantPhones = _restaurantPhones;
+@synthesize restaurantName = _restaurantName;
+@synthesize restaurantPlace = _restaurantPlace;
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
