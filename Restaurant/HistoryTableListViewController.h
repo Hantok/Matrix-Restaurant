@@ -10,12 +10,18 @@
 #import <QuartzCore/QuartzCore.h>
 #import "PartOfHistoryViewController.h"
 #import "GettingCoreContent.h"
+#import "XMLParseOrdersStatuses.h"
 
 
-@interface HistoryTableListViewController : UITableViewController <UITableViewDataSource>
+@interface HistoryTableListViewController : UITableViewController <UITableViewDataSource, NSURLConnectionDelegate>
+{
+    
+}
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *historyArray;
 @property NSInteger selectedRow;
 @property (strong, nonatomic) GettingCoreContent *content;
+@property (strong, nonatomic) XMLParseOrdersStatuses *db;
+@property (strong, nonatomic) NSMutableDictionary *statusOfOrdersDictionary;
 
 @end

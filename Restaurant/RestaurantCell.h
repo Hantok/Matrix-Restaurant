@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface RestaurantCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *restaurantAdress;
-@property (weak, nonatomic) IBOutlet UIImageView *restaurantImage;
-@property (weak, nonatomic) IBOutlet UILabel *restaurantSubway;
 
+@property (strong, nonatomic) IBOutlet UIImageView *restaurantImage;
+@property (strong, nonatomic) IBOutlet UILabel *restaurantSubway;
+@property (strong, nonatomic) IBOutlet UILabel *restaurantPhones;
+@property (strong, nonatomic) IBOutlet UILabel *restaurantName;
+@property (strong, nonatomic) IBOutlet UILabel *restaurantPlace;
 @end

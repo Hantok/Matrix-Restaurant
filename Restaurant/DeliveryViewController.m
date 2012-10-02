@@ -692,7 +692,7 @@
     [self.historyDictionary setObject:self.counts forKey:@"productsCounts"];
     [self.historyDictionary setObject:self.ids forKey:@"productsIDs"];
     [self.historyDictionary setObject:self.appartaments.text forKey:@"room_office"];
-    [self.historyDictionary setObject:@"status id" forKey:@"statusID"];
+    [self.historyDictionary setObject:@"3" forKey:@"statusID"];
     [self.historyDictionary setObject:self.street.text forKey:@"street"];
     [self.historyDictionary setObject:self.otherInformation.text forKey:@"additional_info"];
 

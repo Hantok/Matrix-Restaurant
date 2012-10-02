@@ -135,6 +135,8 @@
 		F594B26816174B2800DCEA50 /* PartOfHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F594B26616174B2800DCEA50 /* PartOfHistoryViewController.m */; };
 		F594B26B16174C5300DCEA50 /* ProductDescriptionViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = F594B26916174C5300DCEA50 /* ProductDescriptionViewCell.h */; };
 		F594B26C16174C5300DCEA50 /* ProductDescriptionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F594B26A16174C5300DCEA50 /* ProductDescriptionViewCell.m */; };
+		F5986C751619F6D900D3FBF7 /* XMLParseOrdersStatuses.h in Headers */ = {isa = PBXBuildFile; fileRef = F5986C731619F6D900D3FBF7 /* XMLParseOrdersStatuses.h */; };
+		F5986C761619F6D900D3FBF7 /* XMLParseOrdersStatuses.m in Sources */ = {isa = PBXBuildFile; fileRef = F5986C741619F6D900D3FBF7 /* XMLParseOrdersStatuses.m */; };
 		F599588115875CCF0000469F /* Settings1.png in Resources */ = {isa = PBXBuildFile; fileRef = F599588015875CCF0000469F /* Settings1.png */; };
 		F59A9ED016034C3800D8A6ED /* HistoryPartCell.h in Headers */ = {isa = PBXBuildFile; fileRef = F59A9ECD16034C3800D8A6ED /* HistoryPartCell.h */; };
 		F59A9ED116034C3800D8A6ED /* HistoryPartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F59A9ECE16034C3800D8A6ED /* HistoryPartCell.m */; };
@@ -344,6 +346,8 @@
 		F594B26616174B2800DCEA50 /* PartOfHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartOfHistoryViewController.m; sourceTree = "<group>"; };
 		F594B26916174C5300DCEA50 /* ProductDescriptionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDescriptionViewCell.h; sourceTree = "<group>"; };
 		F594B26A16174C5300DCEA50 /* ProductDescriptionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDescriptionViewCell.m; sourceTree = "<group>"; };
+		F5986C731619F6D900D3FBF7 /* XMLParseOrdersStatuses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParseOrdersStatuses.h; sourceTree = "<group>"; };
+		F5986C741619F6D900D3FBF7 /* XMLParseOrdersStatuses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParseOrdersStatuses.m; sourceTree = "<group>"; };
 		F599588015875CCF0000469F /* Settings1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Settings1.png; sourceTree = "<group>"; };
 		F59A9ECD16034C3800D8A6ED /* HistoryPartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryPartCell.h; sourceTree = "<group>"; };
 		F59A9ECE16034C3800D8A6ED /* HistoryPartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryPartCell.m; sourceTree = "<group>"; };
@@ -621,6 +625,8 @@
 				F58F877716085B17002F3765 /* XMLParseResponseFromTheServer.m */,
 				786B299A1546EA7400486848 /* XMLParse.h */,
 				786B299B1546EA7400486848 /* XMLParse.m */,
+				F5986C731619F6D900D3FBF7 /* XMLParseOrdersStatuses.h */,
+				F5986C741619F6D900D3FBF7 /* XMLParseOrdersStatuses.m */,
 				F5072158156BA2C200D7ACC6 /* checkConnection.h */,
 				F5072159156BA2C200D7ACC6 /* checkConnection.m */,
 			);
@@ -751,6 +757,7 @@
 				F594B26316174A4100DCEA50 /* HistoryTableListViewController.h in Headers */,
 				F594B26716174B2800DCEA50 /* PartOfHistoryViewController.h in Headers */,
 				F594B26B16174C5300DCEA50 /* ProductDescriptionViewCell.h in Headers */,
+				F5986C751619F6D900D3FBF7 /* XMLParseOrdersStatuses.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -976,6 +983,7 @@
 				F594B26416174A4100DCEA50 /* HistoryTableListViewController.m in Sources */,
 				F594B26816174B2800DCEA50 /* PartOfHistoryViewController.m in Sources */,
 				F594B26C16174C5300DCEA50 /* ProductDescriptionViewCell.m in Sources */,
+				F5986C761619F6D900D3FBF7 /* XMLParseOrdersStatuses.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
