@@ -141,9 +141,12 @@
             }
         }
     }
-    
-    cell.restaurantAdress.text = dataStruct.name;
+    cell.restaurantName.text = dataStruct.name;
     cell.restaurantSubway.text = dataStruct.subwayStation;
+    cell.restaurantPhones.text = dataStruct.phones;
+    cell.restaurantPlace.text = [NSString stringWithFormat:@"%@, %@", dataStruct.street, dataStruct.build];
+    NSData *dataOfPicture = [self.db fetchPictureDataByPictureId:dataStruct.idPicture];
+    cell.restaurantImage.image = [UIImage imageWithData:dataOfPicture];
     
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = cell.bounds;
