@@ -1,11 +1,3 @@
-//
-//  RestaurantDetailViewController.m
-//  Restaurant
-//
-//  Created by Bogdan Geleta on 05.06.12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
-//
-
 #import "RestaurantDetailViewController.h"
 #import "MapViewController.h"
 #import <QuartzCore/QuartzCore.h>
@@ -31,6 +23,14 @@
 @synthesize alert = _alert;
 @synthesize loadingView = _loadingView;
 @synthesize scroll = _scroll;
+@synthesize restDetAdressLabel = _restDetAdressLabel;
+@synthesize restDetAdress = _restDetAdress;
+@synthesize restDetWorkingTimeLabel = _restDetWorkingTimeLabel;
+@synthesize restDetWorkingTime = _restDetWorkingTime;
+@synthesize restDetSeatsNumberLabel = _restDetSeatsNumberLabel;
+@synthesize restDetSeatsNumber = _restDetSeatsNumber;
+@synthesize restDetParkingLabel = _restDetParkingLabel;
+@synthesize restDetParking = _restDetParking;
 
 - (GettingCoreContent *)db
 {
@@ -81,14 +81,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _scroll.contentSize = CGSizeMake(142, 600);
+    _scroll.scrollEnabled = YES;
+    _scroll.clipsToBounds = YES;
+    [_scroll setShowsVerticalScrollIndicator:NO];
+    _scroll.scrollsToTop= YES;
+    
     
     [self setAllTitlesOnThisPage];
-    
     self.navigationItem.title = self.dataStruct.name;
-	//workTimeDetailLabel.text = self.dataStruct.workingTime;
-    //telephoneDetailLabel.text = self.dataStruct.phones;
     NSData *dataOfPicture = [self.db fetchPictureDataByPictureId:self.dataStruct.idPicture];
-    //    NSURL *url = [self.db fetchImageURLbyPictureID:self.dataStruct.idPicture];
     if(dataOfPicture)
     {
         self.dataStruct.image  = [UIImage imageWithData:dataOfPicture];
@@ -105,24 +107,12 @@
             self.loadingView.textLabel.text = @"";
             [self.view addSubview:self.loadingView];
         }
-        
-        //        dataOfPicture = [NSData dataWithContentsOfURL:url];
-        //        [self.db SavePictureToCoreData:self.dataStruct.idPicture toData:dataOfPicture];
-        //self.dataStruct.image  = [UIImage imageWithData:dataOfPicture];
-        
-        
+
     }
-    //[self.db SavePictureToCoreData:self.dataStruct.idPicture toData:UIImagePNGRepresentation(cell.productImage.image)];
-    
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = self.view.bounds;
     gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor darkGrayColor] CGColor], (id)[[UIColor blackColor] CGColor],(id)[[UIColor darkGrayColor] CGColor],(id)[[UIColor blackColor] CGColor], nil];
     [self.view.layer insertSublayer:gradient atIndex:0];
-    
-    //[self.callButton setBackgroundImage:[UIImage imageNamed:@"Button_orange_rev2.png"] forState:UIControlStateNormal];
-    
-    //[self.showOnMapButton setBackgroundImage:[UIImage imageNamed:@"Button_black_light_rev2.png"] forState:UIControlStateNormal];
-    
     self.callButton.titleLabel.minimumFontSize = 10;
     self.showOnMapButton.titleLabel.minimumFontSize = 10;
     
@@ -156,15 +146,6 @@
 
 - (IBAction)tebleReserve:(id)sender
 {
-//    self.alert = [[UIAlertView alloc] initWithTitle:@"Sorry.Not suppurting now."
-//                                            message:nil
-//                                           delegate:nil
-//                                  cancelButtonTitle:@"OK"
-//                                  otherButtonTitles:nil, nil];
-//    [self.alert show];
-//    [self performSelector:@selector(dismiss) withObject:nil afterDelay:2];
-    
-//    [self performSegueWithIdentifier:@"reserve" sender:self];
 }
 
 - (void) dismiss

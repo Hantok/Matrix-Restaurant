@@ -19,4 +19,12 @@
 @property (strong, nonatomic) GettingCoreContent *db;
 - (IBAction)tebleReserve:(id)sender;
 @property (strong, nonatomic) IBOutlet UIScrollView *scroll;
+@property (weak, nonatomic) IBOutlet UILabel *restDetAdressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *restDetAdress;
+@property (weak, nonatomic) IBOutlet UILabel * restDetWorkingTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *restDetWorkingTime;
+@property (weak, nonatomic) IBOutlet UILabel *restDetSeatsNumberLabel;
+@property (weak, nonatomic) IBOutlet UILabel *restDetSeatsNumber;
+@property (weak, nonatomic) IBOutlet UILabel *restDetParkingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *restDetParking;
 @end
