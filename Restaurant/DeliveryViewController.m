@@ -18,6 +18,15 @@
 @property (strong, nonatomic) NSMutableData *responseData;
 @property (strong, nonatomic) NSMutableString *ids;
 @property (strong, nonatomic) NSMutableString *counts;
+@property (strong, nonatomic) SSHUDView *hudView;
+
+//titles
+@property (strong, nonatomic) NSString *titleThankYouForOrder;
+@property (strong, nonatomic) NSString *titleOurOperatorWillCallYou;
+@property (strong, nonatomic) NSString *titleError;
+@property (strong, nonatomic) NSString *titleCanNotAccessToServer;
+@property (strong, nonatomic) NSString *titlePleaseTryAgain;
+@property (strong, nonatomic) NSString *titleEnterJustNombers;
 
 @end
 
@@ -38,6 +47,7 @@
 //@synthesize floor;
 @synthesize dictionary = _dictionary;
 @synthesize historyDictionary =_historyDictionary;
+@synthesize hudView;
 
 @synthesize tapRecognizer = _tapRecognizer;
 @synthesize textFieldForFeils = _textFieldForFeils;
@@ -46,6 +56,14 @@
 @synthesize enableTime = _enableTime;
 @synthesize pickerViewContainer;
 @synthesize db = _db;
+
+//titles
+@synthesize titleThankYouForOrder = _titleThankYouForOrder;
+@synthesize titleOurOperatorWillCallYou = _titleOurOperatorWillCallYou;
+@synthesize titleError = _titleError;
+@synthesize titleCanNotAccessToServer = _titleCanNotAccessToServer;
+@synthesize titlePleaseTryAgain = _titlePleaseTryAgain;
+@synthesize titleEnterJustNombers = _titleEnterJustNombers;
 
 - (GettingCoreContent *)content
 {
@@ -260,7 +278,7 @@
         if (![textField.text isEqual:@""])
             if (![[NSScanner scannerWithString:textField.text] scanInteger:nil])
             {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Enter please just numbers!" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:self.titleEnterJustNombers message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [alertView show];
                 textField.text = nil;
                 //[textField becomeFirstResponder];
@@ -415,14 +433,15 @@
 //            [self.dictionary setObject:self.deliveryTime.text forKey:@"deliveryTime"];
             
             [self.content addObjectToEntity:@"Addresses" withDictionaryOfAttributes:self.dictionary.copy];
-            
-            UIActivityIndicatorView *activityView=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-            activityView.backgroundColor = [UIColor darkTextColor];
-            self.scrollView.frame = self.parentViewController.view.frame;
-            activityView.frame = self.parentViewController.view.frame;
-            activityView.center=self.view.center;
-            [activityView startAnimating];
-            [self.view addSubview:activityView];
+//            
+//            UIActivityIndicatorView *activityView=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+//            activityView.backgroundColor = [UIColor darkTextColor];
+//            self.scrollView.frame = self.parentViewController.view.frame;
+//            activityView.frame = self.parentViewController.view.frame;
+//            activityView.center=self.view.center;
+//            [activityView startAnimating];
+//            [self.view addSubview:activityView];
+
             
             //    NSString *orderStringUrl = [@"http://matrix-soft.org/addon_domains_folder/test5/root/Customer_Scripts/makeOrder.php?tag=" stringByAppendingString: @"order"];
             //    orderStringUrl = [orderStringUrl stringByAppendingString: @"&DBid=10&UUID=fdsampled-roma-roma-roma-69416d19df4e&ProdIDs=9;11&counts=30;5&city=Kyiv&street=qweqw&house=1&room_office=232&custName=eqweqwewqewe&phone=+380(099)9999999&idDelivery=1"];
@@ -491,6 +510,13 @@
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
             [request setHTTPMethod:@"GET"];
             NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+            
+            
+            self.scrollView.frame = self.parentViewController.view.frame;
+            self.hudView = [[SSHUDView alloc] init];
+            hudView.backgroundColor = [UIColor clearColor];
+            [self.hudView show];
+            
             if (!theConnection)
             {
                 // Inform the user that the connection failed.
@@ -602,9 +628,10 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"Unable to fetch data");
+    [self.hudView failAndDismissWithTitle:nil];
     
-    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Can not access to the server" 
-                                                      message:@"Please try again."  
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:self.titleCanNotAccessToServer
+                                                      message:self.titlePleaseTryAgain
                                                      delegate:self
                                             cancelButtonTitle:@"Ok"
                                             otherButtonTitles:nil];
@@ -624,6 +651,26 @@
     [parser setDelegate:parser];
     [parser parse];
     self.db = parser;
+    
+    if ([self.db.success isEqualToString:@"1"]) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:self.titleThankYouForOrder
+                                                          message:self.titleOurOperatorWillCallYou
+                                                         delegate:self
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+    } else {
+        [self.hudView failAndDismissWithTitle:nil];
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:self.titleError
+                                                          message:self.titlePleaseTryAgain
+                                                         delegate:self
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
     
     NSLog(@"Success: %@", self.db.success);
     NSLog(@"orderNumber: %@", self.db.orderNumber);
@@ -645,34 +692,16 @@
     [self.historyDictionary setObject:self.counts forKey:@"productsCounts"];
     [self.historyDictionary setObject:self.ids forKey:@"productsIDs"];
     [self.historyDictionary setObject:self.appartaments.text forKey:@"room_office"];
-    [self.historyDictionary setObject:@"status id" forKey:@"statusID"];
+    [self.historyDictionary setObject:@"3" forKey:@"statusID"];
     [self.historyDictionary setObject:self.street.text forKey:@"street"];
     [self.historyDictionary setObject:self.otherInformation.text forKey:@"additional_info"];
 
     
     [self.content addObjectToCoreDataEntity:@"CustomerOrders" withDictionaryOfAttributes:self.historyDictionary.copy];
-
-    
-    if ([self.db.success isEqualToString:@"1"]) {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Thank you for order!"
-                                                          message:@"Our operator will call you for a while."
-                                                         delegate:self
-                                                cancelButtonTitle:@"Ok"
-                                                otherButtonTitles:nil];
-        [message show];
-
-    } else {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                          message:@"Our operator will call you for a while."
-                                                         delegate:self
-                                                cancelButtonTitle:@"Ok"
-                                                otherButtonTitles:nil];
-        [message show];
-
-    }
     
     [[[GettingCoreContent alloc] init] deleteAllObjectsFromEntity:@"Cart"];
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    [self.hudView completeAndDismissWithTitle:nil];
 }
 
 /////////////////////////////////////////////////////
@@ -799,6 +828,36 @@
         else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Save address"])
         {
             [self.saveAddressButton setTitle:[[array objectAtIndex:i] valueForKey:@"title"] forState:UIControlStateNormal];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Thank you for order!"])
+        {
+            self.titleThankYouForOrder = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Our operator will call you for a while."])
+        {
+            self.titleOurOperatorWillCallYou = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Error"])
+        {
+            self.titleError = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Can not access to the server"])
+        {
+            self.titleCanNotAccessToServer = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Please try again."])
+        {
+            self.titlePleaseTryAgain = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Enter please just numbers!"])
+        {
+            self.titleEnterJustNombers = [[array objectAtIndex:i] valueForKey:@"title"];
         }
     }
 }

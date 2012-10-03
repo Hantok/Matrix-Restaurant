@@ -205,30 +205,89 @@
     
     self.infoOfProductInOrderDetailView.frame = CGRectMake(15, 40, 290, totalPriceSumWithDiscountCaption.frame.origin.y + totalPriceSumWithDiscountCaption.frame.size.height + 10);
     
-    int count = 5;
+    int curentNumberOfStatus;
+    
+    for (int i = 0; [[self.db fetchAllObjectsFromEntity:@"Statuses"] count]; i++) {
+        
+        NSString *str1 = [[[[self.db fetchAllObjectsFromEntity:@"Statuses"] objectAtIndex:i] valueForKey:@"underbarid"] stringValue];
+        NSString *str2 = [NSString stringWithFormat:@"%@", [self.historyDictionary valueForKey:@"statusID"]];
+        
+        if ([str1 isEqualToString:str2]) {
+            curentNumberOfStatus = [[[[self.db fetchAllObjectsFromEntity:@"Statuses"] objectAtIndex:i] valueForKey:@"value"] intValue];
+            break;
+        }
+        
+    }
+    
+    int countOfStatus = [[self.db fetchAllObjectsFromEntity:@"Statuses"] count] - 1;
+    
     NSMutableArray *arrowArray = [[NSMutableArray alloc] init];
     
-    for (int i = 0; i < count; i++) {
+    for (int i = 0; i < countOfStatus; i++) {
         
         if (i == 0) {
-            UIImageView *firstArrow = [[UIImageView alloc] initWithFrame:CGRectMake(5, 30, 315 / count, 10)];
-            [firstArrow setImage:[UIImage imageNamed:@"arrow1_red.png"]];
+            UIImageView *firstArrow = [[UIImageView alloc] initWithFrame:CGRectMake(5, 30, 315 / countOfStatus, 10)];
+            if (curentNumberOfStatus == 1) {
+                [firstArrow setImage:[UIImage imageNamed:@"arrow1_green.png"]];
+            } else {
+                [firstArrow setImage:[UIImage imageNamed:@"arrow1_red.png"]];
+            }
             [self.scrollView addSubview:firstArrow];
             [arrowArray addObject:firstArrow];
         } else {
-            if (i == count - 1) {
-                UIImageView *lastArrow = [[UIImageView alloc] initWithFrame:CGRectMake([[arrowArray objectAtIndex:i - 1] frame].origin.x + [[arrowArray objectAtIndex:i - 1] frame].size.width - 10, 30, 315 / count + 10, 10)];
-                [lastArrow setImage:[UIImage imageNamed:@"arrow3_red.png"]];
+            if (i == countOfStatus - 1) {
+                UIImageView *lastArrow = [[UIImageView alloc] initWithFrame:CGRectMake([[arrowArray objectAtIndex:i - 1] frame].origin.x + [[arrowArray objectAtIndex:i - 1] frame].size.width - 10, 30, 315 / countOfStatus + 10, 10)];
+                if (curentNumberOfStatus == 0) {
+                    [lastArrow setImage:[UIImage imageNamed:@"arrow3_green.png"]];
+                } else {
+                    [lastArrow setImage:[UIImage imageNamed:@"arrow3_red.png"]];
+                }
                 [self.scrollView addSubview:lastArrow];
                 [arrowArray addObject:lastArrow];
             }
             else {
-                UIImageView *arrow = [[UIImageView alloc] initWithFrame:CGRectMake([[arrowArray objectAtIndex:i - 1] frame].origin.x + [[arrowArray objectAtIndex:i - 1] frame].size.width - 10, 30, 315 / count + 10, 10)];
-                [arrow setImage:[UIImage imageNamed:@"arrow2_red.png"]];
+                UIImageView *arrow = [[UIImageView alloc] initWithFrame:CGRectMake([[arrowArray objectAtIndex:i - 1] frame].origin.x + [[arrowArray objectAtIndex:i - 1] frame].size.width - 10, 30, 315 / countOfStatus + 10, 10)];
+                if (curentNumberOfStatus == i + 1 || curentNumberOfStatus == i + 2) {
+                    [arrow setImage:[UIImage imageNamed:@"arrow2_green.png"]];
+                } else {
+                    [arrow setImage:[UIImage imageNamed:@"arrow2_red.png"]];
+                }
                 [self.scrollView addSubview:arrow];
                 [arrowArray addObject:arrow];
             }
-        }        
+        }
+                
+//        if (i == 0) {
+//            UIImageView *firstArrow = [[UIImageView alloc] initWithFrame:CGRectMake(5, 30, 315 / countOfStatus, 10)];
+//            if (i == curentNumberOfStatus - 1) {
+//                [firstArrow setImage:[UIImage imageNamed:@"arrow1_green.png"]];
+//            } else {
+//                [firstArrow setImage:[UIImage imageNamed:@"arrow1_red.png"]];
+//            }
+//            [self.scrollView addSubview:firstArrow];
+//            [arrowArray addObject:firstArrow];
+//        } else {
+//            if (i == countOfStatus - 1) {
+//                UIImageView *lastArrow = [[UIImageView alloc] initWithFrame:CGRectMake([[arrowArray objectAtIndex:i - 1] frame].origin.x + [[arrowArray objectAtIndex:i - 1] frame].size.width - 10, 30, 315 / countOfStatus + 10, 10)];
+//                if (i == curentNumberOfStatus - 1) {
+//                    [lastArrow setImage:[UIImage imageNamed:@"arrow3_green.png"]];
+//                } else {
+//                    [lastArrow setImage:[UIImage imageNamed:@"arrow3_red.png"]];
+//                }
+//                [self.scrollView addSubview:lastArrow];
+//                [arrowArray addObject:lastArrow];
+//            }
+//            else {
+//                UIImageView *arrow = [[UIImageView alloc] initWithFrame:CGRectMake([[arrowArray objectAtIndex:i - 1] frame].origin.x + [[arrowArray objectAtIndex:i - 1] frame].size.width - 10, 30, 315 / countOfStatus + 10, 10)];
+//                if (i == curentNumberOfStatus - 1) {
+//                    [arrow setImage:[UIImage imageNamed:@"arrow2_green.png"]];
+//                } else {
+//                    [arrow setImage:[UIImage imageNamed:@"arrow2_red.png"]];
+//                }
+//                [self.scrollView addSubview:arrow];
+//                [arrowArray addObject:arrow];
+//            }
+//        }        
     }
 }
 
