@@ -41,6 +41,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *productsCount;
 @property (strong, nonatomic) IBOutlet UILabel *productPriceSumm;
 @property (strong, nonatomic) NSArray *productsArray;
+@property (strong, nonatomic) IBOutlet UILabel *orderNumberLabel;
 
 
 - (IBAction)showOrHideInfoOfOrder:(id)sender;

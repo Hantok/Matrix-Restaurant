@@ -65,6 +65,7 @@
 @synthesize db = _db;
 @synthesize productName = _productName;
 @synthesize productsArray = _productsArray;
+@synthesize orderNumberLabel = _orderNumberLabel;
 
 - (GettingCoreContent *)db
 {
@@ -92,6 +93,8 @@
     mainGradient.frame = self.mainView.bounds;
     mainGradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor darkGrayColor] CGColor],(id)[[UIColor blackColor] CGColor], nil];
     [self.mainView.layer insertSublayer:mainGradient atIndex:0];
+    
+    [self.orderNumberLabel setText:[NSString stringWithFormat:@"%@ %@", [self.orderNumberLabel text], [self.historyDictionary valueForKey:@"orderID"]]];
     
     self.firstContainerX = self.infoOfOrderContainer.frame.origin.x;
     self.firstContainerY = self.infoOfOrderContainer.frame.origin.y;
@@ -220,23 +223,25 @@
     }
     
     int countOfStatus = [[self.db fetchAllObjectsFromEntity:@"Statuses"] count] - 1;
+    countOfStatus = 5;
     
     NSMutableArray *arrowArray = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < countOfStatus; i++) {
         
         if (i == 0) {
-            UIImageView *firstArrow = [[UIImageView alloc] initWithFrame:CGRectMake(5, 30, 315 / countOfStatus, 10)];
+            UIImageView *firstArrow = [[UIImageView alloc] initWithFrame:CGRectMake(5, 40, 315 / countOfStatus + ((countOfStatus - 1) * 10)/countOfStatus, 15)];
             if (curentNumberOfStatus == 1) {
                 [firstArrow setImage:[UIImage imageNamed:@"arrow1_green.png"]];
             } else {
                 [firstArrow setImage:[UIImage imageNamed:@"arrow1_red.png"]];
             }
+//            UILabel *statusLabel = [[UILabel alloc] initWithFrame:firstArrow.frame];
             [self.scrollView addSubview:firstArrow];
             [arrowArray addObject:firstArrow];
         } else {
             if (i == countOfStatus - 1) {
-                UIImageView *lastArrow = [[UIImageView alloc] initWithFrame:CGRectMake([[arrowArray objectAtIndex:i - 1] frame].origin.x + [[arrowArray objectAtIndex:i - 1] frame].size.width - 10, 30, 315 / countOfStatus + 10, 10)];
+                UIImageView *lastArrow = [[UIImageView alloc] initWithFrame:CGRectMake([[arrowArray objectAtIndex:i - 1] frame].origin.x + [[arrowArray objectAtIndex:i - 1] frame].size.width - 10, 40, 315 / countOfStatus + ((countOfStatus - 1) * 10)/countOfStatus, 15)];
                 if (curentNumberOfStatus == 0) {
                     [lastArrow setImage:[UIImage imageNamed:@"arrow3_green.png"]];
                 } else {
@@ -246,7 +251,7 @@
                 [arrowArray addObject:lastArrow];
             }
             else {
-                UIImageView *arrow = [[UIImageView alloc] initWithFrame:CGRectMake([[arrowArray objectAtIndex:i - 1] frame].origin.x + [[arrowArray objectAtIndex:i - 1] frame].size.width - 10, 30, 315 / countOfStatus + 10, 10)];
+                UIImageView *arrow = [[UIImageView alloc] initWithFrame:CGRectMake([[arrowArray objectAtIndex:i - 1] frame].origin.x + [[arrowArray objectAtIndex:i - 1] frame].size.width - 10, 40, 315 / countOfStatus + ((countOfStatus - 1) * 10)/countOfStatus, 15)];
                 if (curentNumberOfStatus == i + 1 || curentNumberOfStatus == i + 2) {
                     [arrow setImage:[UIImage imageNamed:@"arrow2_green.png"]];
                 } else {
@@ -316,6 +321,7 @@
     [self setProductName:nil];
     [self setProductsCount:nil];
     [self setProductPriceSumm:nil];
+    [self setOrderNumberLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

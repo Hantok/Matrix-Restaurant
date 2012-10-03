@@ -24,5 +24,8 @@
 @synthesize latitude = _latitude;
 @synthesize phones = _phones;
 @synthesize link = _link;
+@synthesize parking = _parking;
+@synthesize terrace = _terrace;
+@synthesize seatsNumber = _seatsNumber;
 
 @end
