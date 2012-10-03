@@ -955,17 +955,15 @@
             formatter.numberStyle = NSNumberFormatterDecimalStyle;
             NSString *price = [formatter stringFromNumber:[NSNumber numberWithFloat:(productStruct.price.floatValue * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]];
             NSString *priceString;
+            NSString *discountString;
             if (productStruct.discountValue.floatValue != 0)
             {
-                NSString *discountPrice = [formatter stringFromNumber:[NSNumber numberWithFloat:(productStruct.price.floatValue * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue] * (1 - productStruct.discountValue.floatValue))]];
-                priceString = [NSString stringWithFormat:@"%@(%@)%@", price, discountPrice, [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
+                discountString = [NSString stringWithFormat:@"-%.0f%%", productStruct.discountValue.floatValue*100];
             }
-            else
-            {
-                priceString = [NSString stringWithFormat:@"%@ %@", price, [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
-            }
+            priceString = [NSString stringWithFormat:@"%@ %@", price, [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
             
             cell.productPrice.text = priceString;
+            cell.productDiscount.text = discountString;
             
             return cell;
         }

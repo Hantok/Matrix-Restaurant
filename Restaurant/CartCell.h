@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *productTitle;
 @property (weak, nonatomic) IBOutlet UILabel *productCount;
 @property (weak, nonatomic) IBOutlet UILabel *productPrice;
+@property (weak, nonatomic) IBOutlet UILabel *productDiscount;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
