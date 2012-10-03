@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="VBQ-mB-ewb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12B19" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="VBQ-mB-ewb">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
@@ -1460,6 +1460,13 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Order №" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="s1e-JW-ir8">
+                                        <rect key="frame" x="20" y="10" width="280" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -1483,6 +1490,7 @@
                         <outlet property="messageLabel" destination="AEn-mz-tFw" id="gpr-p8-fZy"/>
                         <outlet property="metroDescriptionLabel" destination="h3O-KP-saZ" id="vqC-yr-o9d"/>
                         <outlet property="metroLabel" destination="CFI-ar-RFf" id="Hu4-cu-k8N"/>
+                        <outlet property="orderNumberLabel" destination="s1e-JW-ir8" id="usV-tO-gkI"/>
                         <outlet property="productName" destination="IHe-M7-Hxo" id="8E7-mS-oIp"/>
                         <outlet property="productPriceSumm" destination="sAq-9M-AH9" id="HhX-9w-qfT"/>
                         <outlet property="productsCount" destination="geY-rZ-ZFQ" id="m1B-Vg-b9l"/>

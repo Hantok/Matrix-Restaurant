@@ -24,5 +24,8 @@
 @property (strong, nonatomic) NSString *link;
 @property (strong, nonatomic) NSString *longitude;
 @property (strong, nonatomic) NSString *latitude;
+@property (strong, nonatomic) NSString *parking;
+@property (strong, nonatomic) NSString *terrace;
+@property (strong, nonatomic) NSString *seatsNumber;
 
 @end

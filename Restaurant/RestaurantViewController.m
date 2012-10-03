@@ -46,6 +46,9 @@
                 NSArray *coordinates = [[restaurant valueForKey:@"coordinates"] componentsSeparatedByString:@";"];
                 dataStruct.latitude = [coordinates objectAtIndex:0];
                 dataStruct.longitude = [coordinates objectAtIndex:1];
+                dataStruct.seatsNumber = [restaurant valueForKey:@"seatsNumber"];
+                dataStruct.terrace = [restaurant valueForKey:@"terrace"];
+                dataStruct.parking = [restaurant valueForKey:@"parking"];
                 
 //                NSData *dataOfPicture = [[pictures objectForKey:dataStruct.idPicture] valueForKey:@"data"];
 //                NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test4/root/%@",[[pictures objectForKey:dataStruct.idPicture] valueForKey:@"link"]];
