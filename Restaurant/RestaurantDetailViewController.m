@@ -25,15 +25,12 @@
 @implementation RestaurantDetailViewController
 @synthesize callButton;
 @synthesize showOnMapButton;
-@synthesize workTimeLabel;
-@synthesize workTimeDetailLabel;
-@synthesize telephoneLabel;
-@synthesize telephoneDetailLabel;
 @synthesize restaurantImage;
 @synthesize dataStruct = _dataStruct;
 @synthesize db = _db;
 @synthesize alert = _alert;
 @synthesize loadingView = _loadingView;
+@synthesize scroll = _scroll;
 
 - (GettingCoreContent *)db
 {
@@ -88,8 +85,8 @@
     [self setAllTitlesOnThisPage];
     
     self.navigationItem.title = self.dataStruct.name;
-	workTimeDetailLabel.text = self.dataStruct.workingTime;
-    telephoneDetailLabel.text = self.dataStruct.phones;
+	//workTimeDetailLabel.text = self.dataStruct.workingTime;
+    //telephoneDetailLabel.text = self.dataStruct.phones;
     NSData *dataOfPicture = [self.db fetchPictureDataByPictureId:self.dataStruct.idPicture];
     //    NSURL *url = [self.db fetchImageURLbyPictureID:self.dataStruct.idPicture];
     if(dataOfPicture)
@@ -179,10 +176,10 @@
     [self setLoadingView:nil];
     [self setCallButton:nil];
     [self setShowOnMapButton:nil];
-    [self setWorkTimeLabel:nil];
-    [self setWorkTimeDetailLabel:nil];
-    [self setTelephoneLabel:nil];
-    [self setTelephoneDetailLabel:nil];
+   //[self setWorkTimeLabel:nil];
+   //[self setWorkTimeDetailLabel:nil];
+    //[self setTelephoneLabel:nil];
+    //[self setTelephoneDetailLabel:nil];
     [self setRestaurantImage:nil];
     [self setReserveButton:nil];
     [super viewDidUnload];
@@ -203,7 +200,7 @@
     NSArray *array = [Singleton titlesTranslation_withISfromSettings:NO];
     for (int i = 0; i <array.count; i++)
     {
-        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Working time"])
+        /*if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Working time"])
         {
             self.workTimeLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
         }
@@ -213,7 +210,7 @@
             self.telephoneLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Show on map"])
+        else*/ if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Show on map"])
         {
             [self.showOnMapButton setTitle:[[array objectAtIndex:i] valueForKey:@"title"] forState:UIControlStateNormal];
         }
