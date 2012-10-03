@@ -528,11 +528,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Restaurant/PartOfHistoryViewController.m"
-         timestampString = "370963348.635714"
+         timestampString = "370966706.095123"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "228"
-         endingLineNumber = "228"
+         startingLineNumber = "227"
+         endingLineNumber = "227"
          landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>
@@ -619,11 +619,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Restaurant/PartOfHistoryViewController.m"
-         timestampString = "370963348.635714"
+         timestampString = "370966706.095123"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "230"
-         endingLineNumber = "230"
+         startingLineNumber = "229"
+         endingLineNumber = "229"
          landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>

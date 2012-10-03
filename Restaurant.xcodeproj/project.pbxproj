@@ -72,6 +72,9 @@
 		F52225D31594BCA4003E2728 /* Button_black_dark_rev2.png in Resources */ = {isa = PBXBuildFile; fileRef = F52225D21594BCA4003E2728 /* Button_black_dark_rev2.png */; };
 		F52A6A201594BF8D00C96F2C /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = F52A6A1F1594BF8D00C96F2C /* back.png */; };
 		F53AF1701598876100EAA5AA /* MenuIconViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F53AF16F1598876100EAA5AA /* MenuIconViewController.m */; };
+		F53BA7A3161C83DA00AF79DF /* arrow3_cancel_red.png in Resources */ = {isa = PBXBuildFile; fileRef = F53BA7A0161C83DA00AF79DF /* arrow3_cancel_red.png */; };
+		F53BA7A4161C83DA00AF79DF /* arrow3_green.png in Resources */ = {isa = PBXBuildFile; fileRef = F53BA7A1161C83DA00AF79DF /* arrow3_green.png */; };
+		F53BA7A5161C83DA00AF79DF /* arrow3_red.png in Resources */ = {isa = PBXBuildFile; fileRef = F53BA7A2161C83DA00AF79DF /* arrow3_red.png */; };
 		F53BFF6015EB7287000AB558 /* TimePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = F53BFF5F15EB7287000AB558 /* TimePicker.xib */; };
 		F53BFF6315EB7301000AB558 /* TimePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = F53BFF6115EB7301000AB558 /* TimePicker.h */; };
 		F53BFF6415EB7301000AB558 /* TimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = F53BFF6215EB7301000AB558 /* TimePicker.m */; };
@@ -163,8 +166,6 @@
 		F5F5706616175814003CA47C /* arrow1_red.png in Resources */ = {isa = PBXBuildFile; fileRef = F5F5706016175814003CA47C /* arrow1_red.png */; };
 		F5F5706716175814003CA47C /* arrow2_green.png in Resources */ = {isa = PBXBuildFile; fileRef = F5F5706116175814003CA47C /* arrow2_green.png */; };
 		F5F5706816175814003CA47C /* arrow2_red.png in Resources */ = {isa = PBXBuildFile; fileRef = F5F5706216175814003CA47C /* arrow2_red.png */; };
-		F5F5706D16175ABA003CA47C /* arrow3_green.png in Resources */ = {isa = PBXBuildFile; fileRef = F5F5706B16175ABA003CA47C /* arrow3_green.png */; };
-		F5F5706E16175ABA003CA47C /* arrow3_red.png in Resources */ = {isa = PBXBuildFile; fileRef = F5F5706C16175ABA003CA47C /* arrow3_red.png */; };
 		F5FA62481580D39700FBF70A /* FavoritesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5FA62471580D39700FBF70A /* FavoritesTableViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -313,6 +314,9 @@
 		F52A6A1F1594BF8D00C96F2C /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		F53AF16E1598876100EAA5AA /* MenuIconViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuIconViewController.h; sourceTree = "<group>"; };
 		F53AF16F1598876100EAA5AA /* MenuIconViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuIconViewController.m; sourceTree = "<group>"; };
+		F53BA7A0161C83DA00AF79DF /* arrow3_cancel_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow3_cancel_red.png; sourceTree = "<group>"; };
+		F53BA7A1161C83DA00AF79DF /* arrow3_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow3_green.png; sourceTree = "<group>"; };
+		F53BA7A2161C83DA00AF79DF /* arrow3_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow3_red.png; sourceTree = "<group>"; };
 		F53BFF5F15EB7287000AB558 /* TimePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimePicker.xib; sourceTree = "<group>"; };
 		F53BFF6115EB7301000AB558 /* TimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePicker.h; sourceTree = "<group>"; };
 		F53BFF6215EB7301000AB558 /* TimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePicker.m; sourceTree = "<group>"; };
@@ -379,8 +383,6 @@
 		F5F5706016175814003CA47C /* arrow1_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow1_red.png; sourceTree = "<group>"; };
 		F5F5706116175814003CA47C /* arrow2_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow2_green.png; sourceTree = "<group>"; };
 		F5F5706216175814003CA47C /* arrow2_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow2_red.png; sourceTree = "<group>"; };
-		F5F5706B16175ABA003CA47C /* arrow3_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow3_green.png; sourceTree = "<group>"; };
-		F5F5706C16175ABA003CA47C /* arrow3_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow3_red.png; sourceTree = "<group>"; };
 		F5FA62461580D39700FBF70A /* FavoritesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesTableViewController.h; sourceTree = "<group>"; };
 		F5FA62471580D39700FBF70A /* FavoritesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -555,8 +557,9 @@
 				F5F5706016175814003CA47C /* arrow1_red.png */,
 				F5F5706116175814003CA47C /* arrow2_green.png */,
 				F5F5706216175814003CA47C /* arrow2_red.png */,
-				F5F5706B16175ABA003CA47C /* arrow3_green.png */,
-				F5F5706C16175ABA003CA47C /* arrow3_red.png */,
+				F53BA7A0161C83DA00AF79DF /* arrow3_cancel_red.png */,
+				F53BA7A1161C83DA00AF79DF /* arrow3_green.png */,
+				F53BA7A2161C83DA00AF79DF /* arrow3_red.png */,
 				F591A9BB1607214200720104 /* clock.png */,
 				F59A9EDB16034DC600D8A6ED /* buttonPlayRight.png */,
 				F59A9EDC16034DC600D8A6ED /* buttonPlayDown.png */,
@@ -928,8 +931,9 @@
 				F5F5706616175814003CA47C /* arrow1_red.png in Resources */,
 				F5F5706716175814003CA47C /* arrow2_green.png in Resources */,
 				F5F5706816175814003CA47C /* arrow2_red.png in Resources */,
-				F5F5706D16175ABA003CA47C /* arrow3_green.png in Resources */,
-				F5F5706E16175ABA003CA47C /* arrow3_red.png in Resources */,
+				F53BA7A3161C83DA00AF79DF /* arrow3_cancel_red.png in Resources */,
+				F53BA7A4161C83DA00AF79DF /* arrow3_green.png in Resources */,
+				F53BA7A5161C83DA00AF79DF /* arrow3_red.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

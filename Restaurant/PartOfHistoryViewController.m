@@ -223,7 +223,6 @@
     }
     
     int countOfStatus = [[self.db fetchAllObjectsFromEntity:@"Statuses"] count] - 1;
-    countOfStatus = 5;
     
     NSMutableArray *arrowArray = [[NSMutableArray alloc] init];
     
@@ -236,7 +235,13 @@
             } else {
                 [firstArrow setImage:[UIImage imageNamed:@"arrow1_red.png"]];
             }
-//            UILabel *statusLabel = [[UILabel alloc] initWithFrame:firstArrow.frame];
+            UILabel *statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(firstArrow.frame.origin.x, firstArrow.frame.origin.y + firstArrow.frame.size.height, firstArrow.frame.size.width, 21)];
+            [statusLabel setText:@"asdfdgh"];
+            [statusLabel setTextColor:[UIColor whiteColor]];
+            [statusLabel setFont:[UIFont systemFontOfSize:12]];
+            [statusLabel setTextAlignment:NSTextAlignmentCenter];
+            [statusLabel setBackgroundColor:[UIColor clearColor]];
+            [self.scrollView addSubview:statusLabel];
             [self.scrollView addSubview:firstArrow];
             [arrowArray addObject:firstArrow];
         } else {
