@@ -34,17 +34,6 @@
     return  _content;
 }
 
-//- (NSMutableArray *)arrayOfAddresses
-//{
-//    if (!_arrayOfAddresses)
-//    {
-//        _arrayOfAddresses = [self.content getArrayFromCoreDatainEntetyName:@"Addresses" withSortDescriptor:@"name"].mutableCopy;
-//        return _arrayOfAddresses;
-//    }
-//    
-//    return _arrayOfAddresses;
-//}
-
 - (NSMutableArray *)historyArray
 {
     if (!_historyArray) {
@@ -65,15 +54,7 @@
 }
 
 - (void)viewDidLoad
-{    
-//    NSArray *mut = [self.content fetchProductWithId:@"158"];
-//    [self.tableView setBackgroundColor:[UIColor darkGrayColor]];
-    
-//    NSMutableArray *arr = self.historyArray;
-    
-//    self.historyArray = [NSArray arrayWithObjects:@"one", @"two", @"three", nil];
-    
-    
+{
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -154,16 +135,6 @@
         [_statusOfOrdersDictionary setObject:[arrayOfIdStatus objectAtIndex:i] forKey:[arrayOfIdOrders objectAtIndex:i]];
     }
     
-//    NSArray *arr = [[NSArray alloc] init];
-//    arr = [[self.statusOfOrdersDictionary allKeys] objectAtIndex:j];
-    
-//    NSString *str1 = [[NSString alloc] init];
-//    NSString *str2 = [[NSString alloc] init];
-//    
-//    if (str1 isEqualToString:<#(NSString *)#>) {
-//        <#statements#>
-//    }
-
     
     for (int i = 0; i < self.historyArray.count; i++) {
         for (int j = 0; j <[[self.statusOfOrdersDictionary allKeys] count]; j++) {
@@ -172,11 +143,7 @@
                 break;
             }
         }
-//        if ([[self.historyArray objectAtIndex:i] valueForKey:@"statusID"] isEqualToString:<#(NSString *)#>) {
-//            <#statements#>
-//        }
-    }
-    
+    }    
 }
 
 - (NSString *)createUUID
@@ -223,9 +190,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    return 0;
     return [self.historyArray count];
-//    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -246,12 +211,9 @@
         }
     }
     
-//    cell.dateOfOrder.text = [self.historyArray objectAtIndex:indexPath.row];
     
     cell.dateOfOrder.text = [[self.historyArray objectAtIndex:indexPath.row] valueForKey:@"date"];
-//    cell.dateOfOrder.text = [NSString stringWithFormat:@"%@%@", @"from ", [[self.historyArray objectAtIndex:indexPath.row] valueForKey:@"date"]];
     
-//    cell.numberOfOrder.text = [[self.historyArray objectAtIndex:indexPath.row] valueForKey:@"orderID"];
     cell.numberOfOrder.text = [NSString stringWithFormat:@"%@%@", @"№ ", [[self.historyArray objectAtIndex:indexPath.row] valueForKey:@"orderID"]];
     
     CAGradientLayer *gradient = [CAGradientLayer layer];
