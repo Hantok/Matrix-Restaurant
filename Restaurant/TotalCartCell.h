@@ -15,5 +15,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *sumWithDiscountsNumberLabel;
 @property (strong, nonatomic) IBOutlet UILabel *countLabel;
 @property (strong, nonatomic) IBOutlet UILabel *countNumberLabel;
+@property (strong, nonatomic) IBOutlet UIWebView *sumNumberView;
 
 @end

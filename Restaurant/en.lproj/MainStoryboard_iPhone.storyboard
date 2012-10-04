@@ -908,13 +908,6 @@
                                     <action selector="addToCart:" destination="WSq-ly-76H" eventType="touchUpInside" id="R12-L5-PNc"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="R9E-Xi-VMX">
-                                <rect key="frame" x="45" y="282" width="184" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yE6-m4-3eB">
                                 <rect key="frame" x="45" y="356" width="184" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1139,6 +1132,11 @@
                                     <outletCollection property="gestureRecognizers" destination="h0b-Ip-d2v" appends="YES" id="RX3-W9-z8m"/>
                                 </connections>
                             </view>
+                            <webView userInteractionEnabled="NO" contentMode="scaleToFill" id="f1K-kn-HXK">
+                                <rect key="frame" x="42" y="277" width="179" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                            </webView>
                         </subviews>
                     </view>
                     <navigationItem key="navigationItem" id="XEE-0z-u3j">
@@ -1172,7 +1170,7 @@
                         <outlet property="portionKCalLabel" destination="uA3-V3-Rsa" id="d56-lJ-EoE"/>
                         <outlet property="portionLabel" destination="LBg-2X-pFE" id="0p6-Pv-XAu"/>
                         <outlet property="portionProteinLabel" destination="7iM-BK-Epz" id="uIX-Hq-gOu"/>
-                        <outlet property="priceLabel" destination="R9E-Xi-VMX" id="HS3-9B-Luk"/>
+                        <outlet property="priceView" destination="f1K-kn-HXK" id="0Lx-rL-BAs"/>
                         <outlet property="proteinLabel" destination="nQZ-ct-tqM" id="33Z-0x-fJs"/>
                         <outlet property="scrollView" destination="XYr-ry-Dab" id="Tmz-Jl-3Xk"/>
                         <outlet property="shareButton" destination="yE6-m4-3eB" id="jic-aG-mlx"/>
@@ -1542,10 +1540,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuViewController.h"/>
             <relationships>
                 <relationship kind="action" name="OrderButton:"/>
-                <relationship kind="action" name="cartButton:"/>
                 <relationship kind="action" name="drop:"/>
-                <relationship kind="action" name="goToSettingsTableViewController:"/>
-                <relationship kind="action" name="menuButton:"/>
                 <relationship kind="action" name="viewSpam:"/>
                 <relationship kind="outlet" name="cartButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="drop" candidateClass="UIButton"/>
@@ -1644,7 +1639,7 @@
                 <relationship kind="outlet" name="portionKCalLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="portionLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="portionProteinLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="priceLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="priceView" candidateClass="UIWebView"/>
                 <relationship kind="outlet" name="proteinLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="shareButton" candidateClass="UIButton"/>

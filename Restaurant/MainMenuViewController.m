@@ -1001,19 +1001,41 @@
             {
                 ProductDataStruct *productDataStruct = [self.arrayOfObjects objectAtIndex:i];
                 
-                sum                 = sum + ([[formatter numberFromString:[formatter stringFromNumber:[NSNumber numberWithFloat:(productDataStruct.price.floatValue * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]]] floatValue]);
+                sum = sum + ([[formatter numberFromString:[formatter stringFromNumber:[NSNumber numberWithFloat:(productDataStruct.price.floatValue * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]]] floatValue]);
                 if (productDataStruct.discountValue.floatValue != 0)
                 {
-                    sumWithDiscounts    = sumWithDiscounts + (productDataStruct.price.floatValue * (1 - productDataStruct.discountValue.floatValue) * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue]);
+                    sumWithDiscounts = sumWithDiscounts + (productDataStruct.price.floatValue * (1 - productDataStruct.discountValue.floatValue) * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue]);
                 }
                 else
                 {
                     sumWithDiscounts = sumWithDiscounts + [[formatter numberFromString:productDataStruct.price] floatValue]* [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue];
                 }
-                totalCount          = totalCount + productDataStruct.count.intValue;
+                totalCount= totalCount + productDataStruct.count.intValue;
             }
             
-            cell.sumNumberLabel.text = [NSString stringWithFormat:@"%@ %@",[formatter stringFromNumber:[NSNumber numberWithFloat:sum]], [[NSUserDefaults standardUserDefaults] valueForKey:@"Currency"]];
+            //cell.sumNumberLabel.text = [NSString stringWithFormat:@"%@ %@",[formatter stringFromNumber:[NSNumber numberWithFloat:sum]], [[NSUserDefaults standardUserDefaults] valueForKey:@"Currency"]];
+            //displaing of price with strike
+            NSString *priceString;
+            if (sumWithDiscounts != sum)
+            {
+            priceString = [NSString stringWithFormat:@"<strike>%@ %@</strike>",[formatter stringFromNumber:[NSNumber numberWithFloat:sum]], [[NSUserDefaults standardUserDefaults] valueForKey:@"Currency"]];
+            }
+            else
+            {
+                priceString = [NSString stringWithFormat:@"%@ %@",[formatter stringFromNumber:[NSNumber numberWithFloat:sum]], [[NSUserDefaults standardUserDefaults] valueForKey:@"Currency"]];
+                cell.sumWithDiscountsLabel.hidden = YES;
+                cell.sumWithDiscountsNumberLabel.hidden = YES;
+            }
+            NSString *htmlContentString = [NSString stringWithFormat:
+                                           @"<html>"
+                                           "<body style=\"font-family:Helvetica; font-size:17px;color:Black;text-align:right;\">"
+                                           "<p>%@</p>"
+                                           "</body></html>", priceString];
+            
+            cell.sumNumberView.opaque = NO;
+            cell.sumNumberView.backgroundColor = [UIColor clearColor];
+            [cell.sumNumberView loadHTMLString:htmlContentString baseURL:nil];
+            
             cell.sumWithDiscountsNumberLabel.text = [NSString stringWithFormat:@"%@ %@",[formatter stringFromNumber:[NSNumber numberWithFloat:sumWithDiscounts]], [[NSUserDefaults standardUserDefaults] valueForKey:@"Currency"]];
             cell.countNumberLabel.text = [NSString stringWithFormat:@"%i", totalCount];
             

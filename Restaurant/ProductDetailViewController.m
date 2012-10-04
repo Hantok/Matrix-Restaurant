@@ -47,7 +47,8 @@
 @synthesize db = _db;
 @synthesize product = _product;
 @synthesize countPickerView = _countPickerView;
-@synthesize priceLabel = _priceLabel;
+@synthesize priceView = _priceView;
+//@synthesize priceLabel = _priceLabel;
 @synthesize cartButton = _cartButton;
 @synthesize count = _count;
 //@synthesize productImage = _productImage;
@@ -563,7 +564,7 @@
                 }
                 else
                 {
-                    priceString = [NSString stringWithFormat:@"%@ (%@ - %@) %@", price,self.titleWihtDiscounts, [formatter stringFromNumber:[NSNumber numberWithFloat:(self.product.price.floatValue * (1 - self.product.discountValue.floatValue) * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]], [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
+                    priceString = [NSString stringWithFormat:@"(<strike style=\"color:White;\">%@</strike>) %@ %@", price, [formatter stringFromNumber:[NSNumber numberWithFloat:(self.product.price.floatValue * (1 - self.product.discountValue.floatValue) * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]], [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
                 }
                 break;
             }
@@ -571,10 +572,20 @@
     }
     else
     {
-        priceString = [NSString stringWithFormat:@"%@ (%@ - %@) %@", price, self.titleWihtDiscounts, [formatter stringFromNumber:[NSNumber numberWithFloat:(self.product.price.floatValue * (1 - self.product.discountValue.floatValue) * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]], [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
+        if (self.product.discountValue.floatValue != 0)
+        priceString = [NSString stringWithFormat:@"(<strike style=\"color:White;\">%@</strike>) %@ %@", price, [formatter stringFromNumber:[NSNumber numberWithFloat:(self.product.price.floatValue * (1 - self.product.discountValue.floatValue) * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]], [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
     }
     
-    self.priceLabel.text = priceString;
+    //self.priceLabel.text = priceString;
+    NSString* htmlContentString = [NSString stringWithFormat:
+                                   @"<html>"
+                                   "<body style=\"font-family:Helvetica; font-size:14px;color:#FF7F00;text-align:left;\">"
+                                   "<p>%@</p>"
+                                   "</body></html>", priceString];
+    
+    self.priceView.opaque = NO;
+    self.priceView.backgroundColor = [UIColor clearColor];
+    [self.priceView loadHTMLString:htmlContentString baseURL:nil];
     
     self.imageView.frame = self.pictureButton.frame;
     
@@ -783,7 +794,8 @@
 - (void)viewDidUnload
 {
     [self setCountPickerView:nil];
-    [self setPriceLabel:nil];
+    //[self setPriceLabel:nil];
+    [self setPriceView:nil];
     [self setCartButton:nil];
 //    [self setProductImage:nil];
     [self setShareButton:nil];
@@ -824,6 +836,7 @@
     [self setDescriptionLabel:nil];
     [self setWeightLabel:nil];
     [self setFavoritesButton:nil];
+    [self setPriceView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
