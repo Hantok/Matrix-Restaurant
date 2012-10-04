@@ -49,6 +49,7 @@
                 dataStruct.seatsNumber = [restaurant valueForKey:@"seatsNumber"];
                 dataStruct.terrace = [restaurant valueForKey:@"terrace"];
                 dataStruct.parking = [restaurant valueForKey:@"parking"];
+                dataStruct.workingTime = [restaurant valueForKey:@"workingTime"];
                 
 //                NSData *dataOfPicture = [[pictures objectForKey:dataStruct.idPicture] valueForKey:@"data"];
 //                NSString *urlForImage = [NSString stringWithFormat:@"http://matrix-soft.org/addon_domains_folder/test4/root/%@",[[pictures objectForKey:dataStruct.idPicture] valueForKey:@"link"]];
@@ -66,7 +67,6 @@
                 dataStruct.name = [restaurant valueForKey:@"name"];
                 dataStruct.subwayStation = [restaurant valueForKey:@"Metro"];
                 dataStruct.street = [restaurant valueForKey:@"Street"];
-                dataStruct.workingTime = [restaurant valueForKey:@"workingTime"];
                 dataStruct.additionalContactInfo = [restaurant valueForKey:@"AdditionalContactInfo"];
                 dataStruct.build = [restaurant valueForKey:@"House"];
                 dataStruct.additionalAddressInfo = [restaurant valueForKey:@"AdditionalAddressInfo"];

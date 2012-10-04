@@ -17,4 +17,4 @@
 @property (strong, nonatomic) GettingCoreContent *db;
 @property NSInteger selectedRow;
 
-@end
+@end    

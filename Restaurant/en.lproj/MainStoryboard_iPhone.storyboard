@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12B19" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="VBQ-mB-ewb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="VBQ-mB-ewb">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
     </dependencies>
     <scenes>
         <!--Load App View Controller-->
@@ -472,34 +472,6 @@
                                 <rect key="frame" x="20" y="13" width="280" height="278"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Working time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="AW9-EB-cGG">
-                                <rect key="frame" x="20" y="299" width="132" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" red="0.88198690459999995" green="0.91597316579999999" blue="0.49104542890000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="Etr-7q-rfe">
-                                <rect key="frame" x="20" y="328" width="132" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" red="0.35851055353538552" green="0.74208785076530615" blue="0.37986754511534859" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="phone:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="Vex-jT-Jnn">
-                                <rect key="frame" x="20" y="357" width="73" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" red="0.27567093258393799" green="0.77551020408163263" blue="0.69944985805583981" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="OhY-Ik-8ev">
-                                <rect key="frame" x="20" y="386" width="132" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" red="0.73698580994897966" green="0.73698580994897966" blue="0.73698580994897966" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="UNr-Jl-SA6">
                                 <rect key="frame" x="150" y="336" width="150" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -516,24 +488,91 @@
                                     <segue destination="l9S-Fx-yuL" kind="push" id="O94-2c-JdG"/>
                                 </connections>
                             </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="BHK-Wv-WVr">
+                                <rect key="frame" x="0.0" y="293" width="142" height="123"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="AdressLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xdU-Gk-3fE">
+                                        <rect key="frame" x="10" y="-5" width="132" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Adress" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8Na-Lw-bMf">
+                                        <rect key="frame" x="10" y="8" width="132" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="WorkingTimeLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rjf-76-uhO">
+                                        <rect key="frame" x="10" y="24" width="112" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="WorkingTime" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gQr-7J-sTq">
+                                        <rect key="frame" x="10" y="37" width="102" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="SeatsNumberLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="G1V-Zy-FWJ">
+                                        <rect key="frame" x="10" y="53" width="112" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="SeatsNumber" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4ix-8T-hhC">
+                                        <rect key="frame" x="10" y="66" width="112" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ParkingLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Z89-48-4Oe">
+                                        <rect key="frame" x="10" y="82" width="69" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Parking" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="x4h-0g-kWS">
+                                        <rect key="frame" x="87" y="82" width="35" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </scrollView>
                         </subviews>
                     </view>
                     <navigationItem key="navigationItem" id="xJn-Uf-00i"/>
                     <connections>
                         <outlet property="callButton" destination="6y5-Au-bP7" id="Ifx-xM-eTU"/>
                         <outlet property="reserveButton" destination="UNr-Jl-SA6" id="XPA-Qa-Dr6"/>
+                        <outlet property="restDetAdress" destination="8Na-Lw-bMf" id="D7w-lR-fOq"/>
+                        <outlet property="restDetAdressLabel" destination="xdU-Gk-3fE" id="m6e-Lf-ujb"/>
+                        <outlet property="restDetParking" destination="x4h-0g-kWS" id="chv-zB-wkO"/>
+                        <outlet property="restDetParkingLabel" destination="Z89-48-4Oe" id="MD6-o8-SHT"/>
+                        <outlet property="restDetSeatsNumber" destination="4ix-8T-hhC" id="sHb-eI-KsH"/>
+                        <outlet property="restDetSeatsNumberLabel" destination="G1V-Zy-FWJ" id="9WV-8A-Du6"/>
+                        <outlet property="restDetWorkingTime" destination="gQr-7J-sTq" id="IkZ-f0-0jw"/>
+                        <outlet property="restDetWorkingTimeLabel" destination="rjf-76-uhO" id="LWf-qx-tIS"/>
                         <outlet property="restaurantImage" destination="kUk-C2-BLO" id="PKE-rD-FOS"/>
+                        <outlet property="scroll" destination="BHK-Wv-WVr" id="uyF-zc-fOl"/>
                         <outlet property="showOnMapButton" destination="LTc-bJ-iOA" id="2Ve-b3-SEO"/>
-                        <outlet property="telephoneDetailLabel" destination="OhY-Ik-8ev" id="iJl-PS-AUc"/>
-                        <outlet property="telephoneLabel" destination="Vex-jT-Jnn" id="tXS-Lo-gaa"/>
-                        <outlet property="workTimeDetailLabel" destination="Etr-7q-rfe" id="OHB-VJ-qBY"/>
-                        <outlet property="workTimeLabel" destination="AW9-EB-cGG" id="Pvb-Cc-pby"/>
                         <segue destination="YPw-UT-cMt" kind="push" identifier="toMap" id="y9i-JD-w4G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oUy-BW-PCf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="614" y="967"/>
+            <point key="canvasLocation" x="646" y="967"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="nNO-e2-uKP">
@@ -908,13 +947,6 @@
                                     <action selector="addToCart:" destination="WSq-ly-76H" eventType="touchUpInside" id="R12-L5-PNc"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="R9E-Xi-VMX">
-                                <rect key="frame" x="45" y="282" width="184" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yE6-m4-3eB">
                                 <rect key="frame" x="45" y="356" width="184" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -937,7 +969,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="XYr-ry-Dab">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="XYr-ry-Dab">
                                 <rect key="frame" x="35" y="0.0" width="250" height="220"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
@@ -1139,6 +1171,11 @@
                                     <outletCollection property="gestureRecognizers" destination="h0b-Ip-d2v" appends="YES" id="RX3-W9-z8m"/>
                                 </connections>
                             </view>
+                            <webView userInteractionEnabled="NO" contentMode="scaleToFill" id="f1K-kn-HXK">
+                                <rect key="frame" x="42" y="277" width="179" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                            </webView>
                         </subviews>
                     </view>
                     <navigationItem key="navigationItem" id="XEE-0z-u3j">
@@ -1172,7 +1209,7 @@
                         <outlet property="portionKCalLabel" destination="uA3-V3-Rsa" id="d56-lJ-EoE"/>
                         <outlet property="portionLabel" destination="LBg-2X-pFE" id="0p6-Pv-XAu"/>
                         <outlet property="portionProteinLabel" destination="7iM-BK-Epz" id="uIX-Hq-gOu"/>
-                        <outlet property="priceLabel" destination="R9E-Xi-VMX" id="HS3-9B-Luk"/>
+                        <outlet property="priceView" destination="f1K-kn-HXK" id="0Lx-rL-BAs"/>
                         <outlet property="proteinLabel" destination="nQZ-ct-tqM" id="33Z-0x-fJs"/>
                         <outlet property="scrollView" destination="XYr-ry-Dab" id="Tmz-Jl-3Xk"/>
                         <outlet property="shareButton" destination="yE6-m4-3eB" id="jic-aG-mlx"/>
@@ -1641,7 +1678,7 @@
                 <relationship kind="outlet" name="portionKCalLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="portionLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="portionProteinLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="priceLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="priceView" candidateClass="UIWebView"/>
                 <relationship kind="outlet" name="proteinLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="shareButton" candidateClass="UIButton"/>
@@ -1663,12 +1700,23 @@
                 <relationship kind="action" name="tebleReserve:"/>
                 <relationship kind="outlet" name="callButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="reserveButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="restDetAdress" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="restDetAdressLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="restDetEmail" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="restDetEmailLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="restDetParking" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="restDetParkingLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="restDetPhone" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="restDetPhonesLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="restDetSeatsNumber" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="restDetSeatsNumberLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="restDetTerrace" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="restDetTerraceLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="restDetWorkingTime" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="restDetWorkingTimeLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="restaurantImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="scroll" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="showOnMapButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="telephoneDetailLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="telephoneLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="workTimeDetailLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="workTimeLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="RestaurantViewController" superclassName="UITableViewController">
