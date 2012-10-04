@@ -12,6 +12,7 @@
 @synthesize productTitle;
 @synthesize productCount;
 @synthesize productPrice;
+@synthesize productDiscount;
 @synthesize imageView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

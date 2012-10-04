@@ -15,6 +15,7 @@
 @synthesize sumWithDiscountsNumberLabel;
 @synthesize countLabel;
 @synthesize countNumberLabel;
+@synthesize sumNumberView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

@@ -18,7 +18,8 @@
 @property (strong, nonatomic) GettingCoreContent *db;
 @property (strong, nonatomic) NSNumber *count;
 @property (weak, nonatomic) IBOutlet UIPickerView *countPickerView;
-@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) IBOutlet UIWebView *priceView;
 @property (weak, nonatomic) IBOutlet UIButton *cartButton;
 //@property (weak, nonatomic) IBOutlet UIImageView *productImage;
 @property (strong, nonatomic) IBOutlet UIButton *shareButton;
