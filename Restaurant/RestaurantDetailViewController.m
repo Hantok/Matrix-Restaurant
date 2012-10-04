@@ -31,6 +31,8 @@
 @synthesize restDetSeatsNumber = _restDetSeatsNumber;
 @synthesize restDetParkingLabel =_restDetParkingLabel;
 @synthesize restDetParking = _restDetParking;
+@synthesize textPhonesLabel = _textPhonesLabel;
+@synthesize textTerraceLabel = _textTerraceLabel;
 
 - (GettingCoreContent *)db
 {
@@ -83,64 +85,54 @@
     [super viewDidLoad];
     
     // --------------------------------------------- SCROLL VIEW -------------------------------------------------------
-    
     _scroll.contentSize = CGSizeMake(142, 200);
     _scroll.scrollEnabled = YES;
-    _scroll.clipsToBounds = YES;
     [_scroll setShowsVerticalScrollIndicator:NO];
-    _scroll.scrollsToTop= YES;
     
-    self.restDetAdressLabel.text = @"Adress:";
+    // add by BI
     self.restDetAdress.text = [NSString stringWithFormat:@"%@, %@", _dataStruct.street, _dataStruct.build];
-    
-    self.restDetWorkingTimeLabel.text = @"Working time:";
     self.restDetWorkingTime.text = [NSString stringWithFormat:@"%@", _dataStruct.workingTime];
-    
-    self.restDetSeatsNumberLabel.text = @"Number of seats:";
     self.restDetSeatsNumber.text = [NSString stringWithFormat:@"%@", _dataStruct.seatsNumber];
     
-    self.restDetParkingLabel.text = @"Parking:";
     NSString *testString1 = [NSString stringWithFormat:@"%@", _dataStruct.parking];
     if([testString1 isEqualToString: @"1"]){self.restDetParking.text = @"+";} else {self.restDetParking.text = @"-";}
-    
 
+    // dynamic adding to ScrollView
+    _textTerraceLabel = [[UITextField alloc] initWithFrame:CGRectMake(10, 100, 142, 17)];
+    _textTerraceLabel.textColor = [UIColor orangeColor];
+    _textTerraceLabel.font = [UIFont systemFontOfSize:13];
   
-    //self.restDetTerraceLabel.text = @"Terrace";
-    UITextField *textTerraceLabel = [[UITextField alloc] initWithFrame:CGRectMake(10, 100, 142, 17)];
-    textTerraceLabel.textColor = [UIColor orangeColor];
-    textTerraceLabel.text = @"Terrace: ";
-    textTerraceLabel.font = [UIFont systemFontOfSize:13];
-    [_scroll addSubview: textTerraceLabel];
-    
     UITextField *textTerrace = [[UITextField alloc] initWithFrame:CGRectMake(87, 100, 142, 17)];
     textTerrace.textColor = [UIColor whiteColor];
     NSString *testString2 = [NSString stringWithFormat:@"%@", _dataStruct.terrace];
     if([testString2 isEqualToString: @"1"]){textTerrace.text = @"+";} else {textTerrace.text = @"-";}
     textTerrace.font = [UIFont systemFontOfSize:13];
-    [_scroll addSubview: textTerrace];
-    
+
     UITextField *textEmailLabel = [[UITextField alloc] initWithFrame:CGRectMake(10, textTerrace.frame.origin.y + 17, 142, 17)];
     textEmailLabel.textColor = [UIColor orangeColor];
     textEmailLabel.text = @"Email: ";
     textEmailLabel.font = [UIFont systemFontOfSize:13];
-    [_scroll addSubview: textEmailLabel];
-    
+ 
     UITextField *textEmail = [[UITextField alloc] initWithFrame:CGRectMake(10, textEmailLabel.frame.origin.y + 14, 142, 17)];
     textEmail.textColor = [UIColor whiteColor];
     textEmail.text = [NSString stringWithFormat:@"%@",_dataStruct.additionalContactInfo];
     textEmail.font = [UIFont systemFontOfSize:13];
-    [_scroll addSubview: textEmail];
-    
-    UITextField *textPhonesLabel = [[UITextField alloc] initWithFrame:CGRectMake(10, textEmail.frame.origin.y + 17, 142, 17)];
-    textPhonesLabel.textColor = [UIColor orangeColor];
-    textPhonesLabel.text = @"Phones: ";
-    textPhonesLabel.font = [UIFont systemFontOfSize:13];
-    [_scroll addSubview: textPhonesLabel];
-    
-    UITextField *textPhones = [[UITextField alloc] initWithFrame:CGRectMake(10, textPhonesLabel.frame.origin.y + 14, 142, 17)];
+
+    _textPhonesLabel = [[UITextField alloc] initWithFrame:CGRectMake(10, textEmail.frame.origin.y + 17, 142, 17)];
+    _textPhonesLabel.textColor = [UIColor orangeColor];
+    _textPhonesLabel.font = [UIFont systemFontOfSize:13];
+
+    UITextField *textPhones = [[UITextField alloc] initWithFrame:CGRectMake(10, _textPhonesLabel.frame.origin.y + 14, 142, 17)];
     textPhones.textColor = [UIColor whiteColor];
     textPhones.text = [NSString stringWithFormat:@"%@",_dataStruct.phones];
     textPhones.font = [UIFont systemFontOfSize:13];
+    
+    // adding a subViews to Scroll
+    [_scroll addSubview: _textTerraceLabel];
+    [_scroll addSubview: textTerrace];
+    [_scroll addSubview: textEmailLabel];
+    [_scroll addSubview: textEmail];
+    [_scroll addSubview: _textPhonesLabel];
     [_scroll addSubview: textPhones];
 //----------------------------------------------------------------------------------------------------------------------
     
@@ -238,17 +230,37 @@
     NSArray *array = [Singleton titlesTranslation_withISfromSettings:NO];
     for (int i = 0; i <array.count; i++)
     {
-        /*if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Working time"])
+        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Working time"])
         {
-            self.workTimeLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
+           self.restDetWorkingTimeLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"phone"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Phones"])
         {
-            self.telephoneLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
+            _textPhonesLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else*/ if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Show on map"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Parking"])
+        {
+            self.restDetParkingLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Terrace"])
+        {
+            _textTerraceLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Number of seats"])
+        {
+            self.restDetSeatsNumberLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Address"])
+        {
+            self.restDetAdressLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Show on map"])
         {
             [self.showOnMapButton setTitle:[[array objectAtIndex:i] valueForKey:@"title"] forState:UIControlStateNormal];
         }

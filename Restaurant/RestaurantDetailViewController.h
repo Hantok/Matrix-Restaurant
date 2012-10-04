@@ -20,4 +20,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *restDetSeatsNumber;
 @property (strong, nonatomic) IBOutlet UILabel *restDetParkingLabel;
 @property (strong, nonatomic) IBOutlet UILabel *restDetParking;
+@property (strong, nonatomic) IBOutlet UITextField *textPhonesLabel;
+@property (strong, nonatomic) IBOutlet UITextField *textTerraceLabel;
 @end
