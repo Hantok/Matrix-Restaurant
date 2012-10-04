@@ -63,87 +63,87 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    NSMutableString *statusRequesString = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test7/root/Customer_Scripts/getStatuses.php?DBid=12&UUID="];
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"uid"])
-    {
-        NSString *uid = [self createUUID];
-        [[NSUserDefaults standardUserDefaults] setValue:uid forKey:@"uid"];
-        //9E3C884C-6E57-4D16-884F-46132825F21E
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        [statusRequesString appendString: uid];
-    }
-    else
-        [statusRequesString appendString:[[NSUserDefaults standardUserDefaults] objectForKey:@"uid"]];
-    
-    statusRequesString = [statusRequesString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding].copy;
-    
-    NSURL *urlStatusRequest = [NSURL URLWithString:statusRequesString.copy];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:urlStatusRequest cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-    [request setHTTPMethod:@"GET"];
-    NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    
-    if (!theConnection)
-    {
-        // Inform the user that the connection failed.
-        UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"NSURLConnection"
-                                                                     message:@"Not success"
-                                                                    delegate:self
-                                                           cancelButtonTitle:@"Ok"
-                                                           otherButtonTitles:nil];
-        [connectFailMessage show];
-    }
-    
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    self.responseData = [[NSMutableData alloc] init];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [self.responseData appendData:data];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"Unable to fetch data");
-    
-    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Can not access to the server"
-                                                      message:@"Please try again."
-                                                     delegate:self
-                                            cancelButtonTitle:@"Ok"
-                                            otherButtonTitles:nil];
-    [message show];
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    NSLog(@"Succeeded! Received %d bytes of data",[self.responseData length]);
-    NSString *txt = [[NSString alloc] initWithData:self.responseData encoding: NSASCIIStringEncoding];
-    NSLog(@"strinng is - %@",txt);
-
-    // создаем парсер
-    XMLParseOrdersStatuses *parser = [[XMLParseOrdersStatuses alloc] initWithData:self.responseData];
-    [parser setDelegate:parser];
-    [parser parse];
-    self.db = parser;
-        
-    NSArray *arrayOfIdOrders = [[NSArray alloc] initWithArray:[[self.db.tables valueForKey:@"Response"] valueForKey:@"idOrder"]];
-    NSArray *arrayOfIdStatus = [[NSArray alloc] initWithArray:[[self.db.tables valueForKey:@"Response"] valueForKey:@"idStatus"]];
-    
-    _statusOfOrdersDictionary = [[NSMutableDictionary alloc] init];
-    for (int i = 0; i < arrayOfIdOrders.count; i++) {
-        [_statusOfOrdersDictionary setObject:[arrayOfIdStatus objectAtIndex:i] forKey:[arrayOfIdOrders objectAtIndex:i]];
-    }
-    
-    
-    for (int i = 0; i < self.historyArray.count; i++) {
-        for (int j = 0; j <[[self.statusOfOrdersDictionary allKeys] count]; j++) {
-            if ([[[self.historyArray objectAtIndex:i] valueForKey:@"orderID"] isEqualToString:[[self.statusOfOrdersDictionary allKeys] objectAtIndex:j]]) {
-                [[self.historyArray objectAtIndex:i] setValue:[self.statusOfOrdersDictionary valueForKey:[[self.statusOfOrdersDictionary allKeys] objectAtIndex:j]] forKey:@"statusID"];
-                break;
-            }
-        }
-    }    
+//    NSMutableString *statusRequesString = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test7/root/Customer_Scripts/getStatuses.php?DBid=12&UUID="];
+//    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"uid"])
+//    {
+//        NSString *uid = [self createUUID];
+//        [[NSUserDefaults standardUserDefaults] setValue:uid forKey:@"uid"];
+//        //9E3C884C-6E57-4D16-884F-46132825F21E
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+//        [statusRequesString appendString: uid];
+//    }
+//    else
+//        [statusRequesString appendString:[[NSUserDefaults standardUserDefaults] objectForKey:@"uid"]];
+//    
+//    statusRequesString = [statusRequesString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding].copy;
+//    
+//    NSURL *urlStatusRequest = [NSURL URLWithString:statusRequesString.copy];
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:urlStatusRequest cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+//    [request setHTTPMethod:@"GET"];
+//    NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+//    
+//    if (!theConnection)
+//    {
+//        // Inform the user that the connection failed.
+//        UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"NSURLConnection"
+//                                                                     message:@"Not success"
+//                                                                    delegate:self
+//                                                           cancelButtonTitle:@"Ok"
+//                                                           otherButtonTitles:nil];
+//        [connectFailMessage show];
+//    }
+//    
+//}
+//
+//- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+//    self.responseData = [[NSMutableData alloc] init];
+//}
+//
+//- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+//    [self.responseData appendData:data];
+//}
+//
+//- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+//    NSLog(@"Unable to fetch data");
+//    
+//    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Can not access to the server"
+//                                                      message:@"Please try again."
+//                                                     delegate:self
+//                                            cancelButtonTitle:@"Ok"
+//                                            otherButtonTitles:nil];
+//    [message show];
+//    [self.navigationController popViewControllerAnimated:YES];
+//}
+//
+//- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+//{
+//    NSLog(@"Succeeded! Received %d bytes of data",[self.responseData length]);
+//    NSString *txt = [[NSString alloc] initWithData:self.responseData encoding: NSASCIIStringEncoding];
+//    NSLog(@"strinng is - %@",txt);
+//
+//    // создаем парсер
+//    XMLParseOrdersStatuses *parser = [[XMLParseOrdersStatuses alloc] initWithData:self.responseData];
+//    [parser setDelegate:parser];
+//    [parser parse];
+//    self.db = parser;
+//        
+//    NSArray *arrayOfIdOrders = [[NSArray alloc] initWithArray:[[self.db.tables valueForKey:@"Response"] valueForKey:@"idOrder"]];
+//    NSArray *arrayOfIdStatus = [[NSArray alloc] initWithArray:[[self.db.tables valueForKey:@"Response"] valueForKey:@"idStatus"]];
+//    
+//    _statusOfOrdersDictionary = [[NSMutableDictionary alloc] init];
+//    for (int i = 0; i < arrayOfIdOrders.count; i++) {
+//        [_statusOfOrdersDictionary setObject:[arrayOfIdStatus objectAtIndex:i] forKey:[arrayOfIdOrders objectAtIndex:i]];
+//    }
+//    
+//    
+//    for (int i = 0; i < self.historyArray.count; i++) {
+//        for (int j = 0; j <[[self.statusOfOrdersDictionary allKeys] count]; j++) {
+//            if ([[[self.historyArray objectAtIndex:i] valueForKey:@"orderID"] isEqualToString:[[self.statusOfOrdersDictionary allKeys] objectAtIndex:j]]) {
+//                [[self.historyArray objectAtIndex:i] setValue:[self.statusOfOrdersDictionary valueForKey:[[self.statusOfOrdersDictionary allKeys] objectAtIndex:j]] forKey:@"statusID"];
+//                break;
+//            }
+//        }
+//    }    
 }
 
 - (NSString *)createUUID

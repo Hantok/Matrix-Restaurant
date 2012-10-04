@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="VBQ-mB-ewb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12B19" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="VBQ-mB-ewb">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
     <scenes>
         <!--Load App View Controller-->
@@ -153,7 +153,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Bc3-8t-eoP" kind="push" id="7Pv-II-B07"/>
+                                    <action selector="toHistoryTableView:" destination="Spv-H0-bQc" eventType="touchUpInside" id="hlR-15-XJd"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -177,6 +177,7 @@
                         <segue destination="wOa-81-fZj" kind="push" identifier="menuIcon" id="3eU-AG-9O4"/>
                         <segue destination="9oc-Jo-suM" kind="push" identifier="toFavoritesIcon" id="Zx6-C5-KZ6"/>
                         <segue destination="lIw-7o-Ezu" kind="push" identifier="toSettings" id="F3c-GD-IJy"/>
+                        <segue destination="Bc3-8t-eoP" kind="push" identifier="toHistoryTableView" id="r8d-lF-4tj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hhD-SI-Yx4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1580,6 +1581,7 @@
             <relationships>
                 <relationship kind="action" name="OrderButton:"/>
                 <relationship kind="action" name="drop:"/>
+                <relationship kind="action" name="toHistoryTableView:"/>
                 <relationship kind="action" name="viewSpam:"/>
                 <relationship kind="outlet" name="cartButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="drop" candidateClass="UIButton"/>
@@ -1702,21 +1704,17 @@
                 <relationship kind="outlet" name="reserveButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="restDetAdress" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="restDetAdressLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="restDetEmail" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="restDetEmailLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="restDetParking" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="restDetParkingLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="restDetPhone" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="restDetPhonesLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="restDetSeatsNumber" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="restDetSeatsNumberLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="restDetTerrace" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="restDetTerraceLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="restDetWorkingTime" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="restDetWorkingTimeLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="restaurantImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="scroll" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="showOnMapButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="textPhonesLabel" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="textTerraceLabel" candidateClass="UITextField"/>
             </relationships>
         </class>
         <class className="RestaurantViewController" superclassName="UITableViewController">

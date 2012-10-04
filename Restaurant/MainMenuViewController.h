@@ -16,6 +16,8 @@
 #import "Singleton.h"
 #import "FavoritesIconViewController.h"
 #import "FavoritesTableViewController.h"
+#import "XMLParseOrdersStatuses.h"
+#import "HistoryTableListViewController.h"
 
 #import <AudioToolbox/AudioToolbox.h>
 
@@ -40,6 +42,10 @@
 @property (strong, nonatomic) MenuDataStruct* singleMenu;
 @property (strong, nonatomic) IBOutlet UIButton *historyButton;
 @property (strong, nonatomic) IBOutlet UIView *mainView;
+@property (strong, nonatomic) XMLParseOrdersStatuses *xmlParser;
+@property (strong, nonatomic) NSMutableDictionary *statusOfOrdersDictionary;
+@property (strong, nonatomic) HistoryTableListViewController *historyTableVar;
+@property (strong, nonatomic) NSMutableArray *historyArray;
 
 @property(nonatomic, assign) id<UIPickerViewDelegate> delegatepV;
 @property(nonatomic, assign) id<UIPickerViewDataSource> dataSourcepV;
@@ -48,5 +54,6 @@
 - (IBAction)drop:(id)sender;
 - (IBAction)OrderButton:(id)sender;
 - (IBAction)viewSpam:(id)sender;
+- (IBAction)toHistoryTableView:(id)sender;
 
 @end

@@ -47,6 +47,7 @@
 @property (nonatomic, copy) NSArray *animationImages;
 @property (nonatomic,strong) UIAlertView *alert;
 @property (nonatomic, strong) NSMutableArray *promotionsArray;
+@property (strong, nonatomic) NSMutableData *responseData;
 
 - (void)startIconDownload:(MenuDataStruct *)appRecord forIndexPath:(NSIndexPath *)indexPath;
 
@@ -107,6 +108,10 @@
 @synthesize mainView = _mainView;
 @synthesize alert = _alert;
 @synthesize promotionsArray = _promotionsArray;
+@synthesize responseData = _responseData;
+@synthesize xmlParser = _xmlParser;
+@synthesize statusOfOrdersDictionary = _statusOfOrdersDictionary;
+@synthesize historyTableVar = _historyTableVar;
 
 
 //Titles!!!!
@@ -129,7 +134,16 @@
 @synthesize titleDoYouWantDeleteAllItemsFromCart = _titleDoYouWantDeleteAllItemsFromCart;
 @synthesize titleNoInternet = _titleNoInternet;
 @synthesize titleCartIsEmpty = _titleCartIsEmpty;
+@synthesize historyArray = _historyArray;
 
+- (NSMutableArray *)historyArray
+{
+    if (!_historyArray) {
+        _historyArray = [[self.db getArrayFromCoreDatainEntetyName:@"CustomerOrders" withSortDescriptor:@"name"] mutableCopy];
+        return _historyArray;
+    }
+    return _historyArray;
+}
 
 - (IBAction)drop:(id)sender {
     self.menuId = nil;
@@ -592,6 +606,117 @@
     subView.label.text = [[self.promotionsArray objectAtIndex:currentImage] title];
     subView.textView.text = [[self.promotionsArray objectAtIndex:currentImage] descriptionText];
     [self.view addSubview:subView];
+}
+
+- (NSString *)createUUID
+{
+    // Create universally unique identifier (object)
+    CFUUIDRef uuidObject = CFUUIDCreate(kCFAllocatorDefault);
+    
+    // Get the string representation of CFUUID object.
+    NSString *uuidStr = (__bridge NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuidObject);
+    
+    // If needed, here is how to get a representation in bytes, returned as a structure
+    // typedef struct {
+    //   UInt8 byte0;
+    //   UInt8 byte1;
+    //   ...
+    //   UInt8 byte15;
+    // } CFUUIDBytes;
+    //CFUUIDBytes bytes = CFUUIDGetUUIDBytes(uuidObject);
+    
+    //CFRelease(uuidObject);
+    
+    return uuidStr;
+}
+
+- (IBAction)toHistoryTableView:(id)sender
+{
+    NSMutableString *statusRequesString = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test7/root/Customer_Scripts/getStatuses.php?DBid=12&UUID="];
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"uid"])
+    {
+        NSString *uid = [self createUUID];
+        [[NSUserDefaults standardUserDefaults] setValue:uid forKey:@"uid"];
+        //9E3C884C-6E57-4D16-884F-46132825F21E
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [statusRequesString appendString: uid];
+    }
+    else
+        [statusRequesString appendString:[[NSUserDefaults standardUserDefaults] objectForKey:@"uid"]];
+    
+    statusRequesString = [statusRequesString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding].copy;
+    
+    NSURL *urlStatusRequest = [NSURL URLWithString:statusRequesString.copy];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:urlStatusRequest cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+    [request setHTTPMethod:@"GET"];
+    NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
+    if (!theConnection)
+    {
+        // Inform the user that the connection failed.
+        UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"NSURLConnection"
+                                                                     message:@"Not success"
+                                                                    delegate:self
+                                                           cancelButtonTitle:@"Ok"
+                                                           otherButtonTitles:nil];
+        [connectFailMessage show];
+    }
+    
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    self.responseData = [[NSMutableData alloc] init];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    [self.responseData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    NSLog(@"Unable to fetch data");
+    
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Can not access to the server"
+                                                      message:@"Please try again."
+                                                     delegate:self
+                                            cancelButtonTitle:@"Ok"
+                                            otherButtonTitles:nil];
+    [message show];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSLog(@"Succeeded! Received %d bytes of data",[self.responseData length]);
+    NSString *txt = [[NSString alloc] initWithData:self.responseData encoding: NSASCIIStringEncoding];
+    NSLog(@"strinng is - %@",txt);
+    
+    // создаем парсер
+    XMLParseOrdersStatuses *parser = [[XMLParseOrdersStatuses alloc] initWithData:self.responseData];
+    [parser setDelegate:parser];
+    [parser parse];
+    self.xmlParser = parser;
+    
+    NSArray *arrayOfIdOrders = [[NSArray alloc] initWithArray:[[self.xmlParser.tables valueForKey:@"Response"] valueForKey:@"idOrder"]];
+    NSArray *arrayOfIdStatus = [[NSArray alloc] initWithArray:[[self.xmlParser.tables valueForKey:@"Response"] valueForKey:@"idStatus"]];
+    
+    _statusOfOrdersDictionary = [[NSMutableDictionary alloc] init];
+    for (int i = 0; i < arrayOfIdOrders.count; i++) {
+        [_statusOfOrdersDictionary setObject:[arrayOfIdStatus objectAtIndex:i] forKey:[arrayOfIdOrders objectAtIndex:i]];
+    }
+    
+    NSArray *historyArrayCopy = self.historyArray;
+    
+    for (int i = 0; i < self.historyArray.count; i++) {
+        for (int j = 0; j <[[self.statusOfOrdersDictionary allKeys] count]; j++) {
+            if ([[[self.historyArray objectAtIndex:i] valueForKey:@"orderID"] isEqualToString:[[self.statusOfOrdersDictionary allKeys] objectAtIndex:j]]) {
+                [[self.historyArray objectAtIndex:i] setValue:[self.statusOfOrdersDictionary valueForKey:[[self.statusOfOrdersDictionary allKeys] objectAtIndex:j]] forKey:@"statusID"];
+                break;
+            }
+        }
+    }
+
+    
+    [self performSegueWithIdentifier:@"toHistoryTableView" sender:self];
 }
 
 - (void)viewDidUnload
