@@ -29,7 +29,7 @@
 @synthesize restDetWorkingTime = _restDetWorkingTime;
 @synthesize restDetSeatsNumberLabel = _restDetSeatsNumberLabel;
 @synthesize restDetSeatsNumber = _restDetSeatsNumber;
-@synthesize restDetParkingLabel = _restDetParkingLabel;
+@synthesize restDetParkingLabel =_restDetParkingLabel;
 @synthesize restDetParking = _restDetParking;
 
 - (GettingCoreContent *)db
@@ -81,11 +81,68 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _scroll.contentSize = CGSizeMake(142, 600);
+    
+    // --------------------------------------------- SCROLL VIEW -------------------------------------------------------
+    
+    _scroll.contentSize = CGSizeMake(142, 200);
     _scroll.scrollEnabled = YES;
     _scroll.clipsToBounds = YES;
     [_scroll setShowsVerticalScrollIndicator:NO];
     _scroll.scrollsToTop= YES;
+    
+    self.restDetAdressLabel.text = @"Adress:";
+    self.restDetAdress.text = [NSString stringWithFormat:@"%@, %@", _dataStruct.street, _dataStruct.build];
+    
+    self.restDetWorkingTimeLabel.text = @"Working time:";
+    self.restDetWorkingTime.text = [NSString stringWithFormat:@"%@", _dataStruct.workingTime];
+    
+    self.restDetSeatsNumberLabel.text = @"Number of seats:";
+    self.restDetSeatsNumber.text = [NSString stringWithFormat:@"%@", _dataStruct.seatsNumber];
+    
+    self.restDetParkingLabel.text = @"Parking:";
+    NSString *testString1 = [NSString stringWithFormat:@"%@", _dataStruct.parking];
+    if([testString1 isEqualToString: @"1"]){self.restDetParking.text = @"+";} else {self.restDetParking.text = @"-";}
+    
+
+  
+    //self.restDetTerraceLabel.text = @"Terrace";
+    UITextField *textTerraceLabel = [[UITextField alloc] initWithFrame:CGRectMake(10, 100, 142, 17)];
+    textTerraceLabel.textColor = [UIColor orangeColor];
+    textTerraceLabel.text = @"Terrace: ";
+    textTerraceLabel.font = [UIFont systemFontOfSize:13];
+    [_scroll addSubview: textTerraceLabel];
+    
+    UITextField *textTerrace = [[UITextField alloc] initWithFrame:CGRectMake(87, 100, 142, 17)];
+    textTerrace.textColor = [UIColor whiteColor];
+    NSString *testString2 = [NSString stringWithFormat:@"%@", _dataStruct.terrace];
+    if([testString2 isEqualToString: @"1"]){textTerrace.text = @"+";} else {textTerrace.text = @"-";}
+    textTerrace.font = [UIFont systemFontOfSize:13];
+    [_scroll addSubview: textTerrace];
+    
+    UITextField *textEmailLabel = [[UITextField alloc] initWithFrame:CGRectMake(10, textTerrace.frame.origin.y + 17, 142, 17)];
+    textEmailLabel.textColor = [UIColor orangeColor];
+    textEmailLabel.text = @"Email: ";
+    textEmailLabel.font = [UIFont systemFontOfSize:13];
+    [_scroll addSubview: textEmailLabel];
+    
+    UITextField *textEmail = [[UITextField alloc] initWithFrame:CGRectMake(10, textEmailLabel.frame.origin.y + 14, 142, 17)];
+    textEmail.textColor = [UIColor whiteColor];
+    textEmail.text = [NSString stringWithFormat:@"%@",_dataStruct.additionalContactInfo];
+    textEmail.font = [UIFont systemFontOfSize:13];
+    [_scroll addSubview: textEmail];
+    
+    UITextField *textPhonesLabel = [[UITextField alloc] initWithFrame:CGRectMake(10, textEmail.frame.origin.y + 17, 142, 17)];
+    textPhonesLabel.textColor = [UIColor orangeColor];
+    textPhonesLabel.text = @"Phones: ";
+    textPhonesLabel.font = [UIFont systemFontOfSize:13];
+    [_scroll addSubview: textPhonesLabel];
+    
+    UITextField *textPhones = [[UITextField alloc] initWithFrame:CGRectMake(10, textPhonesLabel.frame.origin.y + 14, 142, 17)];
+    textPhones.textColor = [UIColor whiteColor];
+    textPhones.text = [NSString stringWithFormat:@"%@",_dataStruct.phones];
+    textPhones.font = [UIFont systemFontOfSize:13];
+    [_scroll addSubview: textPhones];
+//----------------------------------------------------------------------------------------------------------------------
     
     
     [self setAllTitlesOnThisPage];
@@ -157,12 +214,12 @@
     [self setLoadingView:nil];
     [self setCallButton:nil];
     [self setShowOnMapButton:nil];
-   //[self setWorkTimeLabel:nil];
-   //[self setWorkTimeDetailLabel:nil];
-    //[self setTelephoneLabel:nil];
-    //[self setTelephoneDetailLabel:nil];
     [self setRestaurantImage:nil];
     [self setReserveButton:nil];
+    [self setRestDetSeatsNumberLabel:nil];
+    [self setRestDetSeatsNumber:nil];
+    [self setRestDetParkingLabel:nil];
+    [self setRestDetParking:nil];
     [super viewDidUnload];
     [self setAlert:nil];
     // Release any retained subviews of the main view.

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12B19" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="VBQ-mB-ewb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="VBQ-mB-ewb">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
     </dependencies>
     <scenes>
         <!--Load App View Controller-->
@@ -489,60 +489,60 @@
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="BHK-Wv-WVr">
-                                <rect key="frame" x="0.0" y="288" width="142" height="128"/>
+                                <rect key="frame" x="0.0" y="293" width="142" height="123"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="AdressLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n75-lb-dpe">
-                                        <rect key="frame" x="20" y="0.0" width="102" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="AdressLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xdU-Gk-3fE">
+                                        <rect key="frame" x="10" y="-5" width="132" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Adress" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8Na-Lw-bMf">
+                                        <rect key="frame" x="10" y="8" width="132" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Adress" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="V0M-kH-Zcb">
-                                        <rect key="frame" x="20" y="11" width="102" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="WorkingTimeLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rjf-76-uhO">
+                                        <rect key="frame" x="10" y="24" width="112" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="WorkingTime" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gQr-7J-sTq">
+                                        <rect key="frame" x="10" y="37" width="102" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="WorkingTimeLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wWL-EV-dxc">
-                                        <rect key="frame" x="20" y="29" width="102" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="SeatsNumberLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="G1V-Zy-FWJ">
+                                        <rect key="frame" x="10" y="53" width="112" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="SeatsNumber" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4ix-8T-hhC">
+                                        <rect key="frame" x="10" y="66" width="112" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="WorkingTime" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NMI-sB-xZ6">
-                                        <rect key="frame" x="20" y="40" width="102" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ParkingLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Z89-48-4Oe">
+                                        <rect key="frame" x="10" y="82" width="69" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="SeatsNumberLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MEC-Pn-dJh">
-                                        <rect key="frame" x="20" y="58" width="102" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="SeatsNumber" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Fgu-gX-ggd">
-                                        <rect key="frame" x="20" y="69" width="102" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ParkingLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cbY-LZ-1af">
-                                        <rect key="frame" x="20" y="87" width="102" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Parking" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="e0k-mi-iXC">
-                                        <rect key="frame" x="20" y="98" width="102" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Parking" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="x4h-0g-kWS">
+                                        <rect key="frame" x="87" y="82" width="35" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -556,14 +556,14 @@
                     <connections>
                         <outlet property="callButton" destination="6y5-Au-bP7" id="Ifx-xM-eTU"/>
                         <outlet property="reserveButton" destination="UNr-Jl-SA6" id="XPA-Qa-Dr6"/>
-                        <outlet property="restDetAdress" destination="V0M-kH-Zcb" id="dQD-Sc-UFn"/>
-                        <outlet property="restDetAdressLabel" destination="n75-lb-dpe" id="F9a-gM-WTZ"/>
-                        <outlet property="restDetParking" destination="e0k-mi-iXC" id="HsN-FX-u05"/>
-                        <outlet property="restDetParkingLabel" destination="cbY-LZ-1af" id="eCj-W5-JTc"/>
-                        <outlet property="restDetSeatsNumber" destination="Fgu-gX-ggd" id="15x-Qo-bwL"/>
-                        <outlet property="restDetSeatsNumberLabel" destination="MEC-Pn-dJh" id="wQ1-A8-7Fw"/>
-                        <outlet property="restDetWorkingTime" destination="NMI-sB-xZ6" id="2WH-Pc-Uu2"/>
-                        <outlet property="restDetWorkingTimeLabel" destination="wWL-EV-dxc" id="dtk-GK-JJh"/>
+                        <outlet property="restDetAdress" destination="8Na-Lw-bMf" id="D7w-lR-fOq"/>
+                        <outlet property="restDetAdressLabel" destination="xdU-Gk-3fE" id="m6e-Lf-ujb"/>
+                        <outlet property="restDetParking" destination="x4h-0g-kWS" id="chv-zB-wkO"/>
+                        <outlet property="restDetParkingLabel" destination="Z89-48-4Oe" id="MD6-o8-SHT"/>
+                        <outlet property="restDetSeatsNumber" destination="4ix-8T-hhC" id="sHb-eI-KsH"/>
+                        <outlet property="restDetSeatsNumberLabel" destination="G1V-Zy-FWJ" id="9WV-8A-Du6"/>
+                        <outlet property="restDetWorkingTime" destination="gQr-7J-sTq" id="IkZ-f0-0jw"/>
+                        <outlet property="restDetWorkingTimeLabel" destination="rjf-76-uhO" id="LWf-qx-tIS"/>
                         <outlet property="restaurantImage" destination="kUk-C2-BLO" id="PKE-rD-FOS"/>
                         <outlet property="scroll" destination="BHK-Wv-WVr" id="uyF-zc-fOl"/>
                         <outlet property="showOnMapButton" destination="LTc-bJ-iOA" id="2Ve-b3-SEO"/>
@@ -1519,6 +1519,221 @@
         <image name="restaurants.png" width="294" height="94"/>
         <image name="stop.png" width="256" height="256"/>
     </resources>
+    <classes>
+        <class className="AddressListTableViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddressListTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelButton:"/>
+                <relationship kind="outlet" name="cancelButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="saveAddressItem" candidateClass="UINavigationItem"/>
+            </relationships>
+        </class>
+        <class className="DeliveryViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DeliveryViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="saveAddress:"/>
+                <relationship kind="action" name="toAddressList:"/>
+                <relationship kind="action" name="toOrder:"/>
+                <relationship kind="outlet" name="CityName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="addressName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="appartaments" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="build" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="customerName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="deliveryTime" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="otherInformation" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="phone" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="saveAddressButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="street" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="toOrderButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="FavoritesIconViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FavoritesIconViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="changePage:"/>
+                <relationship kind="action" name="stopEditing:"/>
+                <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
+                <relationship kind="outlet" name="stopEditButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="viewForOutput" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="FavoritesTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FavoritesTableViewController.h"/>
+        </class>
+        <class className="HistoryTableListViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HistoryTableListViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="LanguageAndCityTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LanguageAndCityTableViewController.h"/>
+        </class>
+        <class className="LoadAppViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoadAppViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="MainMenuViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="OrderButton:"/>
+                <relationship kind="action" name="drop:"/>
+                <relationship kind="action" name="viewSpam:"/>
+                <relationship kind="outlet" name="cartButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="drop" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="historyButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="imageButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="mainView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="menuButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
+                <relationship kind="outlet" name="restorantsButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="settingsButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="tableViewController" candidateClass="UITableViewController"/>
+            </relationships>
+        </class>
+        <class className="MapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="segment" candidateClass="UISegmentedControl"/>
+            </relationships>
+        </class>
+        <class className="MenuIconViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuIconViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="changePage"/>
+                <relationship kind="action" name="stopEditing:"/>
+                <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
+                <relationship kind="outlet" name="stopEditButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="viewForOutput" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="MenuListTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuListTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="navigationBar" candidateClass="UINavigationItem"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="PartOfHistoryViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PartOfHistoryViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="infoOfProductInOrder:"/>
+                <relationship kind="action" name="showOrHideInfoOfOrder:"/>
+                <relationship kind="outlet" name="additionalDescriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="additionalLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="addressDescriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="addressLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="cityDescriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="cityLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="infoOfOrderContainer" candidateClass="UIView"/>
+                <relationship kind="outlet" name="infoOfOrderContainerInnerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="infoOfOrderDetailView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="infoOfProductInOrderContainer" candidateClass="UIView"/>
+                <relationship kind="outlet" name="infoOfProductInOrderDetailView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="infoOfProductInOrderInnerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="mainView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="messageLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="metroDescriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="metroLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="orderNumberLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="productName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="productPriceSumm" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="productsCount" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="showOrHideButtonFirst" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="showOrHideButtonSecond" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="tempLabel2" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="ProductDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProductDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="dragPictureViewContainer:" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="action" name="share:"/>
+                <relationship kind="action" name="showOrHidePictureViewContainer:"/>
+                <relationship kind="outlet" name="captionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="carbohydratesLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="cartButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="countPickerView" candidateClass="UIPickerView"/>
+                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="fatLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="favoritesButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="in100gCarbohydratesLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="in100gFatLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="in100gKCalLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="in100gLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="in100gProteinLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="kCalLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="nameLabal" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="nilCaption" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="pictureButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="pictureViewContainer" candidateClass="UIView"/>
+                <relationship kind="outlet" name="portionCarbohydratesLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="portionFatLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="portionKCalLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="portionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="portionProteinLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="priceLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="proteinLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="shareButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="weightLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="ReservationViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ReservationViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="keyboardHide:"/>
+                <relationship kind="outlet" name="dateOfReservation" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="name" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="numberOfPeople" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="RestaurantDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RestaurantDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="tebleReserve:"/>
+                <relationship kind="outlet" name="callButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="reserveButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="restDetAdress" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="restDetAdressLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="restDetEmail" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="restDetEmailLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="restDetParking" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="restDetParkingLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="restDetPhone" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="restDetPhonesLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="restDetSeatsNumber" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="restDetSeatsNumberLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="restDetTerrace" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="restDetTerraceLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="restDetWorkingTime" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="restDetWorkingTimeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="restaurantImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="scroll" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="showOnMapButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="RestaurantViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RestaurantViewController.h"/>
+        </class>
+        <class className="SettingsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
+        </class>
+        <class className="SocialViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SocialViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="SocialWebView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

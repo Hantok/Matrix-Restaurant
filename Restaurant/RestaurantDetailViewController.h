@@ -1,10 +1,3 @@
-//  RestaurantDetailViewController.h
-//  Restaurant
-//
-//  Created by Bogdan Geleta on 05.06.12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 #import "RestaurantDataStruct.h"
 #import "GettingCoreContent.h"
@@ -23,8 +16,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *restDetAdress;
 @property (weak, nonatomic) IBOutlet UILabel * restDetWorkingTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *restDetWorkingTime;
-@property (weak, nonatomic) IBOutlet UILabel *restDetSeatsNumberLabel;
-@property (weak, nonatomic) IBOutlet UILabel *restDetSeatsNumber;
-@property (weak, nonatomic) IBOutlet UILabel *restDetParkingLabel;
-@property (weak, nonatomic) IBOutlet UILabel *restDetParking;
+@property (strong, nonatomic) IBOutlet UILabel *restDetSeatsNumberLabel;
+@property (strong, nonatomic) IBOutlet UILabel *restDetSeatsNumber;
+@property (strong, nonatomic) IBOutlet UILabel *restDetParkingLabel;
+@property (strong, nonatomic) IBOutlet UILabel *restDetParking;
 @end
