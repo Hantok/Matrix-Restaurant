@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12B19" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="VBQ-mB-ewb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="VBQ-mB-ewb">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
     </dependencies>
     <scenes>
         <!--Load App View Controller-->
@@ -154,6 +154,7 @@
                                 </state>
                                 <connections>
                                     <action selector="toHistoryTableView:" destination="Spv-H0-bQc" eventType="touchUpInside" id="hlR-15-XJd"/>
+                                    <segue destination="Bc3-8t-eoP" kind="push" id="ezI-wr-l7m"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -177,7 +178,6 @@
                         <segue destination="wOa-81-fZj" kind="push" identifier="menuIcon" id="3eU-AG-9O4"/>
                         <segue destination="9oc-Jo-suM" kind="push" identifier="toFavoritesIcon" id="Zx6-C5-KZ6"/>
                         <segue destination="lIw-7o-Ezu" kind="push" identifier="toSettings" id="F3c-GD-IJy"/>
-                        <segue destination="Bc3-8t-eoP" kind="push" identifier="toHistoryTableView" id="r8d-lF-4tj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hhD-SI-Yx4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1297,22 +1297,22 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="RcG-PQ-jRz">
-                                        <rect key="frame" x="0.0" y="130" width="320" height="40"/>
+                                        <rect key="frame" x="0.0" y="130" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" id="MOm-Vk-mBH">
-                                                <rect key="frame" x="0.0" y="1" width="320" height="38"/>
+                                                <rect key="frame" x="0.0" y="1" width="320" height="48"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Delivery address:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="175-4H-yFR">
-                                                        <rect key="frame" x="20" y="8" width="118" height="21"/>
+                                                        <rect key="frame" x="20" y="13" width="118" height="21"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hTo-qh-LTL">
-                                                        <rect key="frame" x="292" y="10" width="18" height="18"/>
+                                                        <rect key="frame" x="285" y="15" width="20" height="20"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                         <state key="normal" image="buttonPlayRight.png">
@@ -1396,22 +1396,22 @@
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" id="0LT-iN-ZOu">
-                                        <rect key="frame" x="0.0" y="169" width="320" height="40"/>
+                                        <rect key="frame" x="0.0" y="179" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" id="vsg-Rw-ULB">
-                                                <rect key="frame" x="0.0" y="1" width="320" height="38"/>
+                                                <rect key="frame" x="0.0" y="1" width="320" height="48"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="You are ordered:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="5TA-0B-Jui">
-                                                        <rect key="frame" x="20" y="8" width="104" height="21"/>
+                                                        <rect key="frame" x="20" y="13" width="104" height="21"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HRT-sv-ZLG">
-                                                        <rect key="frame" x="292" y="10" width="18" height="18"/>
+                                                        <rect key="frame" x="285" y="14" width="20" height="20"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                         <state key="normal" image="buttonPlayRight.png">
@@ -1466,6 +1466,18 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tE0-un-u6Y">
+                                        <rect key="frame" x="72" y="300" width="176" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Reorder">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                             </scrollView>
                         </subviews>

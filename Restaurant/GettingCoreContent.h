@@ -79,6 +79,7 @@
         withDictionaryOfAttributes:(NSDictionary *)dictionary;
 
 - (void) deleteAddressWithName:(NSString *)name;
+- (void) deleteOrderWithId:(NSString *)idOrder;
 
 - (NSArray *)fetchFavoritesFromEntityName:(NSString *)entityName;
 - (void) changeFavoritesBoolValue:(BOOL)isFavorites forId:(NSNumber *)underbarid;

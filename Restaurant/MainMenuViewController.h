@@ -42,8 +42,6 @@
 @property (strong, nonatomic) MenuDataStruct* singleMenu;
 @property (strong, nonatomic) IBOutlet UIButton *historyButton;
 @property (strong, nonatomic) IBOutlet UIView *mainView;
-@property (strong, nonatomic) XMLParseOrdersStatuses *xmlParser;
-@property (strong, nonatomic) NSMutableDictionary *statusOfOrdersDictionary;
 @property (strong, nonatomic) HistoryTableListViewController *historyTableVar;
 @property (strong, nonatomic) NSMutableArray *historyArray;
 

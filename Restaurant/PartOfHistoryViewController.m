@@ -116,7 +116,8 @@
     
     
     [self.scrollView setScrollEnabled:YES];
-    [self.scrollView setContentSize:CGSizeMake(320 , 420)];
+    [self.scrollView setContentSize:CGSizeMake(320 , 440)];
+    [self.scrollView setShowsVerticalScrollIndicator:NO];
     
 //    self.addressDescriptionLabel.text = [self.historyDictionary valueForKey:@"street"];
         
