@@ -116,7 +116,8 @@
     
     
     [self.scrollView setScrollEnabled:YES];
-    [self.scrollView setContentSize:CGSizeMake(320 , 420)];
+    [self.scrollView setContentSize:CGSizeMake(320 , 440)];
+    [self.scrollView setShowsVerticalScrollIndicator:NO];
     
 //    self.addressDescriptionLabel.text = [self.historyDictionary valueForKey:@"street"];
         
@@ -222,82 +223,125 @@
         
     }
     
+    NSArray *sortedStatusArray = [self.db getArrayFromCoreDatainEntetyName:@"Statuses" withSortDescriptor:@"value"];
+    
     int countOfStatus = [[self.db fetchAllObjectsFromEntity:@"Statuses"] count] - 1;
     
     NSMutableArray *arrowArray = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < countOfStatus; i++) {
-        
+                
         if (i == 0) {
-            UIImageView *firstArrow = [[UIImageView alloc] initWithFrame:CGRectMake(5, 40, 315 / countOfStatus + ((countOfStatus - 1) * 10)/countOfStatus, 15)];
+            UIImageView *firstArrow = [[UIImageView alloc] initWithFrame:CGRectMake(5, 40, 315 / countOfStatus + ((countOfStatus - 1) * 10)/countOfStatus, 50)];
             if (curentNumberOfStatus == 1) {
                 [firstArrow setImage:[UIImage imageNamed:@"arrow1_green.png"]];
+                [self.scrollView addSubview:firstArrow];
+                [arrowArray addObject:firstArrow];
+                
+                NSString *str = [NSString stringWithFormat:@"%@", [[sortedStatusArray objectAtIndex:i + 2] valueForKey:@"underbarid"]];
+                NSArray *tempArray = [self.db fetchStatusForOrder:str];
+                NSString *compareString = [NSString stringWithFormat:@"%@", [[tempArray objectAtIndex:0] valueForKey:@"value"]];
+                if ([compareString isEqualToString:@"1"]) {
+                    UILabel *statusLabel = [[UILabel alloc] initWithFrame:CGRectMake([[arrowArray objectAtIndex:i] frame].origin.x, [[arrowArray objectAtIndex:i] frame].origin.y + [[arrowArray objectAtIndex:i] frame].size.height, [[arrowArray objectAtIndex:i] frame].size.width, 21)];
+                    [statusLabel setText:[[tempArray objectAtIndex:1] valueForKey:@"name"]];
+                    [statusLabel setTextColor:[UIColor whiteColor]];
+                    [statusLabel setFont:[UIFont systemFontOfSize:12]];
+                    [statusLabel setTextAlignment:NSTextAlignmentCenter];
+                    [statusLabel setBackgroundColor:[UIColor clearColor]];
+                    [self.scrollView addSubview:statusLabel];
+                }
+                
             } else {
                 [firstArrow setImage:[UIImage imageNamed:@"arrow1_red.png"]];
+                [self.scrollView addSubview:firstArrow];
+                [arrowArray addObject:firstArrow];
             }
-            UILabel *statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(firstArrow.frame.origin.x, firstArrow.frame.origin.y + firstArrow.frame.size.height, firstArrow.frame.size.width, 21)];
-            [statusLabel setText:@"asdfdgh"];
-            [statusLabel setTextColor:[UIColor whiteColor]];
-            [statusLabel setFont:[UIFont systemFontOfSize:12]];
-            [statusLabel setTextAlignment:NSTextAlignmentCenter];
-            [statusLabel setBackgroundColor:[UIColor clearColor]];
-            [self.scrollView addSubview:statusLabel];
-            [self.scrollView addSubview:firstArrow];
-            [arrowArray addObject:firstArrow];
         } else {
             if (i == countOfStatus - 1) {
-                UIImageView *lastArrow = [[UIImageView alloc] initWithFrame:CGRectMake([[arrowArray objectAtIndex:i - 1] frame].origin.x + [[arrowArray objectAtIndex:i - 1] frame].size.width - 10, 40, 315 / countOfStatus + ((countOfStatus - 1) * 10)/countOfStatus, 15)];
+                UIImageView *lastArrow = [[UIImageView alloc] initWithFrame:CGRectMake([[arrowArray objectAtIndex:i - 1] frame].origin.x + [[arrowArray objectAtIndex:i - 1] frame].size.width - 10, 40, 315 / countOfStatus + ((countOfStatus - 1) * 10)/countOfStatus, 50)];
                 if (curentNumberOfStatus == 0) {
                     [lastArrow setImage:[UIImage imageNamed:@"arrow3_green.png"]];
+                    [self.scrollView addSubview:lastArrow];
+                    [arrowArray addObject:lastArrow];
+                    for (int i = 0; i < arrowArray.count - 1; i++) {
+                        if (i == 0) {
+                            [[arrowArray objectAtIndex:i] setImage:[UIImage imageNamed:@"arrow1_green.png"]];
+                        } else {
+                            if (i == arrowArray.count - 1) {
+                                [[arrowArray objectAtIndex:i] setImage:[UIImage imageNamed:@"arrow3_green.png"]];
+                            } else {
+                                [[arrowArray objectAtIndex:i] setImage:[UIImage imageNamed:@"arrow2_green.png"]];
+                            }
+                        }
+                    }
+                    
+                    UILabel *statusLabel = [[UILabel alloc] initWithFrame:CGRectMake([[arrowArray objectAtIndex:arrowArray.count - 1] frame].origin.x, [[arrowArray objectAtIndex:arrowArray.count - 1] frame].origin.y + [[arrowArray objectAtIndex:arrowArray.count - 1] frame].size.height, [[arrowArray objectAtIndex:arrowArray.count - 1] frame].size.width, 21)];
+                    NSArray *tempArray = [self.db fetchStatusForOrder:@"2"];
+                    [statusLabel setText:[[tempArray objectAtIndex:1] valueForKey:@"name"]];
+                    [statusLabel setTextColor:[UIColor whiteColor]];
+                    [statusLabel setFont:[UIFont systemFontOfSize:12]];
+                    [statusLabel setTextAlignment:NSTextAlignmentCenter];
+                    [statusLabel setBackgroundColor:[UIColor clearColor]];
+                    [self.scrollView addSubview:statusLabel];
+
                 } else {
-                    [lastArrow setImage:[UIImage imageNamed:@"arrow3_red.png"]];
+                    
+                    if (curentNumberOfStatus == -1) {
+                        [lastArrow setImage:[UIImage imageNamed:@"arrow3_cancel_red.png"]];
+                        [self.scrollView addSubview:lastArrow];
+                        [arrowArray addObject:lastArrow];
+                        
+                        UILabel *statusLabel = [[UILabel alloc] initWithFrame:CGRectMake([[arrowArray objectAtIndex:arrowArray.count - 1] frame].origin.x, [[arrowArray objectAtIndex:arrowArray.count - 1] frame].origin.y + [[arrowArray objectAtIndex:arrowArray.count - 1] frame].size.height, [[arrowArray objectAtIndex:arrowArray.count - 1] frame].size.width, 21)];
+                        NSArray *tempArray = [self.db fetchStatusForOrder:@"1"];
+                        [statusLabel setText:[[tempArray objectAtIndex:1] valueForKey:@"name"]];
+                        [statusLabel setTextColor:[UIColor whiteColor]];
+                        [statusLabel setFont:[UIFont systemFontOfSize:12]];
+                        [statusLabel setTextAlignment:NSTextAlignmentCenter];
+                        [statusLabel setBackgroundColor:[UIColor clearColor]];
+                        [self.scrollView addSubview:statusLabel];
+
+                        
+                    } else {
+                        [lastArrow setImage:[UIImage imageNamed:@"arrow3_red.png"]];
+                        [self.scrollView addSubview:lastArrow];
+                        [arrowArray addObject:lastArrow];
+                    }
                 }
-                [self.scrollView addSubview:lastArrow];
-                [arrowArray addObject:lastArrow];
             }
             else {
-                UIImageView *arrow = [[UIImageView alloc] initWithFrame:CGRectMake([[arrowArray objectAtIndex:i - 1] frame].origin.x + [[arrowArray objectAtIndex:i - 1] frame].size.width - 10, 40, 315 / countOfStatus + ((countOfStatus - 1) * 10)/countOfStatus, 15)];
+                UIImageView *arrow = [[UIImageView alloc] initWithFrame:CGRectMake([[arrowArray objectAtIndex:i - 1] frame].origin.x + [[arrowArray objectAtIndex:i - 1] frame].size.width - 10, 40, 315 / countOfStatus + ((countOfStatus - 1) * 10)/countOfStatus, 50)];
                 if (curentNumberOfStatus == i + 1 || curentNumberOfStatus == i + 2) {
                     [arrow setImage:[UIImage imageNamed:@"arrow2_green.png"]];
+                    [self.scrollView addSubview:arrow];
+                    [arrowArray addObject:arrow];
+                    for (int j = 0; j < arrowArray.count - 1 ; j++) {
+                        if (j == 0) {
+                            [[arrowArray objectAtIndex:j] setImage:[UIImage imageNamed:@"arrow1_green.png"]];
+                        } else {
+                            [[arrowArray objectAtIndex:j] setImage:[UIImage imageNamed:@"arrow2_green.png"]];
+                        }
+                    }
+                    
+                    NSString *str = [NSString stringWithFormat:@"%@", [[sortedStatusArray objectAtIndex:i + 2] valueForKey:@"underbarid"]];
+                    NSArray *tempArray = [self.db fetchStatusForOrder:str];
+                    NSString *compareString = [NSString stringWithFormat:@"%@", [[tempArray objectAtIndex:0] valueForKey:@"value"]];
+                    if (![compareString isEqualToString:@"1"]) {
+                        UILabel *statusLabel = [[UILabel alloc] initWithFrame:CGRectMake([[arrowArray objectAtIndex:i] frame].origin.x, [[arrowArray objectAtIndex:i] frame].origin.y + [[arrowArray objectAtIndex:i] frame].size.height, [[arrowArray objectAtIndex:i] frame].size.width, 21)];
+                        [statusLabel setText:[[tempArray objectAtIndex:1] valueForKey:@"name"]];
+                        [statusLabel setTextColor:[UIColor whiteColor]];
+                        [statusLabel setFont:[UIFont systemFontOfSize:12]];
+                        [statusLabel setTextAlignment:NSTextAlignmentCenter];
+                        [statusLabel setBackgroundColor:[UIColor clearColor]];
+                        [self.scrollView addSubview:statusLabel];
+                    }
+
                 } else {
                     [arrow setImage:[UIImage imageNamed:@"arrow2_red.png"]];
+                    [self.scrollView addSubview:arrow];
+                    [arrowArray addObject:arrow];
                 }
-                [self.scrollView addSubview:arrow];
-                [arrowArray addObject:arrow];
             }
         }
-                
-//        if (i == 0) {
-//            UIImageView *firstArrow = [[UIImageView alloc] initWithFrame:CGRectMake(5, 30, 315 / countOfStatus, 10)];
-//            if (i == curentNumberOfStatus - 1) {
-//                [firstArrow setImage:[UIImage imageNamed:@"arrow1_green.png"]];
-//            } else {
-//                [firstArrow setImage:[UIImage imageNamed:@"arrow1_red.png"]];
-//            }
-//            [self.scrollView addSubview:firstArrow];
-//            [arrowArray addObject:firstArrow];
-//        } else {
-//            if (i == countOfStatus - 1) {
-//                UIImageView *lastArrow = [[UIImageView alloc] initWithFrame:CGRectMake([[arrowArray objectAtIndex:i - 1] frame].origin.x + [[arrowArray objectAtIndex:i - 1] frame].size.width - 10, 30, 315 / countOfStatus + 10, 10)];
-//                if (i == curentNumberOfStatus - 1) {
-//                    [lastArrow setImage:[UIImage imageNamed:@"arrow3_green.png"]];
-//                } else {
-//                    [lastArrow setImage:[UIImage imageNamed:@"arrow3_red.png"]];
-//                }
-//                [self.scrollView addSubview:lastArrow];
-//                [arrowArray addObject:lastArrow];
-//            }
-//            else {
-//                UIImageView *arrow = [[UIImageView alloc] initWithFrame:CGRectMake([[arrowArray objectAtIndex:i - 1] frame].origin.x + [[arrowArray objectAtIndex:i - 1] frame].size.width - 10, 30, 315 / countOfStatus + 10, 10)];
-//                if (i == curentNumberOfStatus - 1) {
-//                    [arrow setImage:[UIImage imageNamed:@"arrow2_green.png"]];
-//                } else {
-//                    [arrow setImage:[UIImage imageNamed:@"arrow2_red.png"]];
-//                }
-//                [self.scrollView addSubview:arrow];
-//                [arrowArray addObject:arrow];
-//            }
-//        }        
     }
 }
 

@@ -1,11 +1,3 @@
-//
-//  RestaurantDetailViewController.m
-//  Restaurant
-//
-//  Created by Bogdan Geleta on 05.06.12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
-//
-
 #import "RestaurantDetailViewController.h"
 #import "MapViewController.h"
 #import <QuartzCore/QuartzCore.h>
@@ -25,15 +17,22 @@
 @implementation RestaurantDetailViewController
 @synthesize callButton;
 @synthesize showOnMapButton;
-@synthesize workTimeLabel;
-@synthesize workTimeDetailLabel;
-@synthesize telephoneLabel;
-@synthesize telephoneDetailLabel;
 @synthesize restaurantImage;
 @synthesize dataStruct = _dataStruct;
 @synthesize db = _db;
 @synthesize alert = _alert;
 @synthesize loadingView = _loadingView;
+@synthesize scroll = _scroll;
+@synthesize restDetAdressLabel = _restDetAdressLabel;
+@synthesize restDetAdress = _restDetAdress;
+@synthesize restDetWorkingTimeLabel = _restDetWorkingTimeLabel;
+@synthesize restDetWorkingTime = _restDetWorkingTime;
+@synthesize restDetSeatsNumberLabel = _restDetSeatsNumberLabel;
+@synthesize restDetSeatsNumber = _restDetSeatsNumber;
+@synthesize restDetParkingLabel =_restDetParkingLabel;
+@synthesize restDetParking = _restDetParking;
+@synthesize textPhonesLabel = _textPhonesLabel;
+@synthesize textTerraceLabel = _textTerraceLabel;
 
 - (GettingCoreContent *)db
 {
@@ -85,13 +84,62 @@
 {
     [super viewDidLoad];
     
-    [self setAllTitlesOnThisPage];
+    // --------------------------------------------- SCROLL VIEW -------------------------------------------------------
+    _scroll.contentSize = CGSizeMake(142, 200);
+    _scroll.scrollEnabled = YES;
+    [_scroll setShowsVerticalScrollIndicator:NO];
     
+    // add by BI
+    self.restDetAdress.text = [NSString stringWithFormat:@"%@, %@", _dataStruct.street, _dataStruct.build];
+    self.restDetWorkingTime.text = [NSString stringWithFormat:@"%@", _dataStruct.workingTime];
+    self.restDetSeatsNumber.text = [NSString stringWithFormat:@"%@", _dataStruct.seatsNumber];
+    
+    NSString *testString1 = [NSString stringWithFormat:@"%@", _dataStruct.parking];
+    if([testString1 isEqualToString: @"1"]){self.restDetParking.text = @"+";} else {self.restDetParking.text = @"-";}
+
+    // dynamic adding to ScrollView
+    _textTerraceLabel = [[UITextField alloc] initWithFrame:CGRectMake(10, 100, 142, 17)];
+    _textTerraceLabel.textColor = [UIColor orangeColor];
+    _textTerraceLabel.font = [UIFont systemFontOfSize:13];
+  
+    UITextField *textTerrace = [[UITextField alloc] initWithFrame:CGRectMake(87, 100, 142, 17)];
+    textTerrace.textColor = [UIColor whiteColor];
+    NSString *testString2 = [NSString stringWithFormat:@"%@", _dataStruct.terrace];
+    if([testString2 isEqualToString: @"1"]){textTerrace.text = @"+";} else {textTerrace.text = @"-";}
+    textTerrace.font = [UIFont systemFontOfSize:13];
+
+    UITextField *textEmailLabel = [[UITextField alloc] initWithFrame:CGRectMake(10, textTerrace.frame.origin.y + 17, 142, 17)];
+    textEmailLabel.textColor = [UIColor orangeColor];
+    textEmailLabel.text = @"Email: ";
+    textEmailLabel.font = [UIFont systemFontOfSize:13];
+ 
+    UITextField *textEmail = [[UITextField alloc] initWithFrame:CGRectMake(10, textEmailLabel.frame.origin.y + 14, 142, 17)];
+    textEmail.textColor = [UIColor whiteColor];
+    textEmail.text = [NSString stringWithFormat:@"%@",_dataStruct.additionalContactInfo];
+    textEmail.font = [UIFont systemFontOfSize:13];
+
+    _textPhonesLabel = [[UITextField alloc] initWithFrame:CGRectMake(10, textEmail.frame.origin.y + 17, 142, 17)];
+    _textPhonesLabel.textColor = [UIColor orangeColor];
+    _textPhonesLabel.font = [UIFont systemFontOfSize:13];
+
+    UITextField *textPhones = [[UITextField alloc] initWithFrame:CGRectMake(10, _textPhonesLabel.frame.origin.y + 14, 142, 17)];
+    textPhones.textColor = [UIColor whiteColor];
+    textPhones.text = [NSString stringWithFormat:@"%@",_dataStruct.phones];
+    textPhones.font = [UIFont systemFontOfSize:13];
+    
+    // adding a subViews to Scroll
+    [_scroll addSubview: _textTerraceLabel];
+    [_scroll addSubview: textTerrace];
+    [_scroll addSubview: textEmailLabel];
+    [_scroll addSubview: textEmail];
+    [_scroll addSubview: _textPhonesLabel];
+    [_scroll addSubview: textPhones];
+//----------------------------------------------------------------------------------------------------------------------
+    
+    
+    [self setAllTitlesOnThisPage];
     self.navigationItem.title = self.dataStruct.name;
-	workTimeDetailLabel.text = self.dataStruct.workingTime;
-    telephoneDetailLabel.text = self.dataStruct.phones;
     NSData *dataOfPicture = [self.db fetchPictureDataByPictureId:self.dataStruct.idPicture];
-    //    NSURL *url = [self.db fetchImageURLbyPictureID:self.dataStruct.idPicture];
     if(dataOfPicture)
     {
         self.dataStruct.image  = [UIImage imageWithData:dataOfPicture];
@@ -108,24 +156,12 @@
             self.loadingView.textLabel.text = @"";
             [self.view addSubview:self.loadingView];
         }
-        
-        //        dataOfPicture = [NSData dataWithContentsOfURL:url];
-        //        [self.db SavePictureToCoreData:self.dataStruct.idPicture toData:dataOfPicture];
-        //self.dataStruct.image  = [UIImage imageWithData:dataOfPicture];
-        
-        
+
     }
-    //[self.db SavePictureToCoreData:self.dataStruct.idPicture toData:UIImagePNGRepresentation(cell.productImage.image)];
-    
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = self.view.bounds;
     gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor darkGrayColor] CGColor], (id)[[UIColor blackColor] CGColor],(id)[[UIColor darkGrayColor] CGColor],(id)[[UIColor blackColor] CGColor], nil];
     [self.view.layer insertSublayer:gradient atIndex:0];
-    
-    //[self.callButton setBackgroundImage:[UIImage imageNamed:@"Button_orange_rev2.png"] forState:UIControlStateNormal];
-    
-    //[self.showOnMapButton setBackgroundImage:[UIImage imageNamed:@"Button_black_light_rev2.png"] forState:UIControlStateNormal];
-    
     self.callButton.titleLabel.minimumFontSize = 10;
     self.showOnMapButton.titleLabel.minimumFontSize = 10;
     
@@ -159,15 +195,6 @@
 
 - (IBAction)tebleReserve:(id)sender
 {
-//    self.alert = [[UIAlertView alloc] initWithTitle:@"Sorry.Not suppurting now."
-//                                            message:nil
-//                                           delegate:nil
-//                                  cancelButtonTitle:@"OK"
-//                                  otherButtonTitles:nil, nil];
-//    [self.alert show];
-//    [self performSelector:@selector(dismiss) withObject:nil afterDelay:2];
-    
-//    [self performSegueWithIdentifier:@"reserve" sender:self];
 }
 
 - (void) dismiss
@@ -179,12 +206,12 @@
     [self setLoadingView:nil];
     [self setCallButton:nil];
     [self setShowOnMapButton:nil];
-    [self setWorkTimeLabel:nil];
-    [self setWorkTimeDetailLabel:nil];
-    [self setTelephoneLabel:nil];
-    [self setTelephoneDetailLabel:nil];
     [self setRestaurantImage:nil];
     [self setReserveButton:nil];
+    [self setRestDetSeatsNumberLabel:nil];
+    [self setRestDetSeatsNumber:nil];
+    [self setRestDetParkingLabel:nil];
+    [self setRestDetParking:nil];
     [super viewDidUnload];
     [self setAlert:nil];
     // Release any retained subviews of the main view.
@@ -205,12 +232,32 @@
     {
         if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Working time"])
         {
-            self.workTimeLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
+           self.restDetWorkingTimeLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"phone"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Phones"])
         {
-            self.telephoneLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
+            _textPhonesLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Parking"])
+        {
+            self.restDetParkingLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Terrace"])
+        {
+            _textTerraceLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Number of seats"])
+        {
+            self.restDetSeatsNumberLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Address"])
+        {
+            self.restDetAdressLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
         else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Show on map"])

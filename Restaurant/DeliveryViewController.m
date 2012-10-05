@@ -702,6 +702,11 @@
     [[[GettingCoreContent alloc] init] deleteAllObjectsFromEntity:@"Cart"];
     
     [self.hudView completeAndDismissWithTitle:nil];
+    [self performSelector:@selector(pop:) withObject:nil afterDelay:0.9];
+}
+
+- (void)pop:(id)sender {
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 /////////////////////////////////////////////////////

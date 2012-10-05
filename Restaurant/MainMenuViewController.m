@@ -47,6 +47,7 @@
 @property (nonatomic, copy) NSArray *animationImages;
 @property (nonatomic,strong) UIAlertView *alert;
 @property (nonatomic, strong) NSMutableArray *promotionsArray;
+@property (strong, nonatomic) NSMutableData *responseData;
 
 - (void)startIconDownload:(MenuDataStruct *)appRecord forIndexPath:(NSIndexPath *)indexPath;
 
@@ -107,6 +108,8 @@
 @synthesize mainView = _mainView;
 @synthesize alert = _alert;
 @synthesize promotionsArray = _promotionsArray;
+@synthesize responseData = _responseData;
+@synthesize historyTableVar = _historyTableVar;
 
 
 //Titles!!!!
@@ -129,7 +132,16 @@
 @synthesize titleDoYouWantDeleteAllItemsFromCart = _titleDoYouWantDeleteAllItemsFromCart;
 @synthesize titleNoInternet = _titleNoInternet;
 @synthesize titleCartIsEmpty = _titleCartIsEmpty;
+@synthesize historyArray = _historyArray;
 
+- (NSMutableArray *)historyArray
+{
+    if (!_historyArray) {
+        _historyArray = [[self.db getArrayFromCoreDatainEntetyName:@"CustomerOrders" withSortDescriptor:@"name"] mutableCopy];
+        return _historyArray;
+    }
+    return _historyArray;
+}
 
 - (IBAction)drop:(id)sender {
     self.menuId = nil;
@@ -592,6 +604,32 @@
     subView.label.text = [[self.promotionsArray objectAtIndex:currentImage] title];
     subView.textView.text = [[self.promotionsArray objectAtIndex:currentImage] descriptionText];
     [self.view addSubview:subView];
+}
+
+- (NSString *)createUUID
+{
+    // Create universally unique identifier (object)
+    CFUUIDRef uuidObject = CFUUIDCreate(kCFAllocatorDefault);
+    
+    // Get the string representation of CFUUID object.
+    NSString *uuidStr = (__bridge NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuidObject);
+    
+    // If needed, here is how to get a representation in bytes, returned as a structure
+    // typedef struct {
+    //   UInt8 byte0;
+    //   UInt8 byte1;
+    //   ...
+    //   UInt8 byte15;
+    // } CFUUIDBytes;
+    //CFUUIDBytes bytes = CFUUIDGetUUIDBytes(uuidObject);
+    
+    //CFRelease(uuidObject);
+    
+    return uuidStr;
+}
+
+- (IBAction)toHistoryTableView:(id)sender
+{
 }
 
 - (void)viewDidUnload

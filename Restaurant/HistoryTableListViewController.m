@@ -9,10 +9,18 @@
 #import "HistoryTableListViewController.h"
 #import "HistoryPartCell.h"
 #import "RestaurantCell.h"
+#import "SSToolkit/SSToolkit.h"
 
 @interface HistoryTableListViewController ()
 
 @property (strong, nonatomic) NSMutableData *responseData;
+@property (nonatomic, strong) SSHUDView *hudView;
+
+// titles
+@property (nonatomic, weak) NSString *titleLoading;
+@property (nonatomic, weak) NSString *titleFinished;
+@property (nonatomic, weak) NSString *titleUnableFetchData;
+@property (nonatomic, weak) NSString *titleSuccesLanguage;
 
 @end
 
@@ -24,6 +32,13 @@
 @synthesize responseData = _responseData;
 @synthesize db = _db;
 @synthesize statusOfOrdersDictionary = _statusOfOrdersDictionary;
+@synthesize hudView = _hudView;
+
+// titles
+@synthesize titleLoading = _titleLoading;
+@synthesize titleFinished = _titleFinished;
+@synthesize titleUnableFetchData = _titleUnableFetchData;
+@synthesize titleSuccesLanguage = _titleSuccesLanguage;
 
 - (GettingCoreContent *)content
 {
@@ -33,17 +48,6 @@
     }
     return  _content;
 }
-
-//- (NSMutableArray *)arrayOfAddresses
-//{
-//    if (!_arrayOfAddresses)
-//    {
-//        _arrayOfAddresses = [self.content getArrayFromCoreDatainEntetyName:@"Addresses" withSortDescriptor:@"name"].mutableCopy;
-//        return _arrayOfAddresses;
-//    }
-//    
-//    return _arrayOfAddresses;
-//}
 
 - (NSMutableArray *)historyArray
 {
@@ -65,15 +69,7 @@
 }
 
 - (void)viewDidLoad
-{    
-//    NSArray *mut = [self.content fetchProductWithId:@"158"];
-//    [self.tableView setBackgroundColor:[UIColor darkGrayColor]];
-    
-//    NSMutableArray *arr = self.historyArray;
-    
-//    self.historyArray = [NSArray arrayWithObjects:@"one", @"two", @"three", nil];
-    
-    
+{
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -110,12 +106,18 @@
                                                            cancelButtonTitle:@"Ok"
                                                            otherButtonTitles:nil];
         [connectFailMessage show];
+    } else {
+        self.hudView = [[SSHUDView alloc] initWithTitle:@"Loading..."];
+        [self.hudView show];
     }
     
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     self.responseData = [[NSMutableData alloc] init];
+//    self.hudView = [[SSHUDView alloc] initWithTitle:self.titleLoading];
+//    self.hudView = [[SSHUDView alloc] initWithTitle:@"Loading..."];
+//    [self.hudView show];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
@@ -123,6 +125,11 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    
+//    [self.hudView failAndDismissWithTitle:self.titleUnableFetchData];
+    [self.hudView failAndDismissWithTitle:@"Error"];
+
+    
     NSLog(@"Unable to fetch data");
     
     UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Can not access to the server"
@@ -154,16 +161,6 @@
         [_statusOfOrdersDictionary setObject:[arrayOfIdStatus objectAtIndex:i] forKey:[arrayOfIdOrders objectAtIndex:i]];
     }
     
-//    NSArray *arr = [[NSArray alloc] init];
-//    arr = [[self.statusOfOrdersDictionary allKeys] objectAtIndex:j];
-    
-//    NSString *str1 = [[NSString alloc] init];
-//    NSString *str2 = [[NSString alloc] init];
-//    
-//    if (str1 isEqualToString:<#(NSString *)#>) {
-//        <#statements#>
-//    }
-
     
     for (int i = 0; i < self.historyArray.count; i++) {
         for (int j = 0; j <[[self.statusOfOrdersDictionary allKeys] count]; j++) {
@@ -172,10 +169,11 @@
                 break;
             }
         }
-//        if ([[self.historyArray objectAtIndex:i] valueForKey:@"statusID"] isEqualToString:<#(NSString *)#>) {
-//            <#statements#>
-//        }
     }
+    
+//    [self.hudView completeWithTitle:self.titleFinished];
+    [self.hudView completeWithTitle:@"Finished"];
+    [self.hudView dismiss];
     
 }
 
@@ -223,9 +221,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    return 0;
     return [self.historyArray count];
-//    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -246,12 +242,9 @@
         }
     }
     
-//    cell.dateOfOrder.text = [self.historyArray objectAtIndex:indexPath.row];
     
     cell.dateOfOrder.text = [[self.historyArray objectAtIndex:indexPath.row] valueForKey:@"date"];
-//    cell.dateOfOrder.text = [NSString stringWithFormat:@"%@%@", @"from ", [[self.historyArray objectAtIndex:indexPath.row] valueForKey:@"date"]];
     
-//    cell.numberOfOrder.text = [[self.historyArray objectAtIndex:indexPath.row] valueForKey:@"orderID"];
     cell.numberOfOrder.text = [NSString stringWithFormat:@"%@%@", @"№ ", [[self.historyArray objectAtIndex:indexPath.row] valueForKey:@"orderID"]];
     
     CAGradientLayer *gradient = [CAGradientLayer layer];
@@ -284,19 +277,27 @@
 }
 */
 
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+//        //Delete form DB
+//        [self.content deleteAddressWithName:[[self.arrayOfAddresses objectAtIndex:indexPath.row] valueForKey:@"name"]];
+//
+//        [self.arrayOfAddresses removeObjectAtIndex:indexPath.row];
+                
+        [self.content deleteOrderWithId:[[self.historyArray objectAtIndex:indexPath.row] valueForKey:@"orderID"]];
+        [self.historyArray removeObjectAtIndex:indexPath.row];
+        
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
 
 /*
 // Override to support rearranging the table view.
