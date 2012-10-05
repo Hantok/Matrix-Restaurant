@@ -20,6 +20,7 @@
 
 @property (nonatomic, strong) UIImageView *hitView;
 @property (nonatomic, strong) UIImageView *newsItemView;
+@property (nonatomic) bool didLoad;
 
 - (void)startIconDownload:(ProductDataStruct *)appRecord forIndexPath:(NSIndexPath *)indexPath;
 
@@ -35,9 +36,16 @@
 @synthesize imageDownloadsInProgress = _imageDownloadsInProgress;
 @synthesize hitView;
 @synthesize newsItemView;
+@synthesize didLoad = _didLoad;
 
 
-
+- (void) imageAnimation: (ProductCell *) cell
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:1];
+    [cell.productImage setAlpha:1];
+    [UIView commitAnimations];
+}
 - (NSMutableArray *)arrayData
 {
     
@@ -165,13 +173,14 @@
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
     self.imageDownloadsInProgress = [[NSMutableDictionary alloc] init];
     self.navigationItem.title = self.kindOfMenu.title;
     
     hitView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HIT1.png"]];
     newsItemView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"New1.png"]];
-    
+    self.didLoad = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -233,7 +242,7 @@
     
     NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
     [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
-    
+    self.didLoad = NO;
 //    }
     [super viewWillDisappear:animated];
 }
@@ -247,7 +256,7 @@
 {
     [self setTableView:nil];
     [self setNavigationBar:nil];
-    
+
     [self setKindOfMenu:nil];
     [self setDb:nil];
     [self setHitView:nil];
@@ -310,12 +319,22 @@
             [self startIconDownload:dataStruct forIndexPath:indexPath];
         }
         // if a download is deferred or in progress, return a placeholder image  
-        cell.productImage.image = [UIImage imageNamed:@"Placeholder.png"];
+        //cell.productImage.image = [UIImage imageNamed:@"Placeholder.png"];
+        
+        // if a download is deferred or in progress, return a loading screen
+        cell.productImage.alpha = 0;
+        [cell.productImageLoadingIndocator startAnimating];
         
     }
     else
     {
+        if (self.didLoad)
+        {
+            cell.productImage.alpha = 0;
+        }
+        [cell.productImageLoadingIndocator stopAnimating];
         cell.productImage.image = dataStruct.image;
+        [self imageAnimation: cell];
 //        else
 //        {
 //            [hitView removeFromSuperview];
@@ -388,7 +407,9 @@
         ProductCell *cell = (ProductCell *)[self.tableView cellForRowAtIndexPath:iconDownloader.indexPathInTableView];
         
         // Display the newly loaded image
+        [cell.productImageLoadingIndocator stopAnimating];
         cell.productImage.image = iconDownloader.appRecord.image;
+        [self imageAnimation: cell];
         [self.db SavePictureToCoreData:iconDownloader.appRecord.idPicture toData:UIImagePNGRepresentation(cell.productImage.image)];
         
     }
@@ -404,6 +425,11 @@
 	{
         [self loadImagesForOnscreenRows];
     }
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    self.didLoad = NO;
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView

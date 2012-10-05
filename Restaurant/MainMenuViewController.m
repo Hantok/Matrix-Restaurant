@@ -993,7 +993,7 @@
             formatter.roundingIncrement = [NSNumber numberWithFloat:0.01];
             formatter.numberStyle = NSNumberFormatterDecimalStyle;
             
-            
+            bool isWithDiscount = NO;
             float sum = 0;
             float sumWithDiscounts = 0;
             int totalCount = 0;
@@ -1005,6 +1005,7 @@
                 if (productDataStruct.discountValue.floatValue != 0)
                 {
                     sumWithDiscounts = sumWithDiscounts + (productDataStruct.price.floatValue * (1 - productDataStruct.discountValue.floatValue) * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue]);
+                    isWithDiscount = YES;
                 }
                 else
                 {
@@ -1016,7 +1017,7 @@
             //cell.sumNumberLabel.text = [NSString stringWithFormat:@"%@ %@",[formatter stringFromNumber:[NSNumber numberWithFloat:sum]], [[NSUserDefaults standardUserDefaults] valueForKey:@"Currency"]];
             //displaing of price with strike
             NSString *priceString;
-            if (sumWithDiscounts != sum)
+            if (isWithDiscount)
             {
             priceString = [NSString stringWithFormat:@"<strike>%@ %@</strike>",[formatter stringFromNumber:[NSNumber numberWithFloat:sum]], [[NSUserDefaults standardUserDefaults] valueForKey:@"Currency"]];
             }

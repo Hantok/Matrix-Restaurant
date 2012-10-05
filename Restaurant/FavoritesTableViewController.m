@@ -20,6 +20,7 @@
 
 @property (nonatomic, strong) UIImageView *hitView;
 @property (nonatomic, strong) UIImageView *newsItemView;
+@property (nonatomic) bool didLoad;
 
 @end
 
@@ -30,6 +31,15 @@
 @synthesize arrayOfObjects = _arrayOfObjects;
 @synthesize hitView;
 @synthesize newsItemView;
+@synthesize didLoad;
+
+- (void) imageAnimation: (ProductCell *) cell
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:1];
+    [cell.productImage setAlpha:1];
+    [UIView commitAnimations];
+}
 
 -(NSMutableArray *)arrayOfObjects
 {
@@ -197,12 +207,22 @@
             [self startIconDownload:productStruct forIndexPath:indexPath];
         }
         // if a download is deferred or in progress, return a placeholder image
-        cell.productImage.image = [UIImage imageNamed:@"Placeholder.png"];
+        //cell.productImage.image = [UIImage imageNamed:@"Placeholder.png"];
+        
+        cell.productImage.alpha = 0;
+        [cell.productImageLoadingIndocator startAnimating];
+        
         
     }
     else
     {
+        if (self.didLoad)
+        {
+            cell.productImage.alpha = 0;
+        }
+        [cell.productImageLoadingIndocator stopAnimating];
         cell.productImage.image = productStruct.image;
+        [self imageAnimation:cell];
         if (productStruct.hit.integerValue == 1)
         {
             [cell.productImage.layer addSublayer:[hitView layer]];
@@ -321,7 +341,9 @@
         ProductCell *cell = (ProductCell *)[self.tableView cellForRowAtIndexPath:iconDownloader.indexPathInTableView];
         
         // Display the newly loaded image
+        [cell.productImageLoadingIndocator stopAnimating];
         cell.productImage.image = iconDownloader.appRecord.image;
+        [self imageAnimation:cell];
         [self.db SavePictureToCoreData:iconDownloader.appRecord.idPicture toData:UIImagePNGRepresentation(cell.productImage.image)];
         
     }
@@ -329,6 +351,11 @@
 
 #pragma mark -
 #pragma mark Deferred image loading (UIScrollViewDelegate)
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    self.didLoad = NO;
+}
 
 // Load images for all onscreen rows when scrolling is finished
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
