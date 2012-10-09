@@ -280,19 +280,6 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Restaurant/XMLParseResponseFromTheServer.m"
-         timestampString = "370798627.450809"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "26"
-         endingLineNumber = "26"
-         landmarkName = "-parserDidStartDocument:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "Restaurant/XMLParseOrdersStatuses.m"
          timestampString = "370800482.482002"
          startingColumnNumber = "9223372036854775807"
