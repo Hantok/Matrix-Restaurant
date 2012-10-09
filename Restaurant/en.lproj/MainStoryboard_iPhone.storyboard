@@ -1579,7 +1579,7 @@
                     <navigationItem key="navigationItem" title="Reservation History" id="S8Z-b7-Pic"/>
                     <connections>
                         <outlet property="titleReservationHistoryBar" destination="S8Z-b7-Pic" id="j2u-2j-baw"/>
-                        <segue destination="BmU-i4-kgD" kind="push" id="WNj-hf-yzm"/>
+                        <segue destination="BmU-i4-kgD" kind="push" identifier="toReservationHistoryDetail" id="WNj-hf-yzm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BaL-ZL-0is" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1901,6 +1901,8 @@
         <class className="RestaurantDetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RestaurantDetailViewController.h"/>
             <relationships>
+                <relationship kind="action" name="callToRestaurant:"/>
+                <relationship kind="action" name="showOnMap:"/>
                 <relationship kind="action" name="tebleReserve:"/>
                 <relationship kind="outlet" name="callButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="reserveButton" candidateClass="UIButton"/>
