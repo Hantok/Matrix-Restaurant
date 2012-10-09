@@ -504,6 +504,40 @@
 }
 
 - (IBAction)reorderClick:(id)sender {
+    
+    for (int i = 0; i < self.productsArray.count; i++) {
+        NSNumber *productId = [[[[self.productsArray objectAtIndex:i] valueForKey:@"resultArray"] objectAtIndex:1] valueForKey:@"idProduct"];
+        int count = [[[self.productsArray objectAtIndex:i] valueForKey:@"count"] intValue];
+        float price = [[[[[self.productsArray objectAtIndex:i] valueForKey:@"resultArray"] objectAtIndex:0] valueForKey:@"price"] floatValue];
+        NSData *picture = [self.db fetchPictureDataByPictureId:[[[[self.productsArray objectAtIndex:i] valueForKey:@"resultArray"] objectAtIndex:0] valueForKey:@"idPicture"]];
+        
+        float discountCoeficient = [self.db fetchDiscountByIdDiscount:[[[[self.productsArray objectAtIndex:i] valueForKey:@"resultArray"] objectAtIndex:0] valueForKey:@"idDiscount"]].floatValue;
+        
+        NSNumber *weight = [[[[self.productsArray objectAtIndex:i] valueForKey:@"resultArray"] objectAtIndex:0] valueForKey:@"weight"];
+        NSNumber *protein = [[[[self.productsArray objectAtIndex:i] valueForKey:@"resultArray"] objectAtIndex:0] valueForKey:@"protein"];
+        NSNumber *carbs = [[[[self.productsArray objectAtIndex:i] valueForKey:@"resultArray"] objectAtIndex:0] valueForKey:@"carbs"];
+        NSNumber *fats = [[[[self.productsArray objectAtIndex:i] valueForKey:@"resultArray"] objectAtIndex:0] valueForKey:@"fats"];
+        NSNumber *calories = [[[[self.productsArray objectAtIndex:i] valueForKey:@"resultArray"] objectAtIndex:0] valueForKey:@"calories"];
+        BOOL isFavorites = [[[[[self.productsArray objectAtIndex:i] valueForKey:@"resultArray"] objectAtIndex:0] valueForKey:@"isFavorites"] boolValue];
+        //    BOOL isHit = NO;
+        NSString *idMenu = [[[[self.productsArray objectAtIndex:i] valueForKey:@"resultArray"] objectAtIndex:0] valueForKey:@"idMenu"];
+        
+        [self.db SaveProductToEntityName:@"Cart" WithId:productId
+                               withCount:count
+                               withPrice:price
+                             withPicture:picture
+                       withDiscountValue:discountCoeficient
+                              withWeight:weight
+                             withProtein:protein
+                               withCarbs:carbs
+                                withFats:fats
+                            withCalories:calories
+                             isFavorites:isFavorites
+                                   isHit:NO
+                              withIdMenu:idMenu];
+    }
+    
+    [self.navigationController popToViewController:[[self.navigationController viewControllers] objectAtIndex:0] animated:YES];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

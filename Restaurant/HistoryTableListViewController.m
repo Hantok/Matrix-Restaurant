@@ -33,6 +33,7 @@
 @synthesize db = _db;
 @synthesize statusOfOrdersDictionary = _statusOfOrdersDictionary;
 @synthesize hudView = _hudView;
+@synthesize check = _check;
 
 // titles
 @synthesize titleLoading = _titleLoading;
@@ -89,39 +90,46 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    NSMutableString *statusRequesString = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test7/root/Customer_Scripts/getStatuses.php?DBid=12&UUID="];
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"uid"])
-    {
-        NSString *uid = [self createUUID];
-        [[NSUserDefaults standardUserDefaults] setValue:uid forKey:@"uid"];
-        //9E3C884C-6E57-4D16-884F-46132825F21E
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        [statusRequesString appendString: uid];
-    }
-    else
-        [statusRequesString appendString:[[NSUserDefaults standardUserDefaults] objectForKey:@"uid"]];
     
-    statusRequesString = [statusRequesString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding].copy;
-    
-    NSURL *urlStatusRequest = [NSURL URLWithString:statusRequesString.copy];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:urlStatusRequest cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-    [request setHTTPMethod:@"GET"];
-    NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    
-    if (!theConnection)
-    {
-        // Inform the user that the connection failed.
-        UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"NSURLConnection"
-                                                                     message:@"Not success"
-                                                                    delegate:self
-                                                           cancelButtonTitle:@"Ok"
-                                                           otherButtonTitles:nil];
-        [connectFailMessage show];
+    if ([checkConnection hasConnectivity]) {
+        NSMutableString *statusRequesString = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test7/root/Customer_Scripts/getStatuses.php?DBid=12&UUID="];
+        if (![[NSUserDefaults standardUserDefaults] objectForKey:@"uid"])
+        {
+            NSString *uid = [self createUUID];
+            [[NSUserDefaults standardUserDefaults] setValue:uid forKey:@"uid"];
+            //9E3C884C-6E57-4D16-884F-46132825F21E
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [statusRequesString appendString: uid];
+        }
+        else
+            [statusRequesString appendString:[[NSUserDefaults standardUserDefaults] objectForKey:@"uid"]];
+        
+        statusRequesString = [statusRequesString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding].copy;
+        
+        NSURL *urlStatusRequest = [NSURL URLWithString:statusRequesString.copy];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:urlStatusRequest cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+        [request setHTTPMethod:@"GET"];
+        NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        
+        if (!theConnection)
+        {
+            // Inform the user that the connection failed.
+            UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"NSURLConnection"
+                                                                         message:@"Not success"
+                                                                        delegate:self
+                                                               cancelButtonTitle:@"Ok"
+                                                               otherButtonTitles:nil];
+            [connectFailMessage show];
+        } else {
+            self.hudView = [[SSHUDView alloc] initWithTitle:@"Loading..."];
+            [self.hudView show];
+        }
+
     } else {
-        self.hudView = [[SSHUDView alloc] initWithTitle:@"Loading..."];
-        [self.hudView show];
+//        [self.navigationController popViewControllerAnimated:YES];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Sorry!" message:@"You do not have internet connecntion to update data" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alertView show];
     }
-    
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
