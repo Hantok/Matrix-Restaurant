@@ -14,7 +14,7 @@
 #import "SSToolkit/SSToolkit.h"
 
 
-@interface ReservationViewController : UIViewController <UITextFieldDelegate, NSURLConnectionDelegate, ReservationListDelegate, UIScrollViewDelegate>
+@interface ReservationViewController : UIViewController <UITextFieldDelegate, NSURLConnectionDelegate, UIScrollViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *name;
 @property (weak, nonatomic) IBOutlet UIButton *reservateButton;
