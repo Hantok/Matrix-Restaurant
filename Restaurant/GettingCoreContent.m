@@ -71,6 +71,30 @@
     return self.arrayOfCoreData;
 }
 
+- (void) deleteReservationWithName:(NSString *)name
+{
+    NSManagedObjectContext * context = self.managedObjectContext;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Reservation" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    NSError *error;
+    NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
+    
+    for (int i = 0; i < items.count; i++)
+    {
+        if ([[[items objectAtIndex:i] valueForKey:@"name"] isEqualToString:name])
+        {
+            [context deleteObject:[items objectAtIndex:i]];
+            break;
+        }
+    }
+    
+    if (![context save:&error]) {
+        NSLog(@"Error deleting %@ - error:%@", @"Reservation", error);
+    }
+}
+
 
 - (void) setCoreDataForEntityWithName:(NSString *)entityName 
                 dictionaryOfAtributes:(NSDictionary *)attributeDictionary;
