@@ -28,7 +28,7 @@
 @property (nonatomic, strong) NSString *titleCancel;
 @property (nonatomic, strong) NSString *titleAddedFav;
 @property (nonatomic, strong) NSString *titleRemovedFav;
-
+@property (nonatomic) bool didLoad;
 @end
 
 @implementation MenuIconViewController
@@ -54,6 +54,15 @@
 @synthesize titleCancel = _titleCancel;
 @synthesize titleAddedFav = _titleAddedFav;
 @synthesize titleRemovedFav = _titleRemovedFav;
+@synthesize didLoad = _didLoad;
+
+- (void) imageAnimation: (UIView *) View
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:1];
+    [View setAlpha:1];
+    [UIView commitAnimations];
+}
 
 - (NSMutableArray *)arrayData
 {
@@ -334,6 +343,7 @@
     newsItemView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"New1.png"]];
     
     //даємо слова =)
+    self.didLoad = YES;
     [self setAllTitlesOnThisPage];
 }
 
@@ -369,6 +379,7 @@
         // in the navigation stack.
     NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
     [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
+    self.didLoad = NO;
     
 //    }
     [super viewWillDisappear:animated];
@@ -551,17 +562,32 @@
 //    налаштування виду елемента
     CGRect imageFrame;
     imageFrame.size = CGSizeMake(90,80);
+    imageFrame.origin.x = 0;
+    imageFrame.origin.y = 0;
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageFrame];
+    CGRect indocatorFrame;
+    indocatorFrame.size = CGSizeMake(20,20);
+    UIActivityIndicatorView * loadingIndicator = [[UIActivityIndicatorView alloc] initWithFrame: indocatorFrame];
+    loadingIndicator.center = imageView.center;
+    [imageView addSubview:loadingIndicator];
+    
     if (!dataStruct.image)
     {
         if (dataStruct.link)
             [self startIconDownload:dataStruct forIndex:[NSNumber numberWithInteger:index]];
         // if a download is deferred or in progress, return a placeholder image
         //[imageView setImage:[UIImage imageNamed:@"Placeholder.png"]];
+        [loadingIndicator startAnimating];
     }
     else
     {
+        if (self.didLoad)
+        {
+            imageView.alpha = 0;
+        }
+        [loadingIndicator stopAnimating];
         [imageView setImage:dataStruct.image];
+        [self imageAnimation: imageView];
     }
     
     if (dataStruct.hit.integerValue == 1)

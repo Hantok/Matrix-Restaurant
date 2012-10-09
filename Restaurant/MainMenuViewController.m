@@ -1057,6 +1057,7 @@
             NSString *priceString;
             if (isWithDiscount)
             {
+                
             priceString = [NSString stringWithFormat:@"<strike>%@ %@</strike>",[formatter stringFromNumber:[NSNumber numberWithFloat:sum]], [[NSUserDefaults standardUserDefaults] valueForKey:@"Currency"]];
             }
             else

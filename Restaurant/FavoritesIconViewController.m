@@ -311,6 +311,8 @@
     //    налаштування виду елемента
     CGRect imageFrame;
     imageFrame.size = CGSizeMake(90,80);
+    imageFrame.origin.x = 0;
+    imageFrame.origin.y = 0;
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageFrame];
     if (dataStruct.image)
     {

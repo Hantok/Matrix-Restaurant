@@ -39,11 +39,11 @@
 @synthesize didLoad = _didLoad;
 
 
-- (void) imageAnimation: (ProductCell *) cell
+- (void) imageAnimation: (UIView *) View
 {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:1];
-    [cell.productImage setAlpha:1];
+    [View setAlpha:1];
     [UIView commitAnimations];
 }
 - (NSMutableArray *)arrayData
@@ -142,7 +142,7 @@
 //            }
 //            
 //        }
-//        
+//
 //        //сортуємо по id продукта
 //        NSSortDescriptor *sortDescriptor;
 //        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"productId" ascending:YES];
@@ -334,7 +334,7 @@
         }
         [cell.productImageLoadingIndocator stopAnimating];
         cell.productImage.image = dataStruct.image;
-        [self imageAnimation: cell];
+        [self imageAnimation: cell.productImage];
 //        else
 //        {
 //            [hitView removeFromSuperview];
@@ -409,7 +409,7 @@
         // Display the newly loaded image
         [cell.productImageLoadingIndocator stopAnimating];
         cell.productImage.image = iconDownloader.appRecord.image;
-        [self imageAnimation: cell];
+        [self imageAnimation: cell.productImage];
         [self.db SavePictureToCoreData:iconDownloader.appRecord.idPicture toData:UIImagePNGRepresentation(cell.productImage.image)];
         
     }
