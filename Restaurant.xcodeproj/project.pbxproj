@@ -153,6 +153,10 @@
 		F5B4609C15C2D4A500A6815C /* metro.png in Resources */ = {isa = PBXBuildFile; fileRef = F5B4609B15C2D4A500A6815C /* metro.png */; };
 		F5B70D9815D178E200695FAA /* subViewSpam.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B70D9615D178E200695FAA /* subViewSpam.m */; };
 		F5B70D9915D178E200695FAA /* subViewSpam.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5B70D9715D178E200695FAA /* subViewSpam.xib */; };
+		F5BCF704162438C1000C5714 /* ReservHistoryTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5BCF700162438C1000C5714 /* ReservHistoryTableViewController.h */; };
+		F5BCF705162438C1000C5714 /* ReservHistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BCF701162438C1000C5714 /* ReservHistoryTableViewController.m */; };
+		F5BCF706162438C1000C5714 /* ReservHistoryDetailViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5BCF702162438C1000C5714 /* ReservHistoryDetailViewController.h */; };
+		F5BCF707162438C1000C5714 /* ReservHistoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BCF703162438C1000C5714 /* ReservHistoryDetailViewController.m */; };
 		F5E0D80515D953DA004BA70B /* icons.png in Resources */ = {isa = PBXBuildFile; fileRef = F5E0D80415D953DA004BA70B /* icons.png */; };
 		F5E0D80715D953FF004BA70B /* icons57.png in Resources */ = {isa = PBXBuildFile; fileRef = F5E0D80615D953FF004BA70B /* icons57.png */; };
 		F5EBBBF115A70F6000C07969 /* SocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EBBBF015A70F6000C07969 /* SocialViewController.m */; };
@@ -367,6 +371,10 @@
 		F5B70D9515D178E200695FAA /* subViewSpam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = subViewSpam.h; sourceTree = "<group>"; };
 		F5B70D9615D178E200695FAA /* subViewSpam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = subViewSpam.m; sourceTree = "<group>"; };
 		F5B70D9715D178E200695FAA /* subViewSpam.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = subViewSpam.xib; sourceTree = "<group>"; };
+		F5BCF700162438C1000C5714 /* ReservHistoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservHistoryTableViewController.h; sourceTree = "<group>"; };
+		F5BCF701162438C1000C5714 /* ReservHistoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservHistoryTableViewController.m; sourceTree = "<group>"; };
+		F5BCF702162438C1000C5714 /* ReservHistoryDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservHistoryDetailViewController.h; sourceTree = "<group>"; };
+		F5BCF703162438C1000C5714 /* ReservHistoryDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservHistoryDetailViewController.m; sourceTree = "<group>"; };
 		F5E0D80415D953DA004BA70B /* icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icons.png; path = ../icons.png; sourceTree = "<group>"; };
 		F5E0D80615D953FF004BA70B /* icons57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icons57.png; path = ../icons57.png; sourceTree = "<group>"; };
 		F5EBBBEF15A70F6000C07969 /* SocialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialViewController.h; sourceTree = "<group>"; };
@@ -492,6 +500,10 @@
 		783EB967156FAF3A001E5BF1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				F5BCF700162438C1000C5714 /* ReservHistoryTableViewController.h */,
+				F5BCF701162438C1000C5714 /* ReservHistoryTableViewController.m */,
+				F5BCF702162438C1000C5714 /* ReservHistoryDetailViewController.h */,
+				F5BCF703162438C1000C5714 /* ReservHistoryDetailViewController.m */,
 				F594B26516174B2800DCEA50 /* PartOfHistoryViewController.h */,
 				F594B26616174B2800DCEA50 /* PartOfHistoryViewController.m */,
 				F594B26116174A4100DCEA50 /* HistoryTableListViewController.h */,
@@ -764,6 +776,8 @@
 				F594B26716174B2800DCEA50 /* PartOfHistoryViewController.h in Headers */,
 				F594B26B16174C5300DCEA50 /* ProductDescriptionViewCell.h in Headers */,
 				F5986C751619F6D900D3FBF7 /* XMLParseOrdersStatuses.h in Headers */,
+				F5BCF704162438C1000C5714 /* ReservHistoryTableViewController.h in Headers */,
+				F5BCF706162438C1000C5714 /* ReservHistoryDetailViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -992,6 +1006,8 @@
 				F594B26816174B2800DCEA50 /* PartOfHistoryViewController.m in Sources */,
 				F594B26C16174C5300DCEA50 /* ProductDescriptionViewCell.m in Sources */,
 				F5986C761619F6D900D3FBF7 /* XMLParseOrdersStatuses.m in Sources */,
+				F5BCF705162438C1000C5714 /* ReservHistoryTableViewController.m in Sources */,
+				F5BCF707162438C1000C5714 /* ReservHistoryDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
