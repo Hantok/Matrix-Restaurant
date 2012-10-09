@@ -13,6 +13,7 @@
 #import "XMLParseResponseFromTheServer.h"
 #import "Singleton.h"
 #import "SSToolkit/SSToolkit.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface DeliveryViewController : UIViewController <UITextFieldDelegate, NSURLConnectionDelegate, AddressListDelegate, UIScrollViewDelegate>
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;

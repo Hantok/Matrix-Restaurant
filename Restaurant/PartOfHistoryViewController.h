@@ -42,9 +42,10 @@
 @property (strong, nonatomic) IBOutlet UILabel *productPriceSumm;
 @property (strong, nonatomic) NSArray *productsArray;
 @property (strong, nonatomic) IBOutlet UILabel *orderNumberLabel;
-
+@property (strong, nonatomic) IBOutlet UIButton *reorderButton;
 
 - (IBAction)showOrHideInfoOfOrder:(id)sender;
 - (IBAction)infoOfProductInOrder:(id)sender;
+- (IBAction)reorderClick:(id)sender;
 
 @end

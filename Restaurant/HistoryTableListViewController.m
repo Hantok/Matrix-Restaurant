@@ -52,7 +52,18 @@
 - (NSMutableArray *)historyArray
 {
     if (!_historyArray) {
-        _historyArray = [[self.content getArrayFromCoreDatainEntetyName:@"CustomerOrders" withSortDescriptor:@"name"] mutableCopy];
+        NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+        NSMutableArray *tempArray2 = [[NSMutableArray alloc] init];
+        tempArray = [[self.content getArrayFromCoreDatainEntetyName:@"CustomerOrders" withSortDescriptor:@"name"] mutableCopy];
+        
+        for (int i = tempArray.count; i > 0; i--) {
+            [_historyArray addObject:[tempArray objectAtIndex:i - 1]];
+            [tempArray2 addObject:[tempArray objectAtIndex:i - 1]];
+            NSLog(@"%u %u", [_historyArray count], [tempArray2 count]);
+        }
+        
+        _historyArray = [tempArray2 mutableCopy];
+        
         return _historyArray;
     }
     return _historyArray;
