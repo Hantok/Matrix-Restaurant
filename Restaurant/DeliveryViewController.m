@@ -27,6 +27,7 @@
 @property (strong, nonatomic) NSString *titleCanNotAccessToServer;
 @property (strong, nonatomic) NSString *titlePleaseTryAgain;
 @property (strong, nonatomic) NSString *titleEnterJustNombers;
+@property (strong, nonatomic) NSString *titleWrongTime;
 
 @end
 
@@ -63,6 +64,7 @@
 @synthesize titleError = _titleError;
 @synthesize titleCanNotAccessToServer = _titleCanNotAccessToServer;
 @synthesize titlePleaseTryAgain = _titlePleaseTryAgain;
+@synthesize titleWrongTime = _titleWrongTime;
 @synthesize titleEnterJustNombers = _titleEnterJustNombers;
 
 - (GettingCoreContent *)content
@@ -657,7 +659,8 @@
     [parser parse];
     self.db = parser;
     
-    if ([self.db.success isEqualToString:@"1"]) {
+    if ([self.db.success isEqualToString:@"1"])
+    {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:self.titleThankYouForOrder
                                                           message:self.titleOurOperatorWillCallYou
                                                          delegate:self
@@ -665,16 +668,34 @@
                                                 otherButtonTitles:nil];
         [message show];
         
-    } else {
-        [self.hudView failAndDismissWithTitle:nil];
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:self.titleError
-                                                          message:self.titlePleaseTryAgain
-                                                         delegate:self
-                                                cancelButtonTitle:@"OK"
-                                                otherButtonTitles:nil];
-        [message show];
-        [self.navigationController popViewControllerAnimated:YES];
-        return;
+    }
+    else
+    {
+        if ([self.db.cause isEqualToString:@"0"]) // 0 - is index of time error (when u try to order something in non-working time)
+        {
+            [self.hudView failAndDismissWithTitle:nil];
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:self.titleError
+                                                              message:self.titleWrongTime
+                                                             delegate:self
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles:nil];
+            [message show];
+            self.enableTime = YES;
+            self.deliveryTime.hidden = NO;
+            return;
+        }
+        else
+        {
+            [self.hudView failAndDismissWithTitle:nil];
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:self.titleError
+                                                              message:self.titlePleaseTryAgain
+                                                             delegate:self
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles:nil];
+            [message show];
+            [self.navigationController popViewControllerAnimated:YES];
+            return;
+        }
     }
     
     NSLog(@"Success: %@", self.db.success);
