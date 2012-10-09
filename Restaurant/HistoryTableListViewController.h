@@ -11,6 +11,7 @@
 #import "PartOfHistoryViewController.h"
 #import "GettingCoreContent.h"
 #import "XMLParseOrdersStatuses.h"
+#import "checkConnection.h"
 
 
 @interface HistoryTableListViewController : UITableViewController <UITableViewDataSource, NSURLConnectionDelegate>
@@ -23,5 +24,6 @@
 @property (strong, nonatomic) GettingCoreContent *content;
 @property (strong, nonatomic) XMLParseOrdersStatuses *db;
 @property (strong, nonatomic) NSMutableDictionary *statusOfOrdersDictionary;
+@property (strong, nonatomic) checkConnection *check;
 
 @end
