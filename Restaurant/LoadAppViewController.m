@@ -123,6 +123,9 @@
             NSNumber *maxPromotionsId =  [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Promotions"];
             NSNumber *maxPromotionsVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Promotions"];
             
+            NSNumber *maxInterafaceId =  [content fetchMaximumNumberOfAttribute:@"underbarid" fromEntity:@"Titles"];
+            NSNumber *maxInterfaceVersion = [content fetchMaximumNumberOfAttribute:@"version" fromEntity:@"Titles"];
+            
             NSMutableString *myString = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test7/root/Customer_Scripts/update.php?DBid=12&tag=params&idPhone=1&"];
             [myString appendFormat:@"&city_v=%@",maxCityVersion];
             [myString appendFormat:@"&mcity_id=%@",maxCityId];
@@ -141,6 +144,9 @@
             
             [myString appendFormat:@"&prom_v=%@", maxPromotionsVersion];
             [myString appendFormat:@"&mprom_id=%@",maxPromotionsId];
+            
+            [myString appendFormat:@"&interf_v=%@", maxInterfaceVersion];
+            [myString appendFormat:@"&minterf_id=%@",maxInterafaceId];
             
             NSURL *url = [NSURL URLWithString:myString.copy];
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
