@@ -66,6 +66,7 @@
 @synthesize productName = _productName;
 @synthesize productsArray = _productsArray;
 @synthesize orderNumberLabel = _orderNumberLabel;
+@synthesize reorderButton = _reorderButton;
 
 - (GettingCoreContent *)db
 {
@@ -116,7 +117,7 @@
     
     
     [self.scrollView setScrollEnabled:YES];
-    [self.scrollView setContentSize:CGSizeMake(320 , 440)];
+//    [self.scrollView setContentSize:CGSizeMake(320 , 440)];
     [self.scrollView setShowsVerticalScrollIndicator:NO];
     
 //    self.addressDescriptionLabel.text = [self.historyDictionary valueForKey:@"street"];
@@ -371,6 +372,7 @@
     [self setProductsCount:nil];
     [self setProductPriceSumm:nil];
     [self setOrderNumberLabel:nil];
+    [self setReorderButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -391,16 +393,30 @@
         [UIView setAnimationDuration:0.3];
         self.infoOfOrderContainer.frame = CGRectMake(self.firstContainerX, self.firstContainerY, self.firstContainerWidth, self.infoOfOrderDetailView.frame.size.height + 60);
         
+        self.reorderButton.frame = CGRectMake(self.reorderButton.frame.origin.x, self.infoOfProductInOrderContainer.frame.origin.y + self.infoOfProductInOrderContainer.frame.size.height + 70, self.reorderButton.frame.size.width, self.reorderButton.frame.size.height);
+        
         self.tempFirstContainerY = self.infoOfProductInOrderContainer.frame.origin.y;
         
         if (!self.isInfoOfProductInOrder) {
             self.infoOfProductInOrderContainer.frame = CGRectMake(self.secondContainerX, self.firstContainerY + self.infoOfOrderContainer.frame.size.height - 1, self.secondContainerWidth, self.secondContainerHeight);
+            
+            self.reorderButton.frame = CGRectMake(self.reorderButton.frame.origin.x, self.infoOfProductInOrderContainer.frame.origin.y + self.infoOfProductInOrderContainer.frame.size.height + 70, self.reorderButton.frame.size.width, self.reorderButton.frame.size.height);
+
             [UIView commitAnimations];
+            
+            [self.scrollView setContentSize:CGSizeMake(320 , self.reorderButton.frame.origin.y + self.reorderButton.frame.size.height)];
+
         } else {
             self.infoOfProductInOrderContainer.frame = CGRectMake(self.secondContainerX, self.firstContainerY + self.infoOfOrderContainer.frame.size.height - 1, self.secondContainerWidth, self.infoOfProductInOrderDetailView.frame.size.height + 60);
+            
+            self.reorderButton.frame = CGRectMake(self.reorderButton.frame.origin.x, self.infoOfProductInOrderContainer.frame.origin.y + self.infoOfProductInOrderContainer.frame.size.height + 70, self.reorderButton.frame.size.width, self.reorderButton.frame.size.height);
+
             [UIView commitAnimations];
+            
+            [self.scrollView setContentSize:CGSizeMake(320 , self.reorderButton.frame.origin.y + self.reorderButton.frame.size.height)];
+
         }
-                        
+        
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:1.7];
         [self.infoOfOrderDetailView setAlpha:1];
@@ -416,7 +432,13 @@
             [UIView setAnimationDuration:0.8];
             self.infoOfOrderContainer.frame = CGRectMake(self.firstContainerX, self.firstContainerY, self.firstContainerWidth, self.firstContainerHeight);
             self.infoOfProductInOrderContainer.frame = CGRectMake(self.secondContainerX, self.tempFirstContainerY, self.secondContainerWidth, self.secondContainerHeight);
+            
+            self.reorderButton.frame = CGRectMake(self.reorderButton.frame.origin.x, self.infoOfProductInOrderContainer.frame.origin.y + self.infoOfProductInOrderContainer.frame.size.height + 70, self.reorderButton.frame.size.width, self.reorderButton.frame.size.height);
+
             [UIView commitAnimations];
+            
+            [self.scrollView setContentSize:CGSizeMake(320 , self.reorderButton.frame.origin.y + self.reorderButton.frame.size.height)];
+
         } else {
             [UIView beginAnimations:nil context:NULL];
             [UIView setAnimationDuration:0.8];
@@ -429,6 +451,8 @@
         [UIView setAnimationDuration:0.2];
         [self.infoOfOrderDetailView setAlpha:0];
         [UIView commitAnimations];
+        
+        [self.scrollView setContentSize:CGSizeMake(320 , self.reorderButton.frame.origin.y + self.reorderButton.frame.size.height)];
 
         self.isInfoOfOrderShow = NO;
     }
@@ -444,12 +468,16 @@
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:0.3];
         self.infoOfProductInOrderContainer.frame = CGRectMake(self.secondContainerX, self.firstContainerY + self.infoOfOrderContainer.frame.size.height - 1, self.secondContainerWidth, self.infoOfProductInOrderDetailView.frame.size.height + 60);
+        
+        self.reorderButton.frame = CGRectMake(self.reorderButton.frame.origin.x, self.infoOfProductInOrderContainer.frame.origin.y + self.infoOfProductInOrderContainer.frame.size.height + 70, self.reorderButton.frame.size.width, self.reorderButton.frame.size.height);
+
         [UIView commitAnimations];
+        
+        [self.scrollView setContentSize:CGSizeMake(320 , self.reorderButton.frame.origin.y + self.reorderButton.frame.size.height)];
         
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:1.7];
         [self.infoOfProductInOrderDetailView setAlpha:1];
-        [UIView commitAnimations];
         
         self.isInfoOfProductInOrder = YES;
     } else {
@@ -459,7 +487,12 @@
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:0.8];
         self.infoOfProductInOrderContainer.frame = CGRectMake(self.secondContainerX, self.firstContainerY + self.infoOfOrderContainer.frame.size.height - 1, self.secondContainerWidth, self.secondContainerHeight);
+        
+        self.reorderButton.frame = CGRectMake(self.reorderButton.frame.origin.x, self.infoOfProductInOrderContainer.frame.origin.y + self.infoOfProductInOrderContainer.frame.size.height + 70, self.reorderButton.frame.size.width, self.reorderButton.frame.size.height);
+
         [UIView commitAnimations];
+        
+        [self.scrollView setContentSize:CGSizeMake(320 , self.reorderButton.frame.origin.y + self.reorderButton.frame.size.height)];
         
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:0.2];
@@ -468,6 +501,9 @@
 
         self.isInfoOfProductInOrder = NO;
     }
+}
+
+- (IBAction)reorderClick:(id)sender {
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

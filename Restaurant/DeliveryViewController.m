@@ -119,6 +119,11 @@
 {
     [super viewDidLoad];
     
+    CAGradientLayer *mainGradient = [CAGradientLayer layer];
+    mainGradient.frame = self.scrollView.bounds;
+    mainGradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor darkGrayColor] CGColor],(id)[[UIColor blackColor] CGColor], nil];
+    [self.scrollView.layer insertSublayer:mainGradient atIndex:0];
+    
     [self setAllTitlesOnThisPage];
 	
     self.scrollView.contentSize = CGSizeMake(320, 430);
