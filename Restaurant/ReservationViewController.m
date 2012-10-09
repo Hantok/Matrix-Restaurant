@@ -339,7 +339,6 @@
  */
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-   
     [segue.destinationViewController setRestaurantName:restaurantName];
 }
 
