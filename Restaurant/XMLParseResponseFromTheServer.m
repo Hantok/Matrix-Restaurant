@@ -21,6 +21,7 @@
 @synthesize orderNumber = _orderNumber;
 @synthesize elementName = _elementName;
 @synthesize tempString = _tempString;
+@synthesize cause = _cause;
 
 // документ начал парситься
 - (void)parserDidStartDocument:(NSXMLParser *)parser
@@ -57,6 +58,11 @@
         if ([elementName isEqualToString:@"number"]) {
             self.elementName = elementName;
         }
+        else {
+            if ([elementName isEqualToString:@"cause"]) {
+                self.elementName = elementName;
+            }
+        }
     }
 }
 
@@ -68,12 +74,18 @@
         if ([elementName isEqualToString:@"number"]) {
             self.orderNumber = self.tempString;
         }
+        else{
+            if([elementName isEqualToString:@"cause"])
+            {
+                self.cause = self.tempString;
+            }
+        }
     }
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
-    self.tempString = string;    
+    self.tempString = string;
 }
 
 @end

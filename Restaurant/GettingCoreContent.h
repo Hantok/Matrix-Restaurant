@@ -28,6 +28,7 @@
 - (NSArray *)fetchAllCitiesByLanguage:(NSString *)languageId;
 - (NSURL *)fetchImageURLbyPictureID:(NSString *)pictureId;
 - (NSString *)fetchImageStringURLbyPictureID:(NSString *)pictureId;
+- (void) deleteReservationWithName:(NSString *)name;
 - (NSArray *)fetchAllProductsFromMenu:(NSString *)menuId;
 - (void)SavePictureToCoreData:(NSString *)idPicture toData:(NSData *)data;
 - (NSData *)fetchPictureDataByPictureId:(NSString *)pictureId;

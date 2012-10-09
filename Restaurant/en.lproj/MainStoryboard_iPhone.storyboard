@@ -486,7 +486,7 @@
                                 </state>
                                 <connections>
                                     <action selector="tebleReserve:" destination="FAN-qH-iBO" eventType="touchUpInside" id="Ovv-f3-q89"/>
-                                    <segue destination="l9S-Fx-yuL" kind="push" id="O94-2c-JdG"/>
+                                    <segue destination="bCF-Q1-cGR" kind="push" id="Bsz-Sd-xBz"/>
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="BHK-Wv-WVr">
@@ -618,58 +618,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8w7-fF-kPf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1079" y="967"/>
-        </scene>
-        <!--Reservation View Controller - Reservation table-->
-        <scene sceneID="uIJ-NE-Bu5">
-            <objects>
-                <viewController id="l9S-Fx-yuL" customClass="ReservationViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="h4s-KZ-mya" customClass="UIScrollView">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="*Your name" minimumFontSize="17" id="1EI-eu-Cm8">
-                                <rect key="frame" x="20" y="20" width="280" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="keyboardHide:" destination="l9S-Fx-yuL" eventType="editingDidEndOnExit" id="Ekt-rh-W3W"/>
-                                    <action selector="touchUpInside:" destination="l9S-Fx-yuL" eventType="touchUpInside" id="OEa-qa-nlM"/>
-                                    <outlet property="delegate" destination="l9S-Fx-yuL" id="wn7-sY-5dM"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="*Number of people" minimumFontSize="17" id="LPc-8H-yP4">
-                                <rect key="frame" x="20" y="59" width="280" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                <connections>
-                                    <action selector="keyboardHide:" destination="l9S-Fx-yuL" eventType="editingDidEndOnExit" id="xzD-Wk-AHn"/>
-                                    <outlet property="delegate" destination="l9S-Fx-yuL" id="KRl-cg-ADd"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="*Date of reservation" minimumFontSize="17" id="0D5-3i-VM4">
-                                <rect key="frame" x="20" y="98" width="280" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="l9S-Fx-yuL" id="aah-KQ-oPj"/>
-                                </connections>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Reservation table" id="M7e-hC-5vs"/>
-                    <connections>
-                        <outlet property="dateOfReservation" destination="0D5-3i-VM4" id="C4W-6w-gUT"/>
-                        <outlet property="name" destination="1EI-eu-Cm8" id="O1k-mZ-R6L"/>
-                        <outlet property="numberOfPeople" destination="LPc-8H-yP4" id="Apf-Cq-HO3"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Rhe-4l-PFI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1079" y="1547"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="YXL-tM-S0J">
@@ -1513,6 +1461,222 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="upf-R7-Rr3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-970" y="1671"/>
+        </scene>
+        <!--Reservation View Controller - Reservation table-->
+        <scene sceneID="yIp-e0-nEO">
+            <objects>
+                <viewController id="bCF-Q1-cGR" customClass="ReservationViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wC8-Ek-q8g" customClass="UIScrollView">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="*Your name" minimumFontSize="17" id="nQl-da-LgC">
+                                <rect key="frame" x="20" y="20" width="280" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="keyboardHide:" destination="bCF-Q1-cGR" eventType="editingDidEndOnExit" id="fGQ-3N-Bc4"/>
+                                    <action selector="touchUpInside:" destination="bCF-Q1-cGR" eventType="touchUpInside" id="Yul-ZL-du5"/>
+                                    <outlet property="delegate" destination="bCF-Q1-cGR" id="gvf-Jz-cxr"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="*Number of people" minimumFontSize="17" id="PWh-5I-pmt">
+                                <rect key="frame" x="20" y="59" width="280" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <action selector="keyboardHide:" destination="bCF-Q1-cGR" eventType="editingDidEndOnExit" id="BmU-R5-7oq"/>
+                                    <outlet property="delegate" destination="bCF-Q1-cGR" id="LHK-24-hCb"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="*Date of reservation" minimumFontSize="17" id="Rhx-rP-w0Z">
+                                <rect key="frame" x="20" y="98" width="280" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="bCF-Q1-cGR" id="fME-uQ-IQT"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aVf-l1-ndi">
+                                <rect key="frame" x="90" y="352" width="140" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Reservate" backgroundImage="Button_black_light_rev2.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="Reserve:" destination="bCF-Q1-cGR" eventType="touchUpInside" id="7nV-eI-6y5"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="*Phone" minimumFontSize="17" id="rbW-Q5-Wwx">
+                                <rect key="frame" x="53" y="147" width="247" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="bCF-Q1-cGR" id="n36-lf-ZQi"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="+" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jPn-Bi-WPz">
+                                <rect key="frame" x="37" y="150" width="14" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Reservation table" id="neH-sG-tp3">
+                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="Bbz-MU-sac">
+                            <connections>
+                                <action selector="toReservationList:" destination="bCF-Q1-cGR" id="aFv-dq-s98"/>
+                                <segue destination="B5R-Pk-pr4" kind="push" id="yXK-Le-qIE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="dateOfReservation" destination="Rhx-rP-w0Z" id="wqX-0M-GRA"/>
+                        <outlet property="name" destination="nQl-da-LgC" id="UlP-A1-6mB"/>
+                        <outlet property="numberOfPeople" destination="PWh-5I-pmt" id="0Ow-D6-qhC"/>
+                        <outlet property="phone" destination="rbW-Q5-Wwx" id="rCm-0f-56a"/>
+                        <outlet property="reservateButton" destination="aVf-l1-ndi" id="7jM-vb-xR3"/>
+                        <outlet property="titleReservationTableBar" destination="neH-sG-tp3" id="Wgu-Zh-ZQy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="acl-Rt-TCA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1079" y="1557"/>
+        </scene>
+        <!--Reserv History Table View Controller - Reservation History-->
+        <scene sceneID="7c2-Sx-0RC">
+            <objects>
+                <viewController id="B5R-Pk-pr4" customClass="ReservHistoryTableViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0b6-tf-zxX">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="black" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="DnW-km-a8Y">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="B5R-Pk-pr4" id="UIN-77-nv6"/>
+                                    <outlet property="delegate" destination="B5R-Pk-pr4" id="A1H-lp-a6b"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Reservation History" id="S8Z-b7-Pic"/>
+                    <connections>
+                        <outlet property="titleReservationHistoryBar" destination="S8Z-b7-Pic" id="j2u-2j-baw"/>
+                        <segue destination="BmU-i4-kgD" kind="push" identifier="toReservationHistoryDetail" id="WNj-hf-yzm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BaL-ZL-0is" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1566" y="1571"/>
+        </scene>
+        <!--Reserv History Detail View Controller - Reservation Detail-->
+        <scene sceneID="nTs-lu-ijf">
+            <objects>
+                <viewController id="BmU-i4-kgD" customClass="ReservHistoryDetailViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ncm-Ge-M6v">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eg1-07-gmK">
+                                <rect key="frame" x="61" y="20" width="199" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Number of people" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wMw-vc-5Fk">
+                                <rect key="frame" x="20" y="74" width="169" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Phone" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="U1C-oN-C7X">
+                                <rect key="frame" x="20" y="116" width="97" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7cJ-ra-mdC">
+                                <rect key="frame" x="20" y="153" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8Yk-5g-nNp">
+                                <rect key="frame" x="258" y="74" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MiS-pc-bQR">
+                                <rect key="frame" x="258" y="116" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uvz-py-iZt">
+                                <rect key="frame" x="70" y="153" width="230" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="07h-VW-vTf">
+                                <rect key="frame" x="20" y="191" width="80" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bku-Jm-64I">
+                                <rect key="frame" x="132" y="191" width="168" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Reservation Detail" id="O3L-aT-qsw"/>
+                    <connections>
+                        <outlet property="NameOfReservationLable" destination="eg1-07-gmK" id="IyD-L6-6KS"/>
+                        <outlet property="NumberOfPeopleLable" destination="8Yk-5g-nNp" id="WJV-yG-7R2"/>
+                        <outlet property="PhoneLabel" destination="MiS-pc-bQR" id="95J-T9-aT6"/>
+                        <outlet property="StatusLabel" destination="Bku-Jm-64I" id="HOW-Ct-gMs"/>
+                        <outlet property="TimeLabel" destination="uvz-py-iZt" id="LdD-Zd-UgI"/>
+                        <outlet property="titleDateLabel" destination="7cJ-ra-mdC" id="QWc-QO-1Ne"/>
+                        <outlet property="titleNumberLabel" destination="wMw-vc-5Fk" id="pih-d3-2VC"/>
+                        <outlet property="titlePhoneLabel" destination="U1C-oN-C7X" id="lWr-OP-9B1"/>
+                        <outlet property="titleReservationDetailBar" destination="O3L-aT-qsw" id="83i-2k-OIn"/>
+                        <outlet property="titleStatusLabel" destination="07h-VW-vTf" id="2Gf-11-7JK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2FC-b8-GXZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1974" y="1953"/>
         </scene>
     </scenes>
     <resources>

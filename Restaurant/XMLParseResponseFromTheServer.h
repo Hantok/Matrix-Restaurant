@@ -14,5 +14,6 @@
 @property BOOL error;
 @property (strong, nonatomic) NSString *success;
 @property (strong, nonatomic) NSString *orderNumber;
+@property (strong, nonatomic) NSString *cause;
 
 @end
