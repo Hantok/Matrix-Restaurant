@@ -77,7 +77,15 @@
         CLLocationCoordinate2D location = {.latitude = aLatitude.doubleValue, .longitude =  aLongitude.doubleValue};
         [segue.destinationViewController setCoordinates:location];
         [segue.destinationViewController setDataStruct:self.dataStruct];
+       
+       
+        
+       
     }
+    NSString *idstring = self.dataStruct.restaurantId;
+    NSString *restaurantName = self.dataStruct.name;
+    [segue.destinationViewController setRestaurantId:idstring];
+    [segue.destinationViewController setRestaurantName:restaurantName];
 }
 
 - (void)viewDidLoad
