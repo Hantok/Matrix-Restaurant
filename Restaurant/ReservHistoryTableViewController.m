@@ -13,6 +13,7 @@
 @interface ReservHistoryTableViewController ()
 @property (strong, nonatomic) NSMutableData *responseData;
 
+
 @end
 
 @implementation ReservHistoryTableViewController
@@ -37,7 +38,15 @@
 {
     if (!_reservationHistoryArray)
     {
-        _reservationHistoryArray = [self.content getArrayFromCoreDatainEntetyName:@"ReservationHistory" withSortDescriptor:@"reservationID"].mutableCopy;
+        NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+        NSMutableArray *tempArray2 = [[NSMutableArray alloc] init];
+       tempArray = [[self.content getArrayFromCoreDatainEntetyName:@"ReservationHistory" withSortDescriptor:@"reservationID" ] mutableCopy];
+        
+        for (int i = tempArray.count; i > 0; i--) {
+            [_reservationHistoryArray addObject:[tempArray objectAtIndex:i - 1]];
+            [tempArray2 addObject:[tempArray objectAtIndex:i - 1]];
+        }
+        _reservationHistoryArray = [tempArray2 mutableCopy];
         return _reservationHistoryArray;
     }
     return _reservationHistoryArray;
