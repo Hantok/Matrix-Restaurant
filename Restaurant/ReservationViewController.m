@@ -462,7 +462,10 @@
             
         }
         [[[GettingCoreContent alloc] init] deleteAllObjectsFromEntity:@"Cart"];
-        [self.navigationController popViewControllerAnimated:YES];
+        self.name.text = @"";
+        self.numberOfPeople.text = @"";
+        self.dateOfReservation.text = @"";
+        self.phone.text = @"";
     }
     
 }
