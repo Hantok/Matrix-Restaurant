@@ -981,11 +981,16 @@
                 [context deleteObject:[items objectAtIndex:i]];
                 break;
             }
-     
+        
         }
+    if (![context save:&error]) {
+        NSLog(@"Error deleting %@ - error:%@", @"Reservations", error);
     }
- 
 }
+}
+
+
+
 
 
 
