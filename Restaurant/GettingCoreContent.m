@@ -963,6 +963,37 @@
     }
 }
 
+- (void)deleteReservationWithID:(NSString *)idReservation
+{
+    {
+        NSManagedObjectContext * context = self.managedObjectContext;
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"ReservationHistory" inManagedObjectContext:context];
+        [fetchRequest setEntity:entity];
+        
+        NSError *error;
+        NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
+        
+        for (int i = 0; i < items.count; i++)
+        {
+            if ([[[items objectAtIndex:i] valueForKey:@"reservationID"] isEqualToString:idReservation])
+            {
+                [context deleteObject:[items objectAtIndex:i]];
+                break;
+            }
+        
+        }
+    if (![context save:&error]) {
+        NSLog(@"Error deleting %@ - error:%@", @"Reservations", error);
+    }
+}
+}
+
+
+
+
+
+
 - (NSNumber *) fetchMaximumNumberOfAttribute:(NSString *)fieldName fromEntity:(NSString *)entityName
 {
     NSManagedObjectContext *context = self.managedObjectContext;

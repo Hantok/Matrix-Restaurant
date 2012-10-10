@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleStatusLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleDateLabel;
 @property (weak, nonatomic) IBOutlet UINavigationItem *titleReservationDetailBar;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
 
 
 @end

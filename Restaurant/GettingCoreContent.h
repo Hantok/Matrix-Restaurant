@@ -81,6 +81,7 @@
 
 - (void) deleteAddressWithName:(NSString *)name;
 - (void) deleteOrderWithId:(NSString *)idOrder;
+- (void) deleteReservationWithID:(NSString *) idReservation;
 
 - (NSArray *)fetchFavoritesFromEntityName:(NSString *)entityName;
 - (void) changeFavoritesBoolValue:(BOOL)isFavorites forId:(NSNumber *)underbarid;

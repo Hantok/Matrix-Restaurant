@@ -478,6 +478,7 @@
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:1.7];
         [self.infoOfProductInOrderDetailView setAlpha:1];
+        [UIView commitAnimations];
         
         self.isInfoOfProductInOrder = YES;
     } else {

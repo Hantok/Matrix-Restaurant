@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="VBQ-mB-ewb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="12B19" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="VBQ-mB-ewb">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
     </dependencies>
     <scenes>
         <!--Load App View Controller-->
@@ -1508,7 +1508,7 @@
                                 <rect key="frame" x="90" y="352" width="140" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Reservate" backgroundImage="Button_black_light_rev2.png">
+                                <state key="normal" title="Reservate" backgroundImage="restaurants.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1552,6 +1552,7 @@
                         <outlet property="numberOfPeople" destination="PWh-5I-pmt" id="0Ow-D6-qhC"/>
                         <outlet property="phone" destination="rbW-Q5-Wwx" id="rCm-0f-56a"/>
                         <outlet property="reservateButton" destination="aVf-l1-ndi" id="7jM-vb-xR3"/>
+                        <outlet property="scrollView" destination="wC8-Ek-q8g" id="BcT-N0-Naw"/>
                         <outlet property="titleReservationTableBar" destination="neH-sG-tp3" id="Wgu-Zh-ZQy"/>
                     </connections>
                 </viewController>
@@ -1567,10 +1568,10 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="black" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="DnW-km-a8Y">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="black" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="DnW-km-a8Y">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="separatorColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="B5R-Pk-pr4" id="UIN-77-nv6"/>
@@ -1671,6 +1672,7 @@
                         <outlet property="PhoneLabel" destination="MiS-pc-bQR" id="95J-T9-aT6"/>
                         <outlet property="StatusLabel" destination="Bku-Jm-64I" id="HOW-Ct-gMs"/>
                         <outlet property="TimeLabel" destination="uvz-py-iZt" id="LdD-Zd-UgI"/>
+                        <outlet property="mainView" destination="Ncm-Ge-M6v" id="uS6-eg-3CI"/>
                         <outlet property="titleDateLabel" destination="7cJ-ra-mdC" id="QWc-QO-1Ne"/>
                         <outlet property="titleNumberLabel" destination="wMw-vc-5Fk" id="pih-d3-2VC"/>
                         <outlet property="titlePhoneLabel" destination="U1C-oN-C7X" id="lWr-OP-9B1"/>

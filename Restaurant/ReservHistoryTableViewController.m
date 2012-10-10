@@ -13,6 +13,7 @@
 @interface ReservHistoryTableViewController ()
 @property (strong, nonatomic) NSMutableData *responseData;
 
+
 @end
 
 @implementation ReservHistoryTableViewController
@@ -37,7 +38,15 @@
 {
     if (!_reservationHistoryArray)
     {
-        _reservationHistoryArray = [self.content getArrayFromCoreDatainEntetyName:@"ReservationHistory" withSortDescriptor:@"reservationID"].mutableCopy;
+        NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+        NSMutableArray *tempArray2 = [[NSMutableArray alloc] init];
+       tempArray = [[self.content getArrayFromCoreDatainEntetyName:@"ReservationHistory" withSortDescriptor:@"reservationID" ] mutableCopy];
+        
+        for (int i = tempArray.count; i > 0; i--) {
+            [_reservationHistoryArray addObject:[tempArray objectAtIndex:i - 1]];
+            [tempArray2 addObject:[tempArray objectAtIndex:i - 1]];
+        }
+        _reservationHistoryArray = [tempArray2 mutableCopy];
         return _reservationHistoryArray;
     }
     return _reservationHistoryArray;
@@ -257,12 +266,12 @@
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
         //Delete form DB
-        [self.content deleteReservationWithName:[[self.reservationHistoryArray objectAtIndex:indexPath.row] valueForKey:@"time"]];
-        
+        [self.content deleteReservationWithID:[[self.reservationHistoryArray objectAtIndex:indexPath.row] valueForKey:@"reservationID"]];
         [self.reservationHistoryArray removeObjectAtIndex:indexPath.row];
         
         // Delete the row from the data source
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+      //  NSLog(@"sssss @%",
     }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
