@@ -266,8 +266,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
         //Delete form DB
-        [self.content deleteReservationWithName:[[self.reservationHistoryArray objectAtIndex:indexPath.row] valueForKey:@"time"]];
-        
+        [self.content deleteReservationWithID:[[self.reservationHistoryArray objectAtIndex:indexPath.row] valueForKey:@"reservationID"]];
         [self.reservationHistoryArray removeObjectAtIndex:indexPath.row];
         
         // Delete the row from the data source
