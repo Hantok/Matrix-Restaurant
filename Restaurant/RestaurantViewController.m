@@ -10,15 +10,23 @@
 #import "RestaurantCell.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Singleton.h"
+#import "SSToolkit/SSToolkit.h"
+#import "checkConnection.h"
 
 @interface RestaurantViewController ()
-
+{
+    BOOL isDownloadingPicture;
+}
+@property (nonatomic, strong) SSLoadingView *loadingView;
+@property (nonatomic, strong) RestaurantCell *cell;
+@property (nonatomic, strong) RestaurantDataStruct *dataStruct;
 @end
 
 @implementation RestaurantViewController
 @synthesize arrayData = _arrayData;
 @synthesize db = _db;
 @synthesize selectedRow = _selectedRow;
+@synthesize cell = _cell;
 
 
 
@@ -90,6 +98,11 @@
     return  _db;
 }
 
+- (void)setDataStruct:(RestaurantDataStruct *)dataStruct
+{
+    _dataStruct = dataStruct;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -130,34 +143,50 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *CellIdentifier = @"RestaurantCell";
-    RestaurantCell *cell = (RestaurantCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    RestaurantDataStruct *dataStruct = [self.arrayData objectAtIndex:indexPath.row];
-    if(!cell)
+    _cell = (RestaurantCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    _dataStruct = [self.arrayData objectAtIndex:indexPath.row];
+    if(!_cell)
     {
         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"RestaurantCell" owner:nil options:nil];
         for(id currentObject in topLevelObjects)
         {
             if([currentObject isKindOfClass:[RestaurantCell class]])
             {
-                cell = (RestaurantCell *)currentObject;
+                _cell = (RestaurantCell *)currentObject;
                 break;
             }
         }
     }
-    cell.restaurantName.text = dataStruct.name;
-    cell.restaurantSubway.text = dataStruct.subwayStation;
-    cell.restaurantPhones.text = dataStruct.phones;
-    cell.restaurantPlace.text = [NSString stringWithFormat:@"%@, %@", dataStruct.street, dataStruct.build];
-    NSData *dataOfPicture = [self.db fetchPictureDataByPictureId:dataStruct.idPicture];
-    cell.restaurantImage.image = [UIImage imageWithData:dataOfPicture];
+    _cell.restaurantName.text = _dataStruct.name;
+    _cell.restaurantSubway.text = _dataStruct.subwayStation;
+    _cell.restaurantPhones.text = _dataStruct.phones;
+    _cell.restaurantPlace.text = [NSString stringWithFormat:@"%@, %@", _dataStruct.street, _dataStruct.build];
+    
+    NSData *dataOfPicture = [self.db fetchPictureDataByPictureId:_dataStruct.idPicture];
+    if(dataOfPicture)
+    {
+        _cell.restaurantImage.image = [UIImage imageWithData:dataOfPicture];
+    }
+    else
+    {
+        if (checkConnection.hasConnectivity)
+        {
+            self.loadingView = [[SSLoadingView alloc] initWithFrame:_cell.restaurantImage.frame];
+            self.loadingView.backgroundColor = [UIColor clearColor];
+            self.loadingView.activityIndicatorView.color = [UIColor whiteColor];
+            self.loadingView.textLabel.textColor = [UIColor whiteColor];
+            self.loadingView.textLabel.text = @"";
+            [self.view addSubview:self.loadingView];
+        }
+    }
     
     CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = cell.bounds;
+    gradient.frame = _cell.bounds;
     gradient.cornerRadius = 8.0f;
     [gradient setBorderWidth:0.5f];
     [gradient setBorderColor:[[UIColor darkGrayColor] CGColor]];
     gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor darkGrayColor] CGColor],(id)[[UIColor blackColor] CGColor], nil];
-    [cell.layer insertSublayer:gradient atIndex:0];
+    [_cell.layer insertSublayer:gradient atIndex:0];
     
 //    if (!dataStruct.image)
 //    {
@@ -174,9 +203,27 @@
 //        cell.productImage.image = dataStruct.image;
 //    }
     
-    return cell;
+    return _cell;
 }
 
+- (void) viewDidAppear:(BOOL)animated
+{
+    if (!self.dataStruct.image && isDownloadingPicture == NO && checkConnection.hasConnectivity)
+    {
+        isDownloadingPicture = YES;
+        [self performSelectorInBackground:@selector(downloadingPic) withObject:nil];
+    }
+}
+
+- (void)downloadingPic
+{
+    NSURL *url = [self.db fetchImageURLbyPictureID:self.dataStruct.idPicture];
+    NSData *dataOfPicture = [NSData dataWithContentsOfURL:url];
+    [self.db SavePictureToCoreData:self.dataStruct.idPicture toData:dataOfPicture];
+    _cell.restaurantImage.image = [UIImage imageWithData:dataOfPicture];
+    [self.loadingView removeFromSuperview];
+    [_cell.restaurantImage reloadInputViews];
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
