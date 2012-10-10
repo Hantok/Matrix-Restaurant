@@ -17,7 +17,7 @@
 @property float secondContainerHeight;
 
 @property float tempFirstContainerY;
-
+@property NSString *reorderButtonTraslation;
 @end
 
 @implementation PartOfHistoryViewController
@@ -64,6 +64,7 @@
 @synthesize totalPriceVarWithDiscount = _totalPriceVarWithDiscount;
 @synthesize deliveryAddress = _deliveryAddress;
 @synthesize youAreOrdered = _youAreOrdered;
+@synthesize reorderButtonTraslation = _reorderButtonTraslation;
 - (GettingCoreContent *)db
 {
     if(!_db)
@@ -85,7 +86,10 @@
 - (void)viewDidLoad
 {    
     [super viewDidLoad];
-    [self setAllTitlesOnThisPage];              
+    [self setAllTitlesOnThisPage];
+    
+    
+    [_reorderButton setTitle:_reorderButtonTraslation forState:UIControlStateNormal];
     CAGradientLayer *mainGradient = [CAGradientLayer layer];
     mainGradient.frame = self.mainView.bounds;
     mainGradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor darkGrayColor] CGColor],(id)[[UIColor blackColor] CGColor], nil];
@@ -374,6 +378,7 @@
     [self setReorderButton:nil];
     [self setDeliveryAddress:nil];
     [self setYouAreOrdered:nil];
+    [self setReorderButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -612,6 +617,10 @@
         else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"You are ordered:"])
         {
             self.youAreOrdered.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Reorder"])
+        {
+            _reorderButtonTraslation = [[array objectAtIndex:i] valueForKey:@"title"];
         }
     }
 }
