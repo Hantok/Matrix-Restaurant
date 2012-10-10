@@ -890,6 +890,10 @@
         {
             self.titleEnterJustNombers = [[array objectAtIndex:i] valueForKey:@"title"];
         }
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Right now restaurant doesn't work, please order delivery by time"])
+        {
+            self.titleWrongTime = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
     }
 }
 @end
