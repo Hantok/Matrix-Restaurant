@@ -241,6 +241,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="History" id="mNm-EU-XGF"/>
                     <connections>
+                        <outlet property="history" destination="mNm-EU-XGF" id="fHK-I8-wJw"/>
                         <outlet property="tableView" destination="dn2-Mz-4G1" id="yGS-gk-HqX"/>
                         <segue destination="XAz-Wl-UpL" kind="push" identifier="toHistoryPartDetail" id="8EK-a4-U1L"/>
                     </connections>

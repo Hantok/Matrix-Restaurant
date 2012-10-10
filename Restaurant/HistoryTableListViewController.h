@@ -12,7 +12,7 @@
 #import "GettingCoreContent.h"
 #import "XMLParseOrdersStatuses.h"
 #import "checkConnection.h"
-
+#import "Singleton.h"
 
 @interface HistoryTableListViewController : UITableViewController <UITableViewDataSource, NSURLConnectionDelegate>
 {
@@ -25,5 +25,6 @@
 @property (strong, nonatomic) XMLParseOrdersStatuses *db;
 @property (strong, nonatomic) NSMutableDictionary *statusOfOrdersDictionary;
 @property (strong, nonatomic) checkConnection *check;
+@property (strong, nonatomic) IBOutlet UINavigationItem *history;
 
 @end

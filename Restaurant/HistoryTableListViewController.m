@@ -34,6 +34,7 @@
 @synthesize statusOfOrdersDictionary = _statusOfOrdersDictionary;
 @synthesize hudView = _hudView;
 @synthesize check = _check;
+@synthesize history = _history;
 
 // titles
 @synthesize titleLoading = _titleLoading;
@@ -83,6 +84,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setAllTitlesOnThisPage];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -221,6 +223,7 @@
 - (void)viewDidUnload
 {
     [self setTableView:nil];
+    [self setHistory:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -351,4 +354,15 @@
     [segue.destinationViewController setProductsArray:[self.content fetchProductWithId:[[self.historyArray objectAtIndex:self.selectedRow] valueForKey:@"productsIDs"] withCounts:[[self.historyArray objectAtIndex:self.selectedRow] valueForKey:@"productsCounts"]]];
 }
 
+-(void)setAllTitlesOnThisPage
+{
+    NSArray *array = [Singleton titlesTranslation_withISfromSettings:NO];
+    for (int i = 0; i <array.count; i++)
+    {
+        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"History"])
+        {
+            self.history.title = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+    }
+}
 @end
