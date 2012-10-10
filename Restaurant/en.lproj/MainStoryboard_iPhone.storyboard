@@ -486,7 +486,7 @@
                                 </state>
                                 <connections>
                                     <action selector="tebleReserve:" destination="FAN-qH-iBO" eventType="touchUpInside" id="Ovv-f3-q89"/>
-                                    <segue destination="bCF-Q1-cGR" kind="push" id="Bsz-Sd-xBz"/>
+                                    <segue destination="bCF-Q1-cGR" kind="push" identifier="toReservationViewController" id="Bsz-Sd-xBz"/>
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="BHK-Wv-WVr">
