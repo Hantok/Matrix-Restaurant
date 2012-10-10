@@ -82,10 +82,13 @@
         
        
     }
+    if([segue.identifier isEqualToString:@"toReservationViewController"])
+    {
     NSString *idstring = self.dataStruct.restaurantId;
     NSString *restaurantName = self.dataStruct.name;
     [segue.destinationViewController setRestaurantId:idstring];
     [segue.destinationViewController setRestaurantName:restaurantName];
+    }
 }
 
 - (void)viewDidLoad
