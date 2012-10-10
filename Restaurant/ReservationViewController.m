@@ -43,6 +43,7 @@
 @synthesize db1 = _db1;
 @synthesize reservateButton = _reservateButton;
 @synthesize titleReservationTableBar = _titleReservationTableBar;
+@synthesize scrollView = _scrollView;
 
 @synthesize titleThankYouForOrder = _titleThankYouForOrder;
 @synthesize titleOurOperatorWillCallYou = _titleOurOperatorWillCallYou;
@@ -97,6 +98,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    CAGradientLayer *mainGradient = [CAGradientLayer layer];
+    mainGradient.frame = self.scrollView.bounds;
+    mainGradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor darkGrayColor] CGColor],(id)[[UIColor blackColor] CGColor], nil];
+    [self.scrollView.layer insertSublayer:mainGradient atIndex:0];
+    
     [self setAllTitlesOnThisPage];
 	// Do any additional setup after loading the view.
     
@@ -145,6 +152,7 @@
     [self setPhone:nil];
     [self setReservateButton:nil];
     [self setTitleReservationTableBar:nil];
+    [self setScrollView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

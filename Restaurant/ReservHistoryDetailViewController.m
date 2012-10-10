@@ -23,6 +23,7 @@
 @synthesize acceptedString = _acceptedString;
 @synthesize rejectedString = _rejectedString;
 @synthesize waitingString = _waitingString;
+@synthesize  mainView = _mainView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,6 +37,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    CAGradientLayer *mainGradient = [CAGradientLayer layer];
+    mainGradient.frame = self.mainView.bounds;
+    mainGradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor darkGrayColor] CGColor],(id)[[UIColor blackColor] CGColor], nil];
+    [self.mainView.layer insertSublayer:mainGradient atIndex:0];
+    
     [self setAllTitlesOnThisPage];
 
     NSMutableString *statusRequesString = [NSMutableString stringWithString: @"http://matrix-soft.org/addon_domains_folder/test7/root/Customer_Scripts/getStatusesReservations.php?DBid=12&UUID="];
@@ -114,6 +121,7 @@
     [self setTitleStatusLabel:nil];
     [self setTitleDateLabel:nil];
     [self setTitleReservationDetailBar:nil];
+    [self setMainView:nil];
     [super viewDidUnload];
 }
 

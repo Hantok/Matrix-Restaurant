@@ -12,7 +12,7 @@
 #import "RestaurantDataStruct.h"
 #import "Singleton.h"
 #import "SSToolkit/SSToolkit.h"
-
+#import <QuartzCore/QuartzCore.h>
 
 @interface ReservationViewController : UIViewController <UITextFieldDelegate, NSURLConnectionDelegate, UIScrollViewDelegate>
 
@@ -28,6 +28,7 @@
 @property (strong, nonatomic) NSMutableDictionary *ReservationHistorydDictionary;
 @property (strong, nonatomic) GettingCoreContent  *content;
 @property (weak, nonatomic) XMLParseResponseFromTheServer *db1;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (nonatomic, strong) NSString *restaurantId;
 @property (nonatomic, strong) NSString *restaurantName;
