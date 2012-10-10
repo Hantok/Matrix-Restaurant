@@ -249,7 +249,10 @@
     [self resignFirstResponder];
 }
 
-- (IBAction)Reserve:(id)sender {
+- (IBAction)Reserve:(id)sender
+{
+    if ([self checkForLiteracy])
+    {
     self.dictionary = [[NSMutableDictionary alloc] init];
     [self.dictionary setObject:self.name.text forKey:@"name"];
     [self.dictionary setObject:self.numberOfPeople.text forKey:@"numberOfPeople"];
@@ -295,6 +298,19 @@
                                                            otherButtonTitles:nil];
         [connectFailMessage show];
     }
+    }
+        else
+        {
+            UIAlertView *connectFailMessage = [[UIAlertView alloc] initWithTitle:@"Fil all rows with '*'."
+                                                                         message:nil //@"Not success"
+                                                                        delegate:self
+                                                               cancelButtonTitle:@"Ok"
+                                                               otherButtonTitles:nil];
+            [connectFailMessage show];
+        }
+   
+        
+    
 }
 
 //- (IBAction)saveReservation:(id)sender
@@ -474,6 +490,18 @@
     return uuidStr;
 }
 
+-(BOOL)checkForLiteracy
+{
+           if (![self.name.text isEqual:@""] && ![self.numberOfPeople.text isEqual:@""] && ![self.phone.text isEqual:@""] && ![self.dateOfReservation.text isEqual:@""])
+        {
+            return YES;
+        }
+        else
+            return NO;
+}
+
+
+
 -(void)setAllTitlesOnThisPage
 {
     NSArray *array = [Singleton titlesTranslation_withISfromSettings:NO];
@@ -489,11 +517,11 @@
             self.phone.placeholder = [[array objectAtIndex:i] valueForKey:@"title"];
             self.testString = [[array objectAtIndex:i] valueForKey:@"title"];
         }
-        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"People count"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"*People count"])
         {
             self.numberOfPeople.placeholder = [[array objectAtIndex:i] valueForKey:@"title"];
         }
-        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Date"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"*Date"])
         {
             self.dateOfReservation.placeholder = [[array objectAtIndex:i] valueForKey:@"title"];
         }
