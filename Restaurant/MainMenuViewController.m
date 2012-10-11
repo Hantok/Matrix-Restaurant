@@ -492,7 +492,10 @@
     [self.drop setTitle:self.titleBack forState:UIControlStateNormal];
     
     if(fromSettings) //to stop scrolling to the beginning when come in previous screen
+    {
         [self.pickerView reloadAllComponents];
+        fromSettings = NO;
+    }
 }
 
 - (void)changingAnimation
@@ -521,8 +524,7 @@
         //_arrayData = nil;
         self.menuId = nil;
         self.restarauntId = nil;
-        fromSettings = NO;
-        [self.pickerView reloadAllComponents];
+        //fromSettings = NO;
     }
     else if (fromDeliveriesAndDatailViewController)
     {
