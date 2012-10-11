@@ -82,7 +82,7 @@
 @synthesize cartButton = _cartButton;
 @synthesize settingsButton = _settingsButton;
 @synthesize restorantsButton = _restorantsButton;
-@synthesize imageButton = _imageView;
+@synthesize imageButton = _imageButton;
 @synthesize arrayData = _arrayData;
 @synthesize selectedRow = _selectedRow;
 @synthesize isCartMode = _isCartMode;
@@ -110,6 +110,8 @@
 @synthesize promotionsArray = _promotionsArray;
 @synthesize responseData = _responseData;
 @synthesize historyTableVar = _historyTableVar;
+@synthesize viewForPromotion = _viewForPromotion;
+@synthesize imageView = _imageView;
 
 
 //Titles!!!!
@@ -391,7 +393,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     [self somethingStupid];
     
     self.imageDownloadsInProgress = [[NSMutableDictionary alloc] init];
@@ -457,23 +458,26 @@
 //    NSArray * imageArray  = [NSArray arrayWithObjects:
 //                             [UIImage imageNamed:@"1.jpg"],
 //                             [UIImage imageNamed:@"2.jpg"], nil];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.imageButton.frame];
-    imageView.animationImages = imageArray;
-    imageView.animationDuration = self.promotionsArray.count * 4.0;
+    self.imageView= [[UIImageView alloc] initWithFrame: self.imageButton.frame];
+    self.imageView.animationImages = imageArray;
+    self.imageView.animationDuration = self.promotionsArray.count * 4.0;
+    self.imageView.animationRepeatCount = 0;
+    
     [NSTimer scheduledTimerWithTimeInterval:4.0
                                      target:self
                                    selector:@selector(changingAnimation)
                                    userInfo:nil
                                     repeats:YES];
     currentImage = 0;
-    [imageView startAnimating];
+    [self.imageView startAnimating];
     
-    [self.imageButton addSubview:imageView];
+    [self.imageButton addSubview: self.imageView];
+
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+    self.viewForPromotion.frame = CGRectMake(0, 2, 320, 76);
+    [UIView commitAnimations];
     
-    //    self.imageButton.imageView.animationImages = imageArray;
-    //    self.imageButton.imageView.animationDuration = 4.0;
-    //    self.imageButton.contentMode = UIViewContentModeRedraw;
-    //    [self.imageButton.imageView startAnimating];
     
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = self.view.bounds;
@@ -484,9 +488,7 @@
 - (void)somethingStupid
 {
     [self setAllTitlesOnThisPage];
-    
     self.navigationItem.title = @"<-"; //@"Main";
-    
     [self.menuButton setTitle:self.titleMenu forState:UIControlStateNormal];
     [self.cartButton setTitle:self.titleCart forState:UIControlStateNormal];
     [self.drop setTitle:self.titleBack forState:UIControlStateNormal];
@@ -650,6 +652,8 @@
     [self setAlert:nil];
     [self setHistoryButton:nil];
     [self setMainView:nil];
+    [self setViewForPromotion:nil];
+    [self setImageView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
