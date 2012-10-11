@@ -491,7 +491,8 @@
     [self.cartButton setTitle:self.titleCart forState:UIControlStateNormal];
     [self.drop setTitle:self.titleBack forState:UIControlStateNormal];
     
-    [self.pickerView reloadAllComponents];
+    if(fromSettings) //to stop scrolling to the beginning when come in previous screen
+        [self.pickerView reloadAllComponents];
 }
 
 - (void)changingAnimation
@@ -520,6 +521,7 @@
         self.menuId = nil;
         self.restarauntId = nil;
         fromSettings = NO;
+        [self.pickerView reloadAllComponents];
     }
     else if (fromDeliveriesAndDatailViewController)
     {
@@ -532,6 +534,7 @@
         //        self.isCartMode = YES;
         [self performSelector:@selector(cartButton:)withObject:nil];
     }
+    
     [super viewWillAppear:animated];
 }
 
@@ -1093,6 +1096,14 @@
     }
     else
     {
+        if (!self.restarauntId) // if we in restaurant menu hide back button
+        {
+            self.drop.hidden = YES;
+        }
+        else
+        {
+            self.drop.hidden = NO;
+        }
         if(indexPath.section != 0)
         {
             NSString *CellIdentifier = @"PickerViewCell";
