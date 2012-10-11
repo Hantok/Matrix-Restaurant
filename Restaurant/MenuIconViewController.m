@@ -173,6 +173,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSLog(@"did it loaded? %@", self.titleAddToFavotites);
 	self.imageDownloadsInProgress = [[NSMutableDictionary alloc] init];
     self.navigationItem.title = self.kindOfMenu.title;
     
@@ -702,7 +703,7 @@
     UIAlertView *alertView;
     if (![[[self.arrayData objectAtIndex:index] isFavorites] boolValue])
     {
-        alertView = [[UIAlertView alloc] initWithTitle:self.titleAddToFavotites
+        alertView= [[UIAlertView alloc] initWithTitle:self.titleAddToFavotites
                                                message:nil
                                               delegate:self
                                      cancelButtonTitle:self.titleCancel
@@ -710,11 +711,12 @@
     }
     else
     {
-        alertView = [[UIAlertView alloc] initWithTitle:self.titleRemoveToFavotites
+         alertView= [[UIAlertView alloc] initWithTitle:self.titleRemoveToFavotites
                                                message:nil
                                               delegate:self
                                      cancelButtonTitle:self.titleCancel
                                      otherButtonTitles:self.titleYES, nil];
+      
     }
     
     [alertView show];
@@ -986,32 +988,32 @@
     NSArray *array = [Singleton titlesTranslation_withISfromSettings:NO];
     for (int i = 0; i <array.count; i++)
     {
-        if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Add to favorites?"])
+        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Add to favorites?"])
         {
             self.titleAddToFavotites = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Remove from favorites?"])
+        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Remove from favorites?"])
         {
             self.titleRemoveToFavotites = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"YES"])
+        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"YES"])
         {
             self.titleYES = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Cancel"])
+        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Cancel"])
         {
             self.titleCancel = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Added %@ to favorites."])
+        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Added %@ to favorites."])
         {
             self.titleAddedFav = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
-        if ([[[array objectAtIndex:i] valueForKey:@"code"] isEqualToString:@"Removed %@ from favorites."])
+        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Removed %@ from favorites."])
         {
             self.titleRemovedFav = [[array objectAtIndex:i] valueForKey:@"title"];
         }

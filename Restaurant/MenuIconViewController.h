@@ -10,6 +10,7 @@
 #import "GettingCoreContent.h"
 #import "MenuDataStruct.h"
 #import "IconDownloader.h"
+#import "Singleton.h"
 #import "ProductCell.h"
 #import "ProductDataStruct.h"
 #import "ProductDetailViewController.h"
