@@ -509,6 +509,7 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
+    self.imageDownloadsInProgress = [[NSMutableDictionary alloc] init];
     if (self.isCartMode == YES && [[self.db getArrayFromCoreDatainEntetyName:@"CustomerOrders" withSortDescriptor:@"name"] count] != 0) {
         [self.historyButton setHidden:NO];
     }
@@ -541,7 +542,6 @@
 - (void) viewWillDisappear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:NO animated:animated];
-    
     //    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound)
     //    {
     // back button was pressed.  We know this is true because self is no longer

@@ -1,11 +1,3 @@
-//
-//  PartOfHistoryViewController.m
-//  Restaurant
-//
-//  Created by Matrix Soft on 30.08.12.
-//
-//
-
 #import "PartOfHistoryViewController.h"
 #import "ProductDescriptionViewCell.h"
 
@@ -25,7 +17,7 @@
 @property float secondContainerHeight;
 
 @property float tempFirstContainerY;
-
+@property NSString *reorderButtonTraslation;
 @end
 
 @implementation PartOfHistoryViewController
@@ -67,7 +59,12 @@
 @synthesize productsArray = _productsArray;
 @synthesize orderNumberLabel = _orderNumberLabel;
 @synthesize reorderButton = _reorderButton;
-
+@synthesize labelOrderNumber = _labelOrderNumber;
+@synthesize totalPriceVar = _totalPriceVar;
+@synthesize totalPriceVarWithDiscount = _totalPriceVarWithDiscount;
+@synthesize deliveryAddress = _deliveryAddress;
+@synthesize youAreOrdered = _youAreOrdered;
+@synthesize reorderButtonTraslation = _reorderButtonTraslation;
 - (GettingCoreContent *)db
 {
     if(!_db)
@@ -89,13 +86,16 @@
 - (void)viewDidLoad
 {    
     [super viewDidLoad];
-                    
+    [self setAllTitlesOnThisPage];
+    
+    
+    [_reorderButton setTitle:_reorderButtonTraslation forState:UIControlStateNormal];
     CAGradientLayer *mainGradient = [CAGradientLayer layer];
     mainGradient.frame = self.mainView.bounds;
     mainGradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor darkGrayColor] CGColor],(id)[[UIColor blackColor] CGColor], nil];
     [self.mainView.layer insertSublayer:mainGradient atIndex:0];
     
-    [self.orderNumberLabel setText:[NSString stringWithFormat:@"%@ %@", [self.orderNumberLabel text], [self.historyDictionary valueForKey:@"orderID"]]];
+    [self.orderNumberLabel setText:[NSString stringWithFormat:@"%@ %@", _labelOrderNumber, [self.historyDictionary valueForKey:@"orderID"]]];
     
     self.firstContainerX = self.infoOfOrderContainer.frame.origin.x;
     self.firstContainerY = self.infoOfOrderContainer.frame.origin.y;
@@ -182,33 +182,36 @@
         }
     }
     
-    UILabel *totalPriceSumCaption = [[UILabel alloc] initWithFrame:CGRectMake(155, 40 + viewCellSumHeight + 10, 37, 15)];
-    [totalPriceSumCaption setFont:[UIFont systemFontOfSize:13]];
-    [totalPriceSumCaption setTextColor:[UIColor darkGrayColor]];
-    [totalPriceSumCaption setBackgroundColor:[UIColor clearColor]];
-    [totalPriceSumCaption setText:@"Total: "];
-    [self.infoOfProductInOrderDetailView addSubview:totalPriceSumCaption];
+    _totalPriceSumCaption = [[UILabel alloc] initWithFrame:CGRectMake(121, 40 + viewCellSumHeight + 10, 70, 15)];
+    [_totalPriceSumCaption setFont:[UIFont systemFontOfSize:13]];
+    [_totalPriceSumCaption setTextColor:[UIColor darkGrayColor]];
+    [_totalPriceSumCaption setBackgroundColor:[UIColor clearColor]];
+    _totalPriceSumCaption.textAlignment = UIControlContentHorizontalAlignmentRight;
+    [_totalPriceSumCaption setText: _totalPriceVar];
+    [self.infoOfProductInOrderDetailView addSubview:_totalPriceSumCaption];
     
-    UILabel *totalPriceSumValue = [[UILabel alloc] initWithFrame:CGRectMake(totalPriceSumCaption.frame.origin.x + totalPriceSumCaption.frame.size.width, totalPriceSumCaption.frame.origin.y, 90, totalPriceSumCaption.frame.size.height)];
+    UILabel *totalPriceSumValue = [[UILabel alloc] initWithFrame:CGRectMake(_totalPriceSumCaption.frame.origin.x + _totalPriceSumCaption.frame.size.width, _totalPriceSumCaption.frame.origin.y, 90, _totalPriceSumCaption.frame.size.height)];
     totalPriceSumValue.text = [NSString stringWithFormat:@"%7.2f %@", totalProductPrice, [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
     [totalPriceSumValue setFont:[UIFont boldSystemFontOfSize:13]];
     [totalPriceSumValue setBackgroundColor:[UIColor clearColor]];
     [self.infoOfProductInOrderDetailView addSubview:totalPriceSumValue];
     
-    UILabel *totalPriceSumWithDiscountCaption = [[UILabel alloc] initWithFrame:CGRectMake(100, totalPriceSumCaption.frame.origin.y + totalPriceSumCaption.frame.size.height, 92, totalPriceSumCaption.frame.size.height)];
-    totalPriceSumWithDiscountCaption.text = @"With discounts: ";
-    [totalPriceSumWithDiscountCaption setFont:[UIFont systemFontOfSize:13]];
-    [totalPriceSumWithDiscountCaption setTextColor:[UIColor orangeColor]];
-    [totalPriceSumWithDiscountCaption setBackgroundColor:[UIColor clearColor]];
-    [self.infoOfProductInOrderDetailView addSubview:totalPriceSumWithDiscountCaption];
+    _totalPriceSumWithDiscountCaption = [[UILabel alloc] initWithFrame:CGRectMake(100, _totalPriceSumCaption.frame.origin.y + _totalPriceSumCaption.frame.size.height, 92, _totalPriceSumCaption.frame.size.height)];
+    _totalPriceSumWithDiscountCaption.textAlignment = UIControlContentHorizontalAlignmentRight;
+    _totalPriceSumWithDiscountCaption.text = _totalPriceVarWithDiscount;
+    [_totalPriceSumWithDiscountCaption setFont:[UIFont systemFontOfSize:13]];
+    [_totalPriceSumWithDiscountCaption setTextColor:[UIColor orangeColor]];
+    [_totalPriceSumWithDiscountCaption setBackgroundColor:[UIColor clearColor]];
+    [self.infoOfProductInOrderDetailView addSubview:_totalPriceSumWithDiscountCaption];
+
     
-    UILabel *totalPriceSumWithDiscountValue = [[UILabel alloc] initWithFrame:CGRectMake(totalPriceSumWithDiscountCaption.frame.origin.x + totalPriceSumWithDiscountCaption.frame.size.width, totalPriceSumWithDiscountCaption.frame.origin.y, 92, totalPriceSumWithDiscountCaption.frame.size.height)];
+    UILabel *totalPriceSumWithDiscountValue = [[UILabel alloc] initWithFrame:CGRectMake(_totalPriceSumWithDiscountCaption.frame.origin.x + _totalPriceSumWithDiscountCaption.frame.size.width, _totalPriceSumWithDiscountCaption.frame.origin.y, 92, _totalPriceSumWithDiscountCaption.frame.size.height)];
     totalPriceSumWithDiscountValue.text = [NSString stringWithFormat:@"%7.2f %@", totalProductPriceWithDiscount, [[NSUserDefaults standardUserDefaults] objectForKey:@"Currency"]];
     [totalPriceSumWithDiscountValue setFont:[UIFont boldSystemFontOfSize:13]];
     [totalPriceSumWithDiscountValue setBackgroundColor:[UIColor clearColor]];
     [self.infoOfProductInOrderDetailView addSubview:totalPriceSumWithDiscountValue];
     
-    self.infoOfProductInOrderDetailView.frame = CGRectMake(15, 40, 290, totalPriceSumWithDiscountCaption.frame.origin.y + totalPriceSumWithDiscountCaption.frame.size.height + 10);
+    self.infoOfProductInOrderDetailView.frame = CGRectMake(15, 40, 290, _totalPriceSumWithDiscountCaption.frame.origin.y + _totalPriceSumWithDiscountCaption.frame.size.height + 10);
     
     int curentNumberOfStatus;
     
@@ -372,6 +375,9 @@
     [self setProductsCount:nil];
     [self setProductPriceSumm:nil];
     [self setOrderNumberLabel:nil];
+    [self setReorderButton:nil];
+    [self setDeliveryAddress:nil];
+    [self setYouAreOrdered:nil];
     [self setReorderButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -554,6 +560,69 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return nil;
+}
+
+#pragma mark
+#pragma mark PRIVATE METHODS
+
+-(void)setAllTitlesOnThisPage
+{
+    NSArray *array = [Singleton titlesTranslation_withISfromSettings:NO];
+    for (int i = 0; i <array.count; i++)
+    {
+        if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Order №"])
+        {
+            _labelOrderNumber = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"City:"])
+        {
+            self.cityLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Subway:"])
+        {
+            self.metroLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Address:"])
+        {
+            self.addressLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Additional:"])
+        {
+            self.additionalLabel.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Title"])
+        {
+            self.productName.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Count"])
+        {
+            self.productsCount.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Sum"])
+        {
+            self.productPriceSumm.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Total:"])
+        {
+            _totalPriceVar = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"With discounts:"])
+        {
+            _totalPriceVarWithDiscount = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Delivery address:"])
+        {
+            self.deliveryAddress.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"You are ordered:"])
+        {
+            self.youAreOrdered.text = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Reorder"])
+        {
+            _reorderButtonTraslation = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+    }
 }
 
 @end

@@ -15,6 +15,7 @@
 
 @property (strong, nonatomic) NSMutableArray *arrayData;
 @property (strong, nonatomic) GettingCoreContent *db;
+@property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 @property NSInteger selectedRow;
 
 @end    

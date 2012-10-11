@@ -120,8 +120,6 @@
 		F5513A2915DA3AA90083E075 /* XMLParse.h in Headers */ = {isa = PBXBuildFile; fileRef = 786B299A1546EA7400486848 /* XMLParse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F5513A2A15DA3AA90083E075 /* checkConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = F5072158156BA2C200D7ACC6 /* checkConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F5513A2B15DA3AA90083E075 /* RestaurantAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 781B8F161546DB870074EDBD /* RestaurantAppDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F570141515D90C81005C0B41 /* libGMGridView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F57013FE15D90C5B005C0B41 /* libGMGridView.a */; };
-		F570141615D90C81005C0B41 /* libSSToolkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F570140A15D90C67005C0B41 /* libSSToolkit.a */; };
 		F58BD5AD156E7B8A00D31A09 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58BD5AC156E7B8A00D31A09 /* MessageUI.framework */; };
 		F58E734F15D1358800CBCE65 /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = F58E734E15D1358800CBCE65 /* MapViewAnnotation.m */; };
 		F58EC35615DB8A4E00ADBA80 /* ReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58EC35515DB8A4E00ADBA80 /* ReservationViewController.m */; };
@@ -172,57 +170,38 @@
 		F5F5706716175814003CA47C /* arrow2_green.png in Resources */ = {isa = PBXBuildFile; fileRef = F5F5706116175814003CA47C /* arrow2_green.png */; };
 		F5F5706816175814003CA47C /* arrow2_red.png in Resources */ = {isa = PBXBuildFile; fileRef = F5F5706216175814003CA47C /* arrow2_red.png */; };
 		F5FA62481580D39700FBF70A /* FavoritesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5FA62471580D39700FBF70A /* FavoritesTableViewController.m */; };
+		FA283C6A1625B0330013416C /* libGMGridView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA283C591625AFEE0013416C /* libGMGridView.a */; };
+		FA283C6B1625B0370013416C /* libSSToolkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA283C651625AFF80013416C /* libSSToolkit.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		F57013FD15D90C5B005C0B41 /* PBXContainerItemProxy */ = {
+		FA283C581625AFEE0013416C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = F57013F615D90C5B005C0B41 /* GMGridView.xcodeproj */;
+			containerPortal = FA283C511625AFEE0013416C /* GMGridView.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 78509312149FAC2E000787E4;
 			remoteInfo = GMGridView;
 		};
-		F570140915D90C67005C0B41 /* PBXContainerItemProxy */ = {
+		FA283C641625AFF80013416C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = F57013FF15D90C66005C0B41 /* SSToolkit.xcodeproj */;
+			containerPortal = FA283C5A1625AFF80013416C /* SSToolkit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = D2AAC07E0554694100DB518D;
 			remoteInfo = SSToolkit;
 		};
-		F570140B15D90C67005C0B41 /* PBXContainerItemProxy */ = {
+		FA283C661625AFF80013416C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = F57013FF15D90C66005C0B41 /* SSToolkit.xcodeproj */;
+			containerPortal = FA283C5A1625AFF80013416C /* SSToolkit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = B239101D1357DC3E00ADE21B;
 			remoteInfo = SSToolkitTests;
 		};
-		F570140D15D90C67005C0B41 /* PBXContainerItemProxy */ = {
+		FA283C681625AFF80013416C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = F57013FF15D90C66005C0B41 /* SSToolkit.xcodeproj */;
+			containerPortal = FA283C5A1625AFF80013416C /* SSToolkit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = B2C507EA151BA64400E94614;
 			remoteInfo = SSToolkitResources;
-		};
-		F570140F15D90C7A005C0B41 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F57013FF15D90C66005C0B41 /* SSToolkit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D2AAC07D0554694100DB518D;
-			remoteInfo = SSToolkit;
-		};
-		F570141115D90C7A005C0B41 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F57013FF15D90C66005C0B41 /* SSToolkit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = B2C507E9151BA64400E94614;
-			remoteInfo = SSToolkitResources;
-		};
-		F570141315D90C7A005C0B41 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F57013F615D90C5B005C0B41 /* GMGridView.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 78509311149FAC2E000787E4;
-			remoteInfo = GMGridView;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -335,8 +314,6 @@
 		F53DF5D2161ED8CF0004C7A3 /* Line1pVerticalGray.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Line1pVerticalGray.jpg; sourceTree = "<group>"; };
 		F541FCDB15EF5982003B13AE /* Button2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button2.png; sourceTree = "<group>"; };
 		F541FCDD15EF6987003B13AE /* button3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button3.png; sourceTree = "<group>"; };
-		F57013F615D90C5B005C0B41 /* GMGridView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GMGridView.xcodeproj; path = ../../GMGridView/GMGridView.xcodeproj; sourceTree = "<group>"; };
-		F57013FF15D90C66005C0B41 /* SSToolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SSToolkit.xcodeproj; path = ../../Vendor/SSToolkit/SSToolkit.xcodeproj; sourceTree = "<group>"; };
 		F58BD5AC156E7B8A00D31A09 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		F58E734D15D1358800CBCE65 /* MapViewAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewAnnotation.h; sourceTree = "<group>"; };
 		F58E734E15D1358800CBCE65 /* MapViewAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewAnnotation.m; sourceTree = "<group>"; };
@@ -395,6 +372,8 @@
 		F5F5706216175814003CA47C /* arrow2_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow2_red.png; sourceTree = "<group>"; };
 		F5FA62461580D39700FBF70A /* FavoritesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesTableViewController.h; sourceTree = "<group>"; };
 		F5FA62471580D39700FBF70A /* FavoritesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesTableViewController.m; sourceTree = "<group>"; };
+		FA283C511625AFEE0013416C /* GMGridView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GMGridView.xcodeproj; path = ../../GMGridView/GMGridView.xcodeproj; sourceTree = "<group>"; };
+		FA283C5A1625AFF80013416C /* SSToolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SSToolkit.xcodeproj; path = ../../Vendor/SSToolkit/SSToolkit.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -402,10 +381,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA283C6B1625B0370013416C /* libSSToolkit.a in Frameworks */,
+				FA283C6A1625B0330013416C /* libGMGridView.a in Frameworks */,
 				F5F1058E15DD2E1200B03533 /* libsqlite3.0.dylib in Frameworks */,
 				F5ACDBCA15DBEE510074E028 /* Twitter.framework in Frameworks */,
-				F570141515D90C81005C0B41 /* libGMGridView.a in Frameworks */,
-				F570141615D90C81005C0B41 /* libSSToolkit.a in Frameworks */,
 				F591ECD815CD723C006BD0E6 /* CoreLocation.framework in Frameworks */,
 				F59344EB157F77DA0080EDE3 /* AudioToolbox.framework in Frameworks */,
 				7851AC8E157E52450027BDDF /* MapKit.framework in Frameworks */,
@@ -443,12 +422,12 @@
 		781B8F061546DB870074EDBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA283C5A1625AFF80013416C /* SSToolkit.xcodeproj */,
+				FA283C511625AFEE0013416C /* GMGridView.xcodeproj */,
 				4E3F3D8615F76ADD00E9E08A /* FacebookSDKResources.bundle */,
 				4E3F3D8415F76ACE00E9E08A /* FacebookSDK.framework */,
 				F5F1058D15DD2E1200B03533 /* libsqlite3.0.dylib */,
 				F5ACDBC915DBEE510074E028 /* Twitter.framework */,
-				F57013FF15D90C66005C0B41 /* SSToolkit.xcodeproj */,
-				F57013F615D90C5B005C0B41 /* GMGridView.xcodeproj */,
 				F5DCCB7615A3279500739B11 /* AFNetworking */,
 				F591ECD715CD723C006BD0E6 /* CoreLocation.framework */,
 				F59344EA157F77DA0080EDE3 /* AudioToolbox.framework */,
@@ -666,24 +645,6 @@
 			name = "Type of View";
 			sourceTree = "<group>";
 		};
-		F57013F715D90C5B005C0B41 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F57013FE15D90C5B005C0B41 /* libGMGridView.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		F570140015D90C66005C0B41 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F570140A15D90C67005C0B41 /* libSSToolkit.a */,
-				F570140C15D90C67005C0B41 /* SSToolkitTests.app */,
-				F570140E15D90C67005C0B41 /* SSToolkitResources.bundle */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		F5DCCB7615A3279500739B11 /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -725,6 +686,24 @@
 				F507E86115BED33D00B1A772 /* TotalCartCell.xib */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		FA283C521625AFEE0013416C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FA283C591625AFEE0013416C /* libGMGridView.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FA283C5B1625AFF80013416C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FA283C651625AFF80013416C /* libSSToolkit.a */,
+				FA283C671625AFF80013416C /* SSToolkitTests.app */,
+				FA283C691625AFF80013416C /* SSToolkitResources.bundle */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -796,9 +775,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				F570141015D90C7A005C0B41 /* PBXTargetDependency */,
-				F570141215D90C7A005C0B41 /* PBXTargetDependency */,
-				F570141415D90C7A005C0B41 /* PBXTargetDependency */,
 			);
 			name = Restaurant;
 			productName = Restaurant;
@@ -841,12 +817,12 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = F57013F715D90C5B005C0B41 /* Products */;
-					ProjectRef = F57013F615D90C5B005C0B41 /* GMGridView.xcodeproj */;
+					ProductGroup = FA283C521625AFEE0013416C /* Products */;
+					ProjectRef = FA283C511625AFEE0013416C /* GMGridView.xcodeproj */;
 				},
 				{
-					ProductGroup = F570140015D90C66005C0B41 /* Products */;
-					ProjectRef = F57013FF15D90C66005C0B41 /* SSToolkit.xcodeproj */;
+					ProductGroup = FA283C5B1625AFF80013416C /* Products */;
+					ProjectRef = FA283C5A1625AFF80013416C /* SSToolkit.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -857,32 +833,32 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		F57013FE15D90C5B005C0B41 /* libGMGridView.a */ = {
+		FA283C591625AFEE0013416C /* libGMGridView.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libGMGridView.a;
-			remoteRef = F57013FD15D90C5B005C0B41 /* PBXContainerItemProxy */;
+			remoteRef = FA283C581625AFEE0013416C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		F570140A15D90C67005C0B41 /* libSSToolkit.a */ = {
+		FA283C651625AFF80013416C /* libSSToolkit.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libSSToolkit.a;
-			remoteRef = F570140915D90C67005C0B41 /* PBXContainerItemProxy */;
+			remoteRef = FA283C641625AFF80013416C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		F570140C15D90C67005C0B41 /* SSToolkitTests.app */ = {
+		FA283C671625AFF80013416C /* SSToolkitTests.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
 			path = SSToolkitTests.app;
-			remoteRef = F570140B15D90C67005C0B41 /* PBXContainerItemProxy */;
+			remoteRef = FA283C661625AFF80013416C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		F570140E15D90C67005C0B41 /* SSToolkitResources.bundle */ = {
+		FA283C691625AFF80013416C /* SSToolkitResources.bundle */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = SSToolkitResources.bundle;
-			remoteRef = F570140D15D90C67005C0B41 /* PBXContainerItemProxy */;
+			remoteRef = FA283C681625AFF80013416C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1012,24 +988,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		F570141015D90C7A005C0B41 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SSToolkit;
-			targetProxy = F570140F15D90C7A005C0B41 /* PBXContainerItemProxy */;
-		};
-		F570141215D90C7A005C0B41 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SSToolkitResources;
-			targetProxy = F570141115D90C7A005C0B41 /* PBXContainerItemProxy */;
-		};
-		F570141415D90C7A005C0B41 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = GMGridView;
-			targetProxy = F570141315D90C7A005C0B41 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		781B8F101546DB870074EDBD /* InfoPlist.strings */ = {

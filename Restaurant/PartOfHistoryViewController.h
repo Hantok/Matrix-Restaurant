@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "HistoryTableListViewController.h"
 #import "GettingCoreContent.h"
+#import "Singleton.h"
 
 @interface PartOfHistoryViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UILabel *messageLabel;
@@ -43,6 +44,16 @@
 @property (strong, nonatomic) NSArray *productsArray;
 @property (strong, nonatomic) IBOutlet UILabel *orderNumberLabel;
 @property (strong, nonatomic) IBOutlet UIButton *reorderButton;
+@property (strong, nonatomic) IBOutlet UILabel *deliveryAddress;
+@property (strong, nonatomic) IBOutlet UILabel *youAreOrdered;
+
+
+@property (strong, nonatomic) IBOutlet UILabel *totalPriceSumCaption;
+@property (strong, nonatomic) IBOutlet UILabel *totalPriceSumWithDiscountCaption;
+
+@property (strong, nonatomic) NSString *labelOrderNumber;
+@property (strong, nonatomic) NSString *totalPriceVar;
+@property (strong, nonatomic) NSString *totalPriceVarWithDiscount;
 
 - (IBAction)showOrHideInfoOfOrder:(id)sender;
 - (IBAction)infoOfProductInOrder:(id)sender;
