@@ -15,6 +15,7 @@
 
 @property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer;
 @property (strong, nonatomic) NSMutableData *responseData;
+@property (strong, nonatomic) UITextField *textFieldForFeils;
 @property (strong, nonatomic) NSString *titleThankYouForOrder;
 @property (strong, nonatomic) NSString *titleOurOperatorWillCallYou;
 @property (strong, nonatomic) NSString *titleError;
@@ -24,6 +25,8 @@
 @property (strong, nonatomic) NSString *titleOutOfTables;
 @property (strong, nonatomic) NSString *titleSorry;
 @property (strong, nonatomic) NSString *testString;
+@property (strong, nonatomic) NSString *titleNumberOfPeople;
+
 @end
 
 @implementation ReservationViewController
@@ -44,6 +47,7 @@
 @synthesize reservateButton = _reservateButton;
 @synthesize titleReservationTableBar = _titleReservationTableBar;
 @synthesize scrollView = _scrollView;
+@synthesize textFieldForFeils = _textFieldForFeils;
 
 @synthesize titleThankYouForOrder = _titleThankYouForOrder;
 @synthesize titleOurOperatorWillCallYou = _titleOurOperatorWillCallYou;
@@ -53,6 +57,7 @@
 @synthesize titleEnterJustNombers = _titleEnterJustNombers;
 @synthesize titleOutOfTables = _titleOutOfTables;
 @synthesize titleSorry = _titleSorry;
+@synthesize titleNumberOfPeople = _titleNumberOfPeople;
 
 
 - (GettingCoreContent *)content
@@ -98,7 +103,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    NSLog(@"djjsdfjsdjfjsdf %@", self.titleNumberOfPeople);
     CAGradientLayer *mainGradient = [CAGradientLayer layer];
     mainGradient.frame = self.scrollView.bounds;
     mainGradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor darkGrayColor] CGColor],(id)[[UIColor blackColor] CGColor], nil];
@@ -178,6 +183,37 @@
         return NO;
     }
     return YES;
+}
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (self.textFieldForFeils)
+    {
+        [self.textFieldForFeils becomeFirstResponder];
+        self.textFieldForFeils = nil;
+    }
+    
+}
+
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField == self.phone || textField == self.numberOfPeople)
+    {
+        if (![textField.text isEqual:@""])
+            if (![[NSScanner scannerWithString:textField.text] scanInteger:nil])
+            {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:self.titleEnterJustNombers message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alertView show];
+                textField.text = nil;
+                //[textField becomeFirstResponder];
+                self.textFieldForFeils = textField;
+            }
+    }
+    
+    //    if (textField == self.appartaments || textField == self.build || textField == self.street || textField == self.otherInformation || textField == self.deliveryTime)
+    //    {
+    ////        self.scrollView.contentSize = CGSizeMake(320, 430);
+    //    }
 }
 
 -(void)keyboardWillShow:(NSNotification *) note
@@ -518,13 +554,14 @@
         else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"*Phone"])
         {
             self.phone.placeholder = [[array objectAtIndex:i] valueForKey:@"title"];
-            self.testString = [[array objectAtIndex:i] valueForKey:@"title"];
+            
         }
-        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"*People count"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"*Number of persons"])
         {
             self.numberOfPeople.placeholder = [[array objectAtIndex:i] valueForKey:@"title"];
+            self.titleNumberOfPeople = [[array objectAtIndex:i] valueForKey:@"title"];
         }
-        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"*Date"])
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"*Time"])
         {
             self.dateOfReservation.placeholder = [[array objectAtIndex:i] valueForKey:@"title"];
         }
