@@ -136,9 +136,7 @@
         [UIView setAnimationDuration:0.3];
         self.pictureViewContainer.frame = CGRectMake(35, 0, 250, 240);
         [UIView commitAnimations];
-        
-//        [self.scrollView setHidden:YES];
-        
+
         isPictureViewContanerShow = NO;
     }
 }
