@@ -48,7 +48,7 @@
 @property (nonatomic,strong) UIAlertView *alert;
 @property (nonatomic, strong) NSMutableArray *promotionsArray;
 @property (strong, nonatomic) NSMutableData *responseData;
-
+@property (strong, nonatomic) NSMutableArray *imageArray;
 - (void)startIconDownload:(MenuDataStruct *)appRecord forIndexPath:(NSIndexPath *)indexPath;
 
 
@@ -112,7 +112,7 @@
 @synthesize historyTableVar = _historyTableVar;
 @synthesize viewForPromotion = _viewForPromotion;
 @synthesize imageView = _imageView;
-
+@synthesize imageArray = _imageArray;
 
 //Titles!!!!
 @synthesize titleMain = _titleMain;
@@ -438,46 +438,7 @@
         self.isMenuMode = YES;
     }
     
-    NSMutableArray *imageArray = [[NSMutableArray alloc] init];
-    for (int i = 0; i < self.promotionsArray.count; i++)
-    {
-        PromotionStruct *promotion = [self.promotionsArray objectAtIndex:i];
-        if (![promotion image])
-        {
-            NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:[promotion link]]];
-            UIImage *image = [UIImage imageWithData: imageData];
-            [promotion setImage:image];
-            [self.db SavePictureToCoreData:[promotion idPicture] toData:imageData];
-            [imageArray addObject:image];
-        }
-        else
-        {
-            [imageArray addObject:[promotion image]];
-        }
-    }
-//    NSArray * imageArray  = [NSArray arrayWithObjects:
-//                             [UIImage imageNamed:@"1.jpg"],
-//                             [UIImage imageNamed:@"2.jpg"], nil];
-    self.imageView= [[UIImageView alloc] initWithFrame: self.imageButton.frame];
-    self.imageView.animationImages = imageArray;
-    self.imageView.animationDuration = self.promotionsArray.count * 4.0;
-    self.imageView.animationRepeatCount = 0;
-    
-    [NSTimer scheduledTimerWithTimeInterval:4.0
-                                     target:self
-                                   selector:@selector(changingAnimation)
-                                   userInfo:nil
-                                    repeats:YES];
-    currentImage = 0;
-    [self.imageView startAnimating];
-    
-    [self.imageButton addSubview: self.imageView];
-
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
-    self.viewForPromotion.frame = CGRectMake(0, 2, 320, 76);
-    [UIView commitAnimations];
-    
+    [self animationForPromotions];
     
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = self.view.bounds;
@@ -485,15 +446,81 @@
     [self.view.layer insertSublayer:gradient atIndex:0];
 }
 
-- (void)somethingStupid
+
+-(void)animationForPromotions
 {
-    [self setAllTitlesOnThisPage];
-    self.navigationItem.title = @"<-"; //@"Main";
-    [self.menuButton setTitle:self.titleMenu forState:UIControlStateNormal];
-    [self.cartButton setTitle:self.titleCart forState:UIControlStateNormal];
-    [self.drop setTitle:self.titleBack forState:UIControlStateNormal];
+        _imageArray = [[NSMutableArray alloc] init];
+        for (int i = 0; i < self.promotionsArray.count; i++)
+        {
+            PromotionStruct *promotion = [self.promotionsArray objectAtIndex:i];
+            if (![promotion image])
+            {
+                NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:[promotion link]]];
+                UIImage *image = [UIImage imageWithData: imageData];
+                [promotion setImage:image];
+                [self.db SavePictureToCoreData:[promotion idPicture] toData:imageData];
+                [_imageArray addObject:image];
+            }
+            else
+            {
+                [_imageArray addObject:[promotion image]];
+            }
+        }
+        
+        _imageView = [[UIImageView alloc] initWithFrame: _imageButton.frame];
+        _imageView.animationImages = _imageArray;
+        _imageView.animationDuration = _promotionsArray.count * 6.0;
+        _imageView.animationRepeatCount = 0;
+        
+        currentImage = 0;
+        [_imageView startAnimating];
+        
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:2];
+        _viewForPromotion.frame = CGRectMake(0, 2, 320, 76);
+        [UIView commitAnimations];
     
-    [self.pickerView reloadAllComponents];
+        [_viewForPromotion addSubview: self.imageButton];
+        [self.imageButton addSubview: _imageView];
+        
+        [NSTimer scheduledTimerWithTimeInterval:6.0
+                                         target:self
+                                       selector:@selector(changingAnimation)
+                                       userInfo:nil
+                                        repeats:YES];
+    
+        [NSTimer scheduledTimerWithTimeInterval:6.0
+                                         target:self
+                                       selector:@selector(appearOfPromotion)
+                                       userInfo:nil
+                                        repeats:YES];
+    
+        [NSTimer scheduledTimerWithTimeInterval:5.0
+                                         target:self
+                                       selector:@selector(disappearOfPromotion)
+                                       userInfo:nil
+                                        repeats:NO];
+}
+-(void) appearOfPromotion
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:1];
+    [_viewForPromotion setAlpha:1];
+    [UIView commitAnimations];
+}
+
+-(void) disappearOfPromotion
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:1];
+    [_viewForPromotion setAlpha:0];
+    [UIView commitAnimations];
+    
+    [NSTimer scheduledTimerWithTimeInterval:6.0
+                                     target:self
+                                   selector:@selector(disappearOfPromotion)
+                                   userInfo:nil
+                                    repeats:YES];
 }
 
 - (void)changingAnimation
@@ -507,6 +534,19 @@
         currentImage = 0;
     }
 }
+
+
+- (void)somethingStupid
+{
+    [self setAllTitlesOnThisPage];
+    self.navigationItem.title = @"<-"; //@"Main";
+    [self.menuButton setTitle:self.titleMenu forState:UIControlStateNormal];
+    [self.cartButton setTitle:self.titleCart forState:UIControlStateNormal];
+    [self.drop setTitle:self.titleBack forState:UIControlStateNormal];
+    
+    [self.pickerView reloadAllComponents];
+}
+
 
 - (void) viewWillAppear:(BOOL)animated
 {
@@ -557,7 +597,6 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
-    
     if (oneRestaurant)
         self.arrayData = nil;
     
@@ -603,7 +642,9 @@
     }
 //    int i = currentImage - 1;
     [subView.imageView setImage:[[self.promotionsArray objectAtIndex:currentImage] image]];
+    subView.imageView.frame = CGRectMake(0, 2, 320, 150);
     subView.label.text = [[self.promotionsArray objectAtIndex:currentImage] title];
+    subView.label.textColor = [UIColor redColor];
     subView.textView.text = [[self.promotionsArray objectAtIndex:currentImage] descriptionText];
     [self.view addSubview:subView];
 }
