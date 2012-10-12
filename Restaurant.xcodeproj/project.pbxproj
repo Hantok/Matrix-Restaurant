@@ -8,16 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		4E0EEABB160B45D40095AD29 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E0EEABA160B45D40095AD29 /* Default-568h@2x.png */; };
-		4E1251801614AE1100BDA1DC /* SettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E12517E1614AE1100BDA1DC /* SettingsViewController.h */; };
+		4E1251801614AE1100BDA1DC /* SettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E12517E1614AE1100BDA1DC /* SettingsViewController.h */; settings = {ATTRIBUTES = (); }; };
 		4E1251811614AE1100BDA1DC /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E12517F1614AE1100BDA1DC /* SettingsViewController.m */; };
 		4E3F3D8B15F76C2700E9E08A /* dropButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E3F3D8A15F76C2700E9E08A /* dropButton.png */; };
 		4E595F641627F8E7005F14D4 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E595F631627F8E7005F14D4 /* FacebookSDK.framework */; };
 		4E595F661627F8F4005F14D4 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4E595F651627F8F4005F14D4 /* FacebookSDKResources.bundle */; };
 		4E595F6D1627F92A005F14D4 /* libGMGridView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E595F511627F8D0005F14D4 /* libGMGridView.a */; };
 		4E595F6E1627F92A005F14D4 /* libSSToolkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E595F5E1627F8DB005F14D4 /* libSSToolkit.a */; };
-		4E5A34C71600BFA100725D93 /* PromotionStruct.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E5A34C51600BFA100725D93 /* PromotionStruct.h */; };
+		4E5A34C71600BFA100725D93 /* PromotionStruct.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E5A34C51600BFA100725D93 /* PromotionStruct.h */; settings = {ATTRIBUTES = (); }; };
 		4E5A34C81600BFA100725D93 /* PromotionStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5A34C61600BFA100725D93 /* PromotionStruct.m */; };
-		4EBB78E8160C97D70034D0BB /* Singleton.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EBB78E6160C97D70034D0BB /* Singleton.h */; };
+		4EBB78E8160C97D70034D0BB /* Singleton.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EBB78E6160C97D70034D0BB /* Singleton.h */; settings = {ATTRIBUTES = (); }; };
 		4EBB78E9160C97D70034D0BB /* Singleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBB78E7160C97D70034D0BB /* Singleton.m */; };
 		78005A0715778C8A0099F973 /* RestaurantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78005A0615778C8A0099F973 /* RestaurantViewController.m */; };
 		78005A0A15778CCC0099F973 /* RestaurantDataStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 78005A0915778CCC0099F973 /* RestaurantDataStruct.m */; };
@@ -80,7 +80,7 @@
 		F53BA7A4161C83DA00AF79DF /* arrow3_green.png in Resources */ = {isa = PBXBuildFile; fileRef = F53BA7A1161C83DA00AF79DF /* arrow3_green.png */; };
 		F53BA7A5161C83DA00AF79DF /* arrow3_red.png in Resources */ = {isa = PBXBuildFile; fileRef = F53BA7A2161C83DA00AF79DF /* arrow3_red.png */; };
 		F53BFF6015EB7287000AB558 /* TimePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = F53BFF5F15EB7287000AB558 /* TimePicker.xib */; };
-		F53BFF6315EB7301000AB558 /* TimePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = F53BFF6115EB7301000AB558 /* TimePicker.h */; };
+		F53BFF6315EB7301000AB558 /* TimePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = F53BFF6115EB7301000AB558 /* TimePicker.h */; settings = {ATTRIBUTES = (); }; };
 		F53BFF6415EB7301000AB558 /* TimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = F53BFF6215EB7301000AB558 /* TimePicker.m */; };
 		F53D73FA1594CDE600A420D1 /* Button_blue_rev2.png in Resources */ = {isa = PBXBuildFile; fileRef = F53D73F91594CDE600A420D1 /* Button_blue_rev2.png */; };
 		F53D73FC1594CE7800A420D1 /* Button_green_rev2.png in Resources */ = {isa = PBXBuildFile; fileRef = F53D73FB1594CE7800A420D1 /* Button_green_rev2.png */; };
@@ -90,42 +90,41 @@
 		F53DF5D3161ED8CF0004C7A3 /* Line1pVerticalGray.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F53DF5D2161ED8CF0004C7A3 /* Line1pVerticalGray.jpg */; };
 		F541FCDC15EF5982003B13AE /* Button2.png in Resources */ = {isa = PBXBuildFile; fileRef = F541FCDB15EF5982003B13AE /* Button2.png */; };
 		F541FCDE15EF6987003B13AE /* button3.png in Resources */ = {isa = PBXBuildFile; fileRef = F541FCDD15EF6987003B13AE /* button3.png */; };
-		F5513A0915DA3AA90083E075 /* IconDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 78EF80AD157381DD00478EEB /* IconDownloader.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A0A15DA3AA90083E075 /* LoadAppViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 781B8F271546DBDD0074EDBD /* LoadAppViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A0B15DA3AA90083E075 /* MainMenuViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 781B8F2A1546DD590074EDBD /* MainMenuViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A0C15DA3AA90083E075 /* MenuListTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 786B29971546E85900486848 /* MenuListTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A0D15DA3AA90083E075 /* MenuIconViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F53AF16E1598876100EAA5AA /* MenuIconViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A0E15DA3AA90083E075 /* FavoritesTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5FA62461580D39700FBF70A /* FavoritesTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A0F15DA3AA90083E075 /* FavoritesIconViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F515440B15B03CCA00A2CB88 /* FavoritesIconViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A1015DA3AA90083E075 /* RestaurantViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 78005A0515778C8A0099F973 /* RestaurantViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A1115DA3AA90083E075 /* RestaurantDetailViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7851AC87157E45F10027BDDF /* RestaurantDetailViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A1215DA3AA90083E075 /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A1315DA3AA90083E075 /* MapViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7851AC8A157E52020027BDDF /* MapViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A1415DA3AA90083E075 /* MapViewAnnotation.h in Headers */ = {isa = PBXBuildFile; fileRef = F58E734D15D1358800CBCE65 /* MapViewAnnotation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A1515DA3AA90083E075 /* ProductDetailViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 786B29A31546EC3F00486848 /* ProductDetailViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A1615DA3AA90083E075 /* DeliveryViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5F021581588C017009EB482 /* DeliveryViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A1715DA3AA90083E075 /* AddressListTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5F2D69615AD7DBB00C5094B /* AddressListTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A1915DA3AA90083E075 /* LanguageAndCityTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F507216A156BE0D200D7ACC6 /* LanguageAndCityTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A1A15DA3AA90083E075 /* SocialViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5EBBBEF15A70F6000C07969 /* SocialViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A1B15DA3AA90083E075 /* MenuDataStruct.h in Headers */ = {isa = PBXBuildFile; fileRef = 78BA0E1C156E6A5E005C08D7 /* MenuDataStruct.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A1C15DA3AA90083E075 /* ProductDataStruct.h in Headers */ = {isa = PBXBuildFile; fileRef = 78BA0E23156E934B005C08D7 /* ProductDataStruct.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A1D15DA3AA90083E075 /* RestaurantDataStruct.h in Headers */ = {isa = PBXBuildFile; fileRef = 78005A0815778CCC0099F973 /* RestaurantDataStruct.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A1E15DA3AA90083E075 /* subViewSpam.h in Headers */ = {isa = PBXBuildFile; fileRef = F5B70D9515D178E200695FAA /* subViewSpam.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A1F15DA3AA90083E075 /* CartCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 78FB4D01154BF1CD0035236F /* CartCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A2015DA3AA90083E075 /* ProductCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 78864DE015497E7700D339B7 /* ProductCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A2315DA3AA90083E075 /* PickerViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D7DB781573B74300D4F6A2 /* PickerViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A2415DA3AA90083E075 /* RestaurantCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 78005A0B15778F0E0099F973 /* RestaurantCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A2515DA3AA90083E075 /* AddressCell.h in Headers */ = {isa = PBXBuildFile; fileRef = F5F2D69915ADB91400C5094B /* AddressCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A2615DA3AA90083E075 /* TotalCartCell.h in Headers */ = {isa = PBXBuildFile; fileRef = F507E85C15BED2E000B1A772 /* TotalCartCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A2715DA3AA90083E075 /* GettingCoreContent.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D3CF19156A9241003202BD /* GettingCoreContent.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A2815DA3AA90083E075 /* Offers.h in Headers */ = {isa = PBXBuildFile; fileRef = 78354F7815590E07001890F1 /* Offers.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A2915DA3AA90083E075 /* XMLParse.h in Headers */ = {isa = PBXBuildFile; fileRef = 786B299A1546EA7400486848 /* XMLParse.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A2A15DA3AA90083E075 /* checkConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = F5072158156BA2C200D7ACC6 /* checkConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5513A2B15DA3AA90083E075 /* RestaurantAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 781B8F161546DB870074EDBD /* RestaurantAppDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5513A0915DA3AA90083E075 /* IconDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 78EF80AD157381DD00478EEB /* IconDownloader.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A0A15DA3AA90083E075 /* LoadAppViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 781B8F271546DBDD0074EDBD /* LoadAppViewController.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A0B15DA3AA90083E075 /* MainMenuViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 781B8F2A1546DD590074EDBD /* MainMenuViewController.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A0C15DA3AA90083E075 /* MenuListTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 786B29971546E85900486848 /* MenuListTableViewController.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A0D15DA3AA90083E075 /* MenuIconViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F53AF16E1598876100EAA5AA /* MenuIconViewController.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A0E15DA3AA90083E075 /* FavoritesTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5FA62461580D39700FBF70A /* FavoritesTableViewController.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A0F15DA3AA90083E075 /* FavoritesIconViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F515440B15B03CCA00A2CB88 /* FavoritesIconViewController.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A1015DA3AA90083E075 /* RestaurantViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 78005A0515778C8A0099F973 /* RestaurantViewController.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A1115DA3AA90083E075 /* RestaurantDetailViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7851AC87157E45F10027BDDF /* RestaurantDetailViewController.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A1315DA3AA90083E075 /* MapViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7851AC8A157E52020027BDDF /* MapViewController.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A1415DA3AA90083E075 /* MapViewAnnotation.h in Headers */ = {isa = PBXBuildFile; fileRef = F58E734D15D1358800CBCE65 /* MapViewAnnotation.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A1515DA3AA90083E075 /* ProductDetailViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 786B29A31546EC3F00486848 /* ProductDetailViewController.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A1615DA3AA90083E075 /* DeliveryViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5F021581588C017009EB482 /* DeliveryViewController.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A1715DA3AA90083E075 /* AddressListTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5F2D69615AD7DBB00C5094B /* AddressListTableViewController.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A1915DA3AA90083E075 /* LanguageAndCityTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F507216A156BE0D200D7ACC6 /* LanguageAndCityTableViewController.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A1A15DA3AA90083E075 /* SocialViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5EBBBEF15A70F6000C07969 /* SocialViewController.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A1B15DA3AA90083E075 /* MenuDataStruct.h in Headers */ = {isa = PBXBuildFile; fileRef = 78BA0E1C156E6A5E005C08D7 /* MenuDataStruct.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A1C15DA3AA90083E075 /* ProductDataStruct.h in Headers */ = {isa = PBXBuildFile; fileRef = 78BA0E23156E934B005C08D7 /* ProductDataStruct.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A1D15DA3AA90083E075 /* RestaurantDataStruct.h in Headers */ = {isa = PBXBuildFile; fileRef = 78005A0815778CCC0099F973 /* RestaurantDataStruct.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A1E15DA3AA90083E075 /* subViewSpam.h in Headers */ = {isa = PBXBuildFile; fileRef = F5B70D9515D178E200695FAA /* subViewSpam.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A1F15DA3AA90083E075 /* CartCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 78FB4D01154BF1CD0035236F /* CartCell.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A2015DA3AA90083E075 /* ProductCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 78864DE015497E7700D339B7 /* ProductCell.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A2315DA3AA90083E075 /* PickerViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D7DB781573B74300D4F6A2 /* PickerViewCell.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A2415DA3AA90083E075 /* RestaurantCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 78005A0B15778F0E0099F973 /* RestaurantCell.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A2515DA3AA90083E075 /* AddressCell.h in Headers */ = {isa = PBXBuildFile; fileRef = F5F2D69915ADB91400C5094B /* AddressCell.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A2615DA3AA90083E075 /* TotalCartCell.h in Headers */ = {isa = PBXBuildFile; fileRef = F507E85C15BED2E000B1A772 /* TotalCartCell.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A2715DA3AA90083E075 /* GettingCoreContent.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D3CF19156A9241003202BD /* GettingCoreContent.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A2815DA3AA90083E075 /* Offers.h in Headers */ = {isa = PBXBuildFile; fileRef = 78354F7815590E07001890F1 /* Offers.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A2915DA3AA90083E075 /* XMLParse.h in Headers */ = {isa = PBXBuildFile; fileRef = 786B299A1546EA7400486848 /* XMLParse.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A2A15DA3AA90083E075 /* checkConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = F5072158156BA2C200D7ACC6 /* checkConnection.h */; settings = {ATTRIBUTES = (); }; };
+		F5513A2B15DA3AA90083E075 /* RestaurantAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 781B8F161546DB870074EDBD /* RestaurantAppDelegate.h */; settings = {ATTRIBUTES = (); }; };
 		F58BD5AD156E7B8A00D31A09 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58BD5AC156E7B8A00D31A09 /* MessageUI.framework */; };
 		F58E734F15D1358800CBCE65 /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = F58E734E15D1358800CBCE65 /* MapViewAnnotation.m */; };
 		F58EC35615DB8A4E00ADBA80 /* ReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58EC35515DB8A4E00ADBA80 /* ReservationViewController.m */; };
-		F58F877816085B17002F3765 /* XMLParseResponseFromTheServer.h in Headers */ = {isa = PBXBuildFile; fileRef = F58F877616085B17002F3765 /* XMLParseResponseFromTheServer.h */; };
+		F58F877816085B17002F3765 /* XMLParseResponseFromTheServer.h in Headers */ = {isa = PBXBuildFile; fileRef = F58F877616085B17002F3765 /* XMLParseResponseFromTheServer.h */; settings = {ATTRIBUTES = (); }; };
 		F58F877916085B17002F3765 /* XMLParseResponseFromTheServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F58F877716085B17002F3765 /* XMLParseResponseFromTheServer.m */; };
 		F591A9BC1607214200720104 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = F591A9BB1607214200720104 /* clock.png */; };
 		F591ECD815CD723C006BD0E6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F591ECD715CD723C006BD0E6 /* CoreLocation.framework */; };
@@ -133,16 +132,16 @@
 		F592B3F115ECDAA900F977C9 /* Line2p.png in Resources */ = {isa = PBXBuildFile; fileRef = F592B3EF15ECDAA900F977C9 /* Line2p.png */; };
 		F592B3F215ECDAA900F977C9 /* Line1p.png in Resources */ = {isa = PBXBuildFile; fileRef = F592B3F015ECDAA900F977C9 /* Line1p.png */; };
 		F59344EB157F77DA0080EDE3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F59344EA157F77DA0080EDE3 /* AudioToolbox.framework */; };
-		F594B26316174A4100DCEA50 /* HistoryTableListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F594B26116174A4100DCEA50 /* HistoryTableListViewController.h */; };
+		F594B26316174A4100DCEA50 /* HistoryTableListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F594B26116174A4100DCEA50 /* HistoryTableListViewController.h */; settings = {ATTRIBUTES = (); }; };
 		F594B26416174A4100DCEA50 /* HistoryTableListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F594B26216174A4100DCEA50 /* HistoryTableListViewController.m */; };
-		F594B26716174B2800DCEA50 /* PartOfHistoryViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F594B26516174B2800DCEA50 /* PartOfHistoryViewController.h */; };
+		F594B26716174B2800DCEA50 /* PartOfHistoryViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F594B26516174B2800DCEA50 /* PartOfHistoryViewController.h */; settings = {ATTRIBUTES = (); }; };
 		F594B26816174B2800DCEA50 /* PartOfHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F594B26616174B2800DCEA50 /* PartOfHistoryViewController.m */; };
-		F594B26B16174C5300DCEA50 /* ProductDescriptionViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = F594B26916174C5300DCEA50 /* ProductDescriptionViewCell.h */; };
+		F594B26B16174C5300DCEA50 /* ProductDescriptionViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = F594B26916174C5300DCEA50 /* ProductDescriptionViewCell.h */; settings = {ATTRIBUTES = (); }; };
 		F594B26C16174C5300DCEA50 /* ProductDescriptionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F594B26A16174C5300DCEA50 /* ProductDescriptionViewCell.m */; };
-		F5986C751619F6D900D3FBF7 /* XMLParseOrdersStatuses.h in Headers */ = {isa = PBXBuildFile; fileRef = F5986C731619F6D900D3FBF7 /* XMLParseOrdersStatuses.h */; };
+		F5986C751619F6D900D3FBF7 /* XMLParseOrdersStatuses.h in Headers */ = {isa = PBXBuildFile; fileRef = F5986C731619F6D900D3FBF7 /* XMLParseOrdersStatuses.h */; settings = {ATTRIBUTES = (); }; };
 		F5986C761619F6D900D3FBF7 /* XMLParseOrdersStatuses.m in Sources */ = {isa = PBXBuildFile; fileRef = F5986C741619F6D900D3FBF7 /* XMLParseOrdersStatuses.m */; };
 		F599588115875CCF0000469F /* Settings1.png in Resources */ = {isa = PBXBuildFile; fileRef = F599588015875CCF0000469F /* Settings1.png */; };
-		F59A9ED016034C3800D8A6ED /* HistoryPartCell.h in Headers */ = {isa = PBXBuildFile; fileRef = F59A9ECD16034C3800D8A6ED /* HistoryPartCell.h */; };
+		F59A9ED016034C3800D8A6ED /* HistoryPartCell.h in Headers */ = {isa = PBXBuildFile; fileRef = F59A9ECD16034C3800D8A6ED /* HistoryPartCell.h */; settings = {ATTRIBUTES = (); }; };
 		F59A9ED116034C3800D8A6ED /* HistoryPartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F59A9ECE16034C3800D8A6ED /* HistoryPartCell.m */; };
 		F59A9ED216034C3800D8A6ED /* HistoryPartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F59A9ECF16034C3800D8A6ED /* HistoryPartCell.xib */; };
 		F59A9EDD16034DC600D8A6ED /* buttonPlayRight.png in Resources */ = {isa = PBXBuildFile; fileRef = F59A9EDB16034DC600D8A6ED /* buttonPlayRight.png */; };
@@ -153,9 +152,9 @@
 		F5B4609C15C2D4A500A6815C /* metro.png in Resources */ = {isa = PBXBuildFile; fileRef = F5B4609B15C2D4A500A6815C /* metro.png */; };
 		F5B70D9815D178E200695FAA /* subViewSpam.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B70D9615D178E200695FAA /* subViewSpam.m */; };
 		F5B70D9915D178E200695FAA /* subViewSpam.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5B70D9715D178E200695FAA /* subViewSpam.xib */; };
-		F5BCF704162438C1000C5714 /* ReservHistoryTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5BCF700162438C1000C5714 /* ReservHistoryTableViewController.h */; };
+		F5BCF704162438C1000C5714 /* ReservHistoryTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5BCF700162438C1000C5714 /* ReservHistoryTableViewController.h */; settings = {ATTRIBUTES = (); }; };
 		F5BCF705162438C1000C5714 /* ReservHistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BCF701162438C1000C5714 /* ReservHistoryTableViewController.m */; };
-		F5BCF706162438C1000C5714 /* ReservHistoryDetailViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5BCF702162438C1000C5714 /* ReservHistoryDetailViewController.h */; };
+		F5BCF706162438C1000C5714 /* ReservHistoryDetailViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5BCF702162438C1000C5714 /* ReservHistoryDetailViewController.h */; settings = {ATTRIBUTES = (); }; };
 		F5BCF707162438C1000C5714 /* ReservHistoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BCF703162438C1000C5714 /* ReservHistoryDetailViewController.m */; };
 		F5E0D80515D953DA004BA70B /* icons.png in Resources */ = {isa = PBXBuildFile; fileRef = F5E0D80415D953DA004BA70B /* icons.png */; };
 		F5E0D80715D953FF004BA70B /* icons57.png in Resources */ = {isa = PBXBuildFile; fileRef = F5E0D80615D953FF004BA70B /* icons57.png */; };
@@ -743,7 +742,6 @@
 				F5513A0F15DA3AA90083E075 /* FavoritesIconViewController.h in Headers */,
 				F5513A1015DA3AA90083E075 /* RestaurantViewController.h in Headers */,
 				F5513A1115DA3AA90083E075 /* RestaurantDetailViewController.h in Headers */,
-				F5513A1215DA3AA90083E075 /* (null) in Headers */,
 				F5513A1315DA3AA90083E075 /* MapViewController.h in Headers */,
 				F5513A1415DA3AA90083E075 /* MapViewAnnotation.h in Headers */,
 				F5513A1515DA3AA90083E075 /* ProductDetailViewController.h in Headers */,
