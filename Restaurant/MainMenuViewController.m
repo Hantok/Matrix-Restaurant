@@ -607,6 +607,7 @@
 //    int i = currentImage - 1;
     [subView.imageView setImage:[[self.promotionsArray objectAtIndex:currentImage] image]];
     subView.label.text = [[self.promotionsArray objectAtIndex:currentImage] title];
+    subView.label.textColor = [UIColor redColor];
     subView.textView.text = [[self.promotionsArray objectAtIndex:currentImage] descriptionText];
     [self.view addSubview:subView];
 }
@@ -1052,7 +1053,7 @@
                 }
                 else
                 {
-                    sumWithDiscounts = sumWithDiscounts + [[formatter numberFromString:productDataStruct.price] floatValue]* [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue];
+                    sumWithDiscounts = sumWithDiscounts + ([[formatter numberFromString:[formatter stringFromNumber:[NSNumber numberWithFloat:(productDataStruct.price.floatValue * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]]] floatValue]);
                 }
                 totalCount= totalCount + productDataStruct.count.intValue;
             }
