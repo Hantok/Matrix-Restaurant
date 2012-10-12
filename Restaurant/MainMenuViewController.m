@@ -562,7 +562,7 @@
         //_arrayData = nil;
         self.menuId = nil;
         self.restarauntId = nil;
-        fromSettings = NO;
+        //fromSettings = NO;
     }
     else if (fromDeliveriesAndDatailViewController)
     {
@@ -575,6 +575,7 @@
         //        self.isCartMode = YES;
         [self performSelector:@selector(cartButton:)withObject:nil];
     }
+    
     [super viewWillAppear:animated];
 }
 
@@ -1092,7 +1093,7 @@
                 }
                 else
                 {
-                    sumWithDiscounts = sumWithDiscounts + [[formatter numberFromString:productDataStruct.price] floatValue]* [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue];
+                    sumWithDiscounts = sumWithDiscounts + ([[formatter numberFromString:[formatter stringFromNumber:[NSNumber numberWithFloat:(productDataStruct.price.floatValue * [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrencyCoefficient"] floatValue])]]] floatValue]);
                 }
                 totalCount= totalCount + productDataStruct.count.intValue;
             }
@@ -1138,6 +1139,14 @@
     }
     else
     {
+        if (!self.restarauntId) // if we in restaurant menu hide back button
+        {
+            self.drop.hidden = YES;
+        }
+        else
+        {
+            self.drop.hidden = NO;
+        }
         if(indexPath.section != 0)
         {
             NSString *CellIdentifier = @"PickerViewCell";

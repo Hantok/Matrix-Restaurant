@@ -863,16 +863,16 @@
     
     
     
-    for (int i = 0; i <items.count; i++)
+    for (int i = 0; i <underbaridsArray.count; i++)
     {
-        for (int j = 0; j < underbaridsArray.count; j++)
+        for (int j = 0; j < items.count; j++)
         {
-            if ([[[[items objectAtIndex:i] valueForKey:inputPredicate] description] isEqual:[[[underbaridsArray objectAtIndex:j] valueForKey:outputPredicate] description]])
+            if ([[[[items objectAtIndex:j] valueForKey:inputPredicate] description] isEqual:[[[underbaridsArray objectAtIndex:i] valueForKey:outputPredicate] description]])
             {
-                if ([[[[items objectAtIndex:i] valueForKey:@"idLanguage"] description] isEqualToString:[languageId description]])
+                if ([[[[items objectAtIndex:j] valueForKey:@"idLanguage"] description] isEqualToString:[languageId description]])
                 {
 //                    [[items objectAtIndex:i] addObject:[underbaridsArray objectAtIndex:j]];
-                    [outputArray addObject:[items objectAtIndex:i]];
+                    [outputArray addObject:[items objectAtIndex:j]];
                 }
             }
         }
