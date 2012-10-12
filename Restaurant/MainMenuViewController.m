@@ -500,6 +500,12 @@
                                        selector:@selector(disappearOfPromotion)
                                        userInfo:nil
                                         repeats:NO];
+    
+    if(fromSettings) //to stop scrolling to the beginning when come in previous screen
+    {
+        [self.pickerView reloadAllComponents];
+        fromSettings = NO;
+    }
 }
 -(void) appearOfPromotion
 {
@@ -643,7 +649,6 @@
     }
 //    int i = currentImage - 1;
     [subView.imageView setImage:[[self.promotionsArray objectAtIndex:currentImage] image]];
-    subView.imageView.frame = CGRectMake(0, 2, 320, 150);
     subView.label.text = [[self.promotionsArray objectAtIndex:currentImage] title];
     subView.label.textColor = [UIColor redColor];
     subView.textView.text = [[self.promotionsArray objectAtIndex:currentImage] descriptionText];
