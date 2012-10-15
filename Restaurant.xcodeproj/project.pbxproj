@@ -11,10 +11,6 @@
 		4E1251801614AE1100BDA1DC /* SettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E12517E1614AE1100BDA1DC /* SettingsViewController.h */; settings = {ATTRIBUTES = (); }; };
 		4E1251811614AE1100BDA1DC /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E12517F1614AE1100BDA1DC /* SettingsViewController.m */; };
 		4E3F3D8B15F76C2700E9E08A /* dropButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E3F3D8A15F76C2700E9E08A /* dropButton.png */; };
-		4E595F641627F8E7005F14D4 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E595F631627F8E7005F14D4 /* FacebookSDK.framework */; };
-		4E595F661627F8F4005F14D4 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4E595F651627F8F4005F14D4 /* FacebookSDKResources.bundle */; };
-		4E595F6D1627F92A005F14D4 /* libGMGridView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E595F511627F8D0005F14D4 /* libGMGridView.a */; };
-		4E595F6E1627F92A005F14D4 /* libSSToolkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E595F5E1627F8DB005F14D4 /* libSSToolkit.a */; };
 		4E5A34C71600BFA100725D93 /* PromotionStruct.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E5A34C51600BFA100725D93 /* PromotionStruct.h */; settings = {ATTRIBUTES = (); }; };
 		4E5A34C81600BFA100725D93 /* PromotionStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5A34C61600BFA100725D93 /* PromotionStruct.m */; };
 		4EBB78E8160C97D70034D0BB /* Singleton.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EBB78E6160C97D70034D0BB /* Singleton.h */; settings = {ATTRIBUTES = (); }; };
@@ -156,6 +152,10 @@
 		F5BCF705162438C1000C5714 /* ReservHistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BCF701162438C1000C5714 /* ReservHistoryTableViewController.m */; };
 		F5BCF706162438C1000C5714 /* ReservHistoryDetailViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5BCF702162438C1000C5714 /* ReservHistoryDetailViewController.h */; settings = {ATTRIBUTES = (); }; };
 		F5BCF707162438C1000C5714 /* ReservHistoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BCF703162438C1000C5714 /* ReservHistoryDetailViewController.m */; };
+		F5D9C958162CB2F200EAF83B /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5D9C957162CB2F200EAF83B /* FacebookSDK.framework */; };
+		F5D9C95A162CB30300EAF83B /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F5D9C959162CB30300EAF83B /* FacebookSDKResources.bundle */; };
+		F5D9C95B162CB34A00EAF83B /* libGMGridView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F5D9C945162CB2C200EAF83B /* libGMGridView.a */; };
+		F5D9C95C162CB35000EAF83B /* libSSToolkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F5D9C952162CB2CC00EAF83B /* libSSToolkit.a */; };
 		F5E0D80515D953DA004BA70B /* icons.png in Resources */ = {isa = PBXBuildFile; fileRef = F5E0D80415D953DA004BA70B /* icons.png */; };
 		F5E0D80715D953FF004BA70B /* icons57.png in Resources */ = {isa = PBXBuildFile; fileRef = F5E0D80615D953FF004BA70B /* icons57.png */; };
 		F5EBBBF115A70F6000C07969 /* SocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EBBBF015A70F6000C07969 /* SocialViewController.m */; };
@@ -174,54 +174,33 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4E595F501627F8D0005F14D4 /* PBXContainerItemProxy */ = {
+		F5D9C944162CB2C200EAF83B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 4E595F491627F8D0005F14D4 /* GMGridView.xcodeproj */;
+			containerPortal = F5D9C93D162CB2C200EAF83B /* GMGridView.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 78509312149FAC2E000787E4;
 			remoteInfo = GMGridView;
 		};
-		4E595F5D1627F8DB005F14D4 /* PBXContainerItemProxy */ = {
+		F5D9C951162CB2CC00EAF83B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 4E595F531627F8DB005F14D4 /* SSToolkit.xcodeproj */;
+			containerPortal = F5D9C947162CB2CC00EAF83B /* SSToolkit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = D2AAC07E0554694100DB518D;
 			remoteInfo = SSToolkit;
 		};
-		4E595F5F1627F8DB005F14D4 /* PBXContainerItemProxy */ = {
+		F5D9C953162CB2CC00EAF83B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 4E595F531627F8DB005F14D4 /* SSToolkit.xcodeproj */;
+			containerPortal = F5D9C947162CB2CC00EAF83B /* SSToolkit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = B239101D1357DC3E00ADE21B;
 			remoteInfo = SSToolkitTests;
 		};
-		4E595F611627F8DB005F14D4 /* PBXContainerItemProxy */ = {
+		F5D9C955162CB2CC00EAF83B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 4E595F531627F8DB005F14D4 /* SSToolkit.xcodeproj */;
+			containerPortal = F5D9C947162CB2CC00EAF83B /* SSToolkit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = B2C507EA151BA64400E94614;
 			remoteInfo = SSToolkitResources;
-		};
-		4E595F671627F91F005F14D4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4E595F531627F8DB005F14D4 /* SSToolkit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D2AAC07D0554694100DB518D;
-			remoteInfo = SSToolkit;
-		};
-		4E595F691627F91F005F14D4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4E595F531627F8DB005F14D4 /* SSToolkit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = B2C507E9151BA64400E94614;
-			remoteInfo = SSToolkitResources;
-		};
-		4E595F6B1627F91F005F14D4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4E595F491627F8D0005F14D4 /* GMGridView.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 78509311149FAC2E000787E4;
-			remoteInfo = GMGridView;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -230,10 +209,6 @@
 		4E12517E1614AE1100BDA1DC /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		4E12517F1614AE1100BDA1DC /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		4E3F3D8A15F76C2700E9E08A /* dropButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropButton.png; sourceTree = "<group>"; };
-		4E595F491627F8D0005F14D4 /* GMGridView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GMGridView.xcodeproj; path = ../../../../GMGridView/GMGridView.xcodeproj; sourceTree = "<group>"; };
-		4E595F531627F8DB005F14D4 /* SSToolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SSToolkit.xcodeproj; path = ../../../../Vendor/SSToolkit/SSToolkit.xcodeproj; sourceTree = "<group>"; };
-		4E595F631627F8E7005F14D4 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
-		4E595F651627F8F4005F14D4 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		4E5A34C51600BFA100725D93 /* PromotionStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromotionStruct.h; sourceTree = "<group>"; };
 		4E5A34C61600BFA100725D93 /* PromotionStruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionStruct.m; sourceTree = "<group>"; };
 		4EBB78E6160C97D70034D0BB /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
@@ -374,6 +349,10 @@
 		F5BCF701162438C1000C5714 /* ReservHistoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservHistoryTableViewController.m; sourceTree = "<group>"; };
 		F5BCF702162438C1000C5714 /* ReservHistoryDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservHistoryDetailViewController.h; sourceTree = "<group>"; };
 		F5BCF703162438C1000C5714 /* ReservHistoryDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservHistoryDetailViewController.m; sourceTree = "<group>"; };
+		F5D9C93D162CB2C200EAF83B /* GMGridView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GMGridView.xcodeproj; path = ../GMGridView/GMGridView.xcodeproj; sourceTree = "<group>"; };
+		F5D9C947162CB2CC00EAF83B /* SSToolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SSToolkit.xcodeproj; path = ../Vendor/SSToolkit/SSToolkit.xcodeproj; sourceTree = "<group>"; };
+		F5D9C957162CB2F200EAF83B /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		F5D9C959162CB30300EAF83B /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		F5E0D80415D953DA004BA70B /* icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icons.png; path = ../icons.png; sourceTree = "<group>"; };
 		F5E0D80615D953FF004BA70B /* icons57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icons57.png; path = ../icons57.png; sourceTree = "<group>"; };
 		F5EBBBEF15A70F6000C07969 /* SocialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialViewController.h; sourceTree = "<group>"; };
@@ -401,8 +380,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E595F6D1627F92A005F14D4 /* libGMGridView.a in Frameworks */,
-				4E595F6E1627F92A005F14D4 /* libSSToolkit.a in Frameworks */,
+				F5D9C95C162CB35000EAF83B /* libSSToolkit.a in Frameworks */,
+				F5D9C95B162CB34A00EAF83B /* libGMGridView.a in Frameworks */,
 				F5F1058E15DD2E1200B03533 /* libsqlite3.0.dylib in Frameworks */,
 				F5ACDBCA15DBEE510074E028 /* Twitter.framework in Frameworks */,
 				F591ECD815CD723C006BD0E6 /* CoreLocation.framework in Frameworks */,
@@ -415,31 +394,13 @@
 				781B8F081546DB870074EDBD /* UIKit.framework in Frameworks */,
 				781B8F0A1546DB870074EDBD /* Foundation.framework in Frameworks */,
 				781B8F0C1546DB870074EDBD /* CoreGraphics.framework in Frameworks */,
-				4E595F641627F8E7005F14D4 /* FacebookSDK.framework in Frameworks */,
+				F5D9C958162CB2F200EAF83B /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4E595F4A1627F8D0005F14D4 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4E595F511627F8D0005F14D4 /* libGMGridView.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		4E595F541627F8DB005F14D4 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4E595F5E1627F8DB005F14D4 /* libSSToolkit.a */,
-				4E595F601627F8DB005F14D4 /* SSToolkitTests.app */,
-				4E595F621627F8DB005F14D4 /* SSToolkitResources.bundle */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		781B8EF81546DB870074EDBD = {
 			isa = PBXGroup;
 			children = (
@@ -460,10 +421,10 @@
 		781B8F061546DB870074EDBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4E595F651627F8F4005F14D4 /* FacebookSDKResources.bundle */,
-				4E595F631627F8E7005F14D4 /* FacebookSDK.framework */,
-				4E595F531627F8DB005F14D4 /* SSToolkit.xcodeproj */,
-				4E595F491627F8D0005F14D4 /* GMGridView.xcodeproj */,
+				F5D9C959162CB30300EAF83B /* FacebookSDKResources.bundle */,
+				F5D9C957162CB2F200EAF83B /* FacebookSDK.framework */,
+				F5D9C947162CB2CC00EAF83B /* SSToolkit.xcodeproj */,
+				F5D9C93D162CB2C200EAF83B /* GMGridView.xcodeproj */,
 				F5F1058D15DD2E1200B03533 /* libsqlite3.0.dylib */,
 				F5ACDBC915DBEE510074E028 /* Twitter.framework */,
 				F5DCCB7615A3279500739B11 /* AFNetworking */,
@@ -683,6 +644,24 @@
 			name = "Type of View";
 			sourceTree = "<group>";
 		};
+		F5D9C93E162CB2C200EAF83B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F5D9C945162CB2C200EAF83B /* libGMGridView.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F5D9C948162CB2CC00EAF83B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F5D9C952162CB2CC00EAF83B /* libSSToolkit.a */,
+				F5D9C954162CB2CC00EAF83B /* SSToolkitTests.app */,
+				F5D9C956162CB2CC00EAF83B /* SSToolkitResources.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		F5DCCB7615A3279500739B11 /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -794,9 +773,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4E595F681627F91F005F14D4 /* PBXTargetDependency */,
-				4E595F6A1627F91F005F14D4 /* PBXTargetDependency */,
-				4E595F6C1627F91F005F14D4 /* PBXTargetDependency */,
 			);
 			name = Restaurant;
 			productName = Restaurant;
@@ -839,12 +815,12 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 4E595F4A1627F8D0005F14D4 /* Products */;
-					ProjectRef = 4E595F491627F8D0005F14D4 /* GMGridView.xcodeproj */;
+					ProductGroup = F5D9C93E162CB2C200EAF83B /* Products */;
+					ProjectRef = F5D9C93D162CB2C200EAF83B /* GMGridView.xcodeproj */;
 				},
 				{
-					ProductGroup = 4E595F541627F8DB005F14D4 /* Products */;
-					ProjectRef = 4E595F531627F8DB005F14D4 /* SSToolkit.xcodeproj */;
+					ProductGroup = F5D9C948162CB2CC00EAF83B /* Products */;
+					ProjectRef = F5D9C947162CB2CC00EAF83B /* SSToolkit.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -855,32 +831,32 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		4E595F511627F8D0005F14D4 /* libGMGridView.a */ = {
+		F5D9C945162CB2C200EAF83B /* libGMGridView.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libGMGridView.a;
-			remoteRef = 4E595F501627F8D0005F14D4 /* PBXContainerItemProxy */;
+			remoteRef = F5D9C944162CB2C200EAF83B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		4E595F5E1627F8DB005F14D4 /* libSSToolkit.a */ = {
+		F5D9C952162CB2CC00EAF83B /* libSSToolkit.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libSSToolkit.a;
-			remoteRef = 4E595F5D1627F8DB005F14D4 /* PBXContainerItemProxy */;
+			remoteRef = F5D9C951162CB2CC00EAF83B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		4E595F601627F8DB005F14D4 /* SSToolkitTests.app */ = {
+		F5D9C954162CB2CC00EAF83B /* SSToolkitTests.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
 			path = SSToolkitTests.app;
-			remoteRef = 4E595F5F1627F8DB005F14D4 /* PBXContainerItemProxy */;
+			remoteRef = F5D9C953162CB2CC00EAF83B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		4E595F621627F8DB005F14D4 /* SSToolkitResources.bundle */ = {
+		F5D9C956162CB2CC00EAF83B /* SSToolkitResources.bundle */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = SSToolkitResources.bundle;
-			remoteRef = 4E595F611627F8DB005F14D4 /* PBXContainerItemProxy */;
+			remoteRef = F5D9C955162CB2CC00EAF83B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -949,7 +925,7 @@
 				F5142FED16245B1B00262BD2 /* back_ .png in Resources */,
 				F5142FEF16245B6900262BD2 /* HIT1.png in Resources */,
 				F5142FF116245BAC00262BD2 /* New1.png in Resources */,
-				4E595F661627F8F4005F14D4 /* FacebookSDKResources.bundle in Resources */,
+				F5D9C95A162CB30300EAF83B /* FacebookSDKResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1010,24 +986,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		4E595F681627F91F005F14D4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SSToolkit;
-			targetProxy = 4E595F671627F91F005F14D4 /* PBXContainerItemProxy */;
-		};
-		4E595F6A1627F91F005F14D4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SSToolkitResources;
-			targetProxy = 4E595F691627F91F005F14D4 /* PBXContainerItemProxy */;
-		};
-		4E595F6C1627F91F005F14D4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = GMGridView;
-			targetProxy = 4E595F6B1627F91F005F14D4 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		781B8F101546DB870074EDBD /* InfoPlist.strings */ = {
