@@ -178,6 +178,7 @@
                         <segue destination="wOa-81-fZj" kind="push" identifier="menuIcon" id="3eU-AG-9O4"/>
                         <segue destination="9oc-Jo-suM" kind="push" identifier="toFavoritesIcon" id="Zx6-C5-KZ6"/>
                         <segue destination="lIw-7o-Ezu" kind="push" identifier="toSettings" id="F3c-GD-IJy"/>
+                        <segue destination="xG4-ba-2xP" kind="push" identifier="toPickup" id="4FB-99-xGH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hhD-SI-Yx4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -430,7 +431,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vI4-tg-6w1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="191" y="967"/>
+            <point key="canvasLocation" x="175" y="1369"/>
         </scene>
         <!--Restaurant Detail View Controller-->
         <scene sceneID="D02-AA-Q39">
@@ -1469,6 +1470,85 @@
             </objects>
             <point key="canvasLocation" x="-970" y="1671"/>
         </scene>
+        <!--Pickup View Controller-->
+        <scene sceneID="k0k-Cj-jsu">
+            <objects>
+                <viewController id="xG4-ba-2xP" customClass="PickupViewController" sceneMemberID="viewController">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" indicatorStyle="black" id="xy3-d2-2mz">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="*Your name" minimumFontSize="17" id="u9V-Co-gzj">
+                                <rect key="frame" x="20" y="20" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="xG4-ba-2xP" id="JEl-gl-6pj"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="*Time" minimumFontSize="17" id="b6A-3A-AFa">
+                                <rect key="frame" x="20" y="58" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="xG4-ba-2xP" id="3R9-4m-C0O"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="*Phone" minimumFontSize="17" id="4yN-Qc-5ob">
+                                <rect key="frame" x="49" y="96" width="251" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" keyboardType="numberPad" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="xG4-ba-2xP" id="alf-ZR-5gP"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="+" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7iY-Dp-JzL">
+                                <rect key="frame" x="30" y="99" width="11" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="*Adress" minimumFontSize="17" id="0QV-Dv-fX3">
+                                <rect key="frame" x="20" y="134" width="229" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="xG4-ba-2xP" id="elx-mG-9uK"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EYT-0J-516">
+                                <rect key="frame" x="257" y="134" width="43" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Map">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.25898836096938771" green="0.24461972635351351" blue="0.25613401634923755" alpha="1" colorSpace="calibratedRGB"/>
+                    </scrollView>
+                    <navigationItem key="navigationItem" id="1Ek-vo-kFO"/>
+                    <connections>
+                        <outlet property="Address" destination="0QV-Dv-fX3" id="SGP-91-jmY"/>
+                        <outlet property="Name" destination="u9V-Co-gzj" id="1gi-9k-oqO"/>
+                        <outlet property="Phone" destination="4yN-Qc-5ob" id="qGP-s1-pGI"/>
+                        <outlet property="ScrollView" destination="xy3-d2-2mz" id="OoG-N9-gW1"/>
+                        <outlet property="Time" destination="b6A-3A-AFa" id="Wae-Iy-CCQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uyW-qO-UJB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-428" y="1671"/>
+        </scene>
         <!--Reservation View Controller - Reservation table-->
         <scene sceneID="yIp-e0-nEO">
             <objects>
@@ -1703,248 +1783,6 @@
         <image name="restaurants.png" width="294" height="94"/>
         <image name="stop.png" width="256" height="256"/>
     </resources>
-    <classes>
-        <class className="AddressListTableViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddressListTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelButton:"/>
-                <relationship kind="outlet" name="cancelButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="saveAddressItem" candidateClass="UINavigationItem"/>
-            </relationships>
-        </class>
-        <class className="DeliveryViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DeliveryViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="saveAddress:"/>
-                <relationship kind="action" name="toAddressList:"/>
-                <relationship kind="action" name="toOrder:"/>
-                <relationship kind="outlet" name="CityName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="addressName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="appartaments" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="build" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="customerName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="deliveryTime" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="otherInformation" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="phone" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="saveAddressButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="street" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="toOrderButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="FavoritesIconViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FavoritesIconViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="changePage:"/>
-                <relationship kind="action" name="stopEditing:"/>
-                <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
-                <relationship kind="outlet" name="stopEditButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="viewForOutput" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="FavoritesTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FavoritesTableViewController.h"/>
-        </class>
-        <class className="HistoryTableListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HistoryTableListViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="LanguageAndCityTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LanguageAndCityTableViewController.h"/>
-        </class>
-        <class className="LoadAppViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoadAppViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="MainMenuViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="OrderButton:"/>
-                <relationship kind="action" name="drop:"/>
-                <relationship kind="action" name="toHistoryTableView:"/>
-                <relationship kind="action" name="viewSpam:"/>
-                <relationship kind="outlet" name="cartButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="drop" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="historyButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="imageButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="mainView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="menuButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
-                <relationship kind="outlet" name="restorantsButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="settingsButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="tableViewController" candidateClass="UITableViewController"/>
-            </relationships>
-        </class>
-        <class className="MapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="segment" candidateClass="UISegmentedControl"/>
-            </relationships>
-        </class>
-        <class className="MenuIconViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuIconViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="changePage"/>
-                <relationship kind="action" name="stopEditing:"/>
-                <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
-                <relationship kind="outlet" name="stopEditButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="viewForOutput" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="MenuListTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuListTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="navigationBar" candidateClass="UINavigationItem"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="PartOfHistoryViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PartOfHistoryViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="infoOfProductInOrder:"/>
-                <relationship kind="action" name="reorderClick:"/>
-                <relationship kind="action" name="showOrHideInfoOfOrder:"/>
-                <relationship kind="outlet" name="additionalDescriptionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="additionalLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="addressDescriptionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="addressLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="cityDescriptionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="cityLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="infoOfOrderContainer" candidateClass="UIView"/>
-                <relationship kind="outlet" name="infoOfOrderContainerInnerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="infoOfOrderDetailView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="infoOfProductInOrderContainer" candidateClass="UIView"/>
-                <relationship kind="outlet" name="infoOfProductInOrderDetailView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="infoOfProductInOrderInnerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="mainView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="messageLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="metroDescriptionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="metroLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="orderNumberLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="productName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="productPriceSumm" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="productsCount" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="reorderButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="showOrHideButtonFirst" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="showOrHideButtonSecond" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="tempLabel2" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ProductDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProductDetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="dragPictureViewContainer:" candidateClass="UIPanGestureRecognizer"/>
-                <relationship kind="action" name="share:"/>
-                <relationship kind="action" name="showOrHidePictureViewContainer:"/>
-                <relationship kind="outlet" name="captionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="carbohydratesLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="cartButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="countPickerView" candidateClass="UIPickerView"/>
-                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="fatLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="favoritesButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="in100gCarbohydratesLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="in100gFatLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="in100gKCalLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="in100gLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="in100gProteinLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="kCalLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="nameLabal" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="nilCaption" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="pictureButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="pictureViewContainer" candidateClass="UIView"/>
-                <relationship kind="outlet" name="portionCarbohydratesLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="portionFatLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="portionKCalLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="portionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="portionProteinLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="priceView" candidateClass="UIWebView"/>
-                <relationship kind="outlet" name="proteinLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="shareButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="weightLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ReservHistoryDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ReservHistoryDetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="NameOfReservationLable" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="NumberOfPeopleLable" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="PhoneLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="StatusLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="TimeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="mainView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="titleDateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="titleNumberLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="titlePhoneLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="titleReservationDetailBar" candidateClass="UINavigationItem"/>
-                <relationship kind="outlet" name="titleStatusLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ReservHistoryTableViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ReservHistoryTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="titleReservationHistoryBar" candidateClass="UINavigationItem"/>
-            </relationships>
-        </class>
-        <class className="ReservationViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ReservationViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="Reserve:"/>
-                <relationship kind="action" name="keyboardHide:"/>
-                <relationship kind="action" name="toReservationList:"/>
-                <relationship kind="outlet" name="dateOfReservation" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="name" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="numberOfPeople" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="phone" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="reservateButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="titleReservationTableBar" candidateClass="UINavigationItem"/>
-            </relationships>
-        </class>
-        <class className="RestaurantDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RestaurantDetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="tebleReserve:"/>
-                <relationship kind="outlet" name="callButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="reserveButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="restDetAdress" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="restDetAdressLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="restDetParking" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="restDetParkingLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="restDetSeatsNumber" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="restDetSeatsNumberLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="restDetWorkingTime" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="restDetWorkingTimeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="restaurantImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="scroll" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="showOnMapButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="textPhonesLabel" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="textTerraceLabel" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="RestaurantViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RestaurantViewController.h"/>
-        </class>
-        <class className="SettingsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
-        </class>
-        <class className="SocialViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SocialViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="SocialWebView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

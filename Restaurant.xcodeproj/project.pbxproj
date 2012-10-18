@@ -170,6 +170,8 @@
 		F5F5706716175814003CA47C /* arrow2_green.png in Resources */ = {isa = PBXBuildFile; fileRef = F5F5706116175814003CA47C /* arrow2_green.png */; };
 		F5F5706816175814003CA47C /* arrow2_red.png in Resources */ = {isa = PBXBuildFile; fileRef = F5F5706216175814003CA47C /* arrow2_red.png */; };
 		F5FA62481580D39700FBF70A /* FavoritesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5FA62471580D39700FBF70A /* FavoritesTableViewController.m */; };
+		FA0EB008162DD42E00CAC27D /* PickupViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = FA0EB006162DD42E00CAC27D /* PickupViewController.h */; };
+		FA0EB009162DD42E00CAC27D /* PickupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0EB007162DD42E00CAC27D /* PickupViewController.m */; };
 		FA283C6A1625B0330013416C /* libGMGridView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA283C591625AFEE0013416C /* libGMGridView.a */; };
 		FA283C6B1625B0370013416C /* libSSToolkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA283C651625AFF80013416C /* libSSToolkit.a */; };
 /* End PBXBuildFile section */
@@ -372,6 +374,8 @@
 		F5F5706216175814003CA47C /* arrow2_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow2_red.png; sourceTree = "<group>"; };
 		F5FA62461580D39700FBF70A /* FavoritesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesTableViewController.h; sourceTree = "<group>"; };
 		F5FA62471580D39700FBF70A /* FavoritesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesTableViewController.m; sourceTree = "<group>"; };
+		FA0EB006162DD42E00CAC27D /* PickupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickupViewController.h; sourceTree = "<group>"; };
+		FA0EB007162DD42E00CAC27D /* PickupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickupViewController.m; sourceTree = "<group>"; };
 		FA283C511625AFEE0013416C /* GMGridView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GMGridView.xcodeproj; path = ../../GMGridView/GMGridView.xcodeproj; sourceTree = "<group>"; };
 		FA283C5A1625AFF80013416C /* SSToolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SSToolkit.xcodeproj; path = ../../Vendor/SSToolkit/SSToolkit.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -508,6 +512,8 @@
 				F5F021591588C017009EB482 /* DeliveryViewController.m */,
 				F5F2D69615AD7DBB00C5094B /* AddressListTableViewController.h */,
 				F5F2D69715AD7DBB00C5094B /* AddressListTableViewController.m */,
+				FA0EB006162DD42E00CAC27D /* PickupViewController.h */,
+				FA0EB007162DD42E00CAC27D /* PickupViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -757,6 +763,7 @@
 				F5986C751619F6D900D3FBF7 /* XMLParseOrdersStatuses.h in Headers */,
 				F5BCF704162438C1000C5714 /* ReservHistoryTableViewController.h in Headers */,
 				F5BCF706162438C1000C5714 /* ReservHistoryDetailViewController.h in Headers */,
+				FA0EB008162DD42E00CAC27D /* PickupViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -984,6 +991,7 @@
 				F5986C761619F6D900D3FBF7 /* XMLParseOrdersStatuses.m in Sources */,
 				F5BCF705162438C1000C5714 /* ReservHistoryTableViewController.m in Sources */,
 				F5BCF707162438C1000C5714 /* ReservHistoryDetailViewController.m in Sources */,
+				FA0EB009162DD42E00CAC27D /* PickupViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

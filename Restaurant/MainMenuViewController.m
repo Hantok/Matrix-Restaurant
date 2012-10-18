@@ -65,6 +65,7 @@
 @property (nonatomic, weak) NSString *titleChooseMethodToGetOrder;
 @property (nonatomic, weak) NSString *titleDelivery;
 @property (nonatomic, weak) NSString *titleDeliveryByTime;
+@property (nonatomic, weak) NSString *titlePickUp;
 @property (nonatomic, weak) NSString *titleCancel;
 @property (nonatomic, weak) NSString *titleMain;
 @property (nonatomic, weak) NSString *titleYES;
@@ -126,6 +127,7 @@
 @synthesize titleChooseMethodToGetOrder = _titleChooseMethodToGetOrder;
 @synthesize titleDelivery = _titleDelivery;
 @synthesize titleDeliveryByTime = _titleDeliveryByTime;
+@synthesize titlePickUp = _titlePickUp;
 @synthesize titleCancel = _titleCancel;
 @synthesize titleYES = _titleYES;
 @synthesize titleNO = _titleNO;
@@ -922,6 +924,11 @@
                     [[segue.destinationViewController navigationItem] setTitle:self.titleDelivery];
                 }
             }
+            else
+                if ([segue.identifier isEqualToString:@"toPickup"])
+                {
+                    [[segue.destinationViewController navigationItem] setTitle:self.titlePickUp];
+                }
             else if ([segue.identifier isEqualToString:@"toRestaurantList"])
             {
                 [[segue.destinationViewController navigationItem] setTitle:self.restorantsButton.titleLabel.text];
@@ -1344,7 +1351,7 @@
                 [actionSheet setDelegate:(id)self];
                 [actionSheet addButtonWithTitle:self.titleDelivery];  //@"Delivery"];
                 [actionSheet addButtonWithTitle:self.titleDeliveryByTime]; //@"Delivery by time"];
-//                [actionSheet addButtonWithTitle:@"Pick up"];
+                [actionSheet addButtonWithTitle:self.titlePickUp]; 
                 [actionSheet addButtonWithTitle:self.titleCancel]; //@"Cancel"];
                 actionSheet.cancelButtonIndex = actionSheet.numberOfButtons - 1;
                 [actionSheet showInView:self.view];
@@ -1379,6 +1386,13 @@
             fromDeliveriesAndDatailViewController = YES;
             return;
         }
+        else
+            if(buttonIndex == 2)
+            {
+                [self performSegueWithIdentifier:@"toPickup" sender:nil];
+                fromDeliveriesAndDatailViewController = YES;
+                return;
+            }
         else
         {
             self.restorantsButton.titleLabel.text = self.titleOrder;
@@ -1526,6 +1540,10 @@
         else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Delivery by time"])
         {
             self.titleDeliveryByTime = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Pick up"])
+        {
+            self.titlePickUp = [[array objectAtIndex:i] valueForKey:@"title"];
         }
         
         else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Cancel"])

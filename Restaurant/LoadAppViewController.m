@@ -41,6 +41,8 @@
 //titles
 //@synthesize titleLoading = _titleLoading;
 
+//for Andriy
+
 - (GettingCoreContent *)content
 {
     if(!_content)
