@@ -18,6 +18,7 @@
 
 @property float tempFirstContainerY;
 @property NSString *reorderButtonTraslation;
+@property NSString *titleDeliveryTime;
 @end
 
 @implementation PartOfHistoryViewController
@@ -65,6 +66,7 @@
 @synthesize deliveryAddress = _deliveryAddress;
 @synthesize youAreOrdered = _youAreOrdered;
 @synthesize reorderButtonTraslation = _reorderButtonTraslation;
+@synthesize titleDeliveryTime = _titleDeliveryTime;
 - (GettingCoreContent *)db
 {
     if(!_db)
@@ -121,12 +123,26 @@
     [self.scrollView setShowsVerticalScrollIndicator:NO];
     
 //    self.addressDescriptionLabel.text = [self.historyDictionary valueForKey:@"street"];
-        
-    self.addressDescriptionLabel.text = [NSString stringWithFormat:@"%@%@%@%@%@", [self.historyDictionary valueForKey:@"street"], @", ", [self.historyDictionary valueForKey:@"house"], @"/", [self.historyDictionary valueForKey:@"room_office"]];
-    self.cityDescriptionLabel.text = [self.historyDictionary valueForKey:@"city"];
-    self.metroDescriptionLabel.text = [self.historyDictionary valueForKey:@"metro"];
-    self.additionalDescriptionLabel.text = [self.historyDictionary valueForKey:@"additional_info"];
     
+    if([[self.historyDictionary valueForKey:@"deliveryID"] isEqualToString:@"3"])
+    {
+        self.addressDescriptionLabel.text = [NSString stringWithFormat:@"%@, %@", [self.historyDictionary valueForKey:@"street"], [self.historyDictionary valueForKey:@"house"]];
+        //use city description label for displaing time of delivery because don't want to add another label
+        self.cityLabel.text = self.titleDeliveryTime;
+        self.cityDescriptionLabel.text = [self.historyDictionary valueForKey:@"deliveryTime"];
+        //hide unused labels
+        self.additionalLabel.hidden = YES;
+        self.additionalDescriptionLabel.hidden = YES;
+        self.metroDescriptionLabel.hidden = YES;
+        self.metroLabel.hidden = YES;
+    }
+    else
+    {
+        self.addressDescriptionLabel.text = [NSString stringWithFormat:@"%@%@%@%@%@", [self.historyDictionary valueForKey:@"street"], @", ", [self.historyDictionary valueForKey:@"house"], @"/", [self.historyDictionary valueForKey:@"room_office"]];
+        self.cityDescriptionLabel.text = [self.historyDictionary valueForKey:@"city"];
+        self.metroDescriptionLabel.text = [self.historyDictionary valueForKey:@"metro"];
+        self.additionalDescriptionLabel.text = [self.historyDictionary valueForKey:@"additional_info"];
+    }
 //    self.productName.text = [[[[self.productsArray objectAtIndex:0] valueForKey:@"resultArray"] objectAtIndex:1] valueForKey:@"nameText"];
 //    self.productsCount.text = [[self.productsArray objectAtIndex:0] valueForKey:@"count"];
 //    int productCount = [[self.historyDictionary valueForKey:@"productsCounts"] intValue];
@@ -621,6 +637,10 @@
         else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Reorder"])
         {
             _reorderButtonTraslation = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Delivery time"])
+        {
+            self.titleDeliveryTime = [[array objectAtIndex:i] valueForKey:@"title"];
         }
     }
 }
