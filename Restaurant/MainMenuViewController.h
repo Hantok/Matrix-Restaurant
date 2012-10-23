@@ -30,6 +30,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *settingsButton;
 @property (weak, nonatomic) IBOutlet UIButton *restorantsButton;
 @property (strong, nonatomic) IBOutlet UIButton *imageButton;
+@property (strong, nonatomic) IBOutlet UIView *viewForPromotion;
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
+
+
+
 @property (strong, nonatomic) NSMutableArray *arrayData;
 @property (strong, nonatomic) NSNumber *selectedRow;
 @property BOOL isCartMode;

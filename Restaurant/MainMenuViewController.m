@@ -48,7 +48,7 @@
 @property (nonatomic,strong) UIAlertView *alert;
 @property (nonatomic, strong) NSMutableArray *promotionsArray;
 @property (strong, nonatomic) NSMutableData *responseData;
-
+@property (strong, nonatomic) NSMutableArray *imageArray;
 - (void)startIconDownload:(MenuDataStruct *)appRecord forIndexPath:(NSIndexPath *)indexPath;
 
 
@@ -83,7 +83,7 @@
 @synthesize cartButton = _cartButton;
 @synthesize settingsButton = _settingsButton;
 @synthesize restorantsButton = _restorantsButton;
-@synthesize imageButton = _imageView;
+@synthesize imageButton = _imageButton;
 @synthesize arrayData = _arrayData;
 @synthesize selectedRow = _selectedRow;
 @synthesize isCartMode = _isCartMode;
@@ -111,7 +111,9 @@
 @synthesize promotionsArray = _promotionsArray;
 @synthesize responseData = _responseData;
 @synthesize historyTableVar = _historyTableVar;
-
+@synthesize viewForPromotion = _viewForPromotion;
+@synthesize imageView = _imageView;
+@synthesize imageArray = _imageArray;
 
 //Titles!!!!
 @synthesize titleMain = _titleMain;
@@ -393,7 +395,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     [self somethingStupid];
     
     self.imageDownloadsInProgress = [[NSMutableDictionary alloc] init];
@@ -439,43 +440,7 @@
         self.isMenuMode = YES;
     }
     
-    NSMutableArray *imageArray = [[NSMutableArray alloc] init];
-    for (int i = 0; i < self.promotionsArray.count; i++)
-    {
-        PromotionStruct *promotion = [self.promotionsArray objectAtIndex:i];
-        if (![promotion image])
-        {
-            NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:[promotion link]]];
-            UIImage *image = [UIImage imageWithData: imageData];
-            [promotion setImage:image];
-            [self.db SavePictureToCoreData:[promotion idPicture] toData:imageData];
-            [imageArray addObject:image];
-        }
-        else
-        {
-            [imageArray addObject:[promotion image]];
-        }
-    }
-//    NSArray * imageArray  = [NSArray arrayWithObjects:
-//                             [UIImage imageNamed:@"1.jpg"],
-//                             [UIImage imageNamed:@"2.jpg"], nil];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.imageButton.frame];
-    imageView.animationImages = imageArray;
-    imageView.animationDuration = self.promotionsArray.count * 4.0;
-    [NSTimer scheduledTimerWithTimeInterval:4.0
-                                     target:self
-                                   selector:@selector(changingAnimation)
-                                   userInfo:nil
-                                    repeats:YES];
-    currentImage = 0;
-    [imageView startAnimating];
-    
-    [self.imageButton addSubview:imageView];
-    
-    //    self.imageButton.imageView.animationImages = imageArray;
-    //    self.imageButton.imageView.animationDuration = 4.0;
-    //    self.imageButton.contentMode = UIViewContentModeRedraw;
-    //    [self.imageButton.imageView startAnimating];
+    [self animationForPromotions];
     
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = self.view.bounds;
@@ -483,21 +448,87 @@
     [self.view.layer insertSublayer:gradient atIndex:0];
 }
 
-- (void)somethingStupid
+
+-(void)animationForPromotions
 {
-    [self setAllTitlesOnThisPage];
+        _imageArray = [[NSMutableArray alloc] init];
+        for (int i = 0; i < self.promotionsArray.count; i++)
+        {
+            PromotionStruct *promotion = [self.promotionsArray objectAtIndex:i];
+            if (![promotion image])
+            {
+                NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:[promotion link]]];
+                UIImage *image = [UIImage imageWithData: imageData];
+                [promotion setImage:image];
+                [self.db SavePictureToCoreData:[promotion idPicture] toData:imageData];
+                [_imageArray addObject:image];
+            }
+            else
+            {
+                [_imageArray addObject:[promotion image]];
+            }
+        }
+        
+        _imageView = [[UIImageView alloc] initWithFrame: _imageButton.frame];
+        _imageView.animationImages = _imageArray;
+        _imageView.animationDuration = _promotionsArray.count * 6.0;
+        _imageView.animationRepeatCount = 0;
+        
+        currentImage = 0;
+        [_imageView startAnimating];
+        
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:2];
+        _viewForPromotion.frame = CGRectMake(0, 2, 320, 76);
+        [UIView commitAnimations];
     
-    self.navigationItem.title = @"<-"; //@"Main";
+        [_viewForPromotion addSubview: self.imageButton];
+        [self.imageButton addSubview: _imageView];
+        
+        [NSTimer scheduledTimerWithTimeInterval:6.0
+                                         target:self
+                                       selector:@selector(changingAnimation)
+                                       userInfo:nil
+                                        repeats:YES];
     
-    [self.menuButton setTitle:self.titleMenu forState:UIControlStateNormal];
-    [self.cartButton setTitle:self.titleCart forState:UIControlStateNormal];
-    [self.drop setTitle:self.titleBack forState:UIControlStateNormal];
+        [NSTimer scheduledTimerWithTimeInterval:6.0
+                                         target:self
+                                       selector:@selector(appearOfPromotion)
+                                       userInfo:nil
+                                        repeats:YES];
+    
+        [NSTimer scheduledTimerWithTimeInterval:5.0
+                                         target:self
+                                       selector:@selector(disappearOfPromotion)
+                                       userInfo:nil
+                                        repeats:NO];
     
     if(fromSettings) //to stop scrolling to the beginning when come in previous screen
     {
         [self.pickerView reloadAllComponents];
         fromSettings = NO;
     }
+}
+-(void) appearOfPromotion
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:1];
+    [_viewForPromotion setAlpha:1];
+    [UIView commitAnimations];
+}
+
+-(void) disappearOfPromotion
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:1];
+    [_viewForPromotion setAlpha:0];
+    [UIView commitAnimations];
+    
+    [NSTimer scheduledTimerWithTimeInterval:6.0
+                                     target:self
+                                   selector:@selector(disappearOfPromotion)
+                                   userInfo:nil
+                                    repeats:YES];
 }
 
 - (void)changingAnimation
@@ -511,6 +542,19 @@
         currentImage = 0;
     }
 }
+
+
+- (void)somethingStupid
+{
+    [self setAllTitlesOnThisPage];
+    self.navigationItem.title = @"<-"; //@"Main";
+    [self.menuButton setTitle:self.titleMenu forState:UIControlStateNormal];
+    [self.cartButton setTitle:self.titleCart forState:UIControlStateNormal];
+    [self.drop setTitle:self.titleBack forState:UIControlStateNormal];
+    
+    [self.pickerView reloadAllComponents];
+}
+
 
 - (void) viewWillAppear:(BOOL)animated
 {
@@ -562,7 +606,6 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
-    
     if (oneRestaurant)
         self.arrayData = nil;
     
@@ -658,6 +701,8 @@
     [self setAlert:nil];
     [self setHistoryButton:nil];
     [self setMainView:nil];
+    [self setViewForPromotion:nil];
+    [self setImageView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
