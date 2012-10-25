@@ -49,6 +49,7 @@
 @property (nonatomic, strong) NSMutableArray *promotionsArray;
 @property (strong, nonatomic) NSMutableData *responseData;
 @property (strong, nonatomic) NSMutableArray *imageArray;
+@property (strong, nonatomic) NSArray *avalibleDeliveries;
 - (void)startIconDownload:(MenuDataStruct *)appRecord forIndexPath:(NSIndexPath *)indexPath;
 
 
@@ -77,6 +78,7 @@
 @end
 
 @implementation MainMenuViewController
+@synthesize avalibleDeliveries = _avalibleDeliveries;
 @synthesize imageDownloadsInProgress = _imageDownloadsInProgress;
 @synthesize pickerView = _pickerView;
 @synthesize menuButton = _menuButton;
@@ -396,6 +398,7 @@
 {
     [super viewDidLoad];
     [self somethingStupid];
+    self.avalibleDeliveries = [self.db fetchAvalibleTypesOfDeliveries];
     
     self.imageDownloadsInProgress = [[NSMutableDictionary alloc] init];
     
@@ -491,17 +494,17 @@
                                        userInfo:nil
                                         repeats:YES];
     
-        [NSTimer scheduledTimerWithTimeInterval:6.0
-                                         target:self
-                                       selector:@selector(appearOfPromotion)
-                                       userInfo:nil
-                                        repeats:YES];
-    
-        [NSTimer scheduledTimerWithTimeInterval:5.0
-                                         target:self
-                                       selector:@selector(disappearOfPromotion)
-                                       userInfo:nil
-                                        repeats:NO];
+//        [NSTimer scheduledTimerWithTimeInterval:6.0
+//                                         target:self
+//                                       selector:@selector(appearOfPromotion)
+//                                       userInfo:nil
+//                                        repeats:YES];
+//    
+//        [NSTimer scheduledTimerWithTimeInterval:5.0
+//                                         target:self
+//                                       selector:@selector(disappearOfPromotion)
+//                                       userInfo:nil
+//                                        repeats:NO];
     
     if(fromSettings) //to stop scrolling to the beginning when come in previous screen
     {
@@ -509,27 +512,27 @@
         fromSettings = NO;
     }
 }
--(void) appearOfPromotion
-{
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:1];
-    [_viewForPromotion setAlpha:1];
-    [UIView commitAnimations];
-}
-
--(void) disappearOfPromotion
-{
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:1];
-    [_viewForPromotion setAlpha:0];
-    [UIView commitAnimations];
-    
-    [NSTimer scheduledTimerWithTimeInterval:6.0
-                                     target:self
-                                   selector:@selector(disappearOfPromotion)
-                                   userInfo:nil
-                                    repeats:YES];
-}
+//-(void) appearOfPromotion
+//{
+//    [UIView beginAnimations:nil context:NULL];
+//    [UIView setAnimationDuration:1];
+//    [_viewForPromotion setAlpha:1];
+//    [UIView commitAnimations];
+//}
+//
+//-(void) disappearOfPromotion
+//{
+//    [UIView beginAnimations:nil context:NULL];
+//    [UIView setAnimationDuration:1];
+//    [_viewForPromotion setAlpha:0];
+//    [UIView commitAnimations];
+//    
+//    [NSTimer scheduledTimerWithTimeInterval:6.0
+//                                     target:self
+//                                   selector:@selector(disappearOfPromotion)
+//                                   userInfo:nil
+//                                    repeats:YES];
+//}
 
 - (void)changingAnimation
 {
@@ -1394,9 +1397,20 @@
                 UIActionSheet* actionSheet = [[UIActionSheet alloc] init];
                 [actionSheet setTitle:self.titleChooseMethodToGetOrder];  //@"Choose method to get order:"];
                 [actionSheet setDelegate:(id)self];
-                [actionSheet addButtonWithTitle:self.titleDelivery];  //@"Delivery"];
-                [actionSheet addButtonWithTitle:self.titleDeliveryByTime]; //@"Delivery by time"];
-                [actionSheet addButtonWithTitle:self.titlePickUp]; 
+//                [actionSheet addButtonWithTitle:self.titleDelivery];  //@"Delivery"];
+//                [actionSheet addButtonWithTitle:self.titleDeliveryByTime]; //@"Delivery by time"];
+//                [actionSheet addButtonWithTitle:self.titlePickUp];
+                for (int i = 0; i < self.avalibleDeliveries.count;i= i+2)
+                {
+                    id delivery = [self.avalibleDeliveries objectAtIndex:i];
+                    NSString *temp = [NSString stringWithFormat:@"%@", [delivery valueForKey:@"underbarid"]];
+                    if([temp isEqualToString:@"1"])
+                        [actionSheet addButtonWithTitle:self.titleDelivery];  //@"Delivery"];
+                    if([temp isEqualToString:@"2"])
+                        [actionSheet addButtonWithTitle:self.titleDeliveryByTime]; //@"Delivery by time"];
+                    if([temp isEqualToString:@"3"])
+                        [actionSheet addButtonWithTitle:self.titlePickUp];
+                }
                 [actionSheet addButtonWithTitle:self.titleCancel]; //@"Cancel"];
                 actionSheet.cancelButtonIndex = actionSheet.numberOfButtons - 1;
                 [actionSheet showInView:self.view];
@@ -1417,14 +1431,14 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0)
+    if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:self.titleDelivery])
     {
         [self performSegueWithIdentifier:@"toDelivery" sender:nil];
         fromDeliveriesAndDatailViewController = YES;
         return;
     }
     else
-        if (buttonIndex == 1)
+        if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:self.titleDeliveryByTime])
         {
             deliveryTime = YES;
             [self performSegueWithIdentifier:@"toDelivery" sender:nil];
@@ -1432,7 +1446,7 @@
             return;
         }
         else
-            if(buttonIndex == 2)
+            if([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:self.titlePickUp])
             {
                 [self performSegueWithIdentifier:@"toPickup" sender:nil];
                 fromDeliveriesAndDatailViewController = YES;

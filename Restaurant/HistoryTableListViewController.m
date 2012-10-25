@@ -56,7 +56,7 @@
     if (!_historyArray) {
         NSMutableArray *tempArray = [[NSMutableArray alloc] init];
         NSMutableArray *tempArray2 = [[NSMutableArray alloc] init];
-        tempArray = [[self.content getArrayFromCoreDatainEntetyName:@"CustomerOrders" withSortDescriptor:@"name"] mutableCopy];
+        tempArray = [[self.content getArrayFromCoreDatainEntetyName:@"CustomerOrders" withSortDescriptor:@"orderID"] mutableCopy];
         
         for (int i = tempArray.count; i > 0; i--) {
             [_historyArray addObject:[tempArray objectAtIndex:i - 1]];

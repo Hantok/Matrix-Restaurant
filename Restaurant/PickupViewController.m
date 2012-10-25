@@ -33,6 +33,7 @@
 @property (strong, nonatomic) NSString *titleOrder;
 @property (strong, nonatomic) NSString *titleOnMap;
 @property (strong, nonatomic) NSString *titleThankYouForOrder;
+@property (strong, nonatomic) NSString *titleWrongTime;
 
 @end
 
@@ -69,6 +70,7 @@
 @synthesize titlePhone = _titlePhone;
 @synthesize titleTime = _titleTime;
 @synthesize titleOnMap = _titleOnMap;
+@synthesize titleWrongTime = _titleWrongTime;
 
 -(GettingCoreContent *)content
 {
@@ -319,6 +321,7 @@
                                             cancelButtonTitle:@"Ok"
                                             otherButtonTitles:nil];
     [message show];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void) connectionDidFinishLoading:(NSURLConnection*)connection
@@ -342,11 +345,22 @@
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
         [message show];
-        return;
     }
     else
-    {
-
+        if ([self.db.cause isEqualToString:@"0"])
+        {
+            [self.hudView failAndDismissWithTitle:nil];
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:self.titleError
+                                                              message:self.titleWrongTime
+                                                             delegate:self
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles:nil];
+            [message show];
+            return;
+        }
+        else
+        {
+            
             [self.hudView failAndDismissWithTitle:nil];
             UIAlertView *message = [[UIAlertView alloc] initWithTitle:self.titleError
                                                               message:self.titlePleaseTryAgain
@@ -356,8 +370,8 @@
             [message show];
             [self.navigationController popViewControllerAnimated:YES];
             return;
-
-    }
+            
+        }
     
     NSLog(@"Success: %@", self.db.success);
     NSLog(@"orderNumber: %@", self.db.orderNumber);
@@ -569,6 +583,10 @@
         else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Thank you for order!"])
         {
             self.titleThankYouForOrder = [[array objectAtIndex:i] valueForKey:@"title"];
+        }
+        else if ([[[array objectAtIndex:i] valueForKey:@"name_EN"] isEqualToString:@"Right now restaurant doesn't work, please order delivery by time"])
+        {
+            self.titleWrongTime = [[array objectAtIndex:i] valueForKey:@"title"];
         }
     }
 }

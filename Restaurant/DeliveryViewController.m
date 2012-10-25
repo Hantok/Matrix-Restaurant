@@ -378,7 +378,7 @@
     
     // format it
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm zzz"];
+    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm"];
     
     NSString *dateString = [dateFormat stringFromDate:date];
     self.deliveryTime.text = dateString;
@@ -509,7 +509,7 @@
             else
                 deliveryType = @"2";
             
-            [order appendFormat:@"&ProdIDs=%@&counts=%@&city=%@&street=%@&house=%@&room_office=%@&custName=%@&phone=%@&additional_info=%@&deliveryType=%@",ids,counts,self.CityName.text,self.street.text,self.build.text,self.appartaments.text,self.customerName.text,self.phone.text,self.otherInformation.text, deliveryType];
+            [order appendFormat:@"&ProdIDs=%@&counts=%@&city=%@&street=%@&house=%@&room_office=%@&custName=%@&phone=%@&additional_info=%@&deliveryType=%@&deliveryTime=%@",ids,counts,self.CityName.text,self.street.text,self.build.text,self.appartaments.text,self.customerName.text,self.phone.text,self.otherInformation.text, deliveryType,self.deliveryTime.text];
             
             order = [order stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding].copy;
             

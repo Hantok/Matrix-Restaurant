@@ -285,6 +285,33 @@
 
 }
 
+- (NSArray *)fetchAvalibleTypesOfDeliveries
+{
+    NSManagedObjectContext *context = self.managedObjectContext;
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Deliveries" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc]init];
+    [request setEntity:entity];
+    request.predicate = [NSPredicate predicateWithFormat:@"action!=2"];
+    NSManagedObjectContext *moc = context;
+    NSError *error;
+    NSMutableArray *unsortedDeliveriesIds = [[moc executeFetchRequest:request error:&error] mutableCopy];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]initWithKey:@"underbarid" ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    NSMutableArray *deliveriesIds = [unsortedDeliveriesIds sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
+    
+    NSMutableArray *arrayOfDeliveries = [[NSMutableArray alloc]init];
+    request = [NSFetchRequest fetchRequestWithEntityName:@"Deliveries_translation"];
+    for (int i=0; i<deliveriesIds.count; i++)
+    {
+        id currentDelivery = [deliveriesIds objectAtIndex:i];
+        request.predicate = [NSPredicate predicateWithFormat:@"idLanguage == %@ && idDelivery == %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguageId"], [currentDelivery valueForKey:@"underbarid"]];
+        [arrayOfDeliveries addObject:currentDelivery];
+        [arrayOfDeliveries addObjectsFromArray:[moc executeFetchRequest:request error:&error]];
+    }
+    return [arrayOfDeliveries copy];
+}
+
 - (NSArray *)fetchAllRestaurantsWithDefaultLanguageAndCity
 {
     NSManagedObjectContext * context = self.managedObjectContext;

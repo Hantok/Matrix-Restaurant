@@ -22,6 +22,7 @@
                 dictionaryOfAtributes:(NSDictionary *)attributeDictionary;
 - (void) deleteAllObjectsFromEntity:(NSString *)entityDescription;
 - (NSArray *)fetchAllRestaurantsWithDefaultLanguageAndCity;
+- (NSArray *)fetchAvalibleTypesOfDeliveries;
 - (NSArray *)fetchRootMenuWithDefaultLanguageForRestaurant:(NSString *)restaurnatId;
 - (NSArray *)fetchChildMenuWithDefaultLanguageForParentMenu:(NSString *)parentMenuId;
 - (NSArray *)fetchAllLanguages;
